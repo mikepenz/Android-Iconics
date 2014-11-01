@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android-Iconics</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_playground">Playground</string>
+
+    <string name="action_opensource">Open Source</string>
+    <string name="action_playground">Playground</string>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2014 Mike Penz
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+    <string name="define_AndroidIconics">year;owner</string>
+    <string name="library_AndroidIconics_author">Mike Penz</string>
+    <string name="library_AndroidIconics_authorWebsite">http://mikepenz.com/</string>
+    <string name="library_AndroidIconics_libraryName">AndroidIconics</string>
+    <string name="library_AndroidIconics_libraryDescription">
+        <![CDATA[
+        <b>AndroidIconics</b> will blow your mind :D
+        <br /><br />
+        Include it in your app and you will be able to use an iconfont as drawable anywhere in your app. You can plug-in new iconfonts as you need them. You can even create your own. (Just try http://fontello.com/).
+        ]]>
+    </string>
+    <string name="library_AndroidIconics_libraryVersion">0.9.0</string>
+    <string name="library_AndroidIconics_libraryWebsite">https://github.com/mikepenz/AndroidIconics</string>
+    <string name="library_AndroidIconics_licenseId">apache_2_0</string>
+    <string name="library_AndroidIconics_isOpenSource">true</string>
+    <string name="library_AndroidIconics_repositoryLink">https://github.com/mikepenz/AndroidIconics</string>
+    <!-- Custom variables section -->
+    <string name="library_AndroidIconics_owner">Mike Penz</string>
+    <string name="library_AndroidIconics_year">2014</string>
+</resources>
