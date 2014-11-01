@@ -28,14 +28,10 @@ import com.mikpenz.iconics.typeface.ITypeface;
 import com.mikpenz.iconics.utils.Utils;
 
 /**
- * <p/>
  * Embed an icon into a Drawable that can be used as TextView icons, or ActionBar icons.
- * <p/>
- * <pre>
- *     new IconDrawable(context, IconValue.icon_star)
- *           .colorRes(R.color.white)
- *           .actionBarSize();
- * </pre>
+ * new IconDrawable(context, IconValue.icon_star)
+ * .colorRes(R.color.white)
+ * .actionBarSize();
  * If you don't set the size of the drawable, it will use the size
  * that is given to him. Note that in an ActionBar, if you don't
  * set the size explicitly it uses 0, so please use actionBarSize().
@@ -81,6 +77,7 @@ public class IconicsDrawable extends Drawable {
     /**
      * Create an IconDrawable.
      *
+     * @param font    The font to use for this drawable
      * @param context Your activity or application context.
      * @param icon    The icon you want this drawable to display.
      */
