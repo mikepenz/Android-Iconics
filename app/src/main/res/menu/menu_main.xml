@@ -5,6 +5,6 @@
           android:title="@string/action_opensource"
           app:showAsAction="ifRoom"/>
     <item android:id="@+id/action_playground"
-          android:title="@string/action_opensource"
+          android:title="@string/action_playground"
           app:showAsAction="never"/>
 </menu>

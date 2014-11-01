@@ -26,8 +26,8 @@
     <TextView
         android:id="@+id/name"
         android:gravity="center_vertical"
-        android:paddingStart="64dp"
-        android:paddingLeft="64dp"
+        android:paddingStart="56dp"
+        android:paddingLeft="56dp"
         android:paddingRight="8dp"
         android:paddingEnd="8dp"
         android:layout_width="match_parent"
