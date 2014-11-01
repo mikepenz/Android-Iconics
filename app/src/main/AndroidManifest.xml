@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mikpenz.iconics.sample" >
+          package="com.mikpenz.iconics.sample">
 
     <application
         android:name="com.mikpenz.iconics.sample.CustomApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.mikpenz.iconics.sample.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".PlaygroundActivity"
-            android:label="@string/title_activity_playground" >
+            android:label="@string/title_activity_playground">
         </activity>
     </application>
 
