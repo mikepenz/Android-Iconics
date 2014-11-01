@@ -4,9 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 
 import com.mikpenz.iconics.typeface.ITypeface;
-import com.mikpenz.iconics.utils.Utils;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -101,8 +99,8 @@ public class CustomFont implements ITypeface {
     public Typeface getTypeface(Context context) {
         if (typeface == null) {
             try {
-                typeface = Typeface.createFromFile(Utils.resourceToFile(context, TTF_FILE));
-            } catch (IOException e) {
+                typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + TTF_FILE);
+            } catch (Exception e) {
                 return null;
             }
         }
