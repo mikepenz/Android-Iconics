@@ -1,4 +1,23 @@
 apply plugin: 'com.android.application'
+//wrap with try and catch so the build is working even if the signing stuff is missing
+try {
+    apply from: '../../../signing.gradle'
+} catch (ex) {
+}
+
+
+def appendVersionNameVersionCode(variant, defaultConfig) {
+    if (variant.zipAlign) {
+        def file = variant.outputFile
+        def fileName = file.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
+        variant.outputFile = new File(file.parent, fileName)
+    }
+
+    def file = variant.packageApplication.outputFile
+    def fileName = file.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
+    variant.packageApplication.outputFile = new File(file.parent, fileName)
+}
+
 
 android {
     compileSdkVersion 21
@@ -8,14 +27,34 @@ android {
         applicationId "com.mikpenz.iconics.sample"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 10
-        versionName "0.1.0"
+        versionCode 20
+        versionName "0.2.0"
     }
+
     buildTypes {
-        release {
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-DEBUG"
+            try {
+                signingConfig signingConfigs.debug
+            } catch (ex) {
+            }
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        release {
+            try {
+                signingConfig signingConfigs.release
+            } catch (ex) {
+            }
+            zipAlign true
+            minifyEnabled false
+        }
+
+        applicationVariants.all { variant ->
+            appendVersionNameVersionCode(variant, defaultConfig)
+        }
+    }
+    productFlavors {
     }
     lintOptions {
         abortOnError false
