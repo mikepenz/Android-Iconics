@@ -13,7 +13,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -29,4 +29,5 @@ dependencies {
     compile 'com.android.support:cardview-v7:21.0.0'
     compile 'com.mikepenz.aboutlibraries:library:4.2.0@aar'
     compile project(':library')
+    compile project(':meteocons-typeface-library')
 }

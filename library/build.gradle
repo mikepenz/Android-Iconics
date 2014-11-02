@@ -13,7 +13,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -21,7 +21,7 @@ android {
         abortOnError false
     }
 }
-apply from: 'gradle-mvn-push.gradle'
+apply from: '../gradle-mvn-push.gradle'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
