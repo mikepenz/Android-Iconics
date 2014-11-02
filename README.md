@@ -112,8 +112,7 @@ Will follow soon
 
 
 ##Credits
-[Joan Zapata](https://github.com/JoanZapata)
-This project exists because of [Android-Iconify](https://github.com/JoanZapata/android-iconify). Thanks Joan Zapata. It implements some really great concepts, and i only tried to improve them and give some more flexibility.
+- [Joan Zapata](https://github.com/JoanZapata) He is the creator of [Android-Iconify](https://github.com/JoanZapata/android-iconify) which gave me the idea of this project. It implements some really great concepts, and i only tried to improve them and give it some more flexibility.
 
 
 #Developed By
