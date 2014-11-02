@@ -71,8 +71,20 @@ In some cases you will love to use a typeface-library-addon in your IconicTextVi
 
 Just override your Application and register your additional fonts like this:
 ```java
-Iconics.registerFont(new Meteoconcs());
-Iconics.registerFont(new CustomFont());
+public class CustomApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Iconics.registerFont(new Meteoconcs());
+        Iconics.registerFont(new CustomFont());
+    }
+}
+```
+and set it in your AndroidManifest.xml as name
+```java
+    <application
+        android:name="com.mikpenz.iconics.sample.CustomApplication"
+        ...
 ```
 
 ###Advanced IconicsBuilder
@@ -95,12 +107,13 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
   new IconicsDrawable(this, new FontAwesome(), FontAwesome.FontAwesomeIcon.faw_adjust.character())
 ```
 
-
-##Credits
-This project exists because of [Android-Iconify](https://github.com/JoanZapata/android-iconify). Thanks Joan Zapata. It implements some really great concepts, and i only tried to improve them and give some more flexibility.
-
 ##Contribute
 Will follow soon
+
+
+##Credits
+[Joan Zapata](https://github.com/JoanZapata)
+This project exists because of [Android-Iconify](https://github.com/JoanZapata/android-iconify). Thanks Joan Zapata. It implements some really great concepts, and i only tried to improve them and give some more flexibility.
 
 
 #Developed By
