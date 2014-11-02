@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,9 +40,8 @@ public class PlaygroundActivity extends Activity {
 
         TextView tv1 = (TextView) findViewById(R.id.test1);
         new Iconics.IconicsBuilder().ctx(this)
-                .style(new BackgroundColorSpan(Color.BLACK))
-                .style(new RelativeSizeSpan(2f))
-                .style(new ForegroundColorSpan(Color.WHITE))
+                .style(new ForegroundColorSpan(Color.WHITE), new BackgroundColorSpan(Color.BLACK), new RelativeSizeSpan(2f))
+                .styleFor("faw-adjust", new BackgroundColorSpan(Color.RED))
                 .on(tv1)
                 .build();
 
@@ -50,5 +50,13 @@ public class PlaygroundActivity extends Activity {
 
         ImageView iv3 = (ImageView) findViewById(R.id.test3);
         iv3.setImageDrawable(new IconicsDrawable(this, new FontAwesome(), FontAwesome.FontAwesomeIcon.faw_android.character()).color(Color.GREEN));
+
+        Button b4 = (Button) findViewById(R.id.test4);
+        new Iconics.IconicsBuilder().ctx(this)
+                .style(new BackgroundColorSpan(Color.BLACK))
+                .style(new RelativeSizeSpan(2f))
+                .style(new ForegroundColorSpan(Color.WHITE))
+                .on(b4)
+                .build();
     }
 }

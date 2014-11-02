@@ -60,7 +60,7 @@ public final class Iconics {
         // Prevent instantiation
     }
 
-    private static SpannableString style(Context ctx, HashMap<String, ITypeface> fonts, StringBuilder text, List<CharacterStyle> styles) {
+    private static SpannableString style(Context ctx, HashMap<String, ITypeface> fonts, StringBuilder text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
         if (fonts == null || fonts.size() == 0) {
             fonts = FONTS;
         }
@@ -90,7 +90,7 @@ public final class Iconics {
 
                 text = text.replace(startIndex, endIndex, iconValue);
 
-                styleContainers.add(new StyleContainer(startIndex, startIndex + 1, fonts.get(fontKey)));
+                styleContainers.add(new StyleContainer(startIndex, startIndex + 1, iconString, fonts.get(fontKey)));
 
             } catch (IllegalArgumentException e) {
                 Log.w(Iconics.TAG, "Wrong icon name: " + iconString);
@@ -109,8 +109,13 @@ public final class Iconics {
         SpannableString sb = new SpannableString(text);
 
         for (StyleContainer styleContainer : styleContainers) {
-            sb.setSpan(new IconicsTypefaceSpan("sans-serif-light", styleContainer.getFont().getTypeface(ctx)), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-            if (styles != null) {
+            sb.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.getFont().getTypeface(ctx)), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+
+            if (stylesFor.containsKey(styleContainer.getIcon())) {
+                for (CharacterStyle style : stylesFor.get(styleContainer.getIcon())) {
+                    sb.setSpan(CharacterStyle.wrap(style), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                }
+            } else if (styles != null) {
                 for (CharacterStyle style : styles) {
                     sb.setSpan(CharacterStyle.wrap(style), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
                 }
@@ -123,13 +128,15 @@ public final class Iconics {
         private Context ctx;
         private StringBuilder text;
         private List<CharacterStyle> withStyles;
+        private HashMap<String, List<CharacterStyle>> withStylesFor;
         private List<ITypeface> fonts;
 
-        public IconicsBuilderString(Context ctx, List<ITypeface> fonts, StringBuilder text, List<CharacterStyle> styles) {
+        public IconicsBuilderString(Context ctx, List<ITypeface> fonts, StringBuilder text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
             this.ctx = ctx;
             this.fonts = fonts;
             this.text = text;
             this.withStyles = styles;
+            this.withStylesFor = stylesFor;
         }
 
         public SpannableString build() {
@@ -137,7 +144,7 @@ public final class Iconics {
             for (ITypeface font : fonts) {
                 mappedFonts.put(font.getMappingPrefix(), font);
             }
-            return Iconics.style(ctx, mappedFonts, text, withStyles);
+            return Iconics.style(ctx, mappedFonts, text, withStyles, withStylesFor);
         }
     }
 
@@ -146,20 +153,23 @@ public final class Iconics {
         private TextView onTextView;
         private Button onButton;
         private List<CharacterStyle> withStyles;
+        private HashMap<String, List<CharacterStyle>> withStylesFor;
         private List<ITypeface> fonts;
 
-        public IconicsBuilderView(Context ctx, List<ITypeface> fonts, TextView textView, List<CharacterStyle> styles) {
+        public IconicsBuilderView(Context ctx, List<ITypeface> fonts, TextView textView, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
             this.ctx = ctx;
             this.fonts = fonts;
             this.onTextView = textView;
             this.withStyles = styles;
+            this.withStylesFor = stylesFor;
         }
 
-        public IconicsBuilderView(Context ctx, List<ITypeface> fonts, Button button, List<CharacterStyle> styles) {
+        public IconicsBuilderView(Context ctx, List<ITypeface> fonts, Button button, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
             this.ctx = ctx;
             this.fonts = fonts;
             this.onButton = button;
             this.withStyles = styles;
+            this.withStylesFor = stylesFor;
         }
 
         public void build() {
@@ -169,15 +179,16 @@ public final class Iconics {
             }
 
             if (onTextView != null) {
-                onTextView.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onTextView.getText()), withStyles));
+                onTextView.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onTextView.getText()), withStyles, withStylesFor));
             } else if (onButton != null) {
-                onButton.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onButton.getText()), withStyles));
+                onButton.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onButton.getText()), withStyles, withStylesFor));
             }
         }
     }
 
     public static class IconicsBuilder {
         private List<CharacterStyle> styles = new LinkedList<CharacterStyle>();
+        private HashMap<String, List<CharacterStyle>> stylesFor = new HashMap<String, List<CharacterStyle>>();
         private List<ITypeface> fonts = new LinkedList<ITypeface>();
         private Context ctx;
 
@@ -189,8 +200,27 @@ public final class Iconics {
             return this;
         }
 
-        public IconicsBuilder style(CharacterStyle style) {
-            this.styles.add(style);
+        public IconicsBuilder style(CharacterStyle... styles) {
+            if (styles != null && styles.length > 0) {
+                for (CharacterStyle style : styles) {
+                    this.styles.add(style);
+                }
+            }
+            return this;
+        }
+
+        public IconicsBuilder styleFor(String styleFor, CharacterStyle... styles) {
+            styleFor = styleFor.replace("-", "_");
+
+            if (!stylesFor.containsKey(styleFor)) {
+                this.stylesFor.put(styleFor, new LinkedList<CharacterStyle>());
+            }
+
+            if (styles != null && styles.length > 0) {
+                for (CharacterStyle style : styles) {
+                    this.stylesFor.get(styleFor).add(style);
+                }
+            }
             return this;
         }
 
@@ -201,34 +231,36 @@ public final class Iconics {
 
 
         public IconicsBuilderString on(String on) {
-            return new IconicsBuilderString(ctx, fonts, new StringBuilder(on), styles);
+            return new IconicsBuilderString(ctx, fonts, new StringBuilder(on), styles, stylesFor);
         }
 
         public IconicsBuilderString on(CharSequence on) {
-            return new IconicsBuilderString(ctx, fonts, new StringBuilder(on), styles);
+            return new IconicsBuilderString(ctx, fonts, new StringBuilder(on), styles, stylesFor);
         }
 
         public IconicsBuilderString on(StringBuilder on) {
-            return new IconicsBuilderString(ctx, fonts, on, styles);
+            return new IconicsBuilderString(ctx, fonts, on, styles, stylesFor);
         }
 
         public IconicsBuilderView on(TextView on) {
-            return new IconicsBuilderView(ctx, fonts, on, styles);
+            return new IconicsBuilderView(ctx, fonts, on, styles, stylesFor);
         }
 
         public IconicsBuilderView on(Button on) {
-            return new IconicsBuilderView(ctx, fonts, on, styles);
+            return new IconicsBuilderView(ctx, fonts, on, styles, stylesFor);
         }
     }
 
     private static class StyleContainer {
         private int startIndex;
         private int endIndex;
+        private String icon;
         private ITypeface font;
 
-        private StyleContainer(int startIndex, int endIndex, ITypeface font) {
+        private StyleContainer(int startIndex, int endIndex, String icon, ITypeface font) {
             this.startIndex = startIndex;
             this.endIndex = endIndex;
+            this.icon = icon;
             this.font = font;
         }
 
@@ -236,24 +268,17 @@ public final class Iconics {
             return startIndex;
         }
 
-        public void setStartIndex(int startIndex) {
-            this.startIndex = startIndex;
-        }
-
         public int getEndIndex() {
             return endIndex;
         }
 
-        public void setEndIndex(int endIndex) {
-            this.endIndex = endIndex;
+        public String getIcon() {
+            return icon;
         }
 
         public ITypeface getFont() {
             return font;
         }
 
-        public void setFont(ITypeface font) {
-            this.font = font;
-        }
     }
 }
