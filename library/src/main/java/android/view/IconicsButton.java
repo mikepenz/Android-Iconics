@@ -21,19 +21,23 @@ import android.util.AttributeSet;
 import android.widget.Button;
 
 import com.mikpenz.iconics.Iconics;
+import com.mikpenz.iconics.typeface.FontAwesome;
 
 public class IconicsButton extends Button {
 
     public IconicsButton(Context context) {
         super(context);
+        setTypeface(new FontAwesome().getTypeface(context));
     }
 
     public IconicsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setTypeface(new FontAwesome().getTypeface(context));
     }
 
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        setTypeface(new FontAwesome().getTypeface(context));
     }
 
     @Override
