@@ -2,9 +2,12 @@
 
 Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
 
-So you are asking where can you use those icons?
+Let's start with some awesome screenshots ;)
 
-Use them in any IconicTextView just by defining the icon within the text. An example for FontAwesome would look like {icon-faw-github}. You see pretty easy right?
+![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg)
+![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.jpg)
+
+You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {icon-faw-github}. You see pretty easy right?
 
 You can also use it on any text by using the simple builder pattern. Here's the shortest possible sample:
 
@@ -22,12 +25,6 @@ If you don't know the name of the icon, and the typeface-library-addon allows it
 ```java
 new IconicsDrawable(this, new FontAwesome(), FontAwesome.FontAwesomeIcon.faw_android.character()).color(Color.GREEN)
 ```
-
-To showcase a some simple usecases, here are screenshots:
-
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg)
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.jpg)
-
 
 ##Include in your project
 The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your `build.gradle`.
