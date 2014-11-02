@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Android-iconics by mikepenz</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Android-iconics</h1>
+        <p>Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.</p>
+
+        <p class="view"><a href="https://github.com/mikepenz/Android-Iconics">View the Project on GitHub <small>mikepenz/Android-Iconics</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/mikepenz/Android-Iconics/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/mikepenz/Android-Iconics/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/mikepenz/Android-Iconics">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="android-iconics" class="anchor" href="#android-iconics"><span class="octicon octicon-link"></span></a>Android-Iconics</h1>
+
+<p>Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.</p>
+
+<p>So you are asking where can you use those icons?</p>
+
+<p>Use them in any IconicTextView just by defining the icon within the text. An example for FontAwesome would look like {icon-faw-github}. You see pretty easy right?</p>
+
+<p>You can also use it on any text by using the simple builder pattern. Here's the shortest possible sample:</p>
+
+<div class="highlight highlight-java"><pre><span class="k">new</span> <span class="n">Iconics</span><span class="o">.</span><span class="na">IconicsBuilder</span><span class="o">().</span><span class="na">ctx</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">on</span><span class="o">(</span><span class="n">YOUR_TEXT_VIEW</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+
+<p>But wait! There's more. You can also use it as Drawable anywhere. Create it like this:</p>
+
+<div class="highlight highlight-java"><pre><span class="k">new</span> <span class="nf">IconicsDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"faw-adjust"</span><span class="o">).</span><span class="na">color</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">)</span>
+</pre></div>
+
+<p>If you don't know the name of the icon, and the typeface-library-addon allows it you can also do the following:</p>
+
+<div class="highlight highlight-java"><pre><span class="k">new</span> <span class="nf">IconicsDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">new</span> <span class="nf">FontAwesome</span><span class="o">(),</span> <span class="n">FontAwesome</span><span class="o">.</span><span class="na">FontAwesomeIcon</span><span class="o">.</span><span class="na">faw_android</span><span class="o">.</span><span class="na">character</span><span class="o">()).</span><span class="na">color</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">)</span>
+</pre></div>
+
+<p>To showcase a some simple usecases, here are screenshots:</p>
+
+<p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg" alt="Image">
+<img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.jpg" alt="Image"></p>
+
+<h2>
+<a name="include-in-your-project" class="anchor" href="#include-in-your-project"><span class="octicon octicon-link"></span></a>Include in your project</h2>
+
+<p>The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your <code>build.gradle</code>.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dependencies</span> <span class="p">{</span>
+    <span class="nx">compile</span> <span class="s1">'com.mikepenz.iconics:library:0.2.0@aar'</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="use-typeface-library-addons" class="anchor" href="#use-typeface-library-addons"><span class="octicon octicon-link"></span></a>Use typeface-library-addons</h2>
+
+<p>One basic function of this library is the feature to drop in new typefaces on the go. The default font of this project is FontAwesome (<a href="http://fontawesome.io">http://fontawesome.io</a>), but you can create and add as many as you like.</p>
+
+<p>The main idea is that the community can create libraries which can be used without the need of an extra library. </p>
+
+<p>So how does it work?
+Just add the dependency of any and as many typface-library-addons in your build.gradle just beneath the android-iconics dependency.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">dependencies</span> <span class="p">{</span>
+    <span class="nx">compile</span> <span class="s1">'com.mikepenz.iconics:library:0.2.0@aar'</span>
+    <span class="nx">compile</span> <span class="s1">'com.mikepenz.iconics:meteocons-typeface:0.1.0@aar'</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>To enable them for the IconicsTextView too follow the steps under <a href="#register-typeface">Register typeface</a></p>
+
+<h2>
+<a name="advanced-usage" class="anchor" href="#advanced-usage"><span class="octicon octicon-link"></span></a>Advanced usage</h2>
+
+<h3>
+<a name="working-with-multiple-typeface-library-addons-and-icons" class="anchor" href="#working-with-multiple-typeface-library-addons-and-icons"><span class="octicon octicon-link"></span></a>working with multiple typeface-library-addons and icons</h3>
+
+<p>In some cases you will use multiple typefaces. It is really easy to decide which icon of which typeface-library-addon should be used. Each of those got a unique 3-character long identifier which is the prefix of every single icon. 
+FontAwesome - "faw"
+Meteocons - "met"</p>
+
+<p>Evertime you want to use an icon in a text just write {icon-faw-adjust}, ... 
+If you create an IconicsDrawable or define the style for a specific icon within an text just remove the "icon-" prefix and you're fine.</p>
+
+<h3>
+<a name="register-typeface" class="anchor" href="#register-typeface"><span class="octicon octicon-link"></span></a>Register typeface</h3>
+
+<p>In some cases you will love to use a typeface-library-addon in your IconicTextView and everywhere else without the need of adding it as typeface all the time.</p>
+
+<p>Just override your Application and register your additional fonts like this:</p>
+
+<div class="highlight highlight-java"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomApplication</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+        <span class="n">Iconics</span><span class="o">.</span><span class="na">registerFont</span><span class="o">(</span><span class="k">new</span> <span class="nf">Meteoconcs</span><span class="o">());</span>
+        <span class="n">Iconics</span><span class="o">.</span><span class="na">registerFont</span><span class="o">(</span><span class="k">new</span> <span class="nf">CustomFont</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>and set it in your AndroidManifest.xml as name</p>
+
+<div class="highlight highlight-java"><pre>    <span class="o">&lt;</span><span class="n">application</span>
+        <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.mikpenz.iconics.sample.CustomApplication"</span>
+        <span class="o">...</span>
+</pre></div>
+
+<h3>
+<a name="advanced-iconicsbuilder" class="anchor" href="#advanced-iconicsbuilder"><span class="octicon octicon-link"></span></a>Advanced IconicsBuilder</h3>
+
+<p>Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
+Just define the style for all icons or only a specific one. You can find this in the PlaygroundActivity of the sample too.</p>
+
+<div class="highlight highlight-java"><pre><span class="k">new</span> <span class="n">Iconics</span><span class="o">.</span><span class="na">IconicsBuilder</span><span class="o">().</span><span class="na">ctx</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">style</span><span class="o">(</span><span class="k">new</span> <span class="nf">ForegroundColorSpan</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">),</span> <span class="k">new</span> <span class="nf">BackgroundColorSpan</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">),</span> <span class="k">new</span> <span class="nf">RelativeSizeSpan</span><span class="o">(</span><span class="mi">2</span><span class="n">f</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">styleFor</span><span class="o">(</span><span class="s">"faw-adjust"</span><span class="o">,</span> <span class="k">new</span> <span class="nf">BackgroundColorSpan</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">on</span><span class="o">(</span><span class="n">tv1</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+
+<h3>
+<a name="string-icon-key-or-typeface-enum" class="anchor" href="#string-icon-key-or-typeface-enum"><span class="octicon octicon-link"></span></a>String icon-key or typeface enum</h3>
+
+<p>Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a sepcific font. Both is valid:</p>
+
+<div class="highlight highlight-java"><pre>  <span class="k">new</span> <span class="nf">IconicsDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"faw-adjust"</span><span class="o">)</span>
+</pre></div>
+
+<div class="highlight highlight-java"><pre>  <span class="k">new</span> <span class="nf">IconicsDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">new</span> <span class="nf">FontAwesome</span><span class="o">(),</span> <span class="n">FontAwesome</span><span class="o">.</span><span class="na">FontAwesomeIcon</span><span class="o">.</span><span class="na">faw_adjust</span><span class="o">.</span><span class="na">character</span><span class="o">())</span>
+</pre></div>
+
+<h2>
+<a name="contribute" class="anchor" href="#contribute"><span class="octicon octicon-link"></span></a>Contribute</h2>
+
+<p>Will follow soon</p>
+
+<h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<ul>
+<li>
+<a href="https://github.com/JoanZapata">Joan Zapata</a> He is the creator of <a href="https://github.com/JoanZapata/android-iconify">Android-Iconify</a> which gave me the idea of this project. It implements some really great concepts, and i only tried to improve them and give it some more flexibility.</li>
+</ul>
+
+<h1>
+<a name="developed-by" class="anchor" href="#developed-by"><span class="octicon octicon-link"></span></a>Developed By</h1>
+
+<ul>
+<li>Mike Penz - <a href="http://mikepenz.com">http://mikepenz.com</a> - <a href="mailto:mikepenz@gmail.com">mikepenz@gmail.com</a>
+</li>
+</ul>
+
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<pre><code>Copyright 2014 Mike Penz
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/mikepenz">mikepenz</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
