@@ -107,8 +107,25 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
   new IconicsDrawable(this, new FontAwesome(), FontAwesome.FontAwesomeIcon.faw_adjust.character())
 ```
 
+##Available fonts
+* [Fontawesome](http://fontawesome.io)
+  * "faw"
+  * DEFAULT
+* [Meteocons](http://www.alessioatzeni.com/meteocons/)
+  * "met"
+  * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
+
+
 ##Contribute
-Will follow soon
+The easiest way to contribute is by creating a new typeface-library addon. This is a pretty easy step. Just look into the meteocons-typeface-library project within this repository. You will see you only need 2 things. The font itself (the .ttf file). And the Typeface definition which is an implementation of the ITypeface class. 
+
+Just fill in the required information, create the mapping and it works. To help the users using your typeface-library-addon you should upload it to maven and let me know so i can add it to the list of available fonts. 
+
+So the hardest part is to create the mapping. I also have a solution for this problem. 
+Just use the awesome service of http://fontello.com/ create a typeface-library-addon of one of the provided fonts there or upload your own. If missing customize the names. Choose a good 3-character long prefix (css prefix under settings) and download the webfont. 
+This will include the .ttf to use, and a file called test-codes.css under css. This repository includes a small helper to create the enum-list for the Typeface definition class. (You can find it under /DEV/extractor). Just drop the test-codes.css in the same folder. rename it to test.css and run the extractor.js with node extractor.js. This will output the correct list.
+
+If something is unclear, don't be afraid to drop an e-mail, or create an github issue.
 
 
 ##Credits
