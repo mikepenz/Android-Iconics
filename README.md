@@ -23,7 +23,7 @@ new IconicsDrawable(this, "faw-adjust").color(Color.RED)
 
 If you don't know the name of the icon, and the typeface-library-addon allows it you can also do the following:
 ```java
-new IconicsDrawable(this, new FontAwesome(), FontAwesome.FontAwesomeIcon.faw_android.character()).color(Color.GREEN)
+new IconicsDrawable(this, FontAwesome.Icon.faw_android).color(Color.GREEN)
 ```
 
 ##Include in your project
@@ -31,7 +31,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.2.0@aar'
+	compile 'com.mikepenz.iconics:library:0.5.0@aar'
 }
 ```
 
@@ -45,8 +45,8 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.2.0@aar'
-	compile 'com.mikepenz.iconics:meteocons-typeface:0.1.0@aar'
+	compile 'com.mikepenz.iconics:library:0.5.0@aar'
+	compile 'com.mikepenz.iconics:meteocons-typeface:1.0.0@aar'
 }
 ```
 
@@ -90,7 +90,7 @@ Just define the style for all icons or only a specific one. You can find this in
 ```java
 new Iconics.IconicsBuilder().ctx(this)
                 .style(new ForegroundColorSpan(Color.WHITE), new BackgroundColorSpan(Color.BLACK), new RelativeSizeSpan(2f))
-                .styleFor("faw-adjust", new BackgroundColorSpan(Color.RED))
+                .styleFor(FontAwesome.Icon.faw_adjust, new BackgroundColorSpan(Color.RED))
                 .on(tv1)
                 .build();
 ```
@@ -101,7 +101,7 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
   new IconicsDrawable(this, "faw-adjust")
 ```
 ```java
-  new IconicsDrawable(this, new FontAwesome(), FontAwesome.FontAwesomeIcon.faw_adjust.character())
+  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust)
 ```
 
 ##Available fonts
