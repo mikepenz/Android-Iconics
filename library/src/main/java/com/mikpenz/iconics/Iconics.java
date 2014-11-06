@@ -85,7 +85,7 @@ public final class Iconics {
             iconString = iconString.replaceAll("-", "_");
             iconString = iconString.substring(5);
             try {
-                Character fontChar = fonts.get(fontKey).getCharacter(iconString);
+                char fontChar = fonts.get(fontKey).getIcon(iconString).getCharacter();
                 String iconValue = String.valueOf(fontChar);
 
                 text = text.replace(startIndex, endIndex, iconValue);

@@ -27,7 +27,7 @@ import java.util.HashMap;
  */
 public interface ITypeface {
 
-    public Character getCharacter(String key);
+    public IIcon getIcon(String key);
 
     public HashMap<String, Character> getCharacters();
 

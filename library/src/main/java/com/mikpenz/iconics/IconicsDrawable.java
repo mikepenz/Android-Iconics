@@ -24,6 +24,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 
+import com.mikpenz.iconics.typeface.IIcon;
 import com.mikpenz.iconics.typeface.ITypeface;
 import com.mikpenz.iconics.utils.Utils;
 
@@ -42,7 +43,7 @@ public class IconicsDrawable extends Drawable {
 
     private final Context context;
 
-    private final Character icon;
+    private final IIcon icon;
 
     private TextPaint paint;
 
@@ -63,7 +64,29 @@ public class IconicsDrawable extends Drawable {
 
         ITypeface font = Iconics.findFont(icon.substring(0, 3));
         icon = icon.replace("-", "_");
-        this.icon = font.getCharacter(icon);
+        this.icon = font.getIcon(icon);
+
+        paint = new TextPaint();
+        paint.setTypeface(font.getTypeface(context));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setUnderlineText(false);
+        paint.setColor(Color.BLACK);
+        paint.setAntiAlias(true);
+    }
+
+    /**
+     * Create an IconDrawable.
+     *
+     * @param context Your activity or application context.
+     * @param icon    The icon you want this drawable to display.
+     */
+    public IconicsDrawable(Context context, IIcon icon) {
+        this.context = context;
+        this.icon = icon;
+
+        //Get font by icon
+        ITypeface font = Iconics.findFont(icon.getName().substring(0, 3));
 
         paint = new TextPaint();
         paint.setTypeface(font.getTypeface(context));
@@ -81,7 +104,7 @@ public class IconicsDrawable extends Drawable {
      * @param context Your activity or application context.
      * @param icon    The icon you want this drawable to display.
      */
-    public IconicsDrawable(Context context, ITypeface font, Character icon) {
+    public IconicsDrawable(Context context, ITypeface font, IIcon icon) {
         this.context = context;
         this.icon = icon;
         paint = new TextPaint();
@@ -185,8 +208,7 @@ public class IconicsDrawable extends Drawable {
     public void draw(Canvas canvas) {
         paint.setTextSize(getBounds().height());
         Rect textBounds = new Rect();
-        //TODO CHECK IF CHAR IS MEANT OR NAME
-        String textValue = String.valueOf(icon);
+        String textValue = String.valueOf(icon.getCharacter());
         paint.getTextBounds(textValue, 0, 1, textBounds);
         float textBottom = (getBounds().height() - textBounds.height()) / 2f + textBounds.height() - textBounds.bottom;
         canvas.drawText(textValue, getBounds().width() / 2f, textBottom, paint);

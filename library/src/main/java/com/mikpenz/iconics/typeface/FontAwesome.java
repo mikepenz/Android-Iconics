@@ -38,16 +38,15 @@ public class FontAwesome implements ITypeface {
     private static HashMap<String, Character> mChars;
 
     @Override
-    public Character getCharacter(String key) {
-        FontAwesomeIcon value = FontAwesomeIcon.valueOf(key);
-        return value.character;
+    public IIcon getIcon(String key) {
+        return Icon.valueOf(key);
     }
 
     @Override
     public HashMap<String, Character> getCharacters() {
         if (mChars == null) {
             HashMap<String, Character> aChars = new HashMap<String, Character>();
-            for (FontAwesomeIcon v : FontAwesomeIcon.values()) {
+            for (Icon v : Icon.values()) {
                 aChars.put(v.name(), v.character);
             }
             mChars = aChars;
@@ -80,7 +79,7 @@ public class FontAwesome implements ITypeface {
     public Collection<String> getIcons() {
         Collection<String> icons = new LinkedList<String>();
 
-        for (FontAwesomeIcon value : FontAwesomeIcon.values()) {
+        for (Icon value : Icon.values()) {
             icons.add(value.name());
         }
 
@@ -124,7 +123,7 @@ public class FontAwesome implements ITypeface {
         return typeface;
     }
 
-    public static enum FontAwesomeIcon {
+    public static enum Icon implements IIcon {
         faw_adjust('\uf042'),
         faw_adn('\uf170'),
         faw_align_center('\uf037'),
@@ -677,16 +676,20 @@ public class FontAwesome implements ITypeface {
 
         char character;
 
-        FontAwesomeIcon(char character) {
+        Icon(char character) {
             this.character = character;
         }
 
-        public String formattedName() {
+        public String getFormattedName() {
             return "{" + name() + "}";
         }
 
-        public char character() {
+        public char getCharacter() {
             return character;
+        }
+
+        public String getName() {
+            return name();
         }
     }
 }

@@ -36,6 +36,7 @@ import com.mikepenz.aboutlibraries.ui.LibsActivity;
 import com.mikpenz.iconics.Iconics;
 import com.mikpenz.iconics.IconicsDrawable;
 import com.mikpenz.iconics.sample.adapter.IconAdapter;
+import com.mikpenz.iconics.typeface.FontAwesome;
 import com.mikpenz.iconics.typeface.ITypeface;
 
 import java.util.ArrayList;
@@ -85,7 +86,9 @@ public class MainActivity extends ActionBarActivity {
         inflater.inflate(R.menu.menu_main, menu);
 
         MenuItem menuItem = menu.findItem(R.id.action_opensource);
-        menuItem.setIcon(new IconicsDrawable(this, "faw-github").actionBarSize().color(Color.WHITE));
+        menuItem.setIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_github).actionBarSize().color(Color.WHITE));
+        //menuItem.setIcon(new IconicsDrawable(this, "faw-github").actionBarSize().color(Color.WHITE));
+
 
         return super.onCreateOptionsMenu(menu);
     }

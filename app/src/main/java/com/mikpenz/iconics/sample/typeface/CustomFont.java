@@ -3,6 +3,7 @@ package com.mikpenz.iconics.sample.typeface;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import com.mikpenz.iconics.typeface.IIcon;
 import com.mikpenz.iconics.typeface.ITypeface;
 
 import java.util.Collection;
@@ -20,16 +21,15 @@ public class CustomFont implements ITypeface {
     private static HashMap<String, Character> mChars;
 
     @Override
-    public Character getCharacter(String key) {
-        Value value = Value.valueOf(key);
-        return value.character;
+    public IIcon getIcon(String key) {
+        return Icon.valueOf(key);
     }
 
     @Override
     public HashMap<String, Character> getCharacters() {
         if (mChars == null) {
             HashMap<String, Character> aChars = new HashMap<String, Character>();
-            for (Value v : Value.values()) {
+            for (Icon v : Icon.values()) {
                 aChars.put(v.name(), v.character);
             }
             mChars = aChars;
@@ -62,7 +62,7 @@ public class CustomFont implements ITypeface {
     public Collection<String> getIcons() {
         Collection<String> icons = new LinkedList<String>();
 
-        for (Value value : Value.values()) {
+        for (Icon value : Icon.values()) {
             icons.add(value.name());
         }
 
@@ -107,14 +107,26 @@ public class CustomFont implements ITypeface {
         return typeface;
     }
 
-    public static enum Value {
+    public static enum Icon implements IIcon {
         fon_test1('\ue800'),
         fon_test2('\ue801');
 
         char character;
 
-        Value(char character) {
+        Icon(char character) {
             this.character = character;
+        }
+
+        public String getFormattedName() {
+            return "{" + name() + "}";
+        }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public String getName() {
+            return name();
         }
     }
 }

@@ -18,6 +18,7 @@ package com.mikpenz.meteocons_typeface_library;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import com.mikpenz.iconics.typeface.IIcon;
 import com.mikpenz.iconics.typeface.ITypeface;
 
 import java.util.Collection;
@@ -32,16 +33,15 @@ public class Meteoconcs implements ITypeface {
     private static HashMap<String, Character> mChars;
 
     @Override
-    public Character getCharacter(String key) {
-        Icons value = Icons.valueOf(key);
-        return value.character;
+    public IIcon getIcon(String key) {
+        return Icon.valueOf(key);
     }
 
     @Override
     public HashMap<String, Character> getCharacters() {
         if (mChars == null) {
             HashMap<String, Character> aChars = new HashMap<String, Character>();
-            for (Icons v : Icons.values()) {
+            for (Icon v : Icon.values()) {
                 aChars.put(v.name(), v.character);
             }
             mChars = aChars;
@@ -74,7 +74,7 @@ public class Meteoconcs implements ITypeface {
     public Collection<String> getIcons() {
         Collection<String> icons = new LinkedList<String>();
 
-        for (Icons value : Icons.values()) {
+        for (Icon value : Icon.values()) {
             icons.add(value.name());
         }
 
@@ -118,7 +118,7 @@ public class Meteoconcs implements ITypeface {
         return typeface;
     }
 
-    public static enum Icons {
+    public static enum Icon implements IIcon {
         met_windy_rain_inv('\ue800'),
         met_snow_inv('\ue801'),
         met_snow_heavy_inv('\ue802'),
@@ -169,8 +169,20 @@ public class Meteoconcs implements ITypeface {
 
         char character;
 
-        Icons(char character) {
+        Icon(char character) {
             this.character = character;
+        }
+
+        public String getFormattedName() {
+            return "{" + name() + "}";
+        }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public String getName() {
+            return name();
         }
     }
 }
