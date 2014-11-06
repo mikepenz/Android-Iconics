@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mikpenz.iconics.typeface.FontAwesome;
+import com.mikpenz.iconics.typeface.IIcon;
 import com.mikpenz.iconics.typeface.ITypeface;
 import com.mikpenz.iconics.utils.IconicsTypefaceSpan;
 
@@ -207,6 +208,10 @@ public final class Iconics {
                 }
             }
             return this;
+        }
+
+        public IconicsBuilder styleFor(IIcon styleFor, CharacterStyle... styles) {
+            return styleFor(styleFor.getName(), styles);
         }
 
         public IconicsBuilder styleFor(String styleFor, CharacterStyle... styles) {
