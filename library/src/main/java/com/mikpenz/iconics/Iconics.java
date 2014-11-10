@@ -29,6 +29,7 @@ import com.mikpenz.iconics.typeface.ITypeface;
 import com.mikpenz.iconics.utils.IconicsTypefaceSpan;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -203,9 +204,7 @@ public final class Iconics {
 
         public IconicsBuilder style(CharacterStyle... styles) {
             if (styles != null && styles.length > 0) {
-                for (CharacterStyle style : styles) {
-                    this.styles.add(style);
-                }
+                Collections.addAll(this.styles, styles);
             }
             return this;
         }
