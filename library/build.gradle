@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "com.mikpenz.iconics"
-        minSdkVersion 14
+        minSdkVersion 10
         targetSdkVersion 21
-        versionCode 50
-        versionName "0.5.0"
+        versionCode 51
+        versionName "0.5.1"
     }
     buildTypes {
         release {
@@ -21,7 +21,9 @@ android {
         abortOnError false
     }
 }
-apply from: '../gradle-mvn-push.gradle'
+if (project.hasProperty('pushall') || project.hasProperty('libraryonly')) {
+    apply from: '../gradle-mvn-push.gradle'
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

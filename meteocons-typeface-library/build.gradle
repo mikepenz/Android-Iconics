@@ -34,7 +34,9 @@ android {
         }
     }
 }
-apply from: '../gradle-mvn-push.gradle'
+if (project.hasProperty('pushall')) {
+    apply from: '../gradle-mvn-push.gradle'
+}
 
 dependencies {
     compile project(':library')
