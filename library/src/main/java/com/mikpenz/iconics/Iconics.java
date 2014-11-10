@@ -111,20 +111,47 @@ public final class Iconics {
         SpannableString sb = new SpannableString(text);
 
         for (StyleContainer styleContainer : styleContainers) {
-            sb.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.getFont().getTypeface(ctx)), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            sb.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.getFont().getTypeface(ctx)), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
             if (stylesFor.containsKey(styleContainer.getIcon())) {
                 for (CharacterStyle style : stylesFor.get(styleContainer.getIcon())) {
-                    sb.setSpan(CharacterStyle.wrap(style), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                    sb.setSpan(CharacterStyle.wrap(style), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             } else if (styles != null) {
                 for (CharacterStyle style : styles) {
-                    sb.setSpan(CharacterStyle.wrap(style), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                    sb.setSpan(CharacterStyle.wrap(style), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
         }
+
+        //sb = applyKerning(sb, 1);
+
         return sb;
     }
+
+    /*
+    KEEP THIS HERE perhaps we are able to implement proper spacing for the icons
+
+    public static SpannableString applyKerning(CharSequence src, float kerning) {
+        if (src == null) return null;
+        final int srcLength = src.length();
+        if (srcLength < 2) return src instanceof SpannableString
+                ? (SpannableString) src
+                : new SpannableString(src);
+
+        final String nonBreakingSpace = "\u00A0";
+        final SpannableStringBuilder builder = src instanceof SpannableStringBuilder
+                ? (SpannableStringBuilder) src
+                : new SpannableStringBuilder(src);
+        for (int i = src.length() - 1; i >= 1; i--) {
+            builder.insert(i, nonBreakingSpace);
+            builder.setSpan(new ScaleXSpan(kerning), i, i + 1,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        return new SpannableString(builder);
+    }
+    */
 
     public static class IconicsBuilderString {
         private Context ctx;
