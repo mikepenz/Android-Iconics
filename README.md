@@ -55,7 +55,7 @@ To enable them for the IconicsTextView too follow the steps under [Register type
 ##Advanced usage
 
 ###working with multiple typeface-library-addons and icons
-In some cases you will use multiple typefaces. It is really easy to decide which icon of which typeface-library-addon should be used. Each of those got a unique 3-character long identifier which is the prefix of every single icon. 
+In some cases you will use multiple typefaces. It is really easy to decide which icon of which typeface-library-addon should be used. Each of those got a unique **3-character** long identifier which is the prefix of every single icon. 
 FontAwesome - "faw"
 Meteocons - "met"
 
