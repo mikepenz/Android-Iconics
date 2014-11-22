@@ -69,9 +69,21 @@ public final class Iconics {
 
         int startIndex = -1;
         String fontKey = "";
-        while ((startIndex = text.indexOf("{icon-", startIndex + 1)) != -1) {
-            fontKey = text.substring(startIndex + 6, startIndex + 9);
 
+        //find the first "{"
+        while ((startIndex = text.indexOf("{", startIndex + 1)) != -1) {
+            //make sure we are still within the bounds of the text
+            if (text.length() < startIndex + 5) {
+                startIndex = -1;
+                break;
+            }
+            //make sure the found text is a real fontKey
+            if (!text.substring(startIndex + 4, startIndex + 5).equals("-")) {
+                break;
+            }
+            //get the fontKey
+            fontKey = text.substring(startIndex + 1, startIndex + 4);
+            //check if the fontKey is a registeredFont
             if (fonts.containsKey(fontKey)) {
                 break;
             }
@@ -82,34 +94,51 @@ public final class Iconics {
 
         LinkedList<StyleContainer> styleContainers = new LinkedList<StyleContainer>();
         do {
+            //get the information from the iconString
             int endIndex = text.substring(startIndex).indexOf("}") + startIndex + 1;
             String iconString = text.substring(startIndex + 1, endIndex - 1);
             iconString = iconString.replaceAll("-", "_");
-            iconString = iconString.substring(5);
             try {
+                //get the correct character for this Font and Icon
                 char fontChar = fonts.get(fontKey).getIcon(iconString).getCharacter();
                 String iconValue = String.valueOf(fontChar);
 
+                //get just the icon identifier
                 text = text.replace(startIndex, endIndex, iconValue);
 
+                //add the current icon to the container
                 styleContainers.add(new StyleContainer(startIndex, startIndex + 1, iconString, fonts.get(fontKey)));
 
             } catch (IllegalArgumentException e) {
                 Log.w(Iconics.TAG, "Wrong icon name: " + iconString);
             }
 
-            while ((startIndex = text.indexOf("{icon-", startIndex + 1)) != -1) {
-                fontKey = text.substring(startIndex + 6, startIndex + 9);
+            //reset fontKey so we can react if we are at the end but haven't found any more matches
+            fontKey = null;
 
-                if (fonts.containsKey(fontKey)) {
+            //check the rest of the text for matches
+            while ((startIndex = text.indexOf("{", startIndex + 1)) != -1) {
+                //make sure we are still within the bounds
+                if (text.length() < startIndex + 5) {
+                    startIndex = -1;
                     break;
                 }
+                //check if the 5. char is a "-"
+                if (text.substring(startIndex + 4, startIndex + 5).equals("-")) {
+                    //get the fontKey
+                    fontKey = text.substring(startIndex + 1, startIndex + 4);
+                    //check if the fontKey is registered
+                    if (fonts.containsKey(fontKey)) {
+                        break;
+                    }
+                }
             }
-        } while (startIndex != -1);
+        } while (startIndex != -1 && fontKey != null);
 
 
         SpannableString sb = new SpannableString(text);
 
+        //set all the icons and styles
         for (StyleContainer styleContainer : styleContainers) {
             sb.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.getFont().getTypeface(ctx)), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -123,6 +152,7 @@ public final class Iconics {
                 }
             }
         }
+
 
         //sb = applyKerning(sb, 1);
 
@@ -185,21 +215,18 @@ public final class Iconics {
         private HashMap<String, List<CharacterStyle>> withStylesFor;
         private List<ITypeface> fonts;
 
-        public IconicsBuilderView(Context ctx, List<ITypeface> fonts, TextView textView, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
+        public IconicsBuilderView(Context ctx, List<ITypeface> fonts, TextView view, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
             this.ctx = ctx;
             this.fonts = fonts;
-            this.onTextView = textView;
+            if (view instanceof Button) {
+                this.onButton = (Button) view;
+            } else {
+                this.onTextView = view;
+            }
             this.withStyles = styles;
             this.withStylesFor = stylesFor;
         }
 
-        public IconicsBuilderView(Context ctx, List<ITypeface> fonts, Button button, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
-            this.ctx = ctx;
-            this.fonts = fonts;
-            this.onButton = button;
-            this.withStyles = styles;
-            this.withStylesFor = stylesFor;
-        }
 
         public void build() {
             HashMap<String, ITypeface> mappedFonts = new HashMap<String, ITypeface>();
@@ -210,7 +237,7 @@ public final class Iconics {
             if (onTextView != null) {
                 onTextView.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onTextView.getText()), withStyles, withStylesFor));
             } else if (onButton != null) {
-                onButton.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onButton.getText()), withStyles, withStylesFor));
+                onButton.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onButton.getText()), withStyles, withStylesFor), TextView.BufferType.SPANNABLE);
             }
         }
     }
