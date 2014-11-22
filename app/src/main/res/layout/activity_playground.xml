@@ -26,26 +26,26 @@
               android:orientation="vertical">
 
     <TextView
-        android:text="abc{icon-hif-test}defgh{icon-faw-adjust}ijk{icon-fon-test1}lmnopqrstuv{icon-fon-test2}wxyz"
+        android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxy{z"
         android:textColor="@android:color/black"
         android:id="@+id/test1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <IconicsTextView
-        android:text="abc{icon-hif-test}defgh{icon-faw-adjust}ijk{icon-fon-test1}lmnopqrstuv{icon-fon-test2}wxyz"
+        android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <IconicsButton
-        android:text="{icon-faw-adjust} Button"
+        android:text="{faw-adjust} Button"
         android:layout_width="120dp"
         android:layout_height="60dp"/>
 
     <Button
         android:id="@+id/test4"
-        android:text="{icon-fon-test1} Button"
+        android:text="{fon-test1} Button"
         android:layout_width="120dp"
         android:layout_height="60dp"/>
 
