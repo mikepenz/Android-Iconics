@@ -2,6 +2,8 @@
 
 Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
 
+__ **NOTE:** Upgrade to > 0.6.0 You can now write **"faw-android"** instead of **"icon-faw-android"** in texts!
+
 Let's start with some awesome screenshots ;)
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg)
