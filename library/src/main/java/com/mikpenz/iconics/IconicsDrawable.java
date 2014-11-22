@@ -16,6 +16,7 @@
 package com.mikpenz.iconics;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -66,7 +67,7 @@ public class IconicsDrawable extends Drawable {
         icon = icon.replace("-", "_");
         this.icon = font.getIcon(icon);
 
-        paint = new TextPaint();
+        paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         paint.setTypeface(font.getTypeface(context));
         paint.setStyle(Paint.Style.STROKE);
         paint.setTextAlign(Paint.Align.CENTER);
@@ -88,7 +89,7 @@ public class IconicsDrawable extends Drawable {
         //Get font by icon
         ITypeface font = Iconics.findFont(icon.getName().substring(0, 3));
 
-        paint = new TextPaint();
+        paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         paint.setTypeface(font.getTypeface(context));
         paint.setStyle(Paint.Style.STROKE);
         paint.setTextAlign(Paint.Align.CENTER);
@@ -107,7 +108,7 @@ public class IconicsDrawable extends Drawable {
     public IconicsDrawable(Context context, ITypeface font, IIcon icon) {
         this.context = context;
         this.icon = icon;
-        paint = new TextPaint();
+        paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         paint.setTypeface(font.getTypeface(context));
         paint.setStyle(Paint.Style.STROKE);
         paint.setTextAlign(Paint.Align.CENTER);
@@ -257,4 +258,25 @@ public class IconicsDrawable extends Drawable {
         paint.setStyle(style);
     }
 
+
+    /**
+     * Creates a BitMap to use in Widgets or anywhere else
+     *
+     * @return bitmap to set
+     */
+    public Bitmap toBitmap() {
+        if (size == -1) {
+            this.actionBarSize();
+        }
+
+        final Bitmap bitmap = Bitmap.createBitmap(this.getIntrinsicWidth(), this.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+
+        this.setStyle(Paint.Style.FILL);
+
+        final Canvas canvas = new Canvas(bitmap);
+        this.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        this.draw(canvas);
+
+        return bitmap;
+    }
 }
