@@ -16,6 +16,11 @@ You can also use it on any text by using the simple builder pattern. Here's the 
 ```java
 new Iconics.IconicsBuilder().ctx(this).on(YOUR_TEXT_VIEW).build();
 ```
+Define icons in a text as following:
+```gson
+Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
+```
+
 
 But wait! There's more. You can also use it as Drawable anywhere. Create it like this:
 
