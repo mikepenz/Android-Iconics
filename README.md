@@ -1,4 +1,4 @@
-#Android-Iconics
+#Android-Iconics  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library)
 
 Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
 
@@ -7,7 +7,7 @@ Let's start with some awesome screenshots ;)
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg)
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.jpg)
 
-You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {icon-faw-github}. You see pretty easy right?
+You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {faw-github}. You see pretty easy right?
 
 You can also use it on any text by using the simple builder pattern. Here's the shortest possible sample:
 
@@ -31,7 +31,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.5.1@aar'
+	compile 'com.mikepenz.iconics:library:0.6.0@aar'
 }
 ```
 
@@ -45,7 +45,7 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.5.1@aar'
+	compile 'com.mikepenz.iconics:library:0.6.0@aar'
 	compile 'com.mikepenz.iconics:meteocons-typeface:1.0.0@aar'
 }
 ```
@@ -55,13 +55,11 @@ To enable them for the IconicsTextView too follow the steps under [Register type
 ##Advanced usage
 
 ###working with multiple typeface-library-addons and icons
-In some cases you will use multiple typefaces. It is really easy to decide which icon of which typeface-library-addon should be used. Each of those got a unique 3-character long identifier which is the prefix of every single icon. 
+In some cases you will use multiple typefaces. It is really easy to decide which icon of which typeface-library-addon should be used. Each of those got a unique **3-character** long identifier which is the prefix of every single icon. 
 FontAwesome - "faw"
 Meteocons - "met"
 
-Evertime you want to use an icon in a text just write {icon-faw-adjust}, ... 
-If you create an IconicsDrawable or define the style for a specific icon within an text just remove the "icon-" prefix and you're fine.
-
+Evertime you want to use an icon in a text just write {faw-adjust}, ...
 
 ###Register typeface
 In some cases you will love to use a typeface-library-addon in your IconicTextView and everywhere else without the need of adding it as typeface all the time.
@@ -96,7 +94,7 @@ new Iconics.IconicsBuilder().ctx(this)
 ```
 
 ###String icon-key or typeface enum
-Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a sepcific font. Both is valid:
+Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:
 ```java
   new IconicsDrawable(this, "faw-adjust")
 ```
