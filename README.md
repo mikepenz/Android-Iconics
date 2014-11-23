@@ -54,6 +54,7 @@ Just add the dependency of any and as many typface-library-addons in your build.
 dependencies {
 	compile 'com.mikepenz.iconics:library:0.6.6@aar'
 	compile 'com.mikepenz.iconics:meteocons-typeface:1.0.0@aar'
+	compile 'com.mikepenz.iconics:google-material-typeface:1.0.0@aar'
 }
 ```
 
@@ -78,6 +79,7 @@ public class CustomApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Iconics.registerFont(new Meteoconcs());
+        Iconics.registerFont(new GoogleMaterial());
         Iconics.registerFont(new CustomFont());
     }
 }
@@ -116,6 +118,9 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
   * "met"
   * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
+* [Google Material Design](https://github.com/google/material-design-icons)
+  * "gmd"
+  * compile 'com.mikepenz.iconics:google-material-typeface:+@aar'
 
 
 ##Demo
