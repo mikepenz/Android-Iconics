@@ -165,12 +165,33 @@ public class IconicsDrawable extends Drawable {
 
 
     /**
+     * Set the padding of the drawable from res
+     *
+     * @param dimenRes
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable paddingRes(int dimenRes) {
+        return paddingPx(mContext.getResources().getDimensionPixelSize(dimenRes));
+    }
+
+
+    /**
+     * Set the padding in dp for the drawable
+     *
+     * @param iconPadding
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable paddingDp(int iconPadding) {
+        return paddingPx(Utils.convertDpToPx(mContext, iconPadding));
+    }
+
+    /**
      * Set a padding for the.
      *
      * @param iconPadding
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable padding(int iconPadding) {
+    public IconicsDrawable paddingPx(int iconPadding) {
         if (mIconPadding != iconPadding) {
             mIconPadding = iconPadding;
             if (mDrawContour) {
