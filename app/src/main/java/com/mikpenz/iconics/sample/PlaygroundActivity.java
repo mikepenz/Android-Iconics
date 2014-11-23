@@ -46,7 +46,8 @@ public class PlaygroundActivity extends Activity {
                 .build();
 
         ImageView iv2 = (ImageView) findViewById(R.id.test2);
-        iv2.setImageDrawable(new IconicsDrawable(this, "faw-adjust").color(Color.RED));
+
+        iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).contourColor(Color.RED).contourWidthDp(1));
 
         ImageView iv3 = (ImageView) findViewById(R.id.test3);
         iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).color(Color.GREEN).toBitmap());
