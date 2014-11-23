@@ -18,7 +18,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.2"
+    buildToolsVersion "21.1.1"
 
     defaultConfig {
         applicationId "com.mikpenz.meteocons_typeface_library"
@@ -34,7 +34,7 @@ android {
         }
     }
 }
-if (project.hasProperty('pushall')) {
+if (project.hasProperty('pushall') || project.hasProperty('meteoconsonly')) {
     apply from: '../gradle-mvn-push.gradle'
 }
 
