@@ -1,11 +1,28 @@
-/**
- * Copyright 2013 Joan Zapata
+/*
+ * Copyright 2014 Mike Penz
+ *
+ *
+ * I improved the previous version of the IconicsDrawable which
+ * was written by Joan Zapata for the Android-Iconify project
+ * which you can find here: http://joanzapata.com/android-iconify/
+ * and added some functionality written by Artur Termenji used
+ * in the https://github.com/theDazzler/droidicon project.
+ *
+ * The droidicon project is under the (MIT LICENSE http://opensource.org/licenses/MIT)
+ * The android-iconify project under the (Apache License)
+ *
+ * This version of the IconicsDrawable uses functions from both
+ * projects.
+ *
+ * In addition i added some more stuff like the toBitmap function.
+ *
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,109 +35,148 @@ package com.mikpenz.iconics;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 
 import com.mikpenz.iconics.typeface.IIcon;
 import com.mikpenz.iconics.typeface.ITypeface;
 import com.mikpenz.iconics.utils.Utils;
 
 /**
- * Embed an icon into a Drawable that can be used as TextView icons, or ActionBar icons.
- * new IconDrawable(context, IconValue.icon_star)
- * .colorRes(R.color.white)
- * .actionBarSize();
- * If you don't set the size of the drawable, it will use the size
- * that is given to him. Note that in an ActionBar, if you don't
- * set the size explicitly it uses 0, so please use actionBarSize().
+ * A custom {@link Drawable} which can display icons from icon fonts.
  */
 public class IconicsDrawable extends Drawable {
-
     public static final int ANDROID_ACTIONBAR_ICON_SIZE_DP = 24;
 
-    private final Context context;
+    private Context mContext;
 
-    private final IIcon icon;
+    private int mSize = -1;
 
-    private TextPaint paint;
+    private Paint mIconPaint;
+    private Paint mContourPaint;
 
-    private int size = -1;
+    private Rect mPaddingBounds;
+    private RectF mPathBounds;
 
-    private int alpha = 255;
+    private Path mPath;
 
+    private int mIconPadding;
+    private int mContourWidth;
 
-    /**
-     * Create an IconDrawable.
-     * Just give it the icon-identifier
-     *
-     * @param context Your activity or application context.
-     * @param icon    The icon identifier without icon- (font must be registered)
-     */
-    public IconicsDrawable(Context context, String icon) {
-        this.context = context;
+    private int mAlpha = 255;
 
-        ITypeface font = Iconics.findFont(icon.substring(0, 3));
-        icon = icon.replace("-", "_");
-        this.icon = font.getIcon(icon);
+    private boolean mDrawContour;
 
-        paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
-        paint.setTypeface(font.getTypeface(context));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setUnderlineText(false);
-        paint.setColor(Color.BLACK);
-        paint.setAntiAlias(true);
+    private IIcon mIcon;
+
+    public IconicsDrawable(Context context, final IIcon icon) {
+        mContext = context.getApplicationContext();
+        prepare();
+        icon(icon);
+    }
+
+    public IconicsDrawable(Context context, final ITypeface typeface, final IIcon icon) {
+        mContext = context.getApplicationContext();
+        prepare();
+        icon(typeface, icon);
+    }
+
+    private void prepare() {
+        mIconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+        mContourPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mContourPaint.setStyle(Paint.Style.STROKE);
+
+        mPath = new Path();
+
+        mPathBounds = new RectF();
+        mPaddingBounds = new Rect();
     }
 
     /**
-     * Create an IconDrawable.
+     * Loads and draws given.
      *
-     * @param context Your activity or application context.
-     * @param icon    The icon you want this drawable to display.
+     * @param icon
+     * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable(Context context, IIcon icon) {
-        this.context = context;
-        this.icon = icon;
+    public IconicsDrawable icon(IIcon icon) {
+        mIcon = icon;
 
-        //Get font by icon
-        ITypeface font = Iconics.findFont(icon.getName().substring(0, 3));
-
-        paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
-        paint.setTypeface(font.getTypeface(context));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setUnderlineText(false);
-        paint.setColor(Color.BLACK);
-        paint.setAntiAlias(true);
+        ITypeface typeface = Iconics.findFont(icon.getName().substring(0, 3));
+        if (typeface == null) {
+            throw new RuntimeException("The font for the given icon isn't registered!");
+        }
+        mIconPaint.setTypeface(typeface.getTypeface(mContext));
+        invalidateSelf();
+        return this;
     }
 
     /**
-     * Create an IconDrawable.
+     * Loads and draws given.
      *
-     * @param font    The font to use for this drawable
-     * @param context Your activity or application context.
-     * @param icon    The icon you want this drawable to display.
+     * @param typeface
+     * @param icon
+     * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable(Context context, ITypeface font, IIcon icon) {
-        this.context = context;
-        this.icon = icon;
-        paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
-        paint.setTypeface(font.getTypeface(context));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setUnderlineText(false);
-        paint.setColor(Color.BLACK);
-        paint.setAntiAlias(true);
+    public IconicsDrawable icon(ITypeface typeface, IIcon icon) {
+        mIcon = icon;
+        mIconPaint.setTypeface(typeface.getTypeface(mContext));
+        invalidateSelf();
+        return this;
+    }
+
+    /**
+     * Set the color of the drawable.
+     *
+     * @param color The color, usually from android.graphics.Color or 0xFF012345.
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable color(int color) {
+        mIconPaint.setColor(color);
+        invalidateSelf();
+        return this;
+    }
+
+    /**
+     * Set the color of the drawable.
+     *
+     * @param colorRes The color resource, from your R file.
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable colorRes(int colorRes) {
+        mIconPaint.setColor(mContext.getResources().getColor(colorRes));
+        invalidateSelf();
+        return this;
+    }
+
+
+    /**
+     * Set a padding for the.
+     *
+     * @param iconPadding
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable padding(int iconPadding) {
+        if (mIconPadding != iconPadding) {
+            mIconPadding = iconPadding;
+            if (mDrawContour) {
+                mIconPadding += mContourWidth;
+            }
+
+            invalidateSelf();
+        }
+        return this;
     }
 
     /**
      * Set the size of this icon to the standard Android ActionBar.
      *
-     * @return The current IconDrawable for chaining.
+     * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable actionBarSize() {
         return sizeDp(ANDROID_ACTIONBAR_ICON_SIZE_DP);
@@ -130,89 +186,169 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param dimenRes The dimension resource.
-     * @return The current IconDrawable for chaining.
+     * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable sizeRes(int dimenRes) {
-        return sizePx(context.getResources().getDimensionPixelSize(dimenRes));
+        return sizePx(mContext.getResources().getDimensionPixelSize(dimenRes));
     }
+
 
     /**
      * Set the size of the drawable.
      *
      * @param size The size in density-independent pixels (dp).
-     * @return The current IconDrawable for chaining.
+     * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable sizeDp(int size) {
-        return sizePx(Utils.convertDpToPx(context, size));
+        return sizePx(Utils.convertDpToPx(mContext, size));
     }
 
     /**
      * Set the size of the drawable.
      *
      * @param size The size in pixels (px).
-     * @return The current IconDrawable for chaining.
+     * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable sizePx(int size) {
-        this.size = size;
+        this.mSize = size;
         setBounds(0, 0, size, size);
         invalidateSelf();
         return this;
     }
 
+
     /**
-     * Set the color of the drawable.
+     * Set contour color for the.
      *
-     * @param color The color, usually from android.graphics.Color or 0xFF012345.
-     * @return The current IconDrawable for chaining.
+     * @param contourColor
+     * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable color(int color) {
-        paint.setColor(color);
+    public IconicsDrawable contourColor(int contourColor) {
+        mContourPaint.setColor(contourColor);
+        drawContour(true);
         invalidateSelf();
         return this;
     }
 
     /**
-     * Set the color of the drawable.
+     * Set contour color from color res.
      *
-     * @param colorRes The color resource, from your R file.
-     * @return The current IconDrawable for chaining.
+     * @param contourColorRes
+     * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable colorRes(int colorRes) {
-        paint.setColor(context.getResources().getColor(colorRes));
+    public IconicsDrawable contourColorRes(int contourColorRes) {
+        mContourPaint.setColor(mContext.getResources().getColor(contourColorRes));
+        drawContour(true);
         invalidateSelf();
         return this;
     }
 
     /**
-     * Set the alpha of this drawable.
+     * Set contour width from an dimen res for the icon
      *
-     * @param alpha The alpha, between 0 (transparent) and 255 (opaque).
-     * @return The current IconDrawable for chaining.
+     * @param contourWidthRes
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable contourWidthRes(int contourWidthRes) {
+        return contourWidthPx(mContext.getResources().getDimensionPixelSize(contourWidthRes));
+    }
+
+    /**
+     * Set contour width from dp for the icon
+     *
+     * @param contourWidthDp
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable contourWidthDp(int contourWidthDp) {
+        return contourWidthPx(Utils.convertDpToPx(mContext, contourWidthDp));
+    }
+
+    /**
+     * Set contour width for the icon.
+     *
+     * @param contourWidth
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable contourWidthPx(int contourWidth) {
+        mContourWidth = contourWidth;
+        mContourPaint.setStrokeWidth(mContourWidth);
+        drawContour(true);
+        invalidateSelf();
+        return this;
+    }
+
+    /**
+     * Enable/disable contour drawing.
+     *
+     * @param drawContour
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable drawContour(boolean drawContour) {
+        if (mDrawContour != drawContour) {
+            mDrawContour = drawContour;
+
+            if (mDrawContour) {
+                mIconPadding += mContourWidth;
+            } else {
+                mIconPadding -= mContourWidth;
+            }
+
+            invalidateSelf();
+        }
+        return this;
+    }
+
+    /**
+     * Set the colorFilter
+     *
+     * @param cf
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable colorFilter(ColorFilter cf) {
+        setColorFilter(cf);
+        return this;
+    }
+
+    /**
+     * Sets the opacity
+     *
+     * @param alpha
+     * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable alpha(int alpha) {
         setAlpha(alpha);
-        invalidateSelf();
+        mAlpha = alpha;
         return this;
     }
 
-    @Override
-    public int getIntrinsicHeight() {
-        return size;
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return size;
+    /**
+     * Sets the style
+     *
+     * @param style
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable style(Paint.Style style) {
+        mIconPaint.setStyle(style);
+        return this;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        paint.setTextSize(getBounds().height());
-        Rect textBounds = new Rect();
-        String textValue = String.valueOf(icon.getCharacter());
-        paint.getTextBounds(textValue, 0, 1, textBounds);
-        float textBottom = (getBounds().height() - textBounds.height()) / 2f + textBounds.height() - textBounds.bottom;
-        canvas.drawText(textValue, getBounds().width() / 2f, textBottom, paint);
+        if (mIcon != null) {
+            final Rect viewBounds = getBounds();
+
+            updatePaddingBounds(viewBounds);
+            updateTextSize(viewBounds);
+            offsetIcon(viewBounds);
+
+            mPath.close();
+
+            if (mDrawContour) {
+                canvas.drawPath(mPath, mContourPaint);
+            }
+
+            canvas.drawPath(mPath, mIconPaint);
+        }
     }
 
     @Override
@@ -222,42 +358,37 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public boolean setState(int[] stateSet) {
-        int oldValue = paint.getAlpha();
-        int newValue = Utils.isEnabled(stateSet) ? alpha : alpha / 2;
-        paint.setAlpha(newValue);
+        int oldValue = mIconPaint.getAlpha();
+        int newValue = Utils.isEnabled(stateSet) ? mAlpha : mAlpha / 2;
+        mIconPaint.setAlpha(newValue);
         return oldValue != newValue;
     }
 
     @Override
-    public void setAlpha(int alpha) {
-        this.alpha = alpha;
-        paint.setAlpha(alpha);
+    public int getIntrinsicWidth() {
+        return mSize;
     }
 
     @Override
-    public void setColorFilter(ColorFilter cf) {
-        paint.setColorFilter(cf);
-    }
-
-    @Override
-    public void clearColorFilter() {
-        paint.setColorFilter(null);
+    public int getIntrinsicHeight() {
+        return mSize;
     }
 
     @Override
     public int getOpacity() {
-        return this.alpha;
+        return PixelFormat.OPAQUE;
     }
 
-    /**
-     * Sets paint style.
-     *
-     * @param style to be applied
-     */
-    public void setStyle(Paint.Style style) {
-        paint.setStyle(style);
+    @Override
+    public void setAlpha(int alpha) {
+        mIconPaint.setAlpha(alpha);
+        mAlpha = alpha;
     }
 
+    @Override
+    public void setColorFilter(ColorFilter cf) {
+        mIconPaint.setColorFilter(cf);
+    }
 
     /**
      * Creates a BitMap to use in Widgets or anywhere else
@@ -265,18 +396,80 @@ public class IconicsDrawable extends Drawable {
      * @return bitmap to set
      */
     public Bitmap toBitmap() {
-        if (size == -1) {
+        if (mSize == -1) {
             this.actionBarSize();
         }
 
         final Bitmap bitmap = Bitmap.createBitmap(this.getIntrinsicWidth(), this.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
 
-        this.setStyle(Paint.Style.FILL);
+        this.style(Paint.Style.FILL);
 
         final Canvas canvas = new Canvas(bitmap);
         this.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         this.draw(canvas);
 
         return bitmap;
+    }
+
+    //------------------------------------------
+    // PRIVATE HELPER METHODS
+    //------------------------------------------
+
+    /**
+     * Update the Padding Bounds
+     *
+     * @param viewBounds
+     */
+    private void updatePaddingBounds(Rect viewBounds) {
+        if (mIconPadding >= 0
+                && !(mIconPadding * 2 > viewBounds.width())
+                && !(mIconPadding * 2 > viewBounds.height())) {
+            mPaddingBounds.set(
+                    viewBounds.left + mIconPadding,
+                    viewBounds.top + mIconPadding,
+                    viewBounds.right - mIconPadding,
+                    viewBounds.bottom - mIconPadding);
+        }
+    }
+
+    /**
+     * Update the TextSize
+     *
+     * @param viewBounds
+     */
+    private void updateTextSize(Rect viewBounds) {
+        float textSize = (float) viewBounds.height() * 2;
+        mIconPaint.setTextSize(textSize);
+
+        String textValue = String.valueOf(mIcon.getCharacter());
+        mIconPaint.getTextPath(textValue, 0, 1,
+                0, viewBounds.height(), mPath);
+        mPath.computeBounds(mPathBounds, true);
+
+        float deltaWidth = ((float) mPaddingBounds.width() / mPathBounds.width());
+        float deltaHeight = ((float) mPaddingBounds.height() / mPathBounds.height());
+        float delta = (deltaWidth < deltaHeight) ? deltaWidth : deltaHeight;
+        textSize *= delta;
+
+        mIconPaint.setTextSize(textSize);
+
+        mIconPaint.getTextPath(textValue, 0, 1,
+                0, viewBounds.height(), mPath);
+        mPath.computeBounds(mPathBounds, true);
+    }
+
+    /**
+     * Set the icon offset
+     *
+     * @param viewBounds
+     */
+    private void offsetIcon(Rect viewBounds) {
+        float startX = viewBounds.centerX() - (mPathBounds.width() / 2);
+        float offsetX = startX - mPathBounds.left;
+
+        float startY = viewBounds.centerY() - (mPathBounds.height() / 2);
+        float offsetY = startY - (mPathBounds.top);
+
+        mPath.offset(offsetX, offsetY);
     }
 }
