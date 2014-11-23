@@ -33,12 +33,29 @@
         android:layout_height="56dp"
         android:textSize="16sp"/>
 
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1px" android:background="#000" android:layout_marginTop="8dp"
+                  android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:text="somecustomtext with a custom icon :D"
+        android:textColor="@android:color/black"
+        android:id="@+id/test5"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:textSize="16sp"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1px" android:background="#000" android:layout_marginTop="8dp"
+                  android:layout_marginBottom="8dp"/>
+
     <IconicsTextView
         android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:textSize="16sp"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1px" android:background="#000" android:layout_marginTop="8dp"
+                  android:layout_marginBottom="8dp"/>
 
     <IconicsButton
         android:text="{faw-adjust} Button"
@@ -51,7 +68,14 @@
         android:layout_width="120dp"
         android:layout_height="60dp"/>
 
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1px" android:background="#000" android:layout_marginTop="8dp"
+                  android:layout_marginBottom="8dp"/>
+
     <ImageView android:layout_width="48dp" android:layout_height="48dp" android:id="@+id/test2"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1px" android:background="#000" android:layout_marginTop="8dp"
+                  android:layout_marginBottom="8dp"/>
+
     <ImageView android:layout_width="48dp" android:layout_height="48dp" android:id="@+id/test3"/>
 
 </LinearLayout>

@@ -19,8 +19,12 @@ package com.mikpenz.iconics.sample;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -38,6 +42,7 @@ public class PlaygroundActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playground);
 
+        //Show how to style the text of an existing TextView
         TextView tv1 = (TextView) findViewById(R.id.test1);
         new Iconics.IconicsBuilder().ctx(this)
                 .style(new ForegroundColorSpan(Color.WHITE), new BackgroundColorSpan(Color.BLACK), new RelativeSizeSpan(2f))
@@ -45,13 +50,23 @@ public class PlaygroundActivity extends Activity {
                 .on(tv1)
                 .build();
 
-        ImageView iv2 = (ImageView) findViewById(R.id.test2);
+        //You can also do some advanced stuff like setting an image within a text
+        TextView tv2 = (TextView) findViewById(R.id.test5);
+        SpannableString sb = new SpannableString(tv2.getText());
+        IconicsDrawable d = new IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDp(48).paddingDp(4);
+        sb.setSpan(new ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv2.setText(sb);
 
+
+        //Set the icon of an ImageView (or something else) as drawable
+        ImageView iv2 = (ImageView) findViewById(R.id.test2);
         iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).contourColor(Color.RED).contourWidthDp(1));
 
+        //Set the icon of an ImageView (or something else) as bitmap
         ImageView iv3 = (ImageView) findViewById(R.id.test3);
         iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).color(Color.GREEN).toBitmap());
 
+        //Show how to style the text of an existing button (NOT WORKING AT THE MOMENT)
         Button b4 = (Button) findViewById(R.id.test4);
         new Iconics.IconicsBuilder().ctx(this)
                 .style(new BackgroundColorSpan(Color.BLACK))
