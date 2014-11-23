@@ -140,6 +140,9 @@ public final class Iconics {
 
         //set all the icons and styles
         for (StyleContainer styleContainer : styleContainers) {
+
+            //IconicsDrawable d = new IconicsDrawable(ctx, styleContainer.icon).sizeDp(48);
+            //sb.setSpan(new ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             sb.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.getFont().getTypeface(ctx)), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
             if (stylesFor.containsKey(styleContainer.getIcon())) {
@@ -152,7 +155,6 @@ public final class Iconics {
                 }
             }
         }
-
 
         //sb = applyKerning(sb, 1);
 
@@ -209,8 +211,7 @@ public final class Iconics {
 
     public static class IconicsBuilderView {
         private Context ctx;
-        private TextView onTextView;
-        private Button onButton;
+        private TextView view;
         private List<CharacterStyle> withStyles;
         private HashMap<String, List<CharacterStyle>> withStylesFor;
         private List<ITypeface> fonts;
@@ -218,11 +219,7 @@ public final class Iconics {
         public IconicsBuilderView(Context ctx, List<ITypeface> fonts, TextView view, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
             this.ctx = ctx;
             this.fonts = fonts;
-            if (view instanceof Button) {
-                this.onButton = (Button) view;
-            } else {
-                this.onTextView = view;
-            }
+            this.view = view;
             this.withStyles = styles;
             this.withStylesFor = stylesFor;
         }
@@ -234,11 +231,7 @@ public final class Iconics {
                 mappedFonts.put(font.getMappingPrefix(), font);
             }
 
-            if (onTextView != null) {
-                onTextView.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onTextView.getText()), withStyles, withStylesFor));
-            } else if (onButton != null) {
-                onButton.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(onButton.getText()), withStyles, withStylesFor), TextView.BufferType.SPANNABLE);
-            }
+            view.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(view.getText()), withStyles, withStylesFor));
         }
     }
 
