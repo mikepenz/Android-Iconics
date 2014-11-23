@@ -140,9 +140,6 @@ public final class Iconics {
 
         //set all the icons and styles
         for (StyleContainer styleContainer : styleContainers) {
-
-            //IconicsDrawable d = new IconicsDrawable(ctx, styleContainer.icon).sizeDp(48);
-            //sb.setSpan(new ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             sb.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.getFont().getTypeface(ctx)), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
             if (stylesFor.containsKey(styleContainer.getIcon())) {
