@@ -74,6 +74,15 @@ public class IconicsDrawable extends Drawable {
 
     private IIcon mIcon;
 
+    public IconicsDrawable(Context context, String icon) {
+        mContext = context.getApplicationContext();
+        prepare();
+
+        ITypeface font = Iconics.findFont(icon.substring(0, 3));
+        icon = icon.replace("-", "_");
+        icon(font.getIcon(icon));
+    }
+
     public IconicsDrawable(Context context, final IIcon icon) {
         mContext = context.getApplicationContext();
         prepare();
