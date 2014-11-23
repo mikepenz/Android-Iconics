@@ -8,8 +8,8 @@ android {
         applicationId "com.mikpenz.iconics"
         minSdkVersion 10
         targetSdkVersion 21
-        versionCode 65
-        versionName "0.6.5"
+        versionCode 66
+        versionName "0.6.6"
     }
     buildTypes {
         release {
