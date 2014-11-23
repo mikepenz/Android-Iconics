@@ -26,7 +26,7 @@
               android:orientation="vertical">
 
     <TextView
-        android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmno{met-wind}pqrstuv{fon-test2}wxy{z"
+        android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-poll}no{met-wind}pqrstuv{fon-test2}wxy{z"
         android:textColor="@android:color/black"
         android:id="@+id/test1"
         android:layout_width="wrap_content"
