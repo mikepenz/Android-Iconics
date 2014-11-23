@@ -61,4 +61,5 @@ dependencies {
     compile 'com.mikepenz.aboutlibraries:library:4.2.1@aar'
     compile project(':library')
     compile project(':meteocons-typeface-library')
+    compile project(':google-material-typeface-library')
 }
