@@ -2,6 +2,8 @@
 
 Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
 
+__ **NOTE:** Upgrade to > 0.6.0 You can now write **"faw-android"** instead of **"icon-faw-android"** in texts!
+
 Let's start with some awesome screenshots ;)
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg)
@@ -14,6 +16,11 @@ You can also use it on any text by using the simple builder pattern. Here's the 
 ```java
 new Iconics.IconicsBuilder().ctx(this).on(YOUR_TEXT_VIEW).build();
 ```
+Define icons in a text as following:
+```gson
+Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
+```
+
 
 But wait! There's more. You can also use it as Drawable anywhere. Create it like this:
 
