@@ -1,4 +1,4 @@
-#Android-Iconics  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library)
+#Android-Iconics  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1164)
 
 Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
 
