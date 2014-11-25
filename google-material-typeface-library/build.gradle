@@ -22,10 +22,10 @@ android {
 
     defaultConfig {
         applicationId "com.mikpenz.google_material_typeface_library"
-        minSdkVersion 14
+        minSdkVersion 10
         targetSdkVersion 21
-        versionCode 100
-        versionName "1.0.0"
+        versionCode 101
+        versionName "1.0.1"
     }
     buildTypes {
         release {
