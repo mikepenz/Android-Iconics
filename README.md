@@ -87,7 +87,7 @@ public class CustomApplication extends Application {
 and set it in your AndroidManifest.xml as name
 ```java
     <application
-        android:name="com.mikpenz.iconics.sample.CustomApplication"
+        android:name="com.mikepenz.iconics.sample.CustomApplication"
         ...
 ```
 
@@ -125,7 +125,7 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 
 ##Demo
 You can try the sample application out. It's on Google Play ;)
-https://play.google.com/store/apps/details?id=com.mikpenz.iconics.sample
+https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 ##Contribute
 The easiest way to contribute is by creating a new typeface-library addon. This is a pretty easy step. Just look into the meteocons-typeface-library project within this repository. You will see you only need 2 things. The font itself (the .ttf file). And the Typeface definition which is an implementation of the ITypeface class. 

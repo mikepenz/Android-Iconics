@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mikpenz.google_material_typeface_library;
+package com.mikepenz.google_material_typeface_library;
 
 import android.content.Context;
 import android.graphics.Typeface;
 
-import com.mikpenz.iconics.typeface.IIcon;
-import com.mikpenz.iconics.typeface.ITypeface;
+import com.mikepenz.iconics.typeface.IIcon;
+import com.mikepenz.iconics.typeface.ITypeface;
 
 import java.util.Collection;
 import java.util.HashMap;

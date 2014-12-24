@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mikpenz.iconics;
+package com.mikepenz.iconics;
 
 import android.content.Context;
 import android.text.Spannable;
@@ -23,10 +23,10 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.mikpenz.iconics.typeface.FontAwesome;
-import com.mikpenz.iconics.typeface.IIcon;
-import com.mikpenz.iconics.typeface.ITypeface;
-import com.mikpenz.iconics.utils.IconicsTypefaceSpan;
+import com.mikepenz.iconics.typeface.FontAwesome;
+import com.mikepenz.iconics.typeface.IIcon;
+import com.mikepenz.iconics.typeface.ITypeface;
+import com.mikepenz.iconics.utils.IconicsTypefaceSpan;
 
 import java.util.Collection;
 import java.util.Collections;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mikpenz.iconics.typeface;
+package com.mikepenz.iconics.typeface;
 
 import android.content.Context;
 import android.graphics.Typeface;

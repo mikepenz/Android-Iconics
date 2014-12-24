@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mikpenz.iconics.sample.adapter;
+package com.mikepenz.iconics.sample.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,9 +23,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mikpenz.iconics.IconicsDrawable;
-import com.mikpenz.iconics.sample.MainActivity;
-import com.mikpenz.iconics.sample.R;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.sample.MainActivity;
+import com.mikepenz.iconics.sample.R;
 
 import java.util.List;
 

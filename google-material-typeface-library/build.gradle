@@ -18,10 +18,9 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.mikpenz.google_material_typeface_library"
         minSdkVersion 10
         targetSdkVersion 21
         versionCode 101

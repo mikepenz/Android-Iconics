@@ -20,8 +20,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-import com.mikpenz.iconics.Iconics;
-import com.mikpenz.iconics.typeface.FontAwesome;
+import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.typeface.FontAwesome;
 
 public class IconicsButton extends Button {
 

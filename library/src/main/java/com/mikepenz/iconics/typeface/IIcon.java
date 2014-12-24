@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mikpenz.iconics.typeface;
+package com.mikepenz.iconics.typeface;
 
 /**
  * Created by mikepenz on 06.11.14.

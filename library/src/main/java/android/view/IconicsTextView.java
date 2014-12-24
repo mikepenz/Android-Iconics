@@ -20,7 +20,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.mikpenz.iconics.Iconics;
+import com.mikepenz.iconics.Iconics;
 
 public class IconicsTextView extends TextView {
 

@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
-      tools:context="com.mikpenz.iconics.sample.MainActivity">
+      tools:context="com.mikepenz.iconics.sample.MainActivity">
     <item android:id="@+id/action_opensource"
           android:title="@string/action_opensource"
           app:showAsAction="ifRoom"/>

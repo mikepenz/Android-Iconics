@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mikpenz.iconics;
+package com.mikepenz.iconics;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -25,9 +25,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 
-import com.mikpenz.iconics.typeface.IIcon;
-import com.mikpenz.iconics.typeface.ITypeface;
-import com.mikpenz.iconics.utils.Utils;
+import com.mikepenz.iconics.typeface.IIcon;
+import com.mikepenz.iconics.typeface.ITypeface;
+import com.mikepenz.iconics.utils.Utils;
 
 /**
  * Embed an icon into a Drawable that can be used as TextView icons, or ActionBar icons.

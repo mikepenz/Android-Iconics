@@ -18,7 +18,7 @@
  *
  *     http://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=OFL_plaintext&filename=OFL.txt
  */
-package com.mikpenz.iconics.typeface;
+package com.mikepenz.iconics.typeface;
 
 import android.content.Context;
 import android.graphics.Typeface;

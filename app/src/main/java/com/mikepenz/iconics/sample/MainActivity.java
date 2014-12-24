@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mikpenz.iconics.sample;
+package com.mikepenz.iconics.sample;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -33,11 +33,11 @@ import android.view.animation.LayoutAnimationController;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
-import com.mikpenz.iconics.Iconics;
-import com.mikpenz.iconics.IconicsDrawable;
-import com.mikpenz.iconics.sample.adapter.IconAdapter;
-import com.mikpenz.iconics.typeface.FontAwesome;
-import com.mikpenz.iconics.typeface.ITypeface;
+import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.sample.adapter.IconAdapter;
+import com.mikepenz.iconics.typeface.FontAwesome;
+import com.mikepenz.iconics.typeface.ITypeface;
 
 import java.util.ArrayList;
 

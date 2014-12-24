@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mikpenz.iconics.utils;
+package com.mikepenz.iconics.utils;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;

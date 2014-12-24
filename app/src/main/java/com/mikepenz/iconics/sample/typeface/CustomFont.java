@@ -1,10 +1,10 @@
-package com.mikpenz.iconics.sample.typeface;
+package com.mikepenz.iconics.sample.typeface;
 
 import android.content.Context;
 import android.graphics.Typeface;
 
-import com.mikpenz.iconics.typeface.IIcon;
-import com.mikpenz.iconics.typeface.ITypeface;
+import com.mikepenz.iconics.typeface.IIcon;
+import com.mikepenz.iconics.typeface.ITypeface;
 
 import java.util.Collection;
 import java.util.HashMap;

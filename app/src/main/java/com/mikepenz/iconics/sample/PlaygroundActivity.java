@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mikpenz.iconics.sample;
+package com.mikepenz.iconics.sample;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -30,9 +30,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mikpenz.iconics.Iconics;
-import com.mikpenz.iconics.IconicsDrawable;
-import com.mikpenz.iconics.typeface.FontAwesome;
+import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.typeface.FontAwesome;
 
 
 public class PlaygroundActivity extends Activity {

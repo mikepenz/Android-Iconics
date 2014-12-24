@@ -1,12 +1,12 @@
-package com.mikpenz.iconics.sample;
+package com.mikepenz.iconics.sample;
 
 
 import android.app.Application;
 
-import com.mikpenz.google_material_typeface_library.GoogleMaterial;
-import com.mikpenz.iconics.Iconics;
-import com.mikpenz.iconics.sample.typeface.CustomFont;
-import com.mikpenz.meteocons_typeface_library.Meteoconcs;
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.sample.typeface.CustomFont;
+import com.mikepenz.meteocons_typeface_library.Meteoconcs;
 
 public class CustomApplication extends Application {
 
