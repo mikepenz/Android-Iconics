@@ -2,6 +2,7 @@
 
 Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
 
+__ **NOTE:** UPGRADE FROM < 0.7.0 You have to rename the imports from com.mikpenz to com.mikepenz (Had a typo in my packagename)
 __ **NOTE:** Upgrade to > 0.6.0 You can now write **"faw-android"** instead of **"icon-faw-android"** in texts!
 
 Let's start with some awesome screenshots ;)
@@ -38,7 +39,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.6.6@aar'
+	compile 'com.mikepenz.iconics:library:0.7.0@aar'
 }
 ```
 
@@ -52,9 +53,9 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.6.6@aar'
-	compile 'com.mikepenz.iconics:meteocons-typeface:1.0.1@aar'
-	compile 'com.mikepenz.iconics:google-material-typeface:1.0.1@aar'
+	compile 'com.mikepenz.iconics:library:0.7.0@aar'
+	compile 'com.mikepenz.iconics:meteocons-typeface:1.1.0@aar'
+	compile 'com.mikepenz.iconics:google-material-typeface:1.1.0@aar'
 }
 ```
 
