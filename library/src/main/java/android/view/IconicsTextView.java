@@ -38,7 +38,11 @@ public class IconicsTextView extends TextView {
 
     @Override
     public void setText(CharSequence text, BufferType type) {
-        super.setText(new Iconics.IconicsBuilder().ctx(getContext()).on(text).build(), type);
+        if (!isInEditMode()) {
+            super.setText(new Iconics.IconicsBuilder().ctx(getContext()).on(text).build(), type);
+        } else {
+            super.setText(text, type);
+        }
     }
 
 }

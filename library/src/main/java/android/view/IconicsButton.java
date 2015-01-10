@@ -27,21 +27,31 @@ public class IconicsButton extends Button {
 
     public IconicsButton(Context context) {
         super(context);
-        setTypeface(new FontAwesome().getTypeface(context));
+        if (!isInEditMode()) {
+            setTypeface(new FontAwesome().getTypeface(context));
+        }
     }
 
     public IconicsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setTypeface(new FontAwesome().getTypeface(context));
+        if (!isInEditMode()) {
+            setTypeface(new FontAwesome().getTypeface(context));
+        }
     }
 
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setTypeface(new FontAwesome().getTypeface(context));
+        if (!isInEditMode()) {
+            setTypeface(new FontAwesome().getTypeface(context));
+        }
     }
 
     @Override
     public void setText(CharSequence text, BufferType type) {
-        super.setText(new Iconics.IconicsBuilder().ctx(getContext()).on(text).build(), type);
+        if (!isInEditMode()) {
+            super.setText(new Iconics.IconicsBuilder().ctx(getContext()).on(text).build(), type);
+        } else {
+            super.setText(text, type);
+        }
     }
 }
