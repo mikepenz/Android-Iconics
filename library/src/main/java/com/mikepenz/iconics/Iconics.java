@@ -100,15 +100,18 @@ public final class Iconics {
             iconString = iconString.replaceAll("-", "_");
             try {
                 //get the correct character for this Font and Icon
-                char fontChar = fonts.get(fontKey).getIcon(iconString).getCharacter();
-                String iconValue = String.valueOf(fontChar);
+                IIcon icon = fonts.get(fontKey).getIcon(iconString);
+                //we can only add an icon which is a font
+                if (icon != null) {
+                    char fontChar = icon.getCharacter();
+                    String iconValue = String.valueOf(fontChar);
 
-                //get just the icon identifier
-                text = text.replace(startIndex, endIndex, iconValue);
+                    //get just the icon identifier
+                    text = text.replace(startIndex, endIndex, iconValue);
 
-                //add the current icon to the container
-                styleContainers.add(new StyleContainer(startIndex, startIndex + 1, iconString, fonts.get(fontKey)));
-
+                    //add the current icon to the container
+                    styleContainers.add(new StyleContainer(startIndex, startIndex + 1, iconString, fonts.get(fontKey)));
+                }
             } catch (IllegalArgumentException e) {
                 Log.w(Iconics.TAG, "Wrong icon name: " + iconString);
             }
