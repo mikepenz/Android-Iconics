@@ -29,12 +29,12 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 But wait! There's more. You can also use it as Drawable anywhere. Create it like this:
 
 ```java
-new IconicsDrawable(this, "faw-adjust").color(Color.RED)
+new IconicsDrawable(this, "faw-adjust").color(Color.RED).sizeDp(24)
 ```
 
 If you don't know the name of the icon, and the typeface-library-addon allows it you can also do the following:
 ```java
-new IconicsDrawable(this, FontAwesome.Icon.faw_android).color(Color.GREEN)
+new IconicsDrawable(this, FontAwesome.Icon.faw_android).color(Color.GREEN).sizeDp(24)
 ```
 
 ##Include in your project
@@ -109,10 +109,10 @@ new Iconics.IconicsBuilder().ctx(this)
 ###String icon-key or typeface enum
 Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:
 ```java
-  new IconicsDrawable(this, "faw-adjust")
+  new IconicsDrawable(this, "faw-adjust").actionBarSize()
 ```
 ```java
-  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust)
+  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust).sizeDp(24)
 ```
 
 ##Available fonts
