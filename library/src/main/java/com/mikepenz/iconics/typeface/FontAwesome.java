@@ -67,7 +67,7 @@ public class FontAwesome implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "4.2.0";
+        return "4.3.0";
     }
 
     @Override
