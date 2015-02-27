@@ -184,5 +184,15 @@ public class Meteoconcs implements ITypeface {
         public String getName() {
             return name();
         }
+
+        // remember the typeface so we can use it later
+        private static ITypeface typeface;
+
+        public ITypeface getTypeface() {
+            if (typeface == null) {
+                typeface = new Meteoconcs();
+            }
+            return typeface;
+        }
     }
 }

@@ -57,6 +57,9 @@ public final class Iconics {
         return FONTS.get(key);
     }
 
+    public static ITypeface findFont(IIcon icon) {
+        return icon.getTypeface();
+    }
 
     private Iconics() {
         // Prevent instantiation

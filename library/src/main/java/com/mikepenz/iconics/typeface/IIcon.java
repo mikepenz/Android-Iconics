@@ -25,4 +25,6 @@ public interface IIcon {
     public String getName();
 
     public char getCharacter();
+
+    public ITypeface getTypeface();
 }
