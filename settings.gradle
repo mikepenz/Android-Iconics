@@ -1,1 +1,1 @@
-include ':app', ':library', ':meteocons-typeface-library', ':google-material-typeface-library'
+include ':app', ':library', ':meteocons-typeface-library'
