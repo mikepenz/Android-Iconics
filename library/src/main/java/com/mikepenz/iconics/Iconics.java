@@ -23,6 +23,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
@@ -43,6 +44,8 @@ public final class Iconics {
     static {
         FontAwesome fa = new FontAwesome();
         FONTS.put(fa.getMappingPrefix(), fa);
+        GoogleMaterial gm = new GoogleMaterial();
+        FONTS.put(gm.getMappingPrefix(), gm);
     }
 
     public static void registerFont(ITypeface font) {

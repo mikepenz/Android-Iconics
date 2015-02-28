@@ -42,7 +42,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.7.4@aar'
+	compile 'com.mikepenz.iconics:library:0.7.5@aar'
 }
 ```
 
@@ -56,9 +56,8 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.7.4@aar'
+	compile 'com.mikepenz.iconics:library:0.7.5@aar'
 	compile 'com.mikepenz.iconics:meteocons-typeface:1.1.1@aar'
-	compile 'com.mikepenz.iconics:google-material-typeface:1.1.1@aar'
 }
 ```
 
@@ -83,7 +82,6 @@ public class CustomApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Iconics.registerFont(new Meteoconcs());
-        Iconics.registerFont(new GoogleMaterial());
         Iconics.registerFont(new CustomFont());
     }
 }
@@ -119,12 +117,12 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 * [Fontawesome](http://fontawesome.io)
   * "faw"
   * DEFAULT
+* [Google Material Design](https://github.com/google/material-design-icons)
+  * "gmd"
+  * DEFAULT
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
   * "met"
   * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
-* [Google Material Design](https://github.com/google/material-design-icons)
-  * "gmd"
-  * compile 'com.mikepenz.iconics:google-material-typeface:+@aar'
 
 
 ##Demo
