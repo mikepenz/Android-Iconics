@@ -29,44 +29,50 @@
       </header>
       <section>
         <h1>
-<a name="android-iconics" class="anchor" href="#android-iconics"><span class="octicon octicon-link"></span></a>Android-Iconics</h1>
+<a id="android-iconics---" class="anchor" href="#android-iconics---" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android-Iconics  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://android-arsenal.com/details/1/1164"><img src="https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat" alt="Android Arsenal"></a>
+</h1>
 
 <p>Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.</p>
+
+<p>__ <strong>NOTE:</strong> UPGRADE FROM &lt; 0.7.0 You have to rename the imports from com.mikpenz to com.mikepenz (Had a typo in my packagename)</p>
+
+<p>__ <strong>NOTE:</strong> Upgrade to &gt; 0.6.0 You can now write <strong>"faw-android"</strong> instead of <strong>"icon-faw-android"</strong> in texts!</p>
 
 <p>Let's start with some awesome screenshots ;)</p>
 
 <p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg" alt="Image">
 <img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.jpg" alt="Image"></p>
 
-<p>You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {icon-faw-github}. You see pretty easy right?</p>
+<p>You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {faw-github}. You see pretty easy right?</p>
 
 <p>You can also use it on any text by using the simple builder pattern. Here's the shortest possible sample:</p>
 
-<div class="highlight highlight-java"><pre><span class="k">new</span> <span class="n">Iconics</span><span class="o">.</span><span class="na">IconicsBuilder</span><span class="o">().</span><span class="na">ctx</span><span class="o">(</span><span class="k">this</span><span class="o">).</span><span class="na">on</span><span class="o">(</span><span class="n">YOUR_TEXT_VIEW</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
-</pre></div>
+<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-stj">Iconics</span>.<span class="pl-stj">IconicsBuilder</span>()<span class="pl-k">.</span>ctx(<span class="pl-v">this</span>)<span class="pl-k">.</span>on(<span class="pl-c1">YOUR_TEXT_VIEW</span>)<span class="pl-k">.</span>build();</pre></div>
+
+<p>Define icons in a text as following:</p>
+
+<pre lang="gson"><code>Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
+</code></pre>
 
 <p>But wait! There's more. You can also use it as Drawable anywhere. Create it like this:</p>
 
-<div class="highlight highlight-java"><pre><span class="k">new</span> <span class="nf">IconicsDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"faw-adjust"</span><span class="o">).</span><span class="na">color</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">)</span>
-</pre></div>
+<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-stj">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-s1"><span class="pl-pds">"</span>faw-adjust<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>color(<span class="pl-stj">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
 
 <p>If you don't know the name of the icon, and the typeface-library-addon allows it you can also do the following:</p>
 
-<div class="highlight highlight-java"><pre><span class="k">new</span> <span class="nf">IconicsDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">new</span> <span class="nf">FontAwesome</span><span class="o">(),</span> <span class="n">FontAwesome</span><span class="o">.</span><span class="na">FontAwesomeIcon</span><span class="o">.</span><span class="na">faw_android</span><span class="o">.</span><span class="na">character</span><span class="o">()).</span><span class="na">color</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">GREEN</span><span class="o">)</span>
-</pre></div>
+<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-stj">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-stj">FontAwesome</span><span class="pl-k">.</span><span class="pl-stj">Icon</span><span class="pl-k">.</span>faw_android)<span class="pl-k">.</span>color(<span class="pl-stj">Color</span><span class="pl-c1"><span class="pl-k">.</span>GREEN</span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
 
 <h2>
-<a name="include-in-your-project" class="anchor" href="#include-in-your-project"><span class="octicon octicon-link"></span></a>Include in your project</h2>
+<a id="include-in-your-project" class="anchor" href="#include-in-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Include in your project</h2>
 
 <p>The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your <code>build.gradle</code>.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">dependencies</span> <span class="p">{</span>
-    <span class="nx">compile</span> <span class="s1">'com.mikepenz.iconics:library:0.2.0@aar'</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight highlight-javascript"><pre>dependencies {
+    compile <span class="pl-s1"><span class="pl-pds">'</span>com.mikepenz.iconics:library:0.7.5@aar<span class="pl-pds">'</span></span>
+}</pre></div>
 
 <h2>
-<a name="use-typeface-library-addons" class="anchor" href="#use-typeface-library-addons"><span class="octicon octicon-link"></span></a>Use typeface-library-addons</h2>
+<a id="use-typeface-library-addons" class="anchor" href="#use-typeface-library-addons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use typeface-library-addons</h2>
 
 <p>One basic function of this library is the feature to drop in new typefaces on the go. The default font of this project is FontAwesome (<a href="http://fontawesome.io">http://fontawesome.io</a>), but you can create and add as many as you like.</p>
 
@@ -75,77 +81,70 @@
 <p>So how does it work?
 Just add the dependency of any and as many typface-library-addons in your build.gradle just beneath the android-iconics dependency.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="nx">dependencies</span> <span class="p">{</span>
-    <span class="nx">compile</span> <span class="s1">'com.mikepenz.iconics:library:0.2.0@aar'</span>
-    <span class="nx">compile</span> <span class="s1">'com.mikepenz.iconics:meteocons-typeface:0.1.0@aar'</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight highlight-javascript"><pre>dependencies {
+    compile <span class="pl-s1"><span class="pl-pds">'</span>com.mikepenz.iconics:library:0.7.5@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s1"><span class="pl-pds">'</span>com.mikepenz.iconics:meteocons-typeface:1.1.1@aar<span class="pl-pds">'</span></span>
+}</pre></div>
 
 <p>To enable them for the IconicsTextView too follow the steps under <a href="#register-typeface">Register typeface</a></p>
 
 <h2>
-<a name="advanced-usage" class="anchor" href="#advanced-usage"><span class="octicon octicon-link"></span></a>Advanced usage</h2>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced usage</h2>
 
 <h3>
-<a name="working-with-multiple-typeface-library-addons-and-icons" class="anchor" href="#working-with-multiple-typeface-library-addons-and-icons"><span class="octicon octicon-link"></span></a>working with multiple typeface-library-addons and icons</h3>
+<a id="working-with-multiple-typeface-library-addons-and-icons" class="anchor" href="#working-with-multiple-typeface-library-addons-and-icons" aria-hidden="true"><span class="octicon octicon-link"></span></a>working with multiple typeface-library-addons and icons</h3>
 
-<p>In some cases you will use multiple typefaces. It is really easy to decide which icon of which typeface-library-addon should be used. Each of those got a unique 3-character long identifier which is the prefix of every single icon. 
+<p>In some cases you will use multiple typefaces. It is really easy to decide which icon of which typeface-library-addon should be used. Each of those got a unique <strong>3-character</strong> long identifier which is the prefix of every single icon. 
 FontAwesome - "faw"
 Meteocons - "met"</p>
 
-<p>Evertime you want to use an icon in a text just write {icon-faw-adjust}, ... 
-If you create an IconicsDrawable or define the style for a specific icon within an text just remove the "icon-" prefix and you're fine.</p>
+<p>Evertime you want to use an icon in a text just write {faw-adjust}, ...</p>
 
 <h3>
-<a name="register-typeface" class="anchor" href="#register-typeface"><span class="octicon octicon-link"></span></a>Register typeface</h3>
+<a id="register-typeface" class="anchor" href="#register-typeface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Register typeface</h3>
 
 <p>In some cases you will love to use a typeface-library-addon in your IconicTextView and everywhere else without the need of adding it as typeface all the time.</p>
 
 <p>Just override your Application and register your additional fonts like this:</p>
 
-<div class="highlight highlight-java"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomApplication</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
-        <span class="n">Iconics</span><span class="o">.</span><span class="na">registerFont</span><span class="o">(</span><span class="k">new</span> <span class="nf">Meteoconcs</span><span class="o">());</span>
-        <span class="n">Iconics</span><span class="o">.</span><span class="na">registerFont</span><span class="o">(</span><span class="k">new</span> <span class="nf">CustomFont</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
+<div class="highlight highlight-java"><pre><span class="pl-s">public</span> <span class="pl-s">class</span> <span class="pl-en">CustomApplication</span> <span class="pl-s">extends</span> <span class="pl-e">Application</span> {
+    <span class="pl-st">@Override</span>
+    <span class="pl-s">public</span> <span class="pl-st">void</span> <span class="pl-en">onCreate</span>() {
+        <span class="pl-v">super</span><span class="pl-k">.</span>onCreate();
+        <span class="pl-stj">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-stj">Meteoconcs</span>());
+        <span class="pl-stj">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-stj">CustomFont</span>());
+    }
+}</pre></div>
 
 <p>and set it in your AndroidManifest.xml as name</p>
 
-<div class="highlight highlight-java"><pre>    <span class="o">&lt;</span><span class="n">application</span>
-        <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.mikpenz.iconics.sample.CustomApplication"</span>
-        <span class="o">...</span>
-</pre></div>
+<div class="highlight highlight-java"><pre>    <span class="pl-k">&lt;</span>application
+        android<span class="pl-k">:</span>name<span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>com.mikepenz.iconics.sample.CustomApplication<span class="pl-pds">"</span></span>
+        <span class="pl-c1">...</span></pre></div>
 
 <h3>
-<a name="advanced-iconicsbuilder" class="anchor" href="#advanced-iconicsbuilder"><span class="octicon octicon-link"></span></a>Advanced IconicsBuilder</h3>
+<a id="advanced-iconicsbuilder" class="anchor" href="#advanced-iconicsbuilder" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced IconicsBuilder</h3>
 
 <p>Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
 Just define the style for all icons or only a specific one. You can find this in the PlaygroundActivity of the sample too.</p>
 
-<div class="highlight highlight-java"><pre><span class="k">new</span> <span class="n">Iconics</span><span class="o">.</span><span class="na">IconicsBuilder</span><span class="o">().</span><span class="na">ctx</span><span class="o">(</span><span class="k">this</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">style</span><span class="o">(</span><span class="k">new</span> <span class="nf">ForegroundColorSpan</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">),</span> <span class="k">new</span> <span class="nf">BackgroundColorSpan</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">),</span> <span class="k">new</span> <span class="nf">RelativeSizeSpan</span><span class="o">(</span><span class="mi">2</span><span class="n">f</span><span class="o">))</span>
-                <span class="o">.</span><span class="na">styleFor</span><span class="o">(</span><span class="s">"faw-adjust"</span><span class="o">,</span> <span class="k">new</span> <span class="nf">BackgroundColorSpan</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">RED</span><span class="o">))</span>
-                <span class="o">.</span><span class="na">on</span><span class="o">(</span><span class="n">tv1</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</pre></div>
+<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-stj">Iconics</span>.<span class="pl-stj">IconicsBuilder</span>()<span class="pl-k">.</span>ctx(<span class="pl-v">this</span>)
+                .style(<span class="pl-k">new</span> <span class="pl-stj">ForegroundColorSpan</span>(<span class="pl-stj">Color</span><span class="pl-c1"><span class="pl-k">.</span>WHITE</span>), <span class="pl-k">new</span> <span class="pl-stj">BackgroundColorSpan</span>(<span class="pl-stj">Color</span><span class="pl-c1"><span class="pl-k">.</span>BLACK</span>), <span class="pl-k">new</span> <span class="pl-stj">RelativeSizeSpan</span>(<span class="pl-c1">2f</span>))
+                .styleFor(<span class="pl-stj">FontAwesome</span><span class="pl-k">.</span><span class="pl-stj">Icon</span><span class="pl-k">.</span>faw_adjust, <span class="pl-k">new</span> <span class="pl-stj">BackgroundColorSpan</span>(<span class="pl-stj">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>))
+                .on(tv1)
+                .build();</pre></div>
 
 <h3>
-<a name="string-icon-key-or-typeface-enum" class="anchor" href="#string-icon-key-or-typeface-enum"><span class="octicon octicon-link"></span></a>String icon-key or typeface enum</h3>
+<a id="string-icon-key-or-typeface-enum" class="anchor" href="#string-icon-key-or-typeface-enum" aria-hidden="true"><span class="octicon octicon-link"></span></a>String icon-key or typeface enum</h3>
 
-<p>Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a sepcific font. Both is valid:</p>
+<p>Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:</p>
 
-<div class="highlight highlight-java"><pre>  <span class="k">new</span> <span class="nf">IconicsDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"faw-adjust"</span><span class="o">)</span>
-</pre></div>
+<div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-stj">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-s1"><span class="pl-pds">"</span>faw-adjust<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>actionBarSize()</pre></div>
 
-<div class="highlight highlight-java"><pre>  <span class="k">new</span> <span class="nf">IconicsDrawable</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="k">new</span> <span class="nf">FontAwesome</span><span class="o">(),</span> <span class="n">FontAwesome</span><span class="o">.</span><span class="na">FontAwesomeIcon</span><span class="o">.</span><span class="na">faw_adjust</span><span class="o">.</span><span class="na">character</span><span class="o">())</span>
-</pre></div>
+<div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-stj">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-stj">FontAwesome</span><span class="pl-k">.</span><span class="pl-stj">Icon</span><span class="pl-k">.</span>faw_adjust)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
 
 <h2>
-<a name="available-fonts" class="anchor" href="#available-fonts"><span class="octicon octicon-link"></span></a>Available fonts</h2>
+<a id="available-fonts" class="anchor" href="#available-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available fonts</h2>
 
 <ul>
 <li>
@@ -153,6 +152,14 @@ Just define the style for all icons or only a specific one. You can find this in
 
 <ul>
 <li>"faw"</li>
+<li>DEFAULT</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/google/material-design-icons">Google Material Design</a>
+
+<ul>
+<li>"gmd"</li>
 <li>DEFAULT</li>
 </ul>
 </li>
@@ -167,13 +174,13 @@ Just define the style for all icons or only a specific one. You can find this in
 </ul>
 
 <h2>
-<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
 
 <p>You can try the sample application out. It's on Google Play ;)
 <a href="https://play.google.com/store/apps/details?id=com.mikpenz.iconics.sample">https://play.google.com/store/apps/details?id=com.mikpenz.iconics.sample</a></p>
 
 <h2>
-<a name="contribute" class="anchor" href="#contribute"><span class="octicon octicon-link"></span></a>Contribute</h2>
+<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h2>
 
 <p>The easiest way to contribute is by creating a new typeface-library addon. This is a pretty easy step. Just look into the meteocons-typeface-library project within this repository. You will see you only need 2 things. The font itself (the .ttf file). And the Typeface definition which is an implementation of the ITypeface class. </p>
 
@@ -186,7 +193,7 @@ This will include the .ttf to use, and a file called test-codes.css under css. T
 <p>If something is unclear, don't be afraid to drop an e-mail, or create an github issue.</p>
 
 <h2>
-<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
 
 <ul>
 <li>
@@ -194,7 +201,7 @@ This will include the .ttf to use, and a file called test-codes.css under css. T
 </ul>
 
 <h1>
-<a name="developed-by" class="anchor" href="#developed-by"><span class="octicon octicon-link"></span></a>Developed By</h1>
+<a id="developed-by" class="anchor" href="#developed-by" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developed By</h1>
 
 <ul>
 <li>Mike Penz - <a href="http://mikepenz.com">http://mikepenz.com</a> - <a href="mailto:mikepenz@gmail.com">mikepenz@gmail.com</a>
@@ -202,9 +209,9 @@ This will include the .ttf to use, and a file called test-codes.css under css. T
 </ul>
 
 <h1>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
 
-<pre><code>Copyright 2014 Mike Penz
+<pre><code>Copyright 2015 Mike Penz
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
