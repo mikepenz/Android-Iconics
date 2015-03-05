@@ -2,6 +2,14 @@
 
 Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
 
+*Fonts included by default:*
+- FontAwesome
+- Material Design Icons
+
+*Fonts available as addon:*
+- Meteocons
+
+__ **NOTE:** UPGRADE FROM < 0.7.5 Remove the `Google Material Design Icons` from your dependencies because it's now default and included within the main Android-Iconics package
 
 __ **NOTE:** UPGRADE FROM < 0.7.0 You have to rename the imports from com.mikpenz to com.mikepenz (Had a typo in my packagename)
 
@@ -117,7 +125,7 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 * [Fontawesome](http://fontawesome.io)
   * "faw"
   * DEFAULT
-* [Google Material Design](https://github.com/google/material-design-icons)
+* [Google Material Design Icons](https://github.com/google/material-design-icons)
   * "gmd"
   * DEFAULT
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
