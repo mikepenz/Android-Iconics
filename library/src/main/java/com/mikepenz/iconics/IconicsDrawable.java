@@ -60,6 +60,8 @@ public class IconicsDrawable extends Drawable {
     private Paint mIconPaint;
     private Paint mContourPaint;
 
+    private int mBackgroundColor = -1;
+
     private Rect mPaddingBounds;
     private RectF mPathBounds;
 
@@ -67,6 +69,9 @@ public class IconicsDrawable extends Drawable {
 
     private int mIconPadding;
     private int mContourWidth;
+
+    private int mIconOffsetX = 0;
+    private int mIconOffsetY = 0;
 
     private int mAlpha = 255;
 
@@ -163,6 +168,68 @@ public class IconicsDrawable extends Drawable {
         return this;
     }
 
+
+    /**
+     * set the icon offset for X from resource
+     *
+     * @param iconOffsetXRes
+     * @return
+     */
+    public IconicsDrawable iconOffsetXRes(int iconOffsetXRes) {
+        return iconOffsetXPx(mContext.getResources().getDimensionPixelSize(iconOffsetXRes));
+    }
+
+    /**
+     * set the icon offset for X as dp
+     *
+     * @param iconOffsetXDp
+     * @return
+     */
+    public IconicsDrawable iconOffsetXDp(int iconOffsetXDp) {
+        return iconOffsetXPx(Utils.convertDpToPx(mContext, iconOffsetXDp));
+    }
+
+    /**
+     * set the icon offset for X
+     *
+     * @param iconOffsetX
+     * @return
+     */
+    public IconicsDrawable iconOffsetXPx(int iconOffsetX) {
+        this.mIconOffsetX = iconOffsetX;
+        return this;
+    }
+
+    /**
+     * set the icon offset for Y from resource
+     *
+     * @param iconOffsetYRes
+     * @return
+     */
+    public IconicsDrawable iconOffsetYRes(int iconOffsetYRes) {
+        return iconOffsetYPx(mContext.getResources().getDimensionPixelSize(iconOffsetYRes));
+    }
+
+    /**
+     * set the icon offset for Y as dp
+     *
+     * @param iconOffsetYDp
+     * @return
+     */
+    public IconicsDrawable iconOffsetYDp(int iconOffsetYDp) {
+        return iconOffsetYPx(Utils.convertDpToPx(mContext, iconOffsetYDp));
+    }
+
+    /**
+     * set the icon offset for Y
+     *
+     * @param iconOffsetY
+     * @return
+     */
+    public IconicsDrawable iconOffsetYPx(int iconOffsetY) {
+        this.mIconOffsetY = iconOffsetY;
+        return this;
+    }
 
     /**
      * Set the padding of the drawable from res
@@ -274,6 +341,29 @@ public class IconicsDrawable extends Drawable {
     }
 
     /**
+     * set background color
+     *
+     * @param backgroundColor
+     * @return
+     */
+    public IconicsDrawable backgroundColor(int backgroundColor) {
+        this.mBackgroundColor = backgroundColor;
+        return this;
+    }
+
+    /**
+     * set background color from res
+     *
+     * @param backgroundColorRes
+     * @return
+     */
+    public IconicsDrawable backgroundColorRes(int backgroundColorRes) {
+        this.mBackgroundColor = mContext.getResources().getColor(backgroundColorRes);
+        return this;
+    }
+
+
+    /**
      * Set contour width from an dimen res for the icon
      *
      * @param contourWidthRes
@@ -370,6 +460,10 @@ public class IconicsDrawable extends Drawable {
             updatePaddingBounds(viewBounds);
             updateTextSize(viewBounds);
             offsetIcon(viewBounds);
+
+            if (mBackgroundColor != -1) {
+                canvas.drawColor(mBackgroundColor);
+            }
 
             mPath.close();
 
@@ -500,6 +594,6 @@ public class IconicsDrawable extends Drawable {
         float startY = viewBounds.centerY() - (mPathBounds.height() / 2);
         float offsetY = startY - (mPathBounds.top);
 
-        mPath.offset(offsetX, offsetY);
+        mPath.offset(offsetX + mIconOffsetX, offsetY + mIconOffsetY);
     }
 }
