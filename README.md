@@ -50,7 +50,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.7.5@aar'
+	compile 'com.mikepenz.iconics:library:0.7.7@aar'
 }
 ```
 
@@ -64,7 +64,7 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.7.5@aar'
+	compile 'com.mikepenz.iconics:library:0.7.7@aar'
 	compile 'com.mikepenz.iconics:meteocons-typeface:1.1.1@aar'
 }
 ```
