@@ -35,6 +35,7 @@ package com.mikepenz.iconics;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -151,10 +152,21 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable color(int color) {
+        mIconPaint.setAlpha(Color.alpha(color));
         mIconPaint.setColor(color);
         invalidateSelf();
         return this;
     }
+
+    /*
+    public int adjustAlpha(int color, float factor) {
+        int alpha = Math.round(Color.alpha(color));
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        return Color.argb(alpha, red, green, blue);
+    }
+    */
 
     /**
      * Set the color of the drawable.
@@ -163,9 +175,7 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable colorRes(int colorRes) {
-        mIconPaint.setColor(mContext.getResources().getColor(colorRes));
-        invalidateSelf();
-        return this;
+        return color(mContext.getResources().getColor(colorRes));
     }
 
 

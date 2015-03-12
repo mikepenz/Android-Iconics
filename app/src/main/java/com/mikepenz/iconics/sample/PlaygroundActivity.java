@@ -46,7 +46,7 @@ public class PlaygroundActivity extends Activity {
         TextView tv1 = (TextView) findViewById(R.id.test1);
         new Iconics.IconicsBuilder().ctx(this)
                 .style(new ForegroundColorSpan(Color.WHITE), new BackgroundColorSpan(Color.BLACK), new RelativeSizeSpan(2f))
-                .styleFor("faw-adjust", new BackgroundColorSpan(Color.RED))
+                .styleFor("faw-adjust", new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.parseColor("#33000000")), new RelativeSizeSpan(2f))
                 .on(tv1)
                 .build();
 
@@ -64,7 +64,7 @@ public class PlaygroundActivity extends Activity {
 
         //Set the icon of an ImageView (or something else) as bitmap
         ImageView iv3 = (ImageView) findViewById(R.id.test3);
-        iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).color(Color.GREEN).toBitmap());
+        iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).color(Color.parseColor("#de000000")).toBitmap());
 
         //Show how to style the text of an existing button (NOT WORKING AT THE MOMENT)
         Button b4 = (Button) findViewById(R.id.test4);
