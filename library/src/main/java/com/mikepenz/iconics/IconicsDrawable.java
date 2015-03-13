@@ -152,7 +152,7 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable color(int color) {
-        mIconPaint.setAlpha(Color.alpha(color));
+        setAlpha(Color.alpha(color));
         mIconPaint.setColor(color);
         invalidateSelf();
         return this;
