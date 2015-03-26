@@ -65,6 +65,7 @@ Just add the dependency of any and as many typface-library-addons in your build.
 ```javascript
 dependencies {
 	compile 'com.mikepenz.iconics:library:0.7.7@aar'
+	compile 'com.mikepenz.iconics:octicons-typeface:2.2.0@aar'
 	compile 'com.mikepenz.iconics:meteocons-typeface:1.1.1@aar'
 }
 ```
@@ -90,6 +91,7 @@ public class CustomApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Iconics.registerFont(new Meteoconcs());
+        Iconics.registerFont(new Octicons());
         Iconics.registerFont(new CustomFont());
     }
 }
@@ -131,6 +133,9 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
   * "met"
   * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
+* [Octicons](https://github.com/github/octicons)
+  * "oct"
+  * compile 'com.mikepenz.iconics:octicons-typeface:+@aar'
 
 
 ##Demo
