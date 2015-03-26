@@ -42,7 +42,7 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
     }
 
     public void setIcons(List<String> icons) {
-        this.icons = icons;
+        this.icons.addAll(icons);
         this.notifyItemRangeInserted(0, icons.size() - 1);
     }
 

@@ -3,10 +3,10 @@ package com.mikepenz.iconics.sample;
 
 import android.app.Application;
 
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.sample.typeface.CustomFont;
 import com.mikepenz.meteocons_typeface_library.Meteoconcs;
+import com.mikepenz.octicons_typeface_library.Octicons;
 
 public class CustomApplication extends Application {
 
@@ -14,7 +14,7 @@ public class CustomApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Iconics.registerFont(new Meteoconcs());
-        Iconics.registerFont(new GoogleMaterial());
+        Iconics.registerFont(new Octicons());
         Iconics.registerFont(new CustomFont());
     }
 

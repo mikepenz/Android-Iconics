@@ -20,16 +20,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
@@ -40,6 +36,8 @@ import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.ITypeface;
 
 import java.util.ArrayList;
+
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -58,8 +56,9 @@ public class MainActivity extends ActionBarActivity {
         // Init and Setup RecyclerView
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        IconAdapter mAdapter = new IconAdapter(icons, R.layout.row_icon, MainActivity.this);
+        //animator not yet working
+        mRecyclerView.setItemAnimator(new SlideInLeftAnimator());
+        IconAdapter mAdapter = new IconAdapter(new ArrayList<String>(), R.layout.row_icon, MainActivity.this);
         mRecyclerView.setAdapter(mAdapter);
 
         //add all icons of all registered Fonts to the list
@@ -70,13 +69,6 @@ public class MainActivity extends ActionBarActivity {
         }
 
         mAdapter.setIcons(icons);
-
-        // Everyone Loves animations :D Start some here :D
-        Animation fadeIn = AnimationUtils.loadAnimation(MainActivity.this, android.R.anim.slide_in_left);
-        fadeIn.setDuration(250);
-        LayoutAnimationController layoutAnimationController = new LayoutAnimationController(fadeIn);
-        mRecyclerView.setLayoutAnimation(layoutAnimationController);
-        mRecyclerView.startLayoutAnimation();
     }
 
     @Override
