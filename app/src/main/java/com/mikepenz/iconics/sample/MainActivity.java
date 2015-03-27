@@ -78,7 +78,7 @@ public class MainActivity extends ActionBarActivity {
         inflater.inflate(R.menu.menu_main, menu);
 
         MenuItem menuItem = menu.findItem(R.id.action_opensource);
-        menuItem.setIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_github).actionBarSize().color(Color.WHITE));
+        menuItem.setIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_github).actionBar().color(Color.WHITE));
         //menuItem.setIcon(new IconicsDrawable(this, "faw-github").actionBarSize().color(Color.WHITE));
 
 
