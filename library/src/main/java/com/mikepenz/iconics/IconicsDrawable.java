@@ -153,8 +153,8 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable color(int color) {
-        setAlpha(Color.alpha(color));
         mIconPaint.setColor(color);
+        setAlpha(Color.alpha(color));
         invalidateSelf();
         return this;
     }
@@ -459,7 +459,6 @@ public class IconicsDrawable extends Drawable {
      */
     public IconicsDrawable alpha(int alpha) {
         setAlpha(alpha);
-        mAlpha = alpha;
         return this;
     }
 
@@ -493,6 +492,8 @@ public class IconicsDrawable extends Drawable {
                 canvas.drawPath(mPath, mContourPaint);
             }
 
+            mIconPaint.setAlpha(mAlpha);
+
             canvas.drawPath(mPath, mIconPaint);
         }
     }
@@ -506,7 +507,7 @@ public class IconicsDrawable extends Drawable {
     public boolean setState(int[] stateSet) {
         int oldValue = mIconPaint.getAlpha();
         int newValue = Utils.isEnabled(stateSet) ? mAlpha : mAlpha / 2;
-        mIconPaint.setAlpha(newValue);
+        setAlpha(newValue);
         return oldValue != newValue;
     }
 
@@ -524,6 +525,7 @@ public class IconicsDrawable extends Drawable {
     public int getOpacity() {
         return PixelFormat.OPAQUE;
     }
+
 
     @Override
     public void setAlpha(int alpha) {

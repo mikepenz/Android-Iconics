@@ -60,11 +60,11 @@ public class PlaygroundActivity extends Activity {
 
         //Set the icon of an ImageView (or something else) as drawable
         ImageView iv2 = (ImageView) findViewById(R.id.test2);
-        iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).contourColor(Color.RED).contourWidthDp(1));
+        iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1));
 
         //Set the icon of an ImageView (or something else) as bitmap
         ImageView iv3 = (ImageView) findViewById(R.id.test3);
-        iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).color(Color.parseColor("#de000000")).toBitmap());
+        iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).color(Color.parseColor("#deFF0000")).toBitmap());
 
         //Show how to style the text of an existing button (NOT WORKING AT THE MOMENT)
         Button b4 = (Button) findViewById(R.id.test4);
