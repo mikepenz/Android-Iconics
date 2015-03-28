@@ -537,6 +537,11 @@ public class IconicsDrawable extends Drawable {
     }
 
     @Override
+    public int getAlpha() {
+        return mAlpha;
+    }
+
+    @Override
     public void setColorFilter(ColorFilter cf) {
         mIconPaint.setColorFilter(cf);
     }
