@@ -506,16 +506,11 @@ public class IconicsDrawable extends Drawable {
         return true;
     }
 
-    /*
-    //does not help. also makes issues in combination with StateListDrawable
     @Override
     public boolean setState(int[] stateSet) {
-        int oldValue = mIconPaint.getAlpha();
-        int newValue = Utils.isEnabled(stateSet) ? mAlpha : mAlpha / 2;
-        setAlpha(newValue);
-        return oldValue != newValue;
+        setAlpha(mAlpha);
+        return true;
     }
-    */
 
     @Override
     public int getIntrinsicWidth() {
@@ -541,6 +536,15 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public int getAlpha() {
+        return mAlpha;
+    }
+
+    /**
+     * just a helper method to get the alpha value
+     *
+     * @return
+     */
+    public int getCompatAlpha() {
         return mAlpha;
     }
 
