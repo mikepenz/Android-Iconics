@@ -506,6 +506,8 @@ public class IconicsDrawable extends Drawable {
         return true;
     }
 
+    /*
+    //does not help. also makes issues in combination with StateListDrawable
     @Override
     public boolean setState(int[] stateSet) {
         int oldValue = mIconPaint.getAlpha();
@@ -513,6 +515,7 @@ public class IconicsDrawable extends Drawable {
         setAlpha(newValue);
         return oldValue != newValue;
     }
+    */
 
     @Override
     public int getIntrinsicWidth() {
