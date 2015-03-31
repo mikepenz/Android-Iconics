@@ -11,15 +11,23 @@ Android-Iconics is a library to use (almost) any alternative iconfont in your pr
 
 __ **NOTE:** UPGRADE FROM < 0.7.5 Remove the `Google Material Design Icons` from your dependencies because it's now default and included within the main Android-Iconics package
 
-__ **NOTE:** UPGRADE FROM < 0.7.0 You have to rename the imports from com.mikpenz to com.mikepenz (Had a typo in my packagename)
-
-__ **NOTE:** Upgrade to > 0.6.0 You can now write **"faw-android"** instead of **"icon-faw-android"** in texts!
-
-
 Let's start with some awesome screenshots ;)
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg)
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.jpg)
+
+
+##Include in your project
+The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your `build.gradle`.
+
+```javascript
+dependencies {
+	compile 'com.mikepenz.iconics:library:0.9.0@aar'
+}
+```
+
+##How to use
+
 
 You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {faw-github}. You see pretty easy right?
 
@@ -33,26 +41,43 @@ Define icons in a text as following:
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
 
+There are also custom views which allow you to use an Android-Iconics icon out of the box. 
+
+IconicsImageView
+```xml
+<IconicsImageView
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:iiv_icon="gmd-favorite-outline"
+        app:iiv_color="@android:color/holo_red_dark"
+        />
+```
+
+IconicsTextView
+```xml
+<IconicsTextView
+        android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:textSize="16sp"/>
+```
+
+IconicsButton
+```xml
+<IconicsButton
+        android:text="{faw-adjust} Button"
+        android:layout_width="120dp"
+        android:layout_height="60dp"/>
+```
 
 But wait! There's more. You can also use it as Drawable anywhere. Create it like this:
 
 ```java
-new IconicsDrawable(this, "faw-adjust").color(Color.RED).sizeDp(24)
+new IconicsDrawable(this, FontAwesome.Icon.faw_android).color(Color.RED).sizeDp(24)
 ```
 
-If you don't know the name of the icon, and the typeface-library-addon allows it you can also do the following:
-```java
-new IconicsDrawable(this, FontAwesome.Icon.faw_android).color(Color.GREEN).sizeDp(24)
-```
-
-##Include in your project
-The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your `build.gradle`.
-
-```javascript
-dependencies {
-	compile 'com.mikepenz.iconics:library:0.9.0@aar'
-}
-```
+For more samples look at the source code of the sample.
 
 ##Use typeface-library-addons
 One basic function of this library is the feature to drop in new typefaces on the go. The default font of this project is FontAwesome (http://fontawesome.io), but you can create and add as many as you like.
