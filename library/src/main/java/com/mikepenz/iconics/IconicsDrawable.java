@@ -123,10 +123,7 @@ public class IconicsDrawable extends Drawable {
     public IconicsDrawable icon(IIcon icon) {
         mIcon = icon;
 
-        ITypeface typeface = Iconics.findFont(icon);
-        if (typeface == null) {
-            throw new RuntimeException("The font for the given icon isn't registered!");
-        }
+        ITypeface typeface = icon.getTypeface();
         mIconPaint.setTypeface(typeface.getTypeface(mContext));
         invalidateSelf();
         return this;
