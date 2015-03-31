@@ -17,13 +17,12 @@
 package com.mikepenz.iconics.sample.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.IconicsImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.sample.MainActivity;
 import com.mikepenz.iconics.sample.R;
 
@@ -55,10 +54,7 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
         final String icon = icons.get(i);
-
-        IconicsDrawable id = new IconicsDrawable(mAct, icon);
-
-        viewHolder.image.setImageDrawable(id);
+        viewHolder.image.setIcon(icon);
         viewHolder.name.setText(icon);
     }
 
@@ -69,12 +65,12 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-        public ImageView image;
+        public IconicsImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
-            image = (ImageView) itemView.findViewById(R.id.icon);
+            image = (IconicsImageView) itemView.findViewById(R.id.icon);
         }
 
     }

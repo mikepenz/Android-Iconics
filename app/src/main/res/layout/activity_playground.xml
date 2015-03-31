@@ -15,7 +15,7 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -24,6 +24,20 @@
               android:paddingBottom="@dimen/activity_vertical_margin"
               tools:context="com.mikepenz.iconics.sample.PlaygroundActivity"
               android:orientation="vertical">
+
+    <IconicsImageView
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:iiv_icon="faw-android"
+        android:padding="24dp"
+        />
+
+    <IconicsImageView
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:iiv_icon="gmd-favorite-outline"
+        app:iiv_color="@android:color/holo_red_dark"
+        />
 
     <TextView
         android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-poll}no{met-wind}pqrstuv{fon-test2}wxy{z"

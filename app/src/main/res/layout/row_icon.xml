@@ -37,7 +37,7 @@
         android:background="@drawable/button_rect_list_normal"
         />
 
-    <ImageView
+    <IconicsImageView
         android:id="@+id/icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
