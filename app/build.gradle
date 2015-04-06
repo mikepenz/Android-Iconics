@@ -62,4 +62,5 @@ dependencies {
     compile project(':library')
     compile project(':meteocons-typeface-library')
     compile project(':octicons-typeface-library')
+    compile project(':community-material-typeface-library')
 }
