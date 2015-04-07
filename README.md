@@ -92,6 +92,7 @@ dependencies {
 	compile 'com.mikepenz.iconics:library:0.9.0@aar'
 	compile 'com.mikepenz.iconics:octicons-typeface:2.2.0@aar'
 	compile 'com.mikepenz.iconics:meteocons-typeface:1.1.1@aar'
+	compile 'com.mikepenz.iconics:community-material-typeface:1.0.0@aar'
 }
 ```
 
@@ -117,6 +118,7 @@ public class CustomApplication extends Application {
         super.onCreate();
         Iconics.registerFont(new Meteoconcs());
         Iconics.registerFont(new Octicons());
+        Iconics.registerFont(new CommunityMaterial());
         Iconics.registerFont(new CustomFont());
     }
 }
@@ -161,6 +163,9 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 * [Octicons](https://github.com/github/octicons)
   * "oct"
   * compile 'com.mikepenz.iconics:octicons-typeface:+@aar'
+* [Community Material](http://materialdesignicons.com/)
+  * "cmd"
+  * compile 'com.mikepenz.iconics:community-material-typeface:+@aar'
 
 
 ##Demo
