@@ -21,8 +21,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,18 +32,13 @@ import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.sample.adapter.IconAdapter;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.model.BaseDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -57,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // Handle Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
@@ -76,13 +69,13 @@ public class MainActivity extends ActionBarActivity {
                         ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts()).get(i);
                         loadIcons(font.getFontName());
 
+                        getSupportActionBar().setTitle(font.getFontName());
+
                     }
                 })
-        .withSelectedItem(0)
-        .build();
-
-        String fontName = new ArrayList<>(Iconics.getRegisteredFonts()).get(0).getFontName();
-        loadIcons(fontName);
+                .withFireOnInitialOnClick(true)
+                .withSelectedItem(1)
+                .build();
     }
 
     @Override

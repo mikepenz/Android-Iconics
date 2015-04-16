@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.sample.adapter.IconAdapter;
@@ -47,8 +46,6 @@ public class IconsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView textTitle = (TextView) view.findViewById(R.id.title);
-
         // Init and Setup RecyclerView
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -59,8 +56,6 @@ public class IconsFragment extends Fragment {
 
         if (getArguments() != null) {
             String fontName = getArguments().getString(FONT_NAME);
-
-            textTitle.setText(fontName);
 
             for (ITypeface iTypeface : Iconics.getRegisteredFonts()) {
                 if (iTypeface.getFontName().equalsIgnoreCase(fontName)) {

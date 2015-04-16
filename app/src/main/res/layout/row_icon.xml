@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:textSize="14sp"
-        android:textColor="@color/text"
+        android:textColor="@color/primary_text"
         android:clickable="false"
         android:background="@drawable/button_rect_list_normal"
         />
