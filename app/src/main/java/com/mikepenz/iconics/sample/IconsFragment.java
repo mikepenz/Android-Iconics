@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.sample.adapter.IconAdapter;
+import com.mikepenz.iconics.typeface.ITypeface;
 
 import java.util.ArrayList;
 
@@ -61,11 +62,17 @@ public class IconsFragment extends Fragment {
 
             textTitle.setText(fontName);
 
-            for (String icon : Iconics.findFont(fontName).getIcons()) {
-                icons.add(icon);
+            for (ITypeface iTypeface : Iconics.getRegisteredFonts()) {
+                if (iTypeface.getFontName().equalsIgnoreCase(fontName)) {
+                    if (iTypeface.getIcons() != null) {
+                        for (String icon : iTypeface.getIcons()) {
+                            icons.add(icon);
+                        }
+                        mAdapter.setIcons(icons);
+                        break;
+                    }
+                }
             }
-
-            mAdapter.setIcons(icons);
         }
 
     }

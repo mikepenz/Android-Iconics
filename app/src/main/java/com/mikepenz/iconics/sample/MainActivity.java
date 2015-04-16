@@ -74,10 +74,12 @@ public class MainActivity extends ActionBarActivity {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
                         ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts()).get(i);
+                        loadIcons(font.getFontName());
 
                     }
                 })
-        .withSelectedItem(0);
+        .withSelectedItem(0)
+        .build();
 
         String fontName = new ArrayList<>(Iconics.getRegisteredFonts()).get(0).getFontName();
         loadIcons(fontName);
