@@ -19,6 +19,7 @@ package com.mikepenz.iconics.sample;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.ui.LibsActivity;
@@ -34,14 +37,19 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.sample.adapter.IconAdapter;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.ITypeface;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.model.BaseDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 
 public class MainActivity extends ActionBarActivity {
-    private ArrayList<String> icons = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +61,28 @@ public class MainActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        // Init and Setup RecyclerView
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.list);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        //animator not yet working
-        mRecyclerView.setItemAnimator(new SlideInLeftAnimator());
-        IconAdapter mAdapter = new IconAdapter(new ArrayList<String>(), R.layout.row_icon, MainActivity.this);
-        mRecyclerView.setAdapter(mAdapter);
-
+        ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts().size());
         //add all icons of all registered Fonts to the list
         for (ITypeface font : Iconics.getRegisteredFonts()) {
-            for (String icon : font.getIcons()) {
-                icons.add(icon);
-            }
+            items.add(new PrimaryDrawerItem().withName(font.getFontName()));
         }
 
-        mAdapter.setIcons(icons);
+        new Drawer().withActivity(this)
+                .withToolbar(toolbar)
+                .withDrawerItems(items)
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
+                        ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts()).get(i);
+                        loadIcons(font.getFontName());
+
+                    }
+                })
+        .withSelectedItem(0)
+        .build();
+
+        String fontName = new ArrayList<>(Iconics.getRegisteredFonts()).get(0).getFontName();
+        loadIcons(fontName);
     }
 
     @Override
@@ -115,5 +129,11 @@ public class MainActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void loadIcons(String fontName) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content, IconsFragment.newInstance(fontName));
+        ft.commit();
     }
 }

@@ -19,4 +19,7 @@
     <color name="list_background_normal">#FCFCFC</color>
     <!-- secondary colors for drawer -->
     <color name="list_background_secondary_normal">#F2F2F2</color>
+
+    <color name="material_drawer_primary_text">@color/theme_default_primary</color>
+    <color name="material_drawer_selected_text">@color/theme_default_primary_dark</color>
 </resources>
