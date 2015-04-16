@@ -14,6 +14,7 @@ android {
         targetSdkVersion 22
         versionCode 90
         versionName "0.9.0"
+        enforceUniquePackageName false
     }
 
     buildTypes {
@@ -59,6 +60,9 @@ dependencies {
     compile 'com.android.support:cardview-v7:22.0.0'
     compile 'com.mikepenz.aboutlibraries:library:4.5.9@aar'
     compile 'jp.wasabeef:recyclerview-animators:1.1.2@aar'
+    compile('com.mikepenz.materialdrawer:library:2.7.9@aar') {
+        transitive = true
+    }
     compile project(':library')
     compile project(':meteocons-typeface-library')
     compile project(':octicons-typeface-library')

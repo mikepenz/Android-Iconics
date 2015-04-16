@@ -16,6 +16,7 @@
 
 package com.mikepenz.iconics.sample.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.IconicsImageView;
 import android.view.LayoutInflater;
@@ -32,12 +33,10 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
 
     private List<String> icons;
     private int rowLayout;
-    private MainActivity mAct;
 
-    public IconAdapter(List<String> icons, int rowLayout, MainActivity act) {
+    public IconAdapter(List<String> icons, int rowLayout) {
         this.icons = icons;
         this.rowLayout = rowLayout;
-        this.mAct = act;
     }
 
     public void setIcons(List<String> icons) {
