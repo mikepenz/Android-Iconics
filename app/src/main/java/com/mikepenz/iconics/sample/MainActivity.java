@@ -29,7 +29,6 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.mikepenz.aboutlibraries.Libs;
-import com.mikepenz.aboutlibraries.ui.LibsActivity;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.FontAwesome;
@@ -98,22 +97,13 @@ public class MainActivity extends ActionBarActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_opensource:
-                //Create an intent with context and the Activity class
-                Intent i = new Intent(getApplicationContext(), LibsActivity.class);
-                //Pass the fields of your application to the lib so it can find all external lib information
-                i.putExtra(Libs.BUNDLE_FIELDS, Libs.toStringArray(R.string.class.getFields()));
+                new Libs.Builder()
+                        .withFields(R.string.class.getFields())
+                        .withLicenseShown(true)
+                        .withActivityTitle(getString(R.string.action_opensource))
+                        .withActivityTheme(R.style.AppTheme)
+                        .start(MainActivity.this);
 
-                //Display the library license (OPTIONAL
-                i.putExtra(Libs.BUNDLE_LICENSE, true);
-
-                //Set a title (OPTIONAL)
-                i.putExtra(Libs.BUNDLE_TITLE, getString(R.string.action_opensource));
-
-                //Pass your theme (OPTIONAL)
-                i.putExtra(Libs.BUNDLE_THEME, R.style.AboutTheme);
-
-                //start the activity
-                startActivity(i);
                 return true;
             case R.id.action_playground:
                 Intent ip = new Intent(getApplicationContext(), PlaygroundActivity.class);
