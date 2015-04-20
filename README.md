@@ -13,8 +13,8 @@ __ **NOTE:** UPGRADE FROM < 0.7.5 Remove the `Google Material Design Icons` from
 
 Let's start with some awesome screenshots ;)
 
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg)
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.jpg)
+![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.png)
+![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png)
 
 
 ##Include in your project
