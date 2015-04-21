@@ -22,16 +22,21 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.9.0@aar'
+	compile 'com.mikepenz.iconics:library:0.9.1@aar'
 }
 ```
 
 ##How to use
 
+Use it as Drawable anywhere. Create it like this:
+
+```java
+new IconicsDrawable(this, FontAwesome.Icon.faw_android).color(Color.RED).sizeDp(24)
+```
 
 You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {faw-github}. You see pretty easy right?
 
-You can also use it on any text by using the simple builder pattern. Here's the shortest possible sample:
+Or use it on any text by using the simple builder pattern. Here's the shortest possible sample:
 
 ```java
 new Iconics.IconicsBuilder().ctx(this).on(YOUR_TEXT_VIEW).build();
@@ -71,12 +76,6 @@ IconicsButton
         android:layout_height="60dp"/>
 ```
 
-But wait! There's more. You can also use it as Drawable anywhere. Create it like this:
-
-```java
-new IconicsDrawable(this, FontAwesome.Icon.faw_android).color(Color.RED).sizeDp(24)
-```
-
 For more samples look at the source code of the sample.
 
 ##Use typeface-library-addons
@@ -89,7 +88,7 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.9.0@aar'
+	compile 'com.mikepenz.iconics:library:0.9.1@aar'
 	compile 'com.mikepenz.iconics:octicons-typeface:2.2.0@aar'
 	compile 'com.mikepenz.iconics:meteocons-typeface:1.1.1@aar'
 	compile 'com.mikepenz.iconics:community-material-typeface:1.0.0@aar'

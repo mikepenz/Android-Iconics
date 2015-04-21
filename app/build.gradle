@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 90
-        versionName "0.9.0"
+        versionCode 91
+        versionName "0.9.1"
         enforceUniquePackageName false
     }
 
