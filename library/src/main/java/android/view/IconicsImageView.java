@@ -80,6 +80,24 @@ public class IconicsImageView extends ImageView {
         setImageDrawable(mIcon);
     }
 
+    public void setColor(int color) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).color(color);
+        }
+    }
+
+    public void setColorRes(int colorRes) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).colorRes(colorRes);
+        }
+    }
+
+    public IconicsDrawable getIcon() {
+        if (getDrawable() instanceof IconicsDrawable) {
+            return ((IconicsDrawable) getDrawable());
+        }
+        return null;
+    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldW, int oldH) {
