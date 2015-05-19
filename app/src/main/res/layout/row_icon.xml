@@ -15,35 +15,35 @@
   ~ limitations under the License.
   -->
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    android:orientation="horizontal"
-                                    android:layout_width="match_parent"
-                                    android:layout_margin="5dp"
-                                    android:clickable="true"
-                                    android:layout_height="wrap_content">
-
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/name"
-        android:gravity="center_vertical"
-        android:paddingLeft="56dp"
-        android:paddingRight="8dp"
-        android:paddingEnd="8dp"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:textSize="14sp"
-        android:textColor="@color/primary_text"
-        android:clickable="false"
         android:background="@drawable/button_rect_list_normal"
+        android:clickable="false"
+        android:gravity="center_vertical"
+        android:paddingEnd="8dp"
+        android:paddingLeft="56dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/primary_text"
+        android:textSize="14sp"
         />
 
-    <IconicsImageView
+    <com.mikepenz.iconics.view.IconicsImageView
         android:id="@+id/icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:clickable="false"
         android:padding="8dp"
         android:scaleType="fitXY"
-        android:clickable="false"
         />
 
 </android.support.v7.widget.CardView>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package android.view;
+package com.mikepenz.iconics.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

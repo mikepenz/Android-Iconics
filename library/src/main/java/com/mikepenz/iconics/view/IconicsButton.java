@@ -14,26 +14,36 @@
  * limitations under the License.
  */
 
-package android.view;
+package com.mikepenz.iconics.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.typeface.FontAwesome;
 
-public class IconicsTextView extends TextView {
+public class IconicsButton extends Button {
 
-    public IconicsTextView(Context context) {
-        this(context, null);
+    public IconicsButton(Context context) {
+        super(context);
+        if (!isInEditMode()) {
+            setTypeface(new FontAwesome().getTypeface(context));
+        }
     }
 
-    public IconicsTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    public IconicsButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        if (!isInEditMode()) {
+            setTypeface(new FontAwesome().getTypeface(context));
+        }
     }
 
-    public IconicsTextView(Context context, AttributeSet attrs, int defStyle) {
+    public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        if (!isInEditMode()) {
+            setTypeface(new FontAwesome().getTypeface(context));
+        }
     }
 
     @Override
@@ -44,5 +54,4 @@ public class IconicsTextView extends TextView {
             super.setText(text, type);
         }
     }
-
 }
