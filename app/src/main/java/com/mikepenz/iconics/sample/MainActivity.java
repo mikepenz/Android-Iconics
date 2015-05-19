@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         .withLicenseShown(true)
                         .withActivityTitle(getString(R.string.action_opensource))
                         .withActivityTheme(R.style.AppTheme)
+                        .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
                         .start(MainActivity.this);
 
                 return true;
