@@ -9,6 +9,8 @@ Android-Iconics is a library to use (almost) any alternative iconfont in your pr
 *Fonts available as addon:*
 - Meteocons
 
+__ **NOTE:** UPGRADE FROM < 1.0.0 The package of the views was changed to `com.mikepenz.iconics.view.*`
+
 __ **NOTE:** UPGRADE FROM < 0.7.5 Remove the `Google Material Design Icons` from your dependencies because it's now default and included within the main Android-Iconics package
 
 Let's start with some awesome screenshots ;)
@@ -22,7 +24,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.9.1@aar'
+	compile 'com.mikepenz.iconics:library:1.0.0@aar'
 }
 ```
 
@@ -50,7 +52,7 @@ There are also custom views which allow you to use an Android-Iconics icon out o
 
 IconicsImageView
 ```xml
-<IconicsImageView
+<com.mikepenz.iconics.view.IconicsImageView
         android:layout_width="72dp"
         android:layout_height="72dp"
         app:iiv_icon="gmd-favorite-outline"
@@ -60,7 +62,7 @@ IconicsImageView
 
 IconicsTextView
 ```xml
-<IconicsTextView
+<com.mikepenz.iconics.view.IconicsTextView
         android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
@@ -70,7 +72,7 @@ IconicsTextView
 
 IconicsButton
 ```xml
-<IconicsButton
+<com.mikepenz.iconics.view.IconicsButton
         android:text="{faw-adjust} Button"
         android:layout_width="120dp"
         android:layout_height="60dp"/>
@@ -88,7 +90,7 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz.iconics:library:0.9.1@aar'
+	compile 'com.mikepenz.iconics:library:1.0.0@aar'
 	compile 'com.mikepenz.iconics:octicons-typeface:2.2.0@aar'
 	compile 'com.mikepenz.iconics:meteocons-typeface:1.1.1@aar'
 	compile 'com.mikepenz.iconics:community-material-typeface:1.0.0@aar'

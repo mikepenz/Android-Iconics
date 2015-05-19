@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 91
-        versionName "0.9.1"
+        versionCode 100
+        versionName "1.0.0"
         enforceUniquePackageName false
     }
 
@@ -61,7 +61,7 @@ dependencies {
 
     compile('com.mikepenz.aboutlibraries:library:4.7.2@aar')
     compile('com.mikepenz.materialdrawer:library:2.9.7@aar')
-    
+
     compile project(':library')
     compile project(':meteocons-typeface-library')
     compile project(':octicons-typeface-library')
