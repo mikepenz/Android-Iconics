@@ -16,15 +16,13 @@
 
 package com.mikepenz.iconics.sample.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.IconicsImageView;
+import com.mikepenz.iconics.view.IconicsImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.mikepenz.iconics.sample.MainActivity;
 import com.mikepenz.iconics.sample.R;
 
 import java.util.List;
