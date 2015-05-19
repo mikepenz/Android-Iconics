@@ -19,6 +19,7 @@ import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.CharacterStyle;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.IconicsTypefaceSpan;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -68,13 +70,19 @@ public final class Iconics {
         // Prevent instantiation
     }
 
-    private static SpannableString style(Context ctx, HashMap<String, ITypeface> fonts, StringBuilder text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
+    private static SpannableString style(Context ctx, HashMap<String, ITypeface> fonts, SpannableString textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
         if (fonts == null || fonts.size() == 0) {
             fonts = FONTS;
         }
 
         int startIndex = -1;
         String fontKey = "";
+
+        //remember the position of removed chars
+        ArrayList<RemoveInfo> removed = new ArrayList<RemoveInfo>();
+
+        //StringBuilder text = new StringBuilder(textSpanned.toString());
+        StringBuilder text = new StringBuilder(textSpanned);
 
         //find the first "{"
         while ((startIndex = text.indexOf("{", startIndex + 1)) != -1) {
@@ -98,6 +106,9 @@ public final class Iconics {
             return new SpannableString(text);
         }
 
+        //remember total removed chars
+        int removedChars = 0;
+
         LinkedList<StyleContainer> styleContainers = new LinkedList<StyleContainer>();
         do {
             //get the information from the iconString
@@ -114,6 +125,10 @@ public final class Iconics {
 
                     //get just the icon identifier
                     text = text.replace(startIndex, endIndex, iconValue);
+
+                    //store some info about the removed chars
+                    removedChars = removedChars + (endIndex - startIndex);
+                    removed.add(new RemoveInfo(startIndex, (endIndex - startIndex - 1), removedChars));
 
                     //add the current icon to the container
                     styleContainers.add(new StyleContainer(startIndex, startIndex + 1, iconString, fonts.get(fontKey)));
@@ -144,8 +159,16 @@ public final class Iconics {
             }
         } while (startIndex != -1 && fontKey != null);
 
-
         SpannableString sb = new SpannableString(text);
+
+        //reapply all previous styles
+        for (StyleSpan span : textSpanned.getSpans(0, textSpanned.length(), StyleSpan.class)) {
+            int spanStart = newSpanPoint(textSpanned.getSpanStart(span), removed);
+            int spanEnd = newSpanPoint(textSpanned.getSpanEnd(span), removed);
+            if (spanStart >= 0 && spanEnd > 0) {
+                sb.setSpan(span, spanStart, spanEnd, textSpanned.getSpanFlags(span));
+            }
+        }
 
         //set all the icons and styles
         for (StyleContainer styleContainer : styleContainers) {
@@ -165,6 +188,37 @@ public final class Iconics {
         //sb = applyKerning(sb, 1);
 
         return sb;
+    }
+
+    private static int newSpanPoint(int pos, ArrayList<RemoveInfo> removed) {
+        for (RemoveInfo removeInfo : removed) {
+            if (pos < removeInfo.getStart()) {
+                return pos;
+            }
+
+            pos = pos - removeInfo.getCount();
+        }
+        return pos;
+    }
+
+    private static int determineNewSpanPoint(int pos, ArrayList<RemoveInfo> removed) {
+        for (RemoveInfo removeInfo : removed) {
+            if (pos > removeInfo.getStart()) {
+                continue;
+            }
+
+            if (pos > removeInfo.getStart() && pos < removeInfo.getStart() + removeInfo.getCount()) {
+                return -1;
+            }
+
+            if (pos < removeInfo.getStart()) {
+                return pos;
+            } else {
+                return pos - removeInfo.getTotal();
+            }
+        }
+
+        return -1;
     }
 
     /*
@@ -193,12 +247,12 @@ public final class Iconics {
 
     public static class IconicsBuilderString {
         private Context ctx;
-        private StringBuilder text;
+        private SpannableString text;
         private List<CharacterStyle> withStyles;
         private HashMap<String, List<CharacterStyle>> withStylesFor;
         private List<ITypeface> fonts;
 
-        public IconicsBuilderString(Context ctx, List<ITypeface> fonts, StringBuilder text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
+        public IconicsBuilderString(Context ctx, List<ITypeface> fonts, SpannableString text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
             this.ctx = ctx;
             this.fonts = fonts;
             this.text = text;
@@ -237,7 +291,11 @@ public final class Iconics {
                 mappedFonts.put(font.getMappingPrefix(), font);
             }
 
-            view.setText(Iconics.style(ctx, mappedFonts, new StringBuilder(view.getText()), withStyles, withStylesFor));
+            if (view.getText() instanceof SpannableString) {
+                view.setText(Iconics.style(ctx, mappedFonts, (SpannableString) view.getText(), withStyles, withStylesFor));
+            } else {
+                view.setText(Iconics.style(ctx, mappedFonts, new SpannableString(view.getText()), withStyles, withStylesFor));
+            }
         }
     }
 
@@ -287,16 +345,20 @@ public final class Iconics {
         }
 
 
+        public IconicsBuilderString on(SpannableString on) {
+            return new IconicsBuilderString(ctx, fonts, on, styles, stylesFor);
+        }
+
         public IconicsBuilderString on(String on) {
-            return new IconicsBuilderString(ctx, fonts, new StringBuilder(on), styles, stylesFor);
+            return on(new SpannableString(on));
         }
 
         public IconicsBuilderString on(CharSequence on) {
-            return new IconicsBuilderString(ctx, fonts, new StringBuilder(on), styles, stylesFor);
+            return on(on.toString());
         }
 
         public IconicsBuilderString on(StringBuilder on) {
-            return new IconicsBuilderString(ctx, fonts, on, styles, stylesFor);
+            return on(on.toString());
         }
 
         public IconicsBuilderView on(TextView on) {
@@ -336,6 +398,46 @@ public final class Iconics {
         public ITypeface getFont() {
             return font;
         }
+    }
 
+    private static class RemoveInfo {
+        private int start;
+        private int count;
+        private int total;
+
+        public RemoveInfo(int start, int count) {
+            this.start = start;
+            this.count = count;
+        }
+
+        public RemoveInfo(int start, int count, int total) {
+            this.start = start;
+            this.count = count;
+            this.total = total;
+        }
+
+        public int getStart() {
+            return start;
+        }
+
+        public void setStart(int start) {
+            this.start = start;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
+
+        public int getTotal() {
+            return total;
+        }
+
+        public void setTotal(int total) {
+            this.total = total;
+        }
     }
 }
