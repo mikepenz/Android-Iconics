@@ -1,35 +1,26 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Android-iconics by mikepenz</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Android-iconics</h1>
-        <p>Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.</p>
+    <section class="page-header">
+      <h1 class="project-name">Android-iconics</h1>
+      <h2 class="project-tagline">Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.</h2>
+      <a href="https://github.com/mikepenz/Android-Iconics" class="btn">View on GitHub</a>
+      <a href="https://github.com/mikepenz/Android-Iconics/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mikepenz/Android-Iconics/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <p class="view"><a href="https://github.com/mikepenz/Android-Iconics">View the Project on GitHub <small>mikepenz/Android-Iconics</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/mikepenz/Android-Iconics/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/mikepenz/Android-Iconics/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/mikepenz/Android-Iconics">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a id="android-iconics---" class="anchor" href="#android-iconics---" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android-Iconics  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz.iconics/library/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://android-arsenal.com/details/1/1164"><img src="https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat" alt="Android Arsenal"></a>
+    <section class="main-content">
+      <h1>
+<a id="android-iconics---" class="anchor" href="#android-iconics---" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android-Iconics  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://android-arsenal.com/details/1/1164"><img src="https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat" alt="Android Arsenal"></a>
 </h1>
 
 <p>Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.</p>
@@ -45,22 +36,40 @@
 
 <ul>
 <li>Meteocons</li>
+<li>Octicons</li>
+<li>Community Material Icons</li>
 </ul>
+
+<p>__ <strong>UPGRADE FROM &lt; 1.0.0:</strong>
+The package of the views was changed to <code>com.mikepenz.iconics.view.*</code>.
+Changed maven group. The group was changed from <code>com.mikepenz.iconics</code> to <code>com.mikepenz</code>. You can get all updates via the new one <code>compile 'com.mikepenz:iconics:1.0.0@aar'</code> (also check to update your typeface addon dependencies)</p>
 
 <p>__ <strong>NOTE:</strong> UPGRADE FROM &lt; 0.7.5 Remove the <code>Google Material Design Icons</code> from your dependencies because it's now default and included within the main Android-Iconics package</p>
 
-<p>__ <strong>NOTE:</strong> UPGRADE FROM &lt; 0.7.0 You have to rename the imports from com.mikpenz to com.mikepenz (Had a typo in my packagename)</p>
-
-<p>__ <strong>NOTE:</strong> Upgrade to &gt; 0.6.0 You can now write <strong>"faw-android"</strong> instead of <strong>"icon-faw-android"</strong> in texts!</p>
-
 <p>Let's start with some awesome screenshots ;)</p>
 
-<p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.jpg" alt="Image">
-<img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.jpg" alt="Image"></p>
+<p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.png" alt="Image">
+<img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png" alt="Image"></p>
+
+<h2>
+<a id="include-in-your-project" class="anchor" href="#include-in-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Include in your project</h2>
+
+<p>The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your <code>build.gradle</code>.</p>
+
+<div class="highlight highlight-javascript"><pre>dependencies {
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics:1.0.0@aar<span class="pl-pds">'</span></span>
+}</pre></div>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<p>Use it as Drawable anywhere. Create it like this:</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_android)<span class="pl-k">.</span>color(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
 
 <p>You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {faw-github}. You see pretty easy right?</p>
 
-<p>You can also use it on any text by using the simple builder pattern. Here's the shortest possible sample:</p>
+<p>Or use it on any text by using the simple builder pattern. Here's the shortest possible sample:</p>
 
 <div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">Iconics</span>.<span class="pl-smi">IconicsBuilder</span>()<span class="pl-k">.</span>ctx(<span class="pl-v">this</span>)<span class="pl-k">.</span>on(<span class="pl-c1">YOUR_TEXT_VIEW</span>)<span class="pl-k">.</span>build();</pre></div>
 
@@ -69,22 +78,34 @@
 <pre lang="gson"><code>Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 </code></pre>
 
-<p>But wait! There's more. You can also use it as Drawable anywhere. Create it like this:</p>
+<p>There are also custom views which allow you to use an Android-Iconics icon out of the box. </p>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>faw-adjust<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>color(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
+<p>IconicsImageView</p>
 
-<p>If you don't know the name of the icon, and the typeface-library-addon allows it you can also do the following:</p>
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsImageView
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
+        <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_icon</span>=<span class="pl-s"><span class="pl-pds">"</span>gmd-favorite-outline<span class="pl-pds">"</span></span>
+        <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_color</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/holo_red_dark<span class="pl-pds">"</span></span>
+        /&gt;</pre></div>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_android)<span class="pl-k">.</span>color(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>GREEN</span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
+<p>IconicsTextView</p>
 
-<h2>
-<a id="include-in-your-project" class="anchor" href="#include-in-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Include in your project</h2>
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsTextView
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textColor</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/black<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>wrap_content<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>56dp<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textSize</span>=<span class="pl-s"><span class="pl-pds">"</span>16sp<span class="pl-pds">"</span></span>/&gt;</pre></div>
 
-<p>The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your <code>build.gradle</code>.</p>
+<p>IconicsButton</p>
 
-<div class="highlight highlight-javascript"><pre>dependencies {
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz.iconics:library:0.7.9@aar<span class="pl-pds">'</span></span>
-}</pre></div>
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsButton
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>{faw-adjust} Button<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>120dp<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>60dp<span class="pl-pds">"</span></span>/&gt;</pre></div>
+
+<p>For more samples look at the source code of the sample.</p>
 
 <h2>
 <a id="use-typeface-library-addons" class="anchor" href="#use-typeface-library-addons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use typeface-library-addons</h2>
@@ -97,9 +118,10 @@
 Just add the dependency of any and as many typface-library-addons in your build.gradle just beneath the android-iconics dependency.</p>
 
 <div class="highlight highlight-javascript"><pre>dependencies {
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz.iconics:library:0.7.7@aar<span class="pl-pds">'</span></span>
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz.iconics:octicons-typeface:2.2.0@aar<span class="pl-pds">'</span></span>
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz.iconics:meteocons-typeface:1.1.1@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics:1.0.0@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:octicons-typeface:2.2.0@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:meteocons-typeface:1.1.1@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-material-typeface:1.0.0@aar<span class="pl-pds">'</span></span>
 }</pre></div>
 
 <p>To enable them for the IconicsTextView too follow the steps under <a href="#register-typeface">Register typeface</a></p>
@@ -129,6 +151,7 @@ Meteocons - "met"</p>
         <span class="pl-v">super</span><span class="pl-k">.</span>onCreate();
         <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">Meteoconcs</span>());
         <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">Octicons</span>());
+        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">CommunityMaterial</span>());
         <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">CustomFont</span>());
     }
 }</pre></div>
@@ -196,13 +219,21 @@ Just define the style for all icons or only a specific one. You can find this in
 <li>compile 'com.mikepenz.iconics:octicons-typeface:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
 </ul>
 </li>
+<li>
+<a href="http://materialdesignicons.com/">Community Material</a>
+
+<ul>
+<li>"cmd"</li>
+<li>compile 'com.mikepenz.iconics:community-material-typeface:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
+</ul>
+</li>
 </ul>
 
 <h2>
 <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
 
 <p>You can try the sample application out. It's on Google Play ;)
-<a href="https://play.google.com/store/apps/details?id=com.mikpenz.iconics.sample">https://play.google.com/store/apps/details?id=com.mikpenz.iconics.sample</a></p>
+<a href="https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample">https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample</a></p>
 
 <h2>
 <a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h2>
@@ -250,14 +281,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 </code></pre>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/mikepenz">mikepenz</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mikepenz/Android-Iconics">Android-iconics</a> is maintained by <a href="https://github.com/mikepenz">mikepenz</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
+
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -270,3 +303,4 @@ limitations under the License.
 
   </body>
 </html>
+
