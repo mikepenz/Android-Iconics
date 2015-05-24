@@ -11,6 +11,15 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+// To avoid manually setting the same values in all Android modules, set the value on the root
+// project and then reference this from the modules
+ext {
+    compileSdkVersion = 22
+    buildToolsVersion = "22.0.1"
+
+    minSdkVersion = 10
+    targetSdkVersion = 22
+}
 
 allprojects {
     repositories {
