@@ -473,6 +473,18 @@ public class IconicsDrawable extends Drawable {
         return this;
     }
 
+    /**
+     * sets the typeface of the drawable
+     * NOTE THIS WILL OVERWRITE THE ICONFONT!
+     *
+     * @param typeface
+     * @return
+     */
+    public IconicsDrawable typeface(Typeface typeface) {
+        mIconPaint.setTypeface(typeface);
+        return this;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         if (mIcon != null) {
