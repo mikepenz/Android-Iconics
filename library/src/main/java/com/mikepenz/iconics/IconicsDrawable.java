@@ -42,6 +42,7 @@ import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 
 import com.mikepenz.iconics.typeface.IIcon;
@@ -80,6 +81,14 @@ public class IconicsDrawable extends Drawable {
     private boolean mDrawContour;
 
     private IIcon mIcon;
+    private Character mPlainIcon;
+
+    public IconicsDrawable(Context context, Character icon) {
+        mContext = context.getApplicationContext();
+        prepare();
+
+        icon(icon);
+    }
 
     public IconicsDrawable(Context context, String icon) {
         mContext = context.getApplicationContext();
@@ -112,6 +121,19 @@ public class IconicsDrawable extends Drawable {
 
         mPathBounds = new RectF();
         mPaddingBounds = new Rect();
+    }
+
+    /**
+     * Loads and draws given.
+     *
+     * @param icon
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable icon(Character icon) {
+        mPlainIcon = icon;
+        mIconPaint.setTypeface(Typeface.DEFAULT);
+        invalidateSelf();
+        return this;
     }
 
     /**
@@ -487,7 +509,7 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        if (mIcon != null) {
+        if (mIcon != null || mPlainIcon != null) {
             final Rect viewBounds = getBounds();
 
             updatePaddingBounds(viewBounds);
@@ -613,9 +635,8 @@ public class IconicsDrawable extends Drawable {
         float textSize = (float) viewBounds.height() * 2;
         mIconPaint.setTextSize(textSize);
 
-        String textValue = String.valueOf(mIcon.getCharacter());
-        mIconPaint.getTextPath(textValue, 0, 1,
-                0, viewBounds.height(), mPath);
+        String textValue = mIcon != null ? String.valueOf(mIcon.getCharacter()) : String.valueOf(mPlainIcon);
+        mIconPaint.getTextPath(textValue, 0, 1, 0, viewBounds.height(), mPath);
         mPath.computeBounds(mPathBounds, true);
 
         float deltaWidth = ((float) mPaddingBounds.width() / mPathBounds.width());
@@ -625,8 +646,7 @@ public class IconicsDrawable extends Drawable {
 
         mIconPaint.setTextSize(textSize);
 
-        mIconPaint.getTextPath(textValue, 0, 1,
-                0, viewBounds.height(), mPath);
+        mIconPaint.getTextPath(textValue, 0, 1, 0, viewBounds.height(), mPath);
         mPath.computeBounds(mPathBounds, true);
     }
 
