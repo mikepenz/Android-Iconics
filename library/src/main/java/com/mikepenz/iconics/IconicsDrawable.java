@@ -81,7 +81,14 @@ public class IconicsDrawable extends Drawable {
     private boolean mDrawContour;
 
     private IIcon mIcon;
-    private Character mPlainIcon;
+    private String mPlainIcon;
+
+    public IconicsDrawable(Context context) {
+        mContext = context.getApplicationContext();
+        prepare();
+
+        icon(' ');
+    }
 
     public IconicsDrawable(Context context, Character icon) {
         mContext = context.getApplicationContext();
@@ -130,7 +137,18 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable icon(Character icon) {
+        return iconText(icon.toString());
+    }
+
+    /**
+     * Loads and draws given.
+     *
+     * @param icon
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable iconText(String icon) {
         mPlainIcon = icon;
+        mIcon = null;
         mIconPaint.setTypeface(Typeface.DEFAULT);
         invalidateSelf();
         return this;
@@ -144,7 +162,7 @@ public class IconicsDrawable extends Drawable {
      */
     public IconicsDrawable icon(IIcon icon) {
         mIcon = icon;
-
+        mPlainIcon = null;
         ITypeface typeface = icon.getTypeface();
         mIconPaint.setTypeface(typeface.getTypeface(mContext));
         invalidateSelf();
@@ -307,7 +325,9 @@ public class IconicsDrawable extends Drawable {
      * Set the size of this icon to the standard Android ActionBar.
      *
      * @return The current IconExtDrawable for chaining.
+     * @deprecated use actionBar() instead
      */
+    @Deprecated
     public IconicsDrawable actionBarSize() {
         return sizeDp(ANDROID_ACTIONBAR_ICON_SIZE_DP);
     }
@@ -636,7 +656,7 @@ public class IconicsDrawable extends Drawable {
         mIconPaint.setTextSize(textSize);
 
         String textValue = mIcon != null ? String.valueOf(mIcon.getCharacter()) : String.valueOf(mPlainIcon);
-        mIconPaint.getTextPath(textValue, 0, 1, 0, viewBounds.height(), mPath);
+        mIconPaint.getTextPath(textValue, 0, textValue.length(), 0, viewBounds.height(), mPath);
         mPath.computeBounds(mPathBounds, true);
 
         float deltaWidth = ((float) mPaddingBounds.width() / mPathBounds.width());
@@ -646,7 +666,7 @@ public class IconicsDrawable extends Drawable {
 
         mIconPaint.setTextSize(textSize);
 
-        mIconPaint.getTextPath(textValue, 0, 1, 0, viewBounds.height(), mPath);
+        mIconPaint.getTextPath(textValue, 0, textValue.length(), 0, viewBounds.height(), mPath);
         mPath.computeBounds(mPathBounds, true);
     }
 

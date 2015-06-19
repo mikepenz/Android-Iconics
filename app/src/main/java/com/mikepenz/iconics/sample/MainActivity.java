@@ -29,11 +29,13 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
@@ -59,17 +61,18 @@ public class MainActivity extends AppCompatActivity {
             items.add(new PrimaryDrawerItem().withName(font.getFontName()));
         }
 
-        new Drawer().withActivity(this)
+        new DrawerBuilder().withActivity(this)
                 .withToolbar(toolbar)
                 .withDrawerItems(items)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
+                    public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
                         ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts()).get(i);
                         loadIcons(font.getFontName());
 
                         getSupportActionBar().setTitle(font.getFontName());
 
+                        return false;
                     }
                 })
                 .withFireOnInitialOnClick(true)
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_opensource:
-                new Libs.Builder()
+                new LibsBuilder()
                         .withFields(R.string.class.getFields())
                         .withLicenseShown(true)
                         .withActivityTitle(getString(R.string.action_opensource))

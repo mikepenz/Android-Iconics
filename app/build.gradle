@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 102
-        versionName "1.0.2"
+        versionCode 110
+        versionName "1.1.0"
         enforceUniquePackageName false
     }
 
@@ -54,13 +54,13 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:22.1.1'
-    compile 'com.android.support:recyclerview-v7:22.1.1'
-    compile 'com.android.support:cardview-v7:22.1.1'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
     compile 'jp.wasabeef:recyclerview-animators:1.2.0@aar'
 
-    compile('com.mikepenz.aboutlibraries:library:4.7.2@aar')
-    compile('com.mikepenz.materialdrawer:library:2.9.7@aar')
+    compile('com.mikepenz:aboutlibraries:5.0.5@aar')
+    compile('com.mikepenz:materialdrawer:3.0.7@aar')
 
     compile project(':library')
     compile project(':meteocons-typeface-library')
