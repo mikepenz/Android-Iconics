@@ -17,8 +17,8 @@
         </activity>
         <activity
             android:name=".PlaygroundActivity"
-            android:label="@string/title_activity_playground">
-        </activity>
+            android:label="@string/title_activity_playground"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar.ActionBar"></activity>
     </application>
 
 </manifest>
