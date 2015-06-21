@@ -16,6 +16,9 @@
 package com.mikepenz.iconics;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.CharacterStyle;
@@ -29,6 +32,7 @@ import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.IconicsTypefaceSpan;
+import com.mikepenz.iconics.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -368,6 +372,381 @@ public final class Iconics {
         public IconicsBuilderView on(Button on) {
             return new IconicsBuilderView(ctx, fonts, on, styles, stylesFor);
         }
+    }
+
+    public static class IconicsArrayBuilder {
+
+        private Context ctx;
+        private List<IIcon> iIcons;
+        private int color;
+        private Paint.Style style;
+        private int mIconOffsetX;
+        private int mIconOffsetY;
+        private int mIconPadding;
+        private int mSize;
+        private SIZE sizeType;
+        private int contourColor;
+        private int mBackgroundColor;
+        private int mContourWidth;
+        private boolean drawContour;
+        private ColorFilter colorFilter;
+        private int alpha;
+
+        private enum SIZE {
+            ACTION_BAR,
+            ACTION_BAR_SIZE,
+            CUSTOM_RES,
+            CUSTOM_DP,
+            CUSTOM_PX;
+        }
+
+        public IconicsArrayBuilder() {
+            iIcons = new ArrayList<>();
+        }
+
+        public IconicsArrayBuilder ctx(Context ctx) {
+            this.ctx = ctx;
+            return this;
+        }
+
+        public IconicsArrayBuilder add(IIcon iIcon) {
+            iIcons.add(iIcon);
+            return this;
+        }
+
+        /**
+         * Set the color of the drawable.
+         *
+         * @param color The color, usually from android.graphics.Color or 0xFF012345.
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder color(int color) {
+            this.color = color;
+            return this;
+        }
+
+        /**
+         * Set the color of the drawable.
+         *
+         * @param colorRes The color resource, from your R file.
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder colorRes(int colorRes) {
+            return color(ctx.getResources().getColor(colorRes));
+        }
+
+
+        /**
+         * set the icon offset for X from resource
+         *
+         * @param iconOffsetXRes
+         * @return
+         */
+        public IconicsArrayBuilder iconOffsetXRes(int iconOffsetXRes) {
+            return iconOffsetXPx(ctx.getResources().getDimensionPixelSize(iconOffsetXRes));
+        }
+
+        /**
+         * set the icon offset for X as dp
+         *
+         * @param iconOffsetXDp
+         * @return
+         */
+        public IconicsArrayBuilder iconOffsetXDp(int iconOffsetXDp) {
+            return iconOffsetXPx(Utils.convertDpToPx(ctx, iconOffsetXDp));
+        }
+
+        /**
+         * set the icon offset for X
+         *
+         * @param iconOffsetX
+         * @return
+         */
+        public IconicsArrayBuilder iconOffsetXPx(int iconOffsetX) {
+            this.mIconOffsetX = iconOffsetX;
+            return this;
+        }
+
+        /**
+         * set the icon offset for Y from resource
+         *
+         * @param iconOffsetYRes
+         * @return
+         */
+        public IconicsArrayBuilder iconOffsetYRes(int iconOffsetYRes) {
+            return iconOffsetYPx(ctx.getResources().getDimensionPixelSize(iconOffsetYRes));
+        }
+
+        /**
+         * set the icon offset for Y as dp
+         *
+         * @param iconOffsetYDp
+         * @return
+         */
+        public IconicsArrayBuilder iconOffsetYDp(int iconOffsetYDp) {
+            return iconOffsetYPx(Utils.convertDpToPx(ctx, iconOffsetYDp));
+        }
+
+        /**
+         * set the icon offset for Y
+         *
+         * @param iconOffsetY
+         * @return
+         */
+        public IconicsArrayBuilder iconOffsetYPx(int iconOffsetY) {
+            this.mIconOffsetY = iconOffsetY;
+            return this;
+        }
+
+        /**
+         * Set the padding of the drawable from res
+         *
+         * @param dimenRes
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder paddingRes(int dimenRes) {
+            return paddingPx(ctx.getResources().getDimensionPixelSize(dimenRes));
+        }
+
+
+        /**
+         * Set the padding in dp for the drawable
+         *
+         * @param iconPadding
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder paddingDp(int iconPadding) {
+            return paddingPx(Utils.convertDpToPx(ctx, iconPadding));
+        }
+
+        /**
+         * Set a padding for the.
+         *
+         * @param iconPadding
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder paddingPx(int iconPadding) {
+            mIconPadding = iconPadding;
+            return this;
+        }
+
+        /**
+         * Set the size of this icon to the standard Android ActionBar.
+         *
+         * @return The current IconExtDrawable for chaining.
+         * @deprecated use actionBar() instead
+         */
+        @Deprecated
+        public IconicsArrayBuilder actionBarSize() {
+            this.sizeType = SIZE.ACTION_BAR_SIZE;
+            return this;
+        }
+
+        /**
+         * Sets the size and the Padding to the correct values to be used for the actionBar / toolBar
+         *
+         * @return
+         */
+        public IconicsArrayBuilder actionBar() {
+            this.sizeType = SIZE.ACTION_BAR;
+            return this;
+        }
+
+        /**
+         * Set the size of the drawable.
+         *
+         * @param dimenRes The dimension resource.
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder sizeRes(int dimenRes) {
+            this.sizeType = SIZE.CUSTOM_RES;
+            return sizePx(ctx.getResources().getDimensionPixelSize(dimenRes));
+        }
+
+
+        /**
+         * Set the size of the drawable.
+         *
+         * @param size The size in density-independent pixels (dp).
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder sizeDp(int size) {
+            this.sizeType = SIZE.CUSTOM_DP;
+            return sizePx(Utils.convertDpToPx(ctx, size));
+        }
+
+        /**
+         * Set the size of the drawable.
+         *
+         * @param size The size in pixels (px).
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder sizePx(int size) {
+            this.sizeType = SIZE.CUSTOM_PX;
+            this.mSize = size;
+            return this;
+        }
+
+
+        /**
+         * Set contour color for the.
+         *
+         * @param contourColor
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder contourColor(int contourColor) {
+            this.contourColor = contourColor;
+            return this;
+        }
+
+        /**
+         * Set contour color from color res.
+         *
+         * @param contourColorRes
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder contourColorRes(int contourColorRes) {
+            contourColor(ctx.getResources().getColor(contourColorRes));
+            return this;
+        }
+
+        /**
+         * set background color
+         *
+         * @param backgroundColor
+         * @return
+         */
+        public IconicsArrayBuilder backgroundColor(int backgroundColor) {
+            this.mBackgroundColor = backgroundColor;
+            return this;
+        }
+
+        /**
+         * set background color from res
+         *
+         * @param backgroundColorRes
+         * @return
+         */
+        public IconicsArrayBuilder backgroundColorRes(int backgroundColorRes) {
+            this.mBackgroundColor = ctx.getResources().getColor(backgroundColorRes);
+            return this;
+        }
+
+
+        /**
+         * Set contour width from an dimen res for the icon
+         *
+         * @param contourWidthRes
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder contourWidthRes(int contourWidthRes) {
+            return contourWidthPx(ctx.getResources().getDimensionPixelSize(contourWidthRes));
+        }
+
+        /**
+         * Set contour width from dp for the icon
+         *
+         * @param contourWidthDp
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder contourWidthDp(int contourWidthDp) {
+            return contourWidthPx(Utils.convertDpToPx(ctx, contourWidthDp));
+        }
+
+        /**
+         * Set contour width for the icon.
+         *
+         * @param contourWidth
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder contourWidthPx(int contourWidth) {
+            this.mContourWidth = contourWidth;
+            return this;
+        }
+
+        /**
+         * Enable/disable contour drawing.
+         *
+         * @param drawContour
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder drawContour(boolean drawContour) {
+            this.drawContour = drawContour;
+            return this;
+        }
+
+        /**
+         * Set the colorFilter
+         *
+         * @param cf
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder colorFilter(ColorFilter cf) {
+            this.colorFilter = cf;
+            return this;
+        }
+
+        /**
+         * Sets the opacity
+         *
+         * @param alpha
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder alpha(int alpha) {
+            this.alpha = alpha;
+            return this;
+        }
+
+        /**
+         * Sets the style
+         *
+         * @param style
+         * @return The current IconExtDrawable for chaining.
+         */
+        public IconicsArrayBuilder style(Paint.Style style) {
+            this.style = style;
+            return this;
+        }
+
+
+        public IconicsDrawable[] build() {
+            IconicsDrawable[] array = new IconicsDrawable[iIcons.size()];
+
+            for (int i = 0; i < iIcons.size(); i++) {
+                array[i] = createDrawable(iIcons.get(i));
+            }
+
+            return array;
+        }
+
+        private IconicsDrawable createDrawable(IIcon iIcon) {
+            IconicsDrawable drawable =  new IconicsDrawable(ctx, iIcon).color(color)
+                    .contourColor(contourColor)
+                    .drawContour(drawContour)
+                    .color(color)
+                    .backgroundColor(mBackgroundColor)
+                    .colorFilter(this.colorFilter)
+                    .paddingPx(mIconPadding)
+                    .iconOffsetXPx(mIconOffsetX)
+                    .iconOffsetYPx(mIconOffsetY);
+
+            if (sizeType != null) {
+                switch (sizeType) {
+                    case CUSTOM_RES:
+                        drawable.sizeRes(mSize);
+                        break;
+                    case CUSTOM_DP:
+                        drawable.sizeDp(mSize);
+                        break;
+                    case CUSTOM_PX:
+                        drawable.sizePx(mSize);
+                        break;
+                }
+            }
+
+            return drawable;
+        }
+
     }
 
     private static class StyleContainer {
