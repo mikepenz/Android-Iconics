@@ -29,6 +29,8 @@ public class IconicsImageView extends ImageView {
 
     private IconicsDrawable mIcon = null;
     private int mColor = 0;
+    private int mSize = -1;
+    private int mPadding = -1;
 
 
     public IconicsImageView(Context context) {
@@ -49,11 +51,19 @@ public class IconicsImageView extends ImageView {
                 return;
             }
             mColor = a.getColor(R.styleable.IconicsImageView_iiv_color, 0);
+            mSize = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
+            mPadding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
 
             //get the drawable
             mIcon = new IconicsDrawable(context, icon);
             if (mColor != 0) {
                 mIcon.color(mColor);
+            }
+            if (mSize != -1) {
+                mIcon.sizePx(mSize);
+            }
+            if (mSize != -1) {
+                mIcon.paddingPx(mPadding);
             }
 
             a.recycle();

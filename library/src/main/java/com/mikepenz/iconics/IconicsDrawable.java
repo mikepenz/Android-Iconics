@@ -62,8 +62,10 @@ public class IconicsDrawable extends Drawable {
 
     private Paint mIconPaint;
     private Paint mContourPaint;
+    private Paint mBackgroundPaint = null;
 
-    private int mBackgroundColor = -1;
+    private int mRoundedCornerRx = -1;
+    private int mRoundedCornerRy = -1;
 
     private Rect mPaddingBounds;
     private RectF mPathBounds;
@@ -120,6 +122,7 @@ public class IconicsDrawable extends Drawable {
 
     private void prepare() {
         mIconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mContourPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mContourPaint.setStyle(Paint.Style.STROKE);
@@ -411,7 +414,7 @@ public class IconicsDrawable extends Drawable {
      * @return
      */
     public IconicsDrawable backgroundColor(int backgroundColor) {
-        this.mBackgroundColor = backgroundColor;
+        this.mBackgroundPaint.setColor(backgroundColor);
         return this;
     }
 
@@ -422,10 +425,110 @@ public class IconicsDrawable extends Drawable {
      * @return
      */
     public IconicsDrawable backgroundColorRes(int backgroundColorRes) {
-        this.mBackgroundColor = mContext.getResources().getColor(backgroundColorRes);
+        return backgroundColor(mContext.getResources().getColor(backgroundColorRes));
+    }
+
+    /**
+     * set rounded corner from res
+     *
+     * @param roundedCornerRxRes
+     * @return
+     */
+    public IconicsDrawable roundedCornersRxRes(int roundedCornerRxRes) {
+        this.mRoundedCornerRx = mContext.getResources().getDimensionPixelSize(roundedCornerRxRes);
         return this;
     }
 
+    /**
+     * set rounded corner from dp
+     *
+     * @param roundedCornerRxDp
+     * @return
+     */
+    public IconicsDrawable roundedCornersRxDp(int roundedCornerRxDp) {
+        this.mRoundedCornerRx = Utils.convertDpToPx(mContext, roundedCornerRxDp);
+        return this;
+    }
+
+    /**
+     * set rounded corner from px
+     *
+     * @param roundedCornerRxPx
+     * @return
+     */
+    public IconicsDrawable roundedCornersRxPx(int roundedCornerRxPx) {
+        this.mRoundedCornerRx = roundedCornerRxPx;
+        return this;
+    }
+
+    /**
+     * set rounded corner from res
+     *
+     * @param roundedCornerRyRes
+     * @return
+     */
+    public IconicsDrawable roundedCornersRyRes(int roundedCornerRyRes) {
+        this.mRoundedCornerRy = mContext.getResources().getDimensionPixelSize(roundedCornerRyRes);
+        return this;
+    }
+
+    /**
+     * set rounded corner from dp
+     *
+     * @param roundedCornerRyDp
+     * @return
+     */
+    public IconicsDrawable roundedCornersRyDp(int roundedCornerRyDp) {
+        this.mRoundedCornerRy = Utils.convertDpToPx(mContext, roundedCornerRyDp);
+        return this;
+    }
+
+    /**
+     * set rounded corner from px
+     *
+     * @param roundedCornerRyPx
+     * @return
+     */
+    public IconicsDrawable roundedCornersRyPx(int roundedCornerRyPx) {
+        this.mRoundedCornerRy = roundedCornerRyPx;
+        return this;
+    }
+
+    /**
+     * set rounded corner from res
+     *
+     * @param roundedCornerRes
+     * @return
+     */
+    public IconicsDrawable roundedCornersRes(int roundedCornerRes) {
+        this.mRoundedCornerRx = mContext.getResources().getDimensionPixelSize(roundedCornerRes);
+        this.mRoundedCornerRy = this.mRoundedCornerRx;
+        return this;
+    }
+
+    /**
+     * set rounded corner from dp
+     *
+     * @param roundedCornerDp
+     * @return
+     */
+    public IconicsDrawable roundedCornersDp(int roundedCornerDp) {
+        this.mRoundedCornerRx = Utils.convertDpToPx(mContext, roundedCornerDp);
+        this.mRoundedCornerRy = this.mRoundedCornerRx;
+        return this;
+    }
+
+    /**
+     * set rounded corner from px
+     *
+     * @param roundedCornerPx
+     * @return
+     */
+    public IconicsDrawable roundedCornersPx(int roundedCornerPx) {
+        this.mRoundedCornerRx = roundedCornerPx;
+        this.mRoundedCornerRy = this.mRoundedCornerRx;
+        return this;
+    }
 
     /**
      * Set contour width from an dimen res for the icon
@@ -536,8 +639,8 @@ public class IconicsDrawable extends Drawable {
             updateTextSize(viewBounds);
             offsetIcon(viewBounds);
 
-            if (mBackgroundColor != -1) {
-                canvas.drawColor(mBackgroundColor);
+            if (mBackgroundPaint != null) {
+                canvas.drawRoundRect(new RectF(0, 0, viewBounds.width(), viewBounds.height()), mRoundedCornerRx, mRoundedCornerRy, mBackgroundPaint);
             }
 
             mPath.close();
