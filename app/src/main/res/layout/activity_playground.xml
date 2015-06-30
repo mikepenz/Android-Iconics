@@ -100,13 +100,15 @@
                 <com.mikepenz.iconics.view.IconicsButton
                     android:layout_width="120dp"
                     android:layout_height="60dp"
-                    android:text="{faw-adjust} Button" />
+                    android:text="{faw-adjust} Button"
+                    android:textAllCaps="false" />
 
                 <Button
                     android:id="@+id/test4"
                     android:layout_width="120dp"
                     android:layout_height="60dp"
-                    android:text="{fon-test1} Button" />
+                    android:text="{gmd-poll} Button"
+                    android:textAllCaps="false" />
             </LinearLayout>
 
             <LinearLayout
