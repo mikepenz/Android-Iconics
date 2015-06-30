@@ -37,11 +37,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsArrayBuilder;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.octicons_typeface_library.Octicons;
-
-import java.util.List;
 
 
 public class PlaygroundActivity extends Activity {
@@ -86,12 +85,13 @@ public class PlaygroundActivity extends Activity {
 
         ListView listView = (ListView) findViewById(R.id.list);
 
-        IconicsDrawable[] array = new Iconics.IconicsArrayBuilder().ctx(this)
+        IconicsDrawable iconicsDrawableBase = new IconicsDrawable(this).actionBar().color(Color.GREEN).backgroundColor(Color.RED);
+        IconicsDrawable[] array = new IconicsArrayBuilder(iconicsDrawableBase)
                 .add(FontAwesome.Icon.faw_android)
                 .add(Octicons.Icon.oct_octoface)
-                .actionBar()
-                .color(Color.GREEN)
-                .backgroundColor(Color.RED)
+                .add("Hallo")
+                .add('A')
+                .add(";)")
                 .build();
 
         listView.setAdapter(new IconsAdapter(this, array));
@@ -102,14 +102,14 @@ public class PlaygroundActivity extends Activity {
 
         private final LayoutInflater mInflater;
 
-        public IconsAdapter(Context context,  IconicsDrawable[] objects) {
+        public IconsAdapter(Context context, IconicsDrawable[] objects) {
             super(context, 0, objects);
             mInflater = LayoutInflater.from(context);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View v =  mInflater.inflate(R.layout.row_icon_array, parent, false);
+            View v = mInflater.inflate(R.layout.row_icon_array, parent, false);
 
             ImageView icon = (ImageView) v.findViewById(android.R.id.icon);
             icon.setImageDrawable(getItem(position));
