@@ -17,6 +17,7 @@
 package com.mikepenz.iconics.sample;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -26,13 +27,21 @@ import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.FontAwesome;
+import com.mikepenz.octicons_typeface_library.Octicons;
+
+import java.util.List;
 
 
 public class PlaygroundActivity extends Activity {
@@ -74,5 +83,38 @@ public class PlaygroundActivity extends Activity {
                 .style(new ForegroundColorSpan(Color.WHITE))
                 .on(b4)
                 .build();
+
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        IconicsDrawable[] array = new Iconics.IconicsArrayBuilder().ctx(this)
+                .add(FontAwesome.Icon.faw_android)
+                .add(Octicons.Icon.oct_octoface)
+                .actionBar()
+                .color(Color.GREEN)
+                .backgroundColor(Color.RED)
+                .build();
+
+        listView.setAdapter(new IconsAdapter(this, array));
+
+    }
+
+    private class IconsAdapter extends ArrayAdapter<IconicsDrawable> {
+
+        private final LayoutInflater mInflater;
+
+        public IconsAdapter(Context context,  IconicsDrawable[] objects) {
+            super(context, 0, objects);
+            mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v =  mInflater.inflate(R.layout.row_icon_array, parent, false);
+
+            ImageView icon = (ImageView) v.findViewById(android.R.id.icon);
+            icon.setImageDrawable(getItem(position));
+
+            return v;
+        }
     }
 }
