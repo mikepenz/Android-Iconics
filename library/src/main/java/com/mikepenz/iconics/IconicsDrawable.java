@@ -58,7 +58,8 @@ public class IconicsDrawable extends Drawable {
 
     private Context mContext;
 
-    private int mSize = -1;
+    private int mSizeX = -1;
+    private int mSizeY = -1;
 
     private Paint mIconPaint;
     private Paint mContourPaint;
@@ -374,8 +375,77 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable sizePx(int size) {
-        this.mSize = size;
+        this.mSizeX = size;
+        this.mSizeY = size;
         setBounds(0, 0, size, size);
+        invalidateSelf();
+        return this;
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param dimenResX The dimension resource.
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable sizeResX(int dimenResX) {
+        return sizePxX(mContext.getResources().getDimensionPixelSize(dimenResX));
+    }
+
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param sizeX The size in density-independent pixels (dp).
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable sizeDpX(int sizeX) {
+        return sizePxX(Utils.convertDpToPx(mContext, sizeX));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param sizeX The size in pixels (px).
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable sizePxX(int sizeX) {
+        this.mSizeX = sizeX;
+        setBounds(0, 0, mSizeX, mSizeY);
+        invalidateSelf();
+        return this;
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param dimenResY The dimension resource.
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable sizeResY(int dimenResY) {
+        return sizePxY(mContext.getResources().getDimensionPixelSize(dimenResY));
+    }
+
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param sizeY The size in density-independent pixels (dp).
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable sizeDpY(int sizeY) {
+        return sizePxY(Utils.convertDpToPx(mContext, sizeY));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param sizeY The size in pixels (px).
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable sizePxY(int sizeY) {
+        this.mSizeY = sizeY;
+        setBounds(0, 0, mSizeX, mSizeY);
         invalidateSelf();
         return this;
     }
@@ -668,12 +738,12 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return mSize;
+        return mSizeX;
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return mSize;
+        return mSizeY;
     }
 
     @Override
@@ -713,8 +783,8 @@ public class IconicsDrawable extends Drawable {
      * @return bitmap to set
      */
     public Bitmap toBitmap() {
-        if (mSize == -1) {
-            this.actionBarSize();
+        if (mSizeX == -1 || mSizeY == -1) {
+            this.actionBar();
         }
 
         final Bitmap bitmap = Bitmap.createBitmap(this.getIntrinsicWidth(), this.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
