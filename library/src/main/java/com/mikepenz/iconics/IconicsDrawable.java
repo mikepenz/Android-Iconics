@@ -65,8 +65,8 @@ public class IconicsDrawable extends Drawable {
     private Paint mContourPaint;
     private Paint mBackgroundPaint = null;
 
-    private int mRoundedCornerRx = -1;
-    private int mRoundedCornerRy = -1;
+    private int mRoundedCornerRx = 0;
+    private int mRoundedCornerRy = 0;
 
     private Rect mPaddingBounds;
     private RectF mPathBounds;
@@ -141,7 +141,7 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable icon(Character icon) {
-        return iconText(icon.toString());
+        return icon(icon.toString());
     }
 
     /**
@@ -150,7 +150,7 @@ public class IconicsDrawable extends Drawable {
      * @param icon
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable iconText(String icon) {
+    public IconicsDrawable icon(String icon) {
         mPlainIcon = icon;
         mIcon = null;
         mIconPaint.setTypeface(Typeface.DEFAULT);
@@ -856,5 +856,36 @@ public class IconicsDrawable extends Drawable {
         float offsetY = startY - (mPathBounds.top);
 
         mPath.offset(offsetX + mIconOffsetX, offsetY + mIconOffsetY);
+    }
+
+
+    /**
+     * clones the icon
+     *
+     * @return
+     */
+    public IconicsDrawable clone() {
+        IconicsDrawable iconicsDrawable = new IconicsDrawable(mContext)
+                .paddingPx(mIconPadding)
+                .roundedCornersRxPx(mRoundedCornerRx)
+                .roundedCornersRyPx(mRoundedCornerRy)
+                .sizePxX(mSizeX)
+                .sizePxY(mSizeY)
+                .iconOffsetXPx(mIconOffsetX)
+                .iconOffsetYPx(mIconOffsetY)
+                .contourColor(mContourPaint.getColor())
+                .contourWidthPx(mContourWidth)
+                .backgroundColor(mBackgroundPaint.getColor())
+                .color(mIconPaint.getColor())
+                .alpha(mAlpha)
+                .drawContour(mDrawContour)
+                .typeface(mIconPaint.getTypeface());
+
+        if (mIcon != null) {
+            iconicsDrawable.icon(mIcon);
+        } else if (mPlainIcon != null) {
+            iconicsDrawable.icon(mPlainIcon);
+        }
+        return iconicsDrawable;
     }
 }
