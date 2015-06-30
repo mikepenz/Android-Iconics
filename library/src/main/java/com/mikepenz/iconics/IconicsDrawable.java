@@ -65,8 +65,8 @@ public class IconicsDrawable extends Drawable {
     private Paint mContourPaint;
     private Paint mBackgroundPaint = null;
 
-    private int mRoundedCornerRx = 0;
-    private int mRoundedCornerRy = 0;
+    private int mRoundedCornerRx = -1;
+    private int mRoundedCornerRy = -1;
 
     private Rect mPaddingBounds;
     private RectF mPathBounds;
@@ -485,6 +485,8 @@ public class IconicsDrawable extends Drawable {
      */
     public IconicsDrawable backgroundColor(int backgroundColor) {
         this.mBackgroundPaint.setColor(backgroundColor);
+        this.mRoundedCornerRx = 0;
+        this.mRoundedCornerRy = 0;
         return this;
     }
 
@@ -709,7 +711,7 @@ public class IconicsDrawable extends Drawable {
             updateTextSize(viewBounds);
             offsetIcon(viewBounds);
 
-            if (mBackgroundPaint != null) {
+            if (mBackgroundPaint != null && mRoundedCornerRy > -1 && mRoundedCornerRx > -1) {
                 canvas.drawRoundRect(new RectF(0, 0, viewBounds.width(), viewBounds.height()), mRoundedCornerRx, mRoundedCornerRy, mBackgroundPaint);
             }
 
