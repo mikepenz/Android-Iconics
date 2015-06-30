@@ -17,6 +17,7 @@
 package com.mikepenz.iconics.sample;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -26,13 +27,20 @@ import android.text.style.DynamicDrawableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsArrayBuilder;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.FontAwesome;
+import com.mikepenz.octicons_typeface_library.Octicons;
 
 
 public class PlaygroundActivity extends Activity {
@@ -64,7 +72,7 @@ public class PlaygroundActivity extends Activity {
 
         //Set the icon of an ImageView (or something else) as bitmap
         ImageView iv3 = (ImageView) findViewById(R.id.test3);
-        iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).sizeDp(48).color(Color.parseColor("#deFF0000")).toBitmap());
+        iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).sizeDpX(48).sizeDpY(32).paddingDp(4).roundedCornersDp(8).color(Color.parseColor("#deFF0000")).toBitmap());
 
         //Show how to style the text of an existing button (NOT WORKING AT THE MOMENT)
         Button b4 = (Button) findViewById(R.id.test4);
@@ -74,5 +82,39 @@ public class PlaygroundActivity extends Activity {
                 .style(new ForegroundColorSpan(Color.WHITE))
                 .on(b4)
                 .build();
+
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        IconicsDrawable iconicsDrawableBase = new IconicsDrawable(this).actionBar().color(Color.GREEN).backgroundColor(Color.RED);
+        IconicsDrawable[] array = new IconicsArrayBuilder(iconicsDrawableBase)
+                .add(FontAwesome.Icon.faw_android)
+                .add(Octicons.Icon.oct_octoface)
+                .add("Hallo")
+                .add('A')
+                .add(";)")
+                .build();
+
+        listView.setAdapter(new IconsAdapter(this, array));
+
+    }
+
+    private class IconsAdapter extends ArrayAdapter<IconicsDrawable> {
+
+        private final LayoutInflater mInflater;
+
+        public IconsAdapter(Context context, IconicsDrawable[] objects) {
+            super(context, 0, objects);
+            mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v = mInflater.inflate(R.layout.row_icon_array, parent, false);
+
+            ImageView icon = (ImageView) v.findViewById(android.R.id.icon);
+            icon.setImageDrawable(getItem(position));
+
+            return v;
+        }
     }
 }

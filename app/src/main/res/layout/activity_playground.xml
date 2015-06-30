@@ -13,12 +13,13 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -26,101 +27,111 @@
     tools:context="com.mikepenz.iconics.sample.PlaygroundActivity"
     tools:ignore="MissingPrefix">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:padding="24dp"
-            app:iiv_icon="faw-android" />
-
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            app:iiv_color="@android:color/holo_red_dark"
-            app:iiv_icon="gmd-favorite" />
-
-        <TextView
-            android:id="@+id/test1"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-poll}no{met-wind}pqrstuv{fon-test2}wxy{z"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#000" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/test5"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:text="somecustomtext with a custom icon :D"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#000" />
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:padding="24dp"
+                    app:iiv_icon="faw-android" />
 
-        <com.mikepenz.iconics.view.IconicsTextView
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    app:iiv_color="@android:color/holo_red_dark"
+                    app:iiv_icon="gmd-favorite" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#000" />
+            <TextView
+                android:id="@+id/test1"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-poll}no{met-wind}pqrstuv{fon-test2}wxy{z"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-        <com.mikepenz.iconics.view.IconicsButton
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:text="{faw-adjust} Button" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#000" />
 
-        <Button
-            android:id="@+id/test4"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:text="{fon-test1} Button" />
+            <TextView
+                android:id="@+id/test5"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:text="somecustomtext with a custom icon :D"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#000" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#000" />
 
-        <ImageView
-            android:id="@+id/test2"
-            android:layout_width="48dp"
-            android:layout_height="48dp" />
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#000" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/test3"
-            android:layout_width="48dp"
-            android:layout_height="48dp" />
+                <com.mikepenz.iconics.view.IconicsButton
+                    android:layout_width="120dp"
+                    android:layout_height="60dp"
+                    android:text="{faw-adjust} Button"
+                    android:textAllCaps="false" />
 
-    </LinearLayout>
-</ScrollView>
+                <Button
+                    android:id="@+id/test4"
+                    android:layout_width="120dp"
+                    android:layout_height="60dp"
+                    android:text="{gmd-poll} Button"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/test3"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp" />
+
+                <ImageView
+                    android:id="@+id/test2"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
