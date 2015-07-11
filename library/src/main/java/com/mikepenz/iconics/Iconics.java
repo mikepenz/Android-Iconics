@@ -97,7 +97,7 @@ public final class Iconics {
                 break;
             }
             //get the fontKey
-            fontKey = text.substring(startIndex + 1, startIndex + 4);
+            fontKey = text.substring(startIndex + 1, startIndex + 4).toLowerCase();
             //check if the fontKey is a registeredFont
             if (fonts.containsKey(fontKey)) {
                 break;
@@ -115,7 +115,7 @@ public final class Iconics {
             //get the information from the iconString
             int endIndex = text.substring(startIndex).indexOf("}") + startIndex + 1;
             String iconString = text.substring(startIndex + 1, endIndex - 1);
-            iconString = iconString.replaceAll("-", "_");
+            iconString = iconString.replaceAll("-", "_").toLowerCase();
             try {
                 //get the correct character for this Font and Icon
                 IIcon icon = fonts.get(fontKey).getIcon(iconString);
