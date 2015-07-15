@@ -54,7 +54,7 @@ import com.mikepenz.iconics.utils.Utils;
  */
 public class IconicsDrawable extends Drawable {
     public static final int ANDROID_ACTIONBAR_ICON_SIZE_DP = 24;
-    public static final int ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP = 6;
+    public static final int ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP = 1;
 
     private Context mContext;
 
@@ -342,7 +342,7 @@ public class IconicsDrawable extends Drawable {
      * @return
      */
     public IconicsDrawable actionBar() {
-        sizeDp(ANDROID_ACTIONBAR_ICON_SIZE_DP + (2 * ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP));
+        sizeDp(ANDROID_ACTIONBAR_ICON_SIZE_DP);
         paddingDp(ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP);
         return this;
     }
