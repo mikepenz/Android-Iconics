@@ -70,7 +70,7 @@ public class IconicsImageView extends ImageView {
 
             //set our values for this view
             setImageDrawable(mIcon);
-            setScaleType(ScaleType.MATRIX);
+            setScaleType(ScaleType.CENTER_INSIDE);
         }
     }
 
