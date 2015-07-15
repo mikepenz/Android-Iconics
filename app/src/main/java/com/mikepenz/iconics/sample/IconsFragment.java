@@ -3,6 +3,7 @@ package com.mikepenz.iconics.sample;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +15,6 @@ import com.mikepenz.iconics.sample.adapter.IconAdapter;
 import com.mikepenz.iconics.typeface.ITypeface;
 
 import java.util.ArrayList;
-
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 /**
  * Created by a557114 on 16/04/2015.
@@ -50,7 +49,7 @@ public class IconsFragment extends Fragment {
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         //animator not yet working
-        mRecyclerView.setItemAnimator(new SlideInLeftAnimator());
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         IconAdapter mAdapter = new IconAdapter(new ArrayList<String>(), R.layout.row_icon);
         mRecyclerView.setAdapter(mAdapter);
 

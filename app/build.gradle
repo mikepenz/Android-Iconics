@@ -10,7 +10,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 10
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 121
         versionName "1.2.1"
@@ -57,7 +57,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.android.support:recyclerview-v7:22.2.0'
     compile 'com.android.support:cardview-v7:22.2.0'
-    compile 'jp.wasabeef:recyclerview-animators:1.2.0@aar'
 
     compile('com.mikepenz:aboutlibraries:5.0.6@aar')
     compile('com.mikepenz:materialdrawer:3.1.2@aar')
