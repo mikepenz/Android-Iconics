@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 121
-        versionName "1.2.1"
+        versionCode 130
+        versionName "1.3.0"
     }
     buildTypes {
         release {
