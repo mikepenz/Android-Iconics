@@ -60,7 +60,7 @@ IconicsImageView
 <com.mikepenz.iconics.view.IconicsImageView
         android:layout_width="72dp"
         android:layout_height="72dp"
-        app:iiv_icon="gmd-favorite-outline"
+        app:iiv_icon="gmd-favorite-border"
         app:iiv_color="@android:color/holo_red_dark"
         />
 ```
