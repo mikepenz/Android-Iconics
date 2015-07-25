@@ -98,7 +98,7 @@ dependencies {
 	compile 'com.mikepenz:iconics:1.3.0@aar'
 	compile 'com.mikepenz:octicons-typeface:2.2.0@aar'
 	compile 'com.mikepenz:meteocons-typeface:1.1.1@aar'
-	compile 'com.mikepenz:community-material-typeface:1.0.0@aar'
+	compile 'com.mikepenz:community-material-typeface:1.1.70@aar'
 }
 ```
 
