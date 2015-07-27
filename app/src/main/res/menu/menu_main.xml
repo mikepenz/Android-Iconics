@@ -1,6 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
       tools:context="com.mikepenz.iconics.sample.MainActivity">
+
+    <item
+        android:id="@+id/search"
+        android:title="@string/search_title"
+        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
+
     <item android:id="@+id/action_opensource"
           android:title="@string/action_opensource"
           app:showAsAction="ifRoom"/>

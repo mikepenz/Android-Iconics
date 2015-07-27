@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.sample.adapter.IconAdapter;
 import com.mikepenz.iconics.typeface.ITypeface;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +25,8 @@ public class IconsFragment extends Fragment {
 
     private static final String FONT_NAME = "FONT_NAME";
     private ArrayList<String> icons = new ArrayList<String>();
+    private IconAdapter mAdapter;
+
 
     public static IconsFragment newInstance(String fontName) {
         Bundle bundle = new Bundle();
@@ -36,22 +40,24 @@ public class IconsFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.icons_fragment, null, false);
     }
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         // Init and Setup RecyclerView
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.list);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         //animator not yet working
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        IconAdapter mAdapter = new IconAdapter(new ArrayList<String>(), R.layout.row_icon);
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        mAdapter = new IconAdapter(new ArrayList<String>(), R.layout.row_icon);
+        recyclerView.setAdapter(mAdapter);
 
         if (getArguments() != null) {
             String fontName = getArguments().getString(FONT_NAME);
@@ -70,4 +76,22 @@ public class IconsFragment extends Fragment {
         }
 
     }
+
+
+    public void onSearch(String s) {
+        Log.i("IconsFragment", "onSearch: " + s);
+
+        AbstractList<String> tmpList = new ArrayList<>();
+        for (String icon : icons) {
+            if (icon.toLowerCase().contains(s.toLowerCase())) tmpList.add(icon);
+        }
+
+        Log.i("IconsFragment", "icons-size: " + icons.size() + "\n" +
+                               "tmp-size: " + tmpList.size());
+
+        mAdapter.clear();
+        mAdapter.setIcons(tmpList);
+        mAdapter.notifyDataSetChanged();
+    }
+
 }

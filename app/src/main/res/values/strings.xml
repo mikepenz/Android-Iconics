@@ -7,4 +7,5 @@
 
     <string name="action_opensource">Open Source</string>
     <string name="action_playground">Playground</string>
+    <string name="search_title">Suche</string>
 </resources>
