@@ -27,7 +27,7 @@
         Android-Iconics is a library to use (almost) any alternative icon-font in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
         ]]>
     </string>
-    <string name="library_AndroidIconics_libraryVersion">1.5.1</string>
+    <string name="library_AndroidIconics_libraryVersion">1.5.2</string>
     <string name="library_AndroidIconics_libraryWebsite">https://github.com/mikepenz/Android-Iconics</string>
     <string name="library_AndroidIconics_licenseId">apache_2_0</string>
     <string name="library_AndroidIconics_isOpenSource">true</string>
