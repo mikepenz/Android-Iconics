@@ -1,1 +1,1 @@
-include ':app', ':library', ':meteocons-typeface-library', ':octicons-typeface-library', 'community-material-typeface-library'
+include ':app', ':library', ':meteocons-typeface-library', ':octicons-typeface-library', ':library-core', 'community-material-typeface-library'

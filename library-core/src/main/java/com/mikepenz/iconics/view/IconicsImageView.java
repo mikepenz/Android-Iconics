@@ -22,15 +22,13 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.R;
+import com.mikepenz.iconics.core.R;
 import com.mikepenz.iconics.typeface.IIcon;
 
 public class IconicsImageView extends ImageView {
 
     private IconicsDrawable mIcon = null;
     private int mColor = 0;
-    private int mSize = -1;
-    private int mPadding = -1;
 
 
     public IconicsImageView(Context context) {
@@ -51,8 +49,8 @@ public class IconicsImageView extends ImageView {
                 return;
             }
             mColor = a.getColor(R.styleable.IconicsImageView_iiv_color, 0);
-            mSize = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
-            mPadding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
+            int mSize = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
+            int mPadding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
 
             //get the drawable
             mIcon = new IconicsDrawable(context, icon);

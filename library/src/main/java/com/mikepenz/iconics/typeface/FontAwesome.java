@@ -1,22 +1,22 @@
 /**
  * Copyright 2014 Mike Penz
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+ * <p/>
  * It uses FontAwesome font, licensed under OFL 1.1, which is compatible
  * with this library's license.
- *
- *     http://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=OFL_plaintext&filename=OFL.txt
+ * <p/>
+ * http://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=OFL_plaintext&filename=OFL.txt
  */
 package com.mikepenz.iconics.typeface;
 
@@ -31,7 +31,7 @@ import java.util.LinkedList;
  * Created by mikepenz on 01.11.14.
  */
 public class FontAwesome implements ITypeface {
-    private static final String TTF_FILE = "fontawesome-webfont-4.3.0.ttf";
+    private static final String TTF_FILE = "fontawesome-webfont-4.4.0.ttf";
 
     private static Typeface typeface = null;
 
@@ -67,7 +67,7 @@ public class FontAwesome implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "4.3.0";
+        return "4.4.0";
     }
 
     @Override
@@ -124,12 +124,14 @@ public class FontAwesome implements ITypeface {
     }
 
     public static enum Icon implements IIcon {
+        faw_500px('\uf26e'),
         faw_adjust('\uf042'),
         faw_adn('\uf170'),
         faw_align_center('\uf037'),
         faw_align_justify('\uf039'),
         faw_align_left('\uf036'),
         faw_align_right('\uf038'),
+        faw_amazon('\uf270'),
         faw_ambulance('\uf0f9'),
         faw_anchor('\uf13d'),
         faw_android('\uf17b'),
@@ -165,12 +167,23 @@ public class FontAwesome implements ITypeface {
         faw_at('\uf1fa'),
         faw_automobile('\uf1b9'),
         faw_backward('\uf04a'),
+        faw_balance_scale('\uf24e'),
         faw_ban('\uf05e'),
         faw_bank('\uf19c'),
         faw_bar_chart('\uf080'),
         faw_bar_chart_o('\uf080'),
         faw_barcode('\uf02a'),
         faw_bars('\uf0c9'),
+        faw_battery_0('\uf244'),
+        faw_battery_1('\uf243'),
+        faw_battery_2('\uf242'),
+        faw_battery_3('\uf241'),
+        faw_battery_4('\uf240'),
+        faw_battery_empty('\uf244'),
+        faw_battery_full('\uf240'),
+        faw_battery_half('\uf242'),
+        faw_battery_quarter('\uf243'),
+        faw_battery_three_quarters('\uf241'),
         faw_bed('\uf236'),
         faw_beer('\uf0fc'),
         faw_behance('\uf1b4'),
@@ -185,6 +198,7 @@ public class FontAwesome implements ITypeface {
         faw_bitbucket('\uf171'),
         faw_bitbucket_square('\uf172'),
         faw_bitcoin('\uf15a'),
+        faw_black_tie('\uf27e'),
         faw_bold('\uf032'),
         faw_bolt('\uf0e7'),
         faw_bomb('\uf1e2'),
@@ -203,7 +217,11 @@ public class FontAwesome implements ITypeface {
         faw_cab('\uf1ba'),
         faw_calculator('\uf1ec'),
         faw_calendar('\uf073'),
+        faw_calendar_check_o('\uf274'),
+        faw_calendar_minus_o('\uf272'),
         faw_calendar_o('\uf133'),
+        faw_calendar_plus_o('\uf271'),
+        faw_calendar_times_o('\uf273'),
         faw_camera('\uf030'),
         faw_camera_retro('\uf083'),
         faw_car('\uf1b9'),
@@ -219,7 +237,9 @@ public class FontAwesome implements ITypeface {
         faw_cart_plus('\uf217'),
         faw_cc('\uf20a'),
         faw_cc_amex('\uf1f3'),
+        faw_cc_diners_club('\uf24c'),
         faw_cc_discover('\uf1f2'),
+        faw_cc_jcb('\uf24b'),
         faw_cc_mastercard('\uf1f1'),
         faw_cc_paypal('\uf1f4'),
         faw_cc_stripe('\uf1f5'),
@@ -241,12 +261,14 @@ public class FontAwesome implements ITypeface {
         faw_chevron_right('\uf054'),
         faw_chevron_up('\uf077'),
         faw_child('\uf1ae'),
+        faw_chrome('\uf268'),
         faw_circle('\uf111'),
         faw_circle_o('\uf10c'),
         faw_circle_o_notch('\uf1ce'),
         faw_circle_thin('\uf1db'),
         faw_clipboard('\uf0ea'),
         faw_clock_o('\uf017'),
+        faw_clone('\uf24d'),
         faw_close('\uf00d'),
         faw_cloud('\uf0c2'),
         faw_cloud_download('\uf0ed'),
@@ -261,13 +283,17 @@ public class FontAwesome implements ITypeface {
         faw_columns('\uf0db'),
         faw_comment('\uf075'),
         faw_comment_o('\uf0e5'),
+        faw_commenting('\uf27a'),
+        faw_commenting_o('\uf27b'),
         faw_comments('\uf086'),
         faw_comments_o('\uf0e6'),
         faw_compass('\uf14e'),
         faw_compress('\uf066'),
         faw_connectdevelop('\uf20e'),
+        faw_contao('\uf26d'),
         faw_copy('\uf0c5'),
         faw_copyright('\uf1f9'),
+        faw_creative_commons('\uf25e'),
         faw_credit_card('\uf09d'),
         faw_crop('\uf125'),
         faw_crosshairs('\uf05b'),
@@ -307,6 +333,7 @@ public class FontAwesome implements ITypeface {
         faw_exclamation_circle('\uf06a'),
         faw_exclamation_triangle('\uf071'),
         faw_expand('\uf065'),
+        faw_expeditedssl('\uf23e'),
         faw_external_link('\uf08e'),
         faw_external_link_square('\uf14c'),
         faw_eye('\uf06e'),
@@ -319,6 +346,7 @@ public class FontAwesome implements ITypeface {
         faw_fast_backward('\uf049'),
         faw_fast_forward('\uf050'),
         faw_fax('\uf1ac'),
+        faw_feed('\uf09e'),
         faw_female('\uf182'),
         faw_fighter_jet('\uf0fb'),
         faw_file('\uf15b'),
@@ -344,6 +372,7 @@ public class FontAwesome implements ITypeface {
         faw_filter('\uf0b0'),
         faw_fire('\uf06d'),
         faw_fire_extinguisher('\uf134'),
+        faw_firefox('\uf269'),
         faw_flag('\uf024'),
         faw_flag_checkered('\uf11e'),
         faw_flag_o('\uf11d'),
@@ -356,6 +385,7 @@ public class FontAwesome implements ITypeface {
         faw_folder_open('\uf07c'),
         faw_folder_open_o('\uf115'),
         faw_font('\uf031'),
+        faw_fonticons('\uf280'),
         faw_forumbee('\uf211'),
         faw_forward('\uf04e'),
         faw_foursquare('\uf180'),
@@ -367,7 +397,10 @@ public class FontAwesome implements ITypeface {
         faw_ge('\uf1d1'),
         faw_gear('\uf013'),
         faw_gears('\uf085'),
-        faw_genderless('\uf1db'),
+        faw_genderless('\uf22d'),
+        faw_get_pocket('\uf265'),
+        faw_gg('\uf260'),
+        faw_gg_circle('\uf261'),
         faw_gift('\uf06b'),
         faw_git('\uf1d3'),
         faw_git_square('\uf1d2'),
@@ -386,10 +419,19 @@ public class FontAwesome implements ITypeface {
         faw_group('\uf0c0'),
         faw_h_square('\uf0fd'),
         faw_hacker_news('\uf1d4'),
+        faw_hand_grab_o('\uf255'),
+        faw_hand_lizard_o('\uf258'),
         faw_hand_o_down('\uf0a7'),
         faw_hand_o_left('\uf0a5'),
         faw_hand_o_right('\uf0a4'),
         faw_hand_o_up('\uf0a6'),
+        faw_hand_paper_o('\uf256'),
+        faw_hand_peace_o('\uf25b'),
+        faw_hand_pointer_o('\uf25a'),
+        faw_hand_rock_o('\uf255'),
+        faw_hand_scissors_o('\uf257'),
+        faw_hand_spock_o('\uf259'),
+        faw_hand_stop_o('\uf256'),
         faw_hdd_o('\uf0a0'),
         faw_header('\uf1dc'),
         faw_headphones('\uf025'),
@@ -400,16 +442,29 @@ public class FontAwesome implements ITypeface {
         faw_home('\uf015'),
         faw_hospital_o('\uf0f8'),
         faw_hotel('\uf236'),
+        faw_hourglass('\uf254'),
+        faw_hourglass_1('\uf251'),
+        faw_hourglass_2('\uf252'),
+        faw_hourglass_3('\uf253'),
+        faw_hourglass_end('\uf253'),
+        faw_hourglass_half('\uf252'),
+        faw_hourglass_o('\uf250'),
+        faw_hourglass_start('\uf251'),
+        faw_houzz('\uf27c'),
         faw_html5('\uf13b'),
+        faw_i_cursor('\uf246'),
         faw_ils('\uf20b'),
         faw_image('\uf03e'),
         faw_inbox('\uf01c'),
         faw_indent('\uf03c'),
+        faw_industry('\uf275'),
         faw_info('\uf129'),
         faw_info_circle('\uf05a'),
         faw_inr('\uf156'),
         faw_instagram('\uf16d'),
         faw_institution('\uf19c'),
+        faw_internet_explorer('\uf26b'),
+        faw_intersex('\uf224'),
         faw_ioxhost('\uf208'),
         faw_italic('\uf033'),
         faw_joomla('\uf1aa'),
@@ -454,7 +509,11 @@ public class FontAwesome implements ITypeface {
         faw_mail_reply('\uf112'),
         faw_mail_reply_all('\uf122'),
         faw_male('\uf183'),
+        faw_map('\uf279'),
         faw_map_marker('\uf041'),
+        faw_map_o('\uf278'),
+        faw_map_pin('\uf276'),
+        faw_map_signs('\uf277'),
         faw_mars('\uf222'),
         faw_mars_double('\uf227'),
         faw_mars_stroke('\uf229'),
@@ -478,11 +537,19 @@ public class FontAwesome implements ITypeface {
         faw_moon_o('\uf186'),
         faw_mortar_board('\uf19d'),
         faw_motorcycle('\uf21c'),
+        faw_mouse_pointer('\uf245'),
         faw_music('\uf001'),
         faw_navicon('\uf0c9'),
         faw_neuter('\uf22c'),
         faw_newspaper_o('\uf1ea'),
+        faw_object_group('\uf247'),
+        faw_object_ungroup('\uf248'),
+        faw_odnoklassniki('\uf263'),
+        faw_odnoklassniki_square('\uf264'),
+        faw_opencart('\uf23d'),
         faw_openid('\uf19b'),
+        faw_opera('\uf26a'),
+        faw_optin_monster('\uf23c'),
         faw_outdent('\uf03b'),
         faw_pagelines('\uf18c'),
         faw_paint_brush('\uf1fc'),
@@ -532,6 +599,7 @@ public class FontAwesome implements ITypeface {
         faw_reddit('\uf1a1'),
         faw_reddit_square('\uf1a2'),
         faw_refresh('\uf021'),
+        faw_registered('\uf25d'),
         faw_remove('\uf00d'),
         faw_renren('\uf18b'),
         faw_reorder('\uf0c9'),
@@ -550,6 +618,7 @@ public class FontAwesome implements ITypeface {
         faw_rub('\uf158'),
         faw_ruble('\uf158'),
         faw_rupee('\uf156'),
+        faw_safari('\uf267'),
         faw_save('\uf0c7'),
         faw_scissors('\uf0c4'),
         faw_search('\uf002'),
@@ -613,6 +682,8 @@ public class FontAwesome implements ITypeface {
         faw_step_backward('\uf048'),
         faw_step_forward('\uf051'),
         faw_stethoscope('\uf0f1'),
+        faw_sticky_note('\uf249'),
+        faw_sticky_note_o('\uf24a'),
         faw_stop('\uf04d'),
         faw_street_view('\uf21d'),
         faw_strikethrough('\uf0cc'),
@@ -631,6 +702,7 @@ public class FontAwesome implements ITypeface {
         faw_tags('\uf02c'),
         faw_tasks('\uf0ae'),
         faw_taxi('\uf1ba'),
+        faw_television('\uf26c'),
         faw_tencent_weibo('\uf1d5'),
         faw_terminal('\uf120'),
         faw_text_height('\uf034'),
@@ -654,6 +726,7 @@ public class FontAwesome implements ITypeface {
         faw_toggle_on('\uf205'),
         faw_toggle_right('\uf152'),
         faw_toggle_up('\uf151'),
+        faw_trademark('\uf25c'),
         faw_train('\uf238'),
         faw_transgender('\uf224'),
         faw_transgender_alt('\uf225'),
@@ -661,6 +734,7 @@ public class FontAwesome implements ITypeface {
         faw_trash_o('\uf014'),
         faw_tree('\uf1bb'),
         faw_trello('\uf181'),
+        faw_tripadvisor('\uf262'),
         faw_trophy('\uf091'),
         faw_truck('\uf0d1'),
         faw_try('\uf195'),
@@ -668,6 +742,7 @@ public class FontAwesome implements ITypeface {
         faw_tumblr('\uf173'),
         faw_tumblr_square('\uf174'),
         faw_turkish_lira('\uf195'),
+        faw_tv('\uf26c'),
         faw_twitch('\uf1e8'),
         faw_twitter('\uf099'),
         faw_twitter_square('\uf081'),
@@ -692,6 +767,7 @@ public class FontAwesome implements ITypeface {
         faw_venus_mars('\uf228'),
         faw_viacoin('\uf237'),
         faw_video_camera('\uf03d'),
+        faw_vimeo('\uf27d'),
         faw_vimeo_square('\uf194'),
         faw_vine('\uf1ca'),
         faw_vk('\uf189'),
@@ -705,13 +781,18 @@ public class FontAwesome implements ITypeface {
         faw_whatsapp('\uf232'),
         faw_wheelchair('\uf193'),
         faw_wifi('\uf1eb'),
+        faw_wikipedia_w('\uf266'),
         faw_windows('\uf17a'),
         faw_won('\uf159'),
         faw_wordpress('\uf19a'),
         faw_wrench('\uf0ad'),
         faw_xing('\uf168'),
         faw_xing_square('\uf169'),
+        faw_y_combinator('\uf23b'),
+        faw_y_combinator_square('\uf1d4'),
         faw_yahoo('\uf19e'),
+        faw_yc('\uf23b'),
+        faw_yc_square('\uf1d4'),
         faw_yelp('\uf1e9'),
         faw_yen('\uf157'),
         faw_youtube('\uf167'),

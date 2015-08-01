@@ -25,8 +25,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
-import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.IconicsTypefaceSpan;
@@ -43,16 +41,17 @@ public final class Iconics {
 
     private static HashMap<String, ITypeface> FONTS = new HashMap<String, ITypeface>();
 
-    //ADD DEFAULT to fontList
-    static {
-        FontAwesome fa = new FontAwesome();
-        FONTS.put(fa.getMappingPrefix(), fa);
-        GoogleMaterial gm = new GoogleMaterial();
-        FONTS.put(gm.getMappingPrefix(), gm);
+    public static boolean registerFont(ITypeface font) {
+        FONTS.put(font.getMappingPrefix(), font);
+        return true;
     }
 
-    public static void registerFont(ITypeface font) {
-        FONTS.put(font.getMappingPrefix(), font);
+    public static ITypeface getDefault() {
+        if (FONTS.size() > 0) {
+            return FONTS.entrySet().iterator().next().getValue();
+        } else {
+            throw new RuntimeException("You have to provide at least one Typeface to use this functionality");
+        }
     }
 
     public static Collection<ITypeface> getRegisteredFonts() {

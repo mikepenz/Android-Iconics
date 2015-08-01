@@ -18,9 +18,11 @@ package com.mikepenz.iconics.sample;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,6 +45,9 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private IconsFragment mIconsFragment;
 
 
     @Override
@@ -86,6 +91,32 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
 
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            final SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    search(s);
+                    return true;
+                }
+
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    search(s);
+                    return true;
+                }
+
+
+                private void search(String s) {
+                    if (mIconsFragment != null) mIconsFragment.onSearch(s);
+                }
+            });
+        } else {
+            menu.findItem(R.id.search).setVisible(false);
+        }
+
         MenuItem menuItem = menu.findItem(R.id.action_opensource);
         menuItem.setIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_github).actionBar().color(Color.WHITE));
         //menuItem.setIcon(new IconicsDrawable(this, "faw-github").actionBarSize().color(Color.WHITE));
@@ -93,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
 
@@ -118,9 +150,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void loadIcons(String fontName) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content, IconsFragment.newInstance(fontName));
+        mIconsFragment = IconsFragment.newInstance(fontName);
+        ft.replace(R.id.content, mIconsFragment);
         ft.commit();
     }
+
+
 }

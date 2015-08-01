@@ -1,10 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
-      tools:context="com.mikepenz.iconics.sample.MainActivity">
-    <item android:id="@+id/action_opensource"
-          android:title="@string/action_opensource"
-          app:showAsAction="ifRoom"/>
-    <item android:id="@+id/action_playground"
-          android:title="@string/action_playground"
-          app:showAsAction="never"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.mikepenz.iconics.sample.MainActivity">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        android:title="@string/search_title"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
+
+    <item
+        android:id="@+id/action_opensource"
+        android:title="@string/action_opensource"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_playground"
+        android:title="@string/action_playground"
+        app:showAsAction="never" />
 </menu>

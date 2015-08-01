@@ -29,7 +29,16 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz:iconics:1.3.0@aar'
+	compile 'com.mikepenz:iconics:1.5.0@aar'
+}
+```
+
+##Only the core
+Provide your own font without the additional icons
+
+```javascript
+dependencies {
+	compile 'com.mikepenz:iconics-core:1.5.0@aar'
 }
 ```
 
@@ -48,10 +57,29 @@ Or use it on any text by using the simple builder pattern. Here's the shortest p
 ```java
 new Iconics.IconicsBuilder().ctx(this).on(YOUR_TEXT_VIEW).build();
 ```
+
+
+If you plan to use the Iconics font somewhere via an layout or via the string name of an icon, you will have to register the available fonts first. This is best done via a custom Application
+
+```java
+public class CustomApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Iconics.registerFont(new GoogleMaterial());
+        Iconics.registerFont(new FontAwesome());
+        //and all other fonts you want to use via your layouts
+    }
+}
+
+```
+
 Define icons in a text as following:
 ```gson
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
+
+###Usage in layouts
 
 There are also custom views which allow you to use an Android-Iconics icon out of the box. 
 
@@ -60,7 +88,7 @@ IconicsImageView
 <com.mikepenz.iconics.view.IconicsImageView
         android:layout_width="72dp"
         android:layout_height="72dp"
-        app:iiv_icon="gmd-favorite-outline"
+        app:iiv_icon="gmd-favorite-border"
         app:iiv_color="@android:color/holo_red_dark"
         />
 ```
@@ -95,10 +123,10 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz:iconics:1.3.0@aar'
+	compile 'com.mikepenz:iconics:1.5.0@aar'
 	compile 'com.mikepenz:octicons-typeface:2.2.0@aar'
 	compile 'com.mikepenz:meteocons-typeface:1.1.1@aar'
-	compile 'com.mikepenz:community-material-typeface:1.0.0@aar'
+	compile 'com.mikepenz:community-material-typeface:1.1.70@aar'
 }
 ```
 

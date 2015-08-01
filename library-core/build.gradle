@@ -25,5 +25,4 @@ if (project.hasProperty('pushall') || project.hasProperty('libraryonly')) {
 }
 
 dependencies {
-    compile project(':library-core')
 }
