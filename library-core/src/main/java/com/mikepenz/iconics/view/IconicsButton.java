@@ -21,28 +21,27 @@ import android.util.AttributeSet;
 import android.widget.Button;
 
 import com.mikepenz.iconics.Iconics;
-import com.mikepenz.iconics.typeface.FontAwesome;
 
 public class IconicsButton extends Button {
 
     public IconicsButton(Context context) {
         super(context);
         if (!isInEditMode()) {
-            setTypeface(new FontAwesome().getTypeface(context));
+            setTypeface(Iconics.getDefault().getTypeface(context));
         }
     }
 
     public IconicsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         if (!isInEditMode()) {
-            setTypeface(new FontAwesome().getTypeface(context));
+            setTypeface(Iconics.getDefault().getTypeface(context));
         }
     }
 
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         if (!isInEditMode()) {
-            setTypeface(new FontAwesome().getTypeface(context));
+            setTypeface(Iconics.getDefault().getTypeface(context));
         }
     }
 
