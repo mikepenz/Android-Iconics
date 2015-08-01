@@ -20,7 +20,7 @@ android {
         abortOnError false
     }
 }
-if (project.hasProperty('pushall') || project.hasProperty('libraryonly')) {
+if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
     apply from: '../gradle-mvn-push.gradle'
 }
 

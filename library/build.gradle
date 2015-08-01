@@ -25,5 +25,5 @@ if (project.hasProperty('pushall') || project.hasProperty('libraryonly')) {
 }
 
 dependencies {
-    compile "com.mikepenz:iconics-core:1.5.1"
+    compile "com.mikepenz:iconics-core:1.5.0"
 }
