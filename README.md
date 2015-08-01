@@ -38,7 +38,7 @@ Provide your own font without the additional icons
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.5.1@aar'
+	compile 'com.mikepenz:iconics-core:1.5.2@aar'
 }
 ```
 
