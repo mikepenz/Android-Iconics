@@ -29,7 +29,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz:iconics:1.3.0@aar'
+	compile 'com.mikepenz:iconics:1.3.1@aar'
 }
 ```
 
