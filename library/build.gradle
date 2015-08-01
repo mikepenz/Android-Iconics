@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 150
-        versionName "1.5.0"
+        versionCode 151
+        versionName "1.5.1"
     }
     buildTypes {
         release {
@@ -25,5 +25,5 @@ if (project.hasProperty('pushall') || project.hasProperty('libraryonly')) {
 }
 
 dependencies {
-    compile project(':library-core')
+    compile "com.mikepenz:iconics-core:+"
 }
