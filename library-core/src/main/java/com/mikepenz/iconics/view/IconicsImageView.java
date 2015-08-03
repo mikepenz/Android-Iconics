@@ -45,10 +45,18 @@ public class IconicsImageView extends ImageView {
             // Attribute initialization
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView, defStyle, 0);
             String icon = a.getString(R.styleable.IconicsImageView_iiv_icon);
+
+            //set the color even if we had no image yet
+            mColor = a.getColor(R.styleable.IconicsImageView_iiv_color, 0);
+
+            //set the scale type for this view
+            setScaleType(ScaleType.CENTER_INSIDE);
+
+            //if we have no icon return now
             if (icon == null) {
                 return;
             }
-            mColor = a.getColor(R.styleable.IconicsImageView_iiv_color, 0);
+
             int mSize = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
             int mPadding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
 
@@ -63,12 +71,10 @@ public class IconicsImageView extends ImageView {
             if (mSize != -1) {
                 mIcon.paddingPx(mPadding);
             }
-
             a.recycle();
 
             //set our values for this view
             setImageDrawable(mIcon);
-            setScaleType(ScaleType.CENTER_INSIDE);
         }
     }
 
