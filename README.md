@@ -15,7 +15,7 @@ __ **UPGRADE FROM < 1.5.0:**
 * there is now a core package which comes without included fonts
 * the basic package comes with GoogleMaterial and FontAwesome
 * it is now required to register the fonts you want to use via xml (or via string)
- * see here: 
+ * see here: https://github.com/mikepenz/Android-Iconics/blob/develop/README.md#register-included-fonts
 
 
 Let's start with some awesome screenshots ;)
