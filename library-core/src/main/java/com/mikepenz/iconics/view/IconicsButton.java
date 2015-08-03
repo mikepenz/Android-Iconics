@@ -27,21 +27,21 @@ public class IconicsButton extends Button {
     public IconicsButton(Context context) {
         super(context);
         if (!isInEditMode()) {
-            setTypeface(Iconics.getDefault().getTypeface(context));
+            setTypeface(Iconics.getDefault(context).getTypeface(context));
         }
     }
 
     public IconicsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         if (!isInEditMode()) {
-            setTypeface(Iconics.getDefault().getTypeface(context));
+            setTypeface(Iconics.getDefault(context).getTypeface(context));
         }
     }
 
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         if (!isInEditMode()) {
-            setTypeface(Iconics.getDefault().getTypeface(context));
+            setTypeface(Iconics.getDefault(context).getTypeface(context));
         }
     }
 
