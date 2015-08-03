@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts().size());
+        ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts(this).size());
         //add all icons of all registered Fonts to the list
-        for (ITypeface font : Iconics.getRegisteredFonts()) {
+        for (ITypeface font : Iconics.getRegisteredFonts(this)) {
             items.add(new PrimaryDrawerItem().withName(font.getFontName()));
         }
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts()).get(i);
+                        ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts(MainActivity.this)).get(i);
                         loadIcons(font.getFontName());
 
                         getSupportActionBar().setTitle(font.getFontName());

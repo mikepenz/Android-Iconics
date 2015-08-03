@@ -62,7 +62,7 @@ public class IconsFragment extends Fragment {
         if (getArguments() != null) {
             String fontName = getArguments().getString(FONT_NAME);
 
-            for (ITypeface iTypeface : Iconics.getRegisteredFonts()) {
+            for (ITypeface iTypeface : Iconics.getRegisteredFonts(getActivity())) {
                 if (iTypeface.getFontName().equalsIgnoreCase(fontName)) {
                     if (iTypeface.getIcons() != null) {
                         for (String icon : iTypeface.getIcons()) {
@@ -87,7 +87,7 @@ public class IconsFragment extends Fragment {
         }
 
         Log.i("IconsFragment", "icons-size: " + icons.size() + "\n" +
-                               "tmp-size: " + tmpList.size());
+                "tmp-size: " + tmpList.size());
 
         mAdapter.clear();
         mAdapter.setIcons(tmpList);

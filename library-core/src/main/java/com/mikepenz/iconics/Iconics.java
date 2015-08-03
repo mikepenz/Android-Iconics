@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
+import com.mikepenz.iconics.utils.GenericsUtil;
 import com.mikepenz.iconics.utils.IconicsTypefaceSpan;
 
 import java.util.ArrayList;
@@ -39,22 +40,44 @@ import java.util.List;
 public final class Iconics {
     public static final String TAG = Iconics.class.getSimpleName();
 
-    private static HashMap<String, ITypeface> FONTS = new HashMap<String, ITypeface>();
+    private static HashMap<String, ITypeface> FONTS;
+
+    public static void init(Context ctx) {
+        String[] fonts = GenericsUtil.getFields(ctx);
+
+        FONTS = new HashMap<>();
+        for (String fontsClassPath : fonts) {
+            try {
+                ITypeface typeface = (ITypeface) Class.forName(fontsClassPath).newInstance();
+                FONTS.put(typeface.getMappingPrefix(), typeface);
+            } catch (Exception e) {
+                Log.e("Android-Iconics", "Can't init: " + fontsClassPath);
+            }
+        }
+    }
 
     public static boolean registerFont(ITypeface font) {
         FONTS.put(font.getMappingPrefix(), font);
         return true;
     }
 
-    public static ITypeface getDefault() {
-        if (FONTS.size() > 0) {
+    public static ITypeface getDefault(Context ctx) {
+        if (FONTS == null) {
+            init(ctx);
+        }
+
+        if (FONTS != null && FONTS.size() > 0) {
             return FONTS.entrySet().iterator().next().getValue();
         } else {
             throw new RuntimeException("You have to provide at least one Typeface to use this functionality");
         }
     }
 
-    public static Collection<ITypeface> getRegisteredFonts() {
+    public static Collection<ITypeface> getRegisteredFonts(Context ctx) {
+        if (FONTS == null) {
+            init(ctx);
+        }
+
         return FONTS.values();
     }
 
@@ -71,6 +94,10 @@ public final class Iconics {
     }
 
     private static SpannableString style(Context ctx, HashMap<String, ITypeface> fonts, SpannableString textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
+        if (FONTS == null) {
+            init(ctx);
+        }
+
         if (fonts == null || fonts.size() == 0) {
             fonts = FONTS;
         }
