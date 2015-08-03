@@ -11,12 +11,9 @@ Android-Iconics is a library to use (almost) any alternative iconfont in your pr
 - Octicons
 - Community Material Icons
 
-__ **UPGRADE FROM < 1.5.0:**
+__ **UPGRADE FROM < 1.6.0:**
 * there is now a core package which comes without included fonts
 * the basic package comes with GoogleMaterial and FontAwesome
-* it is now required to register the fonts you want to use via xml (or via string)
- * see here: https://github.com/mikepenz/Android-Iconics/blob/develop/README.md#register-included-fonts
-
 
 Let's start with some awesome screenshots ;)
 
@@ -29,7 +26,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics:1.5.2@aar'
+	compile 'com.mikepenz:iconics:1.6.0@aar'
 }
 ```
 
@@ -38,7 +35,7 @@ Provide your own font without the additional icons
 
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.5.2@aar'
+	compile 'com.mikepenz:iconics-core:1.6.0@aar'
 }
 ```
 
@@ -58,28 +55,37 @@ Or use it on any text by using the simple builder pattern. Here's the shortest p
 new Iconics.IconicsBuilder().ctx(this).on(YOUR_TEXT_VIEW).build();
 ```
 
+Define icons in a text as following:
+```gson
+Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
+```
 
-###Register included fonts
+###Register fonts
 
-If you plan to use the Iconics font somewhere via an layout or via the string name of an icon, you will have to register the available fonts first. This is best done via a custom Application
-
+If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the `Application`.
 ```java
 public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Iconics.registerFont(new GoogleMaterial());
-        Iconics.registerFont(new FontAwesome());
-        //and all other fonts you want to use via your layouts
+
+        //only required if you add a custom or generic font on your own
+        Iconics.init(getApplicationContext());
+
+        //register custom fonts like this (or also provide a font definition file)
+        Iconics.registerFont(new CustomFont());
+
+        //Generic font creation process
+        GenericFont gf2 = new GenericFont("gmf", "fonts/materialdrawerfont.ttf");
+        gf2.registerIcon("person", '\ue800');
+        gf2.registerIcon("up", '\ue801');
+        gf2.registerIcon("down", '\ue802');
+        Iconics.registerFont(gf2);
     }
 }
 
 ```
 
-Define icons in a text as following:
-```gson
-Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
-```
 
 ###Usage in layouts
 
@@ -125,10 +131,10 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz:iconics:1.5.2@aar'
-	compile 'com.mikepenz:octicons-typeface:2.2.0@aar'
-	compile 'com.mikepenz:meteocons-typeface:1.1.1@aar'
-	compile 'com.mikepenz:community-material-typeface:1.1.70@aar'
+	compile 'com.mikepenz:iconics:1.6.0@aar'
+	compile 'com.mikepenz:octicons-typeface:2.2.1@aar'
+	compile 'com.mikepenz:meteocons-typeface:1.1.2@aar'
+	compile 'com.mikepenz:community-material-typeface:1.1.71@aar'
 }
 ```
 
