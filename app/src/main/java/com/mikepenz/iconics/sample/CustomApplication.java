@@ -4,6 +4,7 @@ package com.mikepenz.iconics.sample;
 import android.app.Application;
 
 import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.sample.typeface.CustomFont;
 import com.mikepenz.iconics.typeface.GenericFont;
 
 public class CustomApplication extends Application {
@@ -14,6 +15,9 @@ public class CustomApplication extends Application {
 
         //only required if you add a custom or generic font on your own
         Iconics.init(getApplicationContext());
+
+        //register custom fonts like this (or also provide a font definition file)
+        Iconics.registerFont(new CustomFont());
 
         //Generic font creation process
         GenericFont gf2 = new GenericFont("gmf", "fonts/materialdrawerfont.ttf");
