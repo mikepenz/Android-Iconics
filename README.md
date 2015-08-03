@@ -11,12 +11,12 @@ Android-Iconics is a library to use (almost) any alternative iconfont in your pr
 - Octicons
 - Community Material Icons
 
-__ **UPGRADE FROM < 1.0.0:**
-The package of the views was changed to `com.mikepenz.iconics.view.*`.
-Changed maven group. The group was changed from `com.mikepenz.iconics` to `com.mikepenz`. You can get all updates via the new one `compile 'com.mikepenz:iconics:1.0.1@aar'` (also check to update your typeface addon dependencies)
+__ **UPGRADE FROM < 1.5.0:**
+* there is now a core package which comes without included fonts
+* the basic package comes with GoogleMaterial and FontAwesome
+* it is now required to register the fonts you want to use via xml (or via string)
+ * see here: https://github.com/mikepenz/Android-Iconics/blob/develop/README.md#register-included-fonts
 
-
-__ **NOTE:** UPGRADE FROM < 0.7.5 Remove the `Google Material Design Icons` from your dependencies because it's now default and included within the main Android-Iconics package
 
 Let's start with some awesome screenshots ;)
 
@@ -27,7 +27,7 @@ Let's start with some awesome screenshots ;)
 ##Include in your project
 The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your `build.gradle`.
 
-```javascript
+```gradle
 dependencies {
 	compile 'com.mikepenz:iconics:1.5.2@aar'
 }
@@ -36,7 +36,7 @@ dependencies {
 ##Only the core
 Provide your own font without the additional icons
 
-```javascript
+```gradle
 dependencies {
 	compile 'com.mikepenz:iconics-core:1.5.2@aar'
 }
@@ -58,6 +58,8 @@ Or use it on any text by using the simple builder pattern. Here's the shortest p
 new Iconics.IconicsBuilder().ctx(this).on(YOUR_TEXT_VIEW).build();
 ```
 
+
+###Register included fonts
 
 If you plan to use the Iconics font somewhere via an layout or via the string name of an icon, you will have to register the available fonts first. This is best done via a custom Application
 
