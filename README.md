@@ -26,7 +26,7 @@ The Android-Iconics Library is pushed to [Maven Central], so you just need to ad
 
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics:1.6.0@aar'
+	compile 'com.mikepenz:iconics:1.6.1@aar'
 }
 ```
 
@@ -35,7 +35,7 @@ Provide your own font without the additional icons
 
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.6.0@aar'
+	compile 'com.mikepenz:iconics-core:1.6.1@aar'
 }
 ```
 
@@ -131,7 +131,7 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz:iconics:1.6.0@aar'
+	compile 'com.mikepenz:iconics:1.6.1@aar'
 	compile 'com.mikepenz:octicons-typeface:2.2.1@aar'
 	compile 'com.mikepenz:meteocons-typeface:1.1.2@aar'
 	compile 'com.mikepenz:community-material-typeface:1.1.71@aar'
