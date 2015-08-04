@@ -1,5 +1,7 @@
 #Android-Iconics  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1164)
 
+[![Join the chat at https://gitter.im/mikepenz/Android-Iconics](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mikepenz/Android-Iconics?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.
 
 *Fonts included by default:*
@@ -11,12 +13,9 @@ Android-Iconics is a library to use (almost) any alternative iconfont in your pr
 - Octicons
 - Community Material Icons
 
-__ **UPGRADE FROM < 1.0.0:**
-The package of the views was changed to `com.mikepenz.iconics.view.*`.
-Changed maven group. The group was changed from `com.mikepenz.iconics` to `com.mikepenz`. You can get all updates via the new one `compile 'com.mikepenz:iconics:1.0.1@aar'` (also check to update your typeface addon dependencies)
-
-
-__ **NOTE:** UPGRADE FROM < 0.7.5 Remove the `Google Material Design Icons` from your dependencies because it's now default and included within the main Android-Iconics package
+__ **UPGRADE FROM < 1.6.0:**
+* there is now a core package which comes without included fonts
+* the basic package comes with GoogleMaterial and FontAwesome
 
 Let's start with some awesome screenshots ;)
 
@@ -27,9 +26,18 @@ Let's start with some awesome screenshots ;)
 ##Include in your project
 The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your `build.gradle`.
 
-```javascript
+```gradle
 dependencies {
-	compile 'com.mikepenz:iconics:1.1.0@aar'
+	compile 'com.mikepenz:iconics:1.6.2@aar'
+}
+```
+
+##Only the core
+Provide your own font without the additional icons
+
+```gradle
+dependencies {
+	compile 'com.mikepenz:iconics-core:1.6.2@aar'
 }
 ```
 
@@ -48,10 +56,40 @@ Or use it on any text by using the simple builder pattern. Here's the shortest p
 ```java
 new Iconics.IconicsBuilder().ctx(this).on(YOUR_TEXT_VIEW).build();
 ```
+
 Define icons in a text as following:
 ```gson
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
+
+###Register fonts
+
+If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the `Application`.
+```java
+public class CustomApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        //only required if you add a custom or generic font on your own
+        Iconics.init(getApplicationContext());
+
+        //register custom fonts like this (or also provide a font definition file)
+        Iconics.registerFont(new CustomFont());
+
+        //Generic font creation process
+        GenericFont gf2 = new GenericFont("gmf", "fonts/materialdrawerfont.ttf");
+        gf2.registerIcon("person", '\ue800');
+        gf2.registerIcon("up", '\ue801');
+        gf2.registerIcon("down", '\ue802');
+        Iconics.registerFont(gf2);
+    }
+}
+
+```
+
+
+###Usage in layouts
 
 There are also custom views which allow you to use an Android-Iconics icon out of the box. 
 
@@ -60,7 +98,7 @@ IconicsImageView
 <com.mikepenz.iconics.view.IconicsImageView
         android:layout_width="72dp"
         android:layout_height="72dp"
-        app:iiv_icon="gmd-favorite-outline"
+        app:iiv_icon="gmd-favorite-border"
         app:iiv_color="@android:color/holo_red_dark"
         />
 ```
@@ -95,10 +133,10 @@ Just add the dependency of any and as many typface-library-addons in your build.
 
 ```javascript
 dependencies {
-	compile 'com.mikepenz:iconics:1.1.0@aar'
-	compile 'com.mikepenz:octicons-typeface:2.2.0@aar'
-	compile 'com.mikepenz:meteocons-typeface:1.1.1@aar'
-	compile 'com.mikepenz:community-material-typeface:1.0.0@aar'
+	compile 'com.mikepenz:iconics:1.6.2@aar'
+	compile 'com.mikepenz:octicons-typeface:2.2.1@aar'
+	compile 'com.mikepenz:meteocons-typeface:1.1.2@aar'
+	compile 'com.mikepenz:community-material-typeface:1.1.71@aar'
 }
 ```
 
