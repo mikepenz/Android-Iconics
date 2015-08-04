@@ -81,7 +81,11 @@ public final class Iconics {
         return FONTS.values();
     }
 
-    public static ITypeface findFont(String key) {
+    public static ITypeface findFont(Context ctx, String key) {
+        if (FONTS == null) {
+            init(ctx);
+        }
+
         return FONTS.get(key);
     }
 
