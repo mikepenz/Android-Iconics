@@ -2,10 +2,9 @@
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/banner.png)
 
-> If you are an app developer you will know the problem. You start an app but require many different icons, in different sizes (ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi), different colors, and different variants.
-If you get the icons as vector (.svg) or there are many changes over the time, you will always have to get the correct drawables again.
-
-**This consumes a lot of time!**
+> If you are an app developer you will know the problem. You start an app but require many different icons, in different sizes (**ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi**), **different colors**, and **different variants**.
+If you get the icons as **vector** (.svg) or there are many changes over the time, you will always have to get the correct drawables again.
+> **This consumes a lot of time!**
 
 Now there's an **easy, fast, and small** solution for this! The **Android-Iconics** library.
 
