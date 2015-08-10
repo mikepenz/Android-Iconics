@@ -17,11 +17,11 @@ Use the icons in the variation you need them.
 **What do you get**
 - No customization limitations (size, color, contour, background, padding, positioning, ...)
 - One icon source (no more mdpi, hdpi, ...)
--
+- Flexibility
 - If it takes an Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
 
-**There are already a lot of available fonts**
+**Already available fonts**
 - FontAwesome
 - Material Design Icons
 - Meteocons
@@ -142,6 +142,10 @@ public class CustomApplication extends Application {
 }
 
 ```
+
+###Create custom fonts using [Fontello](http://fontello.com)
+
+Chapter will be added soon
 
 ###Advanced IconicsBuilder
 Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
