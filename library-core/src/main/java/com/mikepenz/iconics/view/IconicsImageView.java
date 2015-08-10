@@ -18,6 +18,9 @@ package com.mikepenz.iconics.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -29,7 +32,6 @@ public class IconicsImageView extends ImageView {
 
     private IconicsDrawable mIcon = null;
     private int mColor = 0;
-
 
     public IconicsImageView(Context context) {
         this(context, null);
@@ -94,15 +96,93 @@ public class IconicsImageView extends ImageView {
         setImageDrawable(mIcon);
     }
 
-    public void setColor(int color) {
+    public void setColor(@ColorInt int color) {
         if (getDrawable() instanceof IconicsDrawable) {
             ((IconicsDrawable) getDrawable()).color(color);
         }
     }
 
-    public void setColorRes(int colorRes) {
+    public void setColorRes(@ColorRes int colorRes) {
         if (getDrawable() instanceof IconicsDrawable) {
             ((IconicsDrawable) getDrawable()).colorRes(colorRes);
+        }
+    }
+
+    public void setPaddingPx(int padding) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).paddingPx(padding);
+        }
+    }
+
+    public void setPaddingDp(int paddingDp) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).paddingDp(paddingDp);
+        }
+    }
+
+    public void setPaddingRes(@DimenRes int paddingRes) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).paddingRes(paddingRes);
+        }
+    }
+
+    public void setContourColor(@ColorInt int color) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).contourColor(color);
+        }
+    }
+
+    public void setContourColorRes(@ColorRes int colorRes) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).contourColorRes(colorRes);
+        }
+    }
+
+    public void setContourWidthPx(int padding) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).contourWidthPx(padding);
+        }
+    }
+
+    public void setContourWidthDp(int paddingDp) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).contourWidthDp(paddingDp);
+        }
+    }
+
+    public void setContourWidthRes(@DimenRes int paddingRes) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).contourWidthRes(paddingRes);
+        }
+    }
+
+    public void setBackgroundColor(@ColorInt int color) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).backgroundColor(color);
+        }
+    }
+
+    public void setBackgroundColorRes(@ColorRes int colorRes) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).backgroundColorRes(colorRes);
+        }
+    }
+
+    public void setRoundedCornersPx(int padding) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).roundedCornersDp(padding);
+        }
+    }
+
+    public void setRoundedCornersDp(int paddingDp) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).roundedCornersDp(paddingDp);
+        }
+    }
+
+    public void setRoundedCornersRes(@DimenRes int paddingRes) {
+        if (getDrawable() instanceof IconicsDrawable) {
+            ((IconicsDrawable) getDrawable()).roundedCornersPx(paddingRes);
         }
     }
 
