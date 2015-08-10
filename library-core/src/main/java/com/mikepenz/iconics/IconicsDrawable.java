@@ -44,6 +44,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
@@ -104,9 +105,13 @@ public class IconicsDrawable extends Drawable {
         mContext = context.getApplicationContext();
         prepare();
 
-        ITypeface font = Iconics.findFont(context, icon.substring(0, 3));
-        icon = icon.replace("-", "_");
-        icon(font.getIcon(icon));
+        try {
+            ITypeface font = Iconics.findFont(context, icon.substring(0, 3));
+            icon = icon.replace("-", "_");
+            icon(font.getIcon(icon));
+        } catch (Exception ex) {
+            Log.e(Iconics.TAG, "Wrong icon name: " + icon);
+        }
     }
 
     public IconicsDrawable(Context context, final IIcon icon) {
