@@ -4,6 +4,7 @@
 
 > If you are an app developer you will know the problem. You start an app but require many different icons, in different sizes (**ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi**), **different colors**, and **different variants**.
 If you get the icons as **vector** (.svg) or there are many changes over the time, you will always have to get the correct drawables again.
+
 > **This consumes a lot of time!**
 
 Now there's an **easy, fast, and small** solution for this! The **Android-Iconics** library.
@@ -16,8 +17,9 @@ Use the icons in the variation you need them.
 **What do you get**
 - No customization limitations (size, color, contour, background, padding, positioning, ...)
 - One icon source (no more mdpi, hdpi, ...)
-- Save in APK size
+-
 - If it takes an Drawable, it will also work with the IconicsDrawable!
+- Save in APK size
 
 **There are already a lot of available fonts**
 - FontAwesome
@@ -46,11 +48,11 @@ dependencies {
 
 ##2. Choose your desired fonts
 ```gradle
-	compile 'com.mikepenz:google-material-typeface:1.2.0@aar'
-	compile 'com.mikepenz:fontawesome:4.4.0@aar'
-	compile 'com.mikepenz:octicons-typeface:2.2.1@aar'
-	compile 'com.mikepenz:meteocons-typeface:1.1.2@aar'
-	compile 'com.mikepenz:community-material-typeface:1.1.71@aar'
+compile 'com.mikepenz:google-material-typeface:1.2.0@aar'
+compile 'com.mikepenz:fontawesome:4.4.0@aar'
+compile 'com.mikepenz:octicons-typeface:2.2.1@aar'
+compile 'com.mikepenz:meteocons-typeface:1.1.2@aar'
+compile 'com.mikepenz:community-material-typeface:1.1.71@aar'
 ```
 
 #Usage
