@@ -23,8 +23,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 111
-        versionName "1.1.1"
+        versionCode 120
+        versionName "1.2.0"
     }
     buildTypes {
         release {
@@ -38,5 +38,5 @@ if (project.hasProperty('pushall') || project.hasProperty('googlematerialonly'))
 }
 
 dependencies {
-    compile project(':library')
+    compile project(':library-core')
 }

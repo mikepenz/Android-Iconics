@@ -18,10 +18,13 @@
  * <p/>
  * http://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=OFL_plaintext&filename=OFL.txt
  */
-package com.mikepenz.iconics.typeface;
+package com.mikepenz.fontawesome_typeface_library;
 
 import android.content.Context;
 import android.graphics.Typeface;
+
+import com.mikepenz.iconics.typeface.IIcon;
+import com.mikepenz.iconics.typeface.ITypeface;
 
 import java.util.Collection;
 import java.util.HashMap;

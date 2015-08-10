@@ -38,5 +38,5 @@ if (project.hasProperty('pushall') || project.hasProperty('octicons')) {
 }
 
 dependencies {
-    compile project(':library')
+    compile project(':library-core')
 }

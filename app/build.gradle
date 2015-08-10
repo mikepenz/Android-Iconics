@@ -61,7 +61,8 @@ dependencies {
     compile('com.mikepenz:aboutlibraries:5.0.9@aar')
     compile('com.mikepenz:materialdrawer:3.1.2@aar')
 
-    compile project(':library')
+    compile project(':fontawesome-typeface-library')
+    compile project(':google-material-typeface-library')
     compile project(':meteocons-typeface-library')
     compile project(':octicons-typeface-library')
     compile project(':community-material-typeface-library')
