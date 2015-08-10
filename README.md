@@ -1,36 +1,26 @@
 #Android-Iconics  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1164)
 
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/github/banner.png)
+![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/banner.png)
 
-If you are an app developer you will know the problem. You start an app but require many different icons, in different sizes (ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi), different colors, and different variants.
+> If you are an app developer you will know the problem. You start an app but require many different icons, in different sizes (ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi), different colors, and different variants.
 If you get the icons as vector (.svg) or there are many changes over the time, you will always have to get the correct drawables again.
 
-*This consumes time!*
+**This consumes a lot of time!**
 
-But now there's an **easy, fast, and small** solution for this!
-
-The **Android-Iconics** library.
+Now there's an **easy, fast, and small** solution for this! The **Android-Iconics** library.
 
 This library allows you to include vector icons everywhere in your project. No limits are given.
 **Scale with no limit**, use **any Color** at any time, provide a **contour**, and many additional customizations...
 
 Use the icons in the variation you need them.
 
-
 **What do you get**
-- Save in APK size
+- No customization limitations (size, color, contour, background, padding, positioning, ...)
 - One icon source (no more mdpi, hdpi, ...)
-- No customization limitations
- - Size
- - Color
- - Contour
- - Background
- - Padding
- - Positioning
+- Save in APK size
 - If it takes an Drawable, it will also work with the IconicsDrawable!
 
-
-**This library supports already many available fonts:**
+**There are already a lot of available fonts**
 - FontAwesome
 - Material Design Icons
 - Meteocons
@@ -41,9 +31,9 @@ Use the icons in the variation you need them.
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
 
 
-__ **UPGRADE FROM < 2.0.0:**
-* there is now a core package which comes without included fonts
-* provide the fonts you need. no additional steps required
+> UPGRADE < v2.0.0
+>* there is now a core package which comes without included fonts
+>* provide the fonts you need. no additional steps required
 
 
 #Setup
