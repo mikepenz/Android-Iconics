@@ -11,6 +11,10 @@
         app:showAsAction="collapseActionView|ifRoom" />
 
     <item
+        android:id="@+id/action_randomize"
+        android:checkable="true"
+        android:title="@string/action_randomize" />
+    <item
         android:id="@+id/action_opensource"
         android:title="@string/action_opensource"
         app:showAsAction="never" />

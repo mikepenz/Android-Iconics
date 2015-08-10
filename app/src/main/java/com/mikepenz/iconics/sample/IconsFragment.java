@@ -26,7 +26,7 @@ public class IconsFragment extends Fragment {
     private static final String FONT_NAME = "FONT_NAME";
     private ArrayList<String> icons = new ArrayList<String>();
     private IconAdapter mAdapter;
-
+    private boolean randomize;
 
     public static IconsFragment newInstance(String fontName) {
         Bundle bundle = new Bundle();
@@ -40,6 +40,13 @@ public class IconsFragment extends Fragment {
         return fragment;
     }
 
+    public void randomize(boolean randomize) {
+        this.randomize = randomize;
+        if (this.mAdapter != null) {
+            this.mAdapter.setRandomized(this.randomize);
+            this.mAdapter.notifyDataSetChanged();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,7 +63,7 @@ public class IconsFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         //animator not yet working
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new IconAdapter(new ArrayList<String>(), R.layout.row_icon);
+        mAdapter = new IconAdapter(randomize, new ArrayList<String>(), R.layout.row_icon);
         recyclerView.setAdapter(mAdapter);
 
         if (getArguments() != null) {
@@ -68,7 +75,7 @@ public class IconsFragment extends Fragment {
                         for (String icon : iTypeface.getIcons()) {
                             icons.add(icon);
                         }
-                        mAdapter.setIcons(icons);
+                        mAdapter.setIcons(randomize, icons);
                         break;
                     }
                 }
@@ -90,7 +97,7 @@ public class IconsFragment extends Fragment {
                 "tmp-size: " + tmpList.size());
 
         mAdapter.clear();
-        mAdapter.setIcons(tmpList);
+        mAdapter.setIcons(randomize, tmpList);
         mAdapter.notifyDataSetChanged();
     }
 
