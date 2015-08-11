@@ -28,7 +28,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 .withDrawerItems(items)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
-                    public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
+                    public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
                         ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts(MainActivity.this)).get(i);
                         loadIcons(font.getFontName());
 
