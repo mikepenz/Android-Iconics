@@ -140,13 +140,20 @@ public class IconicsDrawable extends Drawable {
     }
 
     /**
-     * Loads and draws given.
+     * Loads and draws given text
      *
      * @param icon
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable icon(Character icon) {
-        return icon(icon.toString());
+    public IconicsDrawable icon(String icon) {
+        try {
+            ITypeface font = Iconics.findFont(mContext, icon.substring(0, 3));
+            icon = icon.replace("-", "_");
+            icon(font.getIcon(icon));
+        } catch (Exception ex) {
+            Log.e(Iconics.TAG, "Wrong icon name: " + icon);
+        }
+        return this;
     }
 
     /**
@@ -155,7 +162,17 @@ public class IconicsDrawable extends Drawable {
      * @param icon
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable icon(String icon) {
+    public IconicsDrawable icon(Character icon) {
+        return iconText(icon.toString());
+    }
+
+    /**
+     * Loads and draws given text
+     *
+     * @param icon
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable iconText(String icon) {
         mPlainIcon = icon;
         mIcon = null;
         mIconPaint.setTypeface(Typeface.DEFAULT);
