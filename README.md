@@ -114,6 +114,23 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png)
 
 
+#Available fonts
+* [Fontawesome](http://fontawesome.io)
+  * "faw"
+  * DEFAULT
+* [Google Material Design Icons](https://github.com/google/material-design-icons)
+  * "gmd"
+  * DEFAULT
+* [Meteocons](http://www.alessioatzeni.com/meteocons/)
+  * "met"
+  * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
+* [Octicons](https://github.com/github/octicons)
+  * "oct"
+  * compile 'com.mikepenz.iconics:octicons-typeface:+@aar'
+* [Community Material](http://materialdesignicons.com/)
+  * "cmd"
+  * compile 'com.mikepenz.iconics:community-material-typeface:+@aar'
+
 
 #Advanced Usage
 
@@ -131,17 +148,31 @@ public class CustomApplication extends Application {
 
         //register custom fonts like this (or also provide a font definition file)
         Iconics.registerFont(new CustomFont());
-
-        //Generic font creation process
-        GenericFont gf2 = new GenericFont("gmf", "fonts/materialdrawerfont.ttf");
-        gf2.registerIcon("person", '\ue800');
-        gf2.registerIcon("up", '\ue801');
-        gf2.registerIcon("down", '\ue802');
-        Iconics.registerFont(gf2);
     }
 }
 
 ```
+
+###Advanced IconicsBuilder
+Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
+Just define the style for all icons or only a specific one. You can find this in the PlaygroundActivity of the sample too.
+```java
+new Iconics.IconicsBuilder().ctx(this)
+                .style(new ForegroundColorSpan(Color.WHITE), new BackgroundColorSpan(Color.BLACK), new RelativeSizeSpan(2f))
+                .styleFor(FontAwesome.Icon.faw_adjust, new BackgroundColorSpan(Color.RED))
+                .on(tv1)
+                .build();
+```
+
+###String icon-key or typeface enum
+Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:
+```java
+  new IconicsDrawable(this, "faw-adjust").actionBarSize()
+```
+```java
+  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust).sizeDp(24)
+```
+
 
 ###Create custom fonts using [Fontello](http://fontello.com) or [IcoMoon](http://icomoon.io)
 
@@ -282,44 +313,6 @@ public class CustomFont implements ITypeface {
     }
 }
 ```
-
-###Advanced IconicsBuilder
-Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
-Just define the style for all icons or only a specific one. You can find this in the PlaygroundActivity of the sample too.
-```java
-new Iconics.IconicsBuilder().ctx(this)
-                .style(new ForegroundColorSpan(Color.WHITE), new BackgroundColorSpan(Color.BLACK), new RelativeSizeSpan(2f))
-                .styleFor(FontAwesome.Icon.faw_adjust, new BackgroundColorSpan(Color.RED))
-                .on(tv1)
-                .build();
-```
-
-###String icon-key or typeface enum
-Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:
-```java
-  new IconicsDrawable(this, "faw-adjust").actionBarSize()
-```
-```java
-  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust).sizeDp(24)
-```
-
-#Available fonts
-* [Fontawesome](http://fontawesome.io)
-  * "faw"
-  * DEFAULT
-* [Google Material Design Icons](https://github.com/google/material-design-icons)
-  * "gmd"
-  * DEFAULT
-* [Meteocons](http://www.alessioatzeni.com/meteocons/)
-  * "met"
-  * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
-* [Octicons](https://github.com/github/octicons)
-  * "oct"
-  * compile 'com.mikepenz.iconics:octicons-typeface:+@aar'
-* [Community Material](http://materialdesignicons.com/)
-  * "cmd"
-  * compile 'com.mikepenz.iconics:community-material-typeface:+@aar'
-
 
 #Demo
 You can try the sample application out. It's on Google Play ;)
