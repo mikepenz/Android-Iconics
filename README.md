@@ -42,7 +42,7 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.6.2@aar'
+	compile 'com.mikepenz:iconics-core:1.7.0@aar'
 }
 ```
 
@@ -50,9 +50,9 @@ dependencies {
 ```gradle
 compile 'com.mikepenz:google-material-typeface:1.2.0@aar'
 compile 'com.mikepenz:fontawesome:4.4.0@aar'
-compile 'com.mikepenz:octicons-typeface:2.2.1@aar'
-compile 'com.mikepenz:meteocons-typeface:1.1.2@aar'
-compile 'com.mikepenz:community-material-typeface:1.1.71@aar'
+compile 'com.mikepenz:octicons-typeface:2.2.2@aar'
+compile 'com.mikepenz:meteocons-typeface:1.1.3@aar'
+compile 'com.mikepenz:community-material-typeface:1.1.72@aar'
 ```
 
 #Usage
@@ -191,7 +191,7 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 
 #Credits
-- [Joan Zapata](https://github.com/JoanZapata) He is the creator of [Android-Iconify](https://github.com/JoanZapata/android-iconify) which gave me the idea of this project. It implements some really great concepts, and i only tried to improve them and give it some more flexibility.
+- [Joan Zapata](https://github.com/JoanZapata) He is the creator of [Android-Iconify](https://github.com/JoanZapata/android-iconify) which gave me the idea of this project. Some core concepts and ideas were reused, but everything is written from scratch.
 
 
 #Developed By
