@@ -5,14 +5,14 @@
     <title>Android-iconics by mikepenz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
     <section class="page-header">
       <h1 class="project-name">Android-iconics</h1>
-      <h2 class="project-tagline">Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.</h2>
+      <h2 class="project-tagline">Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application.</h2>
       <a href="https://github.com/mikepenz/Android-Iconics" class="btn">View on GitHub</a>
       <a href="https://github.com/mikepenz/Android-Iconics/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/mikepenz/Android-Iconics/tarball/master" class="btn">Download .tar.gz</a>
@@ -23,73 +23,110 @@
 <a id="android-iconics---" class="anchor" href="#android-iconics---" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android-Iconics  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://android-arsenal.com/details/1/1164"><img src="https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat" alt="Android Arsenal"></a>
 </h1>
 
-<p>Android-Iconics is a library to use (almost) any alternative iconfont in your projects. It allows you to add any Android-Iconics compatible typeface-library-addon to your project and you are able to start using that font.</p>
+<p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/banner.png" alt="Image"></p>
 
-<p><em>Fonts included by default:</em></p>
+<blockquote>
+<p>If you are an app developer you will know the problem. You start an app but require many different icons, in different sizes (<strong>ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi</strong>), <strong>different colors</strong>, and <strong>different variants</strong>.
+If you get the icons as <strong>vector</strong> (.svg) or there are many changes over the time, you will always have to get the correct drawables again.</p>
+
+<p><strong>This consumes a lot of time!</strong></p>
+</blockquote>
+
+<p>Now there's an <strong>easy, fast, and small</strong> solution for this! The <strong>Android-Iconics</strong> library.</p>
+
+<p>This library allows you to include vector icons everywhere in your project. No limits are given.
+<strong>Scale with no limit</strong>, use <strong>any Color</strong> at any time, provide a <strong>contour</strong>, and many additional customizations...</p>
+
+<p>Use the icons in the variation you need them.</p>
+
+<p><strong>What do you get</strong></p>
+
+<ul>
+<li>No customization limitations (size, color, contour, background, padding, positioning, ...)</li>
+<li>One icon source (no more mdpi, hdpi, ...)</li>
+<li>Flexibility</li>
+<li>If it takes an Drawable, it will also work with the IconicsDrawable!</li>
+<li>Save in APK size</li>
+</ul>
+
+<p><strong>Already available fonts</strong></p>
 
 <ul>
 <li>FontAwesome</li>
 <li>Material Design Icons</li>
-</ul>
-
-<p><em>Fonts available as addon:</em></p>
-
-<ul>
 <li>Meteocons</li>
 <li>Octicons</li>
 <li>Community Material Icons</li>
 </ul>
 
-<p>__ <strong>UPGRADE FROM &lt; 1.0.0:</strong>
-The package of the views was changed to <code>com.mikepenz.iconics.view.*</code>.
-Changed maven group. The group was changed from <code>com.mikepenz.iconics</code> to <code>com.mikepenz</code>. You can get all updates via the new one <code>compile 'com.mikepenz:iconics:1.0.1@aar'</code> (also check to update your typeface addon dependencies)</p>
+<p><strong>Need more?</strong>
+Provide additional fonts for you project, or even create your custom font with just the icons you need.</p>
 
-<p>__ <strong>NOTE:</strong> UPGRADE FROM &lt; 0.7.5 Remove the <code>Google Material Design Icons</code> from your dependencies because it's now default and included within the main Android-Iconics package</p>
+<blockquote>
+<p>UPGRADE &lt; v2.0.0</p>
 
-<p>Let's start with some awesome screenshots ;)</p>
+<ul>
+<li>there is now a core package which comes without included fonts</li>
+<li>provide the fonts you need. no additional steps required</li>
+</ul>
+</blockquote>
 
-<p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.png" alt="Image">
-<img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png" alt="Image"></p>
+<h1>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h1>
 
 <h2>
-<a id="include-in-your-project" class="anchor" href="#include-in-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Include in your project</h2>
+<a id="1-provide-the-gradle-dependency" class="anchor" href="#1-provide-the-gradle-dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Provide the gradle dependency</h2>
 
-<p>The Android-Iconics Library is pushed to [Maven Central], so you just need to add the following dependency to your <code>build.gradle</code>.</p>
-
-<div class="highlight highlight-javascript"><pre>dependencies {
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics:1.3.0@aar<span class="pl-pds">'</span></span>
+<div class="highlight highlight-gradle"><pre><span class="pl-en">dependencies</span> {
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:1.7.0@aar<span class="pl-pds">'</span></span>
 }</pre></div>
 
 <h2>
-<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+<a id="2-choose-your-desired-fonts" class="anchor" href="#2-choose-your-desired-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Choose your desired fonts</h2>
 
-<p>Use it as Drawable anywhere. Create it like this:</p>
+<div class="highlight highlight-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:1.2.0@aar<span class="pl-pds">'</span></span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:fontawesome-typeface:4.4.0@aar<span class="pl-pds">'</span></span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:octicons-typeface:2.2.2@aar<span class="pl-pds">'</span></span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:meteocons-typeface:1.1.3@aar<span class="pl-pds">'</span></span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-material-typeface:1.1.72@aar<span class="pl-pds">'</span></span></pre></div>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_android)<span class="pl-k">.</span>color(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
 
-<p>You can use these icons in any IconicTextView just by defining the icon within the text. An example for FontAwesome looks like this: {faw-github}. You see pretty easy right?</p>
+<h2>
+<a id="use-as-drawable" class="anchor" href="#use-as-drawable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use as drawable</h2>
 
-<p>Or use it on any text by using the simple builder pattern. Here's the shortest possible sample:</p>
+<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>)
+    .icon(<span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_android)
+    .color(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>)
+    .sizeDp(<span class="pl-c1">24</span>)</pre></div>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">Iconics</span>.<span class="pl-smi">IconicsBuilder</span>()<span class="pl-k">.</span>ctx(<span class="pl-v">this</span>)<span class="pl-k">.</span>on(<span class="pl-c1">YOUR_TEXT_VIEW</span>)<span class="pl-k">.</span>build();</pre></div>
+<h2>
+<a id="use-via-xml" class="anchor" href="#use-via-xml" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use via XML</h2>
 
-<p>Define icons in a text as following:</p>
+<p>If you use the Iconics library via XML provide the icon you want to use in the following syntax: <code>gmd-favorite</code> --&gt; <code>fontId</code>-<code>iconName</code>. A list of the
+available fonts and their <code>fontId</code> can be found near the end of the README.md
+All icon names from the default fonts can be found via the <a href="https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample">DEMO</a> application.</p>
+
+<h3>
+<a id="as-imageview" class="anchor" href="#as-imageview" aria-hidden="true"><span class="octicon octicon-link"></span></a>As ImageView</h3>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsImageView
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_color</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/holo_red_dark<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_icon</span>=<span class="pl-s"><span class="pl-pds">"</span>gmd-favorite<span class="pl-pds">"</span></span> /&gt;</pre></div>
+
+<h3>
+<a id="as-text" class="anchor" href="#as-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>As Text</h3>
+
+<p>To use the icon within text use the <code>{</code> icon-definer <code>}</code> syntax</p>
 
 <pre lang="gson"><code>Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 </code></pre>
 
-<p>There are also custom views which allow you to use an Android-Iconics icon out of the box. </p>
-
-<p>IconicsImageView</p>
-
-<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsImageView
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
-        <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_icon</span>=<span class="pl-s"><span class="pl-pds">"</span>gmd-favorite-outline<span class="pl-pds">"</span></span>
-        <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_color</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/holo_red_dark<span class="pl-pds">"</span></span>
-        /&gt;</pre></div>
-
-<p>IconicsTextView</p>
+<h4>
+<a id="as-iconicstextview" class="anchor" href="#as-iconicstextview" aria-hidden="true"><span class="octicon octicon-link"></span></a>As IconicsTextView</h4>
 
 <div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsTextView
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz<span class="pl-pds">"</span></span>
@@ -98,69 +135,54 @@ Changed maven group. The group was changed from <code>com.mikepenz.iconics</code
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>56dp<span class="pl-pds">"</span></span>
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textSize</span>=<span class="pl-s"><span class="pl-pds">"</span>16sp<span class="pl-pds">"</span></span>/&gt;</pre></div>
 
-<p>IconicsButton</p>
+<h4>
+<a id="as-iconicsbutton" class="anchor" href="#as-iconicsbutton" aria-hidden="true"><span class="octicon octicon-link"></span></a>As IconicsButton</h4>
 
 <div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsButton
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>{faw-adjust} Button<span class="pl-pds">"</span></span>
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>120dp<span class="pl-pds">"</span></span>
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>60dp<span class="pl-pds">"</span></span>/&gt;</pre></div>
 
-<p>For more samples look at the source code of the sample.</p>
+<h1>
+<a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots</h1>
 
-<h2>
-<a id="use-typeface-library-addons" class="anchor" href="#use-typeface-library-addons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use typeface-library-addons</h2>
+<p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.png" alt="Image">
+<img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png" alt="Image"></p>
 
-<p>One basic function of this library is the feature to drop in new typefaces on the go. The default font of this project is FontAwesome (<a href="http://fontawesome.io">http://fontawesome.io</a>), but you can create and add as many as you like.</p>
-
-<p>The main idea is that the community can create libraries which can be used without the need of an extra library. </p>
-
-<p>So how does it work?
-Just add the dependency of any and as many typface-library-addons in your build.gradle just beneath the android-iconics dependency.</p>
-
-<div class="highlight highlight-javascript"><pre>dependencies {
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics:1.3.0@aar<span class="pl-pds">'</span></span>
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:octicons-typeface:2.2.0@aar<span class="pl-pds">'</span></span>
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:meteocons-typeface:1.1.1@aar<span class="pl-pds">'</span></span>
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-material-typeface:1.0.0@aar<span class="pl-pds">'</span></span>
-}</pre></div>
-
-<p>To enable them for the IconicsTextView too follow the steps under <a href="#register-typeface">Register typeface</a></p>
-
-<h2>
-<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced usage</h2>
+<h1>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Usage</h1>
 
 <h3>
-<a id="working-with-multiple-typeface-library-addons-and-icons" class="anchor" href="#working-with-multiple-typeface-library-addons-and-icons" aria-hidden="true"><span class="octicon octicon-link"></span></a>working with multiple typeface-library-addons and icons</h3>
+<a id="register-fonts" class="anchor" href="#register-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Register fonts</h3>
 
-<p>In some cases you will use multiple typefaces. It is really easy to decide which icon of which typeface-library-addon should be used. Each of those got a unique <strong>3-character</strong> long identifier which is the prefix of every single icon. 
-FontAwesome - "faw"
-Meteocons - "met"</p>
-
-<p>Evertime you want to use an icon in a text just write {faw-adjust}, ...</p>
-
-<h3>
-<a id="register-typeface" class="anchor" href="#register-typeface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Register typeface</h3>
-
-<p>In some cases you will love to use a typeface-library-addon in your IconicTextView and everywhere else without the need of adding it as typeface all the time.</p>
-
-<p>Just override your Application and register your additional fonts like this:</p>
+<p>If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the <code>Application</code>.</p>
 
 <div class="highlight highlight-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CustomApplication</span> <span class="pl-k">extends</span> <span class="pl-e">Application</span> {
     <span class="pl-k">@Override</span>
     <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onCreate</span>() {
         <span class="pl-v">super</span><span class="pl-k">.</span>onCreate();
-        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">Meteoconcs</span>());
-        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">Octicons</span>());
-        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">CommunityMaterial</span>());
+
+        <span class="pl-c">//only required if you add a custom or generic font on your own</span>
+        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>init(getApplicationContext());
+
+        <span class="pl-c">//register custom fonts like this (or also provide a font definition file)</span>
         <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">CustomFont</span>());
+
+        <span class="pl-c">//Generic font creation process</span>
+        <span class="pl-smi">GenericFont</span> gf2 <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">GenericFont</span>(<span class="pl-s"><span class="pl-pds">"</span>gmf<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>fonts/materialdrawerfont.ttf<span class="pl-pds">"</span></span>);
+        gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>person<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e800<span class="pl-pds">'</span></span>);
+        gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>up<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e801<span class="pl-pds">'</span></span>);
+        gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>down<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e802<span class="pl-pds">'</span></span>);
+        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(gf2);
     }
-}</pre></div>
+}
+</pre></div>
 
-<p>and set it in your AndroidManifest.xml as name</p>
+<h3>
+<a id="create-custom-fonts-using-fontello" class="anchor" href="#create-custom-fonts-using-fontello" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create custom fonts using <a href="http://fontello.com">Fontello</a>
+</h3>
 
-<div class="highlight highlight-java"><pre>    <span class="pl-k">&lt;</span>application
-        android<span class="pl-k">:</span>name<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>com.mikepenz.iconics.sample.CustomApplication<span class="pl-pds">"</span></span>
-        <span class="pl-c1">...</span></pre></div>
+<p>Chapter will be added soon</p>
 
 <h3>
 <a id="advanced-iconicsbuilder" class="anchor" href="#advanced-iconicsbuilder" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced IconicsBuilder</h3>
@@ -183,8 +205,8 @@ Just define the style for all icons or only a specific one. You can find this in
 
 <div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_adjust)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
 
-<h2>
-<a id="available-fonts" class="anchor" href="#available-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available fonts</h2>
+<h1>
+<a id="available-fonts" class="anchor" href="#available-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available fonts</h1>
 
 <ul>
 <li>
@@ -229,31 +251,18 @@ Just define the style for all icons or only a specific one. You can find this in
 </li>
 </ul>
 
-<h2>
-<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
+<h1>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h1>
 
 <p>You can try the sample application out. It's on Google Play ;)
 <a href="https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample">https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample</a></p>
 
-<h2>
-<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h2>
-
-<p>The easiest way to contribute is by creating a new typeface-library addon. This is a pretty easy step. Just look into the meteocons-typeface-library project within this repository. You will see you only need 2 things. The font itself (the .ttf file). And the Typeface definition which is an implementation of the ITypeface class. </p>
-
-<p>Just fill in the required information, create the mapping and it works. To help the users using your typeface-library-addon you should upload it to maven and let me know so i can add it to the list of available fonts. </p>
-
-<p>So the hardest part is to create the mapping. I also have a solution for this problem. 
-Just use the awesome service of <a href="http://fontello.com/">http://fontello.com/</a> create a typeface-library-addon of one of the provided fonts there or upload your own. If missing customize the names. Choose a good 3-character long prefix (css prefix under settings) and download the webfont. 
-This will include the .ttf to use, and a file called test-codes.css under css. This repository includes a small helper to create the enum-list for the Typeface definition class. (You can find it under /DEV/extractor). Just drop the test-codes.css in the same folder. rename it to test.css and run the extractor.js with node extractor.js. This will output the correct list.</p>
-
-<p>If something is unclear, don't be afraid to drop an e-mail, or create an github issue.</p>
-
-<h2>
-<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
+<h1>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h1>
 
 <ul>
 <li>
-<a href="https://github.com/JoanZapata">Joan Zapata</a> He is the creator of <a href="https://github.com/JoanZapata/android-iconify">Android-Iconify</a> which gave me the idea of this project. It implements some really great concepts, and i only tried to improve them and give it some more flexibility.</li>
+<a href="https://github.com/JoanZapata">Joan Zapata</a> He is the creator of <a href="https://github.com/JoanZapata/android-iconify">Android-Iconify</a> which gave me the idea of this project. Some core concepts and ideas were reused, but everything is written from scratch.</li>
 </ul>
 
 <h1>
@@ -303,4 +312,3 @@ limitations under the License.
 
   </body>
 </html>
-
