@@ -42,15 +42,15 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.7.0@aar'
+	compile 'com.mikepenz:iconics-core:1.7.1@aar'
 }
 ```
 
 ##2. Choose your desired fonts
 ```gradle
 compile 'com.mikepenz:google-material-typeface:1.2.0@aar'
-compile 'com.mikepenz:fontawesome:4.4.0@aar'
-compile 'com.mikepenz:octicons-typeface:2.2.2@aar'
+compile 'com.mikepenz:fontawesome-typeface:4.4.0@aar'
+compile 'com.mikepenz:octicons-typeface:3.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.3@aar'
 compile 'com.mikepenz:community-material-typeface:1.1.72@aar'
 ```
@@ -114,6 +114,23 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png)
 
 
+#Available fonts
+* [Fontawesome](http://fontawesome.io)
+  * "faw"
+  * DEFAULT
+* [Google Material Design Icons](https://github.com/google/material-design-icons)
+  * "gmd"
+  * DEFAULT
+* [Meteocons](http://www.alessioatzeni.com/meteocons/)
+  * "met"
+  * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
+* [Octicons](https://github.com/github/octicons)
+  * "oct"
+  * compile 'com.mikepenz.iconics:octicons-typeface:+@aar'
+* [Community Material](http://materialdesignicons.com/)
+  * "cmd"
+  * compile 'com.mikepenz.iconics:community-material-typeface:+@aar'
+
 
 #Advanced Usage
 
@@ -131,21 +148,10 @@ public class CustomApplication extends Application {
 
         //register custom fonts like this (or also provide a font definition file)
         Iconics.registerFont(new CustomFont());
-
-        //Generic font creation process
-        GenericFont gf2 = new GenericFont("gmf", "fonts/materialdrawerfont.ttf");
-        gf2.registerIcon("person", '\ue800');
-        gf2.registerIcon("up", '\ue801');
-        gf2.registerIcon("down", '\ue802');
-        Iconics.registerFont(gf2);
     }
 }
 
 ```
-
-###Create custom fonts using [Fontello](http://fontello.com)
-
-Chapter will be added soon
 
 ###Advanced IconicsBuilder
 Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
@@ -167,23 +173,146 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
   new IconicsDrawable(this, FontAwesome.Icon.faw_adjust).sizeDp(24)
 ```
 
-#Available fonts
-* [Fontawesome](http://fontawesome.io)
-  * "faw"
-  * DEFAULT
-* [Google Material Design Icons](https://github.com/google/material-design-icons)
-  * "gmd"
-  * DEFAULT
-* [Meteocons](http://www.alessioatzeni.com/meteocons/)
-  * "met"
-  * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
-* [Octicons](https://github.com/github/octicons)
-  * "oct"
-  * compile 'com.mikepenz.iconics:octicons-typeface:+@aar'
-* [Community Material](http://materialdesignicons.com/)
-  * "cmd"
-  * compile 'com.mikepenz.iconics:community-material-typeface:+@aar'
 
+###Create custom fonts using [Fontello](http://fontello.com) or [IcoMoon](http://icomoon.io)
+
+If you plan to use an existing icon font, one provided by your design team, or if you have an svg and want to use it as drawable just follow those simple steps.
+
+####1. Create the icon font (not required if you already have one)
+Open [Fontello](http://fontello.com) or [IcoMoon](http://icomoon.io) and select the icons you need. Add your vectors (.svg) and then just download the font.
+
+####1.2. Add the font to your project
+- Unpack the .zip you just downloaded and add the *.ttf to your project under `src/main/assets/fonts`
+- In the next step you will have to know the unicode value for the icons
+ - this information can be found in the `fontello-codes.css` (if you used fontello)
+ - or in the style.css (if you used icomoon)
+
+####2. Implement your CustomFont
+- Great you got your IconFont and you know which unicode character displays which icon. Now you can create your own font with it. You have to options 2.1. or 2.2.
+
+#####2.1. Implement as GenericFont
+- To implement a GenericFont just provide the mapping before you use the Iconics. (best inside a [CustomApplication](https://github.com/mikepenz/Android-Iconics/blob/develop/app/src/main/java/com/mikepenz/iconics/sample/CustomApplication.java))
+
+```java
+//Create a new GenericFont by defining a 3 char long fontId and by defining the path to the font (starting inside src/main/assets)
+GenericFont gf2 = new GenericFont("gmf", "fonts/materialdrawerfont.ttf");
+//now register the icons which are inside the font. Just provide the unicode value and name.
+//the unicode value is defined as '\e800', just add the 'u' after '\' to tell java that it's an unicode char
+gf2.registerIcon("person", '\ue800');
+gf2.registerIcon("up", '\ue801');
+gf2.registerIcon("down", '\ue802');
+//now register the created GenericFont
+Iconics.registerFont(gf2);
+```
+- After defining the GenericFont you can use it like this
+```java
+new IconicsDrawable(this).icon("gmf-person").sizeDp(24);
+```
+
+#####2.2. Implement as CustomFont
+- A more complex but easier to use / more safe implementation is to create a CustomFont.
+- For a QuickStart just use the [CustomFont](https://github.com/mikepenz/Android-Iconics/blob/develop/app/src/main/java/com/mikepenz/iconics/sample/typeface/CustomFont.java) used in the Sample app
+- A CustomFont has to implement the `ITypeface` interface, and can then be easily used as any of the provided fonts
+
+```java
+public class CustomFont implements ITypeface {
+    //define the font file to use
+    private static final String TTF_FILE = "fontello.ttf";
+
+    private static Typeface typeface = null;
+    private static HashMap<String, Character> mChars;
+
+    //return a icon by it's key
+    @Override
+    public IIcon getIcon(String key) {
+        return Icon.valueOf(key);
+    }
+
+    //return all possible key unicode-character mappings
+    @Override
+    public HashMap<String, Character> getCharacters() {
+        if (mChars == null) {
+            HashMap<String, Character> aChars = new HashMap<String, Character>();
+            for (Icon v : Icon.values()) {
+                aChars.put(v.name(), v.character);
+            }
+            mChars = aChars;
+        }
+
+        return mChars;
+    }
+
+    //the mapping prefix used for this font like fon-android
+    @Override
+    public String getMappingPrefix() {
+        return "fon";
+    }
+
+    //return all possible icon names
+    @Override
+    public Collection<String> getIcons() {
+        Collection<String> icons = new LinkedList<String>();
+
+        for (Icon value : Icon.values()) {
+            icons.add(value.name());
+        }
+
+        return icons;
+    }
+
+    //implement all additional methods from the interface
+    //...
+
+
+    //return the font from the assets (you can take this method in most cases)
+    @Override
+    public Typeface getTypeface(Context context) {
+        if (typeface == null) {
+            try {
+                typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + TTF_FILE);
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return typeface;
+    }
+
+    //implement the enum containing all possible icons. each icon name is like `fontId`_`iconNamE` --> `fon_test1` maps to the icon with the unicode char \e800
+    public static enum Icon implements IIcon {
+        //define all possible mappings here:
+        fon_test1('\ue800'),
+        fon_test2('\ue801');
+
+        //define all methods required by the IIcon interface, you can just copy and paste those
+        char character;
+        Icon(char character) {
+            this.character = character;
+        }
+
+        public String getFormattedName() {
+            return "{" + name() + "}";
+        }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public String getName() {
+            return name();
+        }
+
+        // remember the typeface so we can use it later
+        private static ITypeface typeface;
+
+        public ITypeface getTypeface() {
+            if (typeface == null) {
+                typeface = new CustomFont();
+            }
+            return typeface;
+        }
+    }
+}
+```
 
 #Demo
 You can try the sample application out. It's on Google Play ;)
