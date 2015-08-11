@@ -24,8 +24,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 118
-        versionName "1.1.71"
+        versionCode 119
+        versionName "1.1.72"
     }
     buildTypes {
         release {
@@ -39,5 +39,5 @@ if (project.hasProperty('pushall') || project.hasProperty('communitymaterialonly
 }
 
 dependencies {
-    compile project(':library')
+    compile project(':library-core')
 }

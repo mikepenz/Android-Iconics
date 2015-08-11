@@ -39,7 +39,7 @@ import android.widget.TextView;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsArrayBuilder;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.typeface.FontAwesome;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.octicons_typeface_library.Octicons;
 
 

@@ -28,13 +28,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -46,8 +45,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private IconsFragment mIconsFragment;
+    private boolean mRandomize;
 
 
     @Override
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 .withDrawerItems(items)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
-                    public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
+                    public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
                         ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts(MainActivity.this)).get(i);
                         loadIcons(font.getFontName());
 
@@ -131,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+            case R.id.action_randomize:
+                item.setChecked(!item.isChecked());
+                mIconsFragment.randomize(item.isChecked());
+                mRandomize = item.isChecked();
+                return true;
             case R.id.action_opensource:
                 new LibsBuilder()
                         .withFields(R.string.class.getFields())
@@ -154,9 +158,8 @@ public class MainActivity extends AppCompatActivity {
     private void loadIcons(String fontName) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         mIconsFragment = IconsFragment.newInstance(fontName);
+        mIconsFragment.randomize(mRandomize);
         ft.replace(R.id.content, mIconsFragment);
         ft.commit();
     }
-
-
 }

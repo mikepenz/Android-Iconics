@@ -23,8 +23,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 221
-        versionName "2.2.1"
+        versionCode 222
+        versionName "2.2.2"
     }
     buildTypes {
         release {
@@ -38,5 +38,5 @@ if (project.hasProperty('pushall') || project.hasProperty('octicons')) {
 }
 
 dependencies {
-    compile project(':library')
+    compile project(':library-core')
 }

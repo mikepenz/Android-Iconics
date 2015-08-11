@@ -26,24 +26,32 @@ import com.mikepenz.iconics.sample.R;
 import com.mikepenz.iconics.view.IconicsImageView;
 
 import java.util.List;
+import java.util.Random;
 
 public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
 
+    private Random random = new Random();
+    private boolean randomize;
     private List<String> icons;
     private int rowLayout;
 
 
-    public IconAdapter(List<String> icons, int rowLayout) {
+    public IconAdapter(boolean randomize, List<String> icons, int rowLayout) {
+        this.randomize = randomize;
         this.icons = icons;
         this.rowLayout = rowLayout;
     }
 
 
-    public void setIcons(List<String> icons) {
+    public void setIcons(boolean randomize, List<String> icons) {
+        this.randomize = randomize;
         this.icons.addAll(icons);
         this.notifyItemRangeInserted(0, icons.size() - 1);
     }
 
+    public void setRandomized(boolean randomize) {
+        this.randomize = randomize;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup viewGroup, int i) {
@@ -57,6 +65,54 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
         final String icon = icons.get(i);
         viewHolder.image.setIcon(icon);
         viewHolder.name.setText(icon);
+
+        if (randomize) {
+
+            viewHolder.image.setColorRes(getRandomColor(i));
+            viewHolder.image.setPaddingDp(random.nextInt(12));
+
+            viewHolder.image.setContourWidthDp(random.nextInt(2));
+            viewHolder.image.setContourColor(getRandomColor(i - 2));
+
+
+            int y = random.nextInt(10);
+            if (y % 4 == 0) {
+                viewHolder.image.setBackgroundColorRes(getRandomColor(i - 4));
+                viewHolder.image.setRoundedCornersDp(2 + random.nextInt(10));
+            }
+        }
+    }
+
+    private int getRandomColor(int i) {
+        //make sure w are > 0
+        if (i < 0) {
+            i = i * (-1);
+        }
+
+        //get a random color
+        if (i % 10 == 0) {
+            return R.color.md_black_1000;
+        } else if (i % 10 == 1) {
+            return R.color.md_blue_500;
+        } else if (i % 10 == 2) {
+            return R.color.md_green_500;
+        } else if (i % 10 == 3) {
+            return R.color.md_red_500;
+        } else if (i % 10 == 4) {
+            return R.color.md_orange_500;
+        } else if (i % 10 == 5) {
+            return R.color.md_pink_500;
+        } else if (i % 10 == 6) {
+            return R.color.md_amber_500;
+        } else if (i % 10 == 7) {
+            return R.color.md_blue_grey_500;
+        } else if (i % 10 == 8) {
+            return R.color.md_orange_500;
+        } else if (i % 10 == 9) {
+            return R.color.md_yellow_500;
+        }
+
+        return 0;
     }
 
 
@@ -65,8 +121,10 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
         return icons == null ? 0 : icons.size();
     }
 
-    
-    public void clear() { icons.clear(); }
+
+    public void clear() {
+        icons.clear();
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

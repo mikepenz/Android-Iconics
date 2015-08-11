@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2014 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,7 @@
   ~ limitations under the License.
   -->
 
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -33,9 +31,8 @@
         android:paddingEnd="8dp"
         android:paddingLeft="56dp"
         android:paddingRight="8dp"
-        android:textColor="@color/primary_text"
-        android:textSize="14sp"
-        />
+        android:textColor="@color/md_light_primary_text"
+        android:textSize="14sp" />
 
     <com.mikepenz.iconics.view.IconicsImageView
         android:id="@+id/icon"
@@ -43,7 +40,6 @@
         android:layout_height="48dp"
         android:clickable="false"
         android:padding="8dp"
-        android:scaleType="fitXY"
-        />
+        android:scaleType="fitXY" />
 
 </android.support.v7.widget.CardView>

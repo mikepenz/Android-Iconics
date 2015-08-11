@@ -148,24 +148,32 @@ public final class Iconics {
             iconString = iconString.replaceAll("-", "_").toLowerCase();
             try {
                 //get the correct character for this Font and Icon
-                IIcon icon = fonts.get(fontKey).getIcon(iconString);
-                //we can only add an icon which is a font
-                if (icon != null) {
-                    char fontChar = icon.getCharacter();
-                    String iconValue = String.valueOf(fontChar);
+                ITypeface typeface = fonts.get(fontKey);
 
-                    //get just the icon identifier
-                    text = text.replace(startIndex, endIndex, iconValue);
+                if (typeface != null) {
+                    IIcon icon = typeface.getIcon(iconString);
+                    //we can only add an icon which is a font
+                    if (icon != null) {
+                        char fontChar = icon.getCharacter();
+                        String iconValue = String.valueOf(fontChar);
 
-                    //store some info about the removed chars
-                    removedChars = removedChars + (endIndex - startIndex);
-                    removed.add(new RemoveInfo(startIndex, (endIndex - startIndex - 1), removedChars));
+                        //get just the icon identifier
+                        text = text.replace(startIndex, endIndex, iconValue);
 
-                    //add the current icon to the container
-                    styleContainers.add(new StyleContainer(startIndex, startIndex + 1, iconString, fonts.get(fontKey)));
+                        //store some info about the removed chars
+                        removedChars = removedChars + (endIndex - startIndex);
+                        removed.add(new RemoveInfo(startIndex, (endIndex - startIndex - 1), removedChars));
+
+                        //add the current icon to the container
+                        styleContainers.add(new StyleContainer(startIndex, startIndex + 1, iconString, fonts.get(fontKey)));
+                    } else {
+                        Log.e(Iconics.TAG, "Wrong icon name: " + iconString);
+                    }
+                } else {
+                    Log.e(Iconics.TAG, "Wrong fontId: " + iconString);
                 }
             } catch (IllegalArgumentException e) {
-                Log.w(Iconics.TAG, "Wrong icon name: " + iconString);
+                Log.e(Iconics.TAG, "Wrong icon name: " + iconString);
             }
 
             //reset fontKey so we can react if we are at the end but haven't found any more matches

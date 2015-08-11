@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 162
-        versionName "1.6.2"
+        versionCode 170
+        versionName "1.7.0"
     }
     buildTypes {
         release {
@@ -25,4 +25,5 @@ if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
 }
 
 dependencies {
+    compile 'com.android.support:support-annotations:22.2.1'
 }

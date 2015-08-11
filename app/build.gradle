@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 162
-        versionName "1.6.2"
+        versionCode 170
+        versionName "1.7.0"
         enforceUniquePackageName false
     }
 
@@ -58,10 +58,14 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.2.1'
     compile 'com.android.support:cardview-v7:22.2.1'
 
-    compile('com.mikepenz:aboutlibraries:5.0.9@aar')
-    compile('com.mikepenz:materialdrawer:3.1.2@aar')
+    compile('com.mikepenz:aboutlibraries:5.1.1@aar')
+    compile('com.mikepenz:materialdrawer:4.0.0.rc7-SNAPSHOT@aar') {
+        transitive = true
+        exclude module: "iconics-core"
+    }
 
-    compile project(':library')
+    compile project(':fontawesome-typeface-library')
+    compile project(':google-material-typeface-library')
     compile project(':meteocons-typeface-library')
     compile project(':octicons-typeface-library')
     compile project(':community-material-typeface-library')

@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 162
-        versionName "1.6.2"
+        versionCode 440
+        versionName "4.4.0"
     }
     buildTypes {
         release {
@@ -20,10 +20,10 @@ android {
         abortOnError false
     }
 }
-if (project.hasProperty('pushall') || project.hasProperty('libraryonly')) {
+if (project.hasProperty('pushall') || project.hasProperty('fontawesomeonly')) {
     apply from: '../gradle-mvn-push.gradle'
 }
 
 dependencies {
-    compile "com.mikepenz:iconics-core:1.6.2"
+    compile project(':library-core')
 }
