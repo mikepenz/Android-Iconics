@@ -150,62 +150,6 @@ All icon names from the default fonts can be found via the <a href="https://play
 <img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png" alt="Image"></p>
 
 <h1>
-<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Usage</h1>
-
-<h3>
-<a id="register-fonts" class="anchor" href="#register-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Register fonts</h3>
-
-<p>If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the <code>Application</code>.</p>
-
-<div class="highlight highlight-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CustomApplication</span> <span class="pl-k">extends</span> <span class="pl-e">Application</span> {
-    <span class="pl-k">@Override</span>
-    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onCreate</span>() {
-        <span class="pl-v">super</span><span class="pl-k">.</span>onCreate();
-
-        <span class="pl-c">//only required if you add a custom or generic font on your own</span>
-        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>init(getApplicationContext());
-
-        <span class="pl-c">//register custom fonts like this (or also provide a font definition file)</span>
-        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">CustomFont</span>());
-
-        <span class="pl-c">//Generic font creation process</span>
-        <span class="pl-smi">GenericFont</span> gf2 <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">GenericFont</span>(<span class="pl-s"><span class="pl-pds">"</span>gmf<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>fonts/materialdrawerfont.ttf<span class="pl-pds">"</span></span>);
-        gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>person<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e800<span class="pl-pds">'</span></span>);
-        gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>up<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e801<span class="pl-pds">'</span></span>);
-        gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>down<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e802<span class="pl-pds">'</span></span>);
-        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(gf2);
-    }
-}
-</pre></div>
-
-<h3>
-<a id="create-custom-fonts-using-fontello" class="anchor" href="#create-custom-fonts-using-fontello" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create custom fonts using <a href="http://fontello.com">Fontello</a>
-</h3>
-
-<p>Chapter will be added soon</p>
-
-<h3>
-<a id="advanced-iconicsbuilder" class="anchor" href="#advanced-iconicsbuilder" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced IconicsBuilder</h3>
-
-<p>Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
-Just define the style for all icons or only a specific one. You can find this in the PlaygroundActivity of the sample too.</p>
-
-<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">Iconics</span>.<span class="pl-smi">IconicsBuilder</span>()<span class="pl-k">.</span>ctx(<span class="pl-v">this</span>)
-                .style(<span class="pl-k">new</span> <span class="pl-smi">ForegroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>WHITE</span>), <span class="pl-k">new</span> <span class="pl-smi">BackgroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>BLACK</span>), <span class="pl-k">new</span> <span class="pl-smi">RelativeSizeSpan</span>(<span class="pl-c1">2f</span>))
-                .styleFor(<span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_adjust, <span class="pl-k">new</span> <span class="pl-smi">BackgroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>))
-                .on(tv1)
-                .build();</pre></div>
-
-<h3>
-<a id="string-icon-key-or-typeface-enum" class="anchor" href="#string-icon-key-or-typeface-enum" aria-hidden="true"><span class="octicon octicon-link"></span></a>String icon-key or typeface enum</h3>
-
-<p>Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:</p>
-
-<div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>faw-adjust<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>actionBarSize()</pre></div>
-
-<div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_adjust)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
-
-<h1>
 <a id="available-fonts" class="anchor" href="#available-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available fonts</h1>
 
 <ul>
@@ -250,6 +194,212 @@ Just define the style for all icons or only a specific one. You can find this in
 </ul>
 </li>
 </ul>
+
+<h1>
+<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Usage</h1>
+
+<h3>
+<a id="register-fonts" class="anchor" href="#register-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Register fonts</h3>
+
+<p>If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the <code>Application</code>.</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CustomApplication</span> <span class="pl-k">extends</span> <span class="pl-e">Application</span> {
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onCreate</span>() {
+        <span class="pl-v">super</span><span class="pl-k">.</span>onCreate();
+
+        <span class="pl-c">//only required if you add a custom or generic font on your own</span>
+        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>init(getApplicationContext());
+
+        <span class="pl-c">//register custom fonts like this (or also provide a font definition file)</span>
+        <span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(<span class="pl-k">new</span> <span class="pl-smi">CustomFont</span>());
+    }
+}
+</pre></div>
+
+<h3>
+<a id="advanced-iconicsbuilder" class="anchor" href="#advanced-iconicsbuilder" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced IconicsBuilder</h3>
+
+<p>Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
+Just define the style for all icons or only a specific one. You can find this in the PlaygroundActivity of the sample too.</p>
+
+<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">Iconics</span>.<span class="pl-smi">IconicsBuilder</span>()<span class="pl-k">.</span>ctx(<span class="pl-v">this</span>)
+                .style(<span class="pl-k">new</span> <span class="pl-smi">ForegroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>WHITE</span>), <span class="pl-k">new</span> <span class="pl-smi">BackgroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>BLACK</span>), <span class="pl-k">new</span> <span class="pl-smi">RelativeSizeSpan</span>(<span class="pl-c1">2f</span>))
+                .styleFor(<span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_adjust, <span class="pl-k">new</span> <span class="pl-smi">BackgroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>))
+                .on(tv1)
+                .build();</pre></div>
+
+<h3>
+<a id="string-icon-key-or-typeface-enum" class="anchor" href="#string-icon-key-or-typeface-enum" aria-hidden="true"><span class="octicon octicon-link"></span></a>String icon-key or typeface enum</h3>
+
+<p>Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:</p>
+
+<div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>faw-adjust<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>actionBarSize()</pre></div>
+
+<div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_adjust)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
+
+<h3>
+<a id="create-custom-fonts-using-fontello-or-icomoon" class="anchor" href="#create-custom-fonts-using-fontello-or-icomoon" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create custom fonts using <a href="http://fontello.com">Fontello</a> or <a href="http://icomoon.io">IcoMoon</a>
+</h3>
+
+<p>If you plan to use an existing icon font, one provided by your design team, or if you have an svg and want to use it as drawable just follow those simple steps.</p>
+
+<h4>
+<a id="1-create-the-icon-font-not-required-if-you-already-have-one" class="anchor" href="#1-create-the-icon-font-not-required-if-you-already-have-one" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Create the icon font (not required if you already have one)</h4>
+
+<p>Open <a href="http://fontello.com">Fontello</a> or <a href="http://icomoon.io">IcoMoon</a> and select the icons you need. Add your vectors (.svg) and then just download the font.</p>
+
+<h4>
+<a id="12-add-the-font-to-your-project" class="anchor" href="#12-add-the-font-to-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2. Add the font to your project</h4>
+
+<ul>
+<li>Unpack the .zip you just downloaded and add the *.ttf to your project under <code>src/main/assets/fonts</code>
+</li>
+<li>In the next step you will have to know the unicode value for the icons
+
+<ul>
+<li>this information can be found in the <code>fontello-codes.css</code> (if you used fontello)</li>
+<li>or in the style.css (if you used icomoon)</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<a id="2-implement-your-customfont" class="anchor" href="#2-implement-your-customfont" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Implement your CustomFont</h4>
+
+<ul>
+<li>Great you got your IconFont and you know which unicode character displays which icon. Now you can create your own font with it. You have to options 2.1. or 2.2.</li>
+</ul>
+
+<h5>
+<a id="21-implement-as-genericfont" class="anchor" href="#21-implement-as-genericfont" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1. Implement as GenericFont</h5>
+
+<ul>
+<li>To implement a GenericFont just provide the mapping before you use the Iconics. (best inside a <a href="https://github.com/mikepenz/Android-Iconics/blob/develop/app/src/main/java/com/mikepenz/iconics/sample/CustomApplication.java">CustomApplication</a>)</li>
+</ul>
+
+<div class="highlight highlight-java"><pre><span class="pl-c">//Create a new GenericFont by defining a 3 char long fontId and by defining the path to the font (starting inside src/main/assets)</span>
+<span class="pl-smi">GenericFont</span> gf2 <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">GenericFont</span>(<span class="pl-s"><span class="pl-pds">"</span>gmf<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>fonts/materialdrawerfont.ttf<span class="pl-pds">"</span></span>);
+<span class="pl-c">//now register the icons which are inside the font. Just provide the unicode value and name.</span>
+<span class="pl-c">//the unicode value is defined as '\e800', just add the 'u' after '\' to tell java that it's an unicode char</span>
+gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>person<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e800<span class="pl-pds">'</span></span>);
+gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>up<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e801<span class="pl-pds">'</span></span>);
+gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pds">"</span>down<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\u</span>e802<span class="pl-pds">'</span></span>);
+<span class="pl-c">//now register the created GenericFont</span>
+<span class="pl-smi">Iconics</span><span class="pl-k">.</span>registerFont(gf2);</pre></div>
+
+<ul>
+<li>After defining the GenericFont you can use it like this</li>
+</ul>
+
+<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>)<span class="pl-k">.</span>icon(<span class="pl-s"><span class="pl-pds">"</span>gmf-person<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>);</pre></div>
+
+<h5>
+<a id="22-implement-as-customfont" class="anchor" href="#22-implement-as-customfont" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2. Implement as CustomFont</h5>
+
+<ul>
+<li>A more complex but easier to use / more safe implementation is to create a CustomFont.</li>
+<li>For a QuickStart just use the <a href="https://github.com/mikepenz/Android-Iconics/blob/develop/app/src/main/java/com/mikepenz/iconics/sample/typeface/CustomFont.java">CustomFont</a> used in the Sample app</li>
+<li>A CustomFont has to implement the <code>ITypeface</code> interface, and can then be easily used as any of the provided fonts</li>
+</ul>
+
+<div class="highlight highlight-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CustomFont</span> <span class="pl-k">implements</span> <span class="pl-e">ITypeface</span> {
+    <span class="pl-c">//define the font file to use</span>
+    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">String</span> <span class="pl-c1">TTF_FILE</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>fontello.ttf<span class="pl-pds">"</span></span>;
+
+    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-smi">Typeface</span> typeface <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">HashMap&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Character</span>&gt;</span> mChars;
+
+    <span class="pl-c">//return a icon by it's key</span>
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">IIcon</span> <span class="pl-en">getIcon</span>(<span class="pl-smi">String</span> <span class="pl-v">key</span>) {
+        <span class="pl-k">return</span> <span class="pl-smi">Icon</span><span class="pl-k">.</span>valueOf(key);
+    }
+
+    <span class="pl-c">//return all possible key unicode-character mappings</span>
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">HashMap&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Character</span>&gt;</span> <span class="pl-en">getCharacters</span>() {
+        <span class="pl-k">if</span> (mChars <span class="pl-k">==</span> <span class="pl-c1">null</span>) {
+            <span class="pl-k">HashMap&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Character</span>&gt;</span> aChars <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">HashMap&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Character</span>&gt;</span>();
+            <span class="pl-k">for</span> (<span class="pl-smi">Icon</span> v <span class="pl-k">:</span> <span class="pl-smi">Icon</span><span class="pl-k">.</span>values()) {
+                aChars<span class="pl-k">.</span>put(v<span class="pl-k">.</span>name(), v<span class="pl-k">.</span>character);
+            }
+            mChars <span class="pl-k">=</span> aChars;
+        }
+
+        <span class="pl-k">return</span> mChars;
+    }
+
+    <span class="pl-c">//the mapping prefix used for this font like fon-android</span>
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getMappingPrefix</span>() {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>fon<span class="pl-pds">"</span></span>;
+    }
+
+    <span class="pl-c">//return all possible icon names</span>
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">Collection&lt;<span class="pl-smi">String</span>&gt;</span> <span class="pl-en">getIcons</span>() {
+        <span class="pl-k">Collection&lt;<span class="pl-smi">String</span>&gt;</span> icons <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">LinkedList&lt;<span class="pl-smi">String</span>&gt;</span>();
+
+        <span class="pl-k">for</span> (<span class="pl-smi">Icon</span> value <span class="pl-k">:</span> <span class="pl-smi">Icon</span><span class="pl-k">.</span>values()) {
+            icons<span class="pl-k">.</span>add(value<span class="pl-k">.</span>name());
+        }
+
+        <span class="pl-k">return</span> icons;
+    }
+
+    <span class="pl-c">//implement all additional methods from the interface</span>
+    <span class="pl-c">//...</span>
+
+
+    <span class="pl-c">//return the font from the assets (you can take this method in most cases)</span>
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">Typeface</span> <span class="pl-en">getTypeface</span>(<span class="pl-smi">Context</span> <span class="pl-v">context</span>) {
+        <span class="pl-k">if</span> (typeface <span class="pl-k">==</span> <span class="pl-c1">null</span>) {
+            <span class="pl-k">try</span> {
+                typeface <span class="pl-k">=</span> <span class="pl-smi">Typeface</span><span class="pl-k">.</span>createFromAsset(context<span class="pl-k">.</span>getAssets(), <span class="pl-s"><span class="pl-pds">"</span>fonts/<span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-c1">TTF_FILE</span>);
+            } <span class="pl-k">catch</span> (<span class="pl-smi">Exception</span> e) {
+                <span class="pl-k">return</span> <span class="pl-c1">null</span>;
+            }
+        }
+        <span class="pl-k">return</span> typeface;
+    }
+
+    <span class="pl-c">//implement the enum containing all possible icons. each icon name is like `fontId`_`iconNamE` --&gt; `fon_test1` maps to the icon with the unicode char \e800</span>
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">enum</span> <span class="pl-en">Icon</span> <span class="pl-k">implements</span> <span class="pl-e">IIcon</span> {
+        <span class="pl-c">//define all possible mappings here:</span>
+        <span class="pl-en">fon_test1</span>('\<span class="pl-v">ue800</span>'),
+        <span class="pl-en">fon_test2</span>('\<span class="pl-v">ue801</span>');
+
+        <span class="pl-c">//define all methods required by the IIcon interface, you can just copy and paste those</span>
+        <span class="pl-k">char</span> character;
+        <span class="pl-en">Icon</span>(<span class="pl-k">char</span> <span class="pl-v">character</span>) {
+            <span class="pl-v">this</span><span class="pl-k">.</span>character <span class="pl-k">=</span> character;
+        }
+
+        <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getFormattedName</span>() {
+            <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>{<span class="pl-pds">"</span></span> <span class="pl-k">+</span> name() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>}<span class="pl-pds">"</span></span>;
+        }
+
+        <span class="pl-k">public</span> <span class="pl-k">char</span> <span class="pl-en">getCharacter</span>() {
+            <span class="pl-k">return</span> character;
+        }
+
+        <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {
+            <span class="pl-k">return</span> name();
+        }
+
+        <span class="pl-c">// remember the typeface so we can use it later</span>
+        <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-smi">ITypeface</span> typeface;
+
+        <span class="pl-k">public</span> <span class="pl-smi">ITypeface</span> <span class="pl-en">getTypeface</span>() {
+            <span class="pl-k">if</span> (typeface <span class="pl-k">==</span> <span class="pl-c1">null</span>) {
+                typeface <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">CustomFont</span>();
+            }
+            <span class="pl-k">return</span> typeface;
+        }
+    }
+}</pre></div>
 
 <h1>
 <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h1>
