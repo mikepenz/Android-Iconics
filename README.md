@@ -49,7 +49,7 @@ dependencies {
 ##2. Choose your desired fonts
 ```gradle
 compile 'com.mikepenz:google-material-typeface:1.2.0@aar'
-compile 'com.mikepenz:fontawesome:4.4.0@aar'
+compile 'com.mikepenz:fontawesome-typeface:4.4.0@aar'
 compile 'com.mikepenz:octicons-typeface:2.2.2@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.3@aar'
 compile 'com.mikepenz:community-material-typeface:1.1.72@aar'
