@@ -314,6 +314,16 @@ public class CustomFont implements ITypeface {
 }
 ```
 
+#Proguard rules
+```
+-keep class com.mikepenz.iconics.** { *; }
+-keep class com.mikepenz.community_material_typeface_library.CommunityMaterial
+-keep class com.mikepenz.fontawesome_typeface_library.FontAwesome
+-keep class com.mikepenz.google_material_typeface_library.GoogleMaterial
+-keep class com.mikepenz.meteocons_typeface_library.Meteoconcs
+-keep class com.mikepenz.octicons_typeface_library.Octicons
+```
+
 #Demo
 You can try the sample application out. It's on Google Play ;)
 https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
