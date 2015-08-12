@@ -110,8 +110,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 
 #Screenshots
 
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.png)
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png)
+![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/screenshots1.jpg)
 
 
 #Available fonts
