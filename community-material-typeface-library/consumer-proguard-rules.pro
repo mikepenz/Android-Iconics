@@ -1,0 +1,1 @@
+-keep class com.mikepenz.community_material_typeface_library.CommunityMaterial { *; }
