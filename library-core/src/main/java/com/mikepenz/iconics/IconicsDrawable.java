@@ -908,7 +908,7 @@ public class IconicsDrawable extends Drawable {
         if (mIcon != null) {
             iconicsDrawable.icon(mIcon);
         } else if (mPlainIcon != null) {
-            iconicsDrawable.icon(mPlainIcon);
+            iconicsDrawable.iconText(mPlainIcon);
         }
         return iconicsDrawable;
     }
