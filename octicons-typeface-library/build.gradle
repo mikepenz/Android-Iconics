@@ -23,8 +23,9 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 301
-        versionName "3.0.1"
+        consumerProguardFiles 'consumer-proguard-rules.pro'
+        versionCode 30001
+        versionName "3.0.0.1"
     }
     buildTypes {
         release {

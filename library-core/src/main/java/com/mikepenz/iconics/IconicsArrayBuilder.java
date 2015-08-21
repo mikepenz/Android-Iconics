@@ -39,7 +39,7 @@ public class IconicsArrayBuilder {
             } else if (mIcons.get(i) instanceof Character) {
                 iconicsDrawables[i] = mIconBase.clone().icon((Character) mIcons.get(i));
             } else if (mIcons.get(i) instanceof String) {
-                iconicsDrawables[i] = mIconBase.clone().icon((String) mIcons.get(i));
+                iconicsDrawables[i] = mIconBase.clone().iconText((String) mIcons.get(i));
             }
         }
 
