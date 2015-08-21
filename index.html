@@ -20,7 +20,7 @@
 
     <section class="main-content">
       <h1>
-<a id="android-iconics---" class="anchor" href="#android-iconics---" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android-Iconics  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://android-arsenal.com/details/1/1164"><img src="https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat" alt="Android Arsenal"></a>
+<a id="android-iconics---" class="anchor" href="#android-iconics---" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android-Iconics  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics-core"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics-core/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://android-arsenal.com/details/1/1164"><img src="https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat" alt="Android Arsenal"></a>
 </h1>
 
 <p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/banner.png" alt="Image"></p>
@@ -78,7 +78,7 @@ Provide additional fonts for you project, or even create your custom font with j
 <a id="1-provide-the-gradle-dependency" class="anchor" href="#1-provide-the-gradle-dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Provide the gradle dependency</h2>
 
 <div class="highlight highlight-gradle"><pre><span class="pl-en">dependencies</span> {
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:1.7.0@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:1.7.2@aar<span class="pl-pds">'</span></span>
 }</pre></div>
 
 <h2>
@@ -146,8 +146,7 @@ All icon names from the default fonts can be found via the <a href="https://play
 <h1>
 <a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots</h1>
 
-<p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.png" alt="Image">
-<img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png" alt="Image"></p>
+<p><img src="https://raw.githubusercontent.com/mikepenz/Android-Iconics/develop/DEV/github/screenshots1.jpg" alt="Image"></p>
 
 <h1>
 <a id="available-fonts" class="anchor" href="#available-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Available fonts</h1>
@@ -400,6 +399,17 @@ gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pd
         }
     }
 }</pre></div>
+
+<h1>
+<a id="proguard-rules" class="anchor" href="#proguard-rules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proguard rules</h1>
+
+<pre><code>-keep class com.mikepenz.iconics.** { *; }
+-keep class com.mikepenz.community_material_typeface_library.CommunityMaterial
+-keep class com.mikepenz.fontawesome_typeface_library.FontAwesome
+-keep class com.mikepenz.google_material_typeface_library.GoogleMaterial
+-keep class com.mikepenz.meteocons_typeface_library.Meteoconcs
+-keep class com.mikepenz.octicons_typeface_library.Octicons
+</code></pre>
 
 <h1>
 <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h1>
