@@ -23,6 +23,7 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 113
         versionName "1.1.3"
     }

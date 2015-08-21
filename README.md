@@ -313,15 +313,8 @@ public class CustomFont implements ITypeface {
 }
 ```
 
-#Proguard rules
-```
--keep class com.mikepenz.iconics.** { *; }
--keep class com.mikepenz.community_material_typeface_library.CommunityMaterial
--keep class com.mikepenz.fontawesome_typeface_library.FontAwesome
--keep class com.mikepenz.google_material_typeface_library.GoogleMaterial
--keep class com.mikepenz.meteocons_typeface_library.Meteoconcs
--keep class com.mikepenz.octicons_typeface_library.Octicons
-```
+#ProGuard
+ProGuard rules are now bundled internally with each font. No additional rules are required on your end.
 
 #Demo
 You can try the sample application out. It's on Google Play ;)
