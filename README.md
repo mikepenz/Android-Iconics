@@ -1,4 +1,4 @@
-#Android-Iconics  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1164)
+#Android-Iconics  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics-core/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics-core) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1164)
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/banner.png)
 
@@ -42,7 +42,7 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.7.1@aar'
+	compile 'com.mikepenz:iconics-core:1.7.2@aar'
 }
 ```
 
@@ -110,8 +110,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 
 #Screenshots
 
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_1_small.png)
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/master/DEV/screenshots/screenshot_2_small.png)
+![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/develop/DEV/github/screenshots1.jpg)
 
 
 #Available fonts
@@ -312,6 +311,16 @@ public class CustomFont implements ITypeface {
         }
     }
 }
+```
+
+#Proguard rules
+```
+-keep class com.mikepenz.iconics.** { *; }
+-keep class com.mikepenz.community_material_typeface_library.CommunityMaterial
+-keep class com.mikepenz.fontawesome_typeface_library.FontAwesome
+-keep class com.mikepenz.google_material_typeface_library.GoogleMaterial
+-keep class com.mikepenz.meteocons_typeface_library.Meteoconcs
+-keep class com.mikepenz.octicons_typeface_library.Octicons
 ```
 
 #Demo
