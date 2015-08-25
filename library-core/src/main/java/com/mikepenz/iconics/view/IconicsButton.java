@@ -17,6 +17,7 @@
 package com.mikepenz.iconics.view;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.Button;
 
@@ -26,27 +27,25 @@ public class IconicsButton extends Button {
 
     public IconicsButton(Context context) {
         super(context);
-        if (!isInEditMode()) {
-            setTypeface(Iconics.getDefault(context).getTypeface(context));
-        }
     }
 
     public IconicsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        if (!isInEditMode()) {
-            setTypeface(Iconics.getDefault(context).getTypeface(context));
-        }
     }
 
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        if (!isInEditMode()) {
-            setTypeface(Iconics.getDefault(context).getTypeface(context));
-        }
     }
 
     @Override
     public void setText(CharSequence text, BufferType type) {
+        // NOTES:
+        // 1. Need to disable the All Caps option to make Spannable work properly!
+        // 2. This method will be called from the constructor of the super class
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            setAllCaps(false);
+        }
+
         if (!isInEditMode()) {
             super.setText(new Iconics.IconicsBuilder().ctx(getContext()).on(text).build(), type);
         } else {
