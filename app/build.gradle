@@ -58,8 +58,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.0.0'
     compile 'com.android.support:cardview-v7:23.0.0'
 
-    compile('com.mikepenz:aboutlibraries:5.1.1@aar')
-    compile('com.mikepenz:materialdrawer:4.0.0.rc11-SNAPSHOT@aar') {
+    compile('com.mikepenz:aboutlibraries:5.2.0@aar')
+    compile('com.mikepenz:materialdrawer:4.0.0@aar') {
         transitive = true
         exclude module: "iconics-core"
     }
