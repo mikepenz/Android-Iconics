@@ -25,11 +25,11 @@ import com.mikepenz.iconics.Iconics;
 public class IconicsTextView extends TextView {
 
     public IconicsTextView(Context context) {
-        this(context, null);
+        super(context);
     }
 
     public IconicsTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
     }
 
     public IconicsTextView(Context context, AttributeSet attrs, int defStyle) {
