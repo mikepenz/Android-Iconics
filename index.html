@@ -403,7 +403,15 @@ gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pd
 <h1>
 <a id="proguard" class="anchor" href="#proguard" aria-hidden="true"><span class="octicon octicon-link"></span></a>ProGuard</h1>
 
-<p>ProGuard rules are now bundled internally with each font. No additional rules are required on your end.</p>
+<p>Exclude <code>R</code> from ProGuard to enable the font addon auto detection</p>
+
+<pre lang="proguard"><code>-keep class .R
+-keep class .R$* {
+    &lt;fields&gt;;
+}
+</code></pre>
+
+<p>All other ProGuard rules are now bundled internally with each font. </p>
 
 <h1>
 <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h1>
