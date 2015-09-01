@@ -124,7 +124,7 @@ public class IconicsDrawable extends Drawable {
         icon(icon);
     }
 
-    public IconicsDrawable(Context context, final ITypeface typeface, final IIcon icon) {
+    protected IconicsDrawable(Context context, final ITypeface typeface, final IIcon icon) {
         mContext = context.getApplicationContext();
         prepare();
         icon(typeface, icon);
@@ -206,7 +206,7 @@ public class IconicsDrawable extends Drawable {
      * @param icon
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable icon(ITypeface typeface, IIcon icon) {
+    protected IconicsDrawable icon(ITypeface typeface, IIcon icon) {
         mIcon = icon;
         mIconPaint.setTypeface(typeface.getTypeface(mContext));
         invalidateSelf();
