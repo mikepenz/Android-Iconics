@@ -484,8 +484,11 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable contourColor(@ColorInt int contourColor) {
-        mContourPaint.setColor(contourColor);
-        drawContour(true);
+        int red = Color.red(contourColor);
+        int green = Color.green(contourColor);
+        int blue = Color.blue(contourColor);
+        mContourPaint.setColor(Color.rgb(red, green, blue));
+        mContourPaint.setAlpha(Color.alpha(contourColor));
         invalidateSelf();
         return this;
     }
@@ -497,10 +500,7 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable contourColorRes(@ColorRes int contourColorRes) {
-        mContourPaint.setColor(ContextCompat.getColor(mContext, contourColorRes));
-        drawContour(true);
-        invalidateSelf();
-        return this;
+        return contourColor(ContextCompat.getColor(mContext, contourColorRes));
     }
 
     /**
@@ -782,7 +782,7 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public void setAlpha(int alpha) {
-        //mIconPaint.setAlpha(alpha);
+        mIconPaint.setAlpha(alpha);
         mAlpha = alpha;
     }
 
