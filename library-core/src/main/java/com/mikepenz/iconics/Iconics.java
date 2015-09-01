@@ -40,12 +40,12 @@ import java.util.List;
 public final class Iconics {
     public static final String TAG = Iconics.class.getSimpleName();
 
-    private static HashMap<String, ITypeface> FONTS;
+    private static boolean INIT_DONE = false;
+    private static HashMap<String, ITypeface> FONTS = new HashMap<>();
 
     public static void init(Context ctx) {
         String[] fonts = GenericsUtil.getFields(ctx);
 
-        FONTS = new HashMap<>();
         for (String fontsClassPath : fonts) {
             try {
                 ITypeface typeface = (ITypeface) Class.forName(fontsClassPath).newInstance();
@@ -54,6 +54,8 @@ public final class Iconics {
                 Log.e("Android-Iconics", "Can't init: " + fontsClassPath);
             }
         }
+
+        INIT_DONE = true;
     }
 
     public static boolean registerFont(ITypeface font) {
@@ -61,20 +63,8 @@ public final class Iconics {
         return true;
     }
 
-    public static ITypeface getDefault(Context ctx) {
-        if (FONTS == null) {
-            init(ctx);
-        }
-
-        if (FONTS != null && FONTS.size() > 0) {
-            return FONTS.entrySet().iterator().next().getValue();
-        } else {
-            throw new RuntimeException("You have to provide at least one Typeface to use this functionality");
-        }
-    }
-
     public static Collection<ITypeface> getRegisteredFonts(Context ctx) {
-        if (FONTS == null) {
+        if (!INIT_DONE) {
             init(ctx);
         }
 
@@ -82,7 +72,7 @@ public final class Iconics {
     }
 
     public static ITypeface findFont(Context ctx, String key) {
-        if (FONTS == null) {
+        if (!INIT_DONE) {
             init(ctx);
         }
 
@@ -98,7 +88,7 @@ public final class Iconics {
     }
 
     private static SpannableString style(Context ctx, HashMap<String, ITypeface> fonts, SpannableString textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
-        if (FONTS == null) {
+        if (!INIT_DONE) {
             init(ctx);
         }
 

@@ -32,6 +32,12 @@ public class IconicsImageView extends ImageView {
 
     private IconicsDrawable mIcon = null;
     private int mColor = 0;
+    private int mSize = -1;
+    private int mPadding = -1;
+    private int mContourColor = 0;
+    private int mContourWidth = -1;
+    private int mBackgroundColor = 0;
+    private int mCornerRadius = -1;
 
     public IconicsImageView(Context context) {
         this(context, null);
@@ -50,6 +56,15 @@ public class IconicsImageView extends ImageView {
 
             //set the color even if we had no image yet
             mColor = a.getColor(R.styleable.IconicsImageView_iiv_color, 0);
+            mSize = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
+            mPadding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
+            mContourColor = a.getColor(R.styleable.IconicsImageView_iiv_contour_color, 0);
+            mContourWidth = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_contour_width, -1);
+            mBackgroundColor = a.getColor(R.styleable.IconicsImageView_iiv_background_color, 0);
+            mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_corner_radius, -1);
+
+            //recycle the typedArray
+            a.recycle();
 
             //set the scale type for this view
             setScaleType(ScaleType.CENTER_INSIDE);
@@ -59,41 +74,86 @@ public class IconicsImageView extends ImageView {
                 return;
             }
 
-            int mSize = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
-            int mPadding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
 
             //get the drawable
             mIcon = new IconicsDrawable(context, icon);
-            if (mColor != 0) {
-                mIcon.color(mColor);
-            }
-            if (mSize != -1) {
-                mIcon.sizePx(mSize);
-            }
-            if (mSize != -1) {
-                mIcon.paddingPx(mPadding);
-            }
-            a.recycle();
+
+            //set attributes
+            setAttributes();
 
             //set our values for this view
             setImageDrawable(mIcon);
         }
     }
 
+    public void setIcon(Character icon) {
+        setIcon(icon, true);
+    }
+
+    public void setIcon(Character icon, boolean resetAttributes) {
+        setIcon(new IconicsDrawable(getContext(), icon), resetAttributes);
+    }
+
     public void setIcon(String icon) {
-        setIcon(new IconicsDrawable(getContext(), icon));
+        setIcon(icon, true);
+    }
+
+    public void setIcon(String icon, boolean resetAttributes) {
+        setIcon(new IconicsDrawable(getContext(), icon), resetAttributes);
     }
 
     public void setIcon(IIcon icon) {
-        setIcon(new IconicsDrawable(getContext(), icon));
+        setIcon(icon, true);
+    }
+
+    public void setIcon(IIcon icon, boolean resetAttributes) {
+        setIcon(new IconicsDrawable(getContext(), icon), resetAttributes);
     }
 
     public void setIcon(IconicsDrawable icon) {
-        if (mColor != 0) {
-            icon.color(mColor);
-        }
+        setIcon(icon, true);
+    }
+
+    public void setIcon(IconicsDrawable icon, boolean resetAttributes) {
         mIcon = icon;
+        //reset the attributes defined via the layout
+        if (resetAttributes) {
+            setAttributes();
+        }
+        //set the imageDrawable
         setImageDrawable(mIcon);
+    }
+
+    public void setIconText(String iconText) {
+        setIconText(iconText, true);
+    }
+
+    public void setIconText(String iconText, boolean resetAttributes) {
+        setIcon(new IconicsDrawable(getContext()).iconText(iconText), resetAttributes);
+    }
+
+    private void setAttributes() {
+        if (mColor != 0) {
+            mIcon.color(mColor);
+        }
+        if (mSize != -1) {
+            mIcon.sizePx(mSize);
+        }
+        if (mSize != -1) {
+            mIcon.paddingPx(mPadding);
+        }
+        if (mContourColor != 0) {
+            mIcon.contourColor(mContourColor);
+        }
+        if (mContourWidth != -1) {
+            mIcon.contourWidthPx(mContourWidth);
+        }
+        if (mBackgroundColor != 0) {
+            mIcon.backgroundColor(mBackgroundColor);
+        }
+        if (mCornerRadius != -1) {
+            mIcon.roundedCornersPx(mCornerRadius);
+        }
     }
 
     public void setColor(@ColorInt int color) {

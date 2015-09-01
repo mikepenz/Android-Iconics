@@ -42,7 +42,7 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.7.4@aar'
+	compile 'com.mikepenz:iconics-core:1.7.5@aar'
 }
 ```
 
@@ -314,7 +314,14 @@ public class CustomFont implements ITypeface {
 ```
 
 #ProGuard
-ProGuard rules are now bundled internally with each font. No additional rules are required on your end.
+Exclude `R` from ProGuard to enable the font addon auto detection
+```proguard
+-keep class .R
+-keep class .R$* {
+    <fields>;
+}
+```
+All other ProGuard rules are now bundled internally with each font. 
 
 #Demo
 You can try the sample application out. It's on Google Play ;)

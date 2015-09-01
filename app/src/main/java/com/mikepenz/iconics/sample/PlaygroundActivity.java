@@ -36,10 +36,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsArrayBuilder;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.octicons_typeface_library.Octicons;
 
 
@@ -72,7 +72,7 @@ public class PlaygroundActivity extends Activity {
 
         //Set the icon of an ImageView (or something else) as bitmap
         ImageView iv3 = (ImageView) findViewById(R.id.test3);
-        iv3.setImageBitmap(new IconicsDrawable(this, new FontAwesome(), FontAwesome.Icon.faw_android).sizeDpX(48).sizeDpY(32).paddingDp(4).roundedCornersDp(8).color(Color.parseColor("#deFF0000")).toBitmap());
+        iv3.setImageBitmap(new IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDpX(48).sizeDpY(32).paddingDp(4).roundedCornersDp(8).color(Color.parseColor("#deFF0000")).toBitmap());
 
         //Show how to style the text of an existing button (NOT WORKING AT THE MOMENT)
         Button b4 = (Button) findViewById(R.id.test4);
