@@ -63,18 +63,6 @@ public final class Iconics {
         return true;
     }
 
-    public static ITypeface getDefault(Context ctx) {
-        if (!INIT_DONE) {
-            init(ctx);
-        }
-
-        if (FONTS != null && FONTS.size() > 0) {
-            return FONTS.entrySet().iterator().next().getValue();
-        } else {
-            throw new RuntimeException("You have to provide at least one Typeface to use this functionality");
-        }
-    }
-
     public static Collection<ITypeface> getRegisteredFonts(Context ctx) {
         if (!INIT_DONE) {
             init(ctx);
