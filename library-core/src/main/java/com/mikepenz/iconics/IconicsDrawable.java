@@ -44,6 +44,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.mikepenz.iconics.typeface.IIcon;
@@ -242,7 +243,7 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable colorRes(int colorRes) {
-        return color(mContext.getResources().getColor(colorRes));
+        return color(ContextCompat.getColor(mContext, colorRes));
     }
 
 
@@ -493,7 +494,7 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable contourColorRes(int contourColorRes) {
-        mContourPaint.setColor(mContext.getResources().getColor(contourColorRes));
+        mContourPaint.setColor(ContextCompat.getColor(mContext, contourColorRes));
         drawContour(true);
         invalidateSelf();
         return this;
@@ -519,7 +520,7 @@ public class IconicsDrawable extends Drawable {
      * @return
      */
     public IconicsDrawable backgroundColorRes(int backgroundColorRes) {
-        return backgroundColor(mContext.getResources().getColor(backgroundColorRes));
+        return backgroundColor(ContextCompat.getColor(mContext, backgroundColorRes));
     }
 
     /**
