@@ -317,7 +317,7 @@ public class CustomFont implements ITypeface {
 Exclude `R` from ProGuard to enable the font addon auto detection
 ```proguard
 -keep class .R
--keep class .R$* {
+-keep class **.R$* {
     <fields>;
 }
 ```
