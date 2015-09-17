@@ -77,18 +77,18 @@ Provide additional fonts for you project, or even create your custom font with j
 <h2>
 <a id="1-provide-the-gradle-dependency" class="anchor" href="#1-provide-the-gradle-dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Provide the gradle dependency</h2>
 
-<div class="highlight highlight-gradle"><pre><span class="pl-en">dependencies</span> {
+<div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">dependencies</span> {
     compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:1.7.6@aar<span class="pl-pds">'</span></span>
 }</pre></div>
 
 <h2>
 <a id="2-choose-your-desired-fonts" class="anchor" href="#2-choose-your-desired-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Choose your desired fonts</h2>
 
-<div class="highlight highlight-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:1.2.0.1@aar<span class="pl-pds">'</span></span>
+<div class="highlight highlight-source-groovy-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:1.2.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:fontawesome-typeface:4.4.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:octicons-typeface:3.0.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:meteocons-typeface:1.1.0.1@aar<span class="pl-pds">'</span></span>
-compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-material-typeface:1.1.70.3@aar<span class="pl-pds">'</span></span></pre></div>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-material-typeface:1.2.64.1@aar<span class="pl-pds">'</span></span></pre></div>
 
 <h1>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
@@ -96,7 +96,7 @@ compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-m
 <h2>
 <a id="use-as-drawable" class="anchor" href="#use-as-drawable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use as drawable</h2>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>)
+<div class="highlight highlight-source-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>)
     .icon(<span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_android)
     .color(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>)
     .sizeDp(<span class="pl-c1">24</span>)</pre></div>
@@ -111,7 +111,7 @@ All icon names from the default fonts can be found via the <a href="https://play
 <h3>
 <a id="as-imageview" class="anchor" href="#as-imageview" aria-hidden="true"><span class="octicon octicon-link"></span></a>As ImageView</h3>
 
-<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsImageView
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsImageView
     <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
     <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
     <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_color</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/holo_red_dark<span class="pl-pds">"</span></span>
@@ -128,7 +128,7 @@ All icon names from the default fonts can be found via the <a href="https://play
 <h4>
 <a id="as-iconicstextview" class="anchor" href="#as-iconicstextview" aria-hidden="true"><span class="octicon octicon-link"></span></a>As IconicsTextView</h4>
 
-<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsTextView
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsTextView
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz<span class="pl-pds">"</span></span>
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textColor</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/black<span class="pl-pds">"</span></span>
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>wrap_content<span class="pl-pds">"</span></span>
@@ -138,7 +138,7 @@ All icon names from the default fonts can be found via the <a href="https://play
 <h4>
 <a id="as-iconicsbutton" class="anchor" href="#as-iconicsbutton" aria-hidden="true"><span class="octicon octicon-link"></span></a>As IconicsButton</h4>
 
-<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsButton
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsButton
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>{faw-adjust} Button<span class="pl-pds">"</span></span>
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>120dp<span class="pl-pds">"</span></span>
         <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>60dp<span class="pl-pds">"</span></span>/&gt;</pre></div>
@@ -202,7 +202,7 @@ All icon names from the default fonts can be found via the <a href="https://play
 
 <p>If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the <code>Application</code>.</p>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CustomApplication</span> <span class="pl-k">extends</span> <span class="pl-e">Application</span> {
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CustomApplication</span> <span class="pl-k">extends</span> <span class="pl-e">Application</span> {
     <span class="pl-k">@Override</span>
     <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onCreate</span>() {
         <span class="pl-v">super</span><span class="pl-k">.</span>onCreate();
@@ -222,7 +222,7 @@ All icon names from the default fonts can be found via the <a href="https://play
 <p>Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
 Just define the style for all icons or only a specific one. You can find this in the PlaygroundActivity of the sample too.</p>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">Iconics</span>.<span class="pl-smi">IconicsBuilder</span>()<span class="pl-k">.</span>ctx(<span class="pl-v">this</span>)
+<div class="highlight highlight-source-java"><pre><span class="pl-k">new</span> <span class="pl-smi">Iconics</span>.<span class="pl-smi">IconicsBuilder</span>()<span class="pl-k">.</span>ctx(<span class="pl-v">this</span>)
                 .style(<span class="pl-k">new</span> <span class="pl-smi">ForegroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>WHITE</span>), <span class="pl-k">new</span> <span class="pl-smi">BackgroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>BLACK</span>), <span class="pl-k">new</span> <span class="pl-smi">RelativeSizeSpan</span>(<span class="pl-c1">2f</span>))
                 .styleFor(<span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_adjust, <span class="pl-k">new</span> <span class="pl-smi">BackgroundColorSpan</span>(<span class="pl-smi">Color</span><span class="pl-c1"><span class="pl-k">.</span>RED</span>))
                 .on(tv1)
@@ -233,9 +233,9 @@ Just define the style for all icons or only a specific one. You can find this in
 
 <p>Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:</p>
 
-<div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>faw-adjust<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>actionBarSize()</pre></div>
+<div class="highlight highlight-source-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>faw-adjust<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>actionBarSize()</pre></div>
 
-<div class="highlight highlight-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_adjust)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
+<div class="highlight highlight-source-java"><pre>  <span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>, <span class="pl-smi">FontAwesome</span><span class="pl-k">.</span><span class="pl-smi">Icon</span><span class="pl-k">.</span>faw_adjust)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>)</pre></div>
 
 <h3>
 <a id="create-custom-fonts-using-fontello-or-icomoon" class="anchor" href="#create-custom-fonts-using-fontello-or-icomoon" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create custom fonts using <a href="http://fontello.com">Fontello</a> or <a href="http://icomoon.io">IcoMoon</a>
@@ -277,7 +277,7 @@ Just define the style for all icons or only a specific one. You can find this in
 <li>To implement a GenericFont just provide the mapping before you use the Iconics. (best inside a <a href="https://github.com/mikepenz/Android-Iconics/blob/develop/app/src/main/java/com/mikepenz/iconics/sample/CustomApplication.java">CustomApplication</a>)</li>
 </ul>
 
-<div class="highlight highlight-java"><pre><span class="pl-c">//Create a new GenericFont by defining a 3 char long fontId and by defining the path to the font (starting inside src/main/assets)</span>
+<div class="highlight highlight-source-java"><pre><span class="pl-c">//Create a new GenericFont by defining a 3 char long fontId and by defining the path to the font (starting inside src/main/assets)</span>
 <span class="pl-smi">GenericFont</span> gf2 <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">GenericFont</span>(<span class="pl-s"><span class="pl-pds">"</span>gmf<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>fonts/materialdrawerfont.ttf<span class="pl-pds">"</span></span>);
 <span class="pl-c">//now register the icons which are inside the font. Just provide the unicode value and name.</span>
 <span class="pl-c">//the unicode value is defined as '\e800', just add the 'u' after '\' to tell java that it's an unicode char</span>
@@ -291,7 +291,7 @@ gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pd
 <li>After defining the GenericFont you can use it like this</li>
 </ul>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>)<span class="pl-k">.</span>icon(<span class="pl-s"><span class="pl-pds">"</span>gmf-person<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>);</pre></div>
+<div class="highlight highlight-source-java"><pre><span class="pl-k">new</span> <span class="pl-smi">IconicsDrawable</span>(<span class="pl-v">this</span>)<span class="pl-k">.</span>icon(<span class="pl-s"><span class="pl-pds">"</span>gmf-person<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>sizeDp(<span class="pl-c1">24</span>);</pre></div>
 
 <h5>
 <a id="22-implement-as-customfont" class="anchor" href="#22-implement-as-customfont" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2. Implement as CustomFont</h5>
@@ -302,7 +302,7 @@ gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pd
 <li>A CustomFont has to implement the <code>ITypeface</code> interface, and can then be easily used as any of the provided fonts</li>
 </ul>
 
-<div class="highlight highlight-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CustomFont</span> <span class="pl-k">implements</span> <span class="pl-e">ITypeface</span> {
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">CustomFont</span> <span class="pl-k">implements</span> <span class="pl-e">ITypeface</span> {
     <span class="pl-c">//define the font file to use</span>
     <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">String</span> <span class="pl-c1">TTF_FILE</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>fontello.ttf<span class="pl-pds">"</span></span>;
 
@@ -406,7 +406,7 @@ gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pd
 <p>Exclude <code>R</code> from ProGuard to enable the font addon auto detection</p>
 
 <pre lang="proguard"><code>-keep class .R
--keep class .R$* {
+-keep class **.R$* {
     &lt;fields&gt;;
 }
 </code></pre>
