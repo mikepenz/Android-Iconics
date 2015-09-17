@@ -52,7 +52,7 @@ compile 'com.mikepenz:google-material-typeface:1.2.0.1@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
-compile 'com.mikepenz:community-material-typeface:1.1.70.3@aar'
+compile 'com.mikepenz:community-material-typeface:1.2.64.1@aar'
 ```
 
 #Usage
