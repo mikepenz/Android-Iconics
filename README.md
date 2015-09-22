@@ -241,7 +241,12 @@ public class CustomFont implements ITypeface {
         return mChars;
     }
 
-    //the mapping prefix used for this font like fon-android
+    /**
+     * The Mapping Prefix to identify this font (example: fon-android -> `fon` is the mappingPrefix)
+     * must have a length of 3
+     *
+     * @return mappingPrefix (length = 3)
+     */
     @Override
     public String getMappingPrefix() {
         return "fon";
