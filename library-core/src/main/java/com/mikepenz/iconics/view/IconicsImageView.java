@@ -252,17 +252,4 @@ public class IconicsImageView extends ImageView {
         }
         return null;
     }
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldW, int oldH) {
-        super.onSizeChanged(w, h, oldW, oldH);
-        if (getDrawable() instanceof IconicsDrawable) {
-            //set the size
-            if (w > h) {
-                ((IconicsDrawable) getDrawable()).sizePx(w);
-            } else {
-                ((IconicsDrawable) getDrawable()).sizePx(h);
-            }
-        }
-    }
 }
