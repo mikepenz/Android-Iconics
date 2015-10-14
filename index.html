@@ -78,7 +78,7 @@ Provide additional fonts for you project, or even create your custom font with j
 <a id="1-provide-the-gradle-dependency" class="anchor" href="#1-provide-the-gradle-dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Provide the gradle dependency</h2>
 
 <div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">dependencies</span> {
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:1.7.6@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:1.7.7@aar<span class="pl-pds">'</span></span>
 }</pre></div>
 
 <h2>
@@ -329,7 +329,12 @@ gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pd
         <span class="pl-k">return</span> mChars;
     }
 
-    <span class="pl-c">//the mapping prefix used for this font like fon-android</span>
+    <span class="pl-c">/**</span>
+<span class="pl-c">     * The Mapping Prefix to identify this font (example: fon-android -&gt; `fon` is the mappingPrefix)</span>
+<span class="pl-c">     * must have a length of 3</span>
+<span class="pl-c">     *</span>
+<span class="pl-c">     * @return mappingPrefix (length = 3)</span>
+<span class="pl-c">     */</span>
     <span class="pl-k">@Override</span>
     <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getMappingPrefix</span>() {
         <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>fon<span class="pl-pds">"</span></span>;
