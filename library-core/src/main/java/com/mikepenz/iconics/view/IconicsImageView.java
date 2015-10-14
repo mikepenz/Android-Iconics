@@ -139,7 +139,7 @@ public class IconicsImageView extends ImageView {
         if (mSize != -1) {
             mIcon.sizePx(mSize);
         }
-        if (mSize != -1) {
+        if (mPadding != -1) {
             mIcon.paddingPx(mPadding);
         }
         if (mContourColor != 0) {
