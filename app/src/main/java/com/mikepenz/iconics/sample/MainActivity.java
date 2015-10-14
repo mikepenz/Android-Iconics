@@ -62,7 +62,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts(this).size());
         //add all icons of all registered Fonts to the list
         for (ITypeface font : Iconics.getRegisteredFonts(this)) {
-            items.add(new PrimaryDrawerItem().withName(font.getFontName()));
+            if (font.getMappingPrefix().equals("gmd")) {
+                items.add(new PrimaryDrawerItem().withName(font.getFontName()).withIdentifier(1));
+            } else {
+                items.add(new PrimaryDrawerItem().withName(font.getFontName()));
+            }
         }
 
         new DrawerBuilder().withActivity(this)

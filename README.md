@@ -42,7 +42,7 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.7.6@aar'
+	compile 'com.mikepenz:iconics-core:1.7.7@aar'
 }
 ```
 
@@ -52,7 +52,7 @@ compile 'com.mikepenz:google-material-typeface:1.2.0.1@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
-compile 'com.mikepenz:community-material-typeface:1.1.70.3@aar'
+compile 'com.mikepenz:community-material-typeface:1.2.64.1@aar'
 ```
 
 #Usage
@@ -241,7 +241,12 @@ public class CustomFont implements ITypeface {
         return mChars;
     }
 
-    //the mapping prefix used for this font like fon-android
+    /**
+     * The Mapping Prefix to identify this font (example: fon-android -> `fon` is the mappingPrefix)
+     * must have a length of 3
+     *
+     * @return mappingPrefix (length = 3)
+     */
     @Override
     public String getMappingPrefix() {
         return "fon";
@@ -317,7 +322,7 @@ public class CustomFont implements ITypeface {
 Exclude `R` from ProGuard to enable the font addon auto detection
 ```proguard
 -keep class .R
--keep class .R$* {
+-keep class **.R$* {
     <fields>;
 }
 ```

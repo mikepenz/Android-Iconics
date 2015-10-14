@@ -37,6 +37,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="IconicsImageView Showcase" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#000" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,17 +63,72 @@
                 <com.mikepenz.iconics.view.IconicsImageView
                     android:layout_width="72dp"
                     android:layout_height="72dp"
-                    app:iiv_color="@android:color/holo_red_dark"
+                    app:iiv_color="@color/md_red_200"
                     app:iiv_icon="gmd-favorite" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="IconicsImageView Padding Showcase" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- no padding and size -->
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:background="#ffcccc"
+                    app:iiv_color="#666666"
+                    app:iiv_icon="faw-android" />
+
+                <!-- android:iiv_size -->
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:background="#ccffcc"
+                    app:iiv_color="#666666"
+                    app:iiv_icon="faw-android"
+                    app:iiv_size="16dp" />
+
+                <!-- android:iiv_padding -->
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:background="#ccccff"
+                    app:iiv_color="#666666"
+                    app:iiv_icon="faw-android"
+                    app:iiv_padding="16dp" />
+
+                <!-- android:padding -->
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:background="#ffffcc"
+                    android:padding="16dp"
+                    app:iiv_color="#666666"
+                    app:iiv_icon="faw-android" />
+
             </LinearLayout>
 
             <TextView
-                android:id="@+id/test1"
-                android:layout_width="wrap_content"
-                android:layout_height="56dp"
-                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-poll}no{met-wind}pqrstuv{fon-test2}wxy{z"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView Showcase" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,12 +138,26 @@
                 android:background="#000" />
 
             <TextView
+                android:id="@+id/test1"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-poll}no{met-wind}pqrstuv{fon-test2}wxy{z"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/test5"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
                 android:text="somecustomtext with a custom icon :D"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="IconicsTextView Showcase" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,6 +172,19 @@
                 android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Button/IconicsButton Showcase" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -108,6 +202,20 @@
                     android:layout_height="60dp"
                     android:text="{gmd-poll} Button" />
             </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ImageView Showcase" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
