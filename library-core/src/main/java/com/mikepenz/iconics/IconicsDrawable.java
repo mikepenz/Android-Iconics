@@ -39,7 +39,6 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -782,7 +781,7 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public int getOpacity() {
-        return PixelFormat.OPAQUE;
+        return this.mAlpha;
     }
 
 
@@ -809,6 +808,11 @@ public class IconicsDrawable extends Drawable {
     @Override
     public void setColorFilter(ColorFilter cf) {
         mIconPaint.setColorFilter(cf);
+    }
+
+    @Override
+    public void clearColorFilter() {
+        mIconPaint.setColorFilter(null);
     }
 
     /**
