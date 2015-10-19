@@ -19,6 +19,7 @@ package com.mikepenz.iconics.sample;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -32,6 +33,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -82,6 +84,15 @@ public class PlaygroundActivity extends Activity {
                 .style(new ForegroundColorSpan(Color.WHITE))
                 .on(b4)
                 .build();
+
+
+        //Show how to style the text of an existing button (NOT WORKING AT THE MOMENT)
+        ImageButton b6 = (ImageButton) findViewById(R.id.test6);
+
+        StateListDrawable iconStateListDrawable = new StateListDrawable();
+        iconStateListDrawable.addState(new int[]{android.R.attr.state_pressed}, new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1));
+        iconStateListDrawable.addState(new int[]{}, new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aa00FF00")).contourWidthDp(2));
+        b6.setImageDrawable(iconStateListDrawable);
 
         ListView listView = (ListView) findViewById(R.id.list);
 

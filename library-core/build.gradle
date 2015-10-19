@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18
-        versionName "1.7.8"
+        versionCode 19
+        versionName "1.7.9"
     }
     buildTypes {
         release {
@@ -25,5 +25,5 @@ if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.1.0'
 }

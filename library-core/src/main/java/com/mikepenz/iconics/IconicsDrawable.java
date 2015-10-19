@@ -39,7 +39,6 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -48,6 +47,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.v4.content.ContextCompat;
+import android.text.TextPaint;
 import android.util.Log;
 
 import com.mikepenz.iconics.typeface.IIcon;
@@ -131,7 +131,12 @@ public class IconicsDrawable extends Drawable {
     }
 
     private void prepare() {
-        mIconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mIconPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
+        mIconPaint.setStyle(Paint.Style.FILL);
+        mIconPaint.setTextAlign(Paint.Align.CENTER);
+        mIconPaint.setUnderlineText(false);
+        mIconPaint.setAntiAlias(true);
+
         mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mContourPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -776,7 +781,7 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public int getOpacity() {
-        return PixelFormat.OPAQUE;
+        return this.mAlpha;
     }
 
 
@@ -803,6 +808,11 @@ public class IconicsDrawable extends Drawable {
     @Override
     public void setColorFilter(ColorFilter cf) {
         mIconPaint.setColorFilter(cf);
+    }
+
+    @Override
+    public void clearColorFilter() {
+        mIconPaint.setColorFilter(null);
     }
 
     /**
