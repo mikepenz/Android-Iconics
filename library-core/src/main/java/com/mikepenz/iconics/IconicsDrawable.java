@@ -48,6 +48,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.v4.content.ContextCompat;
+import android.text.TextPaint;
 import android.util.Log;
 
 import com.mikepenz.iconics.typeface.IIcon;
@@ -131,7 +132,12 @@ public class IconicsDrawable extends Drawable {
     }
 
     private void prepare() {
-        mIconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mIconPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
+        mIconPaint.setStyle(Paint.Style.FILL);
+        mIconPaint.setTextAlign(Paint.Align.CENTER);
+        mIconPaint.setUnderlineText(false);
+        mIconPaint.setAntiAlias(true);
+
         mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mContourPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
