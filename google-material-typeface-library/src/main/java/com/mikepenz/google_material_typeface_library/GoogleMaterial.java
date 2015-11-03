@@ -89,7 +89,7 @@ public class GoogleMaterial implements ITypeface {
 
     @Override
     public String getUrl() {
-        return "https://github.com/google/material-design-icons";
+        return "http://zavoloklom.github.io/material-design-iconic-font/";
     }
 
     @Override
