@@ -92,6 +92,33 @@ To use the icon within text use the `{` icon-definer `}` syntax
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
 
+###Normal Views
+
+####TextView / Button
+If you are going to use the **Android-Iconics** on normal `TextView`s or `Buttons` you will have to overwrite 
+the `attachBaseContext` of your Activity. 
+
+**Note:** If you are going to use the **Android-Iconics** manually via `new Iconics.IconicsBuilder().ctx(this)....on(tv1) you should not use this.
+
+```java
+@Override
+protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+}
+```
+
+```xml
+<TextView
+        android:text="{gmd-chart} Chart"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:textSize="16sp"/>
+```
+
+
+###Custom Views
+
 ####As IconicsTextView
 ```xml
 <com.mikepenz.iconics.view.IconicsTextView
