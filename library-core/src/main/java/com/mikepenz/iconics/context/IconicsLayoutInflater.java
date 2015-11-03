@@ -13,7 +13,7 @@ import org.xmlpull.v1.XmlPullParser;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class IconicsLayoutInflater extends LayoutInflater {
+class IconicsLayoutInflater extends LayoutInflater {
 
     private static final String[] sClassPrefixList = {
             "android.widget."
