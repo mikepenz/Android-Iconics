@@ -36,6 +36,9 @@ Provide additional fonts for you project, or even create your custom font with j
 >* there is now a core package which comes without included fonts
 >* provide the fonts you need. no additional steps required
 
+> UPGRADE < Google Material font 1.2.0.1 --> 2.1.2.1
+>* the mapping of some icons changed
+
 
 #Setup
 
@@ -48,7 +51,7 @@ dependencies {
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:1.2.0.1@aar'
+compile 'com.mikepenz:google-material-typeface:2.1.2.1@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
@@ -118,6 +121,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
   * "faw"
   * DEFAULT
 * [Google Material Design Icons](https://github.com/google/material-design-icons)
+* **NEW SOURCE** [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
   * "gmd"
   * DEFAULT
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
