@@ -24,8 +24,8 @@ class IconicsFactory {
                 return;
             }
 
-            TextView tv = (TextView) view;
-            tv.setText(new Iconics.IconicsBuilder().ctx(context).on(tv.getText()).build());
+            //handle iconics
+            Iconics.on((TextView) view);
         }
     }
 }
