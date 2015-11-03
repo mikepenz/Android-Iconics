@@ -69,6 +69,12 @@ Provide additional fonts for you project, or even create your custom font with j
 <li>there is now a core package which comes without included fonts</li>
 <li>provide the fonts you need. no additional steps required</li>
 </ul>
+
+<p>UPGRADE &lt; Google Material font 1.2.0.1 --&gt; 2.1.2.1</p>
+
+<ul>
+<li>the mapping of some icons changed</li>
+</ul>
 </blockquote>
 
 <h1>
@@ -78,17 +84,17 @@ Provide additional fonts for you project, or even create your custom font with j
 <a id="1-provide-the-gradle-dependency" class="anchor" href="#1-provide-the-gradle-dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Provide the gradle dependency</h2>
 
 <div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">dependencies</span> {
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:1.7.9@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:2.0.0@aar<span class="pl-pds">'</span></span>
 }</pre></div>
 
 <h2>
 <a id="2-choose-your-desired-fonts" class="anchor" href="#2-choose-your-desired-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Choose your desired fonts</h2>
 
-<div class="highlight highlight-source-groovy-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:1.2.0.1@aar<span class="pl-pds">'</span></span>
+<div class="highlight highlight-source-groovy-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:2.1.2.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:fontawesome-typeface:4.4.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:octicons-typeface:3.0.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:meteocons-typeface:1.1.0.1@aar<span class="pl-pds">'</span></span>
-compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-material-typeface:1.2.64.1@aar<span class="pl-pds">'</span></span></pre></div>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-material-typeface:1.2.65.1@aar<span class="pl-pds">'</span></span></pre></div>
 
 <h1>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
@@ -125,6 +131,32 @@ All icon names from the default fonts can be found via the <a href="https://play
 <pre lang="gson"><code>Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 </code></pre>
 
+<h3>
+<a id="normal-views" class="anchor" href="#normal-views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normal Views</h3>
+
+<h4>
+<a id="textview--button" class="anchor" href="#textview--button" aria-hidden="true"><span class="octicon octicon-link"></span></a>TextView / Button</h4>
+
+<p>If you are going to use the <strong>Android-Iconics</strong> on normal <code>TextView</code>s or <code>Buttons</code> you will have to overwrite 
+the <code>attachBaseContext</code> of your Activity. </p>
+
+<p><strong>Note:</strong> If you are going to use the <strong>Android-Iconics</strong> manually via `new Iconics.IconicsBuilder().ctx(this)....on(tv1) you should not use this.</p>
+
+<div class="highlight highlight-source-java"><pre>@<span class="pl-smi">Override</span>
+<span class="pl-k">protected</span> <span class="pl-k">void</span> attachBaseContext(<span class="pl-smi">Context</span> newBase) {
+    <span class="pl-v">super</span><span class="pl-k">.</span>attachBaseContext(<span class="pl-smi">IconicsContextWrapper</span><span class="pl-k">.</span>wrap(newBase));
+}</pre></div>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">TextView</span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>{gmd-chart} Chart<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textColor</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/black<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>wrap_content<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>56dp<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textSize</span>=<span class="pl-s"><span class="pl-pds">"</span>16sp<span class="pl-pds">"</span></span>/&gt;</pre></div>
+
+<h3>
+<a id="custom-views" class="anchor" href="#custom-views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Views</h3>
+
 <h4>
 <a id="as-iconicstextview" class="anchor" href="#as-iconicstextview" aria-hidden="true"><span class="octicon octicon-link"></span></a>As IconicsTextView</h4>
 
@@ -160,8 +192,9 @@ All icon names from the default fonts can be found via the <a href="https://play
 <li>DEFAULT</li>
 </ul>
 </li>
+<li><a href="https://github.com/google/material-design-icons">Google Material Design Icons</a></li>
 <li>
-<a href="https://github.com/google/material-design-icons">Google Material Design Icons</a>
+<strong>NEW SOURCE</strong> <a href="http://zavoloklom.github.io/material-design-iconic-font">Google Material Design Iconic Font</a>
 
 <ul>
 <li>"gmd"</li>
@@ -430,6 +463,9 @@ gf2<span class="pl-k">.</span>registerIcon(<span class="pl-s"><span class="pl-pd
 <ul>
 <li>
 <a href="https://github.com/JoanZapata">Joan Zapata</a> He is the creator of <a href="https://github.com/JoanZapata/android-iconify">Android-Iconify</a> which gave me the idea of this project. Some core concepts and ideas were reused, but everything is written from scratch.</li>
+<li>
+<a href="https://github.com/chrisjenx/">Christopher Jenkins</a> Thanks for the great usage of a custom <code>ContextWrapper</code> inside <a href="https://github.com/chrisjenx/Calligraphy/">Calligraphy</a>
+</li>
 </ul>
 
 <h1>
