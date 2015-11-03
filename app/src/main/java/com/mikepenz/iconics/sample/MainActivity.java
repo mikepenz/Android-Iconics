@@ -122,9 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
         MenuItem menuItem = menu.findItem(R.id.action_opensource);
         menuItem.setIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_github).actionBar().color(Color.WHITE));
-        //menuItem.setIcon(new IconicsDrawable(this, "faw-github").actionBarSize().color(Color.WHITE));
-
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -150,8 +147,10 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.action_playground:
-                Intent ip = new Intent(getApplicationContext(), PlaygroundActivity.class);
-                startActivity(ip);
+                startActivity(new Intent(getApplicationContext(), PlaygroundActivity.class));
+                return true;
+            case R.id.action_automatic:
+                startActivity(new Intent(getApplicationContext(), AutomaticActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
