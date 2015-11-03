@@ -141,7 +141,7 @@
                 android:id="@+id/test1"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-poll}no{met-wind}pqrstuv{fon-test2}wxy{z"
+                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-chart}no{met-wind}pqrstuv{fon-test2}wxy{z"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
@@ -202,7 +202,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:text="{gmd-poll} Button" />
+                    android:text="{gmd-chart} Button" />
 
                 <ImageButton
                     android:id="@+id/test6"

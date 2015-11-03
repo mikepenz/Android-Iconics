@@ -36,23 +36,26 @@ Provide additional fonts for you project, or even create your custom font with j
 >* there is now a core package which comes without included fonts
 >* provide the fonts you need. no additional steps required
 
+> UPGRADE < Google Material font 1.2.0.1 --> 2.1.2.1
+>* the mapping of some icons changed
+
 
 #Setup
 
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:1.7.9@aar'
+	compile 'com.mikepenz:iconics-core:2.0.0@aar'
 }
 ```
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:1.2.0.1@aar'
+compile 'com.mikepenz:google-material-typeface:2.1.2.1@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
-compile 'com.mikepenz:community-material-typeface:1.2.64.1@aar'
+compile 'com.mikepenz:community-material-typeface:1.2.65.1@aar'
 ```
 
 #Usage
@@ -89,6 +92,33 @@ To use the icon within text use the `{` icon-definer `}` syntax
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
 
+###Normal Views
+
+####TextView / Button
+If you are going to use the **Android-Iconics** on normal `TextView`s or `Buttons` you will have to overwrite 
+the `attachBaseContext` of your Activity. 
+
+**Note:** If you are going to use the **Android-Iconics** manually via `new Iconics.IconicsBuilder().ctx(this)....on(tv1) you should not use this.
+
+```java
+@Override
+protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+}
+```
+
+```xml
+<TextView
+        android:text="{gmd-chart} Chart"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:textSize="16sp"/>
+```
+
+
+###Custom Views
+
 ####As IconicsTextView
 ```xml
 <com.mikepenz.iconics.view.IconicsTextView
@@ -118,6 +148,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
   * "faw"
   * DEFAULT
 * [Google Material Design Icons](https://github.com/google/material-design-icons)
+* **NEW SOURCE** [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
   * "gmd"
   * DEFAULT
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)

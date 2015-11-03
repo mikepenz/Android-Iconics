@@ -87,6 +87,28 @@ public final class Iconics {
         // Prevent instantiation
     }
 
+    //SOME short methods
+    public static void on(TextView view) {
+        //the simplest possible usage
+        new Iconics.IconicsBuilder().ctx(view.getContext()).on(view).build();
+    }
+
+    public static void update(TextView view, String text) {
+        view.setText(text);
+        on(view);
+    }
+
+
+    /**
+     * this method will handle the main logic for replacing strings with the icons
+     *
+     * @param ctx
+     * @param fonts
+     * @param textSpanned
+     * @param styles
+     * @param stylesFor
+     * @return
+     */
     private static SpannableString style(Context ctx, HashMap<String, ITypeface> fonts, SpannableString textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
         if (!INIT_DONE) {
             init(ctx);
