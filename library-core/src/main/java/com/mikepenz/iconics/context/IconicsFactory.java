@@ -8,6 +8,10 @@ import android.widget.TextView;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.core.R;
 
+/**
+ * Base created by Christopher Jenkins
+ * https://github.com/chrisjenx/Calligraphy
+ */
 class IconicsFactory {
 
     public View onViewCreated(View view, Context context, AttributeSet attrs) {

@@ -13,6 +13,10 @@ import org.xmlpull.v1.XmlPullParser;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+/**
+ * Base created by Christopher Jenkins
+ * https://github.com/chrisjenx/Calligraphy
+ */
 class IconicsLayoutInflater extends LayoutInflater {
 
     private static final String[] sClassPrefixList = {

@@ -5,6 +5,10 @@ import android.content.ContextWrapper;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 
+/**
+ * Base created by Christopher Jenkins
+ * https://github.com/chrisjenx/Calligraphy
+ */
 public class IconicsContextWrapper extends ContextWrapper {
 
     private LayoutInflater mInflater;

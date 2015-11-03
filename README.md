@@ -366,7 +366,7 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 #Credits
 - [Joan Zapata](https://github.com/JoanZapata) He is the creator of [Android-Iconify](https://github.com/JoanZapata/android-iconify) which gave me the idea of this project. Some core concepts and ideas were reused, but everything is written from scratch.
-
+- [Christopher Jenkins](https://github.com/chrisjenx/) Thanks for the great usage of a custom `ContextWrapper` inside [Calligraphy](https://github.com/chrisjenx/Calligraphy/)
 
 #Developed By
 
