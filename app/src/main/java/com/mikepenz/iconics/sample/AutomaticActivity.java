@@ -19,7 +19,9 @@ package com.mikepenz.iconics.sample;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.TextView;
 
+import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 
 
@@ -34,5 +36,8 @@ public class AutomaticActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_automatic);
+
+        //set a new text on the textView and set the icon font on it
+        Iconics.update((TextView) findViewById(R.id.test4), "{gmd-favorite} GIF");
     }
 }
