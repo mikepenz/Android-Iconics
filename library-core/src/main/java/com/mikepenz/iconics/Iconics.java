@@ -138,7 +138,6 @@ public final class Iconics {
      *
      * @param ctx
      * @param editable
-     * @return
      */
     public static void styleEditable(Context ctx, Editable editable) {
         styleEditable(ctx, null, editable, null, null);
