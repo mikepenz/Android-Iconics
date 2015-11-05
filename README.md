@@ -31,14 +31,8 @@ Use the icons in the variation you need them.
 **Need more?**
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
 
-
-> UPGRADE < v2.0.0
->* there is now a core package which comes without included fonts
->* provide the fonts you need. no additional steps required
-
-> UPGRADE < Google Material font 1.2.0.1 --> 2.1.2.1
->* the mapping of some icons changed
-
+#Migration
+- [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
 
 #Setup
 
