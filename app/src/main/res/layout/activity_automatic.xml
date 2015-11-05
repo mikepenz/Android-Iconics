@@ -53,7 +53,7 @@
                 android:id="@+id/test1"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-plus-circle}n{gmd-speaker}o{met-wind}pqrs{gmd-tab-unselected}tuv{fon-test2}wxy{z"
+                android:text="a}asdfsadfa{bc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-plus-circle}n{gmd-speaker}o{met-wind}pqrs{gmd-tab-unselected}tuv{fon-test2}wxy{zasdfasdf"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
