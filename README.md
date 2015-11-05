@@ -31,21 +31,15 @@ Use the icons in the variation you need them.
 **Need more?**
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
 
-
-> UPGRADE < v2.0.0
->* there is now a core package which comes without included fonts
->* provide the fonts you need. no additional steps required
-
-> UPGRADE < Google Material font 1.2.0.1 --> 2.1.2.1
->* the mapping of some icons changed
-
+#Migration
+- [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
 
 #Setup
 
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:2.0.0@aar'
+	compile 'com.mikepenz:iconics-core:2.1.0@aar'
 }
 ```
 
@@ -366,7 +360,7 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 #Credits
 - [Joan Zapata](https://github.com/JoanZapata) He is the creator of [Android-Iconify](https://github.com/JoanZapata/android-iconify) which gave me the idea of this project. Some core concepts and ideas were reused, but everything is written from scratch.
-
+- [Christopher Jenkins](https://github.com/chrisjenx/) Thanks for the great usage of a custom `ContextWrapper` inside [Calligraphy](https://github.com/chrisjenx/Calligraphy/)
 
 #Developed By
 

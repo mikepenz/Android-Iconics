@@ -120,7 +120,7 @@ public class Octicons implements ITypeface {
         return typeface;
     }
 
-    public static enum Icon implements IIcon {
+    public enum Icon implements IIcon {
         //Octicons
         oct_alert('\uf02d'),
         oct_arrow_down('\uf03f'),

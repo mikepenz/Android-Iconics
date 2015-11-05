@@ -7,8 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * Created by chris on 17/12/14.
- * For Calligraphy.
+ * Base created by Christopher Jenkins
+ * https://github.com/chrisjenx/Calligraphy
  */
 class ReflectionUtils {
 
