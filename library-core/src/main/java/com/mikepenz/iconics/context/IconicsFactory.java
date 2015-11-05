@@ -57,7 +57,7 @@ class IconicsFactory {
 
                 @Override
                 public void afterTextChanged(Editable editable) {
-                    Iconics.styleEditable(context, null, editable, null, null);
+                    Iconics.styleEditable(context, editable);
                 }
             });
         }

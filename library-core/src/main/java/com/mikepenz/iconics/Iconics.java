@@ -84,8 +84,24 @@ public final class Iconics {
         // Prevent instantiation
     }
 
+
     /**
-     * this method will handle the main logic for replacing strings with the icons
+     * Creates a new SpannableStringBuilder and will iterate over the textSpanned once and copy over
+     * all characters, it will also directly replace icon font placeholders with the correct mapping.
+     * Afterwards it will apply the styles
+     *
+     * @param ctx
+     * @param textSpanned
+     * @return
+     */
+    public static Spannable style(Context ctx, Spannable textSpanned) {
+        return style(ctx, null, textSpanned, null, null);
+    }
+
+    /**
+     * Creates a new SpannableStringBuilder and will iterate over the textSpanned once and copy over
+     * all characters, it will also directly replace icon font placeholders with the correct mapping.
+     * Afterwards it will apply the styles
      *
      * @param ctx
      * @param fonts
@@ -117,6 +133,21 @@ public final class Iconics {
     }
 
     /**
+     * Iterates over the editable once and replace icon font placeholders with the correct mapping.
+     * Afterwards it will apply the styles
+     *
+     * @param ctx
+     * @param editable
+     * @return
+     */
+    public static void styleEditable(Context ctx, Editable editable) {
+        styleEditable(ctx, null, editable, null, null);
+    }
+
+    /**
+     * Iterates over the editable once and replace icon font placeholders with the correct mapping.
+     * Afterwards it will apply the styles
+     *
      * @param ctx
      * @param fonts
      * @param textSpanned
