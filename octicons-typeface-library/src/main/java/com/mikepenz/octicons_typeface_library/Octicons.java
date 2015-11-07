@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Octicons implements ITypeface {
-    private static final String TTF_FILE = "octicons.ttf";
+    private static final String TTF_FILE = "octicons-v3.2.0.ttf";
 
     private static Typeface typeface = null;
 
@@ -40,7 +40,7 @@ public class Octicons implements ITypeface {
     @Override
     public HashMap<String, Character> getCharacters() {
         if (mChars == null) {
-            HashMap<String, Character> aChars = new HashMap<String, Character>();
+            HashMap<String, Character> aChars = new HashMap<>();
             for (Icon v : Icon.values()) {
                 aChars.put(v.name(),
                         v.character);
@@ -63,7 +63,7 @@ public class Octicons implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "3.0.1";
+        return "3.2.0";
     }
 
     @Override
@@ -134,6 +134,7 @@ public class Octicons implements ITypeface {
         oct_microscope('\uf0dd'),
         oct_beaker('\uf0dd'),
         oct_bell('\uf0de'),
+        oct_bold('\uf0e2'),
         oct_book('\uf007'),
         oct_bookmark('\uf07b'),
         oct_briefcase('\uf0d3'),
@@ -214,6 +215,7 @@ public class Octicons implements ITypeface {
         oct_issue_closed('\uf028'),
         oct_issue_opened('\uf026'),
         oct_issue_reopened('\uf027'),
+        oct_italic('\uf0e4'),
         oct_jersey('\uf019'),
         oct_key('\uf049'),
         oct_keyboard('\uf00d'),
@@ -274,12 +276,11 @@ public class Octicons implements ITypeface {
         oct_rocket('\uf033'),
         oct_rss('\uf034'),
         oct_ruby('\uf047'),
-        oct_screen_full('\uf066'),
-        oct_screen_normal('\uf067'),
         oct_search_save('\uf02e'),
         oct_search('\uf02e'),
         oct_server('\uf097'),
         oct_settings('\uf07c'),
+        oct_shield('\uf0e1'),
         oct_log_in('\uf036'),
         oct_sign_in('\uf036'),
         oct_log_out('\uf032'),
@@ -294,8 +295,10 @@ public class Octicons implements ITypeface {
         oct_tag_remove('\uf015'),
         oct_tag_add('\uf015'),
         oct_tag('\uf015'),
+        oct_tasklist('\uf0e5'),
         oct_telescope('\uf088'),
         oct_terminal('\uf0c8'),
+        oct_text_size('\uf0e3'),
         oct_three_bars('\uf05e'),
         oct_thumbsdown('\uf0db'),
         oct_thumbsup('\uf0da'),
@@ -312,6 +315,7 @@ public class Octicons implements ITypeface {
         oct_remove_close('\uf081'),
         oct_x('\uf081'),
         oct_zap('\u26A1');
+
 
         char character;
 
