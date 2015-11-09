@@ -50,6 +50,7 @@ compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
 compile 'com.mikepenz:community-material-typeface:1.2.65.1@aar'
+compile 'com.mikepenz:weather-icons-typeface:2.0.10.1@aar'
 ```
 
 #Usage
@@ -154,6 +155,9 @@ protected void attachBaseContext(Context newBase) {
 * [Community Material](http://materialdesignicons.com/)
   * "cmd"
   * compile 'com.mikepenz.iconics:community-material-typeface:+@aar'
+* [Weather Icons](https://erikflowers.github.io/weather-icons/)
+  * "wic"
+  * compile 'com.mikepenz.iconics:weather-icons-typeface:+@aar'
 
 
 #Advanced Usage
