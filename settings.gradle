@@ -1,1 +1,1 @@
-include ':app', ':fontawesome-typeface-library', ':meteocons-typeface-library', ':octicons-typeface-library', ':library-core', 'community-material-typeface-library', 'google-material-typeface-library'
+include ':app', ':fontawesome-typeface-library', ':meteocons-typeface-library', ':weather-icons-typeface-library', ':octicons-typeface-library', ':library-core', 'community-material-typeface-library', 'google-material-typeface-library'
