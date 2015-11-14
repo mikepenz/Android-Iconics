@@ -218,7 +218,7 @@ own custom icon font from *.svg files then you can use following tools:
 * [IcoMoon](http://icomoon.io) 
 * let me know if you find other tools.
 
-After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](android-iconics.mikepenz.com).
+After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](http://android-iconics.mikepenz.com).
 Enter all the information. Add the *.ttf and *.css and click the button. It will generate and download the icon font addon as
 zip. (this tool is local only, no files are sent to a server, you can safely use it with any icons)
 
