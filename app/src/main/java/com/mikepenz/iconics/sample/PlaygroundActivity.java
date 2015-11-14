@@ -67,7 +67,6 @@ public class PlaygroundActivity extends Activity {
         sb.setSpan(new ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv2.setText(sb);
 
-
         //Set the icon of an ImageView (or something else) as drawable
         ImageView iv2 = (ImageView) findViewById(R.id.test2);
         iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1));
@@ -76,7 +75,7 @@ public class PlaygroundActivity extends Activity {
         ImageView iv3 = (ImageView) findViewById(R.id.test3);
         iv3.setImageBitmap(new IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDpX(48).sizeDpY(32).paddingDp(4).roundedCornersDp(8).color(Color.parseColor("#deFF0000")).toBitmap());
 
-        //Show how to style the text of an existing button (NOT WORKING AT THE MOMENT)
+        //Show how to style the text of an existing button
         Button b4 = (Button) findViewById(R.id.test4);
         new Iconics.IconicsBuilder().ctx(this)
                 .style(new BackgroundColorSpan(Color.BLACK))
@@ -85,10 +84,8 @@ public class PlaygroundActivity extends Activity {
                 .on(b4)
                 .build();
 
-
-        //Show how to style the text of an existing button (NOT WORKING AT THE MOMENT)
+        //Show how to style the text of an existing button
         ImageButton b6 = (ImageButton) findViewById(R.id.test6);
-
         StateListDrawable iconStateListDrawable = new StateListDrawable();
         iconStateListDrawable.addState(new int[]{android.R.attr.state_pressed}, new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1));
         iconStateListDrawable.addState(new int[]{}, new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aa00FF00")).contourWidthDp(2));

@@ -39,17 +39,20 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:2.1.0@aar'
+	compile 'com.mikepenz:iconics-core:2.1.1@aar'
 }
 ```
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:2.1.2.1@aar'
+compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
-compile 'com.mikepenz:octicons-typeface:3.0.0.1@aar'
+compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
 compile 'com.mikepenz:community-material-typeface:1.2.65.1@aar'
+compile 'com.mikepenz:weather-icons-typeface:2.0.10.1@aar'
+compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
+compile 'com.mikepenz:entypo:1.0.0.1@aar'
 ```
 
 #Usage
@@ -138,22 +141,30 @@ protected void attachBaseContext(Context newBase) {
 
 
 #Available fonts
+* [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) - [Google Material Design Icons](https://github.com/google/material-design-icons)
+  * "gmd"
+  * compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
 * [Fontawesome](http://fontawesome.io)
   * "faw"
-  * DEFAULT
-* [Google Material Design Icons](https://github.com/google/material-design-icons)
-* **NEW SOURCE** [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
-  * "gmd"
-  * DEFAULT
+  * compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
   * "met"
-  * compile 'com.mikepenz.iconics:meteocons-typeface:+@aar'
+  * compile 'com.mikepenz:meteocons-typeface:+@aar'
 * [Octicons](https://github.com/github/octicons)
   * "oct"
-  * compile 'com.mikepenz.iconics:octicons-typeface:+@aar'
+  * compile 'com.mikepenz:octicons-typeface:+@aar'
 * [Community Material](http://materialdesignicons.com/)
   * "cmd"
-  * compile 'com.mikepenz.iconics:community-material-typeface:+@aar'
+  * compile 'com.mikepenz:community-material-typeface:+@aar'
+* [Weather Icons](https://erikflowers.github.io/weather-icons/)
+  * "wic"
+  * compile 'com.mikepenz:weather-icons-typeface:+@aar'
+* [Typeicons](http://typicons.com/)
+  * "typ"
+  * compile 'com.mikepenz:typeicons-typeface:+@aar'
+* [Entypo](http://www.entypo.com/)
+  * "ent"
+  * compile 'com.mikepenz:entypo:+@aar'
 
 
 #Advanced Usage

@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class GoogleMaterial implements ITypeface {
-    private static final String TTF_FILE = "material-design-iconic-font-v2.1.2.ttf";
+    private static final String TTF_FILE = "material-design-iconic-font-v2.2.0.ttf";
 
     private static Typeface typeface = null;
 
@@ -63,7 +63,7 @@ public class GoogleMaterial implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "2.1.2";
+        return "2.2.0";
     }
 
     @Override
@@ -725,7 +725,7 @@ public class GoogleMaterial implements ITypeface {
         gmd_pocket('\uf359'),
         gmd_polymer('\uf35a'),
         gmd_share('\uf35b'),
-        gmd_stack_overflow('\uf35c'),
+        gmd_stackoverflow('\uf35c'),
         gmd_steam_square('\uf35d'),
         gmd_steam('\uf35e'),
         gmd_twitter_box('\uf35f'),
@@ -866,6 +866,39 @@ public class GoogleMaterial implements ITypeface {
         gmd_tap_and_play('\uf3e6'),
         gmd_vibration('\uf3e7'),
         gmd_voicemail('\uf3e8'),
+        gmd_group('\uf3e9'),
+        gmd_rss('\uf3ea'),
+        gmd_shape('\uf3eb'),
+        gmd_spinner('\uf3ec'),
+        gmd_ungroup('\uf3ed'),
+        gmd_500px('\uf3ee'),
+        gmd_8tracks('\uf3ef'),
+        gmd_amazon('\uf3f0'),
+        gmd_blogger('\uf3f1'),
+        gmd_delicious('\uf3f2'),
+        gmd_disqus('\uf3f3'),
+        gmd_flattr('\uf3f4'),
+        gmd_flickr('\uf3f5'),
+        gmd_github_alt('\uf3f6'),
+        gmd_google_old('\uf3f7'),
+        gmd_linkedin('\uf3f8'),
+        gmd_odnoklassniki('\uf3f9'),
+        gmd_outlook('\uf3fa'),
+        gmd_paypal_alt('\uf3fb'),
+        gmd_pinterest('\uf3fc'),
+        gmd_playstation('\uf3fd'),
+        gmd_reddit('\uf3fe'),
+        gmd_skype('\uf3ff'),
+        gmd_slideshare('\uf400'),
+        gmd_soundcloud('\uf401'),
+        gmd_tumblr('\uf402'),
+        gmd_twitch('\uf403'),
+        gmd_vimeo('\uf404'),
+        gmd_whatsapp('\uf405'),
+        gmd_xbox('\uf406'),
+        gmd_yahoo('\uf407'),
+        gmd_youtube_play('\uf408'),
+        gmd_youtube('\uf409'),
         gmd_import_export('\uf30c'),
         gmd_swap_vertical_('\uf30c'),
         gmd_airplanemode_inactive('\uf102'),
@@ -928,6 +961,7 @@ public class GoogleMaterial implements ITypeface {
         gmd_dehaze('\uf197'),
         gmd_sort('\uf1ce'),
         gmd_pages('\uf34a'),
+        gmd_stack_overflow('\uf35c'),
         gmd_calendar_account('\uf204'),
         gmd_paste('\uf109'),
         gmd_cut('\uf1bc'),
