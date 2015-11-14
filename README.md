@@ -51,6 +51,7 @@ compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
 compile 'com.mikepenz:community-material-typeface:1.2.65.1@aar'
 compile 'com.mikepenz:weather-icons-typeface:2.0.10.1@aar'
+compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
 ```
 
 #Usage
@@ -158,6 +159,9 @@ protected void attachBaseContext(Context newBase) {
 * [Weather Icons](https://erikflowers.github.io/weather-icons/)
   * "wic"
   * compile 'com.mikepenz.iconics:weather-icons-typeface:+@aar'
+* [Typeicons](http://typicons.com/)
+  * "typ"
+  * compile 'com.mikepenz.iconics:typeicons-typeface:+@aar'
 
 
 #Advanced Usage
