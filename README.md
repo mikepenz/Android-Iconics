@@ -209,7 +209,7 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 ```
 
 
-###Create custom fonts
+##Create custom fonts
 This is possible with only the *.ttf and *.css mapping file. And will take you 2 minutes.
 
 You can get these two files by downloading a web icon font, or if you want to create your
