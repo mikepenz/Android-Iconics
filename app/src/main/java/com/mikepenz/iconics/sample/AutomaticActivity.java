@@ -16,15 +16,16 @@
 
 package com.mikepenz.iconics.sample;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
 
 
-public class AutomaticActivity extends Activity {
+public class AutomaticActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -35,6 +36,11 @@ public class AutomaticActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_automatic);
+
+        // Handle Toolbar
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //set a new text on the textView and set the icon font on it
         ((TextView) findViewById(R.id.test4)).setText("{gmd-favorite} GIF");
