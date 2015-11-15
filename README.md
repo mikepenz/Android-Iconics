@@ -55,8 +55,16 @@ compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
 compile 'com.mikepenz:entypo:1.0.0.1@aar'
 ```
 
-#Usage
+##3. Inject into Context (optional)
+Wrap the `Activity` context. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml.
+```java
+@Override
+protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+}
+```
 
+#Usage
 ##Use as drawable
 
 ```java
@@ -72,7 +80,45 @@ If you use the Iconics library via XML provide the icon you want to use in the f
 available fonts and their `fontId` can be found near the end of the README.md
 All icon names from the default fonts can be found via the [DEMO](https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample) application.
 
-###As ImageView
+####Notation within text
+Use the `{` icon-definer `}` syntax
+```gson
+Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
+```
+
+###As ImageView (only available if you inject the context)
+```xml
+<ImageView
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    app:ico_color="@color/md_red_A200"
+    app:ico_icon="gmd-plus-circle"
+    app:ico_size="48dp" />
+    
+    //other possible attributes
+    //app:ico_background_color="@android:color/transparent"
+    //app:ico_color="@color/md_red_100"
+    //app:ico_contour_color="@android:color/transparent"
+    //app:ico_contour_width="0dp"
+    //app:ico_corner_radius="0dp"
+    //app:ico_icon="gmd-plus-circle"
+    //app:ico_offset_x="0dp"
+    //app:ico_offset_y="0dp"
+    //app:ico_padding="0dp"
+    //app:ico_size="48dp"
+```
+###As TextView (only available if you inject the context)
+```xml
+<TextView
+    android:text="{gmd-chart} Chart"
+    android:textColor="@android:color/black"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    android:textSize="16sp"/>
+```
+
+###Custom Views (if you do NOT inject the context)
+####As IconicsImageView
 ```xml
 <com.mikepenz.iconics.view.IconicsImageView
     android:layout_width="72dp"
@@ -80,41 +126,6 @@ All icon names from the default fonts can be found via the [DEMO](https://play.g
     app:iiv_color="@android:color/holo_red_dark"
     app:iiv_icon="gmd-favorite" />
 ```
-
-###As Text
-
-To use the icon within text use the `{` icon-definer `}` syntax
-
-```gson
-Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
-```
-
-###Normal Views
-
-####TextView / Button
-If you are going to use the **Android-Iconics** on normal `TextView`s or `Buttons` you will have to overwrite 
-the `attachBaseContext` of your Activity. 
-
-**Note:** If you are going to use the **Android-Iconics** manually via `new Iconics.IconicsBuilder().ctx(this)....on(tv1) you should not use this.
-
-```java
-@Override
-protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
-}
-```
-
-```xml
-<TextView
-        android:text="{gmd-chart} Chart"
-        android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:textSize="16sp"/>
-```
-
-
-###Custom Views
 
 ####As IconicsTextView
 ```xml
