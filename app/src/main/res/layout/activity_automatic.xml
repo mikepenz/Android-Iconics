@@ -50,20 +50,64 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- include all attrs here to showcase all the possible values -->
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    app:ico_background_color="@android:color/transparent"
-                    app:ico_color="@color/md_red_100"
-                    app:ico_contour_color="@android:color/transparent"
-                    app:ico_contour_width="0dp"
-                    app:ico_corner_radius="0dp"
-                    app:ico_icon="gmd-plus-circle"
-                    app:ico_offset_x="0dp"
-                    app:ico_offset_y="0dp"
-                    app:ico_padding="0dp"
-                    app:ico_size="48dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="ImageView Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <!--
+                        - all possible attributes for the imageView
+                        app:ico_background_color="@android:color/transparent"
+                        app:ico_color="@color/md_red_100"
+                        app:ico_contour_color="@android:color/transparent"
+                        app:ico_contour_width="0dp"
+                        app:ico_corner_radius="0dp"
+                        app:ico_icon="gmd-plus-circle"
+                        app:ico_offset_x="0dp"
+                        app:ico_offset_y="0dp"
+                        app:ico_padding="0dp"
+                        app:ico_size="48dp"
+                    -->
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:ico_color="@color/md_red_A200"
+                        app:ico_icon="gmd-plus-circle"
+                        app:ico_size="48dp" />
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:ico_color="@color/md_green_A200"
+                        app:ico_contour_color="@color/md_amber_200"
+                        app:ico_contour_width="1dp"
+                        app:ico_icon="gmd-speaker"
+                        app:ico_padding="12dp"
+                        app:ico_size="48dp" />
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:ico_background_color="@color/md_yellow_A100"
+                        app:ico_color="@color/md_blue_A200"
+                        app:ico_corner_radius="4dp"
+                        app:ico_icon="gmd-car"
+                        app:ico_padding="6dp"
+                        app:ico_size="48dp" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -105,7 +149,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Button/IconicsButton Showcase" />
+                    android:text="Button Showcase" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
