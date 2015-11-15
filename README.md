@@ -39,7 +39,7 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:2.1.1@aar'
+	compile 'com.mikepenz:iconics-core:2.2.0@aar'
 }
 ```
 
@@ -55,8 +55,16 @@ compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
 compile 'com.mikepenz:entypo:1.0.0.1@aar'
 ```
 
-#Usage
+##3. Inject into Context (optional)
+Wrap the `Activity` context. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml.
+```java
+@Override
+protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+}
+```
 
+#Usage
 ##Use as drawable
 
 ```java
@@ -72,7 +80,45 @@ If you use the Iconics library via XML provide the icon you want to use in the f
 available fonts and their `fontId` can be found near the end of the README.md
 All icon names from the default fonts can be found via the [DEMO](https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample) application.
 
-###As ImageView
+####Notation within text
+Use the `{` icon-definer `}` syntax
+```gson
+Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
+```
+
+###As ImageView (only available if you inject the context)
+```xml
+<ImageView
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    app:ico_color="@color/md_red_A200"
+    app:ico_icon="gmd-plus-circle"
+    app:ico_size="48dp" />
+    
+    //other possible attributes
+    //app:ico_background_color="@android:color/transparent"
+    //app:ico_color="@color/md_red_100"
+    //app:ico_contour_color="@android:color/transparent"
+    //app:ico_contour_width="0dp"
+    //app:ico_corner_radius="0dp"
+    //app:ico_icon="gmd-plus-circle"
+    //app:ico_offset_x="0dp"
+    //app:ico_offset_y="0dp"
+    //app:ico_padding="0dp"
+    //app:ico_size="48dp"
+```
+###As TextView (only available if you inject the context)
+```xml
+<TextView
+    android:text="{gmd-chart} Chart"
+    android:textColor="@android:color/black"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    android:textSize="16sp"/>
+```
+
+###Custom Views (if you do NOT inject the context)
+####As IconicsImageView
 ```xml
 <com.mikepenz.iconics.view.IconicsImageView
     android:layout_width="72dp"
@@ -80,41 +126,6 @@ All icon names from the default fonts can be found via the [DEMO](https://play.g
     app:iiv_color="@android:color/holo_red_dark"
     app:iiv_icon="gmd-favorite" />
 ```
-
-###As Text
-
-To use the icon within text use the `{` icon-definer `}` syntax
-
-```gson
-Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
-```
-
-###Normal Views
-
-####TextView / Button
-If you are going to use the **Android-Iconics** on normal `TextView`s or `Buttons` you will have to overwrite 
-the `attachBaseContext` of your Activity. 
-
-**Note:** If you are going to use the **Android-Iconics** manually via `new Iconics.IconicsBuilder().ctx(this)....on(tv1) you should not use this.
-
-```java
-@Override
-protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
-}
-```
-
-```xml
-<TextView
-        android:text="{gmd-chart} Chart"
-        android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:textSize="16sp"/>
-```
-
-
-###Custom Views
 
 ####As IconicsTextView
 ```xml
@@ -209,150 +220,18 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 ```
 
 
-###Create custom fonts using [Fontello](http://fontello.com) or [IcoMoon](http://icomoon.io)
+##Create custom fonts
+This is possible with only the *.ttf and *.css mapping file. And will take you 2 minutes.
 
-If you plan to use an existing icon font, one provided by your design team, or if you have an svg and want to use it as drawable just follow those simple steps.
+You can get these two files by downloading a web icon font, or if you want to create your
+own custom icon font from *.svg files then you can use following tools:
+* [Fontello](http://fontello.com)
+* [IcoMoon](http://icomoon.io) 
+* let me know if you find other tools.
 
-####1. Create the icon font (not required if you already have one)
-Open [Fontello](http://fontello.com) or [IcoMoon](http://icomoon.io) and select the icons you need. Add your vectors (.svg) and then just download the font.
-
-####1.2. Add the font to your project
-- Unpack the .zip you just downloaded and add the *.ttf to your project under `src/main/assets/fonts`
-- In the next step you will have to know the unicode value for the icons
- - this information can be found in the `fontello-codes.css` (if you used fontello)
- - or in the style.css (if you used icomoon)
-
-####2. Implement your CustomFont
-- Great you got your IconFont and you know which unicode character displays which icon. Now you can create your own font with it. You have to options 2.1. or 2.2.
-
-#####2.1. Implement as GenericFont
-- To implement a GenericFont just provide the mapping before you use the Iconics. (best inside a [CustomApplication](https://github.com/mikepenz/Android-Iconics/blob/develop/app/src/main/java/com/mikepenz/iconics/sample/CustomApplication.java))
-
-```java
-//Create a new GenericFont by defining a 3 char long fontId and by defining the path to the font (starting inside src/main/assets)
-GenericFont gf2 = new GenericFont("gmf", "fonts/materialdrawerfont.ttf");
-//now register the icons which are inside the font. Just provide the unicode value and name.
-//the unicode value is defined as '\e800', just add the 'u' after '\' to tell java that it's an unicode char
-gf2.registerIcon("person", '\ue800');
-gf2.registerIcon("up", '\ue801');
-gf2.registerIcon("down", '\ue802');
-//now register the created GenericFont
-Iconics.registerFont(gf2);
-```
-- After defining the GenericFont you can use it like this
-```java
-new IconicsDrawable(this).icon("gmf-person").sizeDp(24);
-```
-
-#####2.2. Implement as CustomFont
-- A more complex but easier to use / more safe implementation is to create a CustomFont.
-- For a QuickStart just use the [CustomFont](https://github.com/mikepenz/Android-Iconics/blob/develop/app/src/main/java/com/mikepenz/iconics/sample/typeface/CustomFont.java) used in the Sample app
-- A CustomFont has to implement the `ITypeface` interface, and can then be easily used as any of the provided fonts
-
-```java
-public class CustomFont implements ITypeface {
-    //define the font file to use
-    private static final String TTF_FILE = "fontello.ttf";
-
-    private static Typeface typeface = null;
-    private static HashMap<String, Character> mChars;
-
-    //return a icon by it's key
-    @Override
-    public IIcon getIcon(String key) {
-        return Icon.valueOf(key);
-    }
-
-    //return all possible key unicode-character mappings
-    @Override
-    public HashMap<String, Character> getCharacters() {
-        if (mChars == null) {
-            HashMap<String, Character> aChars = new HashMap<String, Character>();
-            for (Icon v : Icon.values()) {
-                aChars.put(v.name(), v.character);
-            }
-            mChars = aChars;
-        }
-
-        return mChars;
-    }
-
-    /**
-     * The Mapping Prefix to identify this font (example: fon-android -> `fon` is the mappingPrefix)
-     * must have a length of 3
-     *
-     * @return mappingPrefix (length = 3)
-     */
-    @Override
-    public String getMappingPrefix() {
-        return "fon";
-    }
-
-    //return all possible icon names
-    @Override
-    public Collection<String> getIcons() {
-        Collection<String> icons = new LinkedList<String>();
-
-        for (Icon value : Icon.values()) {
-            icons.add(value.name());
-        }
-
-        return icons;
-    }
-
-    //implement all additional methods from the interface
-    //...
-
-
-    //return the font from the assets (you can take this method in most cases)
-    @Override
-    public Typeface getTypeface(Context context) {
-        if (typeface == null) {
-            try {
-                typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + TTF_FILE);
-            } catch (Exception e) {
-                return null;
-            }
-        }
-        return typeface;
-    }
-
-    //implement the enum containing all possible icons. each icon name is like `fontId`_`iconNamE` --> `fon_test1` maps to the icon with the unicode char \e800
-    public static enum Icon implements IIcon {
-        //define all possible mappings here:
-        fon_test1('\ue800'),
-        fon_test2('\ue801');
-
-        //define all methods required by the IIcon interface, you can just copy and paste those
-        char character;
-        Icon(char character) {
-            this.character = character;
-        }
-
-        public String getFormattedName() {
-            return "{" + name() + "}";
-        }
-
-        public char getCharacter() {
-            return character;
-        }
-
-        public String getName() {
-            return name();
-        }
-
-        // remember the typeface so we can use it later
-        private static ITypeface typeface;
-
-        public ITypeface getTypeface() {
-            if (typeface == null) {
-                typeface = new CustomFont();
-            }
-            return typeface;
-        }
-    }
-}
-```
+After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](http://android-iconics.mikepenz.com).
+Enter all the information. Add the *.ttf and *.css and click the button. It will generate and download the icon font addon as
+zip. (this tool is local only, no files are sent to a server, you can safely use it with any icons)
 
 #ProGuard
 Exclude `R` from ProGuard to enable the font addon auto detection
