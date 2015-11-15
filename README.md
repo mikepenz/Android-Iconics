@@ -39,7 +39,7 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:2.1.1@aar'
+	compile 'com.mikepenz:iconics-core:2.2.0@aar'
 }
 ```
 
