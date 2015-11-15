@@ -76,7 +76,7 @@ Provide additional fonts for you project, or even create your custom font with j
 <a id="1-provide-the-gradle-dependency" class="anchor" href="#1-provide-the-gradle-dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Provide the gradle dependency</h2>
 
 <div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">dependencies</span> {
-    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:2.1.1@aar<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:iconics-core:2.2.0@aar<span class="pl-pds">'</span></span>
 }</pre></div>
 
 <h2>
@@ -90,6 +90,16 @@ compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-m
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:weather-icons-typeface:2.0.10.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:typeicons-typeface:2.0.7.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:entypo:1.0.0.1@aar<span class="pl-pds">'</span></span></pre></div>
+
+<h2>
+<a id="3-inject-into-context-optional" class="anchor" href="#3-inject-into-context-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Inject into Context (optional)</h2>
+
+<p>Wrap the <code>Activity</code> context. This will enable automatic icon detection for <code>TextViews</code>,<code>Buttons</code>, and allow you to set icons on <code>ImageView</code>'s via xml.</p>
+
+<div class="highlight highlight-source-java"><pre>@<span class="pl-smi">Override</span>
+<span class="pl-k">protected</span> <span class="pl-k">void</span> attachBaseContext(<span class="pl-smi">Context</span> newBase) {
+    <span class="pl-v">super</span><span class="pl-k">.</span>attachBaseContext(<span class="pl-smi">IconicsContextWrapper</span><span class="pl-k">.</span>wrap(newBase));
+}</pre></div>
 
 <h1>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
@@ -109,48 +119,57 @@ compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:entypo:1.0.
 available fonts and their <code>fontId</code> can be found near the end of the README.md
 All icon names from the default fonts can be found via the <a href="https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample">DEMO</a> application.</p>
 
+<h4>
+<a id="notation-within-text" class="anchor" href="#notation-within-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notation within text</h4>
+
+<p>Use the <code>{</code> icon-definer <code>}</code> syntax</p>
+
+<pre lang="gson"><code>Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
+</code></pre>
+
 <h3>
-<a id="as-imageview" class="anchor" href="#as-imageview" aria-hidden="true"><span class="octicon octicon-link"></span></a>As ImageView</h3>
+<a id="as-imageview-only-available-if-you-inject-the-context" class="anchor" href="#as-imageview-only-available-if-you-inject-the-context" aria-hidden="true"><span class="octicon octicon-link"></span></a>As ImageView (only available if you inject the context)</h3>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">ImageView</span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>48dp<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>48dp<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">ico_color</span>=<span class="pl-s"><span class="pl-pds">"</span>@color/md_red_A200<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">ico_icon</span>=<span class="pl-s"><span class="pl-pds">"</span>gmd-plus-circle<span class="pl-pds">"</span></span>
+    <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">ico_size</span>=<span class="pl-s"><span class="pl-pds">"</span>48dp<span class="pl-pds">"</span></span> /&gt;
+
+    //other possible attributes
+    //app:ico_background_color="@android:color/transparent"
+    //app:ico_color="@color/md_red_100"
+    //app:ico_contour_color="@android:color/transparent"
+    //app:ico_contour_width="0dp"
+    //app:ico_corner_radius="0dp"
+    //app:ico_icon="gmd-plus-circle"
+    //app:ico_offset_x="0dp"
+    //app:ico_offset_y="0dp"
+    //app:ico_padding="0dp"
+    //app:ico_size="48dp"</pre></div>
+
+<h3>
+<a id="as-textview-only-available-if-you-inject-the-context" class="anchor" href="#as-textview-only-available-if-you-inject-the-context" aria-hidden="true"><span class="octicon octicon-link"></span></a>As TextView (only available if you inject the context)</h3>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">TextView</span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>{gmd-chart} Chart<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textColor</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/black<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>wrap_content<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>56dp<span class="pl-pds">"</span></span>
+    <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textSize</span>=<span class="pl-s"><span class="pl-pds">"</span>16sp<span class="pl-pds">"</span></span>/&gt;</pre></div>
+
+<h3>
+<a id="custom-views-if-you-do-not-inject-the-context" class="anchor" href="#custom-views-if-you-do-not-inject-the-context" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Views (if you do NOT inject the context)</h3>
+
+<h4>
+<a id="as-iconicsimageview" class="anchor" href="#as-iconicsimageview" aria-hidden="true"><span class="octicon octicon-link"></span></a>As IconicsImageView</h4>
 
 <div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">com</span>.mikepenz.iconics.view.IconicsImageView
     <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
     <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>72dp<span class="pl-pds">"</span></span>
     <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_color</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/holo_red_dark<span class="pl-pds">"</span></span>
     <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">iiv_icon</span>=<span class="pl-s"><span class="pl-pds">"</span>gmd-favorite<span class="pl-pds">"</span></span> /&gt;</pre></div>
-
-<h3>
-<a id="as-text" class="anchor" href="#as-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>As Text</h3>
-
-<p>To use the icon within text use the <code>{</code> icon-definer <code>}</code> syntax</p>
-
-<pre lang="gson"><code>Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
-</code></pre>
-
-<h3>
-<a id="normal-views" class="anchor" href="#normal-views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normal Views</h3>
-
-<h4>
-<a id="textview--button" class="anchor" href="#textview--button" aria-hidden="true"><span class="octicon octicon-link"></span></a>TextView / Button</h4>
-
-<p>If you are going to use the <strong>Android-Iconics</strong> on normal <code>TextView</code>s or <code>Buttons</code> you will have to overwrite 
-the <code>attachBaseContext</code> of your Activity. </p>
-
-<p><strong>Note:</strong> If you are going to use the <strong>Android-Iconics</strong> manually via `new Iconics.IconicsBuilder().ctx(this)....on(tv1) you should not use this.</p>
-
-<div class="highlight highlight-source-java"><pre>@<span class="pl-smi">Override</span>
-<span class="pl-k">protected</span> <span class="pl-k">void</span> attachBaseContext(<span class="pl-smi">Context</span> newBase) {
-    <span class="pl-v">super</span><span class="pl-k">.</span>attachBaseContext(<span class="pl-smi">IconicsContextWrapper</span><span class="pl-k">.</span>wrap(newBase));
-}</pre></div>
-
-<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">TextView</span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">text</span>=<span class="pl-s"><span class="pl-pds">"</span>{gmd-chart} Chart<span class="pl-pds">"</span></span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textColor</span>=<span class="pl-s"><span class="pl-pds">"</span>@android:color/black<span class="pl-pds">"</span></span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>wrap_content<span class="pl-pds">"</span></span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>56dp<span class="pl-pds">"</span></span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">textSize</span>=<span class="pl-s"><span class="pl-pds">"</span>16sp<span class="pl-pds">"</span></span>/&gt;</pre></div>
-
-<h3>
-<a id="custom-views" class="anchor" href="#custom-views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Views</h3>
 
 <h4>
 <a id="as-iconicstextview" class="anchor" href="#as-iconicstextview" aria-hidden="true"><span class="octicon octicon-link"></span></a>As IconicsTextView</h4>
