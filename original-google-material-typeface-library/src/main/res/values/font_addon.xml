@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_font_GoogleMaterial">com.mikepenz.google_material_typeface_library.GoogleMaterial</string>
+</resources>
