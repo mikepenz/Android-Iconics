@@ -25,7 +25,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 21001
-        versionName "2.1.0.1-original"
+        versionName "2.1.0.1.original"
     }
     buildTypes {
         release {
@@ -34,7 +34,7 @@ android {
         }
     }
 }
-if (project.hasProperty('pushall') || project.hasProperty('GoogleMaterialonly')) {
+if (project.hasProperty('pushall') || project.hasProperty('googlematerialonly')) {
     apply from: '../gradle-mvn-push.gradle'
 }
 
