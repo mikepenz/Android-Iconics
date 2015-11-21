@@ -57,6 +57,9 @@ If you get the icons as <strong>vector</strong> (.svg) or there are many changes
 <li>Meteocons</li>
 <li>Octicons</li>
 <li>Community Material Icons</li>
+<li>Weather Icons</li>
+<li>Typeicons</li>
+<li>Entypo</li>
 </ul>
 
 <p><strong>Need more?</strong>
@@ -83,6 +86,8 @@ Provide additional fonts for you project, or even create your custom font with j
 <a id="2-choose-your-desired-fonts" class="anchor" href="#2-choose-your-desired-fonts" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Choose your desired fonts</h2>
 
 <div class="highlight highlight-source-groovy-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:2.2.0.1@aar<span class="pl-pds">'</span></span>
+<span class="pl-c">//this one is the original set by google different baseline may (really really rare) mapping issues on single custom roms </span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:2.2.0.1.original@aar<span class="pl-pds">'</span></span> 
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:fontawesome-typeface:4.4.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:octicons-typeface:3.2.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:meteocons-typeface:1.1.0.1@aar<span class="pl-pds">'</span></span>
@@ -203,7 +208,10 @@ All icon names from the default fonts can be found via the <a href="https://play
 
 <ul>
 <li>"gmd"</li>
-<li>compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'</li>
+<li>
+<strong>Google Material Iconic</strong> compile 'com.mikepenz:google-material-typeface:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
+<li>
+<strong>ORIGINAL by Google</strong> compile 'com.mikepenz:google-material-typeface:+.original@aar'</li>
 </ul>
 </li>
 <li>
@@ -211,7 +219,7 @@ All icon names from the default fonts can be found via the <a href="https://play
 
 <ul>
 <li>"faw"</li>
-<li>compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'</li>
+<li>compile 'com.mikepenz:fontawesome-typeface:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
 </ul>
 </li>
 <li>
@@ -354,6 +362,7 @@ zip. (this tool is local only, no files are sent to a server, you can safely use
 <li>
 <a href="https://github.com/chrisjenx/">Christopher Jenkins</a> Thanks for the great usage of a custom <code>ContextWrapper</code> inside <a href="https://github.com/chrisjenx/Calligraphy/">Calligraphy</a>
 </li>
+<li><a href="https://github.com/tehfonsi">Stephan Schober</a></li>
 </ul>
 
 <h1>
