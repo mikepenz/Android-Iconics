@@ -49,6 +49,8 @@ dependencies {
 ##2. Choose your desired fonts
 ```gradle
 compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
+//this one is the original set by google different baseline may (really really rare) mapping issues on single custom roms 
+compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar' 
 compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
@@ -157,10 +159,11 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 #Available fonts
 * [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) - [Google Material Design Icons](https://github.com/google/material-design-icons)
   * "gmd"
-  * compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
+  * **Google Material Iconic** compile 'com.mikepenz:google-material-typeface:+@aar'
+  * **ORIGINAL by Google** compile 'com.mikepenz:google-material-typeface:+.original@aar'
 * [Fontawesome](http://fontawesome.io)
   * "faw"
-  * compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
+  * compile 'com.mikepenz:fontawesome-typeface:+@aar'
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
   * "met"
   * compile 'com.mikepenz:meteocons-typeface:+@aar'
