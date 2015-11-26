@@ -803,6 +803,20 @@ public class IconicsDrawable extends Drawable {
     }
 
     /**
+     * @return the IIcon which is used inside this IconicsDrawable
+     */
+    public IIcon getIcon() {
+        return mIcon;
+    }
+
+    /**
+     * @return the PlainIcon which is used inside this IconicsDrawable
+     */
+    public String getPlainIcon() {
+        return mPlainIcon;
+    }
+
+    /**
      * just a helper method to get the alpha value
      *
      * @return
