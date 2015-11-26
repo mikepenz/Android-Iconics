@@ -66,9 +66,12 @@ public class IconicsDrawable extends Drawable {
     private int mSizeX = -1;
     private int mSizeY = -1;
 
+    private int mIconColor;
     private Paint mIconPaint;
+    private int mContourColor;
     private Paint mContourPaint;
-    private Paint mBackgroundPaint = null;
+    private int mBackgroundColor;
+    private Paint mBackgroundPaint;
 
     private int mRoundedCornerRx = -1;
     private int mRoundedCornerRy = -1;
@@ -229,6 +232,7 @@ public class IconicsDrawable extends Drawable {
         int green = Color.green(color);
         int blue = Color.blue(color);
         mIconPaint.setColor(Color.rgb(red, green, blue));
+        mIconColor = color;
         setAlpha(Color.alpha(color));
         invalidateSelf();
         return this;
@@ -494,6 +498,7 @@ public class IconicsDrawable extends Drawable {
         int blue = Color.blue(contourColor);
         mContourPaint.setColor(Color.rgb(red, green, blue));
         mContourPaint.setAlpha(Color.alpha(contourColor));
+        mContourColor = contourColor;
         invalidateSelf();
         return this;
     }
@@ -516,6 +521,7 @@ public class IconicsDrawable extends Drawable {
      */
     public IconicsDrawable backgroundColor(@ColorInt int backgroundColor) {
         this.mBackgroundPaint.setColor(backgroundColor);
+        this.mBackgroundColor = backgroundColor;
         this.mRoundedCornerRx = 0;
         this.mRoundedCornerRy = 0;
         return this;
@@ -911,10 +917,10 @@ public class IconicsDrawable extends Drawable {
                 .sizePxY(mSizeY)
                 .iconOffsetXPx(mIconOffsetX)
                 .iconOffsetYPx(mIconOffsetY)
-                .contourColor(mContourPaint.getColor())
+                .contourColor(mContourColor)
                 .contourWidthPx(mContourWidth)
-                .backgroundColor(mBackgroundPaint.getColor())
-                .color(mIconPaint.getColor())
+                .backgroundColor(mBackgroundColor)
+                .color(mIconColor)
                 .alpha(mAlpha)
                 .drawContour(mDrawContour)
                 .typeface(mIconPaint.getTypeface());
