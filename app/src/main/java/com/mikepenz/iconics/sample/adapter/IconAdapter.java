@@ -16,14 +16,21 @@
 
 package com.mikepenz.iconics.sample.adapter;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.sample.R;
 import com.mikepenz.iconics.view.IconicsImageView;
+import com.mikepenz.materialize.util.UIUtils;
 
 import java.util.List;
 import java.util.Random;
@@ -132,11 +139,46 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
         public TextView name;
         public IconicsImageView image;
 
+        PopupWindow popup;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             image = (IconicsImageView) itemView.findViewById(R.id.icon);
+
+            itemView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    int a = motionEvent.getAction();
+                    if (a == MotionEvent.ACTION_DOWN) {
+                        if (popup != null && popup.isShowing()) {
+                            popup.dismiss();
+                        }
+                        ImageView imageView = new ImageView(view.getContext());
+                        imageView.setImageDrawable(
+                                image.getIcon().clone().sizeDp(144).paddingDp(8).backgroundColor(Color.parseColor("#DDFFFFFF")).roundedCornersDp(12)
+                        );
+                        int size = (int) UIUtils.convertDpToPixel(144, view.getContext());
+                        popup = new PopupWindow(imageView, size, size);
+                        popup.showAsDropDown(itemView);
+
+                        //copy to clipboard
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) view.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                            clipboard.setText(image.getIcon().getIcon().getFormattedName());
+                        } else {
+                            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) view.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                            android.content.ClipData clip = android.content.ClipData.newPlainText("Android-Iconics icon", image.getIcon().getIcon().getFormattedName());
+                            clipboard.setPrimaryClip(clip);
+                        }
+                    } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL || a == MotionEvent.ACTION_OUTSIDE) {
+                        if (popup != null && popup.isShowing()) {
+                            popup.dismiss();
+                        }
+                    }
+                    return false;
+                }
+            });
         }
 
     }
