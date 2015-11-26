@@ -24,6 +24,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,13 +35,17 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.holder.BadgeStyle;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -62,11 +67,20 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts(this).size());
         //add all icons of all registered Fonts to the list
         for (ITypeface font : Iconics.getRegisteredFonts(this)) {
+            PrimaryDrawerItem pdi = new PrimaryDrawerItem()
+                    .withName(font.getFontName())
+                    .withBadge("" + font.getIcons().size())
+                    .withDescription(TextUtils.isEmpty(font.getAuthor()) ? font.getVersion() : font.getVersion() + " - " + font.getAuthor())
+                    .withBadgeStyle(
+                            new BadgeStyle().withColorRes(R.color.md_grey_200)
+                    )
+                    .withIcon(
+                            getRandomIcon(font)
+                    );
             if (font.getMappingPrefix().equals("gmd")) {
-                items.add(new PrimaryDrawerItem().withName(font.getFontName()).withIdentifier(1));
-            } else {
-                items.add(new PrimaryDrawerItem().withName(font.getFontName()));
+                pdi.withIdentifier(1);
             }
+            items.add(pdi);
         }
 
         new DrawerBuilder().withActivity(this)
@@ -125,9 +139,16 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private IIcon getRandomIcon(ITypeface typeface) {
+        int random = new Random().nextInt(typeface.getIcons().size());
+        Iterator<String> icons = typeface.getIcons().iterator();
+        for (int i = 1; i < random; i++) {
+            icons.next();
+        }
+        return typeface.getIcon(icons.next());
+    }
 
     @Override
-
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {

@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 220
-        versionName "2.2.0"
+        versionCode 221
+        versionName "2.2.1"
         enforceUniquePackageName false
     }
 
@@ -66,6 +66,7 @@ dependencies {
 
     compile project(':fontawesome-typeface-library')
     compile project(':google-material-typeface-library')
+    //compile project(':original-google-material-typeface-library')
     compile project(':meteocons-typeface-library')
     compile project(':weather-icons-typeface-library')
     compile project(':octicons-typeface-library')
