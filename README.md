@@ -60,14 +60,27 @@ compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
 compile 'com.mikepenz:entypo:1.0.0.1@aar'
 ```
 
-##3. Inject into Context (optional)
-Wrap the `Activity` context. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml.
+##3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
+Set the `IconicsLayoutInflater` as new `LayoutInflaterFactory`. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml. This is compatible with libs which wrap the `baseContext` like [Calligraphy](https://github.com/chrisjenx/Calligraphy).
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
+    //...
+    super.onCreate(savedInstanceState);
+    //...
+}
+```
+
+###3. ALTERNATIVE: Inject into Context (optional)
+Wrap the `Activity` context. This will enable the same features as Step 3.1., but is not compatible with other libs wrapping the `baseContext`.
 ```java
 @Override
 protected void attachBaseContext(Context newBase) {
     super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
 }
 ```
+
 
 #Usage
 ##Use as drawable
@@ -91,7 +104,7 @@ Use the `{` icon-definer `}` syntax
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
 
-###As ImageView (only available if you inject the context)
+###As ImageView (only available if you follow Step 3 or inject the context)
 ```xml
 <ImageView
     android:layout_width="48dp"
@@ -122,7 +135,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
     android:textSize="16sp"/>
 ```
 
-###Custom Views (if you do NOT inject the context)
+###Custom Views (if you do NOT follow Step 3 or inject the context)
 ####As IconicsImageView
 ```xml
 <com.mikepenz.iconics.view.IconicsImageView
@@ -149,6 +162,8 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
         android:layout_width="120dp"
         android:layout_height="60dp"/>
 ```
+
+###Automatic XML 
 
 
 #Screenshots
