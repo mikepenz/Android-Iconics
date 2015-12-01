@@ -30,7 +30,7 @@ public class IconicsContextWrapper extends ContextWrapper {
     public Object getSystemService(String name) {
         if (LAYOUT_INFLATER_SERVICE.equals(name)) {
             if (mInflater == null) {
-                mInflater = new IconicsLayoutInflater(LayoutInflater.from(getBaseContext()), this, false);
+                mInflater = new InternalLayoutInflater(LayoutInflater.from(getBaseContext()), this, false);
             }
             return mInflater;
         }

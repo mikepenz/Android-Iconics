@@ -16,30 +16,25 @@
 
 package com.mikepenz.iconics.sample;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.view.LayoutInflaterCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.mikepenz.iconics.context.IconicsLayoutInflater;
+import com.mikepenz.iconics.context.IconicsContextWrapper;
 
 
-public class AutomaticActivity extends AppCompatActivity {
+public class OldAutomaticActivity extends Activity {
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        //not compatible with Calligraphy
+        super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //define the IconicsLayoutInflater
-        //this is compatible with calligraphy and other libs which wrap the baseContext
-        LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
-
-        //call super.onCreate
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_automatic);
-
-        // Handle Toolbar
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //set a new text on the textView and set the icon font on it
         ((TextView) findViewById(R.id.test4)).setText("{gmd-favorite} GIF");

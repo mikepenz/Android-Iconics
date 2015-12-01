@@ -173,6 +173,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_automatic:
                 startActivity(new Intent(getApplicationContext(), AutomaticActivity.class));
                 return true;
+            case R.id.action_old_automatic:
+                startActivity(new Intent(getApplicationContext(), OldAutomaticActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

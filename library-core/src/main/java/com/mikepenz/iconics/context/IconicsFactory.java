@@ -15,12 +15,7 @@ import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.core.R;
 
-/**
- * Base created by Christopher Jenkins
- * https://github.com/chrisjenx/Calligraphy
- */
 class IconicsFactory {
-
     /**
      * @param view
      * @param context
@@ -136,20 +131,5 @@ class IconicsFactory {
         }
 
         return drawable;
-    }
-
-    private static Boolean sToolbarCheck = null;
-
-    static boolean canCheckForV7Toolbar() {
-        if (sToolbarCheck == null) {
-            try {
-                Class.forName("android.support.v7.widget.Toolbar");
-                sToolbarCheck = Boolean.TRUE;
-            } catch (ClassNotFoundException e) {
-                sToolbarCheck = Boolean.FALSE;
-            }
-        }
-        return sToolbarCheck;
-
     }
 }

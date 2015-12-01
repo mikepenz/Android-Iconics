@@ -20,8 +20,12 @@
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar.ActionBar" />
         <activity
             android:name=".AutomaticActivity"
-            android:label="@string/title_activity_playground"
+            android:label="@string/title_activity_automatic"
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
+        <activity
+            android:name=".OldAutomaticActivity"
+            android:label="@string/title_activity_old_automatic"
+            android:theme="@style/MaterialDrawerTheme.Light.ActionBar" />
     </application>
 
 </manifest>

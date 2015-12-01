@@ -26,4 +26,8 @@
         android:id="@+id/action_automatic"
         android:title="@string/action_automatic"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_old_automatic"
+        android:title="@string/action_old_automatic"
+        app:showAsAction="never" />
 </menu>
