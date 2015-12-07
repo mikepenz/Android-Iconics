@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private IconsFragment mIconsFragment;
     private boolean mRandomize;
-
+    private List<ITypeface> mFonts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //order fonts by their name
-        List<ITypeface> fonts = new ArrayList<>(Iconics.getRegisteredFonts(this));
-        Collections.sort(fonts, new Comparator<ITypeface>() {
+        mFonts = new ArrayList<>(Iconics.getRegisteredFonts(this));
+        Collections.sort(mFonts, new Comparator<ITypeface>() {
             @Override
             public int compare(final ITypeface object1, final ITypeface object2) {
                 return object1.getFontName().compareTo(object2.getFontName());
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         //add all icons of all registered Fonts to the list
         ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts(this).size());
-        for (ITypeface font : fonts) {
+        for (ITypeface font : mFonts) {
             PrimaryDrawerItem pdi = new PrimaryDrawerItem()
                     .withName(font.getFontName())
                     .withBadge("" + font.getIcons().size())
@@ -101,10 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
-                        ITypeface font = new ArrayList<>(Iconics.getRegisteredFonts(MainActivity.this)).get(i);
-                        loadIcons(font.getFontName());
-
-                        getSupportActionBar().setTitle(font.getFontName());
+                        loadIcons(mFonts.get(i).getFontName());
+                        getSupportActionBar().setTitle(mFonts.get(i).getFontName());
 
                         return false;
                     }
