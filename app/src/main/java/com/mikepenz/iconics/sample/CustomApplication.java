@@ -17,7 +17,7 @@ public class CustomApplication extends Application {
         Iconics.registerFont(new CustomFont());
 
         //Generic font creation process
-        GenericFont gf2 = new GenericFont("gmf", "fonts/materialdrawerfont.ttf");
+        GenericFont gf2 = new GenericFont("GenericFont", "SampleGenericFont", "gmf", "fonts/materialdrawerfont.ttf");
         gf2.registerIcon("person", '\ue800');
         gf2.registerIcon("up", '\ue801');
         gf2.registerIcon("down", '\ue802');

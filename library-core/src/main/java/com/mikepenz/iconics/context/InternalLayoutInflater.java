@@ -20,7 +20,8 @@ import java.lang.reflect.Method;
 class InternalLayoutInflater extends LayoutInflater {
 
     private static final String[] sClassPrefixList = {
-            "android.widget."
+            "android.widget.",
+            "android.webkit."
     };
 
     private final IconicsFactory mIconicsFactory;

@@ -1,1 +1,0 @@
--keep class com.mikepenz.google_material_typeface_library.GoogleMaterial { *; }

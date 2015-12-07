@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 250
-        versionName "2.5.0"
+        versionCode 251
+        versionName "2.5.1"
         enforceUniquePackageName false
     }
 
@@ -65,12 +65,15 @@ dependencies {
     }
 
     compile project(':fontawesome-typeface-library')
+    compile project(':material-design-iconic-typeface-library')
     compile project(':google-material-typeface-library')
-    //compile project(':original-google-material-typeface-library')
     compile project(':meteocons-typeface-library')
     compile project(':weather-icons-typeface-library')
     compile project(':octicons-typeface-library')
     compile project(':community-material-typeface-library')
     compile project(':entypo-typeface-library')
     compile project(':typeicons-typeface-library')
+    compile project(':devicon-typeface-library')
+    compile project(':foundation-icons-typeface-library')
+    compile project(':ionicons-typeface-library')
 }

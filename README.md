@@ -22,14 +22,18 @@ Use the icons in the variation you need them.
 - Save in APK size
 
 **Already available fonts**
-- FontAwesome
-- Material Design Icons
-- Meteocons
-- Octicons
-- Community Material Icons
-- Weather Icons
-- Typeicons
-- Entypo
+- [Google Material Design Icons](https://github.com/google/material-design-icons)
+- [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
+- [Fontawesome](http://fontawesome.io)
+- [Meteocons](http://www.alessioatzeni.com/meteocons/)
+- [Octicons](https://github.com/github/octicons)
+- [Community Material](http://materialdesignicons.com/)
+- [Weather Icons](https://erikflowers.github.io/weather-icons/)
+- [Typeicons](http://typicons.com/)
+- [Entypo](http://www.entypo.com/)
+- [Devicon](http://devicon.fr/)
+- [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
+- [Ionicons](http://ionicons.com/)
 
 **Need more?**
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
@@ -42,22 +46,24 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:2.5.0@aar'
+	compile 'com.mikepenz:iconics-core:2.5.1@aar'
 }
 ```
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
-//this one is the original set by google different baseline may (really really rare) mapping issues on single custom roms 
 compile 'com.mikepenz:google-material-typeface:2.1.0.1.original@aar' 
-compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
+compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
+compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
 compile 'com.mikepenz:community-material-typeface:1.3.41.1@aar'
 compile 'com.mikepenz:weather-icons-typeface:2.0.10.1@aar'
 compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
-compile 'com.mikepenz:entypo:1.0.0.1@aar'
+compile 'com.mikepenz:entypo-typeface:1.0.0.1@aar'
+compile 'com.mikepenz:devicon-typeface:2.0.0.1@aar'
+compile 'com.mikepenz:foundation-icons-typeface-typeface:3.0.0.1@aar'
+compile 'com.mikepenz:ionicons-typeface:2.0.1.1@aar'
 ```
 
 ##3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
@@ -172,10 +178,12 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 
 
 #Available fonts
-* [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) - [Google Material Design Icons](https://github.com/google/material-design-icons)
+* [Google Material Design Icons](https://github.com/google/material-design-icons)
   * "gmd"
-  * **Google Material Iconic** compile 'com.mikepenz:google-material-typeface:+@aar'
   * **ORIGINAL by Google** compile 'com.mikepenz:google-material-typeface:+.original@aar'
+* [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
+  * "gmi"
+  * **Google Material Iconic** compile 'com.mikepenz:material-design-iconic-typeface:+@aar'
 * [Fontawesome](http://fontawesome.io)
   * "faw"
   * compile 'com.mikepenz:fontawesome-typeface:+@aar'
@@ -196,8 +204,18 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
   * compile 'com.mikepenz:typeicons-typeface:+@aar'
 * [Entypo](http://www.entypo.com/)
   * "ent"
-  * compile 'com.mikepenz:entypo:+@aar'
+  * compile 'com.mikepenz:entypo-typeface:+@aar'
+* [Devicon](http://devicon.fr/)
+  * "dev"
+  * compile 'com.mikepenz:devicon-typeface:+@aar'
+* [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
+  * "fou"
+  * compile 'com.mikepenz:foundation-icons-typeface:+@aar'
+* [Ionicons](http://ionicons.com/)
+  * "ion"
+  * compile 'com.mikepenz:ionicons-typeface:+@aar'
 
+Licenses for all included fonts are linked inside the class or can be found on the coresponding repoistories.
 
 #Advanced Usage
 
