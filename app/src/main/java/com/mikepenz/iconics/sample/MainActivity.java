@@ -44,7 +44,10 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 
@@ -64,9 +67,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts(this).size());
+        //order fonts by their name
+        List<ITypeface> fonts = new ArrayList<>(Iconics.getRegisteredFonts(this));
+        Collections.sort(fonts, new Comparator<ITypeface>() {
+            @Override
+            public int compare(final ITypeface object1, final ITypeface object2) {
+                return object1.getFontName().compareTo(object2.getFontName());
+            }
+        });
+
         //add all icons of all registered Fonts to the list
-        for (ITypeface font : Iconics.getRegisteredFonts(this)) {
+        ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts(this).size());
+        for (ITypeface font : fonts) {
             PrimaryDrawerItem pdi = new PrimaryDrawerItem()
                     .withName(font.getFontName())
                     .withBadge("" + font.getIcons().size())

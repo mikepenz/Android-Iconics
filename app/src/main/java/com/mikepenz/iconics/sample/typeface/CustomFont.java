@@ -50,7 +50,7 @@ public class CustomFont implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "";
+        return "1.0.0";
     }
 
     @Override
@@ -72,7 +72,7 @@ public class CustomFont implements ITypeface {
 
     @Override
     public String getAuthor() {
-        return "";
+        return "SampleCustomFont";
     }
 
     @Override
