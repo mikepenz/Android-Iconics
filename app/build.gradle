@@ -73,4 +73,5 @@ dependencies {
     compile project(':community-material-typeface-library')
     compile project(':entypo-typeface-library')
     compile project(':typeicons-typeface-library')
+    compile project(':devicon-typeface-library')
 }
