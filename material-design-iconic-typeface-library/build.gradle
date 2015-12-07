@@ -34,7 +34,7 @@ android {
         }
     }
 }
-if (project.hasProperty('pushall') || project.hasProperty('googlematerialonly')) {
+if (project.hasProperty('pushall') || project.hasProperty('materialdesigniconiconly')) {
     apply from: '../gradle-mvn-push.gradle'
 }
 

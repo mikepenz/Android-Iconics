@@ -23,7 +23,7 @@ Use the icons in the variation you need them.
 
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
-- [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
+- [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
 - [Fontawesome](http://fontawesome.io)
 - [Meteocons](http://www.alessioatzeni.com/meteocons/)
 - [Octicons](https://github.com/github/octicons)
@@ -52,9 +52,8 @@ dependencies {
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
-//this one is the original set by google different baseline may (really really rare) mapping issues on single custom roms 
 compile 'com.mikepenz:google-material-typeface:2.1.0.1.original@aar' 
+compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
@@ -179,10 +178,12 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 
 
 #Available fonts
-* [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) - [Google Material Design Icons](https://github.com/google/material-design-icons)
+* [Google Material Design Icons](https://github.com/google/material-design-icons)
   * "gmd"
-  * **Google Material Iconic** compile 'com.mikepenz:google-material-typeface:+@aar'
   * **ORIGINAL by Google** compile 'com.mikepenz:google-material-typeface:+.original@aar'
+* [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
+  * "gmi"
+  * **Google Material Iconic** compile 'com.mikepenz:material-design-iconic-typeface:+@aar'
 * [Fontawesome](http://fontawesome.io)
   * "faw"
   * compile 'com.mikepenz:fontawesome-typeface:+@aar'
