@@ -33,6 +33,7 @@ Use the icons in the variation you need them.
 - [Entypo](http://www.entypo.com/)
 - [Devicon](http://devicon.fr/)
 - [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
+- [Ionicons](http://ionicons.com/)
 
 **Need more?**
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
@@ -63,6 +64,7 @@ compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
 compile 'com.mikepenz:entypo-typeface:1.0.0.1@aar'
 compile 'com.mikepenz:devicon-typeface:2.0.0.1@aar'
 compile 'com.mikepenz:foundation-icons-typeface-typeface:3.0.0.1@aar'
+compile 'com.mikepenz:ionicons-typeface:2.0.1.1@aar'
 ```
 
 ##3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
@@ -208,6 +210,9 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 * [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
   * "fou"
   * compile 'com.mikepenz:foundation-icons-typeface:+@aar'
+* [Ionicons](http://ionicons.com/)
+  * "ion"
+  * compile 'com.mikepenz:ionicons-typeface:+@aar'
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repoistories.
 

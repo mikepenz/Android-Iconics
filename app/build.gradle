@@ -75,4 +75,5 @@ dependencies {
     compile project(':typeicons-typeface-library')
     compile project(':devicon-typeface-library')
     compile project(':foundation-icons-typeface-library')
+    compile project(':ionicons-typeface-library')
 }
