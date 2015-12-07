@@ -52,14 +52,18 @@ If you get the icons as <strong>vector</strong> (.svg) or there are many changes
 <p><strong>Already available fonts</strong></p>
 
 <ul>
-<li>FontAwesome</li>
-<li>Material Design Icons</li>
-<li>Meteocons</li>
-<li>Octicons</li>
-<li>Community Material Icons</li>
-<li>Weather Icons</li>
-<li>Typeicons</li>
-<li>Entypo</li>
+<li><a href="https://github.com/google/material-design-icons">Google Material Design Icons</a></li>
+<li><a href="http://zavoloklom.github.io/material-design-iconic-font">Google Material Design Iconic Font</a></li>
+<li><a href="http://fontawesome.io">Fontawesome</a></li>
+<li><a href="http://www.alessioatzeni.com/meteocons/">Meteocons</a></li>
+<li><a href="https://github.com/github/octicons">Octicons</a></li>
+<li><a href="http://materialdesignicons.com/">Community Material</a></li>
+<li><a href="https://erikflowers.github.io/weather-icons/">Weather Icons</a></li>
+<li><a href="http://typicons.com/">Typeicons</a></li>
+<li><a href="http://www.entypo.com/">Entypo</a></li>
+<li><a href="http://devicon.fr/">Devicon</a></li>
+<li><a href="http://zurb.com/playground/foundation-icon-fonts-3">Foundation Icons</a></li>
+<li><a href="http://ionicons.com/">Ionicons</a></li>
 </ul>
 
 <p><strong>Need more?</strong>
@@ -88,13 +92,16 @@ Provide additional fonts for you project, or even create your custom font with j
 <div class="highlight highlight-source-groovy-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:2.2.0.1@aar<span class="pl-pds">'</span></span>
 <span class="pl-c">//this one is the original set by google different baseline may (really really rare) mapping issues on single custom roms </span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:google-material-typeface:2.1.0.1.original@aar<span class="pl-pds">'</span></span> 
-compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:fontawesome-typeface:4.4.0.1@aar<span class="pl-pds">'</span></span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:fontawesome-typeface:4.5.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:octicons-typeface:3.2.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:meteocons-typeface:1.1.0.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:community-material-typeface:1.3.41.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:weather-icons-typeface:2.0.10.1@aar<span class="pl-pds">'</span></span>
 compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:typeicons-typeface:2.0.7.1@aar<span class="pl-pds">'</span></span>
-compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:entypo:1.0.0.1@aar<span class="pl-pds">'</span></span></pre></div>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:entypo-typeface:1.0.0.1@aar<span class="pl-pds">'</span></span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:devicon-typeface:2.0.0.1@aar<span class="pl-pds">'</span></span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:foundation-icons-typeface-typeface:3.0.0.1@aar<span class="pl-pds">'</span></span>
+compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:ionicons-typeface:2.0.1.1@aar<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
 <a id="3-define-iconicslayoutinflater-to-enable-automatic-xml-icons-detection-optional" class="anchor" href="#3-define-iconicslayoutinflater-to-enable-automatic-xml-icons-detection-optional" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)</h2>
@@ -283,10 +290,36 @@ All icon names from the default fonts can be found via the <a href="https://play
 
 <ul>
 <li>"ent"</li>
-<li>compile 'com.mikepenz:entypo:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
+<li>compile 'com.mikepenz:entypo-typeface:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
+</ul>
+</li>
+<li>
+<a href="http://devicon.fr/">Devicon</a>
+
+<ul>
+<li>"dev"</li>
+<li>compile 'com.mikepenz:devicon-typeface:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
+</ul>
+</li>
+<li>
+<a href="http://zurb.com/playground/foundation-icon-fonts-3">Foundation Icons</a>
+
+<ul>
+<li>"fou"</li>
+<li>compile 'com.mikepenz:foundation-icons-typeface:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
+</ul>
+</li>
+<li>
+<a href="http://ionicons.com/">Ionicons</a>
+
+<ul>
+<li>"ion"</li>
+<li>compile 'com.mikepenz:ionicons-typeface:+<a href="https://github.com/aar" class="user-mention">@aar</a>'</li>
 </ul>
 </li>
 </ul>
+
+<p>Licenses for all included fonts are linked inside the class or can be found on the coresponding repoistories.</p>
 
 <h1>
 <a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced Usage</h1>
