@@ -22,14 +22,16 @@ Use the icons in the variation you need them.
 - Save in APK size
 
 **Already available fonts**
-- FontAwesome
-- Material Design Icons
-- Meteocons
-- Octicons
-- Community Material Icons
-- Weather Icons
-- Typeicons
-- Entypo
+- [Google Material Design Icons](https://github.com/google/material-design-icons)
+- [Google Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
+- [Fontawesome](http://fontawesome.io)
+- [Meteocons](http://www.alessioatzeni.com/meteocons/)
+- [Octicons](https://github.com/github/octicons)
+- [Community Material](http://materialdesignicons.com/)
+- [Weather Icons](https://erikflowers.github.io/weather-icons/)
+- [Typeicons](http://typicons.com/)
+- [Entypo](http://www.entypo.com/)
+- [Devicon](http://devicon.fr/)
 
 **Need more?**
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
@@ -57,7 +59,8 @@ compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
 compile 'com.mikepenz:community-material-typeface:1.3.41.1@aar'
 compile 'com.mikepenz:weather-icons-typeface:2.0.10.1@aar'
 compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
-compile 'com.mikepenz:entypo:1.0.0.1@aar'
+compile 'com.mikepenz:entypo-typeface:1.0.0.1@aar'
+compile 'com.mikepenz:devicon-typeface:2.0.0.1@aar'
 ```
 
 ##3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
@@ -196,7 +199,10 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
   * compile 'com.mikepenz:typeicons-typeface:+@aar'
 * [Entypo](http://www.entypo.com/)
   * "ent"
-  * compile 'com.mikepenz:entypo:+@aar'
+  * compile 'com.mikepenz:entypo-typeface:+@aar'
+* [Devicon](http://devicon.fr/)
+  * "dev"
+  * compile 'com.mikepenz:devicon-typeface:+@aar'
 
 
 #Advanced Usage
