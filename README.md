@@ -53,7 +53,7 @@ dependencies {
 compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
 //this one is the original set by google different baseline may (really really rare) mapping issues on single custom roms 
 compile 'com.mikepenz:google-material-typeface:2.1.0.1.original@aar' 
-compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
+compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
 compile 'com.mikepenz:community-material-typeface:1.3.41.1@aar'
