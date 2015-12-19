@@ -30,8 +30,8 @@ import java.util.HashMap;
  * Created by mikepenz on 01.11.14.
  */
 public class GenericFont implements ITypeface {
-    private String mFontName = "GenericFont";
-    private String mAuthor = "GenericAuthor";
+    private String mFontName;
+    private String mAuthor;
     private String mMappingPrefix;
     private String mFontFile;
 
@@ -42,11 +42,13 @@ public class GenericFont implements ITypeface {
     }
 
     public GenericFont(String mappingPrefix, String fontFile) {
-        this.mMappingPrefix = mappingPrefix;
-        this.mFontFile = fontFile;
+        this("GenericFont", "GenericAuthor", mappingPrefix, fontFile);
     }
 
     public GenericFont(String fontName, String author, String mappingPrefix, String fontFile) {
+        if (mappingPrefix.length() != 3) {
+            new IllegalArgumentException("MappingPrefix must be 3 char long");
+        }
         this.mFontName = fontName;
         this.mAuthor = author;
         this.mMappingPrefix = mappingPrefix;
