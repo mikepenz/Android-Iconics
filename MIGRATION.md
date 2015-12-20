@@ -31,5 +31,10 @@ protected void attachBaseContext(Context newBase) {
 * provide the fonts you need. no additional steps required
 
 ### Font Addons
+#### Google Material font v2.1.0.1.original
+* is now the default Google Material icon set again with the "gmd" mapping
+#### Material Design Iconic v2.2.0.1
+* is now the standalone Material Design Iconic icon pack with the "gmi" mapping
+
 #### Google Material font 1.2.0.1 --> 2.1.2.1
 * the mapping of some icons changed

@@ -46,7 +46,7 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:2.5.1@aar'
+	compile 'com.mikepenz:iconics-core:2.5.2@aar'
 }
 ```
 
@@ -294,8 +294,9 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 #Developed By
 
-* Mike Penz - http://mikepenz.com - <mikepenz@gmail.com>
-
+* Mike Penz 
+ * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
+ * [paypal.me/mikepenz](http://paypal.me/mikepenz)
 
 #License
 
