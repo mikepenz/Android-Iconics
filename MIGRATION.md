@@ -32,9 +32,12 @@ protected void attachBaseContext(Context newBase) {
 
 ### Font Addons
 #### Google Material font v2.1.0.1.original
-* is now the default Google Material icon set again with the "gmd" mapping
+* **NOTE:** Google's font has a bad baseline so icons are not centered within text. Drawables look fine. Use Material Design Iconic as alternative if this is an issue for you
+* is now the default Google Material icon set again with the "**gmd**" mapping
+* package name `com.mikepenz.google_material_typeface_library.GoogleMaterial`
 #### Material Design Iconic v2.2.0.1
-* is now the standalone Material Design Iconic icon pack with the "gmi" mapping
+* is now the standalone Material Design Iconic icon pack with the "**gmi**" mapping
+* package name `com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic`
 
 #### Google Material font 1.2.0.1 --> 2.1.2.1
 * the mapping of some icons changed
