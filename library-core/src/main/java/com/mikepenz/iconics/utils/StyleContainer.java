@@ -1,12 +1,15 @@
 package com.mikepenz.iconics.utils;
 
+import android.text.style.StyleSpan;
+
 import com.mikepenz.iconics.typeface.ITypeface;
 
 public class StyleContainer {
-    private int startIndex;
-    private int endIndex;
-    private String icon;
-    private ITypeface font;
+    public int startIndex;
+    public int endIndex;
+    public String icon;
+    public ITypeface font;
+    public StyleSpan styleSpan;
 
     public StyleContainer(int startIndex, int endIndex, String icon, ITypeface font) {
         this.startIndex = startIndex;
@@ -15,19 +18,9 @@ public class StyleContainer {
         this.font = font;
     }
 
-    public int getStartIndex() {
-        return startIndex;
-    }
-
-    public int getEndIndex() {
-        return endIndex;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public ITypeface getFont() {
-        return font;
+    public StyleContainer(int startIndex, int endIndex, StyleSpan styleSpan) {
+        this.startIndex = startIndex;
+        this.endIndex = endIndex;
+        this.styleSpan = styleSpan;
     }
 }

@@ -18,8 +18,8 @@ package com.mikepenz.iconics;
 import android.content.Context;
 import android.os.Build;
 import android.text.Editable;
-import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.style.CharacterStyle;
 import android.util.Log;
 import android.widget.Button;
@@ -94,7 +94,7 @@ public final class Iconics {
      * @param textSpanned
      * @return
      */
-    public static Spannable style(Context ctx, Spannable textSpanned) {
+    public static Spanned style(Context ctx, Spanned textSpanned) {
         return style(ctx, null, textSpanned, null, null);
     }
 
@@ -110,7 +110,7 @@ public final class Iconics {
      * @param stylesFor
      * @return
      */
-    public static Spannable style(Context ctx, HashMap<String, ITypeface> fonts, Spannable textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
+    public static Spanned style(Context ctx, HashMap<String, ITypeface> fonts, Spanned textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
         if (!INIT_DONE) {
             init(ctx);
         }
@@ -123,8 +123,6 @@ public final class Iconics {
 
         //create spannableString to set the spans on
         SpannableString sb = SpannableString.valueOf(textStyleContainer.spannableStringBuilder);
-
-        //TODO create logic to reapply previous applyed spans
 
         //set all the icons and styles
         IconicsUtils.applyStyles(ctx, sb, textStyleContainer.styleContainers, styles, stylesFor);
@@ -164,20 +162,18 @@ public final class Iconics {
         //find all icons which should be replaced with the iconFont
         List<StyleContainer> styleContainers = IconicsUtils.findIconsFromEditable(textSpanned, fonts);
 
-        //TODO create logic to reapply previous applyed spans
-
         //set all the icons and styles
         IconicsUtils.applyStyles(ctx, textSpanned, styleContainers, styles, stylesFor);
     }
 
     public static class IconicsBuilderString {
         private Context ctx;
-        private SpannableString text;
+        private Spanned text;
         private List<CharacterStyle> withStyles;
         private HashMap<String, List<CharacterStyle>> withStylesFor;
         private List<ITypeface> fonts;
 
-        public IconicsBuilderString(Context ctx, List<ITypeface> fonts, SpannableString text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
+        public IconicsBuilderString(Context ctx, List<ITypeface> fonts, Spanned text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
             this.ctx = ctx;
             this.fonts = fonts;
             this.text = text;
@@ -185,7 +181,7 @@ public final class Iconics {
             this.withStylesFor = stylesFor;
         }
 
-        public Spannable build() {
+        public Spanned build() {
             HashMap<String, ITypeface> mappedFonts = new HashMap<>();
             for (ITypeface font : fonts) {
                 mappedFonts.put(font.getMappingPrefix(), font);
@@ -209,15 +205,16 @@ public final class Iconics {
             this.withStylesFor = stylesFor;
         }
 
-
         public void build() {
             HashMap<String, ITypeface> mappedFonts = new HashMap<>();
             for (ITypeface font : fonts) {
                 mappedFonts.put(font.getMappingPrefix(), font);
             }
 
-            if (view.getText() instanceof SpannableString) {
-                view.setText(Iconics.style(ctx, mappedFonts, (SpannableString) view.getText(), withStyles, withStylesFor));
+            if (view.getText() instanceof Editable) {
+                Iconics.styleEditable(ctx, mappedFonts, (Editable) view.getText(), withStyles, withStylesFor);
+            } else if (view.getText() instanceof Spanned) {
+                view.setText(Iconics.style(ctx, mappedFonts, (Spanned) view.getText(), withStyles, withStylesFor));
             } else {
                 view.setText(Iconics.style(ctx, mappedFonts, new SpannableString(view.getText()), withStyles, withStylesFor));
             }
@@ -275,8 +272,7 @@ public final class Iconics {
             return this;
         }
 
-
-        public IconicsBuilderString on(SpannableString on) {
+        public IconicsBuilderString on(Spanned on) {
             return new IconicsBuilderString(ctx, fonts, on, styles, stylesFor);
         }
 
