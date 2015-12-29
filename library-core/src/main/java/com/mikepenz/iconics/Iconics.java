@@ -18,8 +18,8 @@ package com.mikepenz.iconics;
 import android.content.Context;
 import android.os.Build;
 import android.text.Editable;
-import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.style.CharacterStyle;
 import android.util.Log;
 import android.widget.Button;
@@ -44,38 +44,81 @@ public final class Iconics {
     private static boolean INIT_DONE = false;
     private static HashMap<String, ITypeface> FONTS = new HashMap<>();
 
+    /**
+     * initializes the FONTS. This also tries to find all founds automatically via their font file
+     *
+     * @param ctx
+     */
     public static void init(Context ctx) {
-        String[] fonts = GenericsUtil.getFields(ctx);
-        for (String fontsClassPath : fonts) {
-            try {
-                ITypeface typeface = (ITypeface) Class.forName(fontsClassPath).newInstance();
-                FONTS.put(typeface.getMappingPrefix(), typeface);
-            } catch (Exception e) {
-                Log.e("Android-Iconics", "Can't init: " + fontsClassPath);
+        if (!INIT_DONE) {
+            String[] fonts = GenericsUtil.getFields(ctx);
+            for (String fontsClassPath : fonts) {
+                try {
+                    ITypeface typeface = (ITypeface) Class.forName(fontsClassPath).newInstance();
+                    FONTS.put(typeface.getMappingPrefix(), typeface);
+                } catch (Exception e) {
+                    Log.e("Android-Iconics", "Can't init: " + fontsClassPath);
+                }
             }
+            INIT_DONE = true;
         }
-        INIT_DONE = true;
     }
 
+    /**
+     * this makes sure the FONTS are initialized. If the given fonts Map is empty we set the initialized FONTS on it
+     *
+     * @param ctx
+     * @param fonts
+     * @return
+     */
+    private static HashMap<String, ITypeface> init(Context ctx, HashMap<String, ITypeface> fonts) {
+        init(ctx);
+        if (fonts == null || fonts.size() == 0) {
+            fonts = FONTS;
+        }
+        return fonts;
+    }
+
+    /**
+     * registeres a fonts into the FONTS array for performance
+     *
+     * @param font
+     * @return
+     */
     public static boolean registerFont(ITypeface font) {
         FONTS.put(font.getMappingPrefix(), font);
         return true;
     }
 
+    /**
+     * return all registered FONTS
+     *
+     * @param ctx
+     * @return
+     */
     public static Collection<ITypeface> getRegisteredFonts(Context ctx) {
-        if (!INIT_DONE) {
-            init(ctx);
-        }
+        init(ctx);
         return FONTS.values();
     }
 
+    /**
+     * tries to find a font by its key in all registered FONTS
+     *
+     * @param ctx
+     * @param key
+     * @return
+     */
     public static ITypeface findFont(Context ctx, String key) {
-        if (!INIT_DONE) {
-            init(ctx);
-        }
+        init(ctx);
         return FONTS.get(key);
     }
 
+    /**
+     * fetches the font from the Typeface of an IIcon
+     *
+     * @param icon
+     * @return
+     */
     public static ITypeface findFont(IIcon icon) {
         return icon.getTypeface();
     }
@@ -83,7 +126,6 @@ public final class Iconics {
     private Iconics() {
         // Prevent instantiation
     }
-
 
     /**
      * Creates a new SpannableStringBuilder and will iterate over the textSpanned once and copy over
@@ -94,7 +136,7 @@ public final class Iconics {
      * @param textSpanned
      * @return
      */
-    public static Spannable style(Context ctx, Spannable textSpanned) {
+    public static Spanned style(Context ctx, Spanned textSpanned) {
         return style(ctx, null, textSpanned, null, null);
     }
 
@@ -110,21 +152,14 @@ public final class Iconics {
      * @param stylesFor
      * @return
      */
-    public static Spannable style(Context ctx, HashMap<String, ITypeface> fonts, Spannable textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
-        if (!INIT_DONE) {
-            init(ctx);
-        }
-        if (fonts == null || fonts.size() == 0) {
-            fonts = FONTS;
-        }
+    public static Spanned style(Context ctx, HashMap<String, ITypeface> fonts, Spanned textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
+        fonts = init(ctx, fonts);
 
         //find all icons which should be replaced with the iconFont
         TextStyleContainer textStyleContainer = IconicsUtils.findIcons(textSpanned, fonts);
 
         //create spannableString to set the spans on
         SpannableString sb = SpannableString.valueOf(textStyleContainer.spannableStringBuilder);
-
-        //TODO create logic to reapply previous applyed spans
 
         //set all the icons and styles
         IconicsUtils.applyStyles(ctx, sb, textStyleContainer.styleContainers, styles, stylesFor);
@@ -154,17 +189,10 @@ public final class Iconics {
      * @param stylesFor
      */
     public static void styleEditable(Context ctx, HashMap<String, ITypeface> fonts, Editable textSpanned, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
-        if (!INIT_DONE) {
-            init(ctx);
-        }
-        if (fonts == null || fonts.size() == 0) {
-            fonts = FONTS;
-        }
+        fonts = init(ctx, fonts);
 
         //find all icons which should be replaced with the iconFont
         List<StyleContainer> styleContainers = IconicsUtils.findIconsFromEditable(textSpanned, fonts);
-
-        //TODO create logic to reapply previous applyed spans
 
         //set all the icons and styles
         IconicsUtils.applyStyles(ctx, textSpanned, styleContainers, styles, stylesFor);
@@ -172,12 +200,12 @@ public final class Iconics {
 
     public static class IconicsBuilderString {
         private Context ctx;
-        private SpannableString text;
+        private Spanned text;
         private List<CharacterStyle> withStyles;
         private HashMap<String, List<CharacterStyle>> withStylesFor;
         private List<ITypeface> fonts;
 
-        public IconicsBuilderString(Context ctx, List<ITypeface> fonts, SpannableString text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
+        public IconicsBuilderString(Context ctx, List<ITypeface> fonts, Spanned text, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
             this.ctx = ctx;
             this.fonts = fonts;
             this.text = text;
@@ -185,7 +213,7 @@ public final class Iconics {
             this.withStylesFor = stylesFor;
         }
 
-        public Spannable build() {
+        public Spanned build() {
             HashMap<String, ITypeface> mappedFonts = new HashMap<>();
             for (ITypeface font : fonts) {
                 mappedFonts.put(font.getMappingPrefix(), font);
@@ -209,15 +237,16 @@ public final class Iconics {
             this.withStylesFor = stylesFor;
         }
 
-
         public void build() {
             HashMap<String, ITypeface> mappedFonts = new HashMap<>();
             for (ITypeface font : fonts) {
                 mappedFonts.put(font.getMappingPrefix(), font);
             }
 
-            if (view.getText() instanceof SpannableString) {
-                view.setText(Iconics.style(ctx, mappedFonts, (SpannableString) view.getText(), withStyles, withStylesFor));
+            if (view.getText() instanceof Editable) {
+                Iconics.styleEditable(ctx, mappedFonts, (Editable) view.getText(), withStyles, withStylesFor);
+            } else if (view.getText() instanceof Spanned) {
+                view.setText(Iconics.style(ctx, mappedFonts, (Spanned) view.getText(), withStyles, withStylesFor));
             } else {
                 view.setText(Iconics.style(ctx, mappedFonts, new SpannableString(view.getText()), withStyles, withStylesFor));
             }
@@ -251,10 +280,24 @@ public final class Iconics {
             return this;
         }
 
+        /**
+         * this method allows you to apply additional styles on icons , just provide all CharacterStyles you want to apply on the given IIcon
+         *
+         * @param styleFor
+         * @param styles
+         * @return
+         */
         public IconicsBuilder styleFor(IIcon styleFor, CharacterStyle... styles) {
             return styleFor(styleFor.getName(), styles);
         }
 
+        /**
+         * this method allows you to apply additional styles on icons , just provide all CharacterStyles you want to apply on the given icon (by it's name faw-android)
+         *
+         * @param styleFor
+         * @param styles
+         * @return
+         */
         public IconicsBuilder styleFor(String styleFor, CharacterStyle... styles) {
             styleFor = styleFor.replace("-", "_");
 
@@ -270,32 +313,73 @@ public final class Iconics {
             return this;
         }
 
+        /**
+         * adds additional fonts which should be used to apply the icons
+         *
+         * @param font
+         * @return
+         */
         public IconicsBuilder font(ITypeface font) {
             this.fonts.add(font);
             return this;
         }
 
-
-        public IconicsBuilderString on(SpannableString on) {
+        /**
+         * defines where the icons should be applied to
+         *
+         * @param on
+         * @return
+         */
+        public IconicsBuilderString on(Spanned on) {
             return new IconicsBuilderString(ctx, fonts, on, styles, stylesFor);
         }
 
+        /**
+         * defines where the icons should be applied to
+         *
+         * @param on
+         * @return
+         */
         public IconicsBuilderString on(String on) {
             return on(new SpannableString(on));
         }
 
+        /**
+         * defines where the icons should be applied to
+         *
+         * @param on
+         * @return
+         */
         public IconicsBuilderString on(CharSequence on) {
             return on(on.toString());
         }
 
+        /**
+         * defines where the icons should be applied to
+         *
+         * @param on
+         * @return
+         */
         public IconicsBuilderString on(StringBuilder on) {
             return on(on.toString());
         }
 
+        /**
+         * defines where the icons should be applied to
+         *
+         * @param on
+         * @return
+         */
         public IconicsBuilderView on(TextView on) {
             return new IconicsBuilderView(ctx, fonts, on, styles, stylesFor);
         }
 
+        /**
+         * defines where the icons should be applied to
+         *
+         * @param on
+         * @return
+         */
         public IconicsBuilderView on(Button on) {
             return new IconicsBuilderView(ctx, fonts, on, styles, stylesFor);
         }

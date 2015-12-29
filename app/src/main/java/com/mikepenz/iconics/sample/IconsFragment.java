@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +27,13 @@ public class IconsFragment extends Fragment {
     private ArrayList<String> icons = new ArrayList<String>();
     private IconAdapter mAdapter;
     private boolean randomize;
+    private String search;
 
     public static IconsFragment newInstance(String fontName) {
         Bundle bundle = new Bundle();
 
         IconsFragment fragment = new IconsFragment();
-
         bundle.putString(FONT_NAME, fontName);
-
         fragment.setArguments(bundle);
 
         return fragment;
@@ -52,7 +51,6 @@ public class IconsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.icons_fragment, null, false);
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -81,24 +79,30 @@ public class IconsFragment extends Fragment {
                 }
             }
         }
-
+        //filter if a search param was provided
+        onSearch(search);
     }
 
-
     public void onSearch(String s) {
-        Log.i("IconsFragment", "onSearch: " + s);
+        search = s;
 
-        AbstractList<String> tmpList = new ArrayList<>();
-        for (String icon : icons) {
-            if (icon.toLowerCase().contains(s.toLowerCase())) tmpList.add(icon);
+        if (mAdapter != null) {
+            if (TextUtils.isEmpty(s)) {
+                mAdapter.clear();
+                mAdapter.setIcons(randomize, icons);
+                mAdapter.notifyDataSetChanged();
+            } else {
+                AbstractList<String> tmpList = new ArrayList<>();
+                for (String icon : icons) {
+                    if (icon.toLowerCase().contains(s.toLowerCase())) {
+                        tmpList.add(icon);
+                    }
+                }
+                mAdapter.clear();
+                mAdapter.setIcons(randomize, tmpList);
+                mAdapter.notifyDataSetChanged();
+            }
         }
-
-        Log.i("IconsFragment", "icons-size: " + icons.size() + "\n" +
-                "tmp-size: " + tmpList.size());
-
-        mAdapter.clear();
-        mAdapter.setIcons(randomize, tmpList);
-        mAdapter.notifyDataSetChanged();
     }
 
 }

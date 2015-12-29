@@ -40,8 +40,10 @@ import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.holder.BadgeStyle;
+import com.mikepenz.materialdrawer.holder.StringHolder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     private IconsFragment mIconsFragment;
     private boolean mRandomize;
     private List<ITypeface> mFonts;
+    private int mIdentifierGmd = 0;
+    private String mCurrentSearch = null;
+    private Drawer mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         //add all icons of all registered Fonts to the list
         ArrayList<IDrawerItem> items = new ArrayList<>(Iconics.getRegisteredFonts(this).size());
+        int count = 0;
         for (ITypeface font : mFonts) {
             PrimaryDrawerItem pdi = new PrimaryDrawerItem()
                     .withName(font.getFontName())
@@ -88,14 +94,17 @@ public class MainActivity extends AppCompatActivity {
                     )
                     .withIcon(
                             getRandomIcon(font)
-                    );
+                    )
+                    .withIdentifier(count);
+
             if (font.getMappingPrefix().equals("gmd")) {
-                pdi.withIdentifier(1);
+                mIdentifierGmd = count;
             }
             items.add(pdi);
+            count++;
         }
 
-        new DrawerBuilder().withActivity(this)
+        mDrawer = new DrawerBuilder().withActivity(this)
                 .withToolbar(toolbar)
                 .withDrawerItems(items)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -107,8 +116,22 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 })
+                .withOnDrawerListener(new Drawer.OnDrawerListener() {
+                    @Override
+                    public void onDrawerOpened(View drawerView) {
+                        KeyboardUtil.hideKeyboard(MainActivity.this);
+                    }
+
+                    @Override
+                    public void onDrawerClosed(View drawerView) {
+                    }
+
+                    @Override
+                    public void onDrawerSlide(View drawerView, float slideOffset) {
+                    }
+                })
                 .withFireOnInitialOnClick(true)
-                .withSelectedItem(1)
+                .withSelectedItem(mIdentifierGmd)
                 .build();
     }
 
@@ -137,6 +160,26 @@ public class MainActivity extends AppCompatActivity {
 
 
                 private void search(String s) {
+                    mCurrentSearch = s;
+
+                    if (mDrawer != null) {
+                        int count = 0;
+                        for (ITypeface font : mFonts) {
+                            int foundCount = 0;
+                            if (font.getIcons() != null) {
+                                for (String icon : font.getIcons()) {
+                                    if (icon.toLowerCase().contains(s.toLowerCase())) {
+                                        foundCount++;
+                                    }
+                                }
+                            }
+                            mDrawer.updateBadge(count, new StringHolder(foundCount + ""));
+
+                            count++;
+                        }
+                    }
+
+                    //filter out the current fragment
                     if (mIconsFragment != null) mIconsFragment.onSearch(s);
                 }
             });
@@ -196,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         mIconsFragment = IconsFragment.newInstance(fontName);
         mIconsFragment.randomize(mRandomize);
+        mIconsFragment.onSearch(mCurrentSearch);
         ft.replace(R.id.content, mIconsFragment);
         ft.commit();
     }

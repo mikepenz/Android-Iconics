@@ -4,7 +4,9 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.style.CharacterStyle;
+import android.text.style.StyleSpan;
 import android.util.Log;
 
 import com.mikepenz.iconics.Iconics;
@@ -20,13 +22,22 @@ import java.util.List;
  */
 public class IconicsUtils {
     /**
+     * finds the icons within a Editable, and tries to map the the available (given via the fonts param) icons on it
+     * Use this whenever possible, as this method does update the Editable, and does not have to create a new Spanned
+     *
      * @param editable
      * @param fonts
      * @return
      */
     public static LinkedList<StyleContainer> findIconsFromEditable(Editable editable, HashMap<String, ITypeface> fonts) {
         LinkedList<StyleContainer> styleContainers = new LinkedList<>();
-        //the new string built with the replaced icons
+        LinkedList<StyleContainer> existingStyleContainers = new LinkedList<>();
+
+        // remember the previous style spans
+        for (StyleSpan span : editable.getSpans(0, editable.length(), StyleSpan.class)) {
+            existingStyleContainers.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span));
+        }
+        editable.clearSpans();
 
         int iconStart = -1;
         for (int i = 0; i < editable.length(); i++) {
@@ -40,6 +51,16 @@ public class IconicsUtils {
                     if (styleContainer != null) {
                         styleContainers.add(styleContainer);
 
+                        //adjust existing spans to new position
+                        for (StyleContainer existingStyleContainer : existingStyleContainers) {
+                            if (existingStyleContainer.startIndex > i) {
+                                existingStyleContainer.startIndex = existingStyleContainer.startIndex - (i - iconStart);
+                                existingStyleContainer.endIndex = existingStyleContainer.endIndex - (i - iconStart);
+                            } else if (existingStyleContainer.endIndex > i) {
+                                existingStyleContainer.endIndex = existingStyleContainer.endIndex - (i - iconStart);
+                            }
+                        }
+
                         //remember how many chars were removed already so we can remove the correct characters
                         i = i - iconStart;
                     }
@@ -48,6 +69,9 @@ public class IconicsUtils {
                 iconStart = -1;
             }
         }
+
+        //add the existing spans
+        styleContainers.addAll(existingStyleContainers);
 
         return styleContainers;
     }
@@ -95,12 +119,20 @@ public class IconicsUtils {
     }
 
     /**
+     * finds the icons within a Spanned, and tries to map the the available (given via the fonts param) icons on it
+     *
      * @param spannable
      * @param fonts
      * @return
      */
-    public static TextStyleContainer findIcons(Spannable spannable, HashMap<String, ITypeface> fonts) {
+    public static TextStyleContainer findIcons(Spanned spannable, HashMap<String, ITypeface> fonts) {
         LinkedList<StyleContainer> styleContainers = new LinkedList<>();
+        LinkedList<StyleContainer> existingStyleContainers = new LinkedList<>();
+        // remember the previous style spans
+        for (StyleSpan span : spannable.getSpans(0, spannable.length(), StyleSpan.class)) {
+            existingStyleContainers.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span));
+        }
+
         //the new string built with the replaced icons
         SpannableStringBuilder spannedString = new SpannableStringBuilder();
         SpannableStringBuilder tempIconString = new SpannableStringBuilder();
@@ -120,6 +152,16 @@ public class IconicsUtils {
                     StyleContainer styleContainer = placeFontIcon(spannedString, tempIconString, fonts);
                     if (styleContainer != null) {
                         styleContainers.add(styleContainer);
+
+                        //adjust existing spans to new position
+                        for (StyleContainer existingStyleContainer : existingStyleContainers) {
+                            if (existingStyleContainer.startIndex > i) {
+                                existingStyleContainer.startIndex = existingStyleContainer.startIndex - tempIconString.length() + 1;
+                            }
+                            if (existingStyleContainer.endIndex > i) {
+                                existingStyleContainer.endIndex = existingStyleContainer.endIndex - tempIconString.length() + 1;
+                            }
+                        }
                     }
                 } else {
                     spannedString.append(tempIconString);
@@ -133,8 +175,12 @@ public class IconicsUtils {
                 }
             }
         }
+
         //make sure to add the last characters which create no complete icon
         spannedString.append(tempIconString);
+
+        //add the existing spans
+        styleContainers.addAll(existingStyleContainers);
 
         return new TextStyleContainer(spannedString, styleContainers);
     }
@@ -184,23 +230,29 @@ public class IconicsUtils {
     }
 
     /**
+     * Applies all given styles on the given Spannable
+     *
      * @param ctx
-     * @param text
-     * @param styleContainers
-     * @param styles
-     * @param stylesFor
+     * @param text            the text which will get the Styles applied
+     * @param styleContainers all styles to apply
+     * @param styles          additional CharacterStyles to apply
+     * @param stylesFor       additional styles to apply for specific icons
      */
     public static void applyStyles(Context ctx, Spannable text, List<StyleContainer> styleContainers, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
         for (StyleContainer styleContainer : styleContainers) {
-            text.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.getFont().getTypeface(ctx)), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (styleContainer.styleSpan != null) {
+                text.setSpan(styleContainer.styleSpan, styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else {
+                text.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.font.getTypeface(ctx)), styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
 
-            if (stylesFor != null && stylesFor.containsKey(styleContainer.getIcon())) {
-                for (CharacterStyle style : stylesFor.get(styleContainer.getIcon())) {
-                    text.setSpan(CharacterStyle.wrap(style), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (stylesFor != null && stylesFor.containsKey(styleContainer.icon)) {
+                for (CharacterStyle style : stylesFor.get(styleContainer.icon)) {
+                    text.setSpan(CharacterStyle.wrap(style), styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             } else if (styles != null) {
                 for (CharacterStyle style : styles) {
-                    text.setSpan(CharacterStyle.wrap(style), styleContainer.getStartIndex(), styleContainer.getEndIndex(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    text.setSpan(CharacterStyle.wrap(style), styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
         }
