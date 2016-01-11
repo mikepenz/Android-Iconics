@@ -46,7 +46,7 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:2.5.3@aar'
+	compile 'com.mikepenz:iconics-core:2.5.4@aar'
 }
 ```
 
@@ -62,7 +62,7 @@ compile 'com.mikepenz:weather-icons-typeface:2.0.10.1@aar'
 compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
 compile 'com.mikepenz:entypo-typeface:1.0.0.1@aar'
 compile 'com.mikepenz:devicon-typeface:2.0.0.1@aar'
-compile 'com.mikepenz:foundation-icons-typeface-typeface:3.0.0.1@aar'
+compile 'com.mikepenz:foundation-icons-typeface:3.0.0.1@aar'
 compile 'com.mikepenz:ionicons-typeface:2.0.1.1@aar'
 ```
 
@@ -300,7 +300,7 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 #License
 
-    Copyright 2015 Mike Penz
+    Copyright 2016 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

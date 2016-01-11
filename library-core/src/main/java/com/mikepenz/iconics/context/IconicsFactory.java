@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,6 +50,11 @@ class IconicsFactory {
             }
 
             a.recycle();
+        } else if (view instanceof EditText) {
+            //handle iconics
+            new Iconics.IconicsBuilder().ctx(context).on((TextView) view).build();
+
+            //for an editText we only style initial as styling the Editable causes problems!
         } else if (view instanceof TextView) {
             //handle iconics
             new Iconics.IconicsBuilder().ctx(context).on((TextView) view).build();

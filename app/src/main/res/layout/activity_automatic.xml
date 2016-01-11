@@ -50,6 +50,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:text="efgh{faw-adjust}ijk"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

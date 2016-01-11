@@ -243,9 +243,13 @@ public final class Iconics {
                 mappedFonts.put(font.getMappingPrefix(), font);
             }
 
+            //DO NOT STYLE EDITABLE (comes from EditText) as this causes bad issues with the cursor!
+            /*
             if (view.getText() instanceof Editable) {
                 Iconics.styleEditable(ctx, mappedFonts, (Editable) view.getText(), withStyles, withStylesFor);
-            } else if (view.getText() instanceof Spanned) {
+            } else
+            */
+            if (view.getText() instanceof Spanned) {
                 view.setText(Iconics.style(ctx, mappedFonts, (Spanned) view.getText(), withStyles, withStylesFor));
             } else {
                 view.setText(Iconics.style(ctx, mappedFonts, new SpannableString(view.getText()), withStyles, withStylesFor));
