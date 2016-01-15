@@ -2,11 +2,11 @@ package com.mikepenz.iconics.utils;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.ParcelableSpan;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.CharacterStyle;
-import android.text.style.StyleSpan;
 import android.util.Log;
 
 import com.mikepenz.iconics.Iconics;
@@ -34,7 +34,7 @@ public class IconicsUtils {
         LinkedList<StyleContainer> existingStyleContainers = new LinkedList<>();
 
         // remember the previous style spans
-        for (StyleSpan span : editable.getSpans(0, editable.length(), StyleSpan.class)) {
+        for (ParcelableSpan span : editable.getSpans(0, editable.length(), ParcelableSpan.class)) {
             existingStyleContainers.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span));
         }
         editable.clearSpans();
@@ -129,7 +129,7 @@ public class IconicsUtils {
         LinkedList<StyleContainer> styleContainers = new LinkedList<>();
         LinkedList<StyleContainer> existingStyleContainers = new LinkedList<>();
         // remember the previous style spans
-        for (StyleSpan span : spannable.getSpans(0, spannable.length(), StyleSpan.class)) {
+        for (ParcelableSpan span : spannable.getSpans(0, spannable.length(), ParcelableSpan.class)) {
             existingStyleContainers.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span));
         }
 
