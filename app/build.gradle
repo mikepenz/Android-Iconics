@@ -54,9 +54,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.android.support:cardview-v7:23.1.1'
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    compile "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
+    compile "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
 
     compile('com.mikepenz:aboutlibraries:5.3.4@aar')
     compile('com.mikepenz:materialdrawer:4.5.9@aar') {

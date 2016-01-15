@@ -27,5 +27,5 @@ if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 }
