@@ -36,6 +36,8 @@ android {
 }
 if (project.hasProperty('pushall') || project.hasProperty('DevIcononly')) {
     apply from: '../gradle-mvn-push.gradle'
+    apply plugin: 'com.novoda.bintray-release'
+    apply from: '../gradle-jcenter-push.gradle'
 }
 
 dependencies {

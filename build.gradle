@@ -5,17 +5,15 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0-alpha3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:2.0.0-alpha5'
+        classpath 'com.novoda:bintray-release:0.3.4'
     }
 }
-// To avoid manually setting the same values in all Android modules, set the value on the root
-// project and then reference this from the modules
+
 ext {
     compileSdkVersion = 23
     buildToolsVersion = "23.0.2"
+    supportLibVersion = "23.1.1"
 
     minSdkVersion = 10
     targetSdkVersion = 23
@@ -30,5 +28,5 @@ allprojects {
 
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.9'
+    gradleVersion = '2.10'
 }
