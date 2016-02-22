@@ -31,11 +31,14 @@ public class IconicsUtils {
      */
     public static LinkedList<StyleContainer> findIconsFromEditable(Editable editable, HashMap<String, ITypeface> fonts) {
         LinkedList<StyleContainer> styleContainers = new LinkedList<>();
-        LinkedList<StyleContainer> existingStyleContainers = new LinkedList<>();
+        LinkedList<StyleContainer> existingSpans = new LinkedList<>();
 
         // remember the previous style spans
         for (ParcelableSpan span : editable.getSpans(0, editable.length(), ParcelableSpan.class)) {
-            existingStyleContainers.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span));
+            existingSpans.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span));
+        }
+        for (CharacterStyle span : editable.getSpans(0, editable.length(), CharacterStyle.class)) {
+            existingSpans.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span));
         }
         editable.clearSpans();
 
@@ -52,7 +55,7 @@ public class IconicsUtils {
                         styleContainers.add(styleContainer);
 
                         //adjust existing spans to new position
-                        for (StyleContainer existingStyleContainer : existingStyleContainers) {
+                        for (StyleContainer existingStyleContainer : existingSpans) {
                             if (existingStyleContainer.startIndex > i) {
                                 existingStyleContainer.startIndex = existingStyleContainer.startIndex - (i - iconStart);
                                 existingStyleContainer.endIndex = existingStyleContainer.endIndex - (i - iconStart);
@@ -71,7 +74,7 @@ public class IconicsUtils {
         }
 
         //add the existing spans
-        styleContainers.addAll(existingStyleContainers);
+        styleContainers.addAll(existingSpans);
 
         return styleContainers;
     }
@@ -127,10 +130,14 @@ public class IconicsUtils {
      */
     public static TextStyleContainer findIcons(Spanned spannable, HashMap<String, ITypeface> fonts) {
         LinkedList<StyleContainer> styleContainers = new LinkedList<>();
-        LinkedList<StyleContainer> existingStyleContainers = new LinkedList<>();
+        LinkedList<StyleContainer> existingSpans = new LinkedList<>();
+
         // remember the previous style spans
         for (ParcelableSpan span : spannable.getSpans(0, spannable.length(), ParcelableSpan.class)) {
-            existingStyleContainers.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span));
+            existingSpans.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span));
+        }
+        for (CharacterStyle span : spannable.getSpans(0, spannable.length(), CharacterStyle.class)) {
+            existingSpans.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span));
         }
 
         //the new string built with the replaced icons
@@ -154,7 +161,7 @@ public class IconicsUtils {
                         styleContainers.add(styleContainer);
 
                         //adjust existing spans to new position
-                        for (StyleContainer existingStyleContainer : existingStyleContainers) {
+                        for (StyleContainer existingStyleContainer : existingSpans) {
                             if (existingStyleContainer.startIndex > i) {
                                 existingStyleContainer.startIndex = existingStyleContainer.startIndex - tempIconString.length() + 1;
                             }
@@ -180,7 +187,7 @@ public class IconicsUtils {
         spannedString.append(tempIconString);
 
         //add the existing spans
-        styleContainers.addAll(existingStyleContainers);
+        styleContainers.addAll(existingSpans);
 
         return new TextStyleContainer(spannedString, styleContainers);
     }
@@ -240,8 +247,10 @@ public class IconicsUtils {
      */
     public static void applyStyles(Context ctx, Spannable text, List<StyleContainer> styleContainers, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
         for (StyleContainer styleContainer : styleContainers) {
-            if (styleContainer.styleSpan != null) {
-                text.setSpan(styleContainer.styleSpan, styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (styleContainer.style != null) {
+                text.setSpan(styleContainer.style, styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else if (styleContainer.span != null) {
+                text.setSpan(styleContainer.span, styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             } else {
                 text.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.font.getTypeface(ctx)), styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
