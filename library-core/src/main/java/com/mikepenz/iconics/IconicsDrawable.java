@@ -260,6 +260,27 @@ public class IconicsDrawable extends Drawable {
 
 
     /**
+     * Returns the icon color
+     */
+    public int getColor() {
+        return mIconColor;
+    }
+
+    /**
+     * Returns the icon contour color
+     */
+    public int getContourColor() {
+        return mContourColor;
+    }
+
+    /**
+     * Returns the icon background color
+     */
+    public int getBackgroundColor() {
+        return mBackgroundColor;
+    }
+
+    /**
      * set the icon offset for X from resource
      *
      * @param iconOffsetXRes

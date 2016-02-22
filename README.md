@@ -46,13 +46,13 @@ Provide additional fonts for you project, or even create your custom font with j
 ##1. Provide the gradle dependency
 ```gradle
 dependencies {
-	compile 'com.mikepenz:iconics-core:2.5.5@aar'
+	compile 'com.mikepenz:iconics-core:2.5.6@aar'
 }
 ```
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:2.1.0.1.original@aar' 
+compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar' 
 compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
