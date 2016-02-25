@@ -60,14 +60,14 @@ dependencies {
 
     //used to generate the drawer on the left
     //https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.0.0@aar') {
+    compile('com.mikepenz:materialdrawer:5.0.6-SNAPSHOT@aar') {
         transitive = true
         exclude module: "iconics-core"
     }
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    compile('com.mikepenz:aboutlibraries:5.5.2@aar') {
+    compile('com.mikepenz:aboutlibraries:5.5.6@aar') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
