@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2581
-        versionName "2.5.8.1"
+        versionCode 2591
+        versionName "2.5.9.1"
         enforceUniquePackageName false
     }
 
@@ -58,20 +58,33 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
     compile "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
 
+    // used to base on some backwards compatible themes
+    // contains util classes to support various android versions, and clean up code
+    // comes with the awesome "Holder"-Pattern
+    // https://github.com/mikepenz/Materialize
+    compile 'com.mikepenz:materialize:0.8.6@aar'
+
+    // used to fill the RecyclerView with the DrawerItems
+    // and provides single and multi selection, expandable items
+    // https://github.com/mikepenz/FastAdapter
+    compile 'com.mikepenz:fastadapter:1.2.1@aar'
+
     //used to generate the drawer on the left
     //https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.0.6-SNAPSHOT@aar') {
+    compile('com.mikepenz:materialdrawer:5.1.2@aar') {
         transitive = true
+        exclude module: "fastadapter"
         exclude module: "iconics-core"
     }
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    compile('com.mikepenz:aboutlibraries:5.5.7-SNAPSHOT@aar') {
+    compile('com.mikepenz:aboutlibraries:5.5.7@aar') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
     }
+
 
     compile project(':fontawesome-typeface-library')
     compile project(':material-design-iconic-typeface-library')
