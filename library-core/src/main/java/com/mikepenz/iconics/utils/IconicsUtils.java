@@ -40,7 +40,12 @@ public class IconicsUtils {
         for (CharacterStyle span : editable.getSpans(0, editable.length(), CharacterStyle.class)) {
             existingSpans.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span));
         }
-        editable.clearSpans();
+        try {
+            editable.clearSpans();
+        } catch (Exception ex) {
+            //SpannableStringBuilder has an issue which causes this to crash
+            //https://github.com/mikepenz/Android-Iconics/issues/155#issue-141629137
+        }
 
         int iconStart = -1;
         for (int i = 0; i < editable.length(); i++) {
