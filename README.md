@@ -54,7 +54,7 @@ dependencies {
 ```gradle
 compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar' 
 compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
-compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
+compile 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
 compile 'com.mikepenz:community-material-typeface:1.3.41.1@aar'
