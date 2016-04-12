@@ -43,7 +43,7 @@ class IconicsFactory {
 
         if (view instanceof ActionMenuItemView) {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Iconics);
-            String icon = a.getString(R.styleable.IconicsImageView_iiv_icon);
+            String icon = a.getString(R.styleable.Iconics_ico_icon);
 
             if (!TextUtils.isEmpty(icon)) {
                 ((ActionMenuItemView) view).setIcon(getDrawable(context, a, icon));
@@ -77,7 +77,7 @@ class IconicsFactory {
             });
         } else if (view instanceof ImageView) {
             final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Iconics);
-            String icon = a.getString(R.styleable.IconicsImageView_iiv_icon);
+            String icon = a.getString(R.styleable.Iconics_ico_icon);
 
             if (!TextUtils.isEmpty(icon)) {
                 ((ImageView) view).setImageDrawable(getDrawable(context, a, icon));
