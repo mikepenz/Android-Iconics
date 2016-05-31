@@ -34,7 +34,7 @@ import java.util.LinkedList;
  * Created by mikepenz on 01.11.14.
  */
 public class FontAwesome implements ITypeface {
-    private static final String TTF_FILE = "fontawesome-webfont-v4.5.0.1.ttf";
+    private static final String TTF_FILE = "fontawesome-font-v4.6.0.1.ttf";
 
     private static Typeface typeface = null;
 
@@ -70,7 +70,7 @@ public class FontAwesome implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "4.5.0.1";
+        return "4.6.0.1";
     }
 
     @Override
@@ -731,7 +731,31 @@ public class FontAwesome implements ITypeface {
         faw_hashtag('\uf292'),
         faw_bluetooth('\uf293'),
         faw_bluetooth_b('\uf294'),
-        faw_percent('\uf295');
+        faw_percent('\uf295'),
+        faw_gitlab('\uf296'),
+        faw_wpbeginner('\uf297'),
+        faw_wpforms('\uf298'),
+        faw_envira('\uf299'),
+        faw_universal_access('\uf29a'),
+        faw_wheelchair_alt('\uf29b'),
+        faw_question_circle_o('\uf29c'),
+        faw_blind('\uf29d'),
+        faw_audio_description('\uf29e'),
+        faw_volume_control_phone('\uf2a0'),
+        faw_braille('\uf2a1'),
+        faw_assistive_listening_systems('\uf2a2'),
+        faw_american_sign_language_interpreting('\uf2a3'),
+        faw_deaf('\uf2a4'),
+        faw_glide('\uf2a5'),
+        faw_glide_g('\uf2a6'),
+        faw_sign_language('\uf2a7'),
+        faw_low_vision('\uf2a8'),
+        faw_viadeo('\uf2a9'),
+        faw_viadeo_square('\uf2aa'),
+        faw_snapchat('\uf2ab'),
+        faw_snapchat_ghost('\uf2ac'),
+        faw_snapchat_square('\uf2ad');
+
 
         char character;
 

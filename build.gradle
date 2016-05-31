@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath 'com.android.tools.build:gradle:2.1.0'
         classpath 'com.novoda:bintray-release:0.3.4'
     }
 }
@@ -13,7 +13,7 @@ buildscript {
 ext {
     compileSdkVersion = 23
     buildToolsVersion = "23.0.3"
-    supportLibVersion = "23.3.0"
+    supportLibVersion = "23.4.0"
 
     minSdkVersion = 10
     targetSdkVersion = 23
@@ -28,5 +28,5 @@ allprojects {
 
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
+    gradleVersion = '2.13'
 }
