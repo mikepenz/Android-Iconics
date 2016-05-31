@@ -45,7 +45,7 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ##1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.5.11@aar"
+compile "com.mikepenz:iconics-core:2.6.0@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
