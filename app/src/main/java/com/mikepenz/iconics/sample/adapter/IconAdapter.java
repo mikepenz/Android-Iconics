@@ -74,7 +74,6 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
         viewHolder.name.setText(icon);
 
         if (randomize) {
-
             viewHolder.image.setColorRes(getRandomColor(i));
             viewHolder.image.setPaddingDp(random.nextInt(12));
 
@@ -87,6 +86,9 @@ public class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
                 viewHolder.image.setBackgroundColorRes(getRandomColor(i - 4));
                 viewHolder.image.setRoundedCornersDp(2 + random.nextInt(10));
             }
+        } else {
+            //as we want to respect the bounds of the original font in the icon list
+            viewHolder.image.getIcon().respectFontBounds(true);
         }
     }
 
