@@ -82,7 +82,7 @@ Provide additional fonts for you project, or even create your custom font with j
 <h2>
 <a id="1-provide-the-gradle-dependency" class="anchor" href="#1-provide-the-gradle-dependency" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Provide the gradle dependency</h2>
 
-<div class="highlight highlight-source-groovy-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">"</span>com.mikepenz:iconics-core:2.6.0@aar<span class="pl-pds">"</span></span>
+<div class="highlight highlight-source-groovy-gradle"><pre>compile <span class="pl-s"><span class="pl-pds">"</span>com.mikepenz:iconics-core:2.6.5@aar<span class="pl-pds">"</span></span>
 compile <span class="pl-s"><span class="pl-pds">"</span>com.android.support:appcompat-v7:<span class="pl-s1"><span class="pl-pse">${</span>supportLibVersion<span class="pl-pse">}</span></span><span class="pl-pds">"</span></span></pre></div>
 
 <h2>
@@ -104,7 +104,7 @@ compile <span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:ionicons-ty
 <h2>
 <a id="3-define-iconicslayoutinflater-to-enable-automatic-xml-icons-detection-optional" class="anchor" href="#3-define-iconicslayoutinflater-to-enable-automatic-xml-icons-detection-optional" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)</h2>
 
-<p>Set the <code>IconicsLayoutInflater</code> as new <code>LayoutInflaterFactory</code>. This will enable automatic icon detection for <code>TextViews</code>,<code>Buttons</code>, and allow you to set icons on <code>ImageView</code>'s via xml. This is compatible with libs which wrap the <code>baseContext</code> like <a href="https://github.com/chrisjenx/Calligraphy">Calligraphy</a>.</p>
+<p>Set the <code>IconicsLayoutInflater</code> as new <code>LayoutInflaterFactory</code>. This will enable automatic icon detection for <code>TextViews</code>,<code>Buttons</code>, and allow you to set icons on <code>ImageView</code>'s via xml. This is compatible with libs which wrap the <code>baseContext</code> like <a href="https://github.com/chrisjenx/Calligraphy">Calligraphy</a>. This does not work on FAB's please use the <code>Context-Injection</code> instead.</p>
 
 <div class="highlight highlight-source-java"><pre>@<span class="pl-smi">Override</span>
 <span class="pl-k">protected</span> <span class="pl-k">void</span> onCreate(<span class="pl-smi">Bundle</span> savedInstanceState) {
