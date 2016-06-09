@@ -66,6 +66,8 @@ public class IconicsDrawable extends Drawable {
     private int mSizeX = -1;
     private int mSizeY = -1;
 
+    private boolean mRespectFontBounds = false;
+
     private int mIconColor;
     private Paint mIconPaint;
     private int mContourColor;
@@ -219,6 +221,17 @@ public class IconicsDrawable extends Drawable {
         mIconPaint.setTypeface(typeface.getTypeface(mContext));
         invalidateSelf();
         return this;
+    }
+
+    /**
+     * Set if it should respect the original bounds of the icon. (DEFAULT is false)
+     * This will break the "padding" functionality, but keep the padding defined by the font itself
+     * Check it out with the oct_arrow_down and oct_arrow_small_down of the Octicons font
+     *
+     * @param respectBounds set to true if it should respect the original bounds
+     */
+    public void respectFontBounds(boolean respectBounds) {
+        this.mRespectFontBounds = respectBounds;
     }
 
     /**
@@ -908,22 +921,24 @@ public class IconicsDrawable extends Drawable {
      * @param viewBounds
      */
     private void updateTextSize(Rect viewBounds) {
-        float textSize = (float) viewBounds.height() * 2;
+        float textSize = (float) viewBounds.height() * (mRespectFontBounds ? 1 : 2);
         mIconPaint.setTextSize(textSize);
 
         String textValue = mIcon != null ? String.valueOf(mIcon.getCharacter()) : String.valueOf(mPlainIcon);
         mIconPaint.getTextPath(textValue, 0, textValue.length(), 0, viewBounds.height(), mPath);
         mPath.computeBounds(mPathBounds, true);
 
-        float deltaWidth = ((float) mPaddingBounds.width() / mPathBounds.width());
-        float deltaHeight = ((float) mPaddingBounds.height() / mPathBounds.height());
-        float delta = (deltaWidth < deltaHeight) ? deltaWidth : deltaHeight;
-        textSize *= delta;
+        if (!mRespectFontBounds) {
+            float deltaWidth = ((float) mPaddingBounds.width() / mPathBounds.width());
+            float deltaHeight = ((float) mPaddingBounds.height() / mPathBounds.height());
+            float delta = (deltaWidth < deltaHeight) ? deltaWidth : deltaHeight;
+            textSize *= delta;
 
-        mIconPaint.setTextSize(textSize);
+            mIconPaint.setTextSize(textSize);
 
-        mIconPaint.getTextPath(textValue, 0, textValue.length(), 0, viewBounds.height(), mPath);
-        mPath.computeBounds(mPathBounds, true);
+            mIconPaint.getTextPath(textValue, 0, textValue.length(), 0, viewBounds.height(), mPath);
+            mPath.computeBounds(mPathBounds, true);
+        }
     }
 
     /**
