@@ -45,7 +45,7 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ##1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.6.0@aar"
+compile "com.mikepenz:iconics-core:2.6.5@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
@@ -66,7 +66,7 @@ compile 'com.mikepenz:ionicons-typeface:2.0.1.1@aar'
 ```
 
 ##3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
-Set the `IconicsLayoutInflater` as new `LayoutInflaterFactory`. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml. This is compatible with libs which wrap the `baseContext` like [Calligraphy](https://github.com/chrisjenx/Calligraphy).
+Set the `IconicsLayoutInflater` as new `LayoutInflaterFactory`. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml. This is compatible with libs which wrap the `baseContext` like [Calligraphy](https://github.com/chrisjenx/Calligraphy). This does not work on FAB's please use the `Context-Injection` instead.
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
