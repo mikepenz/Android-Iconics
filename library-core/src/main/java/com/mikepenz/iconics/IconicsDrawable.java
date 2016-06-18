@@ -230,8 +230,10 @@ public class IconicsDrawable extends Drawable {
      *
      * @param respectBounds set to true if it should respect the original bounds
      */
-    public void respectFontBounds(boolean respectBounds) {
+    public IconicsDrawable respectFontBounds(boolean respectBounds) {
         this.mRespectFontBounds = respectBounds;
+        invalidateSelf();
+        return this;
     }
 
     /**
