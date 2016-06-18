@@ -11,12 +11,12 @@ buildscript {
 }
 
 ext {
-    compileSdkVersion = 23
-    buildToolsVersion = "23.0.3"
-    supportLibVersion = "23.4.0"
+    compileSdkVersion = 24
+    buildToolsVersion = "24.0.0"
+    supportLibVersion = "24.0.0"
 
     minSdkVersion = 10
-    targetSdkVersion = 23
+    targetSdkVersion = 24
 }
 
 allprojects {
@@ -28,5 +28,5 @@ allprojects {
 
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
+    gradleVersion = '2.14'
 }
