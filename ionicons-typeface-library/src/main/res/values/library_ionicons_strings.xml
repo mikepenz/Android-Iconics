@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="define_int_Ionicons">year;author;libraryName;libraryWebsite</string>
+    <string name="define_Ionicons">year;author;libraryName;libraryWebsite</string>
     <string name="library_Ionicons_author">Drifty</string>
     <string name="library_Ionicons_authorWebsite">http://drifty.com/</string>
     <string name="library_Ionicons_libraryName">Ionicons</string>
