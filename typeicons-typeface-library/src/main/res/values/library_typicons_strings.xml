@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="define_int_Typicons">year;author;libraryName;libraryWebsite</string>
+    <string name="define_Typicons">year;author;libraryName;libraryWebsite</string>
     <string name="library_Typicons_author">Stephen Hutchings</string>
     <string name="library_Typicons_authorWebsite">http://s-ings.com/</string>
     <string name="library_Typicons_libraryName">Typicons</string>
