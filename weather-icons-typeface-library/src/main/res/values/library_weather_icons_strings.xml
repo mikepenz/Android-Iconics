@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="define_int_Weather_Icons">year;author;libraryName;libraryWebsite</string>
+    <string name="define_Weather_Icons">year;author;libraryName;libraryWebsite</string>
     <string name="library_Weather_Icons_author">Lukas Bischoff and Erik Flowers</string>
     <string name="library_Weather_Icons_authorWebsite"></string>
     <string name="library_Weather_Icons_libraryName">Weather Icons</string>
