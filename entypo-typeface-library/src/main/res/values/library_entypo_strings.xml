@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="define_int_Entypo">year;author;libraryName;libraryWebsite</string>
+    <string name="define_Entypo">year;author;libraryName;libraryWebsite</string>
     <string name="library_Entypo_author">Daniel Bruce</string>
     <string name="library_Entypo_authorWebsite">http://www.danielbruce.se/</string>
     <string name="library_Entypo_libraryName">Entypo+</string>
