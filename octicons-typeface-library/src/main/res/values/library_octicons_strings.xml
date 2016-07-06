@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="define_int_Octicons">year;author;libraryName;libraryWebsite</string>
+    <string name="define_Octicons">year;author;libraryName;libraryWebsite</string>
     <string name="library_Octicons_author">GitHub Inc.</string>
     <string name="library_Octicons_authorWebsite">https://github.com/</string>
     <string name="library_Octicons_libraryName">Octicons</string>
