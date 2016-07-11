@@ -46,6 +46,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
+import android.support.annotation.Dimension;
 import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.util.Log;
@@ -53,6 +54,9 @@ import android.util.Log;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.Utils;
+
+import static android.support.annotation.Dimension.DP;
+import static android.support.annotation.Dimension.PX;
 
 /**
  * A custom {@link Drawable} which can display icons from icon fonts.
@@ -311,7 +315,7 @@ public class IconicsDrawable extends Drawable {
      * @param iconOffsetXDp
      * @return
      */
-    public IconicsDrawable iconOffsetXDp(int iconOffsetXDp) {
+    public IconicsDrawable iconOffsetXDp(@Dimension(unit = DP) int iconOffsetXDp) {
         return iconOffsetXPx(Utils.convertDpToPx(mContext, iconOffsetXDp));
     }
 
@@ -321,7 +325,7 @@ public class IconicsDrawable extends Drawable {
      * @param iconOffsetX
      * @return
      */
-    public IconicsDrawable iconOffsetXPx(int iconOffsetX) {
+    public IconicsDrawable iconOffsetXPx(@Dimension(unit = PX) int iconOffsetX) {
         this.mIconOffsetX = iconOffsetX;
         return this;
     }
@@ -342,7 +346,7 @@ public class IconicsDrawable extends Drawable {
      * @param iconOffsetYDp
      * @return
      */
-    public IconicsDrawable iconOffsetYDp(int iconOffsetYDp) {
+    public IconicsDrawable iconOffsetYDp(@Dimension(unit = DP) int iconOffsetYDp) {
         return iconOffsetYPx(Utils.convertDpToPx(mContext, iconOffsetYDp));
     }
 
@@ -352,7 +356,7 @@ public class IconicsDrawable extends Drawable {
      * @param iconOffsetY
      * @return
      */
-    public IconicsDrawable iconOffsetYPx(int iconOffsetY) {
+    public IconicsDrawable iconOffsetYPx(@Dimension(unit = PX) int iconOffsetY) {
         this.mIconOffsetY = iconOffsetY;
         return this;
     }
@@ -374,7 +378,7 @@ public class IconicsDrawable extends Drawable {
      * @param iconPadding
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable paddingDp(int iconPadding) {
+    public IconicsDrawable paddingDp(@Dimension(unit = DP) int iconPadding) {
         return paddingPx(Utils.convertDpToPx(mContext, iconPadding));
     }
 
@@ -384,7 +388,7 @@ public class IconicsDrawable extends Drawable {
      * @param iconPadding
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable paddingPx(int iconPadding) {
+    public IconicsDrawable paddingPx(@Dimension(unit = PX) int iconPadding) {
         if (mIconPadding != iconPadding) {
             mIconPadding = iconPadding;
             if (mDrawContour) {
@@ -435,7 +439,7 @@ public class IconicsDrawable extends Drawable {
      * @param size The size in density-independent pixels (dp).
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable sizeDp(int size) {
+    public IconicsDrawable sizeDp(@Dimension(unit = DP) int size) {
         return sizePx(Utils.convertDpToPx(mContext, size));
     }
 
@@ -445,7 +449,7 @@ public class IconicsDrawable extends Drawable {
      * @param size The size in pixels (px).
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable sizePx(int size) {
+    public IconicsDrawable sizePx(@Dimension(unit = PX) int size) {
         this.mSizeX = size;
         this.mSizeY = size;
         setBounds(0, 0, size, size);
@@ -470,7 +474,7 @@ public class IconicsDrawable extends Drawable {
      * @param sizeX The size in density-independent pixels (dp).
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable sizeDpX(int sizeX) {
+    public IconicsDrawable sizeDpX(@Dimension(unit = DP) int sizeX) {
         return sizePxX(Utils.convertDpToPx(mContext, sizeX));
     }
 
@@ -480,7 +484,7 @@ public class IconicsDrawable extends Drawable {
      * @param sizeX The size in pixels (px).
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable sizePxX(int sizeX) {
+    public IconicsDrawable sizePxX(@Dimension(unit = PX) int sizeX) {
         this.mSizeX = sizeX;
         setBounds(0, 0, mSizeX, mSizeY);
         invalidateSelf();
@@ -504,7 +508,7 @@ public class IconicsDrawable extends Drawable {
      * @param sizeY The size in density-independent pixels (dp).
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable sizeDpY(int sizeY) {
+    public IconicsDrawable sizeDpY(@Dimension(unit = DP) int sizeY) {
         return sizePxY(Utils.convertDpToPx(mContext, sizeY));
     }
 
@@ -514,7 +518,7 @@ public class IconicsDrawable extends Drawable {
      * @param sizeY The size in pixels (px).
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable sizePxY(int sizeY) {
+    public IconicsDrawable sizePxY(@Dimension(unit = PX) int sizeY) {
         this.mSizeY = sizeY;
         setBounds(0, 0, mSizeX, mSizeY);
         invalidateSelf();
@@ -590,7 +594,7 @@ public class IconicsDrawable extends Drawable {
      * @param roundedCornerRxDp
      * @return
      */
-    public IconicsDrawable roundedCornersRxDp(int roundedCornerRxDp) {
+    public IconicsDrawable roundedCornersRxDp(@Dimension(unit = DP) int roundedCornerRxDp) {
         this.mRoundedCornerRx = Utils.convertDpToPx(mContext, roundedCornerRxDp);
         return this;
     }
@@ -601,7 +605,7 @@ public class IconicsDrawable extends Drawable {
      * @param roundedCornerRxPx
      * @return
      */
-    public IconicsDrawable roundedCornersRxPx(int roundedCornerRxPx) {
+    public IconicsDrawable roundedCornersRxPx(@Dimension(unit = PX) int roundedCornerRxPx) {
         this.mRoundedCornerRx = roundedCornerRxPx;
         return this;
     }
@@ -623,7 +627,7 @@ public class IconicsDrawable extends Drawable {
      * @param roundedCornerRyDp
      * @return
      */
-    public IconicsDrawable roundedCornersRyDp(int roundedCornerRyDp) {
+    public IconicsDrawable roundedCornersRyDp(@Dimension(unit = DP) int roundedCornerRyDp) {
         this.mRoundedCornerRy = Utils.convertDpToPx(mContext, roundedCornerRyDp);
         return this;
     }
@@ -634,7 +638,7 @@ public class IconicsDrawable extends Drawable {
      * @param roundedCornerRyPx
      * @return
      */
-    public IconicsDrawable roundedCornersRyPx(int roundedCornerRyPx) {
+    public IconicsDrawable roundedCornersRyPx(@Dimension(unit = PX) int roundedCornerRyPx) {
         this.mRoundedCornerRy = roundedCornerRyPx;
         return this;
     }
@@ -657,7 +661,7 @@ public class IconicsDrawable extends Drawable {
      * @param roundedCornerDp
      * @return
      */
-    public IconicsDrawable roundedCornersDp(int roundedCornerDp) {
+    public IconicsDrawable roundedCornersDp(@Dimension(unit = DP) int roundedCornerDp) {
         this.mRoundedCornerRx = Utils.convertDpToPx(mContext, roundedCornerDp);
         this.mRoundedCornerRy = this.mRoundedCornerRx;
         return this;
@@ -669,7 +673,7 @@ public class IconicsDrawable extends Drawable {
      * @param roundedCornerPx
      * @return
      */
-    public IconicsDrawable roundedCornersPx(int roundedCornerPx) {
+    public IconicsDrawable roundedCornersPx(@Dimension(unit = PX) int roundedCornerPx) {
         this.mRoundedCornerRx = roundedCornerPx;
         this.mRoundedCornerRy = this.mRoundedCornerRx;
         return this;
@@ -691,7 +695,7 @@ public class IconicsDrawable extends Drawable {
      * @param contourWidthDp
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable contourWidthDp(int contourWidthDp) {
+    public IconicsDrawable contourWidthDp(@Dimension(unit = DP) int contourWidthDp) {
         return contourWidthPx(Utils.convertDpToPx(mContext, contourWidthDp));
     }
 
@@ -701,7 +705,7 @@ public class IconicsDrawable extends Drawable {
      * @param contourWidth
      * @return The current IconExtDrawable for chaining.
      */
-    public IconicsDrawable contourWidthPx(int contourWidth) {
+    public IconicsDrawable contourWidthPx(@Dimension(unit = PX) int contourWidth) {
         mContourWidth = contourWidth;
         mContourPaint.setStrokeWidth(mContourWidth);
         drawContour(true);
