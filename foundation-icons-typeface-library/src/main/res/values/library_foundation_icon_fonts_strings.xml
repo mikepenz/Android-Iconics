@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_Foundation_Icon_Fonts">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Foundation_Icon_Fonts_author">ZURB Inc.</string>
+    <string name="library_Foundation_Icon_Fonts_authorWebsite">http://zurb.com/</string>
+    <string name="library_Foundation_Icon_Fonts_libraryName">Foundation_Icon_Fonts</string>
+    <string name="library_Foundation_Icon_Fonts_libraryDescription">A custom collection of 283 icons that are stored in a handy web font.</string>
+    <string name="library_Foundation_Icon_Fonts_libraryWebsite">http://zurb.com/playground/foundation-icon-fonts-3</string>
+    <string name="library_Foundation_Icon_Fonts_libraryVersion">3.0.0.2</string>
+    <string name="library_Foundation_Icon_Fonts_licenseId">mit</string>
+    <string name="library_Foundation_Icon_Fonts_isOpenSource">false</string>
+    <string name="library_Foundation_Icon_Fonts_repositoryLink"></string>
+</resources>

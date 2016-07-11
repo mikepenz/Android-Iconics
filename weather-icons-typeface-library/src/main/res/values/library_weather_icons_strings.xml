@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_Weather_Icons">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Weather_Icons_author">Lukas Bischoff and Erik Flowers</string>
+    <string name="library_Weather_Icons_authorWebsite"></string>
+    <string name="library_Weather_Icons_libraryName">Weather Icons</string>
+    <string name="library_Weather_Icons_libraryDescription">Weather Icons is the only icon font and CSS with 222 weather themed icons, ready to be dropped right into Bootstrap, or any project that needs high quality weather, maritime, and meteorological based icons!</string>
+    <string name="library_Weather_Icons_libraryWebsite">https://erikflowers.github.io/weather-icons/</string>
+    <string name="library_Weather_Icons_libraryVersion">2.0.10.2</string>
+    <string name="library_Weather_Icons_licenseId">sil_ofl_1_1</string>
+    <string name="library_Weather_Icons_isOpenSource">true</string>
+    <string name="library_Weather_Icons_repositoryLink">https://github.com/erikflowers/weather-icons</string>
+    <!-- Custom variables section -->
+    <string name="library_Weather_Icons_year"> </string>
+</resources> 

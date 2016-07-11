@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_Typicons">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Typicons_author">Stephen Hutchings</string>
+    <string name="library_Typicons_authorWebsite">http://s-ings.com/</string>
+    <string name="library_Typicons_libraryName">Typicons</string>
+    <string name="library_Typicons_libraryDescription"></string>
+    <string name="library_Typicons_libraryWebsite">http://typicons.com/</string>
+    <string name="library_Typicons_libraryVersion">2.0.7.2</string>
+    <string name="library_Typicons_licenseId">sil_ofl_1_1</string>
+    <string name="library_Typicons_isOpenSource">true</string>
+    <string name="library_Typicons_repositoryLink">https://github.com/stephenhutchings/typicons.font</string>
+    <!-- Custom variables section -->
+    <string name="library_Typicons_year"> </string>
+</resources> 

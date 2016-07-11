@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_Octicons">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Octicons_author">GitHub Inc.</string>
+    <string name="library_Octicons_authorWebsite">https://github.com/</string>
+    <string name="library_Octicons_libraryName">Octicons</string>
+    <string name="library_Octicons_libraryDescription">Octicons are a scalable set of icons handcrafted with love by GitHub.</string>
+    <string name="library_Octicons_libraryWebsite">https://octicons.github.com/</string>
+    <string name="library_Octicons_libraryVersion">3.2.0.2</string>
+    <string name="library_Octicons_licenseId">sil_ofl_1_1</string>
+    <string name="library_Octicons_isOpenSource">true</string>
+    <string name="library_Octicons_repositoryLink">https://github.com/primer/octicons</string>
+    <!-- Custom variables section -->
+    <string name="library_Octicons_year">2012</string>
+</resources> 

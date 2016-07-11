@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_MaterialDesignIcons">year;author;libraryName;libraryWebsite</string>
+    <string name="library_MaterialDesignIcons_author">Austin Andrews</string>
+    <string name="library_MaterialDesignIcons_authorWebsite">https://materialdesignicons.com/</string>
+    <string name="library_MaterialDesignIcons_libraryName">Material Design Icons</string>
+    <string name="library_MaterialDesignIcons_libraryDescription">Material Design Icons\' growing icon collection allows designers and developers targeting various platforms to download icons in the format, color and size they need for any project.</string>
+    <string name="library_MaterialDesignIcons_libraryWebsite">https://materialdesignicons.com/</string>
+    <string name="library_MaterialDesignIcons_libraryVersion">1.5.54.2</string>
+    <string name="library_MaterialDesignIcons_licenseId">sil_ofl_1_1</string>
+    <string name="library_MaterialDesignIcons_isOpenSource">true</string>
+    <string name="library_MaterialDesignIcons_repositoryLink">https://github.com/templarian/MaterialDesign/</string>
+    <!-- Custom variables section -->
+    <string name="library_MaterialDesignIcons_year">2014</string>
+</resources> 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_Entypo">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Entypo_author">Daniel Bruce</string>
+    <string name="library_Entypo_authorWebsite">http://www.danielbruce.se/</string>
+    <string name="library_Entypo_libraryName">Entypo+</string>
+    <string name="library_Entypo_libraryDescription">Entypo+ is the third version of a free suite of premium quality pictograms.</string>
+    <string name="library_Entypo_libraryWebsite">http://www.entypo.com/</string>
+    <string name="library_Entypo_libraryVersion">1.0.0.2</string>
+    <string name="library_Entypo_licenseId">cc40</string>
+    <string name="library_Entypo_isOpenSource">false</string>
+    <string name="library_Entypo_repositoryLink"></string>
+</resources> 

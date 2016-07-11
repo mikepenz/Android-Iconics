@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_Meteocons">author;libraryName;libraryWebsite</string>
+    <string name="library_Meteocons_author">Alessio Atzeni</string>
+    <string name="library_Meteocons_authorWebsite">http://www.alessioatzeni.com/</string>
+    <string name="library_Meteocons_libraryName">Meteocons</string>
+    <string name="library_Meteocons_libraryDescription">Meteocons is a set of weather icons, it containing 40+ icons available in PSD, CSH, EPS, SVG, Desktop font and Web font. All icon and updates are free and always will be.</string>
+    <string name="library_Meteocons_libraryWebsite">http://www.alessioatzeni.com/meteocons/</string>
+    <string name="library_Meteocons_libraryVersion">1.1.0.2</string>
+    <string name="library_Meteocons_licenseId">meteocons_custom</string>
+    <string name="library_Meteocons_isOpenSource">false</string>
+    <string name="library_Meteocons_repositoryLink"></string>
+</resources>

@@ -24,8 +24,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 20101
-        versionName "2.0.10.1"
+        versionCode 20102
+        versionName "2.0.10.2"
     }
     buildTypes {
         release {

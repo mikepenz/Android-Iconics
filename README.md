@@ -45,24 +45,24 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ##1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.6.6@aar"
+compile "com.mikepenz:iconics-core:2.6.7@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar' 
-compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
-compile 'com.mikepenz:fontawesome-typeface:4.6.0.1@aar'
-compile 'com.mikepenz:octicons-typeface:3.2.0.1@aar'
-compile 'com.mikepenz:meteocons-typeface:1.1.0.1@aar'
-compile 'com.mikepenz:community-material-typeface:1.5.54.1@aar'
-compile 'com.mikepenz:weather-icons-typeface:2.0.10.1@aar'
-compile 'com.mikepenz:typeicons-typeface:2.0.7.1@aar'
-compile 'com.mikepenz:entypo-typeface:1.0.0.1@aar'
-compile 'com.mikepenz:devicon-typeface:2.0.0.1@aar'
-compile 'com.mikepenz:foundation-icons-typeface:3.0.0.1@aar'
-compile 'com.mikepenz:ionicons-typeface:2.0.1.1@aar'
+compile 'com.mikepenz:google-material-typeface:2.2.0.2.original@aar' 
+compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
+compile 'com.mikepenz:fontawesome-typeface:4.6.0.2@aar'
+compile 'com.mikepenz:octicons-typeface:3.2.0.2@aar'
+compile 'com.mikepenz:meteocons-typeface:1.1.0.2@aar'
+compile 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
+compile 'com.mikepenz:weather-icons-typeface:2.0.10.2@aar'
+compile 'com.mikepenz:typeicons-typeface:2.0.7.2@aar'
+compile 'com.mikepenz:entypo-typeface:1.0.0.2@aar'
+compile 'com.mikepenz:devicon-typeface:2.0.0.2@aar'
+compile 'com.mikepenz:foundation-icons-typeface:3.0.0.2@aar'
+compile 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
 ```
 
 ##3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)

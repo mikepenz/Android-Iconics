@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_MaterialDesignIconicIcons">year;author;libraryName;libraryWebsite</string>
+    <string name="library_MaterialDesignIconicIcons_author">Sergey Kupletsky</string>
+    <string name="library_MaterialDesignIconicIcons_authorWebsite">http://zavoloklom.github.io/material-design-iconic-font</string>
+    <string name="library_MaterialDesignIconicIcons_libraryName">Material Design Iconics Icons</string>
+    <string name="library_MaterialDesignIconicIcons_libraryDescription">Material Design Iconic Font is a full suite of material design icons (created and maintained by Google) with additional community-designed and brands icons for easy scalable vector graphics on websites or desktop</string>
+    <string name="library_MaterialDesignIconicIcons_libraryWebsite">http://zavoloklom.github.io/material-design-iconic-font</string>
+    <string name="library_MaterialDesignIconicIcons_libraryVersion">2.2.0.2</string>
+    <string name="library_MaterialDesignIconicIcons_licenseId">sil_ofl_1_1</string>
+    <string name="library_MaterialDesignIconicIcons_isOpenSource">true</string>
+    <string name="library_MaterialDesignIconicIcons_repositoryLink">https://github.com/zavoloklom/material-design-iconic-font</string>
+    <!-- Custom variables section -->
+    <string name="library_MaterialDesignIconicIcons_year">2012</string>
+</resources> 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_Devicon">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Devicon_author">Konpa (Julien Monty)</string>
+    <string name="library_Devicon_authorWebsite">https://github.com/konpa</string>
+    <string name="library_Devicon_libraryName">Devicon</string>
+    <string name="library_Devicon_libraryDescription">Devicon is a set of icons representing programming languages, designing &amp; development tools. You can use it as a font or directly copy/paste the svg code into your project.</string>
+    <string name="library_Devicon_libraryWebsite">http://devicon.fr/</string>
+    <string name="library_Devicon_libraryVersion">2.0.0.2</string>
+    <string name="library_Devicon_licenseId">mit</string>
+    <string name="library_Devicon_isOpenSource">true</string>
+    <string name="library_Devicon_repositoryLink">https://github.com/konpa/devicon</string>
+</resources> 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources translatable="false">
+
+    <string name="define_license_meteocons_custom"></string>
+    <string name="license_meteocons_custom_licenseName">Meteocons Custom License</string>
+    <string name="license_meteocons_custom_licenseWebsite">http://www.alessioatzeni.com/meteocons/</string>
+    <string name="license_meteocons_custom_licenseShortDescription">
+        <![CDATA[
+        Copyright (c) <<<AUTHOR>>> (<<<LIBRARYWEBSITE>>>),<br />
+        with Reserved Font Name \"<<<LIBRARYNAME>>>\".
+		<br /><br />
+		Meteocons are free for use in both personal and commercial projects.
+		No attribution or backlinks are required, but any form of spreading the word is always appreciated!
+		You must not resell any icons or distribute them in any other way.
+		The Icons as such are the property of the author.
+        ]]>
+    </string>
+    <string name="license_meteocons_custom_licenseDescription">
+        <![CDATA[
+        Copyright (c) <<<AUTHOR>>> (<<<LIBRARYWEBSITE>>>),<br />
+        with Reserved Font Name \"<<<LIBRARYNAME>>>\".
+		<br /><br />
+		Meteocons are free for use in both personal and commercial projects.
+		No attribution or backlinks are required, but any form of spreading the word is always appreciated!
+		You must not resell any icons or distribute them in any other way.
+		The Icons as such are the property of the author.
+        ]]>
+    </string>
+
+</resources>
