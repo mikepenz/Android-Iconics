@@ -448,6 +448,7 @@ public class IconicsDrawable extends Drawable {
     public IconicsDrawable sizePx(int size) {
         this.mSizeX = size;
         this.mSizeY = size;
+        setBounds(0, 0, size, size);
         invalidateSelf();
         return this;
     }
@@ -481,6 +482,7 @@ public class IconicsDrawable extends Drawable {
      */
     public IconicsDrawable sizePxX(int sizeX) {
         this.mSizeX = sizeX;
+        setBounds(0, 0, mSizeX, mSizeY);
         invalidateSelf();
         return this;
     }
@@ -514,6 +516,7 @@ public class IconicsDrawable extends Drawable {
      */
     public IconicsDrawable sizePxY(int sizeY) {
         this.mSizeY = sizeY;
+        setBounds(0, 0, mSizeX, mSizeY);
         invalidateSelf();
         return this;
     }
