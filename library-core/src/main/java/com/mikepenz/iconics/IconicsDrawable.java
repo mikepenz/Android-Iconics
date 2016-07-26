@@ -33,12 +33,15 @@
 package com.mikepenz.iconics;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -47,6 +50,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.Dimension;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.util.Log;
@@ -99,6 +103,10 @@ public class IconicsDrawable extends Drawable {
 
     private IIcon mIcon;
     private String mPlainIcon;
+
+    private ColorStateList mTint;
+    private PorterDuff.Mode mTintMode = PorterDuff.Mode.SRC_IN;
+    private PorterDuffColorFilter mTintFilter;
 
     public IconicsDrawable(Context context) {
         mContext = context.getApplicationContext();
@@ -800,8 +808,26 @@ public class IconicsDrawable extends Drawable {
 
             mIconPaint.setAlpha(mAlpha);
 
+            if (mIconPaint != null) {
+                mIconPaint.setColorFilter(mTintFilter);
+            }
+
             canvas.drawPath(mPath, mIconPaint);
         }
+    }
+
+    @Override
+    public void setTintList(ColorStateList tint) {
+        mTint = tint;
+        mTintFilter = updateTintFilter(tint, mTintMode);
+        invalidateSelf();
+    }
+
+    @Override
+    public void setTintMode(@NonNull PorterDuff.Mode tintMode) {
+        mTintMode = tintMode;
+        mTintFilter = updateTintFilter(mTint, tintMode);
+        invalidateSelf();
     }
 
     @Override
@@ -963,6 +989,21 @@ public class IconicsDrawable extends Drawable {
         float offsetY = startY - (mPathBounds.top);
 
         mPath.offset(offsetX + mIconOffsetX, offsetY + mIconOffsetY);
+    }
+
+
+    /**
+     * Ensures the tint filter is consistent with the current tint color and
+     * mode.
+     */
+    PorterDuffColorFilter updateTintFilter(ColorStateList tint, PorterDuff.Mode tintMode) {
+        if (tint == null || tintMode == null) {
+            return null;
+        }
+        // setMode, setColor of PorterDuffColorFilter are not public method in SDK v7.
+        // Therefore we create a new one all the time here. Don't expect this is called often.
+        final int color = tint.getColorForState(getState(), Color.TRANSPARENT);
+        return new PorterDuffColorFilter(color, tintMode);
     }
 
 
