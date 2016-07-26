@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 26701
-        versionName "2.6.7.1"
+        versionCode 27001
+        versionName "2.7.0.1"
         enforceUniquePackageName false
     }
 

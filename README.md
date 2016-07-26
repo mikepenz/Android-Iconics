@@ -10,7 +10,7 @@ If you get the icons as **vector** (.svg) or there are many changes over the tim
 Now there's an **easy, fast, and small** solution for this! The **Android-Iconics** library.
 
 This library allows you to include vector icons everywhere in your project. No limits are given.
-**Scale with no limit**, use **any Color** at any time, provide a **contour**, and many additional customizations...
+**Scale with no limit**, use **any color** at any time, provide a **contour**, and many additional customizations...
 
 Use the icons in the variation you need them.
 
@@ -18,8 +18,9 @@ Use the icons in the variation you need them.
 - No customization limitations (size, color, contour, background, padding, positioning, ...)
 - One icon source (no more mdpi, hdpi, ...)
 - Flexibility
-- If it takes an Drawable, it will also work with the IconicsDrawable!
+- If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
+- All licenses included, best used with [AboutLibraries](https://github.com/mikepenz/AboutLibraries)
 
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
@@ -45,7 +46,7 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ##1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.6.7@aar"
+compile "com.mikepenz:iconics-core:2.7.0@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 

@@ -35,10 +35,10 @@ public class IconicsUtils {
 
         // remember the previous style spans
         for (ParcelableSpan span : editable.getSpans(0, editable.length(), ParcelableSpan.class)) {
-            existingSpans.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span));
+            existingSpans.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span, editable.getSpanFlags(span)));
         }
         for (CharacterStyle span : editable.getSpans(0, editable.length(), CharacterStyle.class)) {
-            existingSpans.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span));
+            existingSpans.add(new StyleContainer(editable.getSpanStart(span), editable.getSpanEnd(span), span, editable.getSpanFlags(span)));
         }
         try {
             editable.clearSpans();
@@ -139,16 +139,17 @@ public class IconicsUtils {
 
         // remember the previous style spans
         for (ParcelableSpan span : spannable.getSpans(0, spannable.length(), ParcelableSpan.class)) {
-            existingSpans.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span));
+            existingSpans.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span, spannable.getSpanFlags(span)));
         }
         for (CharacterStyle span : spannable.getSpans(0, spannable.length(), CharacterStyle.class)) {
-            existingSpans.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span));
+            existingSpans.add(new StyleContainer(spannable.getSpanStart(span), spannable.getSpanEnd(span), span, spannable.getSpanFlags(span)));
         }
 
         //the new string built with the replaced icons
         SpannableStringBuilder spannedString = new SpannableStringBuilder();
         SpannableStringBuilder tempIconString = new SpannableStringBuilder();
 
+        int removedChars = 0;
         for (int i = 0; i < spannable.length(); i++) {
             Character c = spannable.charAt(i);
             if (c == '{') {
@@ -167,13 +168,14 @@ public class IconicsUtils {
 
                         //adjust existing spans to new position
                         for (StyleContainer existingStyleContainer : existingSpans) {
-                            if (existingStyleContainer.startIndex > i) {
+                            if (existingStyleContainer.startIndex > i - removedChars) {
                                 existingStyleContainer.startIndex = existingStyleContainer.startIndex - tempIconString.length() + 1;
                             }
-                            if (existingStyleContainer.endIndex > i) {
+                            if (existingStyleContainer.endIndex > i - removedChars) {
                                 existingStyleContainer.endIndex = existingStyleContainer.endIndex - tempIconString.length() + 1;
                             }
                         }
+                        removedChars += tempIconString.length() - 1;
                     }
                 } else {
                     spannedString.append(tempIconString);
@@ -253,20 +255,20 @@ public class IconicsUtils {
     public static void applyStyles(Context ctx, Spannable text, List<StyleContainer> styleContainers, List<CharacterStyle> styles, HashMap<String, List<CharacterStyle>> stylesFor) {
         for (StyleContainer styleContainer : styleContainers) {
             if (styleContainer.style != null) {
-                text.setSpan(styleContainer.style, styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                text.setSpan(styleContainer.style, styleContainer.startIndex, styleContainer.endIndex, styleContainer.flags);
             } else if (styleContainer.span != null) {
-                text.setSpan(styleContainer.span, styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                text.setSpan(styleContainer.span, styleContainer.startIndex, styleContainer.endIndex, styleContainer.flags);
             } else {
                 text.setSpan(new IconicsTypefaceSpan("sans-serif", styleContainer.font.getTypeface(ctx)), styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
 
             if (stylesFor != null && stylesFor.containsKey(styleContainer.icon)) {
                 for (CharacterStyle style : stylesFor.get(styleContainer.icon)) {
-                    text.setSpan(CharacterStyle.wrap(style), styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    text.setSpan(CharacterStyle.wrap(style), styleContainer.startIndex, styleContainer.endIndex, styleContainer.flags);
                 }
             } else if (styles != null) {
                 for (CharacterStyle style : styles) {
-                    text.setSpan(CharacterStyle.wrap(style), styleContainer.startIndex, styleContainer.endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    text.setSpan(CharacterStyle.wrap(style), styleContainer.startIndex, styleContainer.endIndex, styleContainer.flags);
                 }
             }
         }
