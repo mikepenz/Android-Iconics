@@ -149,6 +149,7 @@ public class IconicsUtils {
         SpannableStringBuilder spannedString = new SpannableStringBuilder();
         SpannableStringBuilder tempIconString = new SpannableStringBuilder();
 
+        int removedChars = 0;
         for (int i = 0; i < spannable.length(); i++) {
             Character c = spannable.charAt(i);
             if (c == '{') {
@@ -167,13 +168,14 @@ public class IconicsUtils {
 
                         //adjust existing spans to new position
                         for (StyleContainer existingStyleContainer : existingSpans) {
-                            if (existingStyleContainer.startIndex > i) {
+                            if (existingStyleContainer.startIndex > i - removedChars) {
                                 existingStyleContainer.startIndex = existingStyleContainer.startIndex - tempIconString.length() + 1;
                             }
-                            if (existingStyleContainer.endIndex > i) {
+                            if (existingStyleContainer.endIndex > i - removedChars) {
                                 existingStyleContainer.endIndex = existingStyleContainer.endIndex - tempIconString.length() + 1;
                             }
                         }
+                        removedChars += tempIconString.length() - 1;
                     }
                 } else {
                     spannedString.append(tempIconString);
