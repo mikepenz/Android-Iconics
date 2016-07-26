@@ -815,6 +815,11 @@ public class IconicsDrawable extends Drawable {
     }
 
     @Override
+    public void setTint(int tintColor) {
+        setTintList(ColorStateList.valueOf(tintColor));
+    }
+
+    @Override
     public void setTintList(ColorStateList tint) {
         mTint = tint;
         mTintFilter = updateTintFilter(tint, mTintMode);
