@@ -106,7 +106,8 @@ public class IconicsDrawable extends Drawable {
 
     private ColorStateList mTint;
     private PorterDuff.Mode mTintMode = PorterDuff.Mode.SRC_IN;
-    private PorterDuffColorFilter mTintFilter;
+    private ColorFilter mTintFilter;
+    private ColorFilter mColorFilter;
 
     public IconicsDrawable(Context context) {
         mContext = context.getApplicationContext();
@@ -807,10 +808,7 @@ public class IconicsDrawable extends Drawable {
             }
 
             mIconPaint.setAlpha(mAlpha);
-
-            if (mIconPaint != null) {
-                mIconPaint.setColorFilter(mTintFilter);
-            }
+            mIconPaint.setColorFilter(mColorFilter == null ? mTintFilter : mColorFilter);
 
             canvas.drawPath(mPath, mIconPaint);
         }
@@ -900,12 +898,14 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public void setColorFilter(ColorFilter cf) {
-        mIconPaint.setColorFilter(cf);
+        mColorFilter = cf;
+        invalidateSelf();
     }
 
     @Override
     public void clearColorFilter() {
-        mIconPaint.setColorFilter(null);
+        mColorFilter = null;
+        invalidateSelf();
     }
 
     /**
