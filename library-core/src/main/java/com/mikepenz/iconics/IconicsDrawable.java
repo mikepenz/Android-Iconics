@@ -848,7 +848,7 @@ public class IconicsDrawable extends Drawable {
     @Override
     public boolean setState(int[] stateSet) {
         setAlpha(mAlpha);
-        return true;
+        return super.setState(stateSet);
     }
 
     @Override
