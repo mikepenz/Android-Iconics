@@ -93,7 +93,7 @@
                     android:layout_height="72dp"
                     android:background="#ffcccc"
                     app:iiv_color="#666666"
-                    app:iiv_icon="faw-android" />
+                    app:iiv_icon="@string/faw_android" />
 
                 <!-- android:iiv_size -->
                 <com.mikepenz.iconics.view.IconicsImageView
@@ -101,7 +101,7 @@
                     android:layout_height="72dp"
                     android:background="#ccffcc"
                     app:iiv_color="#666666"
-                    app:iiv_icon="faw-android"
+                    app:iiv_icon="@string/faw_android"
                     app:iiv_size="16dp" />
 
                 <!-- android:iiv_padding -->
@@ -110,7 +110,7 @@
                     android:layout_height="72dp"
                     android:background="#ccccff"
                     app:iiv_color="#666666"
-                    app:iiv_icon="faw-android"
+                    app:iiv_icon="@string/faw_android"
                     app:iiv_padding="16dp" />
 
                 <!-- android:padding -->
@@ -120,7 +120,7 @@
                     android:background="#ffffcc"
                     android:padding="16dp"
                     app:iiv_color="#666666"
-                    app:iiv_icon="faw-android" />
+                    app:iiv_icon="@string/faw_android" />
 
             </LinearLayout>
 
