@@ -852,6 +852,16 @@ public class IconicsDrawable extends Drawable {
     }
 
     @Override
+    protected boolean onStateChange(int[] stateSet) {
+        if (mTint != null && mTintMode != null) {
+            mTintFilter = updateTintFilter(mTint, mTintMode);
+            invalidateSelf();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public int getIntrinsicWidth() {
         return mSizeX;
     }
@@ -871,6 +881,7 @@ public class IconicsDrawable extends Drawable {
     public void setAlpha(int alpha) {
         mIconPaint.setAlpha(alpha);
         mAlpha = alpha;
+        invalidateSelf();
     }
 
     @Override
@@ -1001,11 +1012,11 @@ public class IconicsDrawable extends Drawable {
      * Ensures the tint filter is consistent with the current tint color and
      * mode.
      */
-    PorterDuffColorFilter updateTintFilter(ColorStateList tint, PorterDuff.Mode tintMode) {
+    private PorterDuffColorFilter updateTintFilter(ColorStateList tint, PorterDuff.Mode tintMode) {
         if (tint == null || tintMode == null) {
             return null;
         }
-        // setMode, setColor of PorterDuffColorFilter are not public method in SDK v7.
+        // setMode, setColor of PorterDuffColorFilter are not public method in SDK v7. (Thanks @Google still not accessible in API v24)
         // Therefore we create a new one all the time here. Don't expect this is called often.
         final int color = tint.getColorForState(getState(), Color.TRANSPARENT);
         return new PorterDuffColorFilter(color, tintMode);
