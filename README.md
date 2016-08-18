@@ -266,6 +266,7 @@ You can get these two files by downloading a web icon font, or if you want to cr
 own custom icon font from *.svg files then you can use following tools:
 * [Fontello](http://fontello.com)
 * [IcoMoon](http://icomoon.io) 
+* [Fontastic](http://app.fontastic.me)
 * let me know if you find other tools.
 
 After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](http://android-iconics.mikepenz.com).
