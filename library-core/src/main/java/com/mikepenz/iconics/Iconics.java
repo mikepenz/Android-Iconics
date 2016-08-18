@@ -16,7 +16,6 @@
 package com.mikepenz.iconics;
 
 import android.content.Context;
-import android.os.Build;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -255,10 +254,8 @@ public final class Iconics {
                 view.setText(Iconics.style(ctx, mappedFonts, new SpannableString(view.getText()), withStyles, withStylesFor));
             }
 
-            if (Build.VERSION.SDK_INT >= 14) {
-                if (view instanceof Button) {
-                    view.setAllCaps(false);
-                }
+            if (view instanceof Button) {
+                view.setAllCaps(false);
             }
         }
     }

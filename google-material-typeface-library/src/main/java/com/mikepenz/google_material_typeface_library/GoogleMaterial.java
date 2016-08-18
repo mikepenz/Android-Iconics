@@ -59,7 +59,7 @@ public class GoogleMaterial implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "2.2.0.1";
+        return "2.2.0.3";
     }
 
     @Override

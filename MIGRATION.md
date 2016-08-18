@@ -1,6 +1,9 @@
 ##Upgrade Notes
 
 ### Library
+#### 2.8.0
+* Dropping support for API < 14. New `MinSdkVersion` is now 14
+
 #### 2.x.y -> 2.5.0
 * there is now a new prefered solution to enable the Iconics features on Android base views like ImageViews, TextViews or all views which extend those.
  * instead of wrapping the `baseContext` you should now define the `IconicsLayoutInflater` as default `LayoutInflater`. This will also bring [Calligraphy](https://github.com/chrisjenx/Calligraphy) compatiblity (or to other libs which wrap the `baseContext`)

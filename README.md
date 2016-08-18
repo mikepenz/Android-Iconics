@@ -46,15 +46,15 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ##1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.7.2@aar"
+compile "com.mikepenz:iconics-core:2.8.0@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:2.2.0.2.original@aar' 
+compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar' 
 compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
-compile 'com.mikepenz:fontawesome-typeface:4.6.0.2@aar'
+compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.2@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.2@aar'
 compile 'com.mikepenz:community-material-typeface:1.5.54.2@aar'
@@ -266,6 +266,7 @@ You can get these two files by downloading a web icon font, or if you want to cr
 own custom icon font from *.svg files then you can use following tools:
 * [Fontello](http://fontello.com)
 * [IcoMoon](http://icomoon.io) 
+* [Fontastic](http://app.fontastic.me)
 * let me know if you find other tools.
 
 After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](http://android-iconics.mikepenz.com).
