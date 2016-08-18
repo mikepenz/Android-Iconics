@@ -15,7 +15,7 @@ ext {
     buildToolsVersion = "24.0.1"
     supportLibVersion = "24.2.0"
 
-    minSdkVersion = 10
+    minSdkVersion = 14
     targetSdkVersion = 24
 }
 

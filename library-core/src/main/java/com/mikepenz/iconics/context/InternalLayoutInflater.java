@@ -89,17 +89,11 @@ class InternalLayoutInflater extends LayoutInflater {
         if (cloned) {
             return;
         }
-        // If we are HC+ we get and set Factory2 otherwise we just wrap Factory1
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (getFactory2() != null && !(getFactory2() instanceof WrapperFactory2)) {
-                // Sets both Factory/Factory2
-                setFactory2(getFactory2());
-            }
+        if (getFactory2() != null && !(getFactory2() instanceof WrapperFactory2)) {
+            // Sets both Factory/Factory2
+            setFactory2(getFactory2());
         }
-        // We can do this as setFactory2 is used for both methods.
-        if (getFactory() != null && !(getFactory() instanceof WrapperFactory)) {
-            setFactory(getFactory());
-        }
+
     }
 
     @Override
@@ -129,11 +123,7 @@ class InternalLayoutInflater extends LayoutInflater {
         if (mSetPrivateFactory) {
             return;
         }
-        // Reflection (Or Old Device) skip.
-        boolean reflection = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
-        if (!reflection) {
-            return;
-        }
+
         // Skip if not attached to an activity.
         if (!(getContext() instanceof Factory2)) {
             mSetPrivateFactory = true;
@@ -201,14 +191,6 @@ class InternalLayoutInflater extends LayoutInflater {
 
         @Override
         public View onCreateView(String name, Context context, AttributeSet attrs) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                return mIconicsFactory.onViewCreated(
-                        mInflater.createCustomViewInternal(
-                                null, mFactory.onCreateView(name, context, attrs), name, context, attrs
-                        ),
-                        context, attrs
-                );
-            }
             return mIconicsFactory.onViewCreated(
                     mFactory.onCreateView(name, context, attrs),
                     context, attrs
