@@ -67,11 +67,11 @@ dependencies {
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    compile 'com.mikepenz:fastadapter:1.5.8@aar'
+    compile 'com.mikepenz:fastadapter:1.6.1@aar'
 
     //used to generate the drawer on the left
     //https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.3.2@aar') {
+    compile('com.mikepenz:materialdrawer:5.4.0@aar') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
@@ -79,7 +79,7 @@ dependencies {
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    compile('com.mikepenz:aboutlibraries:5.7.0@aar') {
+    compile('com.mikepenz:aboutlibraries:5.7.3@aar') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
