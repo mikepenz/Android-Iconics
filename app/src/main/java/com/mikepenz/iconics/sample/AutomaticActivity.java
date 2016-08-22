@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.context.IconicsLayoutInflater;
@@ -42,6 +43,8 @@ public class AutomaticActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //set a new text on the textView and set the icon font on it
-        ((TextView) findViewById(R.id.test4)).setText("{gmd-favorite} GIF");
+        ((TextView) findViewById(R.id.test1)).setSelected(true);
+        ((TextView) findViewById(R.id.test1)).setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        ((TextView) findViewById(R.id.test1)).setSingleLine();
     }
 }
