@@ -21,6 +21,10 @@ import java.util.List;
  * Created by mikepenz on 05.11.15.
  */
 public class IconicsUtils {
+
+    public static char ICON_START = '{';
+    public static char ICON_END = '}';
+
     /**
      * finds the icons within a Editable, and tries to map the the available (given via the fonts param) icons on it
      * Use this whenever possible, as this method does update the Editable, and does not have to create a new Spanned
@@ -50,9 +54,9 @@ public class IconicsUtils {
         int iconStart = -1;
         for (int i = 0; i < editable.length(); i++) {
             Character c = editable.charAt(i);
-            if (c == '{') {
+            if (c == ICON_START) {
                 iconStart = i;
-            } else if (c == '}') {
+            } else if (c == ICON_END) {
                 if (iconStart > -1) {
                     StyleContainer styleContainer = placeFontIcon(editable, iconStart, i, fonts);
 
@@ -152,13 +156,13 @@ public class IconicsUtils {
         int removedChars = 0;
         for (int i = 0; i < spannable.length(); i++) {
             Character c = spannable.charAt(i);
-            if (c == '{') {
+            if (c == ICON_START) {
                 //if something started with { but was no icon replacement
                 spannedString.append(tempIconString);
                 //start to remember the tempIconString again
                 tempIconString = new SpannableStringBuilder();
                 tempIconString.append(c);
-            } else if (c == '}') {
+            } else if (c == ICON_END) {
                 tempIconString.append(c);
                 //make sure there was a { before and enough chars for the font key
                 if (tempIconString.length() > 5) {
