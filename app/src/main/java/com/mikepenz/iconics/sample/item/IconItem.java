@@ -10,6 +10,8 @@ import com.mikepenz.fastadapter.utils.ViewHolderFactory;
 import com.mikepenz.iconics.sample.R;
 import com.mikepenz.iconics.view.IconicsImageView;
 
+import java.util.List;
+
 /**
  * Created by mikepenz on 26.07.16.
  */
@@ -45,8 +47,8 @@ public class IconItem extends AbstractItem<IconItem, IconItem.ViewHolder> {
 
 
     @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    public void bindView(ViewHolder holder, List payloads) {
+        super.bindView(holder, payloads);
 
         holder.image.setIcon(icon);
         holder.name.setText(icon);
