@@ -28,6 +28,7 @@ import com.mikepenz.materialize.util.UIUtils;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -136,11 +137,11 @@ public class IconsFragment extends Fragment {
 
         mAdapter.withOnBindViewHolderListener(new FastAdapter.OnBindViewHolderListener() {
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, List payloads) {
                 IconItem.ViewHolder holder = (IconItem.ViewHolder) viewHolder;
 
                 //as we overwrite the default listener
-                mAdapter.getItem(position).bindView(holder);
+                mAdapter.getItem(position).bindView(holder, payloads);
 
                 if (randomize) {
                     holder.image.setColorRes(getRandomColor(position));
