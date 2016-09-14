@@ -54,6 +54,7 @@ public final class Iconics {
             for (String fontsClassPath : fonts) {
                 try {
                     ITypeface typeface = (ITypeface) Class.forName(fontsClassPath).newInstance();
+                    validateFont(typeface);
                     FONTS.put(typeface.getMappingPrefix(), typeface);
                 } catch (Exception e) {
                     Log.e("Android-Iconics", "Can't init: " + fontsClassPath);
@@ -85,8 +86,20 @@ public final class Iconics {
      * @return
      */
     public static boolean registerFont(ITypeface font) {
+        validateFont(font);
+
         FONTS.put(font.getMappingPrefix(), font);
         return true;
+    }
+
+    /**
+     * Perform a basic sanity check for a font.
+     * @param font
+     */
+    private static void validateFont(ITypeface font) {
+        if(font.getMappingPrefix().length() != 3) {
+            throw new IllegalArgumentException("The mapping prefix of a font must be three characters long.");
+        }
     }
 
     /**
