@@ -8,8 +8,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 46003
-        versionName "4.6.0.3"
+        versionCode 47000
+        versionName "4.7"
     }
     buildTypes {
         release {

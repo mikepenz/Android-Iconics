@@ -34,7 +34,7 @@ import java.util.LinkedList;
  * Created by mikepenz on 01.11.14.
  */
 public class FontAwesome implements ITypeface {
-    private static final String TTF_FILE = "fontawesome-font-v4.6.0.1.ttf";
+    private static final String TTF_FILE = "fontawesome-font-v4.7.ttf";
 
     private static Typeface typeface = null;
 
@@ -70,7 +70,7 @@ public class FontAwesome implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "4.6.0.3";
+        return "4.7";
     }
 
     @Override
@@ -101,7 +101,7 @@ public class FontAwesome implements ITypeface {
 
     @Override
     public String getDescription() {
-        return "Font Awesome is a full suite of 479 pictographic icons for easy scalable vector graphics on websites, created and maintained by Dave Gandy. Stay up to date @fontawesome.";
+        return "Font Awesome is a full suite of 675 pictographic icons for easy scalable vector graphics on websites, created and maintained by Dave Gandy. Stay up to date @fontawesome.";
     }
 
     @Override
@@ -279,7 +279,7 @@ public class FontAwesome implements ITypeface {
         faw_rss('\uf09e'),
         faw_hdd_o('\uf0a0'),
         faw_bullhorn('\uf0a1'),
-        faw_bell('\uf0f3'),
+        faw_bell_o('\uf0a2'),
         faw_certificate('\uf0a3'),
         faw_hand_o_right('\uf0a4'),
         faw_hand_o_left('\uf0a5'),
@@ -343,7 +343,7 @@ public class FontAwesome implements ITypeface {
         faw_user_md('\uf0f0'),
         faw_stethoscope('\uf0f1'),
         faw_suitcase('\uf0f2'),
-        faw_bell_o('\uf0a2'),
+        faw_bell('\uf0f3'),
         faw_coffee('\uf0f4'),
         faw_cutlery('\uf0f5'),
         faw_file_text_o('\uf0f6'),
@@ -510,7 +510,7 @@ public class FontAwesome implements ITypeface {
         faw_stumbleupon('\uf1a4'),
         faw_delicious('\uf1a5'),
         faw_digg('\uf1a6'),
-        faw_pied_piper('\uf1a7'),
+        faw_pied_piper_pp('\uf1a7'),
         faw_pied_piper_alt('\uf1a8'),
         faw_drupal('\uf1a9'),
         faw_joomla('\uf1aa'),
@@ -754,7 +754,54 @@ public class FontAwesome implements ITypeface {
         faw_viadeo_square('\uf2aa'),
         faw_snapchat('\uf2ab'),
         faw_snapchat_ghost('\uf2ac'),
-        faw_snapchat_square('\uf2ad');
+        faw_snapchat_square('\uf2ad'),
+        faw_pied_piper('\uf2ae'),
+        faw_first_order('\uf2b0'),
+        faw_yoast('\uf2b1'),
+        faw_themeisle('\uf2b2'),
+        faw_google_plus_official('\uf2b3'),
+        faw_font_awesome('\uf2b4'),
+        faw_handshake_o('\uf2b5'),
+        faw_envelope_open('\uf2b6'),
+        faw_envelope_open_o('\uf2b7'),
+        faw_linode('\uf2b8'),
+        faw_address_book('\uf2b9'),
+        faw_address_book_o('\uf2ba'),
+        faw_address_card('\uf2bb'),
+        faw_address_card_o('\uf2bc'),
+        faw_user_circle('\uf2bd'),
+        faw_user_circle_o('\uf2be'),
+        faw_user_o('\uf2c0'),
+        faw_id_badge('\uf2c1'),
+        faw_id_card('\uf2c2'),
+        faw_id_card_o('\uf2c3'),
+        faw_quora('\uf2c4'),
+        faw_free_code_camp('\uf2c5'),
+        faw_telegram('\uf2c6'),
+        faw_thermometer_full('\uf2c7'),
+        faw_thermometer_three_quarters('\uf2c8'),
+        faw_thermometer_half('\uf2c9'),
+        faw_thermometer_quarter('\uf2ca'),
+        faw_thermometer_empty('\uf2cb'),
+        faw_shower('\uf2cc'),
+        faw_bath('\uf2cd'),
+        faw_podcast('\uf2ce'),
+        faw_window_maximize('\uf2d0'),
+        faw_window_minimize('\uf2d1'),
+        faw_window_restore('\uf2d2'),
+        faw_window_close('\uf2d3'),
+        faw_window_close_o('\uf2d4'),
+        faw_bandcamp('\uf2d5'),
+        faw_grav('\uf2d6'),
+        faw_etsy('\uf2d7'),
+        faw_imdb('\uf2d8'),
+        faw_ravelry('\uf2d9'),
+        faw_eercast('\uf2da'),
+        faw_microchip('\uf2db'),
+        faw_snowflake_o('\uf2dc'),
+        faw_superpowers('\uf2dd'),
+        faw_wpexplorer('\uf2de'),
+        faw_meetup('\uf2e0');
 
 
         char character;

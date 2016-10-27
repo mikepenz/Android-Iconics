@@ -6,7 +6,7 @@
     <string name="library_FontAwesome_libraryName">Font Awesome</string>
     <string name="library_FontAwesome_libraryDescription">Font Awesome gives you scalable vector icons that can instantly be customized - size, color, drop shadow, and anything that can be done with the power of CSS.</string>
     <string name="library_FontAwesome_libraryWebsite">http://fontawesome.io/icons/</string>
-    <string name="library_FontAwesome_libraryVersion">4.6.0.3</string>
+    <string name="library_FontAwesome_libraryVersion">4.7</string>
     <string name="library_FontAwesome_licenseId">sil_ofl_1_1</string>
     <string name="library_FontAwesome_isOpenSource">true</string>
     <string name="library_FontAwesome_repositoryLink">https://github.com/FortAwesome/Font-Awesome</string>
