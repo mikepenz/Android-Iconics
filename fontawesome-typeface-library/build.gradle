@@ -9,7 +9,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 47000
-        versionName "4.7"
+        versionName "4.7.0.0"
     }
     buildTypes {
         release {
