@@ -19,6 +19,7 @@ import android.widget.PopupWindow;
 
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.FastItemAdapter;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -156,6 +157,14 @@ public class IconsFragment extends Fragment {
                         holder.image.setBackgroundColorRes(getRandomColor(position - 4));
                         holder.image.setRoundedCornersDp(2 + random.nextInt(10));
                     }
+                }
+            }
+
+            @Override
+            public void unBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+                IconItem item = mAdapter.getItem(position);
+                if (item != null) {
+                    item.unbindView((IconItem.ViewHolder) viewHolder);
                 }
             }
         });
