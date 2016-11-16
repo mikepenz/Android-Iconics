@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class CommunityMaterial implements ITypeface {
-    private static final String TTF_FILE = "communitymaterial-font-v1.5.54.ttf";
+    private static final String TTF_FILE = "communitymaterial-font-v1.7.22.ttf";
 
     private static Typeface typeface = null;
 
@@ -64,7 +64,7 @@ public class CommunityMaterial implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "1.5.54";
+        return "1.7.22";
     }
 
     @Override
@@ -122,7 +122,7 @@ public class CommunityMaterial implements ITypeface {
     }
 
     public enum Icon implements IIcon {
-        // Material design icons (v1.5.54)
+        // Material design icons (v1.7.22)
         cmd_access_point('\uF002'),
         cmd_access_point_network('\uF003'),
         cmd_account('\uF004'),
