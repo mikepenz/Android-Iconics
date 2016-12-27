@@ -45,7 +45,6 @@ public class IconItem extends AbstractItem<IconItem, IconItem.ViewHolder> {
         return R.layout.row_icon;
     }
 
-
     @Override
     public void bindView(ViewHolder holder, List payloads) {
         super.bindView(holder, payloads);

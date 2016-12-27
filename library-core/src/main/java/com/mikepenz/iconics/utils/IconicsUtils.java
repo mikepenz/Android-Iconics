@@ -74,7 +74,7 @@ public class IconicsUtils {
                         }
 
                         //remember how many chars were removed already so we can remove the correct characters
-                        i = i - iconStart;
+                        i = iconStart;
                     }
                 }
 
