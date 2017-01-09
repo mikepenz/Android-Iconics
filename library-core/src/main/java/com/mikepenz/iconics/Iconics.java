@@ -80,7 +80,25 @@ public final class Iconics {
     }
 
     /**
-     * registeres a fonts into the FONTS array for performance
+     * Test if the icon exists in the currently loaded fonts
+     *
+     * @param context A context to access application resources
+     * @param icon The icon to verify
+     * @return true if the icon is available
+     */
+    public static boolean iconExists(Context context, String icon) {
+        try {
+            ITypeface font = findFont(context, icon.substring(0, 3));
+            icon = icon.replace("-", "_");
+            font.getIcon(icon);
+            return true;
+        } catch (Exception ignore) {
+        }
+        return false;
+    }
+
+    /**
+     * Registers a fonts into the FONTS array for performance
      *
      * @param font
      * @return
