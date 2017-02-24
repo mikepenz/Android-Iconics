@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class GoogleMaterial implements ITypeface {
-    private static final String TTF_FILE = "google-material-font-v2.2.0.1.original.ttf";
+    private static final String TTF_FILE = "google-material-font-v3.0.1.0.original.ttf";
     private static Typeface typeface = null;
     private static HashMap<String, Character> mChars;
 
