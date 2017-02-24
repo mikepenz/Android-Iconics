@@ -52,7 +52,7 @@ compile "com.android.support:appcompat-v7:${supportLibVersion}"
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar' 
+compile 'com.mikepenz:google-material-typeface:3.0.1.0.original@aar'
 compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.7.0.0@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.2@aar'
