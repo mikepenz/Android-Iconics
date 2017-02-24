@@ -6,7 +6,7 @@
     <string name="library_GoogleMaterialDesignIcons_libraryName">Google Material Design Icons</string>
     <string name="library_GoogleMaterialDesignIcons_libraryDescription">Material design icons are the official icon set from Google that are designed under the material design guidelines.</string>
     <string name="library_GoogleMaterialDesignIcons_libraryWebsite">https://design.google.com/icons/</string>
-    <string name="library_GoogleMaterialDesignIcons_libraryVersion">2.2.0.3.original</string>
+    <string name="library_GoogleMaterialDesignIcons_libraryVersion">3.0.1.0.original</string>
     <string name="library_GoogleMaterialDesignIcons_licenseId">cc40</string>
     <string name="library_GoogleMaterialDesignIcons_isOpenSource">true</string>
     <string name="library_GoogleMaterialDesignIcons_repositoryLink">https://github.com/google/material-design-icons/</string>
