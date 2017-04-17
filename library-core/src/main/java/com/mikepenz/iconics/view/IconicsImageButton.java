@@ -19,35 +19,32 @@ package com.mikepenz.iconics.view;
 import android.content.Context;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.mikepenz.iconics.Iconics;
 
-public class IconicsButton extends AppCompatButton {
+public class IconicsImageButton extends IconicsImageView {
 
-    public IconicsButton(Context context) {
-        super(context);
+    public IconicsImageButton(Context context) {
+        this(context, null);
     }
 
-    public IconicsButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public IconicsImageButton(Context context, AttributeSet attrs) {
+        this(context, attrs, android.R.attr.buttonStyle);
     }
 
-    public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
+    public IconicsImageButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        setFocusable(true);
     }
 
     @Override
-    public void setText(CharSequence text, BufferType type) {
-        // NOTES:
-        // 1. Need to disable the All Caps option to make Spannable work properly!
-        // 2. This method will be called from the constructor of the super class
-        setAllCaps(false);
+    protected boolean onSetAlpha(int alpha) {
+        return false;
+    }
 
-        if (!isInEditMode()) {
-            super.setText(new Iconics.IconicsBuilder().ctx(getContext()).on(text).build(), type);
-        } else {
-            super.setText(text, type);
-        }
+    @Override
+    public CharSequence getAccessibilityClassName() {
+        return ImageButton.class.getName();
     }
 }

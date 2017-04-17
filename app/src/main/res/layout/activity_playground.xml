@@ -202,7 +202,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:text="{gmd-chart} Button" />
+                    android:text="{fon-test2} Button" />
 
                 <ImageButton
                     android:id="@+id/test6"
@@ -239,6 +239,13 @@
                     android:id="@+id/test2"
                     android:layout_width="48dp"
                     android:layout_height="48dp" />
+
+                <com.mikepenz.iconics.view.IconicsImageButton
+                    android:id="@+id/test8"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:iiv_color="@color/md_red_200"
+                    app:iiv_icon="gmd-favorite"  />
             </LinearLayout>
 
         </LinearLayout>

@@ -46,18 +46,18 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ##1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.8.2@aar"
+compile "com.mikepenz:iconics-core:2.8.3@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ##2. Choose your desired fonts
 ```gradle
-compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar' 
+compile 'com.mikepenz:google-material-typeface:3.0.1.0.original@aar'
 compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.2@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.7.0.0@aar'
 compile 'com.mikepenz:octicons-typeface:3.2.0.2@aar'
 compile 'com.mikepenz:meteocons-typeface:1.1.0.2@aar'
-compile 'com.mikepenz:community-material-typeface:1.7.22.1@aar'
+compile 'com.mikepenz:community-material-typeface:1.8.36.1@aar'
 compile 'com.mikepenz:weather-icons-typeface:2.0.10.2@aar'
 compile 'com.mikepenz:typeicons-typeface:2.0.7.2@aar'
 compile 'com.mikepenz:entypo-typeface:1.0.0.2@aar'

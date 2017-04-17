@@ -167,6 +167,16 @@ public class IconsFragment extends Fragment {
                     item.unbindView((IconItem.ViewHolder) viewHolder);
                 }
             }
+
+            @Override
+            public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder, int position) {
+
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder, int position) {
+
+            }
         });
     }
 

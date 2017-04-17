@@ -17,12 +17,13 @@
 package com.mikepenz.iconics.view;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.Iconics;
 
-public class IconicsTextView extends TextView {
+public class IconicsTextView extends AppCompatTextView {
 
     public IconicsTextView(Context context) {
         super(context);

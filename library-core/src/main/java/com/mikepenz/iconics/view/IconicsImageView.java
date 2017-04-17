@@ -22,6 +22,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -30,7 +31,7 @@ import com.mikepenz.iconics.core.R;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.utils.Utils;
 
-public class IconicsImageView extends ImageView {
+public class IconicsImageView extends AppCompatImageView {
 
     private IconicsDrawable mIcon = null;
     @ColorInt
