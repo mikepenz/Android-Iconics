@@ -40,6 +40,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -863,9 +864,22 @@ public class IconicsDrawable extends Drawable {
     }
 
     @Override
-    public boolean setState(int[] stateSet) {
-        setAlpha(mAlpha);
-        return super.setState(stateSet);
+    public boolean setState(@NonNull int[] stateSet) {
+        return mIconColor != null && mIconColor.isStateful() || mColorFilter != null || mTintFilter != null;
+    }
+
+    @Override
+    public int getOpacity() {
+        if (mTintFilter != null || mIconPaint.getColorFilter() != null) {
+            return PixelFormat.TRANSLUCENT;
+        }
+        switch (getAlpha()) {
+            case 255:
+                return PixelFormat.OPAQUE;
+            case 0:
+                return PixelFormat.TRANSPARENT;
+        }
+        return PixelFormat.TRANSLUCENT;
     }
 
     @Override
@@ -892,12 +906,6 @@ public class IconicsDrawable extends Drawable {
     public int getIntrinsicHeight() {
         return mSizeY;
     }
-
-    @Override
-    public int getOpacity() {
-        return this.mAlpha;
-    }
-
 
     @Override
     public void setAlpha(int alpha) {
