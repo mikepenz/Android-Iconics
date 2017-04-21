@@ -76,7 +76,7 @@ public class IconicsDrawable extends Drawable {
 
     private boolean mRespectFontBounds = false;
 
-    private int mIconColor;
+    private ColorStateList mIconColor;
     private Paint mIconPaint;
     private int mContourColor;
     private Paint mContourPaint;
@@ -256,13 +256,23 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable color(@ColorInt int color) {
-        int red = Color.red(color);
-        int green = Color.green(color);
-        int blue = Color.blue(color);
-        mIconPaint.setColor(Color.rgb(red, green, blue));
-        mIconColor = color;
-        setAlpha(Color.alpha(color));
-        invalidateSelf();
+        mIconColor = ColorStateList.valueOf(color);
+        updateIconColor();
+        return this;
+    }
+
+    /**
+     * Set the color of the drawable.
+     *
+     * @param colors The color, usually from android.graphics.Color or 0xFF012345.
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable color(ColorStateList colors) {
+        if (colors == null) {
+            throw new NullPointerException();
+        }
+        mIconColor = colors;
+        updateIconColor();
         return this;
     }
 
@@ -288,9 +298,16 @@ public class IconicsDrawable extends Drawable {
 
 
     /**
-     * Returns the icon color
+     * Returns the icon default color
      */
     public int getColor() {
+        return mIconColor.getDefaultColor();
+    }
+
+    /**
+     * Return the icon colors
+     */
+    public ColorStateList getColorList() {
         return mIconColor;
     }
 
@@ -853,12 +870,17 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     protected boolean onStateChange(int[] stateSet) {
+        boolean ret = false;
+        if (mIconColor != null) {
+            updateIconColor();
+            ret = true;
+        }
         if (mTint != null && mTintMode != null) {
             mTintFilter = updateTintFilter(mTint, mTintMode);
             invalidateSelf();
-            return true;
+            ret = true;
         }
-        return false;
+        return ret;
     }
 
     @Override
@@ -1005,6 +1027,33 @@ public class IconicsDrawable extends Drawable {
         float offsetY = startY - (mPathBounds.top);
 
         mPath.offset(offsetX + mIconOffsetX, offsetY + mIconOffsetY);
+    }
+
+
+    /**
+     * Ensures that the icon paint and alpha is consistent with icon state, invalidates icon if
+     * any changes were made
+     */
+    private void updateIconColor() {
+        boolean invalidate = false;
+
+        int color = mIconColor.getColorForState(getState(), mIconColor.getDefaultColor());
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+
+        int iconColor = Color.rgb(red, green, blue);
+        if (iconColor != mIconPaint.getColor()) {
+            mIconPaint.setColor(iconColor);
+            invalidate = true;
+        }
+
+        int alpha = Color.alpha(color);
+        if (alpha != mAlpha) {
+            setAlpha(alpha);
+        } else if (invalidate) {
+            invalidateSelf();
+        }
     }
 
 
