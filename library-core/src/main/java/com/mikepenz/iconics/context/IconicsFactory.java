@@ -1,6 +1,7 @@
 package com.mikepenz.iconics.context;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.text.Editable;
@@ -96,7 +97,7 @@ class IconicsFactory {
      * @return
      */
     IconicsDrawable getDrawable(Context context, final TypedArray a, String icon) {
-        int color = a.getColor(R.styleable.Iconics_ico_color, 0);
+        ColorStateList colors = a.getColorStateList(R.styleable.Iconics_ico_color);
         int size = a.getDimensionPixelSize(R.styleable.Iconics_ico_size, -1);
         int offsetX = a.getDimensionPixelSize(R.styleable.Iconics_ico_offset_x, -1);
         int offsetY = a.getDimensionPixelSize(R.styleable.Iconics_ico_offset_y, -1);
@@ -108,8 +109,8 @@ class IconicsFactory {
 
         IconicsDrawable drawable = new IconicsDrawable(context, icon);
 
-        if (color != 0) {
-            drawable.color(color);
+        if (colors != null) {
+            drawable.color(colors);
         }
         if (size != -1) {
             drawable.sizePx(size);
