@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2830
-        versionName "2.8.3"
+        versionCode 2840
+        versionName "2.8.4"
     }
     buildTypes {
         release {
