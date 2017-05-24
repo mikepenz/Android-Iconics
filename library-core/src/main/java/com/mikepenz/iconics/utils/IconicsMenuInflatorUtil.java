@@ -94,6 +94,10 @@ public class IconicsMenuInflatorUtil
                        //
                     } else if (tagName.equals("item")) {
 
+                        HashMap<String, String> attr = new HashMap<>();
+                        for (int i = 0; i < parser.getAttributeCount(); i++)
+                            attr.put(parser.getAttributeName(i), parser.getAttributeValue(i));
+
                         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
                         String icon = a.getString(R.styleable.IconicsImageView_iiv_icon);
                         if (icon != null) {
@@ -105,7 +109,7 @@ public class IconicsMenuInflatorUtil
                             backgroundColor = a.getColor(R.styleable.IconicsImageView_iiv_background_color, 0);
                             cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_corner_radius, -1);
 
-                            int id = Integer.parseInt(parser.getAttributeValue(null, "id").replace("@", ""));
+                            int id = Integer.parseInt(attr.get("id").replace("@", ""));
                             MenuItem item = menu.findItem(id);
                             IconicsDrawable iconicsDrawable = new IconicsDrawable(context).icon(icon);
                             setAttributes(iconicsDrawable, color, size, padding, contourColor, contourWidth, backgroundColor, cornerRadius);
