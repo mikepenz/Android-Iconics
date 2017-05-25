@@ -865,7 +865,8 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     public boolean setState(@NonNull int[] stateSet) {
-        return mIconColor != null && mIconColor.isStateful() || mColorFilter != null || mTintFilter != null;
+        boolean b = super.setState(stateSet);
+        return b || (mIconColor != null && mIconColor.isStateful() || mColorFilter != null || mTintFilter != null);
     }
 
     @Override

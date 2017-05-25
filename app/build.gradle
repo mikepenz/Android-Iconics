@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 28041
-        versionName "2.8.4"
+        versionCode 28501
+        versionName "2.8.5"
         enforceUniquePackageName false
     }
 
@@ -62,7 +62,7 @@ dependencies {
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
     // https://github.com/mikepenz/Materialize
-    compile 'com.mikepenz:materialize:1.0.1@aar'
+    compile 'com.mikepenz:materialize:1.0.2@aar'
 
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
@@ -98,4 +98,5 @@ dependencies {
     compile project(':devicon-typeface-library')
     compile project(':foundation-icons-typeface-library')
     compile project(':ionicons-typeface-library')
+    compile project(':pixeden-7-stroke-typeface-library')
 }

@@ -46,7 +46,7 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ## 1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.8.4@aar"
+compile "com.mikepenz:iconics-core:2.8.5@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
@@ -64,6 +64,7 @@ compile 'com.mikepenz:entypo-typeface:1.0.0.2@aar'
 compile 'com.mikepenz:devicon-typeface:2.0.0.2@aar'
 compile 'com.mikepenz:foundation-icons-typeface:3.0.0.2@aar'
 compile 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
+compile 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.0@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
@@ -214,6 +215,9 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 * [Ionicons](http://ionicons.com/)
   * "ion"
   * compile 'com.mikepenz:ionicons-typeface:+@aar'
+* [Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)
+  * "pe7"
+  * compile 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repoistories.
 
