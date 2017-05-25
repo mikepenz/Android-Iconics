@@ -64,6 +64,7 @@ compile 'com.mikepenz:entypo-typeface:1.0.0.2@aar'
 compile 'com.mikepenz:devicon-typeface:2.0.0.2@aar'
 compile 'com.mikepenz:foundation-icons-typeface:3.0.0.2@aar'
 compile 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
+compile 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.0@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)

@@ -98,4 +98,5 @@ dependencies {
     compile project(':devicon-typeface-library')
     compile project(':foundation-icons-typeface-library')
     compile project(':ionicons-typeface-library')
+    compile project(':pixeden-7-stroke-typeface-library')
 }

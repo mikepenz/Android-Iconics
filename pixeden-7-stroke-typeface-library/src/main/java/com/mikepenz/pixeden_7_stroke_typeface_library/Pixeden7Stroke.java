@@ -59,7 +59,7 @@ public class Pixeden7Stroke implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "1.2.0";
+        return "1.2.0.0";
     }
 
     @Override
@@ -93,12 +93,12 @@ public class Pixeden7Stroke implements ITypeface {
 
     @Override
     public String getLicense() {
-        return "Apache 2.0";
+        return "Royalty free for use in both personal and commercial projects";
     }
 
     @Override
     public String getLicenseUrl() {
-        return "https://www.apache.org/licenses/LICENSE-2.0";
+        return "http://themes-pixeden.com/font-demos/7-stroke/";
     }
 
     @Override

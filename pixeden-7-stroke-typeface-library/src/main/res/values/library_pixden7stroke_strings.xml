@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_Pixden7Stroke"></string>
+    <string name="library_Pixden7Stroke_author">Pixden</string>
+    <string name="library_Pixden7Stroke_authorWebsite">http://themes-pixeden.com/font-demos/7-stroke/</string>
+    <string name="library_Pixden7Stroke_libraryName">Pixden 7 Stroke</string>
+    <string name="library_Pixden7Stroke_libraryDescription">A series of iOS 7 inspired vector icons in a custom@font-face icon font that can be styled dynamically using CSS.
+Those retina ready icons have a very modern style that will beautifully complement any project.</string>
+    <string name="library_Pixden7Stroke_libraryWebsite">http://themes-pixeden.com/font-demos/7-stroke/</string>
+    <string name="library_Pixden7Stroke_libraryVersion">1.2.0.0</string>
+    <string name="library_Pixden7Stroke_isOpenSource">true</string>
+    <string name="library_Pixden7Stroke_repositoryLink">http://themes-pixeden.com/font-demos/7-stroke/</string>
+    <!-- License section -->
+    <string name="library_Pixden7Stroke_licenseId">custom</string>
+    <string name="libray_Pixden7Stroke_licenseContent">
+        All our resources are royalty free for use in both personal and commercial projects.
+
+        You can modify any resources to your liking to fit into your project, we are however not legally liable for any misuse of our resources.
+
+        We do not ask for you to include any attribution or link back to Pixeden.com, we do however appreciate if you do credit our resources or/and help spread the word about us.
+
+        You cannot however redistribute, resell, lease, license, sub-license or offer our resources to any third party. This includes uploading our resources to another website, marketplace or media-sharing tool, and offering our resources as a separate attachment from any of your work. If you do plan to include one of our resource on an item or template that will be sold on a website or marketplace, we ask of you to contact us to determine the proper use of our resource before doing so.
+
+        Premium files downloaded with a premium account can be used in a item or website template sold through a marketplace or directly on a website with no attribution required. You cannot however resell or redistribute those premium files as is. Please contact us before using those files in this way to ensure that you abide by our license. IMPORTANT you cannot use any resources from the psd web templates category to create a website theme or template to be sold. They can only be used for personal and commercial projects.
+
+        If you would like to share one of our resource you can do so making a link to the specific resource page on Pixeden.com or/and use our preview images. No HOTLINKING is allowed i.e. you cannot make a direct link to the download or/and the images hosted on Pixeden.com.
+    </string>
+</resources> 
