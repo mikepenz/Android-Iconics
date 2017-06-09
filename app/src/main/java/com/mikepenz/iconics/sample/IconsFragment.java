@@ -19,7 +19,6 @@ import android.widget.PopupWindow;
 
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
-import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -176,6 +175,11 @@ public class IconsFragment extends Fragment {
             @Override
             public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder, int position) {
 
+            }
+
+            @Override
+            public boolean onFailedToRecycleView(RecyclerView.ViewHolder viewHolder, int position) {
+                return false;
             }
         });
     }

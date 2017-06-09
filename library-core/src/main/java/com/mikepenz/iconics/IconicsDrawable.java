@@ -774,6 +774,8 @@ public class IconicsDrawable extends Drawable {
 
     /**
      * Sets the opacity
+     * **NOTE** if you define a color (or as part of a colorStateList) with alpha
+     * the alpha value of that color will ALWAYS WIN!
      *
      * @param alpha
      * @return The current IconExtDrawable for chaining.
@@ -1058,7 +1060,7 @@ public class IconicsDrawable extends Drawable {
         }
 
         int alpha = Color.alpha(color);
-        if (alpha != mAlpha) {
+        if (alpha != 255 && alpha != mAlpha) {
             setAlpha(alpha);
         } else if (invalidate) {
             invalidateSelf();
