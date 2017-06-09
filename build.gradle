@@ -2,6 +2,7 @@
 
 buildscript {
     repositories {
+        maven { url 'https://maven.google.com' }
         jcenter()
     }
     dependencies {
@@ -13,7 +14,7 @@ buildscript {
 ext {
     compileSdkVersion = 25
     buildToolsVersion = "25.0.2"
-    supportLibVersion = "25.3.1"
+    supportLibVersion = "25.4.0"
 
     minSdkVersion = 14
     targetSdkVersion = 25
@@ -21,6 +22,7 @@ ext {
 
 allprojects {
     repositories {
+        maven { url 'https://maven.google.com' }
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
