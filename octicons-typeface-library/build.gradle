@@ -35,6 +35,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 if (project.hasProperty('pushall') || project.hasProperty('octicons')) {
     apply from: '../gradle-mvn-push.gradle'

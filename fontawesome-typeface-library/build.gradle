@@ -22,6 +22,10 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 if (project.hasProperty('pushall') || project.hasProperty('fontawesomeonly')) {
     apply from: '../gradle-mvn-push.gradle'
