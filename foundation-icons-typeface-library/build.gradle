@@ -16,6 +16,8 @@
 
 apply plugin: 'com.android.library'
 
+group "com.mikepenz"
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -24,8 +26,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 30002
-        versionName "3.0.0.2"
+        versionCode 30003
+        versionName "3.0.0.3"
     }
     buildTypes {
         release {

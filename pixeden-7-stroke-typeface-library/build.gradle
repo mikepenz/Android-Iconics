@@ -16,6 +16,8 @@
 
 apply plugin: 'com.android.library'
 
+group "com.mikepenz"
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -24,8 +26,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 1200
-        versionName "1.2.0.0"
+        versionCode 12001
+        versionName "1.2.0.1"
     }
     buildTypes {
         release {
