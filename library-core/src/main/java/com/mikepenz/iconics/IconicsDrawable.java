@@ -888,7 +888,7 @@ public class IconicsDrawable extends Drawable {
     @Override
     protected boolean onStateChange(int[] stateSet) {
         boolean ret = false;
-        if (mIconColor != null) {
+        if (mIconColor != null && mIconColor.isStateful()) {
             updateIconColor();
             ret = true;
         }
