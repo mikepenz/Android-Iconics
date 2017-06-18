@@ -38,18 +38,12 @@ android {
 
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
-                def outputFile = output.outputFile
-                if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                    def fileName = outputFile.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
-                    output.outputFile = new File(outputFile.parent, fileName)
+                def outputFile = output.outputFileName
+                if (outputFile != null && outputFile.endsWith('.apk')) {
+                    output.outputFileName = outputFile.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
                 }
             }
         }
-    }
-    productFlavors {
-    }
-    lintOptions {
-        abortOnError false
     }
 }
 
@@ -67,7 +61,7 @@ dependencies {
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    compile 'com.mikepenz:fastadapter:2.5.3@aar'
+    compile 'com.mikepenz:fastadapter:2.6.2@aar'
     compile 'com.mikepenz:fastadapter-commons:2.5.3@aar'
 
     //used to generate the drawer on the left
