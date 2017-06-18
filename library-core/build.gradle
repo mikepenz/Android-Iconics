@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 
+group "com.mikepenz"
+version "2.8.7"
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -7,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2860
-        versionName "2.8.6"
+        versionCode 2870
+        versionName "2.8.7"
     }
     buildTypes {
         release {
