@@ -135,7 +135,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 ### As TextView (only available if you inject the context)
 ```xml
 <TextView
-    android:text="{gmd-chart} Chart"
+    android:text="{gmd-bubble-chart} Chart"
     android:textColor="@android:color/black"
     android:layout_width="wrap_content"
     android:layout_height="56dp"
