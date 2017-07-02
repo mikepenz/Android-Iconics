@@ -46,7 +46,7 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ## 1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.8.7@aar"
+compile "com.mikepenz:iconics-core:2.8.8@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
@@ -135,7 +135,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 ### As TextView (only available if you inject the context)
 ```xml
 <TextView
-    android:text="{gmd-chart} Chart"
+    android:text="{gmd-bubble-chart} Chart"
     android:textColor="@android:color/black"
     android:layout_width="wrap_content"
     android:layout_height="56dp"

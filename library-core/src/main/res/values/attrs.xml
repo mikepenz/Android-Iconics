@@ -37,4 +37,50 @@
         <attr name="ico_background_color" format="color|reference" />
         <attr name="ico_corner_radius" format="dimension|reference" />
     </declare-styleable>
+    <declare-styleable name="IconicsTextView">
+        <attr name="iiv_start_icon" format="string" />
+        <attr name="iiv_start_color" format="color|reference" />
+        <attr name="iiv_start_size" format="dimension|reference" />
+        <attr name="iiv_start_padding" format="dimension|reference" />
+        <attr name="iiv_start_contour_color" format="color|reference" />
+        <attr name="iiv_start_contour_width" format="dimension|reference" />
+        <attr name="iiv_start_background_color" format="color|reference" />
+        <attr name="iiv_start_corner_radius" format="dimension|reference" />
+
+        <attr name="iiv_top_icon" format="string" />
+        <attr name="iiv_top_color" format="color|reference" />
+        <attr name="iiv_top_size" format="dimension|reference" />
+        <attr name="iiv_top_padding" format="dimension|reference" />
+        <attr name="iiv_top_contour_color" format="color|reference" />
+        <attr name="iiv_top_contour_width" format="dimension|reference" />
+        <attr name="iiv_top_background_color" format="color|reference" />
+        <attr name="iiv_top_corner_radius" format="dimension|reference" />
+
+        <attr name="iiv_end_icon" format="string" />
+        <attr name="iiv_end_color" format="color|reference" />
+        <attr name="iiv_end_size" format="dimension|reference" />
+        <attr name="iiv_end_padding" format="dimension|reference" />
+        <attr name="iiv_end_contour_color" format="color|reference" />
+        <attr name="iiv_end_contour_width" format="dimension|reference" />
+        <attr name="iiv_end_background_color" format="color|reference" />
+        <attr name="iiv_end_corner_radius" format="dimension|reference" />
+
+        <attr name="iiv_bottom_icon" format="string" />
+        <attr name="iiv_bottom_color" format="color|reference" />
+        <attr name="iiv_bottom_size" format="dimension|reference" />
+        <attr name="iiv_bottom_padding" format="dimension|reference" />
+        <attr name="iiv_bottom_contour_color" format="color|reference" />
+        <attr name="iiv_bottom_contour_width" format="dimension|reference" />
+        <attr name="iiv_bottom_background_color" format="color|reference" />
+        <attr name="iiv_bottom_corner_radius" format="dimension|reference" />
+
+        <attr name="iiv_all_icon" format="string" />
+        <attr name="iiv_all_color" format="color|reference" />
+        <attr name="iiv_all_size" format="dimension|reference" />
+        <attr name="iiv_all_padding" format="dimension|reference" />
+        <attr name="iiv_all_contour_color" format="color|reference" />
+        <attr name="iiv_all_contour_width" format="dimension|reference" />
+        <attr name="iiv_all_background_color" format="color|reference" />
+        <attr name="iiv_all_corner_radius" format="dimension|reference" />
+    </declare-styleable>
 </resources>
