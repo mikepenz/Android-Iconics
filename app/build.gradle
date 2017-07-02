@@ -14,7 +14,6 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 28701
         versionName "2.8.7"
-        enforceUniquePackageName false
     }
 
     buildTypes {
@@ -34,15 +33,6 @@ android {
             }
             zipAlignEnabled true
             minifyEnabled false
-        }
-
-        applicationVariants.all { variant ->
-            variant.outputs.each { output ->
-                def outputFile = output.outputFileName
-                if (outputFile != null && outputFile.endsWith('.apk')) {
-                    output.outputFileName = outputFile.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
-                }
-            }
         }
     }
 
