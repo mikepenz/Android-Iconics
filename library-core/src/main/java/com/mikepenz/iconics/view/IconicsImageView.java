@@ -24,7 +24,6 @@ import android.support.annotation.DimenRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.core.R;
@@ -262,7 +261,7 @@ public class IconicsImageView extends AppCompatImageView {
 
     public void setRoundedCornersRes(@DimenRes int cornerRadiusRes) {
         if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).roundedCornersPx(cornerRadiusRes);
+            ((IconicsDrawable) getDrawable()).roundedCornersRes(cornerRadiusRes);
         }
         mCornerRadius = getContext().getResources().getDimensionPixelSize(cornerRadiusRes);
     }
