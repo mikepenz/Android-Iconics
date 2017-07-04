@@ -129,6 +129,9 @@ public class IconicsTextView extends AppCompatTextView {
         
         //setting obtained attributes :D
         setAttributes();
+        
+        //setting created icons
+        setIcons();
     }
     
     private void setAttributes(){
