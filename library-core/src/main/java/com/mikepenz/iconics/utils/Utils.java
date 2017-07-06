@@ -2,6 +2,8 @@ package com.mikepenz.iconics.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.StyleableRes;
 
 import static android.util.TypedValue.COMPLEX_UNIT_DIP;
@@ -18,5 +20,19 @@ public class Utils {
         } else {
             return a.getString(defIndex);
         }
+    }
+    
+    public static StateListDrawable getCheckableIconStateList(Context ctx, Drawable icon, Drawable checkedIcon, boolean animate) {
+        StateListDrawable iconStateListDrawable = new StateListDrawable();
+        iconStateListDrawable.addState(new int[]{android.R.attr.state_checked}, checkedIcon);
+        iconStateListDrawable.addState(new int[]{}, icon);
+        
+        if (animate) {
+            int duration = ctx.getResources().getInteger(android.R.integer.config_shortAnimTime);
+            iconStateListDrawable.setEnterFadeDuration(duration);
+            iconStateListDrawable.setExitFadeDuration(duration);
+        }
+        
+        return iconStateListDrawable;
     }
 }
