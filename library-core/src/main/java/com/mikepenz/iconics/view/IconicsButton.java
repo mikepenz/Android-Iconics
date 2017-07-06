@@ -24,23 +24,24 @@ import android.util.AttributeSet;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.core.R;
 
 public class IconicsButton extends AppCompatButton implements SideIconicsDrawables {
-    private CompoundDrawablesHelper mApplier;
+    private CompoundDrawablesHelper mHelper;
 
     public IconicsButton(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public IconicsButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, R.attr.buttonStyle);
     }
 
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         if (!isInEditMode()) {
-            mApplier = new CompoundDrawablesHelper();
-            mApplier.applyAttr(context, attrs, defStyle, new Runnable() {
+            mHelper = new CompoundDrawablesHelper();
+            mHelper.applyAttr(context, attrs, defStyle, new Runnable() {
                 @Override
                 public void run() {
                     //setting created icons
@@ -52,58 +53,58 @@ public class IconicsButton extends AppCompatButton implements SideIconicsDrawabl
     
     private void setIcons(){
         TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(this,
-                mApplier.mStartIconBundle.mIcon,
-                mApplier.mTopIconBundle.mIcon,
-                mApplier.mEndIconBundle.mIcon,
-                mApplier.mBottomIconBundle.mIcon
+                mHelper.mStartIconBundle.mIcon,
+                mHelper.mTopIconBundle.mIcon,
+                mHelper.mEndIconBundle.mIcon,
+                mHelper.mBottomIconBundle.mIcon
         );
     }
     
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableStart(){
-        return mApplier.mStartIconBundle.mIcon;
+        return mHelper.mStartIconBundle.mIcon;
     }
     
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableTop(){
-        return mApplier.mTopIconBundle.mIcon;
+        return mHelper.mTopIconBundle.mIcon;
     }
     
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableEnd(){
-        return mApplier.mEndIconBundle.mIcon;
+        return mHelper.mEndIconBundle.mIcon;
     }
     
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableBottom(){
-        return mApplier.mBottomIconBundle.mIcon;
+        return mHelper.mBottomIconBundle.mIcon;
     }
     
     @Override
     public void setIconicsDrawableStart(@Nullable IconicsDrawable drawable){
-        mApplier.mStartIconBundle.mIcon = drawable;
+        mHelper.mStartIconBundle.mIcon = drawable;
         setIcons();
     }
     
     @Override
     public void setIconicsDrawableTop(@Nullable IconicsDrawable drawable){
-        mApplier.mTopIconBundle.mIcon = drawable;
+        mHelper.mTopIconBundle.mIcon = drawable;
         setIcons();
     }
     
     @Override
     public void setIconicsDrawableEnd(@Nullable IconicsDrawable drawable){
-        mApplier.mEndIconBundle.mIcon = drawable;
+        mHelper.mEndIconBundle.mIcon = drawable;
         setIcons();
     }
     
     @Override
     public void setIconicsDrawableBottom(@Nullable IconicsDrawable drawable){
-        mApplier.mBottomIconBundle.mIcon = drawable;
+        mHelper.mBottomIconBundle.mIcon = drawable;
         setIcons();
     }
 
