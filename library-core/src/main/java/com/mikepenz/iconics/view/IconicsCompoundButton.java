@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.CompoundButton;
 
+import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.core.R;
 import com.mikepenz.iconics.utils.Utils;
@@ -90,6 +91,15 @@ public class IconicsCompoundButton extends CompoundButton {
     private StateListDrawable createStates() {
         return Utils.getCheckableIconStateList(getContext(), mUncheckedIconBundle.mIcon,
                 mCheckedIconBundle.mIcon, mAnimateChanges);
+    }
+    
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        if (!isInEditMode()) {
+            super.setText(new Iconics.IconicsBuilder().ctx(getContext()).on(text).build(), type);
+        } else {
+            super.setText(text, type);
+        }
     }
     
     @Override
