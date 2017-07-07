@@ -3,8 +3,6 @@ package com.mikepenz.iconics.view;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.mikepenz.iconics.core.R;
-
 /**
  * @author pa.gulko zTrap (06.07.2017)
  */
@@ -15,7 +13,7 @@ public class IconicsCheckBox extends IconicsCompoundButton {
     }
     
     public IconicsCheckBox(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.checkboxStyle);
+        this(context, attrs, android.R.attr.checkboxStyle);
     }
     
     public IconicsCheckBox(Context context, AttributeSet attrs, int defStyle) {

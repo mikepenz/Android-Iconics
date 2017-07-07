@@ -1,13 +1,15 @@
-package com.mikepenz.iconics.view;
+package com.mikepenz.iconics.internal;
 
 import android.support.annotation.Nullable;
+import android.support.annotation.RestrictTo;
 
 import com.mikepenz.iconics.IconicsDrawable;
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
  */
-public interface SideIconicsDrawables {
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+public interface CompoundIconicsDrawables {
     @Nullable
     IconicsDrawable getIconicsDrawableStart();
     
