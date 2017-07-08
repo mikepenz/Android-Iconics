@@ -17,7 +17,7 @@
         <activity
             android:name=".PlaygroundActivity"
             android:label="@string/title_activity_playground"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar.ActionBar" />
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".AutomaticActivity"
             android:label="@string/title_activity_automatic"

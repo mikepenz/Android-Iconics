@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_item_1"
+        android:title="Item 1"
+        app:showAsAction="always"
+        app:iiv_color="@android:color/white"
+        app:iiv_icon="@string/gmd_favorite"
+        app:iiv_size="24dp"/>
+
+    <item
+        android:id="@+id/menu_item_2"
+        android:title="Item 2"
+        app:showAsAction="always"
+        app:iiv_color="@android:color/white"
+        app:iiv_icon="@string/gmd_star"
+        app:iiv_size="24dp"/>
+</menu>
