@@ -16,25 +16,105 @@
 
 package com.mikepenz.iconics.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
-import android.widget.Button;
 
 import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.core.R;
+import com.mikepenz.iconics.internal.AttributeSetReader;
+import com.mikepenz.iconics.internal.CompoundIconicsDrawables;
+import com.mikepenz.iconics.internal.CompoundIconsBundle;
 
-public class IconicsButton extends AppCompatButton {
+public class IconicsButton extends AppCompatButton implements CompoundIconicsDrawables {
+    private CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
 
     public IconicsButton(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public IconicsButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, R.attr.buttonStyle);
     }
 
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        if (!isInEditMode()) {
+            applyAttr(context, attrs, defStyle);
+        }
+    }
+    
+    @SuppressLint("CustomViewStyleable")
+    private void applyAttr(Context context, AttributeSet attrs, int defStyle) {
+        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
+    
+        AttributeSetReader.readIconicsTextView(a, mIconsBundle);
+    
+        //recycle the typedArray
+        a.recycle();
+    
+        //creating icons from obtained attributes
+        mIconsBundle.createIcons(context);
+        
+        //setting created icons
+        setIcons();
+    }
+    
+    private void setIcons(){
+        mIconsBundle.setIcons(this);
+    }
+    
+    @Nullable
+    @Override
+    public IconicsDrawable getIconicsDrawableStart(){
+        return mIconsBundle.mStartIconBundle.mIcon;
+    }
+    
+    @Nullable
+    @Override
+    public IconicsDrawable getIconicsDrawableTop(){
+        return mIconsBundle.mTopIconBundle.mIcon;
+    }
+    
+    @Nullable
+    @Override
+    public IconicsDrawable getIconicsDrawableEnd(){
+        return mIconsBundle.mEndIconBundle.mIcon;
+    }
+    
+    @Nullable
+    @Override
+    public IconicsDrawable getIconicsDrawableBottom(){
+        return mIconsBundle.mBottomIconBundle.mIcon;
+    }
+    
+    @Override
+    public void setIconicsDrawableStart(@Nullable IconicsDrawable drawable){
+        mIconsBundle.mStartIconBundle.mIcon = drawable;
+        setIcons();
+    }
+    
+    @Override
+    public void setIconicsDrawableTop(@Nullable IconicsDrawable drawable){
+        mIconsBundle.mTopIconBundle.mIcon = drawable;
+        setIcons();
+    }
+    
+    @Override
+    public void setIconicsDrawableEnd(@Nullable IconicsDrawable drawable){
+        mIconsBundle.mEndIconBundle.mIcon = drawable;
+        setIcons();
+    }
+    
+    @Override
+    public void setIconicsDrawableBottom(@Nullable IconicsDrawable drawable){
+        mIconsBundle.mBottomIconBundle.mIcon = drawable;
+        setIcons();
     }
 
     @Override

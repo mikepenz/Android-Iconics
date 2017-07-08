@@ -14,20 +14,28 @@
   ~ limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mikepenz.iconics.sample.PlaygroundActivity"
-    tools:ignore="MissingPrefix">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:clipToPadding="false"
+              android:orientation="vertical"
+              tools:context="com.mikepenz.iconics.sample.PlaygroundActivity"
+              tools:ignore="MissingPrefix">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <ScrollView
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false">
@@ -37,17 +45,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--region IconicsImageView Showcase-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="IconicsImageView Showcase" />
+                android:text="IconicsImageView Showcase"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="#000" />
+                android:background="#000"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,29 +67,30 @@
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:padding="24dp"
-                    app:iiv_icon="faw-android" />
+                    app:iiv_icon="faw-android"/>
 
                 <com.mikepenz.iconics.view.IconicsImageView
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     app:iiv_color="@color/md_red_200"
-                    app:iiv_icon="gmd-favorite" />
+                    app:iiv_icon="gmd-favorite"/>
 
             </LinearLayout>
+            <!--endregion-->
 
-
+            <!--region IconicsImageView Padding Showcase-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="IconicsImageView Padding Showcase" />
+                android:text="IconicsImageView Padding Showcase"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="#000" />
+                android:background="#000"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,7 +103,7 @@
                     android:layout_height="72dp"
                     android:background="#ffcccc"
                     app:iiv_color="#666666"
-                    app:iiv_icon="@string/faw_android" />
+                    app:iiv_icon="@string/faw_android"/>
 
                 <!-- android:iiv_size -->
                 <com.mikepenz.iconics.view.IconicsImageView
@@ -102,7 +112,7 @@
                     android:background="#ccffcc"
                     app:iiv_color="#666666"
                     app:iiv_icon="@string/faw_android"
-                    app:iiv_size="16dp" />
+                    app:iiv_size="16dp"/>
 
                 <!-- android:iiv_padding -->
                 <com.mikepenz.iconics.view.IconicsImageView
@@ -111,7 +121,7 @@
                     android:background="#ccccff"
                     app:iiv_color="#666666"
                     app:iiv_icon="@string/faw_android"
-                    app:iiv_padding="16dp" />
+                    app:iiv_padding="16dp"/>
 
                 <!-- android:padding -->
                 <com.mikepenz.iconics.view.IconicsImageView
@@ -120,30 +130,32 @@
                     android:background="#ffffcc"
                     android:padding="16dp"
                     app:iiv_color="#666666"
-                    app:iiv_icon="@string/faw_android" />
+                    app:iiv_icon="@string/faw_android"/>
 
             </LinearLayout>
+            <!--endregion-->
 
+            <!--region TextView Showcase-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="TextView Showcase" />
+                android:text="TextView Showcase"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="#000" />
+                android:background="#000"/>
 
             <TextView
                 android:id="@+id/test1"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-chart}no{met-wind}pqrstuv{fon-test2}wxy{z"
+                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-bubble-chart}no{met-wind}pqrstuv{fon-test2}wxy{z"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/test5"
@@ -151,40 +163,52 @@
                 android:layout_height="56dp"
                 android:text="somecustomtext with a custom icon :D"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
+            <!--endregion-->
 
+            <!--region IconicsTextView Showcase-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="IconicsTextView Showcase" />
+                android:text="IconicsTextView Showcase"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="#000" />
+                android:background="#000"/>
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IconicsTextView with side-drawables"
+                app:iiv_all_color="@color/md_amber_300"
+                app:iiv_all_icon="@string/gmd_account_circle"
+                app:iiv_all_size="24dp"/>
 
             <com.mikepenz.iconics.view.IconicsTextView
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
                 android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
+            <!--endregion-->
 
+            <!--region Button/IconicsButton Showcase-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Button/IconicsButton Showcase" />
+                android:text="Button/IconicsButton Showcase"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="#000" />
+                android:background="#000"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -195,35 +219,44 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:text="{faw-adjust} Button" />
+                    android:text="{faw-adjust} Button"/>
 
                 <Button
                     android:id="@+id/test4"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:text="{fon-test2} Button" />
+                    android:text="{fon-test2} Button"/>
 
                 <ImageButton
                     android:id="@+id/test6"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
             </LinearLayout>
 
+            <com.mikepenz.iconics.view.IconicsButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IconicsButton with side-drawables"
+                app:iiv_all_color="@color/md_red_600"
+                app:iiv_all_icon="@string/faw_android"
+                app:iiv_all_size="24dp"/>
+            <!--endregion-->
 
+            <!--region ImageView Showcase-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="ImageView Showcase" />
+                android:text="ImageView Showcase"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="#000" />
+                android:background="#000"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -233,20 +266,71 @@
                 <ImageView
                     android:id="@+id/test3"
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"/>
 
                 <ImageView
                     android:id="@+id/test2"
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"/>
 
                 <com.mikepenz.iconics.view.IconicsImageButton
                     android:id="@+id/test8"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     app:iiv_color="@color/md_red_200"
-                    app:iiv_icon="gmd-favorite"  />
+                    app:iiv_icon="gmd-favorite"/>
             </LinearLayout>
+            <!--endregion-->
+
+            <!--region IconicCheckBox Showcase-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="IconicsCheckBox Showcase"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#000"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.mikepenz.iconics.view.IconicsCheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IconicsCheckBox"
+                    android:layout_gravity="start"
+                    android:padding="5dp"
+
+                    app:iiv_checked_color="@color/primary"
+                    app:iiv_checked_icon="@string/gmd_star"
+                    app:iiv_checked_size="24dp"
+
+                    app:iiv_unchecked_color="@color/primary"
+                    app:iiv_unchecked_icon="@string/gmd_star_border"
+                    app:iiv_unchecked_size="24dp"/>
+
+                <com.mikepenz.iconics.view.IconicsCheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Iconics{fon-test1}CheckBox{faw-adjust}"
+                    android:layout_gravity="end"
+                    android:padding="5dp"
+
+                    app:iiv_checked_color="@color/primary"
+                    app:iiv_checked_icon="@string/gmd_check_box"
+                    app:iiv_checked_size="24dp"
+
+                    app:iiv_unchecked_color="@color/primary"
+                    app:iiv_unchecked_icon="@string/gmd_check_box_outline_blank"
+                    app:iiv_unchecked_size="24dp"/>
+            </FrameLayout>
+            <!--endregion-->
 
         </LinearLayout>
     </ScrollView>
@@ -254,5 +338,5 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 </LinearLayout>

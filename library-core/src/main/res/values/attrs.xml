@@ -83,4 +83,26 @@
         <attr name="iiv_all_background_color" format="color|reference" />
         <attr name="iiv_all_corner_radius" format="dimension|reference" />
     </declare-styleable>
+
+    <declare-styleable name="IconicsCompoundButton">
+        <attr name="iiv_animate_icon_changes" format="boolean"/>
+
+        <attr name="iiv_checked_icon" format="string" />
+        <attr name="iiv_checked_color" format="color|reference" />
+        <attr name="iiv_checked_size" format="dimension|reference" />
+        <attr name="iiv_checked_padding" format="dimension|reference" />
+        <attr name="iiv_checked_contour_color" format="color|reference" />
+        <attr name="iiv_checked_contour_width" format="dimension|reference" />
+        <attr name="iiv_checked_background_color" format="color|reference" />
+        <attr name="iiv_checked_corner_radius" format="dimension|reference" />
+
+        <attr name="iiv_unchecked_icon" format="string" />
+        <attr name="iiv_unchecked_color" format="color|reference" />
+        <attr name="iiv_unchecked_size" format="dimension|reference" />
+        <attr name="iiv_unchecked_padding" format="dimension|reference" />
+        <attr name="iiv_unchecked_contour_color" format="color|reference" />
+        <attr name="iiv_unchecked_contour_width" format="dimension|reference" />
+        <attr name="iiv_unchecked_background_color" format="color|reference" />
+        <attr name="iiv_unchecked_corner_radius" format="dimension|reference" />
+    </declare-styleable>
 </resources>

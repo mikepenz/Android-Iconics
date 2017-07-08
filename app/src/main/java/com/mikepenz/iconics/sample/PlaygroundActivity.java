@@ -16,11 +16,12 @@
 
 package com.mikepenz.iconics.sample;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
@@ -29,6 +30,8 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -42,15 +45,21 @@ import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsArrayBuilder;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.utils.IconicsMenuInflaterUtil;
 import com.mikepenz.octicons_typeface_library.Octicons;
 
 
-public class PlaygroundActivity extends Activity {
+public class PlaygroundActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playground);
+        
+        // Handle Toolbar
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Show how to style the text of an existing TextView
         TextView tv1 = (TextView) findViewById(R.id.test1);
@@ -105,7 +114,22 @@ public class PlaygroundActivity extends Activity {
         listView.setAdapter(new IconsAdapter(this, array));
 
     }
-
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        IconicsMenuInflaterUtil.inflate(getMenuInflater(), this, R.menu.menu_playground, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    
     private class IconsAdapter extends ArrayAdapter<IconicsDrawable> {
 
         private final LayoutInflater mInflater;
