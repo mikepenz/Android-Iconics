@@ -131,108 +131,78 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
     }
 
     public void setColor(@ColorInt int color) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).color(color);
-        }
         mIconBundle.mColor = color;
+        mIconBundle.applyProperties();
     }
 
     public void setColorRes(@ColorRes int colorRes) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).colorRes(colorRes);
-        }
         mIconBundle.mColor = ContextCompat.getColor(getContext(), colorRes);
+        mIconBundle.applyProperties();
     }
 
     public void setPaddingPx(int padding) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).paddingPx(padding);
-        }
         mIconBundle.mPadding = padding;
+        mIconBundle.applyProperties();
     }
 
     public void setPaddingDp(int paddingDp) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).paddingDp(paddingDp);
-        }
         mIconBundle.mPadding = Utils.convertDpToPx(getContext(), paddingDp);
+        mIconBundle.applyProperties();
     }
 
     public void setPaddingRes(@DimenRes int paddingRes) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).paddingRes(paddingRes);
-        }
         mIconBundle.mPadding = getContext().getResources().getDimensionPixelSize(paddingRes);
+        mIconBundle.applyProperties();
     }
 
     public void setContourColor(@ColorInt int color) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).contourColor(color);
-        }
         mIconBundle.mContourColor = color;
+        mIconBundle.applyProperties();
     }
 
     public void setContourColorRes(@ColorRes int colorRes) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).contourColorRes(colorRes);
-        }
         mIconBundle.mContourColor = ContextCompat.getColor(getContext(), colorRes);
+        mIconBundle.applyProperties();
     }
 
     public void setContourWidthPx(int contourWidth) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).contourWidthPx(contourWidth);
-        }
         mIconBundle.mContourWidth = contourWidth;
+        mIconBundle.applyProperties();
     }
 
     public void setContourWidthDp(int contourWidthDp) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).contourWidthDp(contourWidthDp);
-        }
         mIconBundle.mContourWidth = Utils.convertDpToPx(getContext(), contourWidthDp);
+        mIconBundle.applyProperties();
     }
 
     public void setContourWidthRes(@DimenRes int contourWidthRes) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).contourWidthRes(contourWidthRes);
-        }
         mIconBundle.mContourWidth = getContext().getResources().getDimensionPixelSize(contourWidthRes);
+        mIconBundle.applyProperties();
     }
 
     public void setBackgroundColor(@ColorInt int color) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).backgroundColor(color);
-        }
         mIconBundle.mBackgroundColor = color;
+        mIconBundle.applyProperties();
     }
 
     public void setBackgroundColorRes(@ColorRes int colorRes) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).backgroundColorRes(colorRes);
-        }
         mIconBundle.mBackgroundColor = ContextCompat.getColor(getContext(), colorRes);
+        mIconBundle.applyProperties();
     }
 
     public void setRoundedCornersPx(int cornerRadius) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).roundedCornersDp(cornerRadius);
-        }
         mIconBundle.mCornerRadius = cornerRadius;
+        mIconBundle.applyProperties();
     }
 
     public void setRoundedCornersDp(int cornerRadiusDp) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).roundedCornersDp(cornerRadiusDp);
-        }
         mIconBundle.mCornerRadius = Utils.convertDpToPx(getContext(), cornerRadiusDp);
+        mIconBundle.applyProperties();
     }
 
     public void setRoundedCornersRes(@DimenRes int cornerRadiusRes) {
-        if (getDrawable() instanceof IconicsDrawable) {
-            ((IconicsDrawable) getDrawable()).roundedCornersRes(cornerRadiusRes);
-        }
         mIconBundle.mCornerRadius = getContext().getResources().getDimensionPixelSize(cornerRadiusRes);
+        mIconBundle.applyProperties();
     }
     
     @Nullable
