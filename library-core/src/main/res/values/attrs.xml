@@ -15,6 +15,10 @@
   -->
 
 <resources>
+    <declare-styleable name="IconicsAnimateChanges">
+        <attr name="iiv_animate_icon_changes" format="boolean"/>
+    </declare-styleable>
+
     <declare-styleable name="IconicsImageView">
         <attr name="iiv_icon" format="string" />
         <attr name="iiv_color" format="color|reference" />
@@ -25,6 +29,7 @@
         <attr name="iiv_background_color" format="color|reference" />
         <attr name="iiv_corner_radius" format="dimension|reference" />
     </declare-styleable>
+
     <declare-styleable name="Iconics">
         <attr name="ico_icon" format="string" />
         <attr name="ico_color" format="color|reference" />
@@ -37,6 +42,7 @@
         <attr name="ico_background_color" format="color|reference" />
         <attr name="ico_corner_radius" format="dimension|reference" />
     </declare-styleable>
+
     <declare-styleable name="IconicsTextView">
         <attr name="iiv_start_icon" format="string" />
         <attr name="iiv_start_color" format="color|reference" />
@@ -85,8 +91,6 @@
     </declare-styleable>
 
     <declare-styleable name="IconicsCompoundButton">
-        <attr name="iiv_animate_icon_changes" format="boolean"/>
-
         <attr name="iiv_checked_icon" format="string" />
         <attr name="iiv_checked_color" format="color|reference" />
         <attr name="iiv_checked_size" format="dimension|reference" />
@@ -104,5 +108,63 @@
         <attr name="iiv_unchecked_contour_width" format="dimension|reference" />
         <attr name="iiv_unchecked_background_color" format="color|reference" />
         <attr name="iiv_unchecked_corner_radius" format="dimension|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="IconicsCheckableTextView">
+
+        <!--region all icons-->
+        <attr name="iiv_all_checked_icon" format="string" />
+        <attr name="iiv_all_checked_color" format="color|reference" />
+        <attr name="iiv_all_checked_size" format="dimension|reference" />
+        <attr name="iiv_all_checked_padding" format="dimension|reference" />
+        <attr name="iiv_all_checked_contour_color" format="color|reference" />
+        <attr name="iiv_all_checked_contour_width" format="dimension|reference" />
+        <attr name="iiv_all_checked_background_color" format="color|reference" />
+        <attr name="iiv_all_checked_corner_radius" format="dimension|reference" />
+        <!--endregion-->
+
+        <!--region start icon-->
+        <attr name="iiv_start_checked_icon" format="string" />
+        <attr name="iiv_start_checked_color" format="color|reference" />
+        <attr name="iiv_start_checked_size" format="dimension|reference" />
+        <attr name="iiv_start_checked_padding" format="dimension|reference" />
+        <attr name="iiv_start_checked_contour_color" format="color|reference" />
+        <attr name="iiv_start_checked_contour_width" format="dimension|reference" />
+        <attr name="iiv_start_checked_background_color" format="color|reference" />
+        <attr name="iiv_start_checked_corner_radius" format="dimension|reference" />
+        <!--endregion-->
+
+        <!--region top icon-->
+        <attr name="iiv_top_checked_icon" format="string" />
+        <attr name="iiv_top_checked_color" format="color|reference" />
+        <attr name="iiv_top_checked_size" format="dimension|reference" />
+        <attr name="iiv_top_checked_padding" format="dimension|reference" />
+        <attr name="iiv_top_checked_contour_color" format="color|reference" />
+        <attr name="iiv_top_checked_contour_width" format="dimension|reference" />
+        <attr name="iiv_top_checked_background_color" format="color|reference" />
+        <attr name="iiv_top_checked_corner_radius" format="dimension|reference" />
+        <!--endregion-->
+
+        <!--region end icon-->
+        <attr name="iiv_end_checked_icon" format="string" />
+        <attr name="iiv_end_checked_color" format="color|reference" />
+        <attr name="iiv_end_checked_size" format="dimension|reference" />
+        <attr name="iiv_end_checked_padding" format="dimension|reference" />
+        <attr name="iiv_end_checked_contour_color" format="color|reference" />
+        <attr name="iiv_end_checked_contour_width" format="dimension|reference" />
+        <attr name="iiv_end_checked_background_color" format="color|reference" />
+        <attr name="iiv_end_checked_corner_radius" format="dimension|reference" />
+        <!--endregion-->
+
+        <!--region bottom icon-->
+        <attr name="iiv_bottom_checked_icon" format="string" />
+        <attr name="iiv_bottom_checked_color" format="color|reference" />
+        <attr name="iiv_bottom_checked_size" format="dimension|reference" />
+        <attr name="iiv_bottom_checked_padding" format="dimension|reference" />
+        <attr name="iiv_bottom_checked_contour_color" format="color|reference" />
+        <attr name="iiv_bottom_checked_contour_width" format="dimension|reference" />
+        <attr name="iiv_bottom_checked_background_color" format="color|reference" />
+        <attr name="iiv_bottom_checked_corner_radius" format="dimension|reference" />
+        <!--endregion-->
     </declare-styleable>
 </resources>

@@ -1,6 +1,7 @@
 package com.mikepenz.iconics.internal;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
@@ -13,7 +14,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class IconBundle {
     public String mIconString = null;
-    public IconicsDrawable mIcon = null;
+    public Drawable mIcon = null;
     @ColorInt
     public int mColor = 0;
     public int mSize = -1;
@@ -36,26 +37,39 @@ public class IconBundle {
         } else {
             return false;
         }
+        return applyProperties(bundle);
+    }
+    //endregion
+    
+    //region apply properties
+    public boolean applyProperties(){
+        return applyProperties(this);
+    }
+    
+    public static boolean applyProperties(IconBundle bundle){
+        if (!(bundle.mIcon instanceof IconicsDrawable)){
+            return false;
+        }
         if (bundle.mColor != 0) {
-            bundle.mIcon.color(bundle.mColor);
+            ((IconicsDrawable)bundle.mIcon).color(bundle.mColor);
         }
         if (bundle.mSize != -1) {
-            bundle.mIcon.sizePx(bundle.mSize);
+            ((IconicsDrawable)bundle.mIcon).sizePx(bundle.mSize);
         }
         if (bundle.mPadding != -1) {
-            bundle.mIcon.paddingPx(bundle.mPadding);
+            ((IconicsDrawable)bundle.mIcon).paddingPx(bundle.mPadding);
         }
         if (bundle.mContourColor != 0) {
-            bundle.mIcon.contourColor(bundle.mContourColor);
+            ((IconicsDrawable)bundle.mIcon).contourColor(bundle.mContourColor);
         }
         if (bundle.mContourWidth != -1) {
-            bundle.mIcon.contourWidthPx(bundle.mContourWidth);
+            ((IconicsDrawable)bundle.mIcon).contourWidthPx(bundle.mContourWidth);
         }
         if (bundle.mBackgroundColor != 0) {
-            bundle.mIcon.backgroundColor(bundle.mBackgroundColor);
+            ((IconicsDrawable)bundle.mIcon).backgroundColor(bundle.mBackgroundColor);
         }
         if (bundle.mCornerRadius != -1) {
-            bundle.mIcon.roundedCornersPx(bundle.mCornerRadius);
+            ((IconicsDrawable)bundle.mIcon).roundedCornersPx(bundle.mCornerRadius);
         }
         return true;
     }

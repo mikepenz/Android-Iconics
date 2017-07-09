@@ -21,6 +21,8 @@ import android.content.res.TypedArray;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
+import android.support.annotation.Nullable;
+import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
@@ -29,10 +31,13 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.core.R;
 import com.mikepenz.iconics.internal.AttributeSetReader;
 import com.mikepenz.iconics.internal.IconBundle;
+import com.mikepenz.iconics.internal.IconicsView;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.utils.Utils;
 
-public class IconicsImageView extends AppCompatImageView {
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+
+public class IconicsImageView extends AppCompatImageView implements IconicsView {
     private IconBundle mIconBundle = new IconBundle();
 
     public IconicsImageView(Context context) {
@@ -46,20 +51,14 @@ public class IconicsImageView extends AppCompatImageView {
     public IconicsImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         if (!isInEditMode()) {
-            applyAttrs(context, attrs, defStyle);
+            initialize(context, attrs, defStyle);
         }
     }
     
-    private void applyAttrs(Context context, AttributeSet attrs, int defStyle) {
-        // Attribute initialization
-        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView, defStyle, 0);
-    
-        //set the color even if we had no image yet
-        AttributeSetReader.readIconicsImageView(a, mIconBundle);
-    
-        //recycle the typedArray
-        a.recycle();
-    
+    @Override
+    @RestrictTo(LIBRARY_GROUP)
+    public void initialize(Context context, AttributeSet attrs, int defStyle) {
+        applyAttr(context, attrs, defStyle);
         //set the scale type for this view
         setScaleType(ScaleType.CENTER_INSIDE);
     
@@ -70,6 +69,19 @@ public class IconicsImageView extends AppCompatImageView {
     
         //set our values for this view
         setImageDrawable(mIconBundle.mIcon);
+    }
+    
+    @Override
+    @RestrictTo(LIBRARY_GROUP)
+    public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
+        // Attribute initialization
+        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView, defStyle, 0);
+    
+        //set the color even if we had no image yet
+        AttributeSetReader.readIconicsImageView(a, mIconBundle);
+    
+        //recycle the typedArray
+        a.recycle();
     }
 
     public void setIcon(Character icon) {
@@ -222,11 +234,16 @@ public class IconicsImageView extends AppCompatImageView {
         }
         mIconBundle.mCornerRadius = getContext().getResources().getDimensionPixelSize(cornerRadiusRes);
     }
-
+    
+    @Nullable
     public IconicsDrawable getIcon() {
         if (getDrawable() instanceof IconicsDrawable) {
             return ((IconicsDrawable) getDrawable());
         }
-        return mIconBundle.mIcon;
+        if (mIconBundle.mIcon instanceof IconicsDrawable) {
+            return (IconicsDrawable) mIconBundle.mIcon;
+        } else {
+            return null;
+        }
     }
 }
