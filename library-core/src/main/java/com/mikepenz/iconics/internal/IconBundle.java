@@ -37,7 +37,7 @@ public class IconBundle {
         } else {
             return false;
         }
-        return applyProperties(bundle);
+        return applyNonDefaultProperties(bundle);
     }
     //endregion
     
@@ -50,26 +50,48 @@ public class IconBundle {
         if (!(bundle.mIcon instanceof IconicsDrawable)){
             return false;
         }
+        IconicsDrawable iconicsDrawable = (IconicsDrawable) bundle.mIcon;
+        iconicsDrawable.color(bundle.mColor);
+        iconicsDrawable.sizePx(bundle.mSize);
+        iconicsDrawable.paddingPx(bundle.mPadding);
+        iconicsDrawable.contourColor(bundle.mContourColor);
+        iconicsDrawable.contourWidthPx(bundle.mContourWidth);
+        iconicsDrawable.backgroundColor(bundle.mBackgroundColor);
+        iconicsDrawable.roundedCornersPx(bundle.mCornerRadius);
+        return true;
+    }
+    //endregion
+    
+    //region apply properties
+    public boolean applyNonDefaultProperties(){
+        return applyProperties(this);
+    }
+    
+    public static boolean applyNonDefaultProperties(IconBundle bundle){
+        if (!(bundle.mIcon instanceof IconicsDrawable)){
+            return false;
+        }
+        IconicsDrawable iconicsDrawable = (IconicsDrawable) bundle.mIcon;
         if (bundle.mColor != 0) {
-            ((IconicsDrawable)bundle.mIcon).color(bundle.mColor);
+            iconicsDrawable.color(bundle.mColor);
         }
         if (bundle.mSize != -1) {
-            ((IconicsDrawable)bundle.mIcon).sizePx(bundle.mSize);
+            iconicsDrawable.sizePx(bundle.mSize);
         }
         if (bundle.mPadding != -1) {
-            ((IconicsDrawable)bundle.mIcon).paddingPx(bundle.mPadding);
+            iconicsDrawable.paddingPx(bundle.mPadding);
         }
         if (bundle.mContourColor != 0) {
-            ((IconicsDrawable)bundle.mIcon).contourColor(bundle.mContourColor);
+            iconicsDrawable.contourColor(bundle.mContourColor);
         }
         if (bundle.mContourWidth != -1) {
-            ((IconicsDrawable)bundle.mIcon).contourWidthPx(bundle.mContourWidth);
+            iconicsDrawable.contourWidthPx(bundle.mContourWidth);
         }
         if (bundle.mBackgroundColor != 0) {
-            ((IconicsDrawable)bundle.mIcon).backgroundColor(bundle.mBackgroundColor);
+            iconicsDrawable.backgroundColor(bundle.mBackgroundColor);
         }
         if (bundle.mCornerRadius != -1) {
-            ((IconicsDrawable)bundle.mIcon).roundedCornersPx(bundle.mCornerRadius);
+            iconicsDrawable.roundedCornersPx(bundle.mCornerRadius);
         }
         return true;
     }
