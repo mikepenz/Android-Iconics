@@ -39,9 +39,7 @@ public class IconBundle {
         }
         return applyNonDefaultProperties(bundle);
     }
-    //endregion
     
-    //region apply properties
     public boolean applyProperties(){
         return applyProperties(this);
     }
