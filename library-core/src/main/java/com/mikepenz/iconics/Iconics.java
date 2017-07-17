@@ -83,7 +83,7 @@ public final class Iconics {
      * Test if the icon exists in the currently loaded fonts
      *
      * @param context A context to access application resources
-     * @param icon The icon to verify
+     * @param icon    The icon to verify
      * @return true if the icon is available
      */
     public static boolean iconExists(Context context, String icon) {
@@ -112,10 +112,11 @@ public final class Iconics {
 
     /**
      * Perform a basic sanity check for a font.
+     *
      * @param font
      */
     private static void validateFont(ITypeface font) {
-        if(font.getMappingPrefix().length() != 3) {
+        if (font.getMappingPrefix().length() != 3) {
             throw new IllegalArgumentException("The mapping prefix of a font must be three characters long.");
         }
     }

@@ -26,123 +26,123 @@ import android.util.AttributeSet;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.internal.IconicsView;
-import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables;
 import com.mikepenz.iconics.internal.CompoundIconsBundle;
+import com.mikepenz.iconics.internal.IconicsView;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsTextView extends AppCompatTextView implements CompoundIconicsDrawables, IconicsView {
     protected CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
-    
+
     public IconicsTextView(Context context) {
         this(context, null);
     }
-    
+
     public IconicsTextView(Context context, AttributeSet attrs) {
         this(context, attrs, android.R.attr.textViewStyle);
     }
-    
+
     public IconicsTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         if (!isInEditMode()) {
             initialize(context, attrs, defStyle);
         }
     }
-    
+
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
         applyAttr(context, attrs, defStyle);
-    
+
         //creating icons from obtained attributes
         mIconsBundle.createIcons(context);
-    
+
         //setting created icons
         setIcons();
     }
-    
+
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
-        
+
         IconicsViewsAttrsReader.readIconicsTextView(a, mIconsBundle);
-        
+
         //recycle the typedArray
         a.recycle();
     }
-    
-    private void setIcons(){
+
+    private void setIcons() {
         mIconsBundle.setIcons(this);
     }
-    
+
     @Nullable
     @Override
-    public IconicsDrawable getIconicsDrawableStart(){
+    public IconicsDrawable getIconicsDrawableStart() {
         if (mIconsBundle.mStartIconBundle.mIcon instanceof IconicsDrawable) {
             return (IconicsDrawable) mIconsBundle.mStartIconBundle.mIcon;
         } else {
             return null;
         }
     }
-    
+
     @Nullable
     @Override
-    public IconicsDrawable getIconicsDrawableTop(){
+    public IconicsDrawable getIconicsDrawableTop() {
         if (mIconsBundle.mTopIconBundle.mIcon instanceof IconicsDrawable) {
             return (IconicsDrawable) mIconsBundle.mTopIconBundle.mIcon;
         } else {
             return null;
         }
     }
-    
+
     @Nullable
     @Override
-    public IconicsDrawable getIconicsDrawableEnd(){
+    public IconicsDrawable getIconicsDrawableEnd() {
         if (mIconsBundle.mEndIconBundle.mIcon instanceof IconicsDrawable) {
             return (IconicsDrawable) mIconsBundle.mEndIconBundle.mIcon;
         } else {
             return null;
         }
     }
-    
+
     @Nullable
     @Override
-    public IconicsDrawable getIconicsDrawableBottom(){
+    public IconicsDrawable getIconicsDrawableBottom() {
         if (mIconsBundle.mBottomIconBundle.mIcon instanceof IconicsDrawable) {
             return (IconicsDrawable) mIconsBundle.mBottomIconBundle.mIcon;
         } else {
             return null;
         }
     }
-    
+
     @Override
-    public void setDrawableStart(@Nullable Drawable drawable){
+    public void setDrawableStart(@Nullable Drawable drawable) {
         mIconsBundle.mStartIconBundle.mIcon = drawable;
         setIcons();
     }
-    
+
     @Override
-    public void setDrawableTop(@Nullable Drawable drawable){
+    public void setDrawableTop(@Nullable Drawable drawable) {
         mIconsBundle.mTopIconBundle.mIcon = drawable;
         setIcons();
     }
-    
+
     @Override
-    public void setDrawableEnd(@Nullable Drawable drawable){
+    public void setDrawableEnd(@Nullable Drawable drawable) {
         mIconsBundle.mEndIconBundle.mIcon = drawable;
         setIcons();
     }
-    
+
     @Override
-    public void setDrawableBottom(@Nullable Drawable drawable){
+    public void setDrawableBottom(@Nullable Drawable drawable) {
         mIconsBundle.mBottomIconBundle.mIcon = drawable;
         setIcons();
     }
-    
-    
+
+
     @Override
     public void setText(CharSequence text, BufferType type) {
         if (!isInEditMode()) {

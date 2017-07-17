@@ -16,13 +16,13 @@ public class CheckableIconBundle {
     public boolean mAnimateChanges;
     public IconBundle mCheckedIconBundle = new IconBundle();
     public IconBundle mUncheckedIconBundle = new IconBundle();
-    
-    public boolean createIcons(Context ctx){
+
+    public boolean createIcons(Context ctx) {
         boolean uncheckedCreated = mUncheckedIconBundle.createIcon(ctx);
         boolean checkedCreated = mCheckedIconBundle.createIcon(ctx);
         return checkedCreated || uncheckedCreated;
     }
-    
+
     public StateListDrawable createStates(Context ctx) {
         return Utils.getCheckableIconStateList(ctx, mUncheckedIconBundle.mIcon,
                 mCheckedIconBundle.mIcon, mAnimateChanges);

@@ -17,23 +17,23 @@ public class CompoundIconsBundle {
     public IconBundle mTopIconBundle = new IconBundle();
     public IconBundle mEndIconBundle = new IconBundle();
     public IconBundle mBottomIconBundle = new IconBundle();
-    
-    public void createIcons(Context ctx){
+
+    public void createIcons(Context ctx) {
         mStartIconBundle.createIcon(ctx);
         mTopIconBundle.createIcon(ctx);
         mEndIconBundle.createIcon(ctx);
         mBottomIconBundle.createIcon(ctx);
     }
-    
-    public void setIcons(TextView textView){
+
+    public void setIcons(TextView textView) {
         Drawable[] drawables = TextViewCompat.getCompoundDrawablesRelative(textView);
-        
+
         TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(textView,
                 mStartIconBundle.mIcon != null ? mStartIconBundle.mIcon : drawables[0],
                 mTopIconBundle.mIcon != null ? mTopIconBundle.mIcon : drawables[1],
                 mEndIconBundle.mIcon != null ? mEndIconBundle.mIcon : drawables[2],
                 mBottomIconBundle.mIcon != null ? mBottomIconBundle.mIcon : drawables[3]
         );
-        
+
     }
 }

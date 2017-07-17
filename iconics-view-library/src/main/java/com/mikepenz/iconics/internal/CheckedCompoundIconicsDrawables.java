@@ -15,21 +15,21 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 public interface CheckedCompoundIconicsDrawables {
     @Nullable
     IconicsDrawable getCheckedIconicsDrawableStart();
-    
+
     @Nullable
     IconicsDrawable getCheckedIconicsDrawableTop();
-    
+
     @Nullable
     IconicsDrawable getCheckedIconicsDrawableEnd();
-    
+
     @Nullable
     IconicsDrawable getCheckedIconicsDrawableBottom();
-    
+
     void setCheckedDrawableStart(@Nullable Drawable drawable);
-    
+
     void setCheckedDrawableTop(@Nullable Drawable drawable);
-    
+
     void setCheckedDrawableEnd(@Nullable Drawable drawable);
-    
+
     void setCheckedDrawableBottom(@Nullable Drawable drawable);
 }

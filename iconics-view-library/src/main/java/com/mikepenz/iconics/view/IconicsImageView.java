@@ -53,32 +53,32 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
             initialize(context, attrs, defStyle);
         }
     }
-    
+
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
         applyAttr(context, attrs, defStyle);
         //set the scale type for this view
         setScaleType(ScaleType.CENTER_INSIDE);
-    
+
         //if we have no icon return now
         if (!mIconBundle.createIcon(context)) {
             return;
         }
-    
+
         //set our values for this view
         setImageDrawable(mIconBundle.mIcon);
     }
-    
+
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         // Attribute initialization
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView, defStyle, 0);
-    
+
         //set the color even if we had no image yet
         IconicsCoreAttrsReader.readIconicsImageView(a, mIconBundle);
-    
+
         //recycle the typedArray
         a.recycle();
     }
@@ -203,7 +203,7 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
         mIconBundle.mCornerRadius = getContext().getResources().getDimensionPixelSize(cornerRadiusRes);
         mIconBundle.applyProperties();
     }
-    
+
     @Nullable
     public IconicsDrawable getIcon() {
         if (getDrawable() instanceof IconicsDrawable) {

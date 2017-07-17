@@ -15,21 +15,21 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 public interface CompoundIconicsDrawables {
     @Nullable
     IconicsDrawable getIconicsDrawableStart();
-    
+
     @Nullable
     IconicsDrawable getIconicsDrawableTop();
-    
+
     @Nullable
     IconicsDrawable getIconicsDrawableEnd();
-    
+
     @Nullable
     IconicsDrawable getIconicsDrawableBottom();
-    
+
     void setDrawableStart(@Nullable Drawable drawable);
-    
+
     void setDrawableTop(@Nullable Drawable drawable);
-    
+
     void setDrawableEnd(@Nullable Drawable drawable);
-    
+
     void setDrawableBottom(@Nullable Drawable drawable);
 }

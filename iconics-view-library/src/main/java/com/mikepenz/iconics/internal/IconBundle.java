@@ -25,12 +25,12 @@ public class IconBundle {
     @ColorInt
     public int mBackgroundColor = 0;
     public int mCornerRadius = -1;
-    
+
     //region create icon
-    public boolean createIcon(Context context){
+    public boolean createIcon(Context context) {
         return createIconFromBundle(this, context);
     }
-    
+
     public static boolean createIconFromBundle(IconBundle bundle, Context ctx) {
         if (bundle.mIconString != null && !TextUtils.isEmpty(bundle.mIconString.trim())) {
             bundle.mIcon = new IconicsDrawable(ctx, bundle.mIconString);
@@ -39,13 +39,13 @@ public class IconBundle {
         }
         return applyNonDefaultProperties(bundle);
     }
-    
-    public boolean applyProperties(){
+
+    public boolean applyProperties() {
         return applyProperties(this);
     }
-    
-    public static boolean applyProperties(IconBundle bundle){
-        if (!(bundle.mIcon instanceof IconicsDrawable)){
+
+    public static boolean applyProperties(IconBundle bundle) {
+        if (!(bundle.mIcon instanceof IconicsDrawable)) {
             return false;
         }
         IconicsDrawable iconicsDrawable = (IconicsDrawable) bundle.mIcon;
@@ -59,14 +59,14 @@ public class IconBundle {
         return true;
     }
     //endregion
-    
+
     //region apply properties
-    public boolean applyNonDefaultProperties(){
+    public boolean applyNonDefaultProperties() {
         return applyProperties(this);
     }
-    
-    public static boolean applyNonDefaultProperties(IconBundle bundle){
-        if (!(bundle.mIcon instanceof IconicsDrawable)){
+
+    public static boolean applyNonDefaultProperties(IconBundle bundle) {
+        if (!(bundle.mIcon instanceof IconicsDrawable)) {
             return false;
         }
         IconicsDrawable iconicsDrawable = (IconicsDrawable) bundle.mIcon;

@@ -14,9 +14,9 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 @RestrictTo(LIBRARY_GROUP)
 public class IconicsViewsAttrsReader {
-    
+
     //region IconicsTextView
-    
+
     /**
      * Attributes priority:
      * <p>
@@ -29,24 +29,24 @@ public class IconicsViewsAttrsReader {
      */
     public static void readIconicsTextView(TypedArray a, CompoundIconsBundle bundle) {
         IconBundle allIconBundle = new IconBundle();
-        
+
         //obtaining attributes for all icons
         readIconicsTextViewAll(a, allIconBundle);
-        
+
         //obtaining attributes for start icons
         readIconicsTextViewStart(a, bundle.mStartIconBundle, allIconBundle);
-        
+
         //obtaining attributes for top icons
         readIconicsTextViewTop(a, bundle.mTopIconBundle, allIconBundle);
-        
+
         //obtaining attributes for end icons
         readIconicsTextViewEnd(a, bundle.mEndIconBundle, allIconBundle);
-        
+
         //obtaining attributes for bottom icons
         readIconicsTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
-        
+
     }
-    
+
     public static void readIconicsTextViewAll(TypedArray a, IconBundle bundle) {
         bundle.mIconString = a.getString(R.styleable.IconicsTextView_iiv_all_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
@@ -59,7 +59,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_corner_radius, -1);
         }
     }
-    
+
     public static void readIconicsTextViewStart(TypedArray a, IconBundle bundle, IconBundle defBundle) {
         bundle.mIconString = Utils.getString(a, R.styleable.IconicsTextView_iiv_start_icon, R.styleable.IconicsTextView_iiv_all_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
@@ -72,7 +72,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_corner_radius, defBundle.mCornerRadius);
         }
     }
-    
+
     public static void readIconicsTextViewTop(TypedArray a, IconBundle bundle, IconBundle defBundle) {
         bundle.mIconString = Utils.getString(a, R.styleable.IconicsTextView_iiv_top_icon, R.styleable.IconicsTextView_iiv_all_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
@@ -85,7 +85,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_corner_radius, defBundle.mCornerRadius);
         }
     }
-    
+
     public static void readIconicsTextViewEnd(TypedArray a, IconBundle bundle, IconBundle defBundle) {
         bundle.mIconString = Utils.getString(a, R.styleable.IconicsTextView_iiv_end_icon, R.styleable.IconicsTextView_iiv_all_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
@@ -98,7 +98,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_corner_radius, defBundle.mCornerRadius);
         }
     }
-    
+
     public static void readIconicsTextViewBottom(TypedArray a, IconBundle bundle, IconBundle defBundle) {
         bundle.mIconString = Utils.getString(a, R.styleable.IconicsTextView_iiv_bottom_icon, R.styleable.IconicsTextView_iiv_all_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
@@ -112,16 +112,16 @@ public class IconicsViewsAttrsReader {
         }
     }
     //endregion
-    
+
     //region IconicsCompoundButton
     public static void readIconicsCompoundButton(TypedArray a, CheckableIconBundle bundle) {
         //obtaining attributes for Checked icon state
         readIconicsCompoundButtonChecked(a, bundle.mCheckedIconBundle);
-        
+
         //obtaining attributes for Unchecked icon state
         readIconicsCompoundButtonUnchecked(a, bundle.mUncheckedIconBundle);
     }
-    
+
     public static void readIconicsCompoundButtonChecked(TypedArray a, IconBundle bundle) {
         bundle.mIconString = a.getString(R.styleable.IconicsCompoundButton_iiv_checked_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
@@ -134,7 +134,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_corner_radius, -1);
         }
     }
-    
+
     public static void readIconicsCompoundButtonUnchecked(TypedArray a, IconBundle bundle) {
         bundle.mIconString = a.getString(R.styleable.IconicsCompoundButton_iiv_unchecked_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
@@ -148,8 +148,9 @@ public class IconicsViewsAttrsReader {
         }
     }
     //endregion
-    
+
     //region IconicsCheckableTextView
+
     /**
      * Attributes priority:
      * <p>
@@ -162,24 +163,24 @@ public class IconicsViewsAttrsReader {
      */
     public static void readIconicsCheckableTextView(TypedArray a, CompoundIconsBundle bundle) {
         IconBundle allIconBundle = new IconBundle();
-        
+
         //obtaining attributes for all icons
         readIconicsCheckableTextViewAll(a, allIconBundle);
-        
+
         //obtaining attributes for start icons
         readIconicsCheckableTextViewStart(a, bundle.mStartIconBundle, allIconBundle);
-        
+
         //obtaining attributes for top icons
         readIconicsCheckableTextViewTop(a, bundle.mTopIconBundle, allIconBundle);
-        
+
         //obtaining attributes for end icons
         readIconicsCheckableTextViewEnd(a, bundle.mEndIconBundle, allIconBundle);
-        
+
         //obtaining attributes for bottom icons
         readIconicsCheckableTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
-        
+
     }
-    
+
     public static void readIconicsCheckableTextViewAll(TypedArray a, IconBundle bundle) {
         bundle.mIconString = a.getString(R.styleable.IconicsTextView_iiv_all_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
@@ -192,7 +193,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_corner_radius, -1);
         }
     }
-    
+
     public static void readIconicsCheckableTextViewStart(TypedArray a, IconBundle bundle, IconBundle defBundle) {
         bundle.mIconString = Utils.getString(a,
                 R.styleable.IconicsCheckableTextView_iiv_start_checked_icon,
@@ -207,7 +208,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_corner_radius, defBundle.mCornerRadius);
         }
     }
-    
+
     public static void readIconicsCheckableTextViewTop(TypedArray a, IconBundle bundle, IconBundle defBundle) {
         bundle.mIconString = Utils.getString(a,
                 R.styleable.IconicsCheckableTextView_iiv_top_checked_icon,
@@ -222,7 +223,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_corner_radius, defBundle.mCornerRadius);
         }
     }
-    
+
     public static void readIconicsCheckableTextViewEnd(TypedArray a, IconBundle bundle, IconBundle defBundle) {
         bundle.mIconString = Utils.getString(a,
                 R.styleable.IconicsCheckableTextView_iiv_end_checked_icon,
@@ -237,7 +238,7 @@ public class IconicsViewsAttrsReader {
             bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_corner_radius, defBundle.mCornerRadius);
         }
     }
-    
+
     public static void readIconicsCheckableTextViewBottom(TypedArray a, IconBundle bundle, IconBundle defBundle) {
         bundle.mIconString = Utils.getString(a,
                 R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon,
