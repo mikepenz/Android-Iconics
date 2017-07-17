@@ -19,19 +19,22 @@ package com.mikepenz.iconics.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.TextViewCompat;
+import android.support.annotation.RestrictTo;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.core.R;
-import com.mikepenz.iconics.internal.AttributeSetReader;
+import com.mikepenz.iconics.internal.IconicsView;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables;
 import com.mikepenz.iconics.internal.CompoundIconsBundle;
 
-public class IconicsButton extends AppCompatButton implements CompoundIconicsDrawables {
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+
+public class IconicsButton extends AppCompatButton implements IconicsView, CompoundIconicsDrawables {
     private CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
 
     public IconicsButton(Context context) {
@@ -45,24 +48,31 @@ public class IconicsButton extends AppCompatButton implements CompoundIconicsDra
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         if (!isInEditMode()) {
-            applyAttr(context, attrs, defStyle);
+            initialize(context, attrs, defStyle);
         }
     }
     
-    @SuppressLint("CustomViewStyleable")
-    private void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
-    
-        AttributeSetReader.readIconicsTextView(a, mIconsBundle);
-    
-        //recycle the typedArray
-        a.recycle();
+    @Override
+    @RestrictTo(LIBRARY_GROUP)
+    public void initialize(Context context, AttributeSet attrs, int defStyle) {
+        applyAttr(context, attrs, defStyle);
     
         //creating icons from obtained attributes
         mIconsBundle.createIcons(context);
-        
+    
         //setting created icons
         setIcons();
+    }
+    
+    @SuppressLint("CustomViewStyleable")
+    @RestrictTo(LIBRARY_GROUP)
+    public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
+        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
+    
+        IconicsViewsAttrsReader.readIconicsTextView(a, mIconsBundle);
+    
+        //recycle the typedArray
+        a.recycle();
     }
     
     private void setIcons(){
@@ -72,47 +82,63 @@ public class IconicsButton extends AppCompatButton implements CompoundIconicsDra
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableStart(){
-        return mIconsBundle.mStartIconBundle.mIcon;
+        if (mIconsBundle.mStartIconBundle.mIcon instanceof IconicsDrawable) {
+            return (IconicsDrawable) mIconsBundle.mStartIconBundle.mIcon;
+        } else {
+            return null;
+        }
     }
     
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableTop(){
-        return mIconsBundle.mTopIconBundle.mIcon;
+        if (mIconsBundle.mTopIconBundle.mIcon instanceof IconicsDrawable) {
+            return (IconicsDrawable) mIconsBundle.mTopIconBundle.mIcon;
+        } else {
+            return null;
+        }
     }
     
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableEnd(){
-        return mIconsBundle.mEndIconBundle.mIcon;
+        if (mIconsBundle.mEndIconBundle.mIcon instanceof IconicsDrawable) {
+            return (IconicsDrawable) mIconsBundle.mEndIconBundle.mIcon;
+        } else {
+            return null;
+        }
     }
     
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableBottom(){
-        return mIconsBundle.mBottomIconBundle.mIcon;
+        if (mIconsBundle.mBottomIconBundle.mIcon instanceof IconicsDrawable) {
+            return (IconicsDrawable) mIconsBundle.mBottomIconBundle.mIcon;
+        } else {
+            return null;
+        }
     }
     
     @Override
-    public void setIconicsDrawableStart(@Nullable IconicsDrawable drawable){
+    public void setDrawableStart(@Nullable Drawable drawable){
         mIconsBundle.mStartIconBundle.mIcon = drawable;
         setIcons();
     }
     
     @Override
-    public void setIconicsDrawableTop(@Nullable IconicsDrawable drawable){
+    public void setDrawableTop(@Nullable Drawable drawable){
         mIconsBundle.mTopIconBundle.mIcon = drawable;
         setIcons();
     }
     
     @Override
-    public void setIconicsDrawableEnd(@Nullable IconicsDrawable drawable){
+    public void setDrawableEnd(@Nullable Drawable drawable){
         mIconsBundle.mEndIconBundle.mIcon = drawable;
         setIcons();
     }
     
     @Override
-    public void setIconicsDrawableBottom(@Nullable IconicsDrawable drawable){
+    public void setDrawableBottom(@Nullable Drawable drawable){
         mIconsBundle.mBottomIconBundle.mIcon = drawable;
         setIcons();
     }

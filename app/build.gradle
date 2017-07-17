@@ -74,6 +74,7 @@ dependencies {
         exclude module: "iconics-core"
     }
 
+    compile project(':iconics-view-library')
     compile project(':fontawesome-typeface-library')
     compile project(':material-design-iconic-typeface-library')
     compile project(':google-material-typeface-library')

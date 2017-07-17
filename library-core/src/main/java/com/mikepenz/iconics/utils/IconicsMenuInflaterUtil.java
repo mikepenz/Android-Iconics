@@ -10,7 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.mikepenz.iconics.core.R;
-import com.mikepenz.iconics.internal.AttributeSetReader;
+import com.mikepenz.iconics.internal.IconicsCoreAttrsReader;
 import com.mikepenz.iconics.internal.IconBundle;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -104,7 +104,7 @@ public class IconicsMenuInflaterUtil {
                         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
                         IconBundle normalBundle = new IconBundle();
                         
-                        AttributeSetReader.readIconicsImageView(a, normalBundle);
+                        IconicsCoreAttrsReader.readIconicsImageView(a, normalBundle);
                         
                         int id = Integer.parseInt(attr.get("id").replace("@", ""));
                         MenuItem item = menu.findItem(id);

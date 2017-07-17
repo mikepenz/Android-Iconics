@@ -1,5 +1,6 @@
 include ':app'
 include ':library-core'
+include ':iconics-view-library'
 include ':fontawesome-typeface-library'
 include ':meteocons-typeface-library'
 include ':weather-icons-typeface-library'

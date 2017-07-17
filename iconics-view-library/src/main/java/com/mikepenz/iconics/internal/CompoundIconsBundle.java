@@ -6,10 +6,12 @@ import android.support.annotation.RestrictTo;
 import android.support.v4.widget.TextViewCompat;
 import android.widget.TextView;
 
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+
 /**
  * @author pa.gulko zTrap (06.07.2017)
  */
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+@RestrictTo(LIBRARY_GROUP)
 public class CompoundIconsBundle {
     public IconBundle mStartIconBundle = new IconBundle();
     public IconBundle mTopIconBundle = new IconBundle();
