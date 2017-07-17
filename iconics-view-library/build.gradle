@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 
+group "com.mikepenz"
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -7,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2890
+        versionName "2.8.9"
     }
     buildTypes {
         release {
@@ -16,9 +18,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+if (project.hasProperty('pushall') || project.hasProperty('libraryviewsonly')) {
+    apply from: '../gradle-mvn-push.gradle'
+    apply plugin: 'com.novoda.bintray-release'
+    apply from: '../gradle-jcenter-push.gradle'
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile project(':library-core')
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 }
