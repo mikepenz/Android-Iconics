@@ -50,7 +50,7 @@ dependencies {
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
     // https://github.com/mikepenz/Materialize
-    compile 'com.mikepenz:materialize:1.0.2@aar'
+    compile 'com.mikepenz:materialize:1.0.3@aar'
 
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
@@ -60,7 +60,7 @@ dependencies {
 
     //used to generate the drawer on the left
     //https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.9.2@aar') {
+    compile('com.mikepenz:materialdrawer:5.9.4@aar') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
@@ -68,7 +68,7 @@ dependencies {
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    compile('com.mikepenz:aboutlibraries:5.9.5@aar') {
+    compile('com.mikepenz:aboutlibraries:5.9.6@aar') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
