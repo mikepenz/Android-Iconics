@@ -46,9 +46,17 @@ Provide additional fonts for you project, or even create your custom font with j
 
 ## 1. Provide the gradle dependency
 ```gradle
-compile "com.mikepenz:iconics-core:2.8.9@aar"
+//the core iconcis library (without any widgets)
+compile "com.mikepenz:iconics-core:2.9.0@aar"
+```
+
+## 1b. (optional) Add the view's dependency
+```
+//this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
+compile "com.mikepenz:iconics-core:2.9.0@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
+
 
 ## 2. Choose your desired fonts
 ```gradle
@@ -291,6 +299,9 @@ All other ProGuard rules are now bundled internally with each font.
 You can try the sample application out. It's on Google Play ;)
 https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
+# Special Contributor
+- [Peter Gulko](https://github.com/zTrap) Thanks for providing better XML support for compound Iconics drawables, and for doing the initial work of splitting up core and views library
+- Also thanks for all the other contributors.
 
 # Credits
 - [Joan Zapata](https://github.com/JoanZapata) He is the creator of [Android-Iconify](https://github.com/JoanZapata/android-iconify) which gave me the idea of this project. Some core concepts and ideas were reused, but everything is written from scratch.
