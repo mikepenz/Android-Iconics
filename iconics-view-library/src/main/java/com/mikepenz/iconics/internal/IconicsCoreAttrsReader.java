@@ -4,7 +4,7 @@ import android.content.res.TypedArray;
 import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
 
-import com.mikepenz.iconics.core.R;
+import com.mikepenz.iconics.view.R;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -13,7 +13,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 @RestrictTo(LIBRARY_GROUP)
 public class IconicsCoreAttrsReader {
-    
+
     //region IconicsImageView
     public static void readIconicsImageView(TypedArray a, IconBundle bundle) {
         bundle.mIconString = a.getString(R.styleable.IconicsImageView_iiv_icon);

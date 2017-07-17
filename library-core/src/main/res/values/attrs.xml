@@ -15,17 +15,6 @@
   -->
 
 <resources>
-    <declare-styleable name="IconicsImageView">
-        <attr name="iiv_icon" format="string" />
-        <attr name="iiv_color" format="color|reference" />
-        <attr name="iiv_size" format="dimension|reference" />
-        <attr name="iiv_padding" format="dimension|reference" />
-        <attr name="iiv_contour_color" format="color|reference" />
-        <attr name="iiv_contour_width" format="dimension|reference" />
-        <attr name="iiv_background_color" format="color|reference" />
-        <attr name="iiv_corner_radius" format="dimension|reference" />
-    </declare-styleable>
-
     <declare-styleable name="Iconics">
         <attr name="ico_icon" format="string" />
         <attr name="ico_color" format="color|reference" />
