@@ -1,6 +1,11 @@
 ##Upgrade Notes
 
 ### Library
+#### 2.9.0
+* The library-core was split apart into **iconics-core** and **iconics-views** to slim down the **iconics-core** and allow more advanced UI features in the **iconics-views**
+* the core dep stays the same: `compile "com.mikepenz:iconics-core:2.9.0@aar"`
+* for all UI widgets add `compile "com.mikepenz:iconics-views:2.9.0@aar"`
+
 #### 2.8.0
 * Dropping support for API < 14. New `MinSdkVersion` is now 14
 

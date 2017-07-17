@@ -10,6 +10,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -140,30 +141,42 @@ public class IconsFragment extends Fragment {
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, List payloads) {
                 IconItem.ViewHolder holder = (IconItem.ViewHolder) viewHolder;
 
-                //as we overwrite the default listener
-                mAdapter.getItem(position).bindView(holder, payloads);
+                IconItem item = mAdapter.getItem(position);
 
-                if (randomize) {
-                    holder.image.setColorRes(getRandomColor(position));
-                    holder.image.setPaddingDp(random.nextInt(12));
+                if(item != null) {
+                    //set the R.id.fastadapter_item tag of this item to the item object (can be used when retrieving the view)
+                    viewHolder.itemView.setTag(com.mikepenz.fastadapter.R.id.fastadapter_item, item);
 
-                    holder.image.setContourWidthDp(random.nextInt(2));
-                    holder.image.setContourColor(getRandomColor(position - 2));
+                    //as we overwrite the default listener
+                    item.bindView(holder, payloads);
+
+                    if (randomize) {
+                        holder.image.setColorRes(getRandomColor(position));
+                        holder.image.setPaddingDp(random.nextInt(12));
+
+                        holder.image.setContourWidthDp(random.nextInt(2));
+                        holder.image.setContourColor(getRandomColor(position - 2));
 
 
-                    int y = random.nextInt(10);
-                    if (y % 4 == 0) {
-                        holder.image.setBackgroundColorRes(getRandomColor(position - 4));
-                        holder.image.setRoundedCornersDp(2 + random.nextInt(10));
+                        int y = random.nextInt(10);
+                        if (y % 4 == 0) {
+                            holder.image.setBackgroundColorRes(getRandomColor(position - 4));
+                            holder.image.setRoundedCornersDp(2 + random.nextInt(10));
+                        }
                     }
                 }
             }
 
             @Override
             public void unBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-                IconItem item = mAdapter.getItem(position);
+                IconItem item = (IconItem) viewHolder.itemView.getTag(com.mikepenz.fastadapter.R.id.fastadapter_item);
                 if (item != null) {
                     item.unbindView((IconItem.ViewHolder) viewHolder);
+                    //remove set tag's
+                    viewHolder.itemView.setTag(com.mikepenz.fastadapter.R.id.fastadapter_item, null);
+                    viewHolder.itemView.setTag(com.mikepenz.fastadapter.R.id.fastadapter_item_adapter, null);
+                } else {
+                    Log.e("FastAdapter", "The bindView method of this item should set the `Tag` on its itemView (https://github.com/mikepenz/FastAdapter/blob/develop/library-core/src/main/java/com/mikepenz/fastadapter/items/AbstractItem.java#L189)");
                 }
             }
 

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 
 group "com.mikepenz"
-version "2.9.0"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -23,12 +22,14 @@ android {
         abortOnError false
     }
 }
-if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
+
+if (project.hasProperty('pushall') || project.hasProperty('libraryviewsonly')) {
     apply from: '../gradle-mvn-push.gradle'
     apply plugin: 'com.novoda.bintray-release'
     apply from: '../gradle-jcenter-push.gradle'
 }
 
 dependencies {
+    compile project(':library-core')
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 }

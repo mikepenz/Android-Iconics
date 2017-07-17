@@ -9,9 +9,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.mikepenz.iconics.core.R;
-import com.mikepenz.iconics.internal.AttributeSetReader;
 import com.mikepenz.iconics.internal.IconBundle;
+import com.mikepenz.iconics.internal.IconicsCoreAttrsReader;
+import com.mikepenz.iconics.view.R;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -23,16 +23,22 @@ import java.util.HashMap;
  * Created by flisar on 23.05.2017.
  */
 public class IconicsMenuInflaterUtil {
-    
-    /** Menu tag name in XML. */
+
+    /**
+     * Menu tag name in XML.
+     */
     private static final String XML_MENU = "menu";
-    
-    /** Group tag name in XML. */
+
+    /**
+     * Group tag name in XML.
+     */
     private static final String XML_GROUP = "group";
-    
-    /** Item tag name in XML. */
+
+    /**
+     * Item tag name in XML.
+     */
     private static final String XML_ITEM = "item";
-    
+
     /*
      * Default menu inflater
      * Uses the IconicsImageView styleable tags to get the iconics data of menu items
@@ -40,7 +46,7 @@ public class IconicsMenuInflaterUtil {
     public static void inflate(MenuInflater inflater, Context context, int menuId, Menu menu) {
         inflate(inflater, context, menuId, menu, false);
     }
-    
+
     /*
      * Default menu inflater
      * Uses the IconicsImageView styleable tags to get the iconics data of menu items
@@ -60,13 +66,13 @@ public class IconicsMenuInflaterUtil {
             e.printStackTrace();
         }
     }
-    
+
     private static void parseMenu(Context context, AttributeSet attrs, XmlPullParser parser, Menu menu, boolean checkSubMenus) throws XmlPullParserException, IOException {
         int eventType = parser.getEventType();
         String tagName;
         boolean lookingForEndOfUnknownTag = false;
         String unknownTagName = null;
-        
+
         // This loop will skip to the menu start tag
         do {
             if (eventType == XmlPullParser.START_TAG) {
@@ -76,12 +82,12 @@ public class IconicsMenuInflaterUtil {
                     eventType = parser.next();
                     break;
                 }
-                
+
                 throw new RuntimeException("Expecting menu, got " + tagName);
             }
             eventType = parser.next();
         } while (eventType != XmlPullParser.END_DOCUMENT);
-        
+
         boolean reachedEndOfMenu = false;
         while (!reachedEndOfMenu) {
             switch (eventType) {
@@ -89,34 +95,34 @@ public class IconicsMenuInflaterUtil {
                     if (lookingForEndOfUnknownTag) {
                         break;
                     }
-                    
+
                     tagName = parser.getName();
                     if (tagName.equals(XML_GROUP)) {
                         //
                     } else if (tagName.equals(XML_ITEM)) {
-                        
+
                         HashMap<String, String> attr = new HashMap<>();
                         for (int i = 0; i < parser.getAttributeCount(); i++) {
                             attr.put(parser.getAttributeName(i), parser.getAttributeValue(i));
                         }
-                        
+
                         //region trying to set normal icon
                         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
                         IconBundle normalBundle = new IconBundle();
-                        
-                        AttributeSetReader.readIconicsImageView(a, normalBundle);
-                        
+
+                        IconicsCoreAttrsReader.readIconicsImageView(a, normalBundle);
+
                         int id = Integer.parseInt(attr.get("id").replace("@", ""));
                         MenuItem item = menu.findItem(id);
-                        
+
                         if (normalBundle.createIcon(context)) {
                             item.setIcon(normalBundle.mIcon);
                         }
                         a.recycle();
                         //endregion
-                        
+
                     } else if (tagName.equals(XML_MENU)) {
-                        
+
                         // TODO: maybe we must pass in the sub menu in this case, not sure if the function menu.findItem(id) will search through sub items
                         if (checkSubMenus)
                             parseMenu(context, attrs, parser, menu, checkSubMenus);
@@ -125,7 +131,7 @@ public class IconicsMenuInflaterUtil {
                         unknownTagName = tagName;
                     }
                     break;
-                
+
                 case XmlPullParser.END_TAG:
                     tagName = parser.getName();
                     if (lookingForEndOfUnknownTag && tagName.equals(unknownTagName)) {
@@ -143,11 +149,11 @@ public class IconicsMenuInflaterUtil {
                         reachedEndOfMenu = true;
                     }
                     break;
-                
+
                 case XmlPullParser.END_DOCUMENT:
                     throw new RuntimeException("Unexpected end of document");
             }
-            
+
             eventType = parser.next();
         }
     }
