@@ -26,11 +26,10 @@ import android.util.AttributeSet;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.core.R;
-import com.mikepenz.iconics.internal.AttributeSetReader;
+import com.mikepenz.iconics.internal.IconicsView;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables;
 import com.mikepenz.iconics.internal.CompoundIconsBundle;
-import com.mikepenz.iconics.internal.IconicsView;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -69,7 +68,7 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
         
-        AttributeSetReader.readIconicsTextView(a, mIconsBundle);
+        IconicsViewsAttrsReader.readIconicsTextView(a, mIconsBundle);
         
         //recycle the typedArray
         a.recycle();

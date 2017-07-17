@@ -6,10 +6,12 @@ import android.support.annotation.RestrictTo;
 
 import com.mikepenz.iconics.IconicsDrawable;
 
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+
 /**
  * @author zTrap (09.07.2017)
  */
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+@RestrictTo(LIBRARY_GROUP)
 public interface CheckedCompoundIconicsDrawables {
     @Nullable
     IconicsDrawable getCheckedIconicsDrawableStart();

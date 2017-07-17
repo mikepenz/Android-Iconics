@@ -10,10 +10,9 @@ import android.widget.CompoundButton;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.core.R;
-import com.mikepenz.iconics.internal.AttributeSetReader;
-import com.mikepenz.iconics.internal.CheckableIconBundle;
 import com.mikepenz.iconics.internal.IconicsView;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
+import com.mikepenz.iconics.internal.CheckableIconBundle;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -54,8 +53,8 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     @SuppressLint("CustomViewStyleable")
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCompoundButton, defStyle, 0);
-        
-        AttributeSetReader.readIconicsCompoundButton(a, mIconsBundle);
+    
+        IconicsViewsAttrsReader.readIconicsCompoundButton(a, mIconsBundle);
     
         //recycle the typedArray
         a.recycle();

@@ -13,8 +13,7 @@ import android.view.SoundEffectConstants;
 import android.widget.Checkable;
 
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.core.R;
-import com.mikepenz.iconics.internal.AttributeSetReader;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import com.mikepenz.iconics.internal.CheckedCompoundIconicsDrawables;
 import com.mikepenz.iconics.internal.CompoundIconsBundle;
 import com.mikepenz.iconics.utils.Utils;
@@ -79,8 +78,8 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView, defStyle, 0);
         
         mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);
-        
-        AttributeSetReader.readIconicsCheckableTextView(a, mCheckedIconsBundle);
+    
+        IconicsViewsAttrsReader.readIconicsCheckableTextView(a, mCheckedIconsBundle);
     
         //recycle the typedArray
         a.recycle();

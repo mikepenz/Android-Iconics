@@ -4,29 +4,16 @@ import android.content.res.TypedArray;
 import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
 
-import com.mikepenz.iconics.core.R;
 import com.mikepenz.iconics.utils.Utils;
+import com.mikepenz.iconics.view.R;
+
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * @author pa.gulko zTrap (07.07.2017)
  */
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
-public class AttributeSetReader {
-    
-    //region IconicsImageView
-    public static void readIconicsImageView(TypedArray a, IconBundle bundle) {
-        bundle.mIconString = a.getString(R.styleable.IconicsImageView_iiv_icon);
-        if (!TextUtils.isEmpty(bundle.mIconString)) {
-            bundle.mColor = a.getColor(R.styleable.IconicsImageView_iiv_color, 0);
-            bundle.mSize = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
-            bundle.mPadding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
-            bundle.mContourColor = a.getColor(R.styleable.IconicsImageView_iiv_contour_color, 0);
-            bundle.mContourWidth = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_contour_width, -1);
-            bundle.mBackgroundColor = a.getColor(R.styleable.IconicsImageView_iiv_background_color, 0);
-            bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_corner_radius, -1);
-        }
-    }
-    //endregion
+@RestrictTo(LIBRARY_GROUP)
+public class IconicsViewsAttrsReader {
     
     //region IconicsTextView
     
@@ -44,19 +31,19 @@ public class AttributeSetReader {
         IconBundle allIconBundle = new IconBundle();
         
         //obtaining attributes for all icons
-        AttributeSetReader.readIconicsTextViewAll(a, allIconBundle);
+        readIconicsTextViewAll(a, allIconBundle);
         
         //obtaining attributes for start icons
-        AttributeSetReader.readIconicsTextViewStart(a, bundle.mStartIconBundle, allIconBundle);
+        readIconicsTextViewStart(a, bundle.mStartIconBundle, allIconBundle);
         
         //obtaining attributes for top icons
-        AttributeSetReader.readIconicsTextViewTop(a, bundle.mTopIconBundle, allIconBundle);
+        readIconicsTextViewTop(a, bundle.mTopIconBundle, allIconBundle);
         
         //obtaining attributes for end icons
-        AttributeSetReader.readIconicsTextViewEnd(a, bundle.mEndIconBundle, allIconBundle);
+        readIconicsTextViewEnd(a, bundle.mEndIconBundle, allIconBundle);
         
         //obtaining attributes for bottom icons
-        AttributeSetReader.readIconicsTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
+        readIconicsTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
         
     }
     
@@ -177,19 +164,19 @@ public class AttributeSetReader {
         IconBundle allIconBundle = new IconBundle();
         
         //obtaining attributes for all icons
-        AttributeSetReader.readIconicsCheckableTextViewAll(a, allIconBundle);
+        readIconicsCheckableTextViewAll(a, allIconBundle);
         
         //obtaining attributes for start icons
-        AttributeSetReader.readIconicsCheckableTextViewStart(a, bundle.mStartIconBundle, allIconBundle);
+        readIconicsCheckableTextViewStart(a, bundle.mStartIconBundle, allIconBundle);
         
         //obtaining attributes for top icons
-        AttributeSetReader.readIconicsCheckableTextViewTop(a, bundle.mTopIconBundle, allIconBundle);
+        readIconicsCheckableTextViewTop(a, bundle.mTopIconBundle, allIconBundle);
         
         //obtaining attributes for end icons
-        AttributeSetReader.readIconicsCheckableTextViewEnd(a, bundle.mEndIconBundle, allIconBundle);
+        readIconicsCheckableTextViewEnd(a, bundle.mEndIconBundle, allIconBundle);
         
         //obtaining attributes for bottom icons
-        AttributeSetReader.readIconicsCheckableTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
+        readIconicsCheckableTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
         
     }
     

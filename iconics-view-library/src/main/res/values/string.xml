@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_icon"> </string>
+    <integer name="default_color">0</integer>
+    <integer name="default_size">-1</integer>
+    <integer name="default_padding">-1</integer>
+    <integer name="default_contour_color">0</integer>
+    <integer name="default_contour_width">-1</integer>
+    <integer name="default_background_color">0</integer>
+    <integer name="default_corner_radius">-1</integer>
+</resources>

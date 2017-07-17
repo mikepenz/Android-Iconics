@@ -6,10 +6,12 @@ import android.support.annotation.RestrictTo;
 
 import com.mikepenz.iconics.utils.Utils;
 
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+
 /**
  * @author pa.gulko zTrap (07.07.2017)
  */
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+@RestrictTo(LIBRARY_GROUP)
 public class CheckableIconBundle {
     public boolean mAnimateChanges;
     public IconBundle mCheckedIconBundle = new IconBundle();
