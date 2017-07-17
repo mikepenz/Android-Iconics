@@ -1,0 +1,8 @@
+title: Android-iconics
+description: Android-Iconics - Use any icon font, or vector (.svg) as drawable in your application.
+google_analytics: UA-56332427-1
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
