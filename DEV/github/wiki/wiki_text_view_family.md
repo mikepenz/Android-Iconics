@@ -1,9 +1,9 @@
 # IconicsTextView Family
 
 ##### Members
-- [IconicsTextView](#TextView)
-- [IconicsButton](#Button)
-- [IconicsCheckableTextView](#CheckableTextView)
+- [IconicsTextView](#textView)
+- [IconicsButton](#button)
+- [IconicsCheckableTextView](#checkableTextView)
 
 ## All possible attributes
 
