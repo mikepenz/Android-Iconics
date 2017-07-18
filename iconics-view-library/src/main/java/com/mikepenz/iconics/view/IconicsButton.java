@@ -79,6 +79,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
         mIconsBundle.setIcons(this);
     }
 
+    //region CompoundIconicsDrawablesImpl
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableStart() {
@@ -142,6 +143,16 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
         mIconsBundle.mBottomIconBundle.mIcon = drawable;
         setIcons();
     }
+
+    @Override
+    public void setDrawableForAll(@Nullable Drawable drawable) {
+        mIconsBundle.mStartIconBundle.mIcon = drawable;
+        mIconsBundle.mTopIconBundle.mIcon = drawable;
+        mIconsBundle.mEndIconBundle.mIcon = drawable;
+        mIconsBundle.mBottomIconBundle.mIcon = drawable;
+        setIcons();
+    }
+    //endregion
 
     @Override
     public void setText(CharSequence text, BufferType type) {

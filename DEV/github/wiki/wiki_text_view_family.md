@@ -1,9 +1,9 @@
 # IconicsTextView Family
 
 ##### Members
-- [IconicsTextView](#textView)
+- [IconicsTextView](#textview)
 - [IconicsButton](#button)
-- [IconicsCheckableTextView](#checkableTextView)
+- [IconicsCheckableTextView](#checkabletextview)
 
 ## All possible attributes
 
@@ -50,7 +50,7 @@ Working like as `style` - local overrides global
 
 **IMPORTANT TRICK**
 
-For overriding some of attributes to default use resources with prefix `default_`.
+For overriding some of attributes to default use resources with prefix `default_`
 
 ```xml
 <com.mikepenz.iconics.view.IconicsTextView
@@ -60,7 +60,7 @@ For overriding some of attributes to default use resources with prefix `default_
     app:iiv_all_size="24dp"
     app:iiv_bottom_icon="@string/default_icon"/>
 ```
-![text_view_sample_3.PNG](text_view_sample_3.PNG)
+![text_view_sample_3.PNG][1]
 
 ## Usage examples
 
@@ -73,7 +73,7 @@ For overriding some of attributes to default use resources with prefix `default_
     android:textColor="@android:color/black"
     android:textSize="16sp"/>
 ```
-![text_view_sample_1.PNG](text_view_sample_1.PNG)
+![text_view_sample_1.PNG][2]
 
 ```xml
 <com.mikepenz.iconics.view.IconicsTextView
@@ -86,7 +86,7 @@ For overriding some of attributes to default use resources with prefix `default_
     app:iiv_all_icon="@string/gmd_account_circle"
     app:iiv_all_size="24dp"/>
 ```
-![text_view_sample_2.PNG](text_view_sample_2.PNG)
+![text_view_sample_2.PNG][3]
 
 ### Button
 ```xml
@@ -99,7 +99,7 @@ For overriding some of attributes to default use resources with prefix `default_
     app:iiv_all_icon="@string/faw_android"
     app:iiv_all_size="24dp"/>
 ```
-![button_sample_1.PNG](button_sample_1.PNG)
+![button_sample_1.PNG][4]
 
 ```xml
 <com.mikepenz.iconics.view.IconicsButton
@@ -108,7 +108,7 @@ For overriding some of attributes to default use resources with prefix `default_
     android:layout_weight="1"
     android:text="{faw-adjust} Button"/>
 ```
-![button_sample_2.PNG](button_sample_2.PNG)
+![button_sample_2.PNG][5]
 
 ### CheckableTextView
 ```xml
@@ -144,8 +144,16 @@ For overriding some of attributes to default use resources with prefix `default_
 ```
 Normal
 
-![checkable_text_view_sample_1.PNG](checkable_text_view_sample_1.PNG)
+![checkable_text_view_sample_1.PNG][6]
 
 Checked
 
-![checkable_text_view_sample_2.PNG](checkable_text_view_sample_2.PNG)
+![checkable_text_view_sample_2.PNG][7]
+
+  [1]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/text_view_sample_3.PNG
+  [2]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/text_view_sample_1.PNG
+  [3]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/text_view_sample_2.PNG
+  [4]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/button_sample_1.PNG
+  [5]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/button_sample_2.PNG
+  [6]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/checkable_text_view_sample_1.PNG
+  [7]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/checkable_text_view_sample_2.PNG

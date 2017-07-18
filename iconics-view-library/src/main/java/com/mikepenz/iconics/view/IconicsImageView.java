@@ -29,8 +29,8 @@ import android.util.AttributeSet;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.internal.IconBundle;
-import com.mikepenz.iconics.internal.IconicsCoreAttrsReader;
 import com.mikepenz.iconics.internal.IconicsView;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.utils.Utils;
 
@@ -77,7 +77,7 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView, defStyle, 0);
 
         //set the color even if we had no image yet
-        IconicsCoreAttrsReader.readIconicsImageView(a, mIconBundle);
+        IconicsViewsAttrsReader.readIconicsImageView(a, mIconBundle);
 
         //recycle the typedArray
         a.recycle();

@@ -181,6 +181,7 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
         return handled;
     }
 
+    //region CheckedCompoundIconicsDrawablesImpl
     @Nullable
     @Override
     public IconicsDrawable getCheckedIconicsDrawableStart() {
@@ -244,6 +245,16 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
         mCheckedIconsBundle.mBottomIconBundle.mIcon = drawable;
         setIcons();
     }
+
+    @Override
+    public void setCheckedDrawableForAll(@Nullable Drawable drawable) {
+        mCheckedIconsBundle.mStartIconBundle.mIcon = drawable;
+        mCheckedIconsBundle.mTopIconBundle.mIcon = drawable;
+        mCheckedIconsBundle.mEndIconBundle.mIcon = drawable;
+        mCheckedIconsBundle.mBottomIconBundle.mIcon = drawable;
+        setIcons();
+    }
+    //endregion
 
     public interface OnCheckedChangeListener {
         void onCheckedChanged(IconicsCheckableTextView buttonView, boolean isChecked);

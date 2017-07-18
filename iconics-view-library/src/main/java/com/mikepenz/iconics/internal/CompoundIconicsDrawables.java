@@ -32,4 +32,6 @@ public interface CompoundIconicsDrawables {
     void setDrawableEnd(@Nullable Drawable drawable);
 
     void setDrawableBottom(@Nullable Drawable drawable);
+
+    void setDrawableForAll(@Nullable Drawable drawable);
 }
