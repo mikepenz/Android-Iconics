@@ -11,7 +11,6 @@ For all the family available this attributes
 
 | Name | Format | Description |
 | --- | --- | --- |
-| app:iiv_animate_icon_changes       | boolean               | set fade animation for icons changing
 | app:iiv_**SIDE***_icon             | string                | set icon
 | app:iiv_**SIDE***_color            | color / reference     | set icon color
 | app:iiv_**SIDE***_size             | dimension / reference | set icon size
@@ -25,6 +24,7 @@ For `CheckableTextView` also available this attributes
 
 | Name | Format | Description |
 | --- | --- | --- |
+| app:iiv_animate_icon_changes               | boolean               | set fade animation for icons changing
 | app:iiv_**SIDE***_checked_icon             | string                | set icon
 | app:iiv_**SIDE***_checked_color            | color / reference     | set icon color
 | app:iiv_**SIDE***_checked_size             | dimension / reference | set icon size
