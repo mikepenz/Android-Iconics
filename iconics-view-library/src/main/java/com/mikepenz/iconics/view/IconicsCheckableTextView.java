@@ -77,8 +77,6 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView, defStyle, 0);
 
-        mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);
-
         IconicsViewsAttrsReader.readIconicsCheckableTextView(a, mCheckedIconsBundle);
 
         //recycle the typedArray
