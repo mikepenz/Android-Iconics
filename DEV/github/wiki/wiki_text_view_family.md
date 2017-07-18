@@ -1,9 +1,9 @@
 # IconicsTextView Family
 
 ##### Members
-- [IconicsTextView](#textview)
-- [IconicsButton](#button)
-- [IconicsCheckableTextView](#checkabletextview)
+- [IconicsTextView](#iconicstextview)
+- [IconicsButton](#iconicsbutton)
+- [IconicsCheckableTextView](#iconicscheckabletextview)
 
 ## All possible attributes
 
@@ -11,29 +11,30 @@ For all the family available this attributes
 
 | Name | Format | Description |
 | --- | --- | --- |
-| app:iiv_**VARIABLE***_icon             | string                | set icon
-| app:iiv_**VARIABLE***_color            | color / reference     | set icon color
-| app:iiv_**VARIABLE***_size             | dimension / reference | set icon size
-| app:iiv_**VARIABLE***_padding          | dimension / reference | set icon padding
-| app:iiv_**VARIABLE***_contour_color    | color / reference     | set contour color
-| app:iiv_**VARIABLE***_contour_width    | dimension / reference | set contour width
-| app:iiv_**VARIABLE***_background_color | color / reference     | set background color
-| app:iiv_**VARIABLE***_corner_radius    | dimension / reference | set corner radius
+| app:iiv_animate_icon_changes       | boolean               | set fade animation for icons changing
+| app:iiv_**SIDE***_icon             | string                | set icon
+| app:iiv_**SIDE***_color            | color / reference     | set icon color
+| app:iiv_**SIDE***_size             | dimension / reference | set icon size
+| app:iiv_**SIDE***_padding          | dimension / reference | set icon padding
+| app:iiv_**SIDE***_contour_color    | color / reference     | set contour color
+| app:iiv_**SIDE***_contour_width    | dimension / reference | set contour width
+| app:iiv_**SIDE***_background_color | color / reference     | set background color
+| app:iiv_**SIDE***_corner_radius    | dimension / reference | set corner radius
 
 For `CheckableTextView` also available this attributes
 
 | Name | Format | Description |
 | --- | --- | --- |
-| app:iiv_**VARIABLE***_checked_icon             | string                | set icon
-| app:iiv_**VARIABLE***_checked_color            | color / reference     | set icon color
-| app:iiv_**VARIABLE***_checked_size             | dimension / reference | set icon size
-| app:iiv_**VARIABLE***_checked_padding          | dimension / reference | set icon padding
-| app:iiv_**VARIABLE***_checked_contour_color    | color / reference     | set contour color
-| app:iiv_**VARIABLE***_checked_contour_width    | dimension / reference | set contour width
-| app:iiv_**VARIABLE***_checked_background_color | color / reference     | set background color
-| app:iiv_**VARIABLE***_checked_corner_radius    | dimension / reference | set corner radius
+| app:iiv_**SIDE***_checked_icon             | string                | set icon
+| app:iiv_**SIDE***_checked_color            | color / reference     | set icon color
+| app:iiv_**SIDE***_checked_size             | dimension / reference | set icon size
+| app:iiv_**SIDE***_checked_padding          | dimension / reference | set icon padding
+| app:iiv_**SIDE***_checked_contour_color    | color / reference     | set contour color
+| app:iiv_**SIDE***_checked_contour_width    | dimension / reference | set contour width
+| app:iiv_**SIDE***_checked_background_color | color / reference     | set background color
+| app:iiv_**SIDE***_checked_corner_radius    | dimension / reference | set corner radius
 
-***VARIABLE** - variable which used for define side where will be placed `IconicsDrawable`.
+***SIDE** - variant of definition side where will be placed `IconicsDrawable`.
 
 Available variants:
 
@@ -60,11 +61,11 @@ For overriding some of attributes to default use resources with prefix `default_
     app:iiv_all_size="24dp"
     app:iiv_bottom_icon="@string/default_icon"/>
 ```
-![text_view_sample_3.PNG][1]
+![text_view_sample_3][1]
 
 ## Usage examples
 
-### TextView
+### IconicsTextView
 ```xml
 <com.mikepenz.iconics.view.IconicsTextView
     android:layout_width="wrap_content"
@@ -73,7 +74,7 @@ For overriding some of attributes to default use resources with prefix `default_
     android:textColor="@android:color/black"
     android:textSize="16sp"/>
 ```
-![text_view_sample_1.PNG][2]
+![text_view_sample_1][2]
 
 ```xml
 <com.mikepenz.iconics.view.IconicsTextView
@@ -86,9 +87,9 @@ For overriding some of attributes to default use resources with prefix `default_
     app:iiv_all_icon="@string/gmd_account_circle"
     app:iiv_all_size="24dp"/>
 ```
-![text_view_sample_2.PNG][3]
+![text_view_sample_2][3]
 
-### Button
+### IconicsButton
 ```xml
 <com.mikepenz.iconics.view.IconicsButton
     android:layout_width="wrap_content"
@@ -99,7 +100,7 @@ For overriding some of attributes to default use resources with prefix `default_
     app:iiv_all_icon="@string/faw_android"
     app:iiv_all_size="24dp"/>
 ```
-![button_sample_1.PNG][4]
+![button_sample_1][4]
 
 ```xml
 <com.mikepenz.iconics.view.IconicsButton
@@ -108,9 +109,9 @@ For overriding some of attributes to default use resources with prefix `default_
     android:layout_weight="1"
     android:text="{faw-adjust} Button"/>
 ```
-![button_sample_2.PNG][5]
+![button_sample_2][5]
 
-### CheckableTextView
+### IconicsCheckableTextView
 ```xml
 <com.mikepenz.iconics.view.IconicsCheckableTextView
     android:layout_width="wrap_content"
@@ -144,11 +145,11 @@ For overriding some of attributes to default use resources with prefix `default_
 ```
 Normal
 
-![checkable_text_view_sample_1.PNG][6]
+![checkable_text_view_sample_1][6]
 
 Checked
 
-![checkable_text_view_sample_2.PNG][7]
+![checkable_text_view_sample_2][7]
 
   [1]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/text_view_sample_3.PNG
   [2]: https://github.com/zTrap/Android-Iconics/blob/develop/DEV/github/wiki/text_view_sample_1.PNG
