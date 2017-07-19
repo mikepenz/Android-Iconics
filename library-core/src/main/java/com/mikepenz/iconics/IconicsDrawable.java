@@ -77,7 +77,7 @@ public class IconicsDrawable extends Drawable {
      * Size of {@link android.support.v7.widget.Toolbar} icon padding in dp
      * */
     @Dimension(unit = DP)
-    public static final int TOOLBAR_ICON_SIZE_PADDING = 1;
+    public static final int TOOLBAR_ICON_PADDING = 1;
 
     /**
      * @deprecated use {@link #TOOLBAR_ICON_SIZE} instead
@@ -86,10 +86,10 @@ public class IconicsDrawable extends Drawable {
     public static final int ANDROID_ACTIONBAR_ICON_SIZE_DP = TOOLBAR_ICON_SIZE;
 
     /**
-     * @deprecated use {@link #TOOLBAR_ICON_SIZE_PADDING} instead
+     * @deprecated use {@link #TOOLBAR_ICON_PADDING} instead
      * */
     @Deprecated
-    public static final int ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP = TOOLBAR_ICON_SIZE_PADDING;
+    public static final int ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP = TOOLBAR_ICON_PADDING;
 
     private Context mContext;
 
@@ -466,7 +466,7 @@ public class IconicsDrawable extends Drawable {
      */
     public IconicsDrawable actionBar() {
         sizeDp(TOOLBAR_ICON_SIZE);
-        paddingDp(TOOLBAR_ICON_SIZE_PADDING);
+        paddingDp(TOOLBAR_ICON_PADDING);
         return this;
     }
 
