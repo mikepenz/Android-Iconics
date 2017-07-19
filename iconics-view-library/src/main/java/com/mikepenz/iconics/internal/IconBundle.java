@@ -3,6 +3,7 @@ package com.mikepenz.iconics.internal;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
 
@@ -33,8 +34,8 @@ public class IconBundle {
         return createIconFromBundle(this, context);
     }
 
-    public static boolean createIconFromBundle(IconBundle bundle, Context ctx) {
-        if (bundle.mIconString != null && !TextUtils.isEmpty(bundle.mIconString.trim())) {
+    public static boolean createIconFromBundle(@Nullable IconBundle bundle, Context ctx) {
+        if (bundle != null && bundle.mIconString != null && !TextUtils.isEmpty(bundle.mIconString.trim())) {
             bundle.mIcon = new IconicsDrawable(ctx, bundle.mIconString);
             return applyNonDefaultProperties(bundle);
         } else {
@@ -46,8 +47,8 @@ public class IconBundle {
         return applyProperties(this);
     }
 
-    public static boolean applyProperties(IconBundle bundle) {
-        if (!(bundle.mIcon instanceof IconicsDrawable)) {
+    public static boolean applyProperties(@Nullable IconBundle bundle) {
+        if (bundle == null || !(bundle.mIcon instanceof IconicsDrawable)) {
             return false;
         }
         IconicsDrawable iconicsDrawable = (IconicsDrawable) bundle.mIcon;
@@ -67,8 +68,8 @@ public class IconBundle {
         return applyNonDefaultProperties(this);
     }
 
-    public static boolean applyNonDefaultProperties(IconBundle bundle) {
-        if (!(bundle.mIcon instanceof IconicsDrawable)) {
+    public static boolean applyNonDefaultProperties(@Nullable IconBundle bundle) {
+        if (bundle == null || !(bundle.mIcon instanceof IconicsDrawable)) {
             return false;
         }
         IconicsDrawable iconicsDrawable = (IconicsDrawable) bundle.mIcon;
