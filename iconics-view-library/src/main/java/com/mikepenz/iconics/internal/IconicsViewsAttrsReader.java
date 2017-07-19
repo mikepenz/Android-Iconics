@@ -196,15 +196,15 @@ public class IconicsViewsAttrsReader {
     }
 
     public static void readIconicsCheckableTextViewAll(TypedArray a, IconBundle bundle) {
-        bundle.mIconString = a.getString(R.styleable.IconicsTextView_iiv_all_icon);
+        bundle.mIconString = a.getString(R.styleable.IconicsCheckableTextView_iiv_all_checked_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
-            bundle.mColor = a.getColor(R.styleable.IconicsTextView_iiv_all_color, 0);
-            bundle.mSize = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_size, -1);
-            bundle.mPadding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_padding, -1);
-            bundle.mContourColor = a.getColor(R.styleable.IconicsTextView_iiv_all_contour_color, 0);
-            bundle.mContourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_contour_width, -1);
-            bundle.mBackgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_all_background_color, 0);
-            bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_corner_radius, -1);
+            bundle.mColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_color, 0);
+            bundle.mSize = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_size, -1);
+            bundle.mPadding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_padding, -1);
+            bundle.mContourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_color, 0);
+            bundle.mContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_width, -1);
+            bundle.mBackgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_color, 0);
+            bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_corner_radius, -1);
         }
     }
 
