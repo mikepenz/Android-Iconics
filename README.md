@@ -264,10 +264,12 @@ new Iconics.IconicsBuilder().ctx(this)
 ### String icon-key or typeface enum
 Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:
 ```java
-  new IconicsDrawable(this, "faw-adjust").actionBarSize()
+  new IconicsDrawable(this, "faw-adjust").actionBar()
 ```
 ```java
-  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust).sizeDp(24)
+  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust)
+                .sizeDp(IconicsDrawable.ANDROID_ACTIONBAR_ICON_SIZE_DP) //24dp
+                .paddingDp(IconicsDrawable.ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP) // 1dp
 ```
 
 
