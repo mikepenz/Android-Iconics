@@ -47,19 +47,19 @@ Provide additional fonts for you project, or even create your custom font with j
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconcis library (without any widgets)
-compile "com.mikepenz:iconics-core:2.9.0@aar"
+compile "com.mikepenz:iconics-core:2.9.1@aar"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-compile "com.mikepenz:iconics-core:2.9.0@aar"
+compile "com.mikepenz:iconics-views:2.9.1@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 
 ## 2. Choose your desired fonts
-```gradle
+```groove
 compile 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
 compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.3@aar'
 compile 'com.mikepenz:fontawesome-typeface:4.7.0.1@aar'
@@ -77,6 +77,17 @@ compile 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.1@aar'
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
 Set the `IconicsLayoutInflater` as new `LayoutInflaterFactory`. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml. This is compatible with libs which wrap the `baseContext` like [Calligraphy](https://github.com/chrisjenx/Calligraphy). This does not work on FAB's please use the `Context-Injection` instead.
+If compileSdkVersion >= 26:
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    LayoutInflaterCompat.setFactory2(getLayoutInflater(), new IconicsLayoutInflater2(getDelegate()));
+    //...
+    super.onCreate(savedInstanceState);
+    //...
+}
+```
+Else:
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +121,7 @@ new IconicsDrawable(this)
 ## Use via XML
 
 If you use the Iconics library via XML provide the icon you want to use in the following syntax: `gmd-favorite` --> `fontId`-`iconName`. A list of the
-available fonts and their `fontId` can be found near the end of the README.md
+available fonts and their `fontId` can be found [here](#available-fonts).
 All icon names from the default fonts can be found via the [DEMO](https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample) application.
 
 #### Notation within text
@@ -264,10 +275,10 @@ new Iconics.IconicsBuilder().ctx(this)
 ### String icon-key or typeface enum
 Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:
 ```java
-  new IconicsDrawable(this, "faw-adjust").actionBarSize()
+  new IconicsDrawable(this, "faw-adjust").actionBar()
 ```
 ```java
-  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust).sizeDp(24)
+  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust).sizeDp(24).paddingDp(1)
 ```
 
 

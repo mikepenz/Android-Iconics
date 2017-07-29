@@ -67,8 +67,29 @@ import static android.support.annotation.Dimension.PX;
  * A custom {@link Drawable} which can display icons from icon fonts.
  */
 public class IconicsDrawable extends Drawable {
-    public static final int ANDROID_ACTIONBAR_ICON_SIZE_DP = 24;
-    public static final int ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP = 1;
+    /**
+     * Size of {@link android.support.v7.widget.Toolbar} icon in dp
+     * */
+    @Dimension(unit = DP)
+    public static final int TOOLBAR_ICON_SIZE = 24;
+
+    /**
+     * Size of {@link android.support.v7.widget.Toolbar} icon padding in dp
+     * */
+    @Dimension(unit = DP)
+    public static final int TOOLBAR_ICON_PADDING = 1;
+
+    /**
+     * @deprecated use {@link #TOOLBAR_ICON_SIZE} instead
+     * */
+    @Deprecated
+    public static final int ANDROID_ACTIONBAR_ICON_SIZE_DP = TOOLBAR_ICON_SIZE;
+
+    /**
+     * @deprecated use {@link #TOOLBAR_ICON_PADDING} instead
+     * */
+    @Deprecated
+    public static final int ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP = TOOLBAR_ICON_PADDING;
 
     private Context mContext;
 
@@ -269,11 +290,10 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable color(ColorStateList colors) {
-        if (colors == null) {
-            throw new NullPointerException();
+        if (colors != null) {
+            mIconColor = colors;
+            updateIconColor();
         }
-        mIconColor = colors;
-        updateIconColor();
         return this;
     }
 
@@ -435,7 +455,7 @@ public class IconicsDrawable extends Drawable {
      */
     @Deprecated
     public IconicsDrawable actionBarSize() {
-        return sizeDp(ANDROID_ACTIONBAR_ICON_SIZE_DP);
+        return sizeDp(TOOLBAR_ICON_SIZE);
     }
 
     /**
@@ -444,8 +464,8 @@ public class IconicsDrawable extends Drawable {
      * @return
      */
     public IconicsDrawable actionBar() {
-        sizeDp(ANDROID_ACTIONBAR_ICON_SIZE_DP);
-        paddingDp(ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP);
+        sizeDp(TOOLBAR_ICON_SIZE);
+        paddingDp(TOOLBAR_ICON_PADDING);
         return this;
     }
 

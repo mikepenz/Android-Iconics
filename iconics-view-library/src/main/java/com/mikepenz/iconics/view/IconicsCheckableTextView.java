@@ -3,7 +3,6 @@ package com.mikepenz.iconics.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
@@ -46,25 +45,18 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
     public IconicsCheckableTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setFocusable(true);
-        setClickable(true);
     }
 
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
+        mCheckedIconsBundle = new CompoundIconsBundle();
+        setFocusable(true);
+        setClickable(true);
         //taking normal state attrs
         super.applyAttr(context, attrs, defStyle);
-
         //taking checked state attrs
         applyAttr(context, attrs, defStyle);
-
-        //creating icons from obtained attributes for normal state
-        mIconsBundle.createIcons(context);
-
-        //creating icons from obtained attributes for state_checked
-        mCheckedIconsBundle.createIcons(context);
-
         //setting created icons
         setIcons();
     }
@@ -73,22 +65,11 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
     @RestrictTo(LIBRARY_GROUP)
     @SuppressLint("CustomViewStyleable")
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        mCheckedIconsBundle = new CompoundIconsBundle();
-
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView, defStyle, 0);
-
-        mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);
-
-        IconicsViewsAttrsReader.readIconicsCheckableTextView(a, mCheckedIconsBundle);
-
-        //recycle the typedArray
+        IconicsViewsAttrsReader.readIconicsCheckableTextView(context, a, mCheckedIconsBundle);
         a.recycle();
-
         a = context.obtainStyledAttributes(attrs, R.styleable.IconicsAnimateChanges, defStyle, 0);
-
         mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);
-
-        //recycle the typedArray
         a.recycle();
     }
 
@@ -102,23 +83,23 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
     }
 
     private StateListDrawable createStatesStart() {
-        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mStartIconBundle.mIcon,
-                mCheckedIconsBundle.mStartIconBundle.mIcon, mAnimateChanges);
+        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mStartIconBundle,
+                mCheckedIconsBundle.mStartIconBundle, mAnimateChanges);
     }
 
     private StateListDrawable createStatesTop() {
-        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mTopIconBundle.mIcon,
-                mCheckedIconsBundle.mTopIconBundle.mIcon, mAnimateChanges);
+        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mTopIconBundle,
+                mCheckedIconsBundle.mTopIconBundle, mAnimateChanges);
     }
 
     private StateListDrawable createStatesEnd() {
-        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mEndIconBundle.mIcon,
-                mCheckedIconsBundle.mEndIconBundle.mIcon, mAnimateChanges);
+        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mEndIconBundle,
+                mCheckedIconsBundle.mEndIconBundle, mAnimateChanges);
     }
 
     private StateListDrawable createStatesBottom() {
-        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mBottomIconBundle.mIcon,
-                mCheckedIconsBundle.mBottomIconBundle.mIcon, mAnimateChanges);
+        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mBottomIconBundle,
+                mCheckedIconsBundle.mBottomIconBundle, mAnimateChanges);
     }
 
     @Override
@@ -181,11 +162,12 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
         return handled;
     }
 
+    //region CheckedCompoundIconicsDrawablesImpl
     @Nullable
     @Override
     public IconicsDrawable getCheckedIconicsDrawableStart() {
-        if (mCheckedIconsBundle.mStartIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mCheckedIconsBundle.mStartIconBundle.mIcon;
+        if (mCheckedIconsBundle.mStartIconBundle != null) {
+            return mCheckedIconsBundle.mStartIconBundle;
         } else {
             return null;
         }
@@ -194,8 +176,8 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
     @Nullable
     @Override
     public IconicsDrawable getCheckedIconicsDrawableTop() {
-        if (mCheckedIconsBundle.mTopIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mCheckedIconsBundle.mTopIconBundle.mIcon;
+        if (mCheckedIconsBundle.mTopIconBundle != null) {
+            return mCheckedIconsBundle.mTopIconBundle;
         } else {
             return null;
         }
@@ -204,8 +186,8 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
     @Nullable
     @Override
     public IconicsDrawable getCheckedIconicsDrawableEnd() {
-        if (mCheckedIconsBundle.mEndIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mCheckedIconsBundle.mEndIconBundle.mIcon;
+        if (mCheckedIconsBundle.mEndIconBundle != null) {
+            return mCheckedIconsBundle.mEndIconBundle;
         } else {
             return null;
         }
@@ -214,36 +196,46 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
     @Nullable
     @Override
     public IconicsDrawable getCheckedIconicsDrawableBottom() {
-        if (mCheckedIconsBundle.mBottomIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mCheckedIconsBundle.mBottomIconBundle.mIcon;
+        if (mCheckedIconsBundle.mBottomIconBundle != null) {
+            return mCheckedIconsBundle.mBottomIconBundle;
         } else {
             return null;
         }
     }
 
     @Override
-    public void setCheckedDrawableStart(@Nullable Drawable drawable) {
-        mCheckedIconsBundle.mStartIconBundle.mIcon = drawable;
+    public void setCheckedDrawableStart(@Nullable IconicsDrawable drawable) {
+        mCheckedIconsBundle.mStartIconBundle = drawable;
         setIcons();
     }
 
     @Override
-    public void setCheckedDrawableTop(@Nullable Drawable drawable) {
-        mCheckedIconsBundle.mTopIconBundle.mIcon = drawable;
+    public void setCheckedDrawableTop(@Nullable IconicsDrawable drawable) {
+        mCheckedIconsBundle.mTopIconBundle = drawable;
         setIcons();
     }
 
     @Override
-    public void setCheckedDrawableEnd(@Nullable Drawable drawable) {
-        mCheckedIconsBundle.mEndIconBundle.mIcon = drawable;
+    public void setCheckedDrawableEnd(@Nullable IconicsDrawable drawable) {
+        mCheckedIconsBundle.mEndIconBundle = drawable;
         setIcons();
     }
 
     @Override
-    public void setCheckedDrawableBottom(@Nullable Drawable drawable) {
-        mCheckedIconsBundle.mBottomIconBundle.mIcon = drawable;
+    public void setCheckedDrawableBottom(@Nullable IconicsDrawable drawable) {
+        mCheckedIconsBundle.mBottomIconBundle = drawable;
         setIcons();
     }
+
+    @Override
+    public void setCheckedDrawableForAll(@Nullable IconicsDrawable drawable) {
+        mCheckedIconsBundle.mStartIconBundle = drawable;
+        mCheckedIconsBundle.mTopIconBundle = drawable;
+        mCheckedIconsBundle.mEndIconBundle = drawable;
+        mCheckedIconsBundle.mBottomIconBundle = drawable;
+        setIcons();
+    }
+    //endregion
 
     public interface OnCheckedChangeListener {
         void onCheckedChanged(IconicsCheckableTextView buttonView, boolean isChecked);

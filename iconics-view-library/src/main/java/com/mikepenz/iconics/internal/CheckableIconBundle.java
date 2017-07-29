@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.RestrictTo;
 
+import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.utils.Utils;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
@@ -14,17 +15,16 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @RestrictTo(LIBRARY_GROUP)
 public class CheckableIconBundle {
     public boolean mAnimateChanges;
-    public IconBundle mCheckedIconBundle = new IconBundle();
-    public IconBundle mUncheckedIconBundle = new IconBundle();
+    public IconicsDrawable mCheckedIconBundle;
+    public IconicsDrawable mUncheckedIconBundle;
 
-    public boolean createIcons(Context ctx) {
-        boolean uncheckedCreated = mUncheckedIconBundle.createIcon(ctx);
-        boolean checkedCreated = mCheckedIconBundle.createIcon(ctx);
-        return checkedCreated || uncheckedCreated;
+    public void createIcons(Context ctx) {
+        mCheckedIconBundle = new IconicsDrawable(ctx);
+        mUncheckedIconBundle = new IconicsDrawable(ctx);
     }
 
     public StateListDrawable createStates(Context ctx) {
-        return Utils.getCheckableIconStateList(ctx, mUncheckedIconBundle.mIcon,
-                mCheckedIconBundle.mIcon, mAnimateChanges);
+        return Utils.getCheckableIconStateList(ctx, mUncheckedIconBundle,
+                mCheckedIconBundle, mAnimateChanges);
     }
 }

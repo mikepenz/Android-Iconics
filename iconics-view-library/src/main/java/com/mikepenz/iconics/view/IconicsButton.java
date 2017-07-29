@@ -19,7 +19,6 @@ package com.mikepenz.iconics.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.support.v7.widget.AppCompatButton;
@@ -35,7 +34,7 @@ import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsButton extends AppCompatButton implements IconicsView, CompoundIconicsDrawables {
-    private CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
+    private final CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
 
     public IconicsButton(Context context) {
         this(context, null);
@@ -56,10 +55,6 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
         applyAttr(context, attrs, defStyle);
-
-        //creating icons from obtained attributes
-        mIconsBundle.createIcons(context);
-
         //setting created icons
         setIcons();
     }
@@ -68,10 +63,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
-
-        IconicsViewsAttrsReader.readIconicsTextView(a, mIconsBundle);
-
-        //recycle the typedArray
+        IconicsViewsAttrsReader.readIconicsTextView(context, a, mIconsBundle);
         a.recycle();
     }
 
@@ -79,11 +71,12 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
         mIconsBundle.setIcons(this);
     }
 
+    //region CompoundIconicsDrawablesImpl
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableStart() {
-        if (mIconsBundle.mStartIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mIconsBundle.mStartIconBundle.mIcon;
+        if (mIconsBundle.mStartIconBundle != null) {
+            return (IconicsDrawable) mIconsBundle.mStartIconBundle;
         } else {
             return null;
         }
@@ -92,8 +85,8 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableTop() {
-        if (mIconsBundle.mTopIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mIconsBundle.mTopIconBundle.mIcon;
+        if (mIconsBundle.mTopIconBundle != null) {
+            return (IconicsDrawable) mIconsBundle.mTopIconBundle;
         } else {
             return null;
         }
@@ -102,8 +95,8 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableEnd() {
-        if (mIconsBundle.mEndIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mIconsBundle.mEndIconBundle.mIcon;
+        if (mIconsBundle.mEndIconBundle != null) {
+            return (IconicsDrawable) mIconsBundle.mEndIconBundle;
         } else {
             return null;
         }
@@ -112,36 +105,46 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableBottom() {
-        if (mIconsBundle.mBottomIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mIconsBundle.mBottomIconBundle.mIcon;
+        if (mIconsBundle.mBottomIconBundle != null) {
+            return (IconicsDrawable) mIconsBundle.mBottomIconBundle;
         } else {
             return null;
         }
     }
 
     @Override
-    public void setDrawableStart(@Nullable Drawable drawable) {
-        mIconsBundle.mStartIconBundle.mIcon = drawable;
+    public void setDrawableStart(@Nullable IconicsDrawable drawable) {
+        mIconsBundle.mStartIconBundle = drawable;
         setIcons();
     }
 
     @Override
-    public void setDrawableTop(@Nullable Drawable drawable) {
-        mIconsBundle.mTopIconBundle.mIcon = drawable;
+    public void setDrawableTop(@Nullable IconicsDrawable drawable) {
+        mIconsBundle.mTopIconBundle = drawable;
         setIcons();
     }
 
     @Override
-    public void setDrawableEnd(@Nullable Drawable drawable) {
-        mIconsBundle.mEndIconBundle.mIcon = drawable;
+    public void setDrawableEnd(@Nullable IconicsDrawable drawable) {
+        mIconsBundle.mEndIconBundle = drawable;
         setIcons();
     }
 
     @Override
-    public void setDrawableBottom(@Nullable Drawable drawable) {
-        mIconsBundle.mBottomIconBundle.mIcon = drawable;
+    public void setDrawableBottom(@Nullable IconicsDrawable drawable) {
+        mIconsBundle.mBottomIconBundle = drawable;
         setIcons();
     }
+
+    @Override
+    public void setDrawableForAll(@Nullable IconicsDrawable drawable) {
+        mIconsBundle.mStartIconBundle = drawable;
+        mIconsBundle.mTopIconBundle = drawable;
+        mIconsBundle.mEndIconBundle = drawable;
+        mIconsBundle.mBottomIconBundle = drawable;
+        setIcons();
+    }
+    //endregion
 
     @Override
     public void setText(CharSequence text, BufferType type) {

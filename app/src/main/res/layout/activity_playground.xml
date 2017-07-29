@@ -192,8 +192,18 @@
 
             <com.mikepenz.iconics.view.IconicsTextView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IconicsTextView with side-drawables"
+                android:textColor="@android:color/black"
+
+                app:iiv_all_color="@color/md_amber_300"
+                app:iiv_all_icon="@string/gmd_account_circle"
+                app:iiv_all_size="24dp"/>
+
+            <com.mikepenz.iconics.view.IconicsTextView
+                android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
+                android:text="abcdefgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"/>
             <!--endregion-->
@@ -432,33 +442,28 @@
                     android:textColor="@android:color/black"
                     android:padding="5dp"
 
+                    app:iiv_all_size="24dp"
+                    app:iiv_all_checked_size="24dp"
+
                     app:iiv_start_icon="@string/gmd_error_outline"
                     app:iiv_start_color="@color/colorAccent"
-                    app:iiv_start_size="24dp"
                     app:iiv_start_checked_icon="@string/gmd_error"
                     app:iiv_start_checked_color="@color/colorAccent"
-                    app:iiv_start_checked_size="24dp"
 
                     app:iiv_top_icon="@string/gmd_help_outline"
                     app:iiv_top_color="@color/md_deep_orange_400"
-                    app:iiv_top_size="24dp"
                     app:iiv_top_checked_icon="@string/gmd_help"
                     app:iiv_top_checked_color="@color/md_deep_orange_400"
-                    app:iiv_top_checked_size="24dp"
 
                     app:iiv_end_icon="@string/gmd_info_outline"
                     app:iiv_end_color="@color/md_cyan_800"
-                    app:iiv_end_size="24dp"
                     app:iiv_end_checked_icon="@string/gmd_info"
                     app:iiv_end_checked_color="@color/md_cyan_800"
-                    app:iiv_end_checked_size="24dp"
 
                     app:iiv_bottom_icon="@string/gmd_add_circle_outline"
                     app:iiv_bottom_color="@color/md_blue_grey_300"
-                    app:iiv_bottom_size="24dp"
                     app:iiv_bottom_checked_icon="@string/gmd_add_circle"
-                    app:iiv_bottom_checked_color="@color/md_blue_grey_300"
-                    app:iiv_bottom_checked_size="24dp"/>
+                    app:iiv_bottom_checked_color="@color/md_blue_grey_300"/>
             </LinearLayout>
             <!--endregion-->
 
