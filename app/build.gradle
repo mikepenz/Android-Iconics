@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 29001
-        versionName "2.9.0"
+        versionCode 29101
+        versionName "2.9.1"
     }
 
     buildTypes {
