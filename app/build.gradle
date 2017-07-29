@@ -43,6 +43,7 @@ android {
 
 dependencies {
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    compile "com.android.support:design:${rootProject.ext.supportLibVersion}"
     compile "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
     compile "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
 
@@ -64,6 +65,7 @@ dependencies {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
+        exclude group: "com.android.support"
     }
 
     // used to generate the Open Source section
@@ -72,6 +74,7 @@ dependencies {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
+        exclude group: "com.android.support"
     }
 
     compile project(':iconics-view-library')
