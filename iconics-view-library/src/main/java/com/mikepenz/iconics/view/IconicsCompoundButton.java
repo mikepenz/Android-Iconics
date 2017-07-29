@@ -20,7 +20,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  * @author pa.gulko zTrap (06.07.2017)
  */
 public class IconicsCompoundButton extends CompoundButton implements IconicsView {
-    private CheckableIconBundle mIconsBundle = new CheckableIconBundle();
+    private final CheckableIconBundle mIconsBundle = new CheckableIconBundle();
 
     public IconicsCompoundButton(Context context) {
         super(context);
@@ -40,10 +40,8 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
-        applyAttr(context, attrs, defStyle);
         mIconsBundle.createIcons(context);
-
-        //setting icon if created
+        applyAttr(context, attrs, defStyle);
         setButtonDrawable(mIconsBundle.createStates(context));
     }
 
@@ -52,17 +50,10 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     @SuppressLint("CustomViewStyleable")
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCompoundButton, defStyle, 0);
-
         IconicsViewsAttrsReader.readIconicsCompoundButton(a, mIconsBundle);
-
-        //recycle the typedArray
         a.recycle();
-
         a = context.obtainStyledAttributes(attrs, R.styleable.IconicsAnimateChanges, defStyle, 0);
-
         mIconsBundle.mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);
-
-        //recycle the typedArray
         a.recycle();
     }
 

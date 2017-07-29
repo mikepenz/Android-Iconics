@@ -34,7 +34,7 @@ import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsButton extends AppCompatButton implements IconicsView, CompoundIconicsDrawables {
-    private CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
+    private final CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
 
     public IconicsButton(Context context) {
         this(context, null);
@@ -54,11 +54,8 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
-        applyAttr(context, attrs, defStyle);
-
-        //creating icons from obtained attributes
         mIconsBundle.createIcons(context);
-
+        applyAttr(context, attrs, defStyle);
         //setting created icons
         setIcons();
     }
@@ -67,10 +64,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
-
         IconicsViewsAttrsReader.readIconicsTextView(context, a, mIconsBundle);
-
-        //recycle the typedArray
         a.recycle();
     }
 

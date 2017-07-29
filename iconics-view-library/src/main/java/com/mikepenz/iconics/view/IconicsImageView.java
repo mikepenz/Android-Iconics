@@ -54,12 +54,10 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
+        icon = new IconicsDrawable(context);
         applyAttr(context, attrs, defStyle);
         //set the scale type for this view
         setScaleType(ScaleType.CENTER_INSIDE);
-
-        icon = new IconicsDrawable(context);
-
         //set our values for this view
         setImageDrawable(icon);
     }
@@ -67,13 +65,8 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        // Attribute initialization
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView, defStyle, 0);
-
-        //set the color even if we had no image yet
         IconicsViewsAttrsReader.readIconicsImageView(a, icon);
-
-        //recycle the typedArray
         a.recycle();
     }
 

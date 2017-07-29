@@ -33,7 +33,7 @@ import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsTextView extends AppCompatTextView implements CompoundIconicsDrawables, IconicsView {
-    protected CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
+    protected final CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
 
     public IconicsTextView(Context context) {
         this(context, null);
@@ -53,12 +53,8 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
-        applyAttr(context, attrs, defStyle);
-
-        //creating icons from obtained attributes
         mIconsBundle.createIcons(context);
-
-        //setting created icons
+        applyAttr(context, attrs, defStyle);
         setIcons();
     }
 
@@ -66,10 +62,7 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
-
         IconicsViewsAttrsReader.readIconicsTextView(context, a, mIconsBundle);
-
-        //recycle the typedArray
         a.recycle();
     }
 
@@ -82,7 +75,7 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     @Override
     public IconicsDrawable getIconicsDrawableStart() {
         if (mIconsBundle.mStartIconBundle != null) {
-            return (IconicsDrawable) mIconsBundle.mStartIconBundle;
+            return mIconsBundle.mStartIconBundle;
         } else {
             return null;
         }
@@ -92,7 +85,7 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     @Override
     public IconicsDrawable getIconicsDrawableTop() {
         if (mIconsBundle.mTopIconBundle != null) {
-            return (IconicsDrawable) mIconsBundle.mTopIconBundle;
+            return mIconsBundle.mTopIconBundle;
         } else {
             return null;
         }
@@ -102,7 +95,7 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     @Override
     public IconicsDrawable getIconicsDrawableEnd() {
         if (mIconsBundle.mEndIconBundle != null) {
-            return (IconicsDrawable) mIconsBundle.mEndIconBundle;
+            return mIconsBundle.mEndIconBundle;
         } else {
             return null;
         }
@@ -112,7 +105,7 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     @Override
     public IconicsDrawable getIconicsDrawableBottom() {
         if (mIconsBundle.mBottomIconBundle != null) {
-            return (IconicsDrawable) mIconsBundle.mBottomIconBundle;
+            return mIconsBundle.mBottomIconBundle;
         } else {
             return null;
         }

@@ -290,11 +290,10 @@ public class IconicsDrawable extends Drawable {
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable color(ColorStateList colors) {
-        if (colors == null) {
-            throw new NullPointerException();
+        if (colors != null) {
+            mIconColor = colors;
+            updateIconColor();
         }
-        mIconColor = colors;
-        updateIconColor();
         return this;
     }
 

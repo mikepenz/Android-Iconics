@@ -2,7 +2,7 @@
 
 buildscript {
     repositories {
-        maven { url 'https://maven.google.com' }
+        google()
         jcenter()
     }
     dependencies {
@@ -21,7 +21,7 @@ ext {
 
 allprojects {
     repositories {
-        maven { url 'https://maven.google.com' }
+        google()
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }

@@ -69,23 +69,32 @@ public class IconicsViewsAttrsReader {
         IconicsDrawable allIconBundle = new IconicsDrawable(ctx);
 
         //obtaining attributes for all icons
-        readIconicsTextViewAll(a, allIconBundle);
+        boolean all = readIconicsTextViewAll(a, allIconBundle);
 
         //obtaining attributes for start icons
-        readIconicsTextViewStart(a, bundle.mStartIconBundle, allIconBundle);
+        if (all)
+            bundle.mStartIconBundle = allIconBundle.clone();
+        readIconicsTextViewStart(a, bundle.mStartIconBundle);
 
         //obtaining attributes for top icons
-        readIconicsTextViewTop(a, bundle.mTopIconBundle, allIconBundle);
+        if (all)
+            bundle.mTopIconBundle = allIconBundle.clone();
+        readIconicsTextViewTop(a, bundle.mTopIconBundle);
 
         //obtaining attributes for end icons
-        readIconicsTextViewEnd(a, bundle.mEndIconBundle, allIconBundle);
+        if (all)
+            bundle.mEndIconBundle = allIconBundle.clone();
+        readIconicsTextViewEnd(a, bundle.mEndIconBundle);
 
         //obtaining attributes for bottom icons
-        readIconicsTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
+        if (all)
+            bundle.mBottomIconBundle = allIconBundle.clone();
+        readIconicsTextViewBottom(a, bundle.mBottomIconBundle);
     }
 
-    public static void readIconicsTextViewAll(TypedArray a, IconicsDrawable icon) {
-        icon.icon(a.getString(R.styleable.IconicsTextView_iiv_all_icon));
+    public static boolean readIconicsTextViewAll(TypedArray a, IconicsDrawable icon) {
+        String i = a.getString(R.styleable.IconicsTextView_iiv_all_icon);
+        icon.icon(i != null ? i : " ");
         if (!TextUtils.isEmpty(icon.getPlainIcon())) {
             int color = a.getColor(R.styleable.IconicsTextView_iiv_all_color, Integer.MIN_VALUE);
             if (color != Integer.MIN_VALUE) {
@@ -115,10 +124,13 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != -1) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public static void readIconicsTextViewStart(TypedArray a, IconicsDrawable icon, IconicsDrawable defIcon) {
+    public static void readIconicsTextViewStart(TypedArray a, IconicsDrawable icon) {
         icon.icon(a.getString(R.styleable.IconicsTextView_iiv_start_icon));
         if (!TextUtils.isEmpty(icon.getPlainIcon())) {
             int color = a.getColor(R.styleable.IconicsTextView_iiv_start_color, Integer.MIN_VALUE);
@@ -152,7 +164,7 @@ public class IconicsViewsAttrsReader {
         }
     }
 
-    public static void readIconicsTextViewTop(TypedArray a, IconicsDrawable icon, IconicsDrawable defIcon) {
+    public static void readIconicsTextViewTop(TypedArray a, IconicsDrawable icon) {
         icon.icon(a.getString(R.styleable.IconicsTextView_iiv_top_icon));
         if (!TextUtils.isEmpty(icon.getPlainIcon())) {
             int color = a.getColor(R.styleable.IconicsTextView_iiv_top_color, Integer.MIN_VALUE);
@@ -186,7 +198,7 @@ public class IconicsViewsAttrsReader {
         }
     }
 
-    public static void readIconicsTextViewEnd(TypedArray a, IconicsDrawable icon, IconicsDrawable defIcon) {
+    public static void readIconicsTextViewEnd(TypedArray a, IconicsDrawable icon) {
         icon.icon(a.getString(R.styleable.IconicsTextView_iiv_end_icon));
         if (!TextUtils.isEmpty(icon.getPlainIcon())) {
             int color = a.getColor(R.styleable.IconicsTextView_iiv_end_color, Integer.MIN_VALUE);
@@ -220,7 +232,7 @@ public class IconicsViewsAttrsReader {
         }
     }
 
-    public static void readIconicsTextViewBottom(TypedArray a, IconicsDrawable icon, IconicsDrawable defIcon) {
+    public static void readIconicsTextViewBottom(TypedArray a, IconicsDrawable icon) {
         icon.icon(a.getString(R.styleable.IconicsTextView_iiv_bottom_icon));
         if (!TextUtils.isEmpty(icon.getPlainIcon())) {
             int color = a.getColor(R.styleable.IconicsTextView_iiv_bottom_color, Integer.MIN_VALUE);
@@ -349,25 +361,34 @@ public class IconicsViewsAttrsReader {
         IconicsDrawable allIconBundle = new IconicsDrawable(ctx);
 
         //obtaining attributes for all icons
-        readIconicsCheckableTextViewAll(a, allIconBundle);
+        boolean all = readIconicsCheckableTextViewAll(a, allIconBundle);
 
         //obtaining attributes for start icons
-        readIconicsCheckableTextViewStart(a, bundle.mStartIconBundle, allIconBundle);
+        if (all)
+            bundle.mStartIconBundle = allIconBundle.clone();
+        readIconicsCheckableTextViewStart(a, bundle.mStartIconBundle);
 
         //obtaining attributes for top icons
-        readIconicsCheckableTextViewTop(a, bundle.mTopIconBundle, allIconBundle);
+        if (all)
+            bundle.mTopIconBundle = allIconBundle.clone();
+        readIconicsCheckableTextViewTop(a, bundle.mTopIconBundle);
 
         //obtaining attributes for end icons
-        readIconicsCheckableTextViewEnd(a, bundle.mEndIconBundle, allIconBundle);
+        if (all)
+            bundle.mEndIconBundle = allIconBundle.clone();
+        readIconicsCheckableTextViewEnd(a, bundle.mEndIconBundle);
 
         //obtaining attributes for bottom icons
-        readIconicsCheckableTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
+        if (all)
+            bundle.mBottomIconBundle = allIconBundle.clone();
+        readIconicsCheckableTextViewBottom(a, bundle.mBottomIconBundle);
 
     }
 
-    public static void readIconicsCheckableTextViewAll(TypedArray a, IconicsDrawable icon) {
-        icon.icon(a.getString(R.styleable.IconicsCheckableTextView_iiv_all_checked_icon));
-        if (!TextUtils.isEmpty(icon.getPlainIcon())) {
+    public static boolean readIconicsCheckableTextViewAll(TypedArray a, IconicsDrawable icon) {
+        String i = a.getString(R.styleable.IconicsCheckableTextView_iiv_all_checked_icon);
+        icon.icon(i);
+        if (!TextUtils.isEmpty(i)) {
             int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_color, Integer.MIN_VALUE);
             if (color != Integer.MIN_VALUE) {
                 icon.color(color);
@@ -396,12 +417,16 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != -1) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public static void readIconicsCheckableTextViewStart(TypedArray a, IconicsDrawable icon, IconicsDrawable defIcon) {
-        icon.icon(Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_start_checked_icon));
-        if (!TextUtils.isEmpty(icon.getPlainIcon())) {
+    public static void readIconicsCheckableTextViewStart(TypedArray a, IconicsDrawable icon) {
+        String i = Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_start_checked_icon);
+        icon.icon(i);
+        if (!TextUtils.isEmpty(i)) {
             int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_color, Integer.MIN_VALUE);
             if (color != Integer.MIN_VALUE) {
                 icon.color(color);
@@ -433,9 +458,10 @@ public class IconicsViewsAttrsReader {
         }
     }
 
-    public static void readIconicsCheckableTextViewTop(TypedArray a, IconicsDrawable icon, IconicsDrawable defIcon) {
-        icon.icon(Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_top_checked_icon));
-        if (!TextUtils.isEmpty(icon.getPlainIcon())) {
+    public static void readIconicsCheckableTextViewTop(TypedArray a, IconicsDrawable icon) {
+        String i = Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_top_checked_icon);
+        icon.icon(i);
+        if (!TextUtils.isEmpty(i)) {
             int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_color, Integer.MIN_VALUE);
             if (color != Integer.MIN_VALUE) {
                 icon.color(color);
@@ -467,10 +493,11 @@ public class IconicsViewsAttrsReader {
         }
     }
 
-    public static void readIconicsCheckableTextViewEnd(TypedArray a, IconicsDrawable icon, IconicsDrawable defIcon) {
-        icon.icon(Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_end_checked_icon));
-        if (!TextUtils.isEmpty(icon.getPlainIcon())) {
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_color, defIcon.getColor());
+    public static void readIconicsCheckableTextViewEnd(TypedArray a, IconicsDrawable icon) {
+        String i = Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_end_checked_icon);
+        icon.icon(i);
+        if (!TextUtils.isEmpty(i)) {
+            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_color, Integer.MIN_VALUE);
             if (color != Integer.MIN_VALUE) {
                 icon.color(color);
             }
@@ -501,9 +528,10 @@ public class IconicsViewsAttrsReader {
         }
     }
 
-    public static void readIconicsCheckableTextViewBottom(TypedArray a, IconicsDrawable icon, IconicsDrawable defIcon) {
-        icon.icon(Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon));
-        if (!TextUtils.isEmpty(icon.getPlainIcon())) {
+    public static void readIconicsCheckableTextViewBottom(TypedArray a, IconicsDrawable icon) {
+        String i = Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon);
+        icon.icon(i);
+        if (!TextUtils.isEmpty(i)) {
             int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color, Integer.MIN_VALUE);
             if (color != Integer.MIN_VALUE) {
                 icon.color(color);
