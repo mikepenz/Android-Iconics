@@ -64,6 +64,7 @@ dependencies {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
+        exclude group: "com.android.support"
     }
 
     // used to generate the Open Source section
@@ -72,6 +73,7 @@ dependencies {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
+        exclude group: "com.android.support"
     }
 
     compile project(':iconics-view-library')
