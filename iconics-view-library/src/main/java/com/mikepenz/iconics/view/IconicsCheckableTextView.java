@@ -77,8 +77,6 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView, defStyle, 0);
 
-        mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);
-
         IconicsViewsAttrsReader.readIconicsCheckableTextView(a, mCheckedIconsBundle);
 
         //recycle the typedArray
@@ -181,6 +179,7 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
         return handled;
     }
 
+    //region CheckedCompoundIconicsDrawablesImpl
     @Nullable
     @Override
     public IconicsDrawable getCheckedIconicsDrawableStart() {
@@ -244,6 +243,16 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
         mCheckedIconsBundle.mBottomIconBundle.mIcon = drawable;
         setIcons();
     }
+
+    @Override
+    public void setCheckedDrawableForAll(@Nullable Drawable drawable) {
+        mCheckedIconsBundle.mStartIconBundle.mIcon = drawable;
+        mCheckedIconsBundle.mTopIconBundle.mIcon = drawable;
+        mCheckedIconsBundle.mEndIconBundle.mIcon = drawable;
+        mCheckedIconsBundle.mBottomIconBundle.mIcon = drawable;
+        setIcons();
+    }
+    //endregion
 
     public interface OnCheckedChangeListener {
         void onCheckedChanged(IconicsCheckableTextView buttonView, boolean isChecked);

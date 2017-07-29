@@ -3,49 +3,52 @@ package com.mikepenz.iconics.internal;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
 
 import com.mikepenz.iconics.IconicsDrawable;
 
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+
 /**
  * @author pa.gulko zTrap (06.07.2017)
  */
-@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+@RestrictTo(LIBRARY_GROUP)
 public class IconBundle {
     public String mIconString = null;
     public Drawable mIcon = null;
     @ColorInt
-    public int mColor = 0;
-    public int mSize = -1;
-    public int mPadding = -1;
+    public int mColor = IconicsView.DEFAULT_COLOR;
+    public int mSize = IconicsView.DEFAULT_SIZE;
+    public int mPadding = IconicsView.DEFAULT_PADDING;
     @ColorInt
-    public int mContourColor = 0;
-    public int mContourWidth = -1;
+    public int mContourColor = IconicsView.DEFAULT_CONTOUR_COLOR;
+    public int mContourWidth = IconicsView.DEFAULT_CONTOUR_WIDTH;
     @ColorInt
-    public int mBackgroundColor = 0;
-    public int mCornerRadius = -1;
+    public int mBackgroundColor = IconicsView.DEFAULT_BACKGROUND_COLOR;
+    public int mCornerRadius = IconicsView.DEFAULT_CORNER_RADIUS;
 
     //region create icon
     public boolean createIcon(Context context) {
         return createIconFromBundle(this, context);
     }
 
-    public static boolean createIconFromBundle(IconBundle bundle, Context ctx) {
-        if (bundle.mIconString != null && !TextUtils.isEmpty(bundle.mIconString.trim())) {
+    public static boolean createIconFromBundle(@Nullable IconBundle bundle, Context ctx) {
+        if (bundle != null && bundle.mIconString != null && !TextUtils.isEmpty(bundle.mIconString.trim())) {
             bundle.mIcon = new IconicsDrawable(ctx, bundle.mIconString);
+            return applyNonDefaultProperties(bundle);
         } else {
             return false;
         }
-        return applyNonDefaultProperties(bundle);
     }
 
     public boolean applyProperties() {
         return applyProperties(this);
     }
 
-    public static boolean applyProperties(IconBundle bundle) {
-        if (!(bundle.mIcon instanceof IconicsDrawable)) {
+    public static boolean applyProperties(@Nullable IconBundle bundle) {
+        if (bundle == null || !(bundle.mIcon instanceof IconicsDrawable)) {
             return false;
         }
         IconicsDrawable iconicsDrawable = (IconicsDrawable) bundle.mIcon;
@@ -62,33 +65,33 @@ public class IconBundle {
 
     //region apply properties
     public boolean applyNonDefaultProperties() {
-        return applyProperties(this);
+        return applyNonDefaultProperties(this);
     }
 
-    public static boolean applyNonDefaultProperties(IconBundle bundle) {
-        if (!(bundle.mIcon instanceof IconicsDrawable)) {
+    public static boolean applyNonDefaultProperties(@Nullable IconBundle bundle) {
+        if (bundle == null || !(bundle.mIcon instanceof IconicsDrawable)) {
             return false;
         }
         IconicsDrawable iconicsDrawable = (IconicsDrawable) bundle.mIcon;
-        if (bundle.mColor != 0) {
+        if (bundle.mColor != IconicsView.DEFAULT_COLOR) {
             iconicsDrawable.color(bundle.mColor);
         }
-        if (bundle.mSize != -1) {
+        if (bundle.mSize != IconicsView.DEFAULT_SIZE) {
             iconicsDrawable.sizePx(bundle.mSize);
         }
-        if (bundle.mPadding != -1) {
+        if (bundle.mPadding != IconicsView.DEFAULT_PADDING) {
             iconicsDrawable.paddingPx(bundle.mPadding);
         }
-        if (bundle.mContourColor != 0) {
+        if (bundle.mContourColor != IconicsView.DEFAULT_CONTOUR_COLOR) {
             iconicsDrawable.contourColor(bundle.mContourColor);
         }
-        if (bundle.mContourWidth != -1) {
+        if (bundle.mContourWidth != IconicsView.DEFAULT_CONTOUR_WIDTH) {
             iconicsDrawable.contourWidthPx(bundle.mContourWidth);
         }
-        if (bundle.mBackgroundColor != 0) {
+        if (bundle.mBackgroundColor != IconicsView.DEFAULT_BACKGROUND_COLOR) {
             iconicsDrawable.backgroundColor(bundle.mBackgroundColor);
         }
-        if (bundle.mCornerRadius != -1) {
+        if (bundle.mCornerRadius != IconicsView.DEFAULT_CORNER_RADIUS) {
             iconicsDrawable.roundedCornersPx(bundle.mCornerRadius);
         }
         return true;

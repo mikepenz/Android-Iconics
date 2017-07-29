@@ -78,6 +78,7 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
         mIconsBundle.setIcons(this);
     }
 
+    //region CompoundIconicsDrawablesImpl
     @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableStart() {
@@ -141,6 +142,16 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
         mIconsBundle.mBottomIconBundle.mIcon = drawable;
         setIcons();
     }
+
+    @Override
+    public void setDrawableForAll(@Nullable Drawable drawable) {
+        mIconsBundle.mStartIconBundle.mIcon = drawable;
+        mIconsBundle.mTopIconBundle.mIcon = drawable;
+        mIconsBundle.mEndIconBundle.mIcon = drawable;
+        mIconsBundle.mBottomIconBundle.mIcon = drawable;
+        setIcons();
+    }
+    //endregion
 
 
     @Override

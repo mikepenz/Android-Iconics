@@ -15,6 +15,21 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @RestrictTo(LIBRARY_GROUP)
 public class IconicsViewsAttrsReader {
 
+    //region IconicsImageView
+    public static void readIconicsImageView(TypedArray a, IconBundle bundle) {
+        bundle.mIconString = a.getString(R.styleable.IconicsImageView_iiv_icon);
+        if (!TextUtils.isEmpty(bundle.mIconString)) {
+            bundle.mColor = a.getColor(R.styleable.IconicsImageView_iiv_color, 0);
+            bundle.mSize = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
+            bundle.mPadding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
+            bundle.mContourColor = a.getColor(R.styleable.IconicsImageView_iiv_contour_color, 0);
+            bundle.mContourWidth = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_contour_width, -1);
+            bundle.mBackgroundColor = a.getColor(R.styleable.IconicsImageView_iiv_background_color, 0);
+            bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_corner_radius, -1);
+        }
+    }
+    //endregion
+
     //region IconicsTextView
 
     /**
@@ -44,7 +59,6 @@ public class IconicsViewsAttrsReader {
 
         //obtaining attributes for bottom icons
         readIconicsTextViewBottom(a, bundle.mBottomIconBundle, allIconBundle);
-
     }
 
     public static void readIconicsTextViewAll(TypedArray a, IconBundle bundle) {
@@ -182,15 +196,15 @@ public class IconicsViewsAttrsReader {
     }
 
     public static void readIconicsCheckableTextViewAll(TypedArray a, IconBundle bundle) {
-        bundle.mIconString = a.getString(R.styleable.IconicsTextView_iiv_all_icon);
+        bundle.mIconString = a.getString(R.styleable.IconicsCheckableTextView_iiv_all_checked_icon);
         if (!TextUtils.isEmpty(bundle.mIconString)) {
-            bundle.mColor = a.getColor(R.styleable.IconicsTextView_iiv_all_color, 0);
-            bundle.mSize = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_size, -1);
-            bundle.mPadding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_padding, -1);
-            bundle.mContourColor = a.getColor(R.styleable.IconicsTextView_iiv_all_contour_color, 0);
-            bundle.mContourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_contour_width, -1);
-            bundle.mBackgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_all_background_color, 0);
-            bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_corner_radius, -1);
+            bundle.mColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_color, 0);
+            bundle.mSize = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_size, -1);
+            bundle.mPadding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_padding, -1);
+            bundle.mContourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_color, 0);
+            bundle.mContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_width, -1);
+            bundle.mBackgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_color, 0);
+            bundle.mCornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_corner_radius, -1);
         }
     }
 

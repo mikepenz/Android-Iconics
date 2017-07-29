@@ -10,7 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.mikepenz.iconics.internal.IconBundle;
-import com.mikepenz.iconics.internal.IconicsCoreAttrsReader;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import com.mikepenz.iconics.view.R;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -28,11 +28,6 @@ public class IconicsMenuInflaterUtil {
      * Menu tag name in XML.
      */
     private static final String XML_MENU = "menu";
-
-    /**
-     * Group tag name in XML.
-     */
-    private static final String XML_GROUP = "group";
 
     /**
      * Item tag name in XML.
@@ -95,40 +90,39 @@ public class IconicsMenuInflaterUtil {
                     if (lookingForEndOfUnknownTag) {
                         break;
                     }
-
                     tagName = parser.getName();
-                    if (tagName.equals(XML_GROUP)) {
-                        //
-                    } else if (tagName.equals(XML_ITEM)) {
+                    switch (tagName) {
+                        case XML_ITEM:
+                            HashMap<String, String> attr = new HashMap<>();
+                            for (int i = 0; i < parser.getAttributeCount(); i++) {
+                                attr.put(parser.getAttributeName(i), parser.getAttributeValue(i));
+                            }
+                            //region trying to set normal icon
+                            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
+                            IconBundle normalBundle = new IconBundle();
 
-                        HashMap<String, String> attr = new HashMap<>();
-                        for (int i = 0; i < parser.getAttributeCount(); i++) {
-                            attr.put(parser.getAttributeName(i), parser.getAttributeValue(i));
-                        }
+                            IconicsViewsAttrsReader.readIconicsImageView(a, normalBundle);
 
-                        //region trying to set normal icon
-                        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
-                        IconBundle normalBundle = new IconBundle();
+                            int id = Integer.parseInt(attr.get("id").replace("@", ""));
+                            MenuItem item = menu.findItem(id);
 
-                        IconicsCoreAttrsReader.readIconicsImageView(a, normalBundle);
+                            if (normalBundle.createIcon(context)) {
+                                item.setIcon(normalBundle.mIcon);
+                            }
+                            a.recycle();
+                            //endregion
+                            break;
+                        case XML_MENU:
 
-                        int id = Integer.parseInt(attr.get("id").replace("@", ""));
-                        MenuItem item = menu.findItem(id);
-
-                        if (normalBundle.createIcon(context)) {
-                            item.setIcon(normalBundle.mIcon);
-                        }
-                        a.recycle();
-                        //endregion
-
-                    } else if (tagName.equals(XML_MENU)) {
-
-                        // TODO: maybe we must pass in the sub menu in this case, not sure if the function menu.findItem(id) will search through sub items
-                        if (checkSubMenus)
-                            parseMenu(context, attrs, parser, menu, checkSubMenus);
-                    } else {
-                        lookingForEndOfUnknownTag = true;
-                        unknownTagName = tagName;
+                            // TODO: maybe we must pass in the sub menu in this case, not sure if the function menu.findItem(id) will search through sub items
+                            if (checkSubMenus) {
+                                parseMenu(context, attrs, parser, menu, checkSubMenus);
+                            }
+                            break;
+                        default:
+                            lookingForEndOfUnknownTag = true;
+                            unknownTagName = tagName;
+                            break;
                     }
                     break;
 
@@ -137,14 +131,6 @@ public class IconicsMenuInflaterUtil {
                     if (lookingForEndOfUnknownTag && tagName.equals(unknownTagName)) {
                         lookingForEndOfUnknownTag = false;
                         unknownTagName = null;
-                    } else if (tagName.equals(XML_GROUP)) {
-                        //
-                    } else if (tagName.equals(XML_ITEM)) {
-                        // Add the item if it hasn't been added (if the item was
-                        // a submenu, it would have been added already)
-                        //if (!menuState.hasAddedItem()) {
-                        // menuState.addItem();
-                        //}
                     } else if (tagName.equals(XML_MENU)) {
                         reachedEndOfMenu = true;
                     }

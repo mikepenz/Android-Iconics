@@ -32,4 +32,6 @@ public interface CheckedCompoundIconicsDrawables {
     void setCheckedDrawableEnd(@Nullable Drawable drawable);
 
     void setCheckedDrawableBottom(@Nullable Drawable drawable);
+
+    void setCheckedDrawableForAll(@Nullable Drawable drawable);
 }
