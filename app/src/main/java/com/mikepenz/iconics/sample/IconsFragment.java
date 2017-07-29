@@ -143,7 +143,7 @@ public class IconsFragment extends Fragment {
 
                 IconItem item = mAdapter.getItem(position);
 
-                if(item != null) {
+                if (item != null) {
                     //set the R.id.fastadapter_item tag of this item to the item object (can be used when retrieving the view)
                     viewHolder.itemView.setTag(com.mikepenz.fastadapter.R.id.fastadapter_item, item);
 

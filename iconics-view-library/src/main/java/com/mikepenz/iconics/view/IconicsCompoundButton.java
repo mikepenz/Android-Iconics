@@ -41,11 +41,10 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
         applyAttr(context, attrs, defStyle);
+        mIconsBundle.createIcons(context);
 
-        if (mIconsBundle.createIcons(context)) {
-            //setting icon if created
-            setButtonDrawable(mIconsBundle.createStates(context));
-        }
+        //setting icon if created
+        setButtonDrawable(mIconsBundle.createStates(context));
     }
 
     @Override
@@ -68,19 +67,19 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     }
 
     public void setCheckedIcon(@Nullable IconicsDrawable icon) {
-        mIconsBundle.mCheckedIconBundle.mIcon = icon;
+        mIconsBundle.mCheckedIconBundle = icon;
         setButtonDrawable(mIconsBundle.createStates(getContext()));
     }
 
     public void setUncheckedIcon(@Nullable IconicsDrawable icon) {
-        mIconsBundle.mUncheckedIconBundle.mIcon = icon;
+        mIconsBundle.mUncheckedIconBundle = icon;
         setButtonDrawable(mIconsBundle.createStates(getContext()));
     }
 
     @Nullable
     public IconicsDrawable getCheckedIcon() {
-        if (mIconsBundle.mCheckedIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mIconsBundle.mCheckedIconBundle.mIcon;
+        if (mIconsBundle.mCheckedIconBundle != null) {
+            return (IconicsDrawable) mIconsBundle.mCheckedIconBundle;
         } else {
             return null;
         }
@@ -88,8 +87,8 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
 
     @Nullable
     public IconicsDrawable getUncheckedIcon() {
-        if (mIconsBundle.mUncheckedIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mIconsBundle.mUncheckedIconBundle.mIcon;
+        if (mIconsBundle.mUncheckedIconBundle != null) {
+            return (IconicsDrawable) mIconsBundle.mUncheckedIconBundle;
         } else {
             return null;
         }

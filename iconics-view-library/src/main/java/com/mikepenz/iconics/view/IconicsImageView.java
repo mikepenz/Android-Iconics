@@ -23,21 +23,18 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.internal.IconBundle;
 import com.mikepenz.iconics.internal.IconicsView;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import com.mikepenz.iconics.typeface.IIcon;
-import com.mikepenz.iconics.utils.Utils;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsImageView extends AppCompatImageView implements IconicsView {
-    private IconBundle mIconBundle = new IconBundle();
+    private IconicsDrawable icon;
 
     public IconicsImageView(Context context) {
         this(context, null);
@@ -61,13 +58,10 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
         //set the scale type for this view
         setScaleType(ScaleType.CENTER_INSIDE);
 
-        //if we have no icon return now
-        if (!mIconBundle.createIcon(context)) {
-            return;
-        }
+        icon = new IconicsDrawable(context);
 
         //set our values for this view
-        setImageDrawable(mIconBundle.mIcon);
+        setImageDrawable(icon);
     }
 
     @Override
@@ -77,140 +71,100 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView, defStyle, 0);
 
         //set the color even if we had no image yet
-        IconicsViewsAttrsReader.readIconicsImageView(a, mIconBundle);
+        IconicsViewsAttrsReader.readIconicsImageView(a, icon);
 
         //recycle the typedArray
         a.recycle();
     }
 
     public void setIcon(Character icon) {
-        setIcon(icon, true);
-    }
-
-    public void setIcon(Character icon, boolean resetAttributes) {
-        setIcon(new IconicsDrawable(getContext(), icon), resetAttributes);
+        setIcon(new IconicsDrawable(getContext(), icon));
     }
 
     public void setIcon(String icon) {
-        setIcon(icon, true);
-    }
-
-    public void setIcon(String icon, boolean resetAttributes) {
-        setIcon(new IconicsDrawable(getContext(), icon), resetAttributes);
+        setIcon(new IconicsDrawable(getContext(), icon));
     }
 
     public void setIcon(IIcon icon) {
-        setIcon(icon, true);
-    }
-
-    public void setIcon(IIcon icon, boolean resetAttributes) {
-        setIcon(new IconicsDrawable(getContext(), icon), resetAttributes);
+        setIcon(new IconicsDrawable(getContext(), icon));
     }
 
     public void setIcon(IconicsDrawable icon) {
-        setIcon(icon, true);
-    }
-
-    public void setIcon(IconicsDrawable icon, boolean resetAttributes) {
-        mIconBundle.mIcon = icon;
-        //reset the attributes defined via the layout
-        if (resetAttributes) {
-            mIconBundle.createIcon(getContext());
-        }
+        this.icon = icon;
         //set the imageDrawable
-        setImageDrawable(mIconBundle.mIcon);
+        setImageDrawable(this.icon);
     }
 
     public void setIconText(String iconText) {
-        setIconText(iconText, true);
-    }
-
-    public void setIconText(String iconText, boolean resetAttributes) {
-        setIcon(new IconicsDrawable(getContext()).iconText(iconText), resetAttributes);
+        setIcon(new IconicsDrawable(getContext()).iconText(iconText));
     }
 
     public void setColor(@ColorInt int color) {
-        mIconBundle.mColor = color;
-        mIconBundle.applyProperties();
+        icon.color(color);
     }
 
     public void setColorRes(@ColorRes int colorRes) {
-        mIconBundle.mColor = ContextCompat.getColor(getContext(), colorRes);
-        mIconBundle.applyProperties();
+        icon.colorRes(colorRes);
     }
 
     public void setPaddingPx(int padding) {
-        mIconBundle.mPadding = padding;
-        mIconBundle.applyProperties();
+        icon.paddingPx(padding);
     }
 
     public void setPaddingDp(int paddingDp) {
-        mIconBundle.mPadding = Utils.convertDpToPx(getContext(), paddingDp);
-        mIconBundle.applyProperties();
+        icon.paddingDp(paddingDp);
     }
 
     public void setPaddingRes(@DimenRes int paddingRes) {
-        mIconBundle.mPadding = getContext().getResources().getDimensionPixelSize(paddingRes);
-        mIconBundle.applyProperties();
+        icon.paddingRes(paddingRes);
     }
 
     public void setContourColor(@ColorInt int color) {
-        mIconBundle.mContourColor = color;
-        mIconBundle.applyProperties();
+        icon.contourColor(color);
     }
 
     public void setContourColorRes(@ColorRes int colorRes) {
-        mIconBundle.mContourColor = ContextCompat.getColor(getContext(), colorRes);
-        mIconBundle.applyProperties();
+        icon.contourColorRes(colorRes);
     }
 
     public void setContourWidthPx(int contourWidth) {
-        mIconBundle.mContourWidth = contourWidth;
-        mIconBundle.applyProperties();
+        icon.contourWidthPx(contourWidth);
     }
 
     public void setContourWidthDp(int contourWidthDp) {
-        mIconBundle.mContourWidth = Utils.convertDpToPx(getContext(), contourWidthDp);
-        mIconBundle.applyProperties();
+        icon.contourWidthDp(contourWidthDp);
     }
 
     public void setContourWidthRes(@DimenRes int contourWidthRes) {
-        mIconBundle.mContourWidth = getContext().getResources().getDimensionPixelSize(contourWidthRes);
-        mIconBundle.applyProperties();
+        icon.contourWidthRes(contourWidthRes);
     }
 
     public void setBackgroundColor(@ColorInt int color) {
-        mIconBundle.mBackgroundColor = color;
-        mIconBundle.applyProperties();
+        icon.backgroundColor(color);
     }
 
     public void setBackgroundColorRes(@ColorRes int colorRes) {
-        mIconBundle.mBackgroundColor = ContextCompat.getColor(getContext(), colorRes);
-        mIconBundle.applyProperties();
+        icon.backgroundColorRes(colorRes);
     }
 
     public void setRoundedCornersPx(int cornerRadius) {
-        mIconBundle.mCornerRadius = cornerRadius;
-        mIconBundle.applyProperties();
+        icon.roundedCornersPx(cornerRadius);
     }
 
     public void setRoundedCornersDp(int cornerRadiusDp) {
-        mIconBundle.mCornerRadius = Utils.convertDpToPx(getContext(), cornerRadiusDp);
-        mIconBundle.applyProperties();
+        icon.roundedCornersDp(cornerRadiusDp);
     }
 
     public void setRoundedCornersRes(@DimenRes int cornerRadiusRes) {
-        mIconBundle.mCornerRadius = getContext().getResources().getDimensionPixelSize(cornerRadiusRes);
-        mIconBundle.applyProperties();
+        icon.roundedCornersRes(cornerRadiusRes);
     }
 
     @Nullable
     public IconicsDrawable getIcon() {
-        if (getDrawable() instanceof IconicsDrawable) {
+        if (icon != null) {
+            return icon;
+        } else if (getDrawable() instanceof IconicsDrawable) {
             return ((IconicsDrawable) getDrawable());
-        }
-        if (mIconBundle.mIcon instanceof IconicsDrawable) {
-            return (IconicsDrawable) mIconBundle.mIcon;
         } else {
             return null;
         }

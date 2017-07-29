@@ -12,12 +12,9 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @RestrictTo(LIBRARY_GROUP)
 public interface IconicsView {
     String DEFAULT_ICON = " ";
-    int DEFAULT_COLOR = 0;
     int DEFAULT_SIZE = -1;
     int DEFAULT_PADDING = -1;
-    int DEFAULT_CONTOUR_COLOR = 0;
     int DEFAULT_CONTOUR_WIDTH = -1;
-    int DEFAULT_BACKGROUND_COLOR = 0;
     int DEFAULT_CORNER_RADIUS = -1;
 
     @RestrictTo(LIBRARY_GROUP)

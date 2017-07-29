@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.mikepenz.iconics.internal.IconBundle;
+import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import com.mikepenz.iconics.view.R;
 
@@ -99,16 +99,13 @@ public class IconicsMenuInflaterUtil {
                             }
                             //region trying to set normal icon
                             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
-                            IconBundle normalBundle = new IconBundle();
+                            IconicsDrawable normalBundle = new IconicsDrawable(context);
 
                             IconicsViewsAttrsReader.readIconicsImageView(a, normalBundle);
 
                             int id = Integer.parseInt(attr.get("id").replace("@", ""));
                             MenuItem item = menu.findItem(id);
-
-                            if (normalBundle.createIcon(context)) {
-                                item.setIcon(normalBundle.mIcon);
-                            }
+                            item.setIcon(normalBundle);
                             a.recycle();
                             //endregion
                             break;

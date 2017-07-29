@@ -1,6 +1,5 @@
 package com.mikepenz.iconics.internal;
 
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 
@@ -25,13 +24,13 @@ public interface CompoundIconicsDrawables {
     @Nullable
     IconicsDrawable getIconicsDrawableBottom();
 
-    void setDrawableStart(@Nullable Drawable drawable);
+    void setDrawableStart(@Nullable IconicsDrawable drawable);
 
-    void setDrawableTop(@Nullable Drawable drawable);
+    void setDrawableTop(@Nullable IconicsDrawable drawable);
 
-    void setDrawableEnd(@Nullable Drawable drawable);
+    void setDrawableEnd(@Nullable IconicsDrawable drawable);
 
-    void setDrawableBottom(@Nullable Drawable drawable);
+    void setDrawableBottom(@Nullable IconicsDrawable drawable);
 
-    void setDrawableForAll(@Nullable Drawable drawable);
+    void setDrawableForAll(@Nullable IconicsDrawable drawable);
 }

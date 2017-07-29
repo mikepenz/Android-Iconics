@@ -1,6 +1,5 @@
 package com.mikepenz.iconics.internal;
 
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 
@@ -25,13 +24,13 @@ public interface CheckedCompoundIconicsDrawables {
     @Nullable
     IconicsDrawable getCheckedIconicsDrawableBottom();
 
-    void setCheckedDrawableStart(@Nullable Drawable drawable);
+    void setCheckedDrawableStart(@Nullable IconicsDrawable drawable);
 
-    void setCheckedDrawableTop(@Nullable Drawable drawable);
+    void setCheckedDrawableTop(@Nullable IconicsDrawable drawable);
 
-    void setCheckedDrawableEnd(@Nullable Drawable drawable);
+    void setCheckedDrawableEnd(@Nullable IconicsDrawable drawable);
 
-    void setCheckedDrawableBottom(@Nullable Drawable drawable);
+    void setCheckedDrawableBottom(@Nullable IconicsDrawable drawable);
 
-    void setCheckedDrawableForAll(@Nullable Drawable drawable);
+    void setCheckedDrawableForAll(@Nullable IconicsDrawable drawable);
 }
