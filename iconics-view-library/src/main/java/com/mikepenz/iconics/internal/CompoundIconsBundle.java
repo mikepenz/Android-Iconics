@@ -1,6 +1,5 @@
 package com.mikepenz.iconics.internal;
 
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.RestrictTo;
 import android.support.v4.widget.TextViewCompat;
@@ -20,13 +19,6 @@ public class CompoundIconsBundle {
     public IconicsDrawable mEndIconBundle;
     public IconicsDrawable mBottomIconBundle;
 
-    public void createIcons(Context ctx) {
-        mStartIconBundle = new IconicsDrawable(ctx);
-        mTopIconBundle = new IconicsDrawable(ctx);
-        mEndIconBundle = new IconicsDrawable(ctx);
-        mBottomIconBundle = new IconicsDrawable(ctx);
-    }
-
     public void setIcons(TextView textView) {
         Drawable[] drawables = TextViewCompat.getCompoundDrawablesRelative(textView);
 
@@ -36,6 +28,5 @@ public class CompoundIconsBundle {
                 mEndIconBundle != null ? mEndIconBundle : drawables[2],
                 mBottomIconBundle != null ? mBottomIconBundle : drawables[3]
         );
-
     }
 }

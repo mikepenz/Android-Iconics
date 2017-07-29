@@ -54,7 +54,6 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
-        mIconsBundle.createIcons(context);
         applyAttr(context, attrs, defStyle);
         //setting created icons
         setIcons();

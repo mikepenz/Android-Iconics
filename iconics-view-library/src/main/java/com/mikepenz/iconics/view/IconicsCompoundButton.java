@@ -50,7 +50,7 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     @SuppressLint("CustomViewStyleable")
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCompoundButton, defStyle, 0);
-        IconicsViewsAttrsReader.readIconicsCompoundButton(a, mIconsBundle);
+        IconicsViewsAttrsReader.readIconicsCompoundButton(context, a, mIconsBundle);
         a.recycle();
         a = context.obtainStyledAttributes(attrs, R.styleable.IconicsAnimateChanges, defStyle, 0);
         mIconsBundle.mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);

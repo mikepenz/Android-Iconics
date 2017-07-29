@@ -53,7 +53,6 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
-        mIconsBundle.createIcons(context);
         applyAttr(context, attrs, defStyle);
         setIcons();
     }

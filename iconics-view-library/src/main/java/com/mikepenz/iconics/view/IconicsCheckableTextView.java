@@ -23,7 +23,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  * @author pa.gulko zTrap (06.07.2017)
  */
 public class IconicsCheckableTextView extends IconicsTextView implements Checkable, CheckedCompoundIconicsDrawables {
-    protected final CompoundIconsBundle mCheckedIconsBundle = new CompoundIconsBundle();
+    protected CompoundIconsBundle mCheckedIconsBundle;
     private boolean mAnimateChanges;
 
     private boolean mChecked;
@@ -45,17 +45,14 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
     public IconicsCheckableTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setFocusable(true);
-        setClickable(true);
     }
 
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
-        //creating icons from obtained attributes for normal state
-        mIconsBundle.createIcons(context);
-        //creating icons from obtained attributes for state_checked
-        mCheckedIconsBundle.createIcons(context);
+        mCheckedIconsBundle = new CompoundIconsBundle();
+        setFocusable(true);
+        setClickable(true);
         //taking normal state attrs
         super.applyAttr(context, attrs, defStyle);
         //taking checked state attrs
