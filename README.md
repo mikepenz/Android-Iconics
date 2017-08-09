@@ -53,7 +53,7 @@ compile "com.mikepenz:iconics-core:2.9.1@aar"
 ## 1b. (optional) Add the view's dependency
 ```
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-compile "com.mikepenz:iconics-views:2.9.1@aar"
+compile "com.mikepenz:iconics-views:2.9.2@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
