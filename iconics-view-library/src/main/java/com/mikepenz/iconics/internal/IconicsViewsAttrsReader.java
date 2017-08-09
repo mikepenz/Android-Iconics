@@ -19,36 +19,37 @@ public class IconicsViewsAttrsReader {
 
     //region IconicsImageView
     public static void readIconicsImageView(TypedArray a, IconicsDrawable icon) {
-        icon.icon(a.getString(R.styleable.IconicsImageView_iiv_icon));
-        if (!TextUtils.isEmpty(icon.getPlainIcon())) {
-            int color = a.getColor(R.styleable.IconicsImageView_iiv_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
-                icon.color(color);
-            }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
-            if (size != -1) {
-                icon.sizePx(size);
-            }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
-            if (padding != -1) {
-                icon.paddingPx(padding);
-            }
-            int contourColor = a.getColor(R.styleable.IconicsImageView_iiv_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
-                icon.contourColor(contourColor);
-            }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_contour_width, -1);
-            if (contourWidth != -1) {
-                icon.contourWidthPx(contourWidth);
-            }
-            int backgroundColor = a.getColor(R.styleable.IconicsImageView_iiv_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
-                icon.backgroundColor(backgroundColor);
-            }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_corner_radius, -1);
-            if (cornerRadius != -1) {
-                icon.roundedCornersPx(cornerRadius);
-            }
+        String i = a.getString(R.styleable.IconicsImageView_iiv_icon);
+        if (i != null) {
+            icon.icon(i);
+        }
+        int color = a.getColor(R.styleable.IconicsImageView_iiv_color, Integer.MIN_VALUE);
+        if (color != Integer.MIN_VALUE) {
+            icon.color(color);
+        }
+        int size = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
+        if (size != -1) {
+            icon.sizePx(size);
+        }
+        int padding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
+        if (padding != -1) {
+            icon.paddingPx(padding);
+        }
+        int contourColor = a.getColor(R.styleable.IconicsImageView_iiv_contour_color, Integer.MIN_VALUE);
+        if (contourColor != Integer.MIN_VALUE) {
+            icon.contourColor(contourColor);
+        }
+        int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_contour_width, -1);
+        if (contourWidth != -1) {
+            icon.contourWidthPx(contourWidth);
+        }
+        int backgroundColor = a.getColor(R.styleable.IconicsImageView_iiv_background_color, Integer.MIN_VALUE);
+        if (backgroundColor != Integer.MIN_VALUE) {
+            icon.backgroundColor(backgroundColor);
+        }
+        int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_corner_radius, -1);
+        if (cornerRadius != -1) {
+            icon.roundedCornersPx(cornerRadius);
         }
     }
     //endregion
@@ -120,7 +121,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsTextViewStart(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = a.getString(R.styleable.IconicsTextView_iiv_start_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -163,7 +164,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsTextViewTop(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = a.getString(R.styleable.IconicsTextView_iiv_top_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -206,7 +207,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsTextViewEnd(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = a.getString(R.styleable.IconicsTextView_iiv_end_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -249,7 +250,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsTextViewBottom(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = a.getString(R.styleable.IconicsTextView_iiv_bottom_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -302,7 +303,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsCompoundButtonChecked(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = a.getString(R.styleable.IconicsCompoundButton_iiv_checked_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -345,7 +346,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsCompoundButtonUnchecked(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = a.getString(R.styleable.IconicsCompoundButton_iiv_unchecked_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -454,7 +455,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsCheckableTextViewStart(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_start_checked_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -497,7 +498,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsCheckableTextViewTop(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_top_checked_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -540,7 +541,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsCheckableTextViewEnd(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_end_checked_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -583,7 +584,7 @@ public class IconicsViewsAttrsReader {
 
     public static IconicsDrawable readIconicsCheckableTextViewBottom(Context ctx, TypedArray a, IconicsDrawable icon) {
         String i = Utils.getString(a, R.styleable.IconicsCheckableTextView_iiv_all_checked_icon, R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon);
-        if (i != null || (icon != null && icon.getIcon() != null)) {
+        if (i != null || isFilled(icon)) {
             if (icon == null) {
                 icon = new IconicsDrawable(ctx, i);
             } else {
@@ -624,4 +625,8 @@ public class IconicsViewsAttrsReader {
         return icon;
     }
     //endregion
+
+    private static boolean isFilled(IconicsDrawable icon) {
+        return icon.getIcon() != null || !TextUtils.isEmpty(icon.getPlainIcon());
+    }
 }
