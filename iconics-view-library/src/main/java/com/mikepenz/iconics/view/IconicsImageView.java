@@ -71,15 +71,27 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
     }
 
     public void setIcon(Character icon) {
-        setIcon(new IconicsDrawable(getContext(), icon));
+        if (this.icon != null) {
+            this.icon.icon(icon);
+        } else {
+            setIcon(new IconicsDrawable(getContext(), icon));
+        }
     }
 
     public void setIcon(String icon) {
-        setIcon(new IconicsDrawable(getContext(), icon));
+        if (this.icon != null) {
+            this.icon.icon(icon);
+        } else {
+            setIcon(new IconicsDrawable(getContext(), icon));
+        }
     }
 
     public void setIcon(IIcon icon) {
-        setIcon(new IconicsDrawable(getContext(), icon));
+        if (this.icon != null) {
+            this.icon.icon(icon);
+        } else {
+            setIcon(new IconicsDrawable(getContext(), icon));
+        }
     }
 
     public void setIcon(IconicsDrawable icon) {
