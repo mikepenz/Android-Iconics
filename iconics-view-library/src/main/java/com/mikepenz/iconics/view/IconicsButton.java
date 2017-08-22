@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Mike Penz
+ * Copyright 2017 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Override
     public IconicsDrawable getIconicsDrawableStart() {
         if (mIconsBundle.mStartIconBundle != null) {
-            return (IconicsDrawable) mIconsBundle.mStartIconBundle;
+            return mIconsBundle.mStartIconBundle;
         } else {
             return null;
         }
@@ -86,7 +86,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Override
     public IconicsDrawable getIconicsDrawableTop() {
         if (mIconsBundle.mTopIconBundle != null) {
-            return (IconicsDrawable) mIconsBundle.mTopIconBundle;
+            return mIconsBundle.mTopIconBundle;
         } else {
             return null;
         }
@@ -96,7 +96,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Override
     public IconicsDrawable getIconicsDrawableEnd() {
         if (mIconsBundle.mEndIconBundle != null) {
-            return (IconicsDrawable) mIconsBundle.mEndIconBundle;
+            return mIconsBundle.mEndIconBundle;
         } else {
             return null;
         }
@@ -106,7 +106,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Override
     public IconicsDrawable getIconicsDrawableBottom() {
         if (mIconsBundle.mBottomIconBundle != null) {
-            return (IconicsDrawable) mIconsBundle.mBottomIconBundle;
+            return mIconsBundle.mBottomIconBundle;
         } else {
             return null;
         }
