@@ -16,6 +16,8 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 @RestrictTo(LIBRARY_GROUP)
 public class IconicsViewsAttrsReader {
+    private final static int DEF_COLOR = Integer.MIN_VALUE;
+    private final static int DEF_SIZE = -1;
 
     //region IconicsImageView
     public static void readIconicsImageView(TypedArray a, IconicsDrawable icon) {
@@ -23,32 +25,32 @@ public class IconicsViewsAttrsReader {
         if (i != null) {
             icon.icon(i);
         }
-        int color = a.getColor(R.styleable.IconicsImageView_iiv_color, Integer.MIN_VALUE);
-        if (color != Integer.MIN_VALUE) {
+        int color = a.getColor(R.styleable.IconicsImageView_iiv_color, DEF_COLOR);
+        if (color != DEF_COLOR) {
             icon.color(color);
         }
-        int size = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, -1);
-        if (size != -1) {
+        int size = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, DEF_SIZE);
+        if (size != DEF_SIZE) {
             icon.sizePx(size);
         }
-        int padding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, -1);
-        if (padding != -1) {
+        int padding = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_padding, DEF_SIZE);
+        if (padding != DEF_SIZE) {
             icon.paddingPx(padding);
         }
-        int contourColor = a.getColor(R.styleable.IconicsImageView_iiv_contour_color, Integer.MIN_VALUE);
-        if (contourColor != Integer.MIN_VALUE) {
+        int contourColor = a.getColor(R.styleable.IconicsImageView_iiv_contour_color, DEF_COLOR);
+        if (contourColor != DEF_COLOR) {
             icon.contourColor(contourColor);
         }
-        int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_contour_width, -1);
-        if (contourWidth != -1) {
+        int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_contour_width, DEF_SIZE);
+        if (contourWidth != DEF_SIZE) {
             icon.contourWidthPx(contourWidth);
         }
-        int backgroundColor = a.getColor(R.styleable.IconicsImageView_iiv_background_color, Integer.MIN_VALUE);
-        if (backgroundColor != Integer.MIN_VALUE) {
+        int backgroundColor = a.getColor(R.styleable.IconicsImageView_iiv_background_color, DEF_COLOR);
+        if (backgroundColor != DEF_COLOR) {
             icon.backgroundColor(backgroundColor);
         }
-        int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_corner_radius, -1);
-        if (cornerRadius != -1) {
+        int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_corner_radius, DEF_SIZE);
+        if (cornerRadius != DEF_SIZE) {
             icon.roundedCornersPx(cornerRadius);
         }
     }
@@ -88,32 +90,32 @@ public class IconicsViewsAttrsReader {
         if (i != null) {
             icon.icon(i);
         }
-        int color = a.getColor(R.styleable.IconicsTextView_iiv_all_color, Integer.MIN_VALUE);
-        if (color != Integer.MIN_VALUE) {
+        int color = a.getColor(R.styleable.IconicsTextView_iiv_all_color, DEF_COLOR);
+        if (color != DEF_COLOR) {
             icon.color(color);
         }
-        int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_size, -1);
-        if (size != -1) {
+        int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_size, DEF_SIZE);
+        if (size != DEF_SIZE) {
             icon.sizePx(size);
         }
-        int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_padding, -1);
-        if (padding != -1) {
+        int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_padding, DEF_SIZE);
+        if (padding != DEF_SIZE) {
             icon.paddingPx(padding);
         }
-        int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_all_contour_color, Integer.MIN_VALUE);
-        if (contourColor != Integer.MIN_VALUE) {
+        int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_all_contour_color, DEF_COLOR);
+        if (contourColor != DEF_COLOR) {
             icon.contourColor(contourColor);
         }
-        int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_contour_width, -1);
-        if (contourWidth != -1) {
+        int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_contour_width, DEF_SIZE);
+        if (contourWidth != DEF_SIZE) {
             icon.contourWidthPx(contourWidth);
         }
-        int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_all_background_color, Integer.MIN_VALUE);
-        if (backgroundColor != Integer.MIN_VALUE) {
+        int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_all_background_color, DEF_COLOR);
+        if (backgroundColor != DEF_COLOR) {
             icon.backgroundColor(backgroundColor);
         }
-        int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_corner_radius, -1);
-        if (cornerRadius != -1) {
+        int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_corner_radius, DEF_SIZE);
+        if (cornerRadius != DEF_SIZE) {
             icon.roundedCornersPx(cornerRadius);
         }
         return icon;
@@ -130,32 +132,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsTextView_iiv_start_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsTextView_iiv_start_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_start_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_start_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_start_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_start_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -173,32 +175,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsTextView_iiv_top_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsTextView_iiv_top_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_top_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_top_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_top_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_top_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -216,32 +218,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsTextView_iiv_end_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsTextView_iiv_end_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_end_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_end_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_end_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_end_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -259,32 +261,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsTextView_iiv_bottom_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsTextView_iiv_bottom_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_bottom_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsTextView_iiv_bottom_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_bottom_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsTextView_iiv_bottom_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -312,32 +314,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCompoundButton_iiv_checked_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsCompoundButton_iiv_checked_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_checked_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_checked_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_checked_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_checked_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -355,32 +357,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCompoundButton_iiv_unchecked_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsCompoundButton_iiv_unchecked_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_unchecked_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_unchecked_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_unchecked_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_unchecked_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -422,32 +424,32 @@ public class IconicsViewsAttrsReader {
         if (i != null) {
             icon.icon(i);
         }
-        int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_color, Integer.MIN_VALUE);
-        if (color != Integer.MIN_VALUE) {
+        int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_color, DEF_COLOR);
+        if (color != DEF_COLOR) {
             icon.color(color);
         }
-        int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_size, -1);
-        if (size != -1) {
+        int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_size, DEF_SIZE);
+        if (size != DEF_SIZE) {
             icon.sizePx(size);
         }
-        int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_padding, -1);
-        if (padding != -1) {
+        int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_padding, DEF_SIZE);
+        if (padding != DEF_SIZE) {
             icon.paddingPx(padding);
         }
-        int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_color, Integer.MIN_VALUE);
-        if (contourColor != Integer.MIN_VALUE) {
+        int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_color, DEF_COLOR);
+        if (contourColor != DEF_COLOR) {
             icon.contourColor(contourColor);
         }
-        int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_width, -1);
-        if (contourWidth != -1) {
+        int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_width, DEF_SIZE);
+        if (contourWidth != DEF_SIZE) {
             icon.contourWidthPx(contourWidth);
         }
-        int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_color, Integer.MIN_VALUE);
-        if (backgroundColor != Integer.MIN_VALUE) {
+        int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_color, DEF_COLOR);
+        if (backgroundColor != DEF_COLOR) {
             icon.backgroundColor(backgroundColor);
         }
-        int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_corner_radius, -1);
-        if (cornerRadius != -1) {
+        int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_corner_radius, DEF_SIZE);
+        if (cornerRadius != DEF_SIZE) {
             icon.roundedCornersPx(cornerRadius);
         }
         return icon;
@@ -464,32 +466,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -507,32 +509,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -550,32 +552,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
@@ -593,32 +595,32 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color, Integer.MIN_VALUE);
-            if (color != Integer.MIN_VALUE) {
+            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color, DEF_COLOR);
+            if (color != DEF_COLOR) {
                 icon.color(color);
             }
-            int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_size, -1);
-            if (size != -1) {
+            int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_size, DEF_SIZE);
+            if (size != DEF_SIZE) {
                 icon.sizePx(size);
             }
-            int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_padding, -1);
-            if (padding != -1) {
+            int padding = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_padding, DEF_SIZE);
+            if (padding != DEF_SIZE) {
                 icon.paddingPx(padding);
             }
-            int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_contour_color, Integer.MIN_VALUE);
-            if (contourColor != Integer.MIN_VALUE) {
+            int contourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_contour_color, DEF_COLOR);
+            if (contourColor != DEF_COLOR) {
                 icon.contourColor(contourColor);
             }
-            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_contour_width, -1);
-            if (contourWidth != -1) {
+            int contourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_contour_width, DEF_SIZE);
+            if (contourWidth != DEF_SIZE) {
                 icon.contourWidthPx(contourWidth);
             }
-            int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_color, Integer.MIN_VALUE);
-            if (backgroundColor != Integer.MIN_VALUE) {
+            int backgroundColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_color, DEF_COLOR);
+            if (backgroundColor != DEF_COLOR) {
                 icon.backgroundColor(backgroundColor);
             }
-            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_corner_radius, -1);
-            if (cornerRadius != -1) {
+            int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_corner_radius, DEF_SIZE);
+            if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
         }
