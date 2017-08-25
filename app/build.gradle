@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 29101
-        versionName "2.9.1"
+        versionCode 29301
+        versionName "2.9.3"
     }
 
     buildTypes {
@@ -56,7 +56,7 @@ dependencies {
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    compile 'com.mikepenz:fastadapter:2.6.2@aar'
+    compile 'com.mikepenz:fastadapter:2.6.3@aar'
     compile 'com.mikepenz:fastadapter-commons:2.6.0@aar'
 
     //used to generate the drawer on the left
