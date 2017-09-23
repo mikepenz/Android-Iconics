@@ -69,25 +69,25 @@ import static android.support.annotation.Dimension.PX;
 public class IconicsDrawable extends Drawable {
     /**
      * Size of {@link android.support.v7.widget.Toolbar} icon in dp
-     * */
+     */
     @Dimension(unit = DP)
     public static final int TOOLBAR_ICON_SIZE = 24;
 
     /**
      * Size of {@link android.support.v7.widget.Toolbar} icon padding in dp
-     * */
+     */
     @Dimension(unit = DP)
     public static final int TOOLBAR_ICON_PADDING = 1;
 
     /**
      * @deprecated use {@link #TOOLBAR_ICON_SIZE} instead
-     * */
+     */
     @Deprecated
     public static final int ANDROID_ACTIONBAR_ICON_SIZE_DP = TOOLBAR_ICON_SIZE;
 
     /**
      * @deprecated use {@link #TOOLBAR_ICON_PADDING} instead
-     * */
+     */
     @Deprecated
     public static final int ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP = TOOLBAR_ICON_PADDING;
 
@@ -216,15 +216,37 @@ public class IconicsDrawable extends Drawable {
     }
 
     /**
+     * Loads and draws given.
+     *
+     * @param icon
+     * @param typeface
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable icon(Character icon, Typeface typeface) {
+        return iconText(icon.toString(), typeface);
+    }
+
+    /**
      * Loads and draws given text
      *
      * @param icon
      * @return The current IconExtDrawable for chaining.
      */
     public IconicsDrawable iconText(String icon) {
+        return iconText(icon, Typeface.DEFAULT);
+    }
+
+    /**
+     * Loads and draws given text
+     *
+     * @param icon
+     * @param typeface
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable iconText(String icon, Typeface typeface) {
         mPlainIcon = icon;
         mIcon = null;
-        mIconPaint.setTypeface(Typeface.DEFAULT);
+        mIconPaint.setTypeface(typeface);
         invalidateSelf();
         return this;
     }
