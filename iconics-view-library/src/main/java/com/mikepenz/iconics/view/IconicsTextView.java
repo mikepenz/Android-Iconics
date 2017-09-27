@@ -70,7 +70,6 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     }
 
     //region CompoundIconicsDrawablesImpl
-    @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableStart() {
         if (mIconsBundle.mStartIconBundle != null) {
@@ -80,7 +79,6 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
         }
     }
 
-    @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableTop() {
         if (mIconsBundle.mTopIconBundle != null) {
@@ -90,7 +88,6 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
         }
     }
 
-    @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableEnd() {
         if (mIconsBundle.mEndIconBundle != null) {
@@ -100,7 +97,6 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
         }
     }
 
-    @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableBottom() {
         if (mIconsBundle.mBottomIconBundle != null) {
@@ -143,7 +139,6 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
         setIcons();
     }
     //endregion
-
 
     @Override
     public void setText(CharSequence text, BufferType type) {

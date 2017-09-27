@@ -241,7 +241,6 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
     }
     //endregion
 
-    @Nullable
     public IconicsDrawable getIcon() {
         if (getDrawable() instanceof IconicsDrawable) {
             return ((IconicsDrawable) getDrawable());

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Mike Penz
+ * Copyright 2017 Mike Penz
  *
  *
  * I improved the previous version of the IconicsDrawable which
@@ -337,6 +337,16 @@ public class IconicsDrawable extends Drawable {
      */
     public IconicsDrawable colorRes(@ColorRes int colorRes) {
         return color(ContextCompat.getColor(mContext, colorRes));
+    }
+
+    /**
+     * Set the color of the drawable.
+     *
+     * @param colorRes The color resource, from your R file.
+     * @return The current IconExtDrawable for chaining.
+     */
+    public IconicsDrawable colorListRes(@ColorRes int colorRes) {
+        return color(ContextCompat.getColorStateList(mContext, colorRes));
     }
 
 
