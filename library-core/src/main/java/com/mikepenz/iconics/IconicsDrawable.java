@@ -246,7 +246,7 @@ public class IconicsDrawable extends Drawable {
     public IconicsDrawable iconText(String icon, Typeface typeface) {
         mPlainIcon = icon;
         mIcon = null;
-        mIconPaint.setTypeface(typeface);
+        mIconPaint.setTypeface(typeface == null ? Typeface.DEFAULT : typeface);
         invalidateSelf();
         return this;
     }
