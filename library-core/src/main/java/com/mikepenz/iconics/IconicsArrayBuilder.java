@@ -1,5 +1,8 @@
 package com.mikepenz.iconics;
 
+import android.graphics.Typeface;
+import android.util.Pair;
+
 import com.mikepenz.iconics.typeface.IIcon;
 
 import java.util.ArrayList;
@@ -21,13 +24,11 @@ public class IconicsArrayBuilder {
     }
     
     public IconicsArrayBuilder add(String icon) {
-        mIcons.add(Pair.create(icon, Typeface.DEFAULT));
-        return this;
+        return add(icon, Typeface.DEFAULT);
     }
 
     public IconicsArrayBuilder add(Character icon) {
-        mIcons.add(Pair.create(icon, Typeface.DEFAULT));
-        return this;
+        return add(icon, Typeface.DEFAULT);
     }
 
     public IconicsArrayBuilder add(String icon, Typeface typeface) {
