@@ -80,18 +80,6 @@ public class IconicsDrawable extends Drawable {
     @Dimension(unit = DP)
     public static final int TOOLBAR_ICON_PADDING = 1;
 
-    /**
-     * @deprecated use {@link #TOOLBAR_ICON_SIZE} instead
-     */
-    @Deprecated
-    public static final int ANDROID_ACTIONBAR_ICON_SIZE_DP = TOOLBAR_ICON_SIZE;
-
-    /**
-     * @deprecated use {@link #TOOLBAR_ICON_PADDING} instead
-     */
-    @Deprecated
-    public static final int ANDROID_ACTIONBAR_ICON_SIZE_PADDING_DP = TOOLBAR_ICON_PADDING;
-
     private Context mContext;
 
     private int mSizeX = -1;
@@ -545,17 +533,6 @@ public class IconicsDrawable extends Drawable {
             invalidateSelf();
         }
         return this;
-    }
-
-    /**
-     * Set the size of this icon to the standard Android ActionBar.
-     *
-     * @return The current IconExtDrawable for chaining.
-     * @deprecated use actionBar() instead
-     */
-    @Deprecated
-    public IconicsDrawable actionBarSize() {
-        return sizeDp(TOOLBAR_ICON_SIZE);
     }
 
     /**

@@ -17,9 +17,6 @@ package com.mikepenz.iconics.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DimenRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.support.v7.widget.AppCompatImageView;
@@ -28,7 +25,6 @@ import android.util.AttributeSet;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.internal.IconicsView;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
-import com.mikepenz.iconics.typeface.IIcon;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -73,172 +69,6 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
         //set the imageDrawable
         setImageDrawable(mIcon = icon);
     }
-
-    //region deprecated methods
-    /**
-     * @deprecated use {@link IconicsDrawable#icon(Character) getIcon().icon(Character)} instead
-     * */
-    @Deprecated
-    public void setIcon(Character icon) {
-        if (mIcon != null) {
-            mIcon.icon(icon);
-        } else {
-            setIcon(new IconicsDrawable(getContext(), icon));
-        }
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#icon(String) getIcon().icon(String)} instead
-     * */
-    @Deprecated
-    public void setIcon(String icon) {
-        if (mIcon != null) {
-            mIcon.icon(icon);
-        } else {
-            setIcon(new IconicsDrawable(getContext(), icon));
-        }
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#icon(IIcon) getIcon().icon(IIcon)} instead
-     * */
-    @Deprecated
-    public void setIcon(IIcon icon) {
-        if (mIcon != null) {
-            mIcon.icon(icon);
-        } else {
-            setIcon(new IconicsDrawable(getContext(), icon));
-        }
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#iconText(String) getIcon().iconText(String)} instead
-     * */
-    @Deprecated
-    public void setIconText(String iconText) {
-        setIcon(new IconicsDrawable(getContext()).iconText(iconText));
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#color(int) getIcon().color(@ColorInt int)} instead
-     * */
-    @Deprecated
-    public void setColor(@ColorInt int color) {
-        mIcon.color(color);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#colorRes(int) getIcon().colorRes(@ColorRes int)} instead
-     * */
-    @Deprecated
-    public void setColorRes(@ColorRes int colorRes) {
-        mIcon.colorRes(colorRes);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#paddingPx(int) getIcon().paddingPx(int)} instead
-     * */
-    @Deprecated
-    public void setPaddingPx(int padding) {
-        mIcon.paddingPx(padding);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#paddingDp(int) getIcon().paddingDp(int)} instead
-     * */
-    @Deprecated
-    public void setPaddingDp(int paddingDp) {
-        mIcon.paddingDp(paddingDp);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#paddingRes(int)}  getIcon().paddingRes(@DimenRes int)} instead
-     * */
-    @Deprecated
-    public void setPaddingRes(@DimenRes int paddingRes) {
-        mIcon.paddingRes(paddingRes);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#contourColor(int) getIcon().contourColor(@ColorInt int)} instead
-     * */
-    @Deprecated
-    public void setContourColor(@ColorInt int color) {
-        mIcon.contourColor(color);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#contourColorRes(int) getIcon().contourColorRes(@ColorRes int)} instead
-     * */
-    @Deprecated
-    public void setContourColorRes(@ColorRes int colorRes) {
-        mIcon.contourColorRes(colorRes);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#contourWidthPx(int) getIcon().contourWidthPx(int)} instead
-     * */
-    @Deprecated
-    public void setContourWidthPx(int contourWidth) {
-        mIcon.contourWidthPx(contourWidth);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#contourWidthDp(int) getIcon().contourWidthDp(int)} instead
-     * */
-    @Deprecated
-    public void setContourWidthDp(int contourWidthDp) {
-        mIcon.contourWidthDp(contourWidthDp);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#contourWidthRes(int) getIcon().contourWidthRes(@DimenRes int)} instead
-     * */
-    @Deprecated
-    public void setContourWidthRes(@DimenRes int contourWidthRes) {
-        mIcon.contourWidthRes(contourWidthRes);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#backgroundColor(int) getIcon().backgroundColor(@ColorInt int) instead
-     * */
-    @Deprecated
-    public void setBackgroundColor(@ColorInt int color) {
-        mIcon.backgroundColor(color);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#backgroundColorRes(int) getIcon().backgroundColorRes(@ColorRes int)} instead
-     * */
-    @Deprecated
-    public void setBackgroundColorRes(@ColorRes int colorRes) {
-        mIcon.backgroundColorRes(colorRes);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#roundedCornersPx(int) getIcon()roundedCornersPx(int)} instead
-     * */
-    @Deprecated
-    public void setRoundedCornersPx(int cornerRadius) {
-        mIcon.roundedCornersPx(cornerRadius);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#roundedCornersDp(int) getIcon().roundedCornersDp(int)} instead
-     * */
-    @Deprecated
-    public void setRoundedCornersDp(int cornerRadiusDp) {
-        mIcon.roundedCornersDp(cornerRadiusDp);
-    }
-
-    /**
-     * @deprecated use {@link IconicsDrawable#roundedCornersRes(int) getIcon().roundedCornersRes(@DimenRes int)} instead
-     * */
-    @Deprecated
-    public void setRoundedCornersRes(@DimenRes int cornerRadiusRes) {
-        mIcon.roundedCornersRes(cornerRadiusRes);
-    }
-    //endregion
 
     public IconicsDrawable getIcon() {
         if (getDrawable() instanceof IconicsDrawable) {

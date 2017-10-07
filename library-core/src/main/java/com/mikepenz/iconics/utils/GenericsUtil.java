@@ -50,7 +50,7 @@ public class GenericsUtil {
      * @return a String[] with the string ids we need
      */
     private static String[] getDefinedFonts(Context ctx, Field[] fields) {
-        ArrayList<String> fieldArray = new ArrayList<String>();
+        ArrayList<String> fieldArray = new ArrayList<>();
         for (Field field : fields) {
             if (field.getName().contains("define_font_")) {
                 fieldArray.add(getStringResourceByName(ctx, field.getName()));
