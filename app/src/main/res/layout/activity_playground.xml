@@ -67,13 +67,18 @@
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:padding="24dp"
-                    app:iiv_icon="faw-android"/>
+                    app:iiv_icon="@string/faw_android"/>
 
                 <com.mikepenz.iconics.view.IconicsImageView
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     app:iiv_color="@color/md_red_200"
-                    app:iiv_icon="gmd-favorite"/>
+                    app:iiv_icon="@string/gmd_favorite"
+
+                    app:iiv_background_color="@android:color/black"
+                    app:iiv_background_contour_color="@android:color/holo_red_light"
+                    app:iiv_background_contour_width="4dp"
+                    app:iiv_corner_radius="36dp"/>
 
             </LinearLayout>
             <!--endregion-->
@@ -290,7 +295,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     app:iiv_color="@color/md_red_200"
-                    app:iiv_icon="gmd-favorite"/>
+                    app:iiv_icon="@string/gmd_favorite"/>
             </LinearLayout>
             <!--endregion-->
 

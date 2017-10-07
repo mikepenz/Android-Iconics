@@ -17,11 +17,13 @@
 package com.mikepenz.iconics.internal;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
 
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.context.IconicsAttrsReader;
 import com.mikepenz.iconics.utils.Utils;
 import com.mikepenz.iconics.view.R;
 
@@ -31,9 +33,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  * @author pa.gulko zTrap (07.07.2017)
  */
 @RestrictTo(LIBRARY_GROUP)
-public class IconicsViewsAttrsReader {
-    private final static int DEF_COLOR = Integer.MIN_VALUE;
-    private final static int DEF_SIZE = -1;
+public class IconicsViewsAttrsReader extends IconicsAttrsReader {
 
     //region IconicsImageView
     public static void readIconicsImageView(TypedArray a, IconicsDrawable icon) {
@@ -41,9 +41,9 @@ public class IconicsViewsAttrsReader {
         if (i != null) {
             icon.icon(i);
         }
-        int color = a.getColor(R.styleable.IconicsImageView_iiv_color, DEF_COLOR);
-        if (color != DEF_COLOR) {
-            icon.color(color);
+        ColorStateList colors = a.getColorStateList(R.styleable.IconicsImageView_iiv_color);
+        if (colors != null) {
+            icon.color(colors);
         }
         int size = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_size, DEF_SIZE);
         if (size != DEF_SIZE) {
@@ -69,10 +69,19 @@ public class IconicsViewsAttrsReader {
         if (cornerRadius != DEF_SIZE) {
             icon.roundedCornersPx(cornerRadius);
         }
+        int backgroundContourColor = a.getColor(R.styleable.IconicsImageView_iiv_background_contour_color, DEF_COLOR);
+        if (backgroundContourColor != DEF_COLOR) {
+            icon.backgroundContourColor(backgroundContourColor);
+        }
+        int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsImageView_iiv_background_contour_width, DEF_SIZE);
+        if (backgroundContourWidth != DEF_SIZE) {
+            icon.backgroundContourWidthPx(backgroundContourWidth);
+        }
     }
     //endregion
 
     //region IconicsTextView
+
     /**
      * Attributes priority:
      * <p>
@@ -105,9 +114,9 @@ public class IconicsViewsAttrsReader {
         if (i != null) {
             icon.icon(i);
         }
-        int color = a.getColor(R.styleable.IconicsTextView_iiv_all_color, DEF_COLOR);
-        if (color != DEF_COLOR) {
-            icon.color(color);
+        ColorStateList colors = a.getColorStateList(R.styleable.IconicsTextView_iiv_all_color);
+        if (colors != null) {
+            icon.color(colors);
         }
         int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_size, DEF_SIZE);
         if (size != DEF_SIZE) {
@@ -133,6 +142,14 @@ public class IconicsViewsAttrsReader {
         if (cornerRadius != DEF_SIZE) {
             icon.roundedCornersPx(cornerRadius);
         }
+        int backgroundContourColor = a.getColor(R.styleable.IconicsTextView_iiv_all_background_contour_color, DEF_COLOR);
+        if (backgroundContourColor != DEF_COLOR) {
+            icon.backgroundContourColor(backgroundContourColor);
+        }
+        int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_all_background_contour_width, DEF_SIZE);
+        if (backgroundContourWidth != DEF_SIZE) {
+            icon.backgroundContourWidthPx(backgroundContourWidth);
+        }
         return icon;
     }
 
@@ -147,9 +164,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsTextView_iiv_start_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsTextView_iiv_start_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -175,6 +192,14 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsTextView_iiv_start_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_start_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
+            }
         }
         return icon;
     }
@@ -190,9 +215,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsTextView_iiv_top_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsTextView_iiv_top_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -218,6 +243,14 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsTextView_iiv_top_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_top_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
+            }
         }
         return icon;
     }
@@ -233,9 +266,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsTextView_iiv_end_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsTextView_iiv_end_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -261,6 +294,14 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsTextView_iiv_end_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_end_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
+            }
         }
         return icon;
     }
@@ -276,9 +317,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsTextView_iiv_bottom_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsTextView_iiv_bottom_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -303,6 +344,14 @@ public class IconicsViewsAttrsReader {
             int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_corner_radius, DEF_SIZE);
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
+            }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsTextView_iiv_bottom_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsTextView_iiv_bottom_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
             }
         }
         return icon;
@@ -329,9 +378,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCompoundButton_iiv_checked_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsCompoundButton_iiv_checked_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -357,6 +406,14 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_checked_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_checked_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
+            }
         }
         return icon;
     }
@@ -372,9 +429,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCompoundButton_iiv_unchecked_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsCompoundButton_iiv_unchecked_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -400,12 +457,21 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
+            }
         }
         return icon;
     }
     //endregion
 
     //region IconicsCheckableTextView
+
     /**
      * Attributes priority:
      * <p>
@@ -438,9 +504,9 @@ public class IconicsViewsAttrsReader {
         if (i != null) {
             icon.icon(i);
         }
-        int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_color, DEF_COLOR);
-        if (color != DEF_COLOR) {
-            icon.color(color);
+        ColorStateList colors = a.getColorStateList(R.styleable.IconicsCheckableTextView_iiv_all_checked_color);
+        if (colors != null) {
+            icon.color(colors);
         }
         int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_size, DEF_SIZE);
         if (size != DEF_SIZE) {
@@ -466,6 +532,14 @@ public class IconicsViewsAttrsReader {
         if (cornerRadius != DEF_SIZE) {
             icon.roundedCornersPx(cornerRadius);
         }
+        int backgroundContourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_color, DEF_COLOR);
+        if (backgroundContourColor != DEF_COLOR) {
+            icon.backgroundContourColor(backgroundContourColor);
+        }
+        int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_width, DEF_SIZE);
+        if (backgroundContourWidth != DEF_SIZE) {
+            icon.backgroundContourWidthPx(backgroundContourWidth);
+        }
         return icon;
     }
 
@@ -480,9 +554,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsCheckableTextView_iiv_start_checked_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -508,6 +582,14 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
+            }
         }
         return icon;
     }
@@ -523,9 +605,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsCheckableTextView_iiv_top_checked_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -551,6 +633,14 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
+            }
         }
         return icon;
     }
@@ -566,9 +656,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsCheckableTextView_iiv_end_checked_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -594,6 +684,14 @@ public class IconicsViewsAttrsReader {
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
             }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
+            }
         }
         return icon;
     }
@@ -609,9 +707,9 @@ public class IconicsViewsAttrsReader {
                     icon.icon(i);
                 }
             }
-            int color = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color, DEF_COLOR);
-            if (color != DEF_COLOR) {
-                icon.color(color);
+            ColorStateList colors = a.getColorStateList(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color);
+            if (colors != null) {
+                icon.color(colors);
             }
             int size = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_size, DEF_SIZE);
             if (size != DEF_SIZE) {
@@ -636,6 +734,14 @@ public class IconicsViewsAttrsReader {
             int cornerRadius = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_corner_radius, DEF_SIZE);
             if (cornerRadius != DEF_SIZE) {
                 icon.roundedCornersPx(cornerRadius);
+            }
+            int backgroundContourColor = a.getColor(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_color, DEF_COLOR);
+            if (backgroundContourColor != DEF_COLOR) {
+                icon.backgroundContourColor(backgroundContourColor);
+            }
+            int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_width, DEF_SIZE);
+            if (backgroundContourWidth != DEF_SIZE) {
+                icon.backgroundContourWidthPx(backgroundContourWidth);
             }
         }
         return icon;

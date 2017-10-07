@@ -14,7 +14,6 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <resources>
     <declare-styleable name="IconicsAnimateChanges">
         <attr name="iiv_animate_icon_changes" format="boolean" />
@@ -29,6 +28,8 @@
         <attr name="iiv_contour_width" format="dimension|reference" />
         <attr name="iiv_background_color" format="color|reference" />
         <attr name="iiv_corner_radius" format="dimension|reference" />
+        <attr name="iiv_background_contour_color" format="color|reference" />
+        <attr name="iiv_background_contour_width" format="dimension|reference" />
     </declare-styleable>
 
     <declare-styleable name="IconicsTextView">
@@ -40,6 +41,8 @@
         <attr name="iiv_start_contour_width" format="dimension|reference" />
         <attr name="iiv_start_background_color" format="color|reference" />
         <attr name="iiv_start_corner_radius" format="dimension|reference" />
+        <attr name="iiv_start_background_contour_color" format="color|reference" />
+        <attr name="iiv_start_background_contour_width" format="dimension|reference" />
 
         <attr name="iiv_top_icon" format="string" />
         <attr name="iiv_top_color" format="color|reference" />
@@ -49,6 +52,8 @@
         <attr name="iiv_top_contour_width" format="dimension|reference" />
         <attr name="iiv_top_background_color" format="color|reference" />
         <attr name="iiv_top_corner_radius" format="dimension|reference" />
+        <attr name="iiv_top_background_contour_color" format="color|reference" />
+        <attr name="iiv_top_background_contour_width" format="dimension|reference" />
 
         <attr name="iiv_end_icon" format="string" />
         <attr name="iiv_end_color" format="color|reference" />
@@ -58,6 +63,8 @@
         <attr name="iiv_end_contour_width" format="dimension|reference" />
         <attr name="iiv_end_background_color" format="color|reference" />
         <attr name="iiv_end_corner_radius" format="dimension|reference" />
+        <attr name="iiv_end_background_contour_color" format="color|reference" />
+        <attr name="iiv_end_background_contour_width" format="dimension|reference" />
 
         <attr name="iiv_bottom_icon" format="string" />
         <attr name="iiv_bottom_color" format="color|reference" />
@@ -67,6 +74,8 @@
         <attr name="iiv_bottom_contour_width" format="dimension|reference" />
         <attr name="iiv_bottom_background_color" format="color|reference" />
         <attr name="iiv_bottom_corner_radius" format="dimension|reference" />
+        <attr name="iiv_bottom_background_contour_color" format="color|reference" />
+        <attr name="iiv_bottom_background_contour_width" format="dimension|reference" />
 
         <attr name="iiv_all_icon" format="string" />
         <attr name="iiv_all_color" format="color|reference" />
@@ -76,6 +85,8 @@
         <attr name="iiv_all_contour_width" format="dimension|reference" />
         <attr name="iiv_all_background_color" format="color|reference" />
         <attr name="iiv_all_corner_radius" format="dimension|reference" />
+        <attr name="iiv_all_background_contour_color" format="color|reference" />
+        <attr name="iiv_all_background_contour_width" format="dimension|reference" />
     </declare-styleable>
 
     <declare-styleable name="IconicsCompoundButton">
@@ -87,6 +98,8 @@
         <attr name="iiv_checked_contour_width" format="dimension|reference" />
         <attr name="iiv_checked_background_color" format="color|reference" />
         <attr name="iiv_checked_corner_radius" format="dimension|reference" />
+        <attr name="iiv_checked_background_contour_color" format="color|reference" />
+        <attr name="iiv_checked_background_contour_width" format="dimension|reference" />
 
         <attr name="iiv_unchecked_icon" format="string" />
         <attr name="iiv_unchecked_color" format="color|reference" />
@@ -96,6 +109,8 @@
         <attr name="iiv_unchecked_contour_width" format="dimension|reference" />
         <attr name="iiv_unchecked_background_color" format="color|reference" />
         <attr name="iiv_unchecked_corner_radius" format="dimension|reference" />
+        <attr name="iiv_unchecked_background_contour_color" format="color|reference" />
+        <attr name="iiv_unchecked_background_contour_width" format="dimension|reference" />
     </declare-styleable>
 
     <declare-styleable name="IconicsCheckableTextView">
@@ -109,6 +124,8 @@
         <attr name="iiv_all_checked_contour_width" format="dimension|reference" />
         <attr name="iiv_all_checked_background_color" format="color|reference" />
         <attr name="iiv_all_checked_corner_radius" format="dimension|reference" />
+        <attr name="iiv_all_checked_background_contour_color" format="color|reference" />
+        <attr name="iiv_all_checked_background_contour_width" format="dimension|reference" />
         <!--endregion-->
 
         <!--region start icon-->
@@ -120,6 +137,8 @@
         <attr name="iiv_start_checked_contour_width" format="dimension|reference" />
         <attr name="iiv_start_checked_background_color" format="color|reference" />
         <attr name="iiv_start_checked_corner_radius" format="dimension|reference" />
+        <attr name="iiv_start_checked_background_contour_color" format="color|reference" />
+        <attr name="iiv_start_checked_background_contour_width" format="dimension|reference" />
         <!--endregion-->
 
         <!--region top icon-->
@@ -131,6 +150,8 @@
         <attr name="iiv_top_checked_contour_width" format="dimension|reference" />
         <attr name="iiv_top_checked_background_color" format="color|reference" />
         <attr name="iiv_top_checked_corner_radius" format="dimension|reference" />
+        <attr name="iiv_top_checked_background_contour_color" format="color|reference" />
+        <attr name="iiv_top_checked_background_contour_width" format="dimension|reference" />
         <!--endregion-->
 
         <!--region end icon-->
@@ -142,6 +163,8 @@
         <attr name="iiv_end_checked_contour_width" format="dimension|reference" />
         <attr name="iiv_end_checked_background_color" format="color|reference" />
         <attr name="iiv_end_checked_corner_radius" format="dimension|reference" />
+        <attr name="iiv_end_checked_background_contour_color" format="color|reference" />
+        <attr name="iiv_end_checked_background_contour_width" format="dimension|reference" />
         <!--endregion-->
 
         <!--region bottom icon-->
@@ -153,6 +176,8 @@
         <attr name="iiv_bottom_checked_contour_width" format="dimension|reference" />
         <attr name="iiv_bottom_checked_background_color" format="color|reference" />
         <attr name="iiv_bottom_checked_corner_radius" format="dimension|reference" />
+        <attr name="iiv_bottom_checked_background_contour_color" format="color|reference" />
+        <attr name="iiv_bottom_checked_background_contour_width" format="dimension|reference" />
         <!--endregion-->
     </declare-styleable>
 

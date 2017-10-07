@@ -115,13 +115,13 @@ public class IconicsMenuInflaterUtil {
                             }
                             //region trying to set normal icon
                             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
-                            IconicsDrawable normalBundle = new IconicsDrawable(context);
+                            IconicsDrawable icon = new IconicsDrawable(context);
 
-                            IconicsViewsAttrsReader.readIconicsImageView(a, normalBundle);
+                            IconicsViewsAttrsReader.readIconicsImageView(a, icon);
 
                             int id = Integer.parseInt(attr.get("id").replace("@", ""));
                             MenuItem item = menu.findItem(id);
-                            item.setIcon(normalBundle);
+                            item.setIcon(icon);
                             a.recycle();
                             //endregion
                             break;

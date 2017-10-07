@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressWarnings("JavaDoc, UnusedReturnValue, WeakerAccess, unused, SameParameterValue")
 public final class Iconics {
     public static final String TAG = Iconics.class.getSimpleName();
 
@@ -93,8 +94,8 @@ public final class Iconics {
             font.getIcon(icon);
             return true;
         } catch (Exception ignore) {
+            return false;
         }
-        return false;
     }
 
     /**
