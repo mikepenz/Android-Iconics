@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.mikepenz.iconics.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.support.v7.widget.AppCompatImageView;
@@ -29,7 +29,6 @@ import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsImageView extends AppCompatImageView implements IconicsView {
-    private IconicsDrawable mIcon;
 
     public IconicsImageView(Context context) {
         this(context, null);
@@ -49,25 +48,20 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
-        mIcon = new IconicsDrawable(context);
-        applyAttr(context, attrs, defStyle);
         //set the scale type for this view
         setScaleType(ScaleType.CENTER_INSIDE);
-        //set our values for this view
-        setImageDrawable(mIcon);
+
+        applyAttr(context, attrs, defStyle);
     }
 
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView, defStyle, 0);
-        IconicsViewsAttrsReader.readIconicsImageView(a, mIcon);
-        a.recycle();
+        setIcon(IconicsViewsAttrsReader.getIconicsImageViewDrawable(context, attrs));
     }
 
     public void setIcon(@Nullable IconicsDrawable icon) {
-        //set the imageDrawable
-        setImageDrawable(mIcon = icon);
+        setImageDrawable(icon);
     }
 
     public IconicsDrawable getIcon() {

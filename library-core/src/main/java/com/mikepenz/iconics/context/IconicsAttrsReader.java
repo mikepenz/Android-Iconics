@@ -38,7 +38,7 @@ public class IconicsAttrsReader {
     protected final static int DEF_SIZE = -1;
 
     @Nullable
-    public static IconicsDrawable readIconics(Context context, AttributeSet attrs) {
+    public static IconicsDrawable getIconicsDrawable(Context context, AttributeSet attrs) {
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Iconics);
 
         IconicsDrawable icon;

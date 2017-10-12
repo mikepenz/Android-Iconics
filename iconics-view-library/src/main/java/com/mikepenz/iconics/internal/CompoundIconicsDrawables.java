@@ -28,6 +28,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 @RestrictTo(LIBRARY_GROUP)
 public interface CompoundIconicsDrawables {
+
     IconicsDrawable getIconicsDrawableStart();
 
     IconicsDrawable getIconicsDrawableTop();

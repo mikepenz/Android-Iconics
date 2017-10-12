@@ -23,7 +23,7 @@ import android.util.AttributeSet;
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
- * @author zTrap (09.07.2017)
+ * @author pa.gulko zTrap (09.07.2017)
  */
 @RestrictTo(LIBRARY_GROUP)
 public interface IconicsView {

@@ -33,6 +33,7 @@
     </declare-styleable>
 
     <declare-styleable name="IconicsTextView">
+        <!--region start icon-->
         <attr name="iiv_start_icon" format="string" />
         <attr name="iiv_start_color" format="color|reference" />
         <attr name="iiv_start_size" format="dimension|reference" />
@@ -43,7 +44,9 @@
         <attr name="iiv_start_corner_radius" format="dimension|reference" />
         <attr name="iiv_start_background_contour_color" format="color|reference" />
         <attr name="iiv_start_background_contour_width" format="dimension|reference" />
+        <!--endregion-->
 
+        <!--region top icon-->
         <attr name="iiv_top_icon" format="string" />
         <attr name="iiv_top_color" format="color|reference" />
         <attr name="iiv_top_size" format="dimension|reference" />
@@ -54,7 +57,9 @@
         <attr name="iiv_top_corner_radius" format="dimension|reference" />
         <attr name="iiv_top_background_contour_color" format="color|reference" />
         <attr name="iiv_top_background_contour_width" format="dimension|reference" />
+        <!--endregion-->
 
+        <!--region end icon-->
         <attr name="iiv_end_icon" format="string" />
         <attr name="iiv_end_color" format="color|reference" />
         <attr name="iiv_end_size" format="dimension|reference" />
@@ -65,7 +70,9 @@
         <attr name="iiv_end_corner_radius" format="dimension|reference" />
         <attr name="iiv_end_background_contour_color" format="color|reference" />
         <attr name="iiv_end_background_contour_width" format="dimension|reference" />
+        <!--endregion-->
 
+        <!--region bottom icon-->
         <attr name="iiv_bottom_icon" format="string" />
         <attr name="iiv_bottom_color" format="color|reference" />
         <attr name="iiv_bottom_size" format="dimension|reference" />
@@ -76,7 +83,9 @@
         <attr name="iiv_bottom_corner_radius" format="dimension|reference" />
         <attr name="iiv_bottom_background_contour_color" format="color|reference" />
         <attr name="iiv_bottom_background_contour_width" format="dimension|reference" />
+        <!--endregion-->
 
+        <!--region all icons-->
         <attr name="iiv_all_icon" format="string" />
         <attr name="iiv_all_color" format="color|reference" />
         <attr name="iiv_all_size" format="dimension|reference" />
@@ -87,9 +96,11 @@
         <attr name="iiv_all_corner_radius" format="dimension|reference" />
         <attr name="iiv_all_background_contour_color" format="color|reference" />
         <attr name="iiv_all_background_contour_width" format="dimension|reference" />
+        <!--endregion-->
     </declare-styleable>
 
     <declare-styleable name="IconicsCompoundButton">
+        <!--region checked icons-->
         <attr name="iiv_checked_icon" format="string" />
         <attr name="iiv_checked_color" format="color|reference" />
         <attr name="iiv_checked_size" format="dimension|reference" />
@@ -100,7 +111,9 @@
         <attr name="iiv_checked_corner_radius" format="dimension|reference" />
         <attr name="iiv_checked_background_contour_color" format="color|reference" />
         <attr name="iiv_checked_background_contour_width" format="dimension|reference" />
+        <!--endregion-->
 
+        <!--region unchecked icons-->
         <attr name="iiv_unchecked_icon" format="string" />
         <attr name="iiv_unchecked_color" format="color|reference" />
         <attr name="iiv_unchecked_size" format="dimension|reference" />
@@ -111,23 +124,10 @@
         <attr name="iiv_unchecked_corner_radius" format="dimension|reference" />
         <attr name="iiv_unchecked_background_contour_color" format="color|reference" />
         <attr name="iiv_unchecked_background_contour_width" format="dimension|reference" />
+        <!--endregion-->
     </declare-styleable>
 
     <declare-styleable name="IconicsCheckableTextView">
-
-        <!--region all icons-->
-        <attr name="iiv_all_checked_icon" format="string" />
-        <attr name="iiv_all_checked_color" format="color|reference" />
-        <attr name="iiv_all_checked_size" format="dimension|reference" />
-        <attr name="iiv_all_checked_padding" format="dimension|reference" />
-        <attr name="iiv_all_checked_contour_color" format="color|reference" />
-        <attr name="iiv_all_checked_contour_width" format="dimension|reference" />
-        <attr name="iiv_all_checked_background_color" format="color|reference" />
-        <attr name="iiv_all_checked_corner_radius" format="dimension|reference" />
-        <attr name="iiv_all_checked_background_contour_color" format="color|reference" />
-        <attr name="iiv_all_checked_background_contour_width" format="dimension|reference" />
-        <!--endregion-->
-
         <!--region start icon-->
         <attr name="iiv_start_checked_icon" format="string" />
         <attr name="iiv_start_checked_color" format="color|reference" />
@@ -178,6 +178,19 @@
         <attr name="iiv_bottom_checked_corner_radius" format="dimension|reference" />
         <attr name="iiv_bottom_checked_background_contour_color" format="color|reference" />
         <attr name="iiv_bottom_checked_background_contour_width" format="dimension|reference" />
+        <!--endregion-->
+
+        <!--region all icons-->
+        <attr name="iiv_all_checked_icon" format="string" />
+        <attr name="iiv_all_checked_color" format="color|reference" />
+        <attr name="iiv_all_checked_size" format="dimension|reference" />
+        <attr name="iiv_all_checked_padding" format="dimension|reference" />
+        <attr name="iiv_all_checked_contour_color" format="color|reference" />
+        <attr name="iiv_all_checked_contour_width" format="dimension|reference" />
+        <attr name="iiv_all_checked_background_color" format="color|reference" />
+        <attr name="iiv_all_checked_corner_radius" format="dimension|reference" />
+        <attr name="iiv_all_checked_background_contour_color" format="color|reference" />
+        <attr name="iiv_all_checked_background_contour_width" format="dimension|reference" />
         <!--endregion-->
     </declare-styleable>
 

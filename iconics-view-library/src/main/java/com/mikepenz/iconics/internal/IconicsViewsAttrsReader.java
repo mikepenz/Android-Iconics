@@ -19,8 +19,10 @@ package com.mikepenz.iconics.internal;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsAttrsReader;
@@ -78,10 +80,24 @@ public class IconicsViewsAttrsReader extends IconicsAttrsReader {
             icon.backgroundContourWidthPx(backgroundContourWidth);
         }
     }
+
+    @Nullable
+    public static IconicsDrawable getIconicsImageViewDrawable(Context context, AttributeSet attrs){
+        IconicsDrawable drawable = null;
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
+
+        String icon = a.getString(R.styleable.IconicsImageView_iiv_icon);
+        if (!TextUtils.isEmpty(icon)) {
+            drawable = new IconicsDrawable(context, icon);
+            readIconicsImageView(a, drawable);
+        }
+
+        a.recycle();
+        return drawable;
+    }
     //endregion
 
     //region IconicsTextView
-
     /**
      * Attributes priority:
      * <p>
@@ -471,7 +487,6 @@ public class IconicsViewsAttrsReader extends IconicsAttrsReader {
     //endregion
 
     //region IconicsCheckableTextView
-
     /**
      * Attributes priority:
      * <p>

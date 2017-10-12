@@ -140,7 +140,6 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
             }
             mBroadcasting = false;
         }
-
     }
 
     public void setOnCheckedChangeListener(OnCheckedChangeListener listener) {
