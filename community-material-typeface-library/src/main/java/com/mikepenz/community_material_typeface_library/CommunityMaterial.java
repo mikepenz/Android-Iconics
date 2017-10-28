@@ -64,7 +64,7 @@ public class CommunityMaterial implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "1.9.32.1";
+        return "2.0.46.1";
     }
 
     @Override

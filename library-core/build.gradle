@@ -30,5 +30,5 @@ if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 }

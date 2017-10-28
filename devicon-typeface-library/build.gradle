@@ -47,5 +47,5 @@ if (project.hasProperty('pushall') || project.hasProperty('DevIcononly')) {
 }
 
 dependencies {
-    compile project(':library-core')
+    implementation project(':library-core')
 }

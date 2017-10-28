@@ -47,5 +47,5 @@ if (project.hasProperty('pushall') || project.hasProperty('weathericonsonly')) {
 }
 
 dependencies {
-    compile project(':library-core')
+    implementation project(':library-core')
 }

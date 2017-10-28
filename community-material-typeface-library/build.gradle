@@ -48,5 +48,5 @@ if (project.hasProperty('pushall') || project.hasProperty('communitymaterialonly
 }
 
 dependencies {
-    compile project(':library-core')
+    implementation project(':library-core')
 }
