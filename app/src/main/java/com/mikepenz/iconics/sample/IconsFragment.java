@@ -1,9 +1,11 @@
 package com.mikepenz.iconics.sample;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -38,12 +40,12 @@ import java.util.Random;
 public class IconsFragment extends Fragment {
 
     private static final String FONT_NAME = "FONT_NAME";
-    private ArrayList<IconItem> icons = new ArrayList<>();
+    private ArrayList<IconItem> mIcons = new ArrayList<>();
     private FastItemAdapter<IconItem> mAdapter;
-    private boolean randomize;
-    private String search;
-    private PopupWindow popup;
-    private Random random = new Random();
+    private boolean mRandomize;
+    private String mSearch;
+    private PopupWindow mPopup;
+    private Random mRandom = new Random();
 
     public static IconsFragment newInstance(String fontName) {
         Bundle bundle = new Bundle();
@@ -56,24 +58,25 @@ public class IconsFragment extends Fragment {
     }
 
     public void randomize(boolean randomize) {
-        this.randomize = randomize;
-        if (this.mAdapter != null) {
-            this.mAdapter.notifyAdapterDataSetChanged();
+        mRandomize = randomize;
+        if (mAdapter != null) {
+            mAdapter.notifyAdapterDataSetChanged();
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.icons_fragment, null, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         // Init and Setup RecyclerView
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        RecyclerView recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.addItemDecoration(new SpaceItemDecoration());
         //animator not yet working
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new FastItemAdapter<>();
@@ -87,16 +90,16 @@ public class IconsFragment extends Fragment {
                 if (iTypeface.getFontName().equalsIgnoreCase(fontName)) {
                     if (iTypeface.getIcons() != null) {
                         for (String icon : iTypeface.getIcons()) {
-                            icons.add(new IconItem(icon));
+                            mIcons.add(new IconItem(icon));
                         }
-                        mAdapter.set(icons);
+                        mAdapter.set(mIcons);
                         break;
                     }
                 }
             }
         }
         //filter if a search param was provided
-        onSearch(search);
+        onSearch(mSearch);
     }
 
     private void configAdapter() {
@@ -106,8 +109,8 @@ public class IconsFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent motionEvent, IAdapter<IconItem> adapter, IconItem item, int position) {
                 int a = motionEvent.getAction();
                 if (a == MotionEvent.ACTION_DOWN) {
-                    if (popup != null && popup.isShowing()) {
-                        popup.dismiss();
+                    if (mPopup != null && mPopup.isShowing()) {
+                        mPopup.dismiss();
                     }
                     IconicsDrawable icon = new IconicsDrawable(v.getContext()).icon(item.getIcon()).sizeDp(144).paddingDp(8).backgroundColor(Color.parseColor("#DDFFFFFF")).roundedCornersDp(12);
                     ImageView imageView = new ImageView(v.getContext());
@@ -115,21 +118,16 @@ public class IconsFragment extends Fragment {
                             icon
                     );
                     int size = (int) UIUtils.convertDpToPixel(144, v.getContext());
-                    popup = new PopupWindow(imageView, size, size);
-                    popup.showAsDropDown(v);
+                    mPopup = new PopupWindow(imageView, size, size);
+                    mPopup.showAsDropDown(v);
 
                     //copy to clipboard
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                        android.text.ClipboardManager clipboard = (android.text.ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                        clipboard.setText(icon.getIcon().getFormattedName());
-                    } else {
-                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                        android.content.ClipData clip = android.content.ClipData.newPlainText("Android-Iconics icon", icon.getIcon().getFormattedName());
-                        clipboard.setPrimaryClip(clip);
-                    }
+                    ClipboardManager clipboard = (ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("Android-Iconics icon", icon.getIcon().getFormattedName());
+                    clipboard.setPrimaryClip(clip);
                 } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL || a == MotionEvent.ACTION_OUTSIDE) {
-                    if (popup != null && popup.isShowing()) {
-                        popup.dismiss();
+                    if (mPopup != null && mPopup.isShowing()) {
+                        mPopup.dismiss();
                     }
                 }
                 return false;
@@ -150,18 +148,18 @@ public class IconsFragment extends Fragment {
                     //as we overwrite the default listener
                     item.bindView(holder, payloads);
 
-                    if (randomize) {
+                    if (mRandomize) {
                         holder.image.getIcon().colorRes(getRandomColor(position));
-                        holder.image.getIcon().paddingDp(random.nextInt(12));
+                        holder.image.getIcon().paddingDp(mRandom.nextInt(12));
 
-                        holder.image.getIcon().contourWidthDp(random.nextInt(2));
+                        holder.image.getIcon().contourWidthDp(mRandom.nextInt(2));
                         holder.image.getIcon().contourColor(getRandomColor(position - 2));
 
 
-                        int y = random.nextInt(10);
+                        int y = mRandom.nextInt(10);
                         if (y % 4 == 0) {
                             holder.image.getIcon().backgroundColorRes(getRandomColor(position - 4));
-                            holder.image.getIcon().roundedCornersDp(2 + random.nextInt(10));
+                            holder.image.getIcon().roundedCornersDp(2 + mRandom.nextInt(10));
                         }
                     }
                 }
@@ -198,15 +196,15 @@ public class IconsFragment extends Fragment {
     }
 
     void onSearch(String s) {
-        search = s;
+        mSearch = s;
 
         if (mAdapter != null) {
             if (TextUtils.isEmpty(s)) {
                 mAdapter.clear();
-                mAdapter.setNewList(icons);
+                mAdapter.setNewList(mIcons);
             } else {
                 AbstractList<IconItem> tmpList = new ArrayList<>();
-                for (IconItem icon : icons) {
+                for (IconItem icon : mIcons) {
                     if (icon.getIcon().toLowerCase().contains(s.toLowerCase())) {
                         tmpList.add(icon);
                     }

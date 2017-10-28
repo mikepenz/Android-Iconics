@@ -6,7 +6,7 @@
         android:title="Item 1"
         app:showAsAction="always"
         app:iiv_color="@android:color/white"
-        app:iiv_icon="@string/gmd_favorite"
+        app:iiv_icon="gmd_favorite"
         app:iiv_size="24dp"/>
 
     <item
@@ -14,6 +14,6 @@
         android:title="Item 2"
         app:showAsAction="always"
         app:iiv_color="@android:color/white"
-        app:iiv_icon="@string/gmd_star"
+        app:iiv_icon="gmd_star"
         app:iiv_size="24dp"/>
 </menu>

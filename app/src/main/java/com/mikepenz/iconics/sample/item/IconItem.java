@@ -71,8 +71,8 @@ public class IconItem extends AbstractItem<IconItem, IconItem.ViewHolder> {
 
         ViewHolder(final View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.name);
-            image = (IconicsImageView) itemView.findViewById(R.id.icon);
+            name = itemView.findViewById(R.id.name);
+            image = itemView.findViewById(R.id.icon);
         }
     }
 }

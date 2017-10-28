@@ -126,7 +126,7 @@ public class FontAwesome implements ITypeface {
         return typeface;
     }
 
-    public static enum Icon implements IIcon {
+    public enum Icon implements IIcon {
         faw_glass('\uf000'),
         faw_music('\uf001'),
         faw_search('\uf002'),
