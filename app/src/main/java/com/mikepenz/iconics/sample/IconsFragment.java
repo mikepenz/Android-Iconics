@@ -151,17 +151,17 @@ public class IconsFragment extends Fragment {
                     item.bindView(holder, payloads);
 
                     if (randomize) {
-                        holder.image.setColorRes(getRandomColor(position));
-                        holder.image.setPaddingDp(random.nextInt(12));
+                        holder.image.getIcon().colorRes(getRandomColor(position));
+                        holder.image.getIcon().paddingDp(random.nextInt(12));
 
-                        holder.image.setContourWidthDp(random.nextInt(2));
-                        holder.image.setContourColor(getRandomColor(position - 2));
+                        holder.image.getIcon().contourWidthDp(random.nextInt(2));
+                        holder.image.getIcon().contourColor(getRandomColor(position - 2));
 
 
                         int y = random.nextInt(10);
                         if (y % 4 == 0) {
-                            holder.image.setBackgroundColorRes(getRandomColor(position - 4));
-                            holder.image.setRoundedCornersDp(2 + random.nextInt(10));
+                            holder.image.getIcon().backgroundColorRes(getRandomColor(position - 4));
+                            holder.image.getIcon().roundedCornersDp(2 + random.nextInt(10));
                         }
                     }
                 }
