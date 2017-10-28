@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright 2014 Mike Penz
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2017 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -13,7 +14,6 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <resources>
     <declare-styleable name="Iconics">
         <attr name="ico_icon" format="string" />
@@ -26,5 +26,7 @@
         <attr name="ico_contour_width" format="dimension|reference" />
         <attr name="ico_background_color" format="color|reference" />
         <attr name="ico_corner_radius" format="dimension|reference" />
+        <attr name="ico_background_contour_color" format="color|reference" />
+        <attr name="ico_background_contour_width" format="dimension|reference" />
     </declare-styleable>
 </resources>

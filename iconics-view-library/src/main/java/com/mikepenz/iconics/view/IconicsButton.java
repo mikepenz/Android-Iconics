@@ -72,7 +72,6 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     }
 
     //region CompoundIconicsDrawablesImpl
-    @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableStart() {
         if (mIconsBundle.mStartIconBundle != null) {
@@ -82,7 +81,6 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
         }
     }
 
-    @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableTop() {
         if (mIconsBundle.mTopIconBundle != null) {
@@ -92,7 +90,6 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
         }
     }
 
-    @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableEnd() {
         if (mIconsBundle.mEndIconBundle != null) {
@@ -102,7 +99,6 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
         }
     }
 
-    @Nullable
     @Override
     public IconicsDrawable getIconicsDrawableBottom() {
         if (mIconsBundle.mBottomIconBundle != null) {

@@ -18,7 +18,6 @@ package com.mikepenz.iconics.sample;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Handle Toolbar
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
@@ -143,53 +142,53 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_main, menu);
 
         //
-        menu.findItem(R.id.search).setIcon(new IconicsDrawable(this, MaterialDesignIconic.Icon.gmi_search).color(Color.WHITE).sizeDp(24).respectFontBounds(true));
+        menu.findItem(R.id.search).setIcon(
+                new IconicsDrawable(this, MaterialDesignIconic.Icon.gmi_search)
+                        .color(Color.WHITE)
+                        .sizeDp(24)
+                        .respectFontBounds(true));
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            final SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        final SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    search(s);
-                    return true;
-                }
-
-
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    search(s);
-                    return true;
-                }
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                search(s);
+                return true;
+            }
 
 
-                private void search(String s) {
-                    mCurrentSearch = s;
+            @Override
+            public boolean onQueryTextChange(String s) {
+                search(s);
+                return true;
+            }
 
-                    if (mDrawer != null) {
-                        int count = 0;
-                        for (ITypeface font : mFonts) {
-                            int foundCount = 0;
-                            if (font.getIcons() != null) {
-                                for (String icon : font.getIcons()) {
-                                    if (icon.toLowerCase().contains(s.toLowerCase())) {
-                                        foundCount++;
-                                    }
+
+            private void search(String s) {
+                mCurrentSearch = s;
+
+                if (mDrawer != null) {
+                    int count = 0;
+                    for (ITypeface font : mFonts) {
+                        int foundCount = 0;
+                        if (font.getIcons() != null) {
+                            for (String icon : font.getIcons()) {
+                                if (icon.toLowerCase().contains(s.toLowerCase())) {
+                                    foundCount++;
                                 }
                             }
-                            mDrawer.updateBadge(count, new StringHolder(foundCount + ""));
-
-                            count++;
                         }
-                    }
+                        mDrawer.updateBadge(count, new StringHolder(foundCount + ""));
 
-                    //filter out the current fragment
-                    if (mIconsFragment != null) mIconsFragment.onSearch(s);
+                        count++;
+                    }
                 }
-            });
-        } else {
-            menu.findItem(R.id.search).setVisible(false);
-        }
+
+                //filter out the current fragment
+                if (mIconsFragment != null) mIconsFragment.onSearch(s);
+            }
+        });
 
         MenuItem menuItem = menu.findItem(R.id.action_opensource);
         menuItem.setIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_github).actionBar().color(Color.WHITE));
