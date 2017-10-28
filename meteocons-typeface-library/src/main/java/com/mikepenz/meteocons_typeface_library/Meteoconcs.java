@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Meteoconcs implements ITypeface {
-    private static final String TTF_FILE = "meteocons.ttf";
+    private static final String TTF_FILE = "meteocons-v1.1.1.ttf";
 
     private static Typeface typeface = null;
 
