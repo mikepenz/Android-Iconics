@@ -120,7 +120,7 @@ public class MaterialDesignIconic implements ITypeface {
         return typeface;
     }
 
-    public static enum Icon implements IIcon {
+    public enum Icon implements IIcon {
         //Google material design
         gmi_3d_rotation('\uf101'),
         gmi_airplane_off('\uf102'),

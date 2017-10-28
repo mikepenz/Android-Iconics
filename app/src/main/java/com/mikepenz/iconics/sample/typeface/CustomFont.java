@@ -107,7 +107,7 @@ public class CustomFont implements ITypeface {
         return typeface;
     }
 
-    public static enum Icon implements IIcon {
+    public enum Icon implements IIcon {
         fon_test1('\ue800'),
         fon_test2('\ue801');
 

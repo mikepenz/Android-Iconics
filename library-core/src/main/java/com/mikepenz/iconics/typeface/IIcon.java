@@ -20,11 +20,11 @@ package com.mikepenz.iconics.typeface;
  * Created by mikepenz on 06.11.14.
  */
 public interface IIcon {
-    public String getFormattedName();
+    String getFormattedName();
 
-    public String getName();
+    String getName();
 
-    public char getCharacter();
+    char getCharacter();
 
-    public ITypeface getTypeface();
+    ITypeface getTypeface();
 }

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 //wrap with try and catch so the build is working even if the signing stuff is missing
 try {
     apply from: '../../../signing.gradle'
-} catch (ex) {
+} catch (ignored) {
 }
 
 android {
@@ -14,8 +14,6 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 29301
         versionName "2.9.3"
-
-        multiDexEnabled  true
     }
 
     buildTypes {
@@ -24,14 +22,14 @@ android {
             versionNameSuffix = "-DEBUG"
             try {
                 signingConfig signingConfigs.debug
-            } catch (ex) {
+            } catch (ignored) {
             }
             minifyEnabled false
         }
         release {
             try {
                 signingConfig signingConfigs.release
-            } catch (ex) {
+            } catch (ignored) {
             }
             zipAlignEnabled true
             minifyEnabled false
