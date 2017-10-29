@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright 2014 Mike Penz
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2017 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -25,7 +26,7 @@
         This library allows you to include vector icons everywhere in your project. No limits are given. Scale with no limit, use any Color at any time, provide a contour, and many additional customizations
         ]]>
     </string>
-    <string name="library_AndroidIconics_libraryVersion">2.9.3</string>
+    <string name="library_AndroidIconics_libraryVersion">2.9.4</string>
     <string name="library_AndroidIconics_libraryWebsite">https://github.com/mikepenz/Android-Iconics</string>
     <string name="library_AndroidIconics_licenseId">apache_2_0</string>
     <string name="library_AndroidIconics_isOpenSource">true</string>

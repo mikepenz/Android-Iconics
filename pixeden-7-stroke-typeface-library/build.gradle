@@ -26,8 +26,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 12001
-        versionName "1.2.0.1"
+        versionCode 12002
+        versionName "1.2.0.2"
     }
     buildTypes {
         release {
@@ -47,5 +47,5 @@ if (project.hasProperty('pushall') || project.hasProperty('Pixeden7Strokeonly'))
 }
 
 dependencies {
-    compile project(':library-core')
+    implementation project(':library-core')
 }

@@ -47,32 +47,32 @@ Provide additional fonts for you project, or even create your custom font with j
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconcis library (without any widgets)
-compile "com.mikepenz:iconics-core:2.9.3@aar"
+implementation "com.mikepenz:iconics-core:2.9.4@aar"
+implementation "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-compile "com.mikepenz:iconics-views:2.9.3@aar"
-compile "com.android.support:appcompat-v7:${supportLibVersion}"
+implementation "com.mikepenz:iconics-views:2.9.4@aar"
 ```
 
 
 ## 2. Choose your desired fonts
 ```groove
-compile 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
-compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.3@aar'
-compile 'com.mikepenz:fontawesome-typeface:4.7.0.1@aar'
-compile 'com.mikepenz:octicons-typeface:3.2.0.3@aar'
-compile 'com.mikepenz:meteocons-typeface:1.1.0.3@aar'
-compile 'com.mikepenz:community-material-typeface:1.9.32.2@aar'
-compile 'com.mikepenz:weather-icons-typeface:2.0.10.3@aar'
-compile 'com.mikepenz:typeicons-typeface:2.0.7.3@aar'
-compile 'com.mikepenz:entypo-typeface:1.0.0.3@aar'
-compile 'com.mikepenz:devicon-typeface:2.0.0.3@aar'
-compile 'com.mikepenz:foundation-icons-typeface:3.0.0.3@aar'
-compile 'com.mikepenz:ionicons-typeface:2.0.1.3@aar'
-compile 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.1@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
+implementation 'com.mikepenz:fontawesome-typeface:4.7.0.2@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.4@aar'
+implementation 'com.mikepenz:meteocons-typeface:1.1.0.4@aar'
+implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
+implementation 'com.mikepenz:weather-icons-typeface:2.0.10.4@aar'
+implementation 'com.mikepenz:typeicons-typeface:2.0.7.4@aar'
+implementation 'com.mikepenz:entypo-typeface:1.0.0.4@aar'
+implementation 'com.mikepenz:devicon-typeface:2.0.0.4@aar'
+implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.4@aar'
+implementation 'com.mikepenz:ionicons-typeface:2.0.1.4@aar'
+implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.2@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
@@ -200,43 +200,43 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 # Available fonts
 * [Google Material Design Icons](https://github.com/google/material-design-icons)
   * "gmd"
-  * **ORIGINAL by Google** compile 'com.mikepenz:google-material-typeface:+.original@aar'
+  * **ORIGINAL by Google** implementation 'com.mikepenz:google-material-typeface:+.original@aar'
 * [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
   * "gmi"
-  * **Google Material Iconic** compile 'com.mikepenz:material-design-iconic-typeface:+@aar'
+  * **Google Material Iconic** implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'
 * [Fontawesome](http://fontawesome.io)
   * "faw"
-  * compile 'com.mikepenz:fontawesome-typeface:+@aar'
+  * implementation 'com.mikepenz:fontawesome-typeface:+@aar'
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
   * "met"
-  * compile 'com.mikepenz:meteocons-typeface:+@aar'
+  * implementation 'com.mikepenz:meteocons-typeface:+@aar'
 * [Octicons](https://github.com/github/octicons)
   * "oct"
-  * compile 'com.mikepenz:octicons-typeface:+@aar'
+  * implementation 'com.mikepenz:octicons-typeface:+@aar'
 * [Community Material](http://materialdesignicons.com/)
   * "cmd"
-  * compile 'com.mikepenz:community-material-typeface:+@aar'
+  * implementation 'com.mikepenz:community-material-typeface:+@aar'
 * [Weather Icons](https://erikflowers.github.io/weather-icons/)
   * "wic"
-  * compile 'com.mikepenz:weather-icons-typeface:+@aar'
+  * implementation 'com.mikepenz:weather-icons-typeface:+@aar'
 * [Typeicons](http://typicons.com/)
   * "typ"
-  * compile 'com.mikepenz:typeicons-typeface:+@aar'
+  * implementation 'com.mikepenz:typeicons-typeface:+@aar'
 * [Entypo](http://www.entypo.com/)
   * "ent"
-  * compile 'com.mikepenz:entypo-typeface:+@aar'
+  * implementation 'com.mikepenz:entypo-typeface:+@aar'
 * [Devicon](http://devicon.fr/)
   * "dev"
-  * compile 'com.mikepenz:devicon-typeface:+@aar'
+  * implementation 'com.mikepenz:devicon-typeface:+@aar'
 * [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
   * "fou"
-  * compile 'com.mikepenz:foundation-icons-typeface:+@aar'
+  * implementation 'com.mikepenz:foundation-icons-typeface:+@aar'
 * [Ionicons](http://ionicons.com/)
   * "ion"
-  * compile 'com.mikepenz:ionicons-typeface:+@aar'
+  * implementation 'com.mikepenz:ionicons-typeface:+@aar'
 * [Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)
   * "pe7"
-  * compile 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'
+  * implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repoistories.
 

@@ -37,7 +37,7 @@ public class AutomaticActivity extends AppCompatActivity {
         setContentView(R.layout.activity_automatic);
 
         // Handle Toolbar
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 

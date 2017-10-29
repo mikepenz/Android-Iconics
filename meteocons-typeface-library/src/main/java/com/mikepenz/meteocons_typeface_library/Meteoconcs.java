@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Meteoconcs implements ITypeface {
-    private static final String TTF_FILE = "meteocons.ttf";
+    private static final String TTF_FILE = "meteocons-v1.1.1.ttf";
 
     private static Typeface typeface = null;
 
@@ -40,7 +40,7 @@ public class Meteoconcs implements ITypeface {
     @Override
     public HashMap<String, Character> getCharacters() {
         if (mChars == null) {
-            HashMap<String, Character> aChars = new HashMap<String, Character>();
+            HashMap<String, Character> aChars = new HashMap<>();
             for (Icon v : Icon.values()) {
                 aChars.put(v.name(), v.character);
             }
@@ -72,7 +72,7 @@ public class Meteoconcs implements ITypeface {
 
     @Override
     public Collection<String> getIcons() {
-        Collection<String> icons = new LinkedList<String>();
+        Collection<String> icons = new LinkedList<>();
 
         for (Icon value : Icon.values()) {
             icons.add(value.name());
@@ -118,7 +118,7 @@ public class Meteoconcs implements ITypeface {
         return typeface;
     }
 
-    public static enum Icon implements IIcon {
+    public enum Icon implements IIcon {
         met_windy_rain_inv('\ue800'),
         met_snow_inv('\ue801'),
         met_snow_heavy_inv('\ue802'),

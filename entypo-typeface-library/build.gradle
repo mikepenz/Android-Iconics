@@ -26,8 +26,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 10003
-        versionName "1.0.0.3"
+        versionCode 10004
+        versionName "1.0.0.4"
     }
     buildTypes {
         release {
@@ -47,5 +47,5 @@ if (project.hasProperty('pushall') || project.hasProperty('Entypoonly')) {
 }
 
 dependencies {
-    compile project(':library-core')
+    implementation project(':library-core')
 }

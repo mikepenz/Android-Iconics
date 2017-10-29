@@ -26,8 +26,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 30011
-        versionName "3.0.1.1.original"
+        versionCode 30012
+        versionName "3.0.1.2.original"
     }
     buildTypes {
         release {
@@ -47,5 +47,5 @@ if (project.hasProperty('pushall') || project.hasProperty('googlematerialonly'))
 }
 
 dependencies {
-    compile project(':library-core')
+    implementation project(':library-core')
 }

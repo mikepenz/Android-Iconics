@@ -16,10 +16,12 @@
 
 package com.mikepenz.iconics.sample;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
@@ -57,12 +59,12 @@ public class PlaygroundActivity extends AppCompatActivity {
         setContentView(R.layout.activity_playground);
         
         // Handle Toolbar
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Show how to style the text of an existing TextView
-        TextView tv1 = (TextView) findViewById(R.id.test1);
+        TextView tv1 = findViewById(R.id.test1);
         new Iconics.IconicsBuilder().ctx(this)
                 .style(new ForegroundColorSpan(Color.WHITE), new BackgroundColorSpan(Color.BLACK), new RelativeSizeSpan(2f))
                 .styleFor("faw-adjust", new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.parseColor("#33000000")), new RelativeSizeSpan(2f))
@@ -70,22 +72,22 @@ public class PlaygroundActivity extends AppCompatActivity {
                 .build();
 
         //You can also do some advanced stuff like setting an image within a text
-        TextView tv2 = (TextView) findViewById(R.id.test5);
+        TextView tv2 = findViewById(R.id.test5);
         SpannableString sb = new SpannableString(tv2.getText());
         IconicsDrawable d = new IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDp(48).paddingDp(4);
         sb.setSpan(new ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv2.setText(sb);
 
         //Set the icon of an ImageView (or something else) as drawable
-        ImageView iv2 = (ImageView) findViewById(R.id.test2);
+        ImageView iv2 = findViewById(R.id.test2);
         iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1));
 
         //Set the icon of an ImageView (or something else) as bitmap
-        ImageView iv3 = (ImageView) findViewById(R.id.test3);
+        ImageView iv3 = findViewById(R.id.test3);
         iv3.setImageBitmap(new IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDpX(48).sizeDpY(32).paddingDp(4).roundedCornersDp(8).color(Color.parseColor("#deFF0000")).toBitmap());
 
         //Show how to style the text of an existing button
-        Button b4 = (Button) findViewById(R.id.test4);
+        Button b4 = findViewById(R.id.test4);
         new Iconics.IconicsBuilder().ctx(this)
                 .style(new BackgroundColorSpan(Color.BLACK))
                 .style(new RelativeSizeSpan(2f))
@@ -94,13 +96,13 @@ public class PlaygroundActivity extends AppCompatActivity {
                 .build();
 
         //Show how to style the text of an existing button
-        ImageButton b6 = (ImageButton) findViewById(R.id.test6);
+        ImageButton b6 = findViewById(R.id.test6);
         StateListDrawable iconStateListDrawable = new StateListDrawable();
         iconStateListDrawable.addState(new int[]{android.R.attr.state_pressed}, new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1));
         iconStateListDrawable.addState(new int[]{}, new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aa00FF00")).contourWidthDp(2));
         b6.setImageDrawable(iconStateListDrawable);
 
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = findViewById(R.id.list);
 
         IconicsDrawable iconicsDrawableBase = new IconicsDrawable(this).actionBar().color(Color.GREEN).backgroundColor(Color.RED);
         IconicsDrawable[] array = new IconicsArrayBuilder(iconicsDrawableBase)
@@ -134,16 +136,18 @@ public class PlaygroundActivity extends AppCompatActivity {
 
         private final LayoutInflater mInflater;
 
-        public IconsAdapter(Context context, IconicsDrawable[] objects) {
+        IconsAdapter(Context context, IconicsDrawable[] objects) {
             super(context, 0, objects);
             mInflater = LayoutInflater.from(context);
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        @SuppressLint("ViewHolder")
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             View v = mInflater.inflate(R.layout.row_icon_array, parent, false);
 
-            ImageView icon = (ImageView) v.findViewById(android.R.id.icon);
+            ImageView icon = v.findViewById(android.R.id.icon);
             icon.setImageDrawable(getItem(position));
 
             return v;
