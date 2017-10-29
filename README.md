@@ -47,32 +47,32 @@ Provide additional fonts for you project, or even create your custom font with j
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconcis library (without any widgets)
-implementation "com.mikepenz:iconics-core:2.9.3@aar"
+implementation "com.mikepenz:iconics-core:2.9.4@aar"
 implementation "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:2.9.3@aar"
+implementation "com.mikepenz:iconics-views:2.9.4@aar"
 ```
 
 
 ## 2. Choose your desired fonts
 ```groove
-implementation 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
-implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.3@aar'
-implementation 'com.mikepenz:fontawesome-typeface:4.7.0.1@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.3@aar'
-implementation 'com.mikepenz:meteocons-typeface:1.1.0.3@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
+implementation 'com.mikepenz:fontawesome-typeface:4.7.0.2@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.4@aar'
+implementation 'com.mikepenz:meteocons-typeface:1.1.0.4@aar'
 implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
-implementation 'com.mikepenz:weather-icons-typeface:2.0.10.3@aar'
-implementation 'com.mikepenz:typeicons-typeface:2.0.7.3@aar'
-implementation 'com.mikepenz:entypo-typeface:1.0.0.3@aar'
-implementation 'com.mikepenz:devicon-typeface:2.0.0.3@aar'
-implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.3@aar'
-implementation 'com.mikepenz:ionicons-typeface:2.0.1.3@aar'
-implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.1@aar'
+implementation 'com.mikepenz:weather-icons-typeface:2.0.10.4@aar'
+implementation 'com.mikepenz:typeicons-typeface:2.0.7.4@aar'
+implementation 'com.mikepenz:entypo-typeface:1.0.0.4@aar'
+implementation 'com.mikepenz:devicon-typeface:2.0.0.4@aar'
+implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.4@aar'
+implementation 'com.mikepenz:ionicons-typeface:2.0.1.4@aar'
+implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.2@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)

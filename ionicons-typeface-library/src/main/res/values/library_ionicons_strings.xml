@@ -6,7 +6,7 @@
     <string name="library_Ionicons_libraryName">Ionicons</string>
     <string name="library_Ionicons_libraryDescription">The premium icon font for Ionic.</string>
     <string name="library_Ionicons_libraryWebsite">http://ionicons.com/</string>
-    <string name="library_Ionicons_libraryVersion">2.0.1.2</string>
+    <string name="library_Ionicons_libraryVersion">2.0.1.4</string>
     <string name="library_Ionicons_licenseId">mit</string>
     <string name="library_Ionicons_isOpenSource">true</string>
     <string name="library_Ionicons_repositoryLink">https://github.com/driftyco/ionicons</string>

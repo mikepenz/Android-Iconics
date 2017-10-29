@@ -13,6 +13,7 @@ import com.mikepenz.pixeden_7_stroke_typeface_library.Pixeden7Stroke;
 import com.mikepenz.typeicons_typeface_library.Typeicons;
 import com.mikepenz.weather_icons_typeface_library.WeatherIcons;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -32,6 +33,7 @@ import javax.xml.transform.stream.StreamResult;
 /**
  * @author pa.gulko zTrap (29.10.2017)
  */
+@Ignore
 @RunWith(JUnit4.class)
 public class StringFieldsGenerator {
     private static final Pattern UPPERCASE_PATTERN = Pattern.compile("(?=\\p{Lu})");
