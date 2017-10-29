@@ -30,19 +30,19 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 @RestrictTo(LIBRARY_GROUP)
 public class CompoundIconsBundle {
-    public IconicsDrawable mStartIconBundle;
-    public IconicsDrawable mTopIconBundle;
-    public IconicsDrawable mEndIconBundle;
-    public IconicsDrawable mBottomIconBundle;
+    public IconicsDrawable mStartIcon;
+    public IconicsDrawable mTopIcon;
+    public IconicsDrawable mEndIcon;
+    public IconicsDrawable mBottomIcon;
 
     public void setIcons(TextView textView) {
         Drawable[] drawables = TextViewCompat.getCompoundDrawablesRelative(textView);
 
         TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(textView,
-                mStartIconBundle != null ? mStartIconBundle : drawables[0],
-                mTopIconBundle != null ? mTopIconBundle : drawables[1],
-                mEndIconBundle != null ? mEndIconBundle : drawables[2],
-                mBottomIconBundle != null ? mBottomIconBundle : drawables[3]
+                mStartIcon != null ? mStartIcon : drawables[0],
+                mTopIcon != null ? mTopIcon : drawables[1],
+                mEndIcon != null ? mEndIcon : drawables[2],
+                mBottomIcon != null ? mBottomIcon : drawables[3]
         );
     }
 }

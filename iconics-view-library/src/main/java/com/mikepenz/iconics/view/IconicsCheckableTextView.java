@@ -92,23 +92,23 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
     }
 
     private StateListDrawable createStatesStart() {
-        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mStartIconBundle,
-                mCheckedIconsBundle.mStartIconBundle, mAnimateChanges);
+        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mStartIcon,
+                mCheckedIconsBundle.mStartIcon, mAnimateChanges);
     }
 
     private StateListDrawable createStatesTop() {
-        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mTopIconBundle,
-                mCheckedIconsBundle.mTopIconBundle, mAnimateChanges);
+        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mTopIcon,
+                mCheckedIconsBundle.mTopIcon, mAnimateChanges);
     }
 
     private StateListDrawable createStatesEnd() {
-        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mEndIconBundle,
-                mCheckedIconsBundle.mEndIconBundle, mAnimateChanges);
+        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mEndIcon,
+                mCheckedIconsBundle.mEndIcon, mAnimateChanges);
     }
 
     private StateListDrawable createStatesBottom() {
-        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mBottomIconBundle,
-                mCheckedIconsBundle.mBottomIconBundle, mAnimateChanges);
+        return Utils.getCheckableIconStateList(getContext(), mIconsBundle.mBottomIcon,
+                mCheckedIconsBundle.mBottomIcon, mAnimateChanges);
     }
 
     @Override
@@ -173,8 +173,8 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
     //region CheckedCompoundIconicsDrawablesImpl
     @Override
     public IconicsDrawable getCheckedIconicsDrawableStart() {
-        if (mCheckedIconsBundle.mStartIconBundle != null) {
-            return mCheckedIconsBundle.mStartIconBundle;
+        if (mCheckedIconsBundle.mStartIcon != null) {
+            return mCheckedIconsBundle.mStartIcon;
         } else {
             return null;
         }
@@ -182,8 +182,8 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
     @Override
     public IconicsDrawable getCheckedIconicsDrawableTop() {
-        if (mCheckedIconsBundle.mTopIconBundle != null) {
-            return mCheckedIconsBundle.mTopIconBundle;
+        if (mCheckedIconsBundle.mTopIcon != null) {
+            return mCheckedIconsBundle.mTopIcon;
         } else {
             return null;
         }
@@ -191,8 +191,8 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
     @Override
     public IconicsDrawable getCheckedIconicsDrawableEnd() {
-        if (mCheckedIconsBundle.mEndIconBundle != null) {
-            return mCheckedIconsBundle.mEndIconBundle;
+        if (mCheckedIconsBundle.mEndIcon != null) {
+            return mCheckedIconsBundle.mEndIcon;
         } else {
             return null;
         }
@@ -200,8 +200,8 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
     @Override
     public IconicsDrawable getCheckedIconicsDrawableBottom() {
-        if (mCheckedIconsBundle.mBottomIconBundle != null) {
-            return mCheckedIconsBundle.mBottomIconBundle;
+        if (mCheckedIconsBundle.mBottomIcon != null) {
+            return mCheckedIconsBundle.mBottomIcon;
         } else {
             return null;
         }
@@ -209,34 +209,34 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
     @Override
     public void setCheckedDrawableStart(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mStartIconBundle = drawable;
+        mCheckedIconsBundle.mStartIcon = drawable;
         setIcons();
     }
 
     @Override
     public void setCheckedDrawableTop(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mTopIconBundle = drawable;
+        mCheckedIconsBundle.mTopIcon = drawable;
         setIcons();
     }
 
     @Override
     public void setCheckedDrawableEnd(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mEndIconBundle = drawable;
+        mCheckedIconsBundle.mEndIcon = drawable;
         setIcons();
     }
 
     @Override
     public void setCheckedDrawableBottom(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mBottomIconBundle = drawable;
+        mCheckedIconsBundle.mBottomIcon = drawable;
         setIcons();
     }
 
     @Override
     public void setCheckedDrawableForAll(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mStartIconBundle = drawable;
-        mCheckedIconsBundle.mTopIconBundle = drawable;
-        mCheckedIconsBundle.mEndIconBundle = drawable;
-        mCheckedIconsBundle.mBottomIconBundle = drawable;
+        mCheckedIconsBundle.mStartIcon = drawable;
+        mCheckedIconsBundle.mTopIcon = drawable;
+        mCheckedIconsBundle.mEndIcon = drawable;
+        mCheckedIconsBundle.mBottomIcon = drawable;
         setIcons();
     }
     //endregion

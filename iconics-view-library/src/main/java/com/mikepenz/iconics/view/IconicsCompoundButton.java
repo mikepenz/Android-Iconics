@@ -67,26 +67,26 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     }
 
     public void setCheckedIcon(@Nullable IconicsDrawable icon) {
-        mIconsBundle.mCheckedIconBundle = icon;
+        mIconsBundle.mCheckedIcon = icon;
         setButtonDrawable(mIconsBundle.createStates(getContext()));
     }
 
     public void setUncheckedIcon(@Nullable IconicsDrawable icon) {
-        mIconsBundle.mUncheckedIconBundle = icon;
+        mIconsBundle.mUncheckedIcon = icon;
         setButtonDrawable(mIconsBundle.createStates(getContext()));
     }
 
     public IconicsDrawable getCheckedIcon() {
-        if (mIconsBundle.mCheckedIconBundle != null) {
-            return mIconsBundle.mCheckedIconBundle;
+        if (mIconsBundle.mCheckedIcon != null) {
+            return mIconsBundle.mCheckedIcon;
         } else {
             return null;
         }
     }
 
     public IconicsDrawable getUncheckedIcon() {
-        if (mIconsBundle.mUncheckedIconBundle != null) {
-            return mIconsBundle.mUncheckedIconBundle;
+        if (mIconsBundle.mUncheckedIcon != null) {
+            return mIconsBundle.mUncheckedIcon;
         } else {
             return null;
         }

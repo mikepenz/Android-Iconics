@@ -69,8 +69,8 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     //region CompoundIconicsDrawablesImpl
     @Override
     public IconicsDrawable getIconicsDrawableStart() {
-        if (mIconsBundle.mStartIconBundle != null) {
-            return mIconsBundle.mStartIconBundle;
+        if (mIconsBundle.mStartIcon != null) {
+            return mIconsBundle.mStartIcon;
         } else {
             return null;
         }
@@ -78,8 +78,8 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
 
     @Override
     public IconicsDrawable getIconicsDrawableTop() {
-        if (mIconsBundle.mTopIconBundle != null) {
-            return mIconsBundle.mTopIconBundle;
+        if (mIconsBundle.mTopIcon != null) {
+            return mIconsBundle.mTopIcon;
         } else {
             return null;
         }
@@ -87,8 +87,8 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
 
     @Override
     public IconicsDrawable getIconicsDrawableEnd() {
-        if (mIconsBundle.mEndIconBundle != null) {
-            return mIconsBundle.mEndIconBundle;
+        if (mIconsBundle.mEndIcon != null) {
+            return mIconsBundle.mEndIcon;
         } else {
             return null;
         }
@@ -96,8 +96,8 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
 
     @Override
     public IconicsDrawable getIconicsDrawableBottom() {
-        if (mIconsBundle.mBottomIconBundle != null) {
-            return mIconsBundle.mBottomIconBundle;
+        if (mIconsBundle.mBottomIcon != null) {
+            return mIconsBundle.mBottomIcon;
         } else {
             return null;
         }
@@ -105,34 +105,34 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
 
     @Override
     public void setDrawableStart(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mStartIconBundle = drawable;
+        mIconsBundle.mStartIcon = drawable;
         setIcons();
     }
 
     @Override
     public void setDrawableTop(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mTopIconBundle = drawable;
+        mIconsBundle.mTopIcon = drawable;
         setIcons();
     }
 
     @Override
     public void setDrawableEnd(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mEndIconBundle = drawable;
+        mIconsBundle.mEndIcon = drawable;
         setIcons();
     }
 
     @Override
     public void setDrawableBottom(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mBottomIconBundle = drawable;
+        mIconsBundle.mBottomIcon = drawable;
         setIcons();
     }
 
     @Override
     public void setDrawableForAll(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mStartIconBundle = drawable;
-        mIconsBundle.mTopIconBundle = drawable;
-        mIconsBundle.mEndIconBundle = drawable;
-        mIconsBundle.mBottomIconBundle = drawable;
+        mIconsBundle.mStartIcon = drawable;
+        mIconsBundle.mTopIcon = drawable;
+        mIconsBundle.mEndIcon = drawable;
+        mIconsBundle.mBottomIcon = drawable;
         setIcons();
     }
     //endregion

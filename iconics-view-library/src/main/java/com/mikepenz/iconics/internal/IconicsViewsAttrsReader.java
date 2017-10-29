@@ -109,16 +109,16 @@ public class IconicsViewsAttrsReader extends IconicsAttrsReader {
         IconicsDrawable allIcon = getIconicsTextViewAllDrawable(ctx, a);
 
         //obtaining attributes for start icons
-        bundle.mStartIconBundle = getIconicsTextViewStartDrawable(ctx, a, allIcon);
+        bundle.mStartIcon = getIconicsTextViewStartDrawable(ctx, a, allIcon);
 
         //obtaining attributes for top icons
-        bundle.mTopIconBundle = getIconicsTextViewTopDrawable(ctx, a, allIcon);
+        bundle.mTopIcon = getIconicsTextViewTopDrawable(ctx, a, allIcon);
 
         //obtaining attributes for end icons
-        bundle.mEndIconBundle = getIconicsTextViewEndDrawable(ctx, a, allIcon);
+        bundle.mEndIcon = getIconicsTextViewEndDrawable(ctx, a, allIcon);
 
         //obtaining attributes for bottom icons
-        bundle.mBottomIconBundle = getIconicsTextViewBottomDrawable(ctx, a, allIcon);
+        bundle.mBottomIcon = getIconicsTextViewBottomDrawable(ctx, a, allIcon);
 
         a.recycle();
     }
@@ -369,10 +369,10 @@ public class IconicsViewsAttrsReader extends IconicsAttrsReader {
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.IconicsCompoundButton, 0, 0);
 
         //obtaining attributes for Checked icon state
-        icon.mCheckedIconBundle = getIconicsCompoundButtonCheckedDrawable(ctx, a, icon.mCheckedIconBundle);
+        icon.mCheckedIcon = getIconicsCompoundButtonCheckedDrawable(ctx, a, icon.mCheckedIcon);
 
         //obtaining attributes for Unchecked icon state
-        icon.mUncheckedIconBundle = getIconicsCompoundButtonUncheckedDrawable(ctx, a, icon.mUncheckedIconBundle);
+        icon.mUncheckedIcon = getIconicsCompoundButtonUncheckedDrawable(ctx, a, icon.mUncheckedIcon);
 
         a.recycle();
     }
@@ -491,16 +491,16 @@ public class IconicsViewsAttrsReader extends IconicsAttrsReader {
         IconicsDrawable allIcon = getIconicsCheckableTextViewAllDrawable(ctx, a);
 
         //obtaining attributes for start icons
-        bundle.mStartIconBundle = getIconicsCheckableTextViewStartDrawable(ctx, a, allIcon);
+        bundle.mStartIcon = getIconicsCheckableTextViewStartDrawable(ctx, a, allIcon);
 
         //obtaining attributes for top icons
-        bundle.mTopIconBundle = getIconicsCheckableTextViewTopDrawable(ctx, a, allIcon);
+        bundle.mTopIcon = getIconicsCheckableTextViewTopDrawable(ctx, a, allIcon);
 
         //obtaining attributes for end icons
-        bundle.mEndIconBundle = getIconicsCheckableTextViewEndDrawable(ctx, a, allIcon);
+        bundle.mEndIcon = getIconicsCheckableTextViewEndDrawable(ctx, a, allIcon);
 
         //obtaining attributes for bottom icons
-        bundle.mBottomIconBundle = getIconicsCheckableTextViewBottomDrawable(ctx, a, allIcon);
+        bundle.mBottomIcon = getIconicsCheckableTextViewBottomDrawable(ctx, a, allIcon);
 
         a.recycle();
     }
