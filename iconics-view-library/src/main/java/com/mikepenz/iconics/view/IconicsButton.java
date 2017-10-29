@@ -27,7 +27,7 @@ import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables;
 import com.mikepenz.iconics.internal.CompoundIconsBundle;
 import com.mikepenz.iconics.internal.IconicsView;
-import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -60,7 +60,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        IconicsViewsAttrsReader.readIconicsTextView(context, attrs, mIconsBundle);
+        IconicsViewsAttrsApplier.readIconicsTextView(context, attrs, mIconsBundle);
     }
 
     private void setIcons() {

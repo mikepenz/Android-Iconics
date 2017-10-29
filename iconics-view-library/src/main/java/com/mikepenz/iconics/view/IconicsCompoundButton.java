@@ -26,7 +26,7 @@ import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.internal.CheckableIconBundle;
 import com.mikepenz.iconics.internal.IconicsView;
-import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -62,8 +62,8 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        IconicsViewsAttrsReader.readIconicsCompoundButton(context, attrs, mIconsBundle);
-        mIconsBundle.mAnimateChanges = IconicsViewsAttrsReader.isIconicsAnimateChanges(context, attrs);
+        IconicsViewsAttrsApplier.readIconicsCompoundButton(context, attrs, mIconsBundle);
+        mIconsBundle.mAnimateChanges = IconicsViewsAttrsApplier.isIconicsAnimateChanges(context, attrs);
     }
 
     public void setCheckedIcon(@Nullable IconicsDrawable icon) {

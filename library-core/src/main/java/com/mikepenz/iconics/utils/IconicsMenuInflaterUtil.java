@@ -24,7 +24,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.context.IconicsAttrsReader;
+import com.mikepenz.iconics.context.IconicsAttrsApplier;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -110,7 +110,7 @@ public class IconicsMenuInflaterUtil {
                             for (int i = 0; i < parser.getAttributeCount(); i++) {
                                 attrsMap.put(parser.getAttributeName(i), parser.getAttributeValue(i));
                             }
-                            IconicsDrawable icon = IconicsAttrsReader.getIconicsDrawable(context, attrs);
+                            IconicsDrawable icon = IconicsAttrsApplier.getIconicsDrawable(context, attrs);
                             if (icon != null) {
                                 int id = Integer.parseInt(attrsMap.get("id").replace("@", ""));
                                 menu.findItem(id).setIcon(icon);

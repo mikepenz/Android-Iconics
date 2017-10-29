@@ -28,7 +28,7 @@ import android.widget.Checkable;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.internal.CheckedCompoundIconicsDrawables;
 import com.mikepenz.iconics.internal.CompoundIconsBundle;
-import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 import com.mikepenz.iconics.utils.Utils;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
@@ -78,8 +78,8 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        IconicsViewsAttrsReader.readIconicsCheckableTextView(context, attrs, mCheckedIconsBundle);
-        mAnimateChanges = IconicsViewsAttrsReader.isIconicsAnimateChanges(context, attrs);
+        IconicsViewsAttrsApplier.readIconicsCheckableTextView(context, attrs, mCheckedIconsBundle);
+        mAnimateChanges = IconicsViewsAttrsApplier.isIconicsAnimateChanges(context, attrs);
     }
 
     private void setIcons() {

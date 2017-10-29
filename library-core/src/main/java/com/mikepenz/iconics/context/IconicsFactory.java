@@ -41,7 +41,7 @@ class IconicsFactory {
         }
 
         if (view instanceof ActionMenuItemView) {
-            IconicsDrawable drawable = IconicsAttrsReader.getIconicsDrawable(context, attrs);
+            IconicsDrawable drawable = IconicsAttrsApplier.getIconicsDrawable(context, attrs);
             if (drawable != null) {
                 ((ActionMenuItemView) view).setIcon(drawable);
             }
@@ -71,7 +71,7 @@ class IconicsFactory {
                 }
             });
         } else if (view instanceof ImageView) {
-            IconicsDrawable drawable = IconicsAttrsReader.getIconicsDrawable(context, attrs);
+            IconicsDrawable drawable = IconicsAttrsApplier.getIconicsDrawable(context, attrs);
             if (drawable != null) {
                 ((ImageView) view).setImageDrawable(drawable);
             }
