@@ -16,9 +16,7 @@
 
 package com.mikepenz.iconics.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.support.v7.widget.AppCompatButton;
@@ -59,12 +57,10 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
         setIcons();
     }
 
-    @SuppressLint("CustomViewStyleable")
+    @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, defStyle, 0);
-        IconicsViewsAttrsReader.readIconicsTextView(context, a, mIconsBundle);
-        a.recycle();
+        IconicsViewsAttrsReader.readIconicsTextView(context, attrs, mIconsBundle);
     }
 
     private void setIcons() {

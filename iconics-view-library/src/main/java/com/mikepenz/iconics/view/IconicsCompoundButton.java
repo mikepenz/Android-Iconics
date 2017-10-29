@@ -16,9 +16,7 @@
 
 package com.mikepenz.iconics.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.util.AttributeSet;
@@ -63,14 +61,9 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
 
     @Override
     @RestrictTo(LIBRARY_GROUP)
-    @SuppressLint("CustomViewStyleable")
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCompoundButton, defStyle, 0);
-        IconicsViewsAttrsReader.readIconicsCompoundButton(context, a, mIconsBundle);
-        a.recycle();
-        a = context.obtainStyledAttributes(attrs, R.styleable.IconicsAnimateChanges, defStyle, 0);
-        mIconsBundle.mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);
-        a.recycle();
+        IconicsViewsAttrsReader.readIconicsCompoundButton(context, attrs, mIconsBundle);
+        mIconsBundle.mAnimateChanges = IconicsViewsAttrsReader.isIconicsAnimateChanges(context, attrs);
     }
 
     public void setCheckedIcon(@Nullable IconicsDrawable icon) {

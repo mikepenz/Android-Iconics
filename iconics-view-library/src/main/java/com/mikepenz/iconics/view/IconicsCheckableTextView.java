@@ -16,9 +16,7 @@
 
 package com.mikepenz.iconics.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
@@ -79,14 +77,9 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
     @Override
     @RestrictTo(LIBRARY_GROUP)
-    @SuppressLint("CustomViewStyleable")
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView, defStyle, 0);
-        IconicsViewsAttrsReader.readIconicsCheckableTextView(context, a, mCheckedIconsBundle);
-        a.recycle();
-        a = context.obtainStyledAttributes(attrs, R.styleable.IconicsAnimateChanges, defStyle, 0);
-        mAnimateChanges = a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);
-        a.recycle();
+        IconicsViewsAttrsReader.readIconicsCheckableTextView(context, attrs, mCheckedIconsBundle);
+        mAnimateChanges = IconicsViewsAttrsReader.isIconicsAnimateChanges(context, attrs);
     }
 
     private void setIcons() {

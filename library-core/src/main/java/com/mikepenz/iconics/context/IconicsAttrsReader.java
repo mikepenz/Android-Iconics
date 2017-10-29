@@ -19,6 +19,7 @@ package com.mikepenz.iconics.context;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.text.TextUtils;
@@ -38,55 +39,62 @@ public class IconicsAttrsReader {
     protected final static int DEF_SIZE = -1;
 
     @Nullable
-    public static IconicsDrawable getIconicsDrawable(Context context, AttributeSet attrs) {
-        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Iconics);
+    @SuppressWarnings("ConstantConditions")
+    public static IconicsDrawable getIconicsDrawable(Context ctx, AttributeSet attrs) {
+        final TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.Iconics);
 
-        IconicsDrawable icon;
+        IconicsDrawable icon = null;
 
         String i = a.getString(R.styleable.Iconics_ico_icon);
         if (!TextUtils.isEmpty(i)) {
-            icon = new IconicsDrawable(context, i);
-        } else {
-            return null;
+            createIfNeeds(icon, ctx).icon(i);
         }
         ColorStateList colors = a.getColorStateList(R.styleable.Iconics_ico_color);
         if (colors != null) {
-            icon.color(colors);
+            createIfNeeds(icon, ctx).color(colors);
         }
         int size = a.getDimensionPixelSize(R.styleable.Iconics_ico_size, DEF_SIZE);
         if (size != DEF_SIZE) {
-            icon.sizePx(size);
+            createIfNeeds(icon, ctx).sizePx(size);
         }
         int padding = a.getDimensionPixelSize(R.styleable.Iconics_ico_padding, DEF_SIZE);
         if (padding != DEF_SIZE) {
-            icon.paddingPx(padding);
+            createIfNeeds(icon, ctx).paddingPx(padding);
         }
         int contourColor = a.getColor(R.styleable.Iconics_ico_contour_color, DEF_COLOR);
         if (contourColor != DEF_COLOR) {
-            icon.contourColor(contourColor);
+            createIfNeeds(icon, ctx).contourColor(contourColor);
         }
         int contourWidth = a.getDimensionPixelSize(R.styleable.Iconics_ico_contour_width, DEF_SIZE);
         if (contourWidth != DEF_SIZE) {
-            icon.contourWidthPx(contourWidth);
+            createIfNeeds(icon, ctx).contourWidthPx(contourWidth);
         }
         int backgroundColor = a.getColor(R.styleable.Iconics_ico_background_color, DEF_COLOR);
         if (backgroundColor != DEF_COLOR) {
-            icon.backgroundColor(backgroundColor);
+            createIfNeeds(icon, ctx).backgroundColor(backgroundColor);
         }
         int cornerRadius = a.getDimensionPixelSize(R.styleable.Iconics_ico_corner_radius, DEF_SIZE);
         if (cornerRadius != DEF_SIZE) {
-            icon.roundedCornersPx(cornerRadius);
+            createIfNeeds(icon, ctx).roundedCornersPx(cornerRadius);
         }
         int backgroundContourColor = a.getColor(R.styleable.Iconics_ico_background_contour_color, DEF_COLOR);
         if (backgroundContourColor != DEF_COLOR) {
-            icon.backgroundContourColor(backgroundContourColor);
+            createIfNeeds(icon, ctx).backgroundContourColor(backgroundContourColor);
         }
         int backgroundContourWidth = a.getDimensionPixelSize(R.styleable.Iconics_ico_background_contour_width, DEF_SIZE);
         if (backgroundContourWidth != DEF_SIZE) {
-            icon.backgroundContourWidthPx(backgroundContourWidth);
+            createIfNeeds(icon, ctx).backgroundContourWidthPx(backgroundContourWidth);
         }
 
         a.recycle();
         return icon;
+    }
+
+    @NonNull
+    protected static IconicsDrawable createIfNeeds(@Nullable IconicsDrawable drawable, Context context){
+        if (drawable == null){
+            drawable = new IconicsDrawable(context);
+        }
+        return drawable;
     }
 }
