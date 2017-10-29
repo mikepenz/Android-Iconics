@@ -134,7 +134,7 @@ public class StringFieldsGenerator {
             File renamed = new File(fontDirectory, current.getName().replace(MODIFIER_CURRENT, ""));
             if (!current.renameTo(renamed)) {
                 throw new IllegalArgumentException("Unable to rename file from " + current.getName() + " to "
-                        + renamed.getName() + ". Probably file " + renamed.getName() + " already exist.");
+                        + renamed.getName() + ". Probably file " + renamed.getName() + " is already exist.");
             }
         }
         //endregion
@@ -146,11 +146,7 @@ public class StringFieldsGenerator {
         transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
 
-        DOMSource source = new DOMSource(doc);
-
-        transformer.transform(source, new StreamResult(newFile));
-        // Output to console for testing
-        transformer.transform(source, new StreamResult(System.out));
+        transformer.transform(new DOMSource(doc), new StreamResult(newFile));
     }
 
     private String handleWords(String fieldName) {
