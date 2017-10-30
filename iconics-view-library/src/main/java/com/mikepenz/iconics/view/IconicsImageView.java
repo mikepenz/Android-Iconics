@@ -24,7 +24,7 @@ import android.util.AttributeSet;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.internal.IconicsView;
-import com.mikepenz.iconics.internal.IconicsViewsAttrsReader;
+import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -57,7 +57,7 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
     @Override
     @RestrictTo(LIBRARY_GROUP)
     public void applyAttr(Context context, AttributeSet attrs, int defStyle) {
-        setIcon(IconicsViewsAttrsReader.getIconicsImageViewDrawable(context, attrs));
+        setIcon(IconicsViewsAttrsApplier.getIconicsImageViewDrawable(context, attrs));
     }
 
     public void setIcon(@Nullable IconicsDrawable icon) {

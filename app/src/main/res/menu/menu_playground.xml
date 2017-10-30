@@ -5,15 +5,15 @@
         android:id="@+id/menu_item_1"
         android:title="Item 1"
         app:showAsAction="always"
-        app:iiv_color="@android:color/white"
-        app:iiv_icon="gmd_favorite"
-        app:iiv_size="24dp"/>
+        app:ico_color="@android:color/white"
+        app:ico_icon="gmd_favorite"
+        app:ico_size="24dp"/>
 
     <item
         android:id="@+id/menu_item_2"
         android:title="Item 2"
         app:showAsAction="always"
-        app:iiv_color="@android:color/white"
-        app:iiv_icon="gmd_star"
-        app:iiv_size="24dp"/>
+        app:ico_color="@android:color/white"
+        app:ico_icon="gmd_star"
+        app:ico_size="24dp"/>
 </menu>
