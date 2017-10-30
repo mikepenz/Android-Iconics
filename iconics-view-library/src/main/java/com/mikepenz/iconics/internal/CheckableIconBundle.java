@@ -31,16 +31,15 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @RestrictTo(LIBRARY_GROUP)
 public class CheckableIconBundle {
     public boolean mAnimateChanges;
-    public IconicsDrawable mCheckedIconBundle;
-    public IconicsDrawable mUncheckedIconBundle;
+    public IconicsDrawable mCheckedIcon;
+    public IconicsDrawable mUncheckedIcon;
 
     public void createIcons(Context ctx) {
-        mCheckedIconBundle = new IconicsDrawable(ctx);
-        mUncheckedIconBundle = new IconicsDrawable(ctx);
+        mCheckedIcon = new IconicsDrawable(ctx);
+        mUncheckedIcon = new IconicsDrawable(ctx);
     }
 
     public StateListDrawable createStates(Context ctx) {
-        return Utils.getCheckableIconStateList(ctx, mUncheckedIconBundle,
-                mCheckedIconBundle, mAnimateChanges);
+        return Utils.getCheckableIconStateList(ctx, mUncheckedIcon, mCheckedIcon, mAnimateChanges);
     }
 }
