@@ -1,6 +1,11 @@
 ## Upgrade Notes
 
 ### Library
+
+#### 2.9.5
+* the attributes for the `IconicsMenuInflaterUtil` start now with `ico_` instead of `iiv_`
+* the `IconicsMenuInflaterUtil` was moved into the `core` module to simplify code
+
 #### 2.9.0
 * The library-core was split apart into **iconics-core** and **iconics-views** to slim down the **iconics-core** and allow more advanced UI features in the **iconics-views**
 * the core dep stays the same: `compile "com.mikepenz:iconics-core:2.9.0@aar"`
