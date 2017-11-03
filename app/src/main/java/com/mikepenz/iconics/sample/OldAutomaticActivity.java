@@ -19,6 +19,7 @@ package com.mikepenz.iconics.sample;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.context.IconicsContextWrapper;
@@ -38,5 +39,8 @@ public class OldAutomaticActivity extends Activity {
 
         //set a new text on the textView and set the icon font on it
         ((TextView) findViewById(R.id.test4)).setText("{gmd-favorite} GIF");
+
+        Button button = findViewById(R.id.issue350);
+        button.setOnClickListener(view -> button.setText("{cmd_record}"));
     }
 }

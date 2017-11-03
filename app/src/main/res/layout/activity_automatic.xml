@@ -50,6 +50,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/issue350"
+                    android:text="{gmd_play_arrow}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
                 <EditText
                     android:id="@+id/editText"
                     android:layout_width="wrap_content"
