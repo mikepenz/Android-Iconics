@@ -8,9 +8,12 @@ import android.widget.TextView;
 import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.sample.R;
+import com.mikepenz.iconics.utils.Utils;
 import com.mikepenz.iconics.view.IconicsImageView;
 
 import java.util.List;
+
+import static android.view.View.LAYER_TYPE_SOFTWARE;
 
 /**
  * Created by mikepenz on 26.07.16.
@@ -49,7 +52,7 @@ public class IconItem extends AbstractItem<IconItem, IconItem.ViewHolder> {
         holder.image.setIcon(new IconicsDrawable(holder.image.getContext(), icon));
         holder.name.setText(icon);
 
-        holder.image.getIcon().color(Color.BLACK);
+        holder.image.getIcon().color(Color.RED);
         holder.image.getIcon().paddingDp(0);
         holder.image.getIcon().contourWidthDp(0);
         holder.image.getIcon().contourColor(Color.TRANSPARENT);
@@ -57,6 +60,10 @@ public class IconItem extends AbstractItem<IconItem, IconItem.ViewHolder> {
 
         //as we want to respect the bounds of the original font in the icon list
         holder.image.getIcon().respectFontBounds(true);
+
+        float shadow = Utils.convertDpToPx(holder.image.getContext(), 1);
+        holder.image.getIcon().shadowLayer(shadow, shadow, shadow, Color.argb(200, 0, 0, 0));
+        holder.image.setLayerType(LAYER_TYPE_SOFTWARE, null);
     }
 
     @Override
