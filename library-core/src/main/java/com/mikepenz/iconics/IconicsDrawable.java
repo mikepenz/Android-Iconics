@@ -121,6 +121,7 @@ public class IconicsDrawable extends Drawable {
     private boolean mDrawContour;
     private boolean mDrawBackgroundContour;
 
+    private boolean mDrawShadowInternal;
     private boolean mDrawShadow;
     private float mShadowRadius = 0F;
     private float mShadowDx = 0F;
@@ -281,6 +282,7 @@ public class IconicsDrawable extends Drawable {
                 .backgroundContourWidthPx(mBackgroundContourWidth)
                 .color(mIconColor)
                 .alpha(mAlpha)
+                .drawShadow(mDrawShadow)
                 .drawContour(mDrawContour)
                 .drawBackgroundContour(mDrawBackgroundContour)
                 .typeface(mIconPaint.getTypeface());
@@ -945,7 +947,7 @@ public class IconicsDrawable extends Drawable {
     public IconicsDrawable shadowRadiusPx(@Dimension(unit = PX) float radiusPx){
         mShadowRadius = radiusPx;
 
-        mDrawShadow = radiusPx > 0;
+        drawShadow(mDrawShadow);
 
         invalidateSelf();
         return this;
@@ -1118,9 +1120,12 @@ public class IconicsDrawable extends Drawable {
      * @see #enableShadowSupport(View)
      */
     public IconicsDrawable drawShadow(boolean drawShadow){
-        mDrawShadow = drawShadow && mShadowRadius > 0;
+        if (mDrawShadow != drawShadow) {
+            mDrawShadow = drawShadow;
+            mDrawShadowInternal = mDrawShadow && mShadowRadius > 0;
 
-        invalidateSelf();
+            invalidateSelf();
+        }
         return this;
     }
     //endregion
@@ -1278,7 +1283,7 @@ public class IconicsDrawable extends Drawable {
                 canvas.drawPath(mPath, mContourPaint);
             }
 
-            if (mDrawShadow) {
+            if (mDrawShadowInternal) {
                 mIconPaint.setShadowLayer(mShadowRadius, mShadowDx, mShadowDy, mShadowColor);
             } else {
                 mIconPaint.setShadowLayer(0, 0, 0, 0);
