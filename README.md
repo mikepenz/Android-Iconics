@@ -16,8 +16,13 @@ Use the icons in the variation you need them.
 
 **What do you get**
 - No customization limitations (size, color, contour, background, padding, positioning, ...)
+- Shadow support
 - One icon source (no more mdpi, hdpi, ...)
 - Flexibility
+  - Size
+  - Colors
+  - Contour
+  - Shadow
 - If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
 - All licenses included, best used with [AboutLibraries](https://github.com/mikepenz/AboutLibraries)
