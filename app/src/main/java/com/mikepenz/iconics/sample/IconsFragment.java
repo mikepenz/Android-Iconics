@@ -169,7 +169,11 @@ public class IconsFragment extends Fragment {
 
                     if (mShadow) {
                         holder.image.getIcon().enableShadowSupport(holder.image);
-                        holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
+                        //holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
+                        holder.image.getIcon()
+                                .shadowRadiusDp(1)
+                                .shadowDeltaDp(1)
+                                .shadowColor(Color.argb(200, 0, 0, 0));
                     }
                 }
             }

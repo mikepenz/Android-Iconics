@@ -121,6 +121,7 @@ public class IconicsDrawable extends Drawable {
     private boolean mDrawContour;
     private boolean mDrawBackgroundContour;
 
+    private boolean mDrawShadow;
     private float mShadowRadius = 0F;
     private float mShadowDx = 0F;
     private float mShadowDy = 0F;
@@ -271,7 +272,10 @@ public class IconicsDrawable extends Drawable {
                 .iconOffsetYPx(mIconOffsetY)
                 .contourColor(mContourColor)
                 .contourWidthPx(mContourWidth)
-                .shadowPx(mShadowRadius, mShadowDx, mShadowDy, mShadowColor)
+                .shadowRadiusPx(mShadowRadius)
+                .shadowDxPx(mShadowDx)
+                .shadowDyPx(mShadowDy)
+                .shadowColor(mShadowColor)
                 .backgroundColor(mBackgroundColor)
                 .backgroundContourColor(mBackgroundContourColor)
                 .backgroundContourWidthPx(mBackgroundContourWidth)
@@ -902,48 +906,226 @@ public class IconicsDrawable extends Drawable {
         return this;
     }
 
+    //region shadow
+
+    //region shadow radius
+
     /**
-     * Sets the shadow for the icon
-     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     * Sets the shadow radius for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
      *
      * @return The current IconicsDrawable for chaining.
      * @see Paint#setShadowLayer(float, float, float, int)
      * @see #enableShadowSupport(View)
      */
-    public IconicsDrawable shadowRes(@DimenRes int radiusRes, @DimenRes int dxRes, @DimenRes int dyRes, @ColorRes int colorRes) {
-        return shadowPx(mContext.getResources().getDimensionPixelSize(radiusRes), mContext.getResources().getDimensionPixelSize(dxRes), mContext.getResources().getDimensionPixelSize(dyRes), ContextCompat.getColor(mContext, colorRes));
+    public IconicsDrawable shadowRadiusRes(@DimenRes int radiusRes){
+        return shadowRadiusPx(mContext.getResources().getDimensionPixelSize(radiusRes));
     }
 
     /**
-     * Sets the shadow for the icon
-     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     * Sets the shadow radius for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
      *
      * @return The current IconicsDrawable for chaining.
      * @see Paint#setShadowLayer(float, float, float, int)
      * @see #enableShadowSupport(View)
      */
-    public IconicsDrawable shadowDp(@Dimension(unit = DP) float radiusDp, @Dimension(unit = DP) float dxDp, @Dimension(unit = DP) float dyDp, @ColorInt int color) {
-        return shadowPx(Utils.convertDpToPx(mContext, radiusDp), Utils.convertDpToPx(mContext, dxDp), Utils.convertDpToPx(mContext, dyDp), color);
+    public IconicsDrawable shadowRadiusDp(@Dimension(unit = DP) int radiusDp){
+        return shadowRadiusPx(Utils.convertDpToPx(mContext, radiusDp));
     }
 
     /**
-     * Sets the shadow for the icon
-     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     * Sets the shadow radius for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
      *
      * @return The current IconicsDrawable for chaining.
      * @see Paint#setShadowLayer(float, float, float, int)
      * @see #enableShadowSupport(View)
      */
-    public IconicsDrawable shadowPx(@Dimension(unit = PX) float radius, @Dimension(unit = PX) float dx, @Dimension(unit = PX) float dy, @ColorInt int color) {
-        mShadowRadius = radius;
-        mShadowDx = dx;
-        mShadowDy = dy;
-        mShadowColor = color;
+    public IconicsDrawable shadowRadiusPx(@Dimension(unit = PX) float radiusPx){
+        mShadowRadius = radiusPx;
 
-        mIconPaint.setShadowLayer(radius, dx, dy, color);
+        mDrawShadow = radiusPx > 0;
+
         invalidateSelf();
         return this;
     }
+    //endregion
+
+    //region shadow delta X
+
+    /**
+     * Sets the shadow delta X for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDxRes(@DimenRes int dxRes){
+        return shadowDxPx(mContext.getResources().getDimensionPixelSize(dxRes));
+    }
+
+    /**
+     * Sets the shadow delta X for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDxDp(@Dimension(unit = DP) int dxDp) {
+        return shadowDxPx(Utils.convertDpToPx(mContext, dxDp));
+    }
+
+    /**
+     * Sets the shadow delta X for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDxPx(@Dimension(unit = PX) float dxPx){
+        mShadowDx = dxPx;
+
+        invalidateSelf();
+        return this;
+    }
+    //endregion
+
+    //region shadow delta Y
+
+    /**
+     * Sets the shadow delta Y for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDyRes(@DimenRes int dyRes){
+        return shadowDyPx(mContext.getResources().getDimensionPixelSize(dyRes));
+    }
+
+    /**
+     * Sets the shadow delta Y for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDyDp(@Dimension(unit = DP) int dyDp) {
+        return shadowDyPx(Utils.convertDpToPx(mContext, dyDp));
+    }
+
+    /**
+     * Sets the shadow delta Y for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDyPx(@Dimension(unit = PX) float dyPx){
+        mShadowDy = dyPx;
+
+        invalidateSelf();
+        return this;
+    }
+    //endregion
+
+    //region shadow delta
+
+    /**
+     * Sets the shadow delta for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDeltaRes(@DimenRes int deltaRes){
+        return shadowDeltaPx(mContext.getResources().getDimensionPixelSize(deltaRes));
+    }
+
+    /**
+     * Sets the shadow delta for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDeltaDp(@Dimension(unit = DP) int deltaDp) {
+        return shadowDeltaPx(Utils.convertDpToPx(mContext, deltaDp));
+    }
+
+    /**
+     * Sets the shadow delta for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDeltaPx(@Dimension(unit = PX) float deltaPx){
+        mShadowDx = mShadowDy = deltaPx;
+
+        invalidateSelf();
+        return this;
+    }
+    //endregion
+
+    //region shadow color
+
+    /**
+     * Sets the shadow color from resources for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowColorRes(@ColorRes int shadowColorRes){
+        return shadowColor(ContextCompat.getColor(mContext, shadowColorRes));
+    }
+
+
+    /**
+     * Sets the shadow color for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowColor(@ColorInt int shadowColor){
+        mShadowColor = shadowColor;
+
+        invalidateSelf();
+        return this;
+    }
+    //endregion
+
+    /**
+     * Enable / disable the shadow drawing for the icon
+     * This requires {@link #enableShadowSupport(View) shadow support} to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable drawShadow(boolean drawShadow){
+        mDrawShadow = drawShadow && mShadowRadius > 0;
+
+        invalidateSelf();
+        return this;
+    }
+    //endregion
+
+
 
     /**
      * Set background contour width from an dimen res for the icon
@@ -1094,6 +1276,12 @@ public class IconicsDrawable extends Drawable {
 
             if (mDrawContour) {
                 canvas.drawPath(mPath, mContourPaint);
+            }
+
+            if (mDrawShadow) {
+                mIconPaint.setShadowLayer(mShadowRadius, mShadowDx, mShadowDy, mShadowColor);
+            } else {
+                mIconPaint.setShadowLayer(0, 0, 0, 0);
             }
 
             mIconPaint.setAlpha(mAlpha);
