@@ -18,8 +18,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 29500
-        versionName "2.9.5"
+        versionCode 30000
+        versionName "3.0.0"
 
         setProperty("archivesBaseName", "Android Iconics-v$versionName-c$versionCode")
     }
