@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     private IconsFragment mIconsFragment;
     private boolean mRandomize;
+    private boolean mShadow;
     private List<ITypeface> mFonts;
     private int mIdentifierGmd = 0;
     private String mCurrentSearch = null;
@@ -213,6 +214,11 @@ public class MainActivity extends AppCompatActivity {
                 mIconsFragment.randomize(item.isChecked());
                 mRandomize = item.isChecked();
                 return true;
+            case R.id.action_shadow:
+                item.setChecked(!item.isChecked());
+                mIconsFragment.shadow(item.isChecked());
+                mShadow = item.isChecked();
+                return true;
             case R.id.action_opensource:
                 new LibsBuilder()
                         .withFields(R.string.class.getFields())
@@ -242,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         mIconsFragment = IconsFragment.newInstance(fontName);
         mIconsFragment.randomize(mRandomize);
+        mIconsFragment.shadow(mShadow);
         mIconsFragment.onSearch(mCurrentSearch);
         ft.replace(R.id.content, mIconsFragment);
         ft.commit();

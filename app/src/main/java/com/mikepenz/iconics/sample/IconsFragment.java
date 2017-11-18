@@ -42,6 +42,7 @@ public class IconsFragment extends Fragment {
     private ArrayList<IconItem> mIcons = new ArrayList<>();
     private FastItemAdapter<IconItem> mAdapter;
     private boolean mRandomize;
+    private boolean mShadow;
     private String mSearch;
     private PopupWindow mPopup;
     private Random mRandom = new Random();
@@ -58,6 +59,13 @@ public class IconsFragment extends Fragment {
 
     public void randomize(boolean randomize) {
         mRandomize = randomize;
+        if (mAdapter != null) {
+            mAdapter.notifyAdapterDataSetChanged();
+        }
+    }
+
+    public void shadow(boolean shadow) {
+        mShadow = shadow;
         if (mAdapter != null) {
             mAdapter.notifyAdapterDataSetChanged();
         }
@@ -157,6 +165,11 @@ public class IconsFragment extends Fragment {
                             holder.image.getIcon().backgroundColorRes(getRandomColor(position - 4));
                             holder.image.getIcon().roundedCornersDp(2 + mRandom.nextInt(10));
                         }
+                    }
+
+                    if (mShadow) {
+                        holder.image.getIcon().enableShadowSupport(holder.image);
+                        holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
                     }
                 }
             }
