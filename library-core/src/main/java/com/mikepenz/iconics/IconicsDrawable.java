@@ -119,6 +119,11 @@ public class IconicsDrawable extends Drawable {
     private boolean mDrawContour;
     private boolean mDrawBackgroundContour;
 
+    private float mShadowRadius = 0F;
+    private float mShadowDx = 0F;
+    private float mShadowDy = 0F;
+    private int mShadowColor = Color.TRANSPARENT;
+
     private IIcon mIcon;
     private String mPlainIcon;
 
@@ -264,6 +269,7 @@ public class IconicsDrawable extends Drawable {
                 .iconOffsetYPx(mIconOffsetY)
                 .contourColor(mContourColor)
                 .contourWidthPx(mContourWidth)
+                .shadowLayer(mShadowRadius, mShadowDx, mShadowDy, mShadowColor)
                 .backgroundColor(mBackgroundColor)
                 .backgroundContourColor(mBackgroundContourColor)
                 .backgroundContourWidthPx(mBackgroundContourWidth)
@@ -877,6 +883,24 @@ public class IconicsDrawable extends Drawable {
         mContourPaint.setStrokeWidth(mContourWidth);
         drawContour(true);
 
+        invalidateSelf();
+        return this;
+    }
+
+    /**
+     * Sets the shadow for the icon
+     * NOTE THIS WILL NOT AFFECT THE CONTOUR, BACKGROUND OR BACKGROUND CONTOUR
+     *
+     * @return The current IconExtDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     */
+    public IconicsDrawable shadowLayer(float radius, float dx, float dy, int color) {
+        mShadowRadius = radius;
+        mShadowDx = dx;
+        mShadowDy = dy;
+        mShadowColor = color;
+
+        mIconPaint.setShadowLayer(radius, dx, dy, color);
         invalidateSelf();
         return this;
     }
