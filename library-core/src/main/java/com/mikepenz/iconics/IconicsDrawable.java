@@ -57,6 +57,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.util.Log;
+import android.view.View;
 
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
@@ -64,6 +65,7 @@ import com.mikepenz.iconics.utils.Utils;
 
 import static android.support.annotation.Dimension.DP;
 import static android.support.annotation.Dimension.PX;
+import static android.view.View.LAYER_TYPE_SOFTWARE;
 
 /**
  * A custom {@link Drawable} which can display icons from icon fonts.
@@ -269,7 +271,7 @@ public class IconicsDrawable extends Drawable {
                 .iconOffsetYPx(mIconOffsetY)
                 .contourColor(mContourColor)
                 .contourWidthPx(mContourWidth)
-                .shadowLayer(mShadowRadius, mShadowDx, mShadowDy, mShadowColor)
+                .shadowPx(mShadowRadius, mShadowDx, mShadowDy, mShadowColor)
                 .backgroundColor(mBackgroundColor)
                 .backgroundContourColor(mBackgroundContourColor)
                 .backgroundContourWidthPx(mBackgroundContourWidth)
@@ -294,7 +296,7 @@ public class IconicsDrawable extends Drawable {
      * Loads and draws given text
      *
      * @param icon
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable icon(String icon) {
         try {
@@ -311,7 +313,7 @@ public class IconicsDrawable extends Drawable {
      * Loads and draws given.
      *
      * @param icon
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable icon(Character icon) {
         return iconText(icon.toString(), null);
@@ -322,7 +324,7 @@ public class IconicsDrawable extends Drawable {
      *
      * @param icon
      * @param typeface
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable icon(Character icon, @Nullable Typeface typeface) {
         return iconText(icon.toString(), typeface);
@@ -332,7 +334,7 @@ public class IconicsDrawable extends Drawable {
      * Loads and draws given text
      *
      * @param icon
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable iconText(String icon) {
         return iconText(icon, null);
@@ -343,7 +345,7 @@ public class IconicsDrawable extends Drawable {
      *
      * @param icon
      * @param typeface
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable iconText(String icon, @Nullable Typeface typeface) {
         mPlainIcon = icon;
@@ -358,7 +360,7 @@ public class IconicsDrawable extends Drawable {
      * Loads and draws given.
      *
      * @param icon
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable icon(IIcon icon) {
         mIcon = icon;
@@ -375,7 +377,7 @@ public class IconicsDrawable extends Drawable {
      *
      * @param icon
      * @param typeface
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     protected IconicsDrawable icon(ITypeface typeface, IIcon icon) {
         mIcon = icon;
@@ -391,7 +393,7 @@ public class IconicsDrawable extends Drawable {
      * Check it out with the oct_arrow_down and oct_arrow_small_down of the Octicons font
      *
      * @param respectBounds set to true if it should respect the original bounds
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable respectFontBounds(boolean respectBounds) {
         mRespectFontBounds = respectBounds;
@@ -404,7 +406,7 @@ public class IconicsDrawable extends Drawable {
      * Set the color of the drawable.
      *
      * @param color The color, usually from android.graphics.Color or 0xFF012345.
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable color(@ColorInt int color) {
         mIconColor = ColorStateList.valueOf(color);
@@ -417,7 +419,7 @@ public class IconicsDrawable extends Drawable {
      * Set the color of the drawable.
      *
      * @param colorRes The color resource, from your R file.
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable colorRes(@ColorRes int colorRes) {
         return color(ContextCompat.getColor(mContext, colorRes));
@@ -427,7 +429,7 @@ public class IconicsDrawable extends Drawable {
      * Set the color of the drawable.
      *
      * @param colorRes The color resource, from your R file.
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable colorListRes(@ColorRes int colorRes) {
         return color(ContextCompat.getColorStateList(mContext, colorRes));
@@ -437,7 +439,7 @@ public class IconicsDrawable extends Drawable {
      * Set the color of the drawable.
      *
      * @param colors The color, usually from android.graphics.Color or 0xFF012345.
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable color(ColorStateList colors) {
         if (colors != null) {
@@ -451,7 +453,7 @@ public class IconicsDrawable extends Drawable {
      * set the icon offset for X from resource
      *
      * @param iconOffsetXRes
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable iconOffsetXRes(@DimenRes int iconOffsetXRes) {
         return iconOffsetXPx(mContext.getResources().getDimensionPixelSize(iconOffsetXRes));
@@ -461,7 +463,7 @@ public class IconicsDrawable extends Drawable {
      * set the icon offset for X as dp
      *
      * @param iconOffsetXDp
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable iconOffsetXDp(@Dimension(unit = DP) int iconOffsetXDp) {
         return iconOffsetXPx(Utils.convertDpToPx(mContext, iconOffsetXDp));
@@ -471,7 +473,7 @@ public class IconicsDrawable extends Drawable {
      * set the icon offset for X
      *
      * @param iconOffsetX
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable iconOffsetXPx(@Dimension(unit = PX) int iconOffsetX) {
         mIconOffsetX = iconOffsetX;
@@ -484,7 +486,7 @@ public class IconicsDrawable extends Drawable {
      * set the icon offset for Y from resource
      *
      * @param iconOffsetYRes
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable iconOffsetYRes(@DimenRes int iconOffsetYRes) {
         return iconOffsetYPx(mContext.getResources().getDimensionPixelSize(iconOffsetYRes));
@@ -494,7 +496,7 @@ public class IconicsDrawable extends Drawable {
      * set the icon offset for Y as dp
      *
      * @param iconOffsetYDp
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable iconOffsetYDp(@Dimension(unit = DP) int iconOffsetYDp) {
         return iconOffsetYPx(Utils.convertDpToPx(mContext, iconOffsetYDp));
@@ -504,7 +506,7 @@ public class IconicsDrawable extends Drawable {
      * set the icon offset for Y
      *
      * @param iconOffsetY
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable iconOffsetYPx(@Dimension(unit = PX) int iconOffsetY) {
         mIconOffsetY = iconOffsetY;
@@ -517,7 +519,7 @@ public class IconicsDrawable extends Drawable {
      * Set the padding of the drawable from res
      *
      * @param dimenRes
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable paddingRes(@DimenRes int dimenRes) {
         return paddingPx(mContext.getResources().getDimensionPixelSize(dimenRes));
@@ -527,7 +529,7 @@ public class IconicsDrawable extends Drawable {
      * Set the padding in dp for the drawable
      *
      * @param iconPadding
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable paddingDp(@Dimension(unit = DP) int iconPadding) {
         return paddingPx(Utils.convertDpToPx(mContext, iconPadding));
@@ -537,7 +539,7 @@ public class IconicsDrawable extends Drawable {
      * Set a padding for the.
      *
      * @param iconPadding
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable paddingPx(@Dimension(unit = PX) int iconPadding) {
         if (mIconPadding != iconPadding) {
@@ -557,7 +559,7 @@ public class IconicsDrawable extends Drawable {
     /**
      * Sets the size and the Padding to the correct values to be used for the actionBar / toolBar
      *
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable actionBar() {
         sizeDp(TOOLBAR_ICON_SIZE);
@@ -569,7 +571,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param dimenRes The dimension resource.
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizeRes(@DimenRes int dimenRes) {
         return sizePx(mContext.getResources().getDimensionPixelSize(dimenRes));
@@ -579,7 +581,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param size The size in density-independent pixels (dp).
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizeDp(@Dimension(unit = DP) int size) {
         return sizePx(Utils.convertDpToPx(mContext, size));
@@ -589,7 +591,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param size The size in pixels (px).
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizePx(@Dimension(unit = PX) int size) {
         mSizeX = mSizeY = size;
@@ -603,7 +605,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param dimenResX The dimension resource.
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizeResX(@DimenRes int dimenResX) {
         return sizePxX(mContext.getResources().getDimensionPixelSize(dimenResX));
@@ -613,7 +615,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param sizeX The size in density-independent pixels (dp).
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizeDpX(@Dimension(unit = DP) int sizeX) {
         return sizePxX(Utils.convertDpToPx(mContext, sizeX));
@@ -623,7 +625,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param sizeX The size in pixels (px).
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizePxX(@Dimension(unit = PX) int sizeX) {
         mSizeX = sizeX;
@@ -637,7 +639,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param dimenResY The dimension resource.
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizeResY(@DimenRes int dimenResY) {
         return sizePxY(mContext.getResources().getDimensionPixelSize(dimenResY));
@@ -647,7 +649,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param sizeY The size in density-independent pixels (dp).
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizeDpY(@Dimension(unit = DP) int sizeY) {
         return sizePxY(Utils.convertDpToPx(mContext, sizeY));
@@ -657,7 +659,7 @@ public class IconicsDrawable extends Drawable {
      * Set the size of the drawable.
      *
      * @param sizeY The size in pixels (px).
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable sizePxY(@Dimension(unit = PX) int sizeY) {
         mSizeY = sizeY;
@@ -671,7 +673,7 @@ public class IconicsDrawable extends Drawable {
      * Set background contour color from color res.
      *
      * @param backgroundContourColorRes
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable backgroundContourColorRes(@ColorRes int backgroundContourColorRes) {
         return backgroundContourColor(ContextCompat.getColor(mContext, backgroundContourColorRes));
@@ -681,7 +683,7 @@ public class IconicsDrawable extends Drawable {
      * Set background contour color for the.
      *
      * @param backgroundContourColor
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable backgroundContourColor(@ColorInt int backgroundContourColor) {
         int red = Color.red(backgroundContourColor);
@@ -699,7 +701,7 @@ public class IconicsDrawable extends Drawable {
      * Set contour color from color res.
      *
      * @param contourColorRes
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable contourColorRes(@ColorRes int contourColorRes) {
         return contourColor(ContextCompat.getColor(mContext, contourColorRes));
@@ -709,7 +711,7 @@ public class IconicsDrawable extends Drawable {
      * Set contour color for the.
      *
      * @param contourColor
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable contourColor(@ColorInt int contourColor) {
         int red = Color.red(contourColor);
@@ -856,7 +858,7 @@ public class IconicsDrawable extends Drawable {
      * Set contour width from an dimen res for the icon
      *
      * @param contourWidthRes
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable contourWidthRes(@DimenRes int contourWidthRes) {
         return contourWidthPx(mContext.getResources().getDimensionPixelSize(contourWidthRes));
@@ -866,7 +868,7 @@ public class IconicsDrawable extends Drawable {
      * Set contour width from dp for the icon
      *
      * @param contourWidthDp
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable contourWidthDp(@Dimension(unit = DP) int contourWidthDp) {
         return contourWidthPx(Utils.convertDpToPx(mContext, contourWidthDp));
@@ -876,7 +878,7 @@ public class IconicsDrawable extends Drawable {
      * Set contour width for the icon.
      *
      * @param contourWidth
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable contourWidthPx(@Dimension(unit = PX) int contourWidth) {
         mContourWidth = contourWidth;
@@ -888,13 +890,51 @@ public class IconicsDrawable extends Drawable {
     }
 
     /**
-     * Sets the shadow for the icon
-     * NOTE THIS WILL NOT AFFECT THE CONTOUR, BACKGROUND OR BACKGROUND CONTOUR
+     * Enables the `LAYER_TYPE_SOFTWARE` for the view holding this icon,
+     * to enable correct shadowLayer drawing
      *
-     * @return The current IconExtDrawable for chaining.
-     * @see Paint#setShadowLayer(float, float, float, int)
+     * @param view the view holding this `IconicsDrawable`
+     * @return The current IconicsDrawable for chaining.
+     * @see View#setLayerType(int, Paint)
      */
-    public IconicsDrawable shadowLayer(float radius, float dx, float dy, int color) {
+    public IconicsDrawable enableShadowSupport(View view) {
+        view.setLayerType(LAYER_TYPE_SOFTWARE, null);
+        return this;
+    }
+
+    /**
+     * Sets the shadow for the icon
+     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowRes(@DimenRes int radiusRes, @DimenRes int dxRes, @DimenRes int dyRes, @ColorRes int colorRes) {
+        return shadowPx(mContext.getResources().getDimensionPixelSize(radiusRes), mContext.getResources().getDimensionPixelSize(dxRes), mContext.getResources().getDimensionPixelSize(dyRes), ContextCompat.getColor(mContext, colorRes));
+    }
+
+    /**
+     * Sets the shadow for the icon
+     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowDp(@Dimension(unit = DP) float radiusDp, @Dimension(unit = DP) float dxDp, @Dimension(unit = DP) float dyDp, @ColorInt int color) {
+        return shadowPx(Utils.convertDpToPx(mContext, radiusDp), Utils.convertDpToPx(mContext, dxDp), Utils.convertDpToPx(mContext, dyDp), color);
+    }
+
+    /**
+     * Sets the shadow for the icon
+     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     */
+    public IconicsDrawable shadowPx(@Dimension(unit = PX) float radius, @Dimension(unit = PX) float dx, @Dimension(unit = PX) float dy, @ColorInt int color) {
         mShadowRadius = radius;
         mShadowDx = dx;
         mShadowDy = dy;
@@ -909,7 +949,7 @@ public class IconicsDrawable extends Drawable {
      * Set background contour width from an dimen res for the icon
      *
      * @param backgroundContourWidthRes
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable backgroundContourWidthRes(@DimenRes int backgroundContourWidthRes) {
         return backgroundContourWidthPx(mContext.getResources().getDimensionPixelSize(backgroundContourWidthRes));
@@ -919,7 +959,7 @@ public class IconicsDrawable extends Drawable {
      * Set background contour width from dp for the icon
      *
      * @param backgroundContourWidthDp
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable backgroundContourWidthDp(@Dimension(unit = DP) int backgroundContourWidthDp) {
         return backgroundContourWidthPx(Utils.convertDpToPx(mContext, backgroundContourWidthDp));
@@ -929,7 +969,7 @@ public class IconicsDrawable extends Drawable {
      * Set background contour width for the icon.
      *
      * @param backgroundContourWidth
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable backgroundContourWidthPx(@Dimension(unit = PX) int backgroundContourWidth) {
         mBackgroundContourWidth = backgroundContourWidth;
@@ -944,7 +984,7 @@ public class IconicsDrawable extends Drawable {
      * Enable/disable contour drawing.
      *
      * @param drawContour
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable drawContour(boolean drawContour) {
         if (mDrawContour != drawContour) {
@@ -961,7 +1001,7 @@ public class IconicsDrawable extends Drawable {
      * Enable/disable background contour drawing.
      *
      * @param drawBackgroundContour
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable drawBackgroundContour(boolean drawBackgroundContour) {
         if (mDrawBackgroundContour != drawBackgroundContour) {
@@ -978,7 +1018,7 @@ public class IconicsDrawable extends Drawable {
      * Set the colorFilter
      *
      * @param cf
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable colorFilter(ColorFilter cf) {
         setColorFilter(cf);
@@ -991,7 +1031,7 @@ public class IconicsDrawable extends Drawable {
      * the alpha value of that color will ALWAYS WIN!
      *
      * @param alpha
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable alpha(int alpha) {
         setAlpha(alpha);
@@ -1002,7 +1042,7 @@ public class IconicsDrawable extends Drawable {
      * Sets the style
      *
      * @param style
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable style(Paint.Style style) {
         mIconPaint.setStyle(style);
@@ -1016,7 +1056,7 @@ public class IconicsDrawable extends Drawable {
      * NOTE THIS WILL OVERWRITE THE ICONFONT!
      *
      * @param typeface
-     * @return The current IconExtDrawable for chaining.
+     * @return The current IconicsDrawable for chaining.
      */
     public IconicsDrawable typeface(Typeface typeface) {
         mIconPaint.setTypeface(typeface);
