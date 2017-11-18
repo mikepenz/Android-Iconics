@@ -20,9 +20,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
-import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.listeners.OnBindViewHolderListener;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.sample.item.IconItem;
@@ -43,6 +42,7 @@ public class IconsFragment extends Fragment {
     private ArrayList<IconItem> mIcons = new ArrayList<>();
     private FastItemAdapter<IconItem> mAdapter;
     private boolean mRandomize;
+    private boolean mShadow;
     private String mSearch;
     private PopupWindow mPopup;
     private Random mRandom = new Random();
@@ -59,6 +59,13 @@ public class IconsFragment extends Fragment {
 
     public void randomize(boolean randomize) {
         mRandomize = randomize;
+        if (mAdapter != null) {
+            mAdapter.notifyAdapterDataSetChanged();
+        }
+    }
+
+    public void shadow(boolean shadow) {
+        mShadow = shadow;
         if (mAdapter != null) {
             mAdapter.notifyAdapterDataSetChanged();
         }
@@ -104,37 +111,34 @@ public class IconsFragment extends Fragment {
 
     private void configAdapter() {
         //our popup on touch
-        mAdapter.withOnTouchListener(new FastAdapter.OnTouchListener<IconItem>() {
-            @Override
-            public boolean onTouch(View v, MotionEvent motionEvent, IAdapter<IconItem> adapter, IconItem item, int position) {
-                int a = motionEvent.getAction();
-                if (a == MotionEvent.ACTION_DOWN) {
-                    if (mPopup != null && mPopup.isShowing()) {
-                        mPopup.dismiss();
-                    }
-                    IconicsDrawable icon = new IconicsDrawable(v.getContext()).icon(item.getIcon()).sizeDp(144).paddingDp(8).backgroundColor(Color.parseColor("#DDFFFFFF")).roundedCornersDp(12);
-                    ImageView imageView = new ImageView(v.getContext());
-                    imageView.setImageDrawable(
-                            icon
-                    );
-                    int size = (int) UIUtils.convertDpToPixel(144, v.getContext());
-                    mPopup = new PopupWindow(imageView, size, size);
-                    mPopup.showAsDropDown(v);
-
-                    //copy to clipboard
-                    ClipboardManager clipboard = (ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = ClipData.newPlainText("Android-Iconics icon", icon.getIcon().getFormattedName());
-                    clipboard.setPrimaryClip(clip);
-                } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL || a == MotionEvent.ACTION_OUTSIDE) {
-                    if (mPopup != null && mPopup.isShowing()) {
-                        mPopup.dismiss();
-                    }
+        mAdapter.withOnTouchListener((v, motionEvent, adapter, item, position) -> {
+            int a = motionEvent.getAction();
+            if (a == MotionEvent.ACTION_DOWN) {
+                if (mPopup != null && mPopup.isShowing()) {
+                    mPopup.dismiss();
                 }
-                return false;
+                IconicsDrawable icon = new IconicsDrawable(v.getContext()).icon(item.getIcon()).sizeDp(144).paddingDp(8).backgroundColor(Color.parseColor("#DDFFFFFF")).roundedCornersDp(12);
+                ImageView imageView = new ImageView(v.getContext());
+                imageView.setImageDrawable(
+                        icon
+                );
+                int size = (int) UIUtils.convertDpToPixel(144, v.getContext());
+                mPopup = new PopupWindow(imageView, size, size);
+                mPopup.showAsDropDown(v);
+
+                //copy to clipboard
+                ClipboardManager clipboard = (ClipboardManager) v.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Android-Iconics icon", icon.getIcon().getFormattedName());
+                clipboard.setPrimaryClip(clip);
+            } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL || a == MotionEvent.ACTION_OUTSIDE) {
+                if (mPopup != null && mPopup.isShowing()) {
+                    mPopup.dismiss();
+                }
             }
+            return false;
         });
 
-        mAdapter.withOnBindViewHolderListener(new FastAdapter.OnBindViewHolderListener() {
+        mAdapter.withOnBindViewHolderListener(new OnBindViewHolderListener() {
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, List payloads) {
                 IconItem.ViewHolder holder = (IconItem.ViewHolder) viewHolder;
@@ -161,6 +165,11 @@ public class IconsFragment extends Fragment {
                             holder.image.getIcon().backgroundColorRes(getRandomColor(position - 4));
                             holder.image.getIcon().roundedCornersDp(2 + mRandom.nextInt(10));
                         }
+                    }
+
+                    if (mShadow) {
+                        holder.image.getIcon().enableShadowSupport(holder.image);
+                        holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
                     }
                 }
             }

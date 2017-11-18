@@ -2,9 +2,9 @@
 <resources>
 
     <!-- Theme colors -->
-    <color name="primary">#ff6e40</color>
-    <color name="primary_dark">#ff5722</color>
-    <color name="accent">#ff4081</color>
+    <color name="primary">#F44336</color>
+    <color name="primary_dark">#D32F2F</color>
+    <color name="accent">#F44336</color>
     <color name="theme_window_background">#ECECEC</color>
 
     <!-- general colors for drawer -->
