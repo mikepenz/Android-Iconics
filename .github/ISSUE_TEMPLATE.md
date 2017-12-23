@@ -16,4 +16,5 @@
 - [ ] Checked out the [sample application](https://github.com/mikepenz/Android-Iconics/tree/develop/app)
 - [ ] Read the [README](https://github.com/mikepenz/Android-Iconics/blob/develop/README.md)
 - [ ] Checked out the [CHANGELOG](https://github.com/mikepenz/Android-Iconics/releases)
-- [ ] Read the [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
+- [ ] Read the [FAQ](https://github.com/mikepenz/Android-Iconics/blob/develop/FAQ.md)
+- [ ] Checked out the [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
