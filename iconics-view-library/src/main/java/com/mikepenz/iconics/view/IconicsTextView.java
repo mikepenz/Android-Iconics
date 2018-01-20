@@ -44,9 +44,7 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
 
     public IconicsTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        if (!isInEditMode()) {
-            initialize(context, attrs, defStyle);
-        }
+        initialize(context, attrs, defStyle);
     }
 
     @Override

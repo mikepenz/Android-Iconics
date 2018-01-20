@@ -23,7 +23,9 @@ import android.widget.PopupWindow;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.listeners.OnBindViewHolderListener;
 import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsColor;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.IconicsSize;
 import com.mikepenz.iconics.sample.item.IconItem;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.materialize.util.UIUtils;
@@ -117,7 +119,12 @@ public class IconsFragment extends Fragment {
                 if (mPopup != null && mPopup.isShowing()) {
                     mPopup.dismiss();
                 }
-                IconicsDrawable icon = new IconicsDrawable(v.getContext()).icon(item.getIcon()).sizeDp(144).paddingDp(8).backgroundColor(Color.parseColor("#DDFFFFFF")).roundedCornersDp(12);
+                IconicsDrawable icon = new IconicsDrawable(v.getContext())
+                        .icon(item.getIcon())
+                        .size(IconicsSize.dp(144))
+                        .padding(IconicsSize.dp(8))
+                        .backgroundColor(IconicsColor.parse("#DDFFFFFF"))
+                        .roundedCorners(IconicsSize.dp(12));
                 ImageView imageView = new ImageView(v.getContext());
                 imageView.setImageDrawable(
                         icon
@@ -153,17 +160,18 @@ public class IconsFragment extends Fragment {
                     item.bindView(holder, payloads);
 
                     if (mRandomize) {
-                        holder.image.getIcon().colorRes(getRandomColor(position));
-                        holder.image.getIcon().paddingDp(mRandom.nextInt(12));
-
-                        holder.image.getIcon().contourWidthDp(mRandom.nextInt(2));
-                        holder.image.getIcon().contourColor(getRandomColor(position - 2));
+                        holder.image.getIcon()
+                                .color(IconicsColor.colorRes(getRandomColor(position)))
+                                .padding(IconicsSize.dp(mRandom.nextInt(12)))
+                                .contourWidth(IconicsSize.dp(mRandom.nextInt(2)))
+                                .contourColor(IconicsColor.colorInt(getRandomColor(position - 2)));
 
 
                         int y = mRandom.nextInt(10);
                         if (y % 4 == 0) {
-                            holder.image.getIcon().backgroundColorRes(getRandomColor(position - 4));
-                            holder.image.getIcon().roundedCornersDp(2 + mRandom.nextInt(10));
+                            holder.image.getIcon()
+                                    .backgroundColor(IconicsColor.colorRes(getRandomColor(position - 4)))
+                                    .roundedCorners(IconicsSize.dp(2 + mRandom.nextInt(10)));
                         }
                     }
 
@@ -171,9 +179,9 @@ public class IconsFragment extends Fragment {
                         holder.image.getIcon().enableShadowSupport(holder.image);
                         //holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
                         holder.image.getIcon()
-                                .shadowRadiusDp(1)
-                                .shadowDeltaDp(1)
-                                .shadowColor(Color.argb(200, 0, 0, 0));
+                                .shadowRadius(IconicsSize.dp(1))
+                                .shadowDelta(IconicsSize.dp(1))
+                                .shadowColor(IconicsColor.colorInt(Color.argb(200, 0, 0, 0)));
                     }
                 }
             }

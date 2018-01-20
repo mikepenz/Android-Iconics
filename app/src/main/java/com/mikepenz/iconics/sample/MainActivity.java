@@ -33,7 +33,9 @@ import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsColor;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.IconicsSize;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
@@ -145,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
         //
         menu.findItem(R.id.search).setIcon(
                 new IconicsDrawable(this, MaterialDesignIconic.Icon.gmi_search)
-                        .color(Color.WHITE)
-                        .sizeDp(24)
+                        .color(IconicsColor.colorInt(Color.WHITE))
+                        .size(IconicsSize.dp(24))
                         .respectFontBounds(true));
 
         final SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
@@ -192,7 +194,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         MenuItem menuItem = menu.findItem(R.id.action_opensource);
-        menuItem.setIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_github).actionBar().color(Color.WHITE));
+        menuItem.setIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_github)
+                .actionBar()
+                .color(IconicsColor.colorInt(Color.WHITE)));
         return super.onCreateOptionsMenu(menu);
     }
 

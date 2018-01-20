@@ -46,7 +46,9 @@ import android.widget.TextView;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsArrayBuilder;
+import com.mikepenz.iconics.IconicsColor;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.IconicsSize;
 import com.mikepenz.iconics.utils.IconicsMenuInflaterUtil;
 import com.mikepenz.octicons_typeface_library.Octicons;
 
@@ -74,17 +76,28 @@ public class PlaygroundActivity extends AppCompatActivity {
         //You can also do some advanced stuff like setting an image within a text
         TextView tv2 = findViewById(R.id.test5);
         SpannableString sb = new SpannableString(tv2.getText());
-        IconicsDrawable d = new IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDp(48).paddingDp(4);
+        IconicsDrawable d = new IconicsDrawable(this, FontAwesome.Icon.faw_android)
+                .size(IconicsSize.dp(48))
+                .padding(IconicsSize.dp(4));
         sb.setSpan(new ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv2.setText(sb);
 
         //Set the icon of an ImageView (or something else) as drawable
         ImageView iv2 = findViewById(R.id.test2);
-        iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1));
+        iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up)
+                .size(IconicsSize.dp(48))
+                .color(IconicsColor.parse("#aaFF0000"))
+                .contourWidth(IconicsSize.dp(1)));
 
         //Set the icon of an ImageView (or something else) as bitmap
         ImageView iv3 = findViewById(R.id.test3);
-        iv3.setImageBitmap(new IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDpX(48).sizeDpY(32).paddingDp(4).roundedCornersDp(8).color(Color.parseColor("#deFF0000")).toBitmap());
+        iv3.setImageBitmap(new IconicsDrawable(this, FontAwesome.Icon.faw_android)
+                .sizeX(IconicsSize.dp(48))
+                .sizeY(IconicsSize.dp(32))
+                .padding(IconicsSize.dp(4))
+                .roundedCorners(IconicsSize.dp(8))
+                .color(IconicsColor.parse("#deFF0000"))
+                .toBitmap());
 
         //Show how to style the text of an existing button
         Button b4 = findViewById(R.id.test4);
@@ -98,13 +111,26 @@ public class PlaygroundActivity extends AppCompatActivity {
         //Show how to style the text of an existing button
         ImageButton b6 = findViewById(R.id.test6);
         StateListDrawable iconStateListDrawable = new StateListDrawable();
-        iconStateListDrawable.addState(new int[]{android.R.attr.state_pressed}, new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1));
-        iconStateListDrawable.addState(new int[]{}, new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up).sizeDp(48).color(Color.parseColor("#aa00FF00")).contourWidthDp(2));
+        iconStateListDrawable.addState(
+                new int[]{android.R.attr.state_pressed},
+                new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up)
+                        .size(IconicsSize.dp(48))
+                        .color(IconicsColor.parse("#aaFF0000"))
+                        .contourWidth(IconicsSize.dp(1)));
+        iconStateListDrawable.addState(
+                new int[]{},
+                new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up)
+                        .size(IconicsSize.dp(48))
+                        .color(IconicsColor.parse("#aa00FF00"))
+                        .contourWidth(IconicsSize.dp(2)));
         b6.setImageDrawable(iconStateListDrawable);
 
         ListView listView = findViewById(R.id.list);
 
-        IconicsDrawable iconicsDrawableBase = new IconicsDrawable(this).actionBar().color(Color.GREEN).backgroundColor(Color.RED);
+        IconicsDrawable iconicsDrawableBase = new IconicsDrawable(this)
+                .actionBar()
+                .color(IconicsColor.colorInt(Color.GREEN))
+                .backgroundColor(IconicsColor.colorInt(Color.RED));
         IconicsDrawable[] array = new IconicsArrayBuilder(iconicsDrawableBase)
                 .add(FontAwesome.Icon.faw_android)
                 .add(Octicons.Icon.oct_octoface)

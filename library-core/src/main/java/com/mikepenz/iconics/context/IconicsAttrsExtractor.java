@@ -25,7 +25,10 @@ import android.support.annotation.RestrictTo;
 import android.support.annotation.StyleableRes;
 import android.text.TextUtils;
 
+import com.mikepenz.iconics.IconicsColor;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.IconicsExtractor;
+import com.mikepenz.iconics.IconicsSize;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -33,10 +36,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  * @author pa.gulko zTrap (30.10.2017)
  */
 @RestrictTo(LIBRARY_GROUP)
-public class IconicsAttrsExtractor {
-    private final static int DEF_COLOR = Integer.MIN_VALUE;
-    private final static int DEF_SIZE = -1;
-
+public class IconicsAttrsExtractor implements IconicsExtractor {
     @NonNull private final Context mContext;
     @NonNull private final TypedArray mTypedArray;
 
@@ -152,48 +152,48 @@ public class IconicsAttrsExtractor {
         }
         ColorStateList colors = mTypedArray.getColorStateList(mColorsId);
         if (colors != null) {
-            icon = createIfNeeds(icon, mContext).color(colors);
+            icon = createIfNeeds(icon, mContext).color(IconicsColor.colorList(colors));
         }
         int size = mTypedArray.getDimensionPixelSize(mSizeId, DEF_SIZE);
         if (size != DEF_SIZE) {
-            icon = createIfNeeds(icon, mContext).sizePx(size);
+            icon = createIfNeeds(icon, mContext).size(IconicsSize.px(size));
         }
         int padding = mTypedArray.getDimensionPixelSize(mPaddingId, DEF_SIZE);
         if (padding != DEF_SIZE) {
-            icon = createIfNeeds(icon, mContext).paddingPx(padding);
+            icon = createIfNeeds(icon, mContext).padding(IconicsSize.px(padding));
         }
         int contourColor = mTypedArray.getColor(mContourColorId, DEF_COLOR);
         if (contourColor != DEF_COLOR) {
-            icon = createIfNeeds(icon, mContext).contourColor(contourColor);
+            icon = createIfNeeds(icon, mContext).contourColor(IconicsColor.colorInt(contourColor));
         }
         int contourWidth = mTypedArray.getDimensionPixelSize(mContourWidthId, DEF_SIZE);
         if (contourWidth != DEF_SIZE) {
-            icon = createIfNeeds(icon, mContext).contourWidthPx(contourWidth);
+            icon = createIfNeeds(icon, mContext).contourWidth(IconicsSize.px(contourWidth));
         }
         int backgroundColor = mTypedArray.getColor(mBackgroundColorId, DEF_COLOR);
         if (backgroundColor != DEF_COLOR) {
-            icon = createIfNeeds(icon, mContext).backgroundColor(backgroundColor);
+            icon = createIfNeeds(icon, mContext).backgroundColor(IconicsColor.colorInt(backgroundColor));
         }
         int cornerRadius = mTypedArray.getDimensionPixelSize(mCornerRadiusId, DEF_SIZE);
         if (cornerRadius != DEF_SIZE) {
-            icon = createIfNeeds(icon, mContext).roundedCornersPx(cornerRadius);
+            icon = createIfNeeds(icon, mContext).roundedCorners(IconicsSize.px(cornerRadius));
         }
         int backgroundContourColor = mTypedArray.getColor(mBackgroundContourColorId, DEF_COLOR);
         if (backgroundContourColor != DEF_COLOR) {
-            icon = createIfNeeds(icon, mContext).backgroundContourColor(backgroundContourColor);
+            icon = createIfNeeds(icon, mContext).backgroundContourColor(IconicsColor.colorInt(backgroundContourColor));
         }
         int backgroundContourWidth = mTypedArray.getDimensionPixelSize(mBackgroundContourWidthId, DEF_SIZE);
         if (backgroundContourWidth != DEF_SIZE) {
-            icon = createIfNeeds(icon, mContext).backgroundContourWidthPx(backgroundContourWidth);
+            icon = createIfNeeds(icon, mContext).backgroundContourWidth(IconicsSize.px(backgroundContourWidth));
         }
         if (extractOffsets) {
             int offsetY = mTypedArray.getDimensionPixelSize(mOffsetYId, DEF_SIZE);
             if (offsetY != DEF_SIZE) {
-                icon = createIfNeeds(icon, mContext).iconOffsetYPx(offsetY);
+                icon = createIfNeeds(icon, mContext).iconOffsetY(IconicsSize.px(offsetY));
             }
             int offsetX = mTypedArray.getDimensionPixelSize(mOffsetXId, DEF_SIZE);
             if (offsetX != DEF_SIZE) {
-                icon = createIfNeeds(icon, mContext).iconOffsetXPx(offsetX);
+                icon = createIfNeeds(icon, mContext).iconOffsetX(IconicsSize.px(offsetX));
             }
         }
         if (nonNull) {

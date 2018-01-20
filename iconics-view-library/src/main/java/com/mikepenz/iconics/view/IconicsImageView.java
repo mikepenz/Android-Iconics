@@ -40,9 +40,7 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
 
     public IconicsImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        if (!isInEditMode()) {
-            initialize(context, attrs, defStyle);
-        }
+        initialize(context, attrs, defStyle);
     }
 
     @Override

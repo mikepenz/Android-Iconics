@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mikepenz.fastadapter.items.AbstractItem;
+import com.mikepenz.iconics.IconicsColor;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.IconicsSize;
 import com.mikepenz.iconics.sample.R;
 import com.mikepenz.iconics.view.IconicsImageView;
 
@@ -49,10 +51,11 @@ public class IconItem extends AbstractItem<IconItem, IconItem.ViewHolder> {
         holder.image.setIcon(new IconicsDrawable(holder.image.getContext(), icon));
         holder.name.setText(icon);
 
-        holder.image.getIcon().color(Color.BLACK);
-        holder.image.getIcon().paddingDp(0);
-        holder.image.getIcon().contourWidthDp(0);
-        holder.image.getIcon().contourColor(Color.TRANSPARENT);
+        holder.image.getIcon()
+                .color(IconicsColor.colorInt(Color.BLACK))
+                .padding(IconicsSize.dp(0))
+                .contourWidth(IconicsSize.dp(0))
+                .contourColor(IconicsColor.colorInt(Color.TRANSPARENT));
         holder.image.setBackgroundColor(Color.TRANSPARENT);
 
         //as we want to respect the bounds of the original font in the icon list

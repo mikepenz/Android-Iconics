@@ -46,9 +46,7 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
 
     public IconicsCompoundButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        if (!isInEditMode()) {
-            initialize(context, attrs, defStyle);
-        }
+        initialize(context, attrs, defStyle);
     }
 
     @Override

@@ -44,9 +44,7 @@ public class IconicsButton extends AppCompatButton implements IconicsView, Compo
 
     public IconicsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        if (!isInEditMode()) {
-            initialize(context, attrs, defStyle);
-        }
+        initialize(context, attrs, defStyle);
     }
 
     @Override
