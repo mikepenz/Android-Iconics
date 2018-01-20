@@ -28,5 +28,8 @@
         <attr name="ico_corner_radius" format="dimension|reference" />
         <attr name="ico_background_contour_color" format="color|reference" />
         <attr name="ico_background_contour_width" format="dimension|reference" />
+        <attr name="ico_shadow_radius" format="dimension|reference" />
+        <attr name="ico_shadow_delta" format="dimension|reference" />
+        <attr name="ico_shadow_color" format="color|reference" />
     </declare-styleable>
 </resources>

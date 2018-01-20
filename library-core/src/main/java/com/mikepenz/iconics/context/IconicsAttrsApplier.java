@@ -50,6 +50,9 @@ public class IconicsAttrsApplier {
                     .backgroundContourWidthId(R.styleable.Iconics_ico_background_contour_width)
                     .offsetXId(R.styleable.Iconics_ico_offset_x)
                     .offsetYId(R.styleable.Iconics_ico_offset_y)
+                    .shadowColorId(R.styleable.Iconics_ico_shadow_color)
+                    .shadowDeltaId(R.styleable.Iconics_ico_shadow_delta)
+                    .shadowRadiusId(R.styleable.Iconics_ico_shadow_radius)
                     .extractWithOffsets();
         } finally {
             a.recycle();

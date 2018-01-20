@@ -51,6 +51,10 @@ public class IconicsAttrsExtractor implements IconicsExtractor {
     @StyleableRes private int mBackgroundContourColorId;
     @StyleableRes private int mBackgroundContourWidthId;
 
+    @StyleableRes private int mShadowColorId;
+    @StyleableRes private int mShadowDeltaId;
+    @StyleableRes private int mShadowRadiusId;
+
     @StyleableRes private int mOffsetXId;
     @StyleableRes private int mOffsetYId;
 
@@ -120,6 +124,21 @@ public class IconicsAttrsExtractor implements IconicsExtractor {
         mOffsetYId = offsetYId;
         return this;
     }
+
+    public IconicsAttrsExtractor shadowColorId(int shadowColorId) {
+        mShadowColorId = shadowColorId;
+        return this;
+    }
+
+    public IconicsAttrsExtractor shadowDeltaId(int shadowDeltaId) {
+        mShadowDeltaId = shadowDeltaId;
+        return this;
+    }
+
+    public IconicsAttrsExtractor shadowRadiusId(int shadowRadiusId) {
+        mShadowRadiusId = shadowRadiusId;
+        return this;
+    }
     //endregion
 
     @NonNull
@@ -185,6 +204,18 @@ public class IconicsAttrsExtractor implements IconicsExtractor {
         int backgroundContourWidth = mTypedArray.getDimensionPixelSize(mBackgroundContourWidthId, DEF_SIZE);
         if (backgroundContourWidth != DEF_SIZE) {
             icon = createIfNeeds(icon, mContext).backgroundContourWidth(IconicsSize.px(backgroundContourWidth));
+        }
+        int shadowColor = mTypedArray.getColor(mShadowColorId, DEF_COLOR);
+        if (shadowColor != DEF_COLOR) {
+            icon = createIfNeeds(icon, mContext).shadowColor(IconicsColor.colorInt(shadowColor));
+        }
+        float shadowRadius = mTypedArray.getDimensionPixelSize(mShadowRadiusId, DEF_SIZE);
+        if (shadowRadius != DEF_SIZE) {
+            icon = createIfNeeds(icon, mContext).shadowRadius(IconicsSize.px(shadowRadius));
+        }
+        float shadowDelta = mTypedArray.getDimensionPixelSize(mShadowDeltaId, DEF_SIZE);
+        if (shadowDelta != DEF_SIZE) {
+            icon = createIfNeeds(icon, mContext).shadowDelta(IconicsSize.px(shadowDelta));
         }
         if (extractOffsets) {
             int offsetY = mTypedArray.getDimensionPixelSize(mOffsetYId, DEF_SIZE);

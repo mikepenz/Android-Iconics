@@ -30,6 +30,9 @@
         <attr name="iiv_corner_radius" format="dimension|reference" />
         <attr name="iiv_background_contour_color" format="color|reference" />
         <attr name="iiv_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_shadow_color" format="color|reference" />
     </declare-styleable>
 
     <declare-styleable name="IconicsTextView">
@@ -44,6 +47,9 @@
         <attr name="iiv_start_corner_radius" format="dimension|reference" />
         <attr name="iiv_start_background_contour_color" format="color|reference" />
         <attr name="iiv_start_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_start_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_start_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_start_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region top icon-->
@@ -57,6 +63,9 @@
         <attr name="iiv_top_corner_radius" format="dimension|reference" />
         <attr name="iiv_top_background_contour_color" format="color|reference" />
         <attr name="iiv_top_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_top_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_top_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_top_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region end icon-->
@@ -70,6 +79,9 @@
         <attr name="iiv_end_corner_radius" format="dimension|reference" />
         <attr name="iiv_end_background_contour_color" format="color|reference" />
         <attr name="iiv_end_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_end_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_end_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_end_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region bottom icon-->
@@ -83,6 +95,9 @@
         <attr name="iiv_bottom_corner_radius" format="dimension|reference" />
         <attr name="iiv_bottom_background_contour_color" format="color|reference" />
         <attr name="iiv_bottom_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_bottom_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_bottom_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_bottom_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region all icons-->
@@ -96,6 +111,9 @@
         <attr name="iiv_all_corner_radius" format="dimension|reference" />
         <attr name="iiv_all_background_contour_color" format="color|reference" />
         <attr name="iiv_all_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_all_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_all_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_all_shadow_color" format="color|reference" />
         <!--endregion-->
     </declare-styleable>
 
@@ -111,6 +129,9 @@
         <attr name="iiv_checked_corner_radius" format="dimension|reference" />
         <attr name="iiv_checked_background_contour_color" format="color|reference" />
         <attr name="iiv_checked_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_checked_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_checked_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_checked_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region unchecked icons-->
@@ -124,6 +145,9 @@
         <attr name="iiv_unchecked_corner_radius" format="dimension|reference" />
         <attr name="iiv_unchecked_background_contour_color" format="color|reference" />
         <attr name="iiv_unchecked_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_unchecked_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_unchecked_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_unchecked_shadow_color" format="color|reference" />
         <!--endregion-->
     </declare-styleable>
 
@@ -139,6 +163,9 @@
         <attr name="iiv_start_checked_corner_radius" format="dimension|reference" />
         <attr name="iiv_start_checked_background_contour_color" format="color|reference" />
         <attr name="iiv_start_checked_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_start_checked_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_start_checked_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_start_checked_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region top icon-->
@@ -152,6 +179,9 @@
         <attr name="iiv_top_checked_corner_radius" format="dimension|reference" />
         <attr name="iiv_top_checked_background_contour_color" format="color|reference" />
         <attr name="iiv_top_checked_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_top_checked_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_top_checked_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_top_checked_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region end icon-->
@@ -165,6 +195,9 @@
         <attr name="iiv_end_checked_corner_radius" format="dimension|reference" />
         <attr name="iiv_end_checked_background_contour_color" format="color|reference" />
         <attr name="iiv_end_checked_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_end_checked_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_end_checked_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_end_checked_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region bottom icon-->
@@ -178,6 +211,9 @@
         <attr name="iiv_bottom_checked_corner_radius" format="dimension|reference" />
         <attr name="iiv_bottom_checked_background_contour_color" format="color|reference" />
         <attr name="iiv_bottom_checked_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_bottom_checked_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_bottom_checked_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_bottom_checked_shadow_color" format="color|reference" />
         <!--endregion-->
 
         <!--region all icons-->
@@ -191,6 +227,9 @@
         <attr name="iiv_all_checked_corner_radius" format="dimension|reference" />
         <attr name="iiv_all_checked_background_contour_color" format="color|reference" />
         <attr name="iiv_all_checked_background_contour_width" format="dimension|reference" />
+        <attr name="iiv_all_checked_shadow_radius" format="dimension|reference" />
+        <attr name="iiv_all_checked_shadow_delta" format="dimension|reference" />
+        <attr name="iiv_all_checked_shadow_color" format="color|reference" />
         <!--endregion-->
     </declare-styleable>
 

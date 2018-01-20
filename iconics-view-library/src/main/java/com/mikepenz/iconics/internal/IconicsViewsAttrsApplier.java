@@ -54,6 +54,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                     .cornerRadiusId(R.styleable.IconicsImageView_iiv_corner_radius)
                     .backgroundContourColorId(R.styleable.IconicsImageView_iiv_background_contour_color)
                     .backgroundContourWidthId(R.styleable.IconicsImageView_iiv_background_contour_width)
+                    .shadowColorId(R.styleable.IconicsImageView_iiv_shadow_color)
+                    .shadowDeltaId(R.styleable.IconicsImageView_iiv_shadow_delta)
+                    .shadowRadiusId(R.styleable.IconicsImageView_iiv_shadow_radius)
                     .extract();
         } finally {
             a.recycle();
@@ -106,6 +109,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_all_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_all_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_all_background_contour_width)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_all_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsTextView_iiv_all_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsTextView_iiv_all_shadow_radius)
                 .extract();
     }
 
@@ -122,6 +128,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_start_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_start_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_start_background_contour_width)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_start_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsTextView_iiv_start_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsTextView_iiv_start_shadow_radius)
                 .extract(icon);
     }
 
@@ -138,6 +147,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_top_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_top_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_top_background_contour_width)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_top_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsTextView_iiv_top_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsTextView_iiv_top_shadow_radius)
                 .extract(icon);
     }
 
@@ -154,6 +166,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_end_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_end_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_end_background_contour_width)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_end_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsTextView_iiv_end_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsTextView_iiv_end_shadow_radius)
                 .extract(icon);
     }
 
@@ -170,6 +185,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_bottom_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_bottom_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_bottom_background_contour_width)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_bottom_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsTextView_iiv_bottom_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsTextView_iiv_bottom_shadow_radius)
                 .extract(icon);
     }
     //endregion
@@ -200,6 +218,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCompoundButton_iiv_unchecked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_width)
+                .shadowColorId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_radius)
+                .shadowRadiusId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_radius)
                 .extractNonNull();
     }
 
@@ -216,6 +237,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCompoundButton_iiv_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCompoundButton_iiv_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCompoundButton_iiv_checked_background_contour_width)
+                .shadowColorId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_radius)
                 .extractNonNull();
     }
     //endregion
@@ -266,6 +290,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_all_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_width)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_radius)
                 .extract();
     }
 
@@ -282,6 +309,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_start_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_width)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_radius)
                 .extract(icon);
     }
 
@@ -298,6 +328,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_top_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_width)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_radius)
                 .extract(icon);
     }
 
@@ -314,6 +347,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_end_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_width)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_radius)
                 .extract(icon);
     }
 
@@ -330,6 +366,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_width)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_color)
+                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_delta)
+                .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_radius)
                 .extract(icon);
     }
     //endregion
