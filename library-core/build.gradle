@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3010
-        versionName "3.0.1"
+        versionCode 3020
+        versionName "3.0.2"
     }
     buildTypes {
         release {
