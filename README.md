@@ -52,14 +52,14 @@ Provide additional fonts for you project, or even create your custom font with j
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconcis library (without any widgets)
-implementation "com.mikepenz:iconics-core:3.0.1@aar"
+implementation "com.mikepenz:iconics-core:3.0.2@aar"
 implementation "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:3.0.1@aar"
+implementation "com.mikepenz:iconics-views:3.0.2@aar"
 ```
 
 
