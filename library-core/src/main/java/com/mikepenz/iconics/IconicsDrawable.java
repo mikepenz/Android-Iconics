@@ -1090,8 +1090,9 @@ public class IconicsDrawable extends Drawable {
                 }
             }
 
-            if (!mPath.isEmpty()) {
+            try {
                 mPath.close();
+            } catch (Exception ignored) {
             }
 
             if (mDrawContour) {
@@ -1129,8 +1130,9 @@ public class IconicsDrawable extends Drawable {
     @Override
     protected void onBoundsChange(Rect bounds) {
         offsetIcon(bounds);
-        if (!mPath.isEmpty()) {
+        try {
             mPath.close();
+        } catch (Exception ignored) {
         }
         super.onBoundsChange(bounds);
     }
