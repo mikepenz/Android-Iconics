@@ -26,7 +26,7 @@ import com.mikepenz.iconics.utils.Utils;
  * @author pa.gulko zTrap (20.01.2018)
  */
 public final class IconicsSize implements IconicsExtractor {
-    @Dimension(unit = Dimension.DP) private int mDp = DEF_SIZE;
+    @Dimension(unit = Dimension.DP) private float mDp = DEF_SIZE;
     @Dimension(unit = Dimension.PX) private float mPx = DEF_SIZE;
     @DimenRes private int mRes = DEF_RESOURCE;
 
@@ -46,7 +46,7 @@ public final class IconicsSize implements IconicsExtractor {
     /**
      * @param dp The size in density-independent pixels (dp).
      * */
-    public static IconicsSize dp(@Dimension(unit = Dimension.DP) int dp) {
+    public static IconicsSize dp(@Dimension(unit = Dimension.DP) float dp) {
         IconicsSize iconicsSize = new IconicsSize();
         iconicsSize.mDp = dp;
         return iconicsSize;

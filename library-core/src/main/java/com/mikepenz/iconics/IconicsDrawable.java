@@ -48,6 +48,10 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
+import android.support.annotation.Dimension;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
@@ -56,6 +60,9 @@ import android.view.View;
 
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
+
+import static android.support.annotation.Dimension.DP;
+import static android.support.annotation.Dimension.PX;
 
 /**
  * A custom {@link Drawable} which can display icons from icon fonts.
@@ -293,6 +300,632 @@ public class IconicsDrawable extends Drawable {
         }
         return iconicsDrawable;
     }
+    //endregion
+
+    //region deprecated api
+
+    /**
+     * Size of {@link android.support.v7.widget.Toolbar} icon in dp
+     * @deprecated Use {@link IconicsSize#TOOLBAR_ICON_SIZE} instead
+     */
+    @Deprecated
+    @Dimension(unit = DP)
+    public static final int TOOLBAR_ICON_SIZE = 24;
+
+    /**
+     * Size of {@link android.support.v7.widget.Toolbar} icon padding in dp
+     * @deprecated Use {@link IconicsSize#TOOLBAR_ICON_PADDING} instead
+     */
+    @Deprecated
+    @Dimension(unit = DP)
+    public static final int TOOLBAR_ICON_PADDING = 1;
+
+    //region color
+    
+    /**
+     * Set the color of the drawable.
+     *
+     * @param color The color, usually from android.graphics.Color or 0xFF012345.
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #color(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable color(@ColorInt int color) {
+        return color(IconicsColor.colorInt(color));
+    }
+
+    /**
+     * Set the color of the drawable.
+     *
+     * @param colorRes The color resource, from your R file.
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #color(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable colorRes(@ColorRes int colorRes) {
+        return color(IconicsColor.colorRes(colorRes));
+    }
+
+    /**
+     * Set the color of the drawable.
+     *
+     * @param colorRes The color resource, from your R file.
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #color(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable colorListRes(@ColorRes int colorRes) {
+        return color(IconicsColor.colorListRes(colorRes));
+    }
+
+    /**
+     * Set the color of the drawable.
+     *
+     * @param colors The color, usually from android.graphics.Color or 0xFF012345.
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #color(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable color(ColorStateList colors) {
+        return color(IconicsColor.colorList(colors));
+    }
+    //endregion
+    
+    //region offsets
+
+    /**
+     * set the icon offset for X from resource
+     *
+     * @param iconOffsetXRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #iconOffsetX(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable iconOffsetXRes(@DimenRes int iconOffsetXRes) {
+        return iconOffsetX(IconicsSize.res(iconOffsetXRes));
+    }
+
+    /**
+     * set the icon offset for X as dp
+     *
+     * @param iconOffsetXDp
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #iconOffsetX(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable iconOffsetXDp(@Dimension(unit = DP) int iconOffsetXDp) {
+        return iconOffsetX(IconicsSize.dp(iconOffsetXDp));
+    }
+
+    /**
+     * set the icon offset for X
+     *
+     * @param iconOffsetX
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #iconOffsetX(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable iconOffsetXPx(@Dimension(unit = PX) int iconOffsetX) {
+        return iconOffsetX(IconicsSize.px(iconOffsetX));
+    }
+
+    /**
+     * set the icon offset for Y from resource
+     *
+     * @param iconOffsetYRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #iconOffsetY(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable iconOffsetYRes(@DimenRes int iconOffsetYRes) {
+        return iconOffsetY(IconicsSize.res(iconOffsetYRes));
+    }
+
+    /**
+     * set the icon offset for Y as dp
+     *
+     * @param iconOffsetYDp
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #iconOffsetY(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable iconOffsetYDp(@Dimension(unit = DP) int iconOffsetYDp) {
+        return iconOffsetY(IconicsSize.dp(iconOffsetYDp));
+    }
+
+    /**
+     * set the icon offset for Y
+     *
+     * @param iconOffsetY
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #iconOffsetY(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable iconOffsetYPx(@Dimension(unit = PX) int iconOffsetY) {
+        return iconOffsetY(IconicsSize.px(iconOffsetY));
+    }
+    //endregion
+
+    //region padding
+
+    /**
+     * Set the padding of the drawable from res
+     *
+     * @param dimenRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #padding(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable paddingRes(@DimenRes int dimenRes) {
+        return padding(IconicsSize.res(dimenRes));
+    }
+
+    /**
+     * Set the padding in dp for the drawable
+     *
+     * @param iconPadding
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #padding(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable paddingDp(@Dimension(unit = DP) int iconPadding) {
+        return padding(IconicsSize.dp(iconPadding));
+    }
+
+    /**
+     * Set a padding for the.
+     *
+     * @param iconPadding
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #padding(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable paddingPx(@Dimension(unit = PX) int iconPadding) {
+        return padding(IconicsSize.px(iconPadding));
+    }
+    //endregion
+
+    //region size
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param dimenRes The dimension resource.
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #size(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizeRes(@DimenRes int dimenRes) {
+        return size(IconicsSize.res(dimenRes));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param size The size in density-independent pixels (dp).
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #size(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizeDp(@Dimension(unit = DP) int size) {
+        return size(IconicsSize.dp(size));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param size The size in pixels (px).
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #size(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizePx(@Dimension(unit = PX) int size) {
+        return size(IconicsSize.px(size));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param dimenResX The dimension resource.
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #sizeX(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizeResX(@DimenRes int dimenResX) {
+        return sizeX(IconicsSize.res(dimenResX));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param sizeX The size in density-independent pixels (dp).
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #sizeX(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizeDpX(@Dimension(unit = DP) int sizeX) {
+        return sizeX(IconicsSize.dp(sizeX));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param sizeX The size in pixels (px).
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #sizeX(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizePxX(@Dimension(unit = PX) int sizeX) {
+        return sizeX(IconicsSize.px(sizeX));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param dimenResY The dimension resource.
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #sizeY(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizeResY(@DimenRes int dimenResY) {
+        return sizeY(IconicsSize.res(dimenResY));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param sizeY The size in density-independent pixels (dp).
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #sizeY(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizeDpY(@Dimension(unit = DP) int sizeY) {
+        return sizeY(IconicsSize.dp(sizeY));
+    }
+
+    /**
+     * Set the size of the drawable.
+     *
+     * @param sizeY The size in pixels (px).
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #sizeY(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable sizePxY(@Dimension(unit = PX) int sizeY) {
+        return sizeY(IconicsSize.px(sizeY));
+    }
+    //endregion
+    
+    //region background contour
+
+    /**
+     * Set background contour color from color res.
+     *
+     * @param backgroundContourColorRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated Use {@link #backgroundContourColor(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable backgroundContourColorRes(@ColorRes int backgroundContourColorRes) {
+        return backgroundContourColor(IconicsColor.colorRes(backgroundContourColorRes));
+    }
+
+    /**
+     * Set background contour color for the.
+     *
+     * @param backgroundContourColor
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated Use {@link #backgroundContourColor(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable backgroundContourColor(@ColorInt int backgroundContourColor) {
+        return backgroundContourColor(IconicsColor.colorInt(backgroundContourColor));
+    }
+    //endregion
+    
+    //region icon contour color
+
+    /**
+     * Set contour color from color res.
+     *
+     * @param contourColorRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #contourColor(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable contourColorRes(@ColorRes int contourColorRes) {
+        return contourColor(IconicsColor.colorRes(contourColorRes));
+    }
+
+    /**
+     * Set contour color for the.
+     *
+     * @param contourColor
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #contourColor(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable contourColor(@ColorInt int contourColor) {
+        return contourColor(IconicsColor.colorInt(contourColor));
+    }
+    //endregion
+    
+    //region background color
+
+    /**
+     * set background color from res
+     *
+     * @param backgroundColorRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #contourColor(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable backgroundColorRes(@ColorRes int backgroundColorRes) {
+        return backgroundColor(IconicsColor.colorRes(backgroundColorRes));
+    }
+
+    /**
+     * set background color
+     *
+     * @param backgroundColor
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #contourColor(IconicsColor)} instead
+     */
+    @Deprecated
+    public IconicsDrawable backgroundColor(@ColorInt int backgroundColor) {
+        return backgroundColor(IconicsColor.colorInt(backgroundColor));
+    }
+    //endregion
+
+    //region rounded corners
+
+    /**
+     * set rounded corner from res
+     *
+     * @param roundedCornerRxRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCornersRx(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersRxRes(@DimenRes int roundedCornerRxRes) {
+        return roundedCornersRx(IconicsSize.res(roundedCornerRxRes));
+    }
+
+    /**
+     * set rounded corner from dp
+     *
+     * @param roundedCornerRxDp
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCornersRx(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersRxDp(@Dimension(unit = DP) int roundedCornerRxDp) {
+        return roundedCornersRx(IconicsSize.dp(roundedCornerRxDp));
+    }
+
+    /**
+     * set rounded corner from px
+     *
+     * @param roundedCornerRxPx
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCornersRx(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersRxPx(@Dimension(unit = PX) int roundedCornerRxPx) {
+        return roundedCornersRx(IconicsSize.px(roundedCornerRxPx));
+    }
+
+    /**
+     * set rounded corner from res
+     *
+     * @param roundedCornerRyRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCornersRy(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersRyRes(@DimenRes int roundedCornerRyRes) {
+        return roundedCornersRy(IconicsSize.res(roundedCornerRyRes));
+    }
+
+    /**
+     * set rounded corner from dp
+     *
+     * @param roundedCornerRyDp
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCornersRy(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersRyDp(@Dimension(unit = DP) int roundedCornerRyDp) {
+        return roundedCornersRy(IconicsSize.dp(roundedCornerRyDp));
+    }
+
+    /**
+     * set rounded corner from px
+     *
+     * @param roundedCornerRyPx
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCornersRy(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersRyPx(@Dimension(unit = PX) int roundedCornerRyPx) {
+        return roundedCornersRy(IconicsSize.px(roundedCornerRyPx));
+    }
+
+    /**
+     * set rounded corner from res
+     *
+     * @param roundedCornerRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCorners(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersRes(@DimenRes int roundedCornerRes) {
+        return roundedCorners(IconicsSize.res(roundedCornerRes));
+    }
+
+    /**
+     * set rounded corner from dp
+     *
+     * @param roundedCornerDp
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCorners(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersDp(@Dimension(unit = DP) int roundedCornerDp) {
+        return roundedCorners(IconicsSize.dp(roundedCornerDp));
+    }
+
+    /**
+     * set rounded corner from px
+     *
+     * @param roundedCornerPx
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #roundedCorners(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable roundedCornersPx(@Dimension(unit = PX) int roundedCornerPx) {
+        return roundedCorners(IconicsSize.px(roundedCornerPx));
+    }
+    //endregion
+
+    //region contour width
+
+    /**
+     * Set contour width from an dimen res for the icon
+     *
+     * @param contourWidthRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #contourWidth(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable contourWidthRes(@DimenRes int contourWidthRes) {
+        return contourWidth(IconicsSize.res(contourWidthRes));
+    }
+
+    /**
+     * Set contour width from dp for the icon
+     *
+     * @param contourWidthDp
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #contourWidth(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable contourWidthDp(@Dimension(unit = DP) int contourWidthDp) {
+        return contourWidth(IconicsSize.dp(contourWidthDp));
+    }
+
+    /**
+     * Set contour width for the icon.
+     *
+     * @param contourWidth
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #contourWidth(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable contourWidthPx(@Dimension(unit = PX) int contourWidth) {
+        return contourWidth(IconicsSize.px(contourWidth));
+    }
+    //endregion
+
+    //region background contour width
+
+    /**
+     * Set background contour width from an dimen res for the icon
+     *
+     * @param backgroundContourWidthRes
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #backgroundContourWidth(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable backgroundContourWidthRes(@DimenRes int backgroundContourWidthRes) {
+        return backgroundContourWidth(IconicsSize.res(backgroundContourWidthRes));
+    }
+
+    /**
+     * Set background contour width from dp for the icon
+     *
+     * @param backgroundContourWidthDp
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #backgroundContourWidth(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable backgroundContourWidthDp(@Dimension(unit = DP) int backgroundContourWidthDp) {
+        return backgroundContourWidth(IconicsSize.dp(backgroundContourWidthDp));
+    }
+
+    /**
+     * Set background contour width for the icon.
+     *
+     * @param backgroundContourWidth
+     * @return The current IconicsDrawable for chaining.
+     * @deprecated use {@link #backgroundContourWidth(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable backgroundContourWidthPx(@Dimension(unit = PX) int backgroundContourWidth) {
+        return backgroundContourWidth(IconicsSize.px(backgroundContourWidth));
+    }
+    //endregion
+
+    //region shadow
+
+    /**
+     * Sets the shadow for the icon
+     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     * @deprecated use {@link #shadowColor(IconicsColor)}, {@link #shadowDelta(IconicsSize)},
+     * {@link #shadowRadius(IconicsSize)}, {@link #shadowDx(IconicsSize)},
+     * {@link #shadowDy(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable shadowRes(@DimenRes int radiusRes, @DimenRes int dxRes, @DimenRes int dyRes, @ColorRes int colorRes) {
+        return shadowColor(IconicsColor.colorRes(colorRes))
+                .shadowRadius(IconicsSize.res(radiusRes))
+                .shadowDy(IconicsSize.res(dyRes))
+                .shadowDx(IconicsSize.res(dxRes));
+    }
+
+    /**
+     * Sets the shadow for the icon
+     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     * @deprecated use {@link #shadowColor(IconicsColor)}, {@link #shadowDelta(IconicsSize)},
+     * {@link #shadowRadius(IconicsSize)}, {@link #shadowDx(IconicsSize)},
+     * {@link #shadowDy(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable shadowDp(@Dimension(unit = DP) float radiusDp, @Dimension(unit = DP) float dxDp, @Dimension(unit = DP) float dyDp, @ColorInt int color) {
+        return shadowColor(IconicsColor.colorInt(color))
+                .shadowRadius(IconicsSize.dp(radiusDp))
+                .shadowDy(IconicsSize.dp(dyDp))
+                .shadowDx(IconicsSize.dp(dxDp));
+    }
+
+    /**
+     * Sets the shadow for the icon
+     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
+     *
+     * @return The current IconicsDrawable for chaining.
+     * @see Paint#setShadowLayer(float, float, float, int)
+     * @see #enableShadowSupport(View)
+     * @deprecated use {@link #shadowColor(IconicsColor)}, {@link #shadowDelta(IconicsSize)},
+     * {@link #shadowRadius(IconicsSize)}, {@link #shadowDx(IconicsSize)},
+     * {@link #shadowDy(IconicsSize)} instead
+     */
+    @Deprecated
+    public IconicsDrawable shadowPx(@Dimension(unit = PX) float radius, @Dimension(unit = PX) float dx, @Dimension(unit = PX) float dy, @ColorInt int color) {
+        return shadowColor(IconicsColor.colorInt(color))
+                .shadowRadius(IconicsSize.px(radius))
+                .shadowDy(IconicsSize.px(dy))
+                .shadowDx(IconicsSize.px(dx));
+    }
+    //endregion
+
     //endregion
 
     //region chain setters
