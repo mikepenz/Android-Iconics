@@ -88,7 +88,7 @@ public class FontAwesome implements ITypeface {
 
     @Override
     public String getDescription() {
-        return "Get vector icons and social logos on your website with Font Awesome, the web’s most popular icon set and toolkit.";
+        return "Get vector icons and social logos on your website with Font Awesome, the webs most popular icon set and toolkit.";
     }
 
     @Override
