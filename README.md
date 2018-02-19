@@ -30,7 +30,7 @@ Use the icons in the variation you need them.
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
 - [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
-- [Fontawesome](http://fontawesome.io)
+- [Fontawesome](https://fontawesome.com/)
 - [Meteocons](http://www.alessioatzeni.com/meteocons/)
 - [Octicons](https://github.com/github/octicons)
 - [Community Material](http://materialdesignicons.com/)
@@ -52,14 +52,14 @@ Provide additional fonts for you project, or even create your custom font with j
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconcis library (without any widgets)
-implementation "com.mikepenz:iconics-core:3.0.2@aar"
+implementation "com.mikepenz:iconics-core:3.0.3@aar"
 implementation "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:3.0.2@aar"
+implementation "com.mikepenz:iconics-views:3.0.3@aar"
 ```
 
 
@@ -67,7 +67,7 @@ implementation "com.mikepenz:iconics-views:3.0.2@aar"
 ```groove
 implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
-implementation 'com.mikepenz:fontawesome-typeface:4.7.0.2@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.0.6.0@aar'
 implementation 'com.mikepenz:octicons-typeface:3.2.0.4@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.4@aar'
 implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
@@ -209,7 +209,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 * [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
   * "gmi"
   * **Google Material Iconic** implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'
-* [Fontawesome](http://fontawesome.io)
+* [Fontawesome](https://fontawesome.com/)
   * "faw"
   * implementation 'com.mikepenz:fontawesome-typeface:+@aar'
 * [Meteocons](http://www.alessioatzeni.com/meteocons/)
