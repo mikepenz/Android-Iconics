@@ -22,6 +22,9 @@ public class CustomApplication extends Application {
         gf2.registerIcon("up", '\ue801');
         gf2.registerIcon("down", '\ue802');
         Iconics.registerFont(gf2);
+
+        //Enable the below line to not allow the automatic font detection via the included string fields. This helps to increase performance by a tiny bit.
+        //Iconics.markInitDone();
     }
 
 }

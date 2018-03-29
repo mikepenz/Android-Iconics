@@ -84,7 +84,8 @@ public class PlaygroundActivity extends AppCompatActivity {
 
         //Set the icon of an ImageView (or something else) as drawable
         ImageView iv2 = findViewById(R.id.test2);
-        iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up)
+      
+        iv2.setImageDrawable(new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
                 .size(IconicsSize.dp(48))
                 .color(IconicsColor.parse("#aaFF0000"))
                 .contourWidth(IconicsSize.dp(1)));
@@ -111,15 +112,16 @@ public class PlaygroundActivity extends AppCompatActivity {
         //Show how to style the text of an existing button
         ImageButton b6 = findViewById(R.id.test6);
         StateListDrawable iconStateListDrawable = new StateListDrawable();
+      
         iconStateListDrawable.addState(
                 new int[]{android.R.attr.state_pressed},
-                new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up)
+                new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
                         .size(IconicsSize.dp(48))
                         .color(IconicsColor.parse("#aaFF0000"))
                         .contourWidth(IconicsSize.dp(1)));
         iconStateListDrawable.addState(
                 new int[]{},
-                new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_o_up)
+                new IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
                         .size(IconicsSize.dp(48))
                         .color(IconicsColor.parse("#aa00FF00"))
                         .contourWidth(IconicsSize.dp(2)));

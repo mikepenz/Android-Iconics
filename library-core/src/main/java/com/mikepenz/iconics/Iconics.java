@@ -81,6 +81,18 @@ public final class Iconics {
     }
 
     /**
+     * This allows to mark the initialization as done, even if `init(Context ctx)` was not called prior.
+     * It requires at least one font to be registered manually in the `Application.onCreate()` via `registerFont`.
+     */
+    public static void markInitDone() {
+        if (FONTS.size() == 0) {
+            throw new IllegalArgumentException("At least one font needs to be registered first via `registerFont`.");
+        } else {
+            INIT_DONE = true;
+        }
+    }
+
+    /**
      * Test if the icon exists in the currently loaded fonts
      *
      * @param context A context to access application resources
