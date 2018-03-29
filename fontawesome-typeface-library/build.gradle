@@ -10,8 +10,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 47002
-        versionName "4.7.0.2"
+        versionCode 50600
+        versionName "5.0.6.0"
     }
     buildTypes {
         release {
