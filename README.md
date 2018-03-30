@@ -44,6 +44,11 @@ Use the icons in the variation you need them.
 **Need more?**
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
 
+# String fields for icons
+For generating string field for each of icons of your font, you can use this simple generator:
+
+[Android-Iconics String Generator](https://github.com/zTrap/Android-Iconics-String-Generator)
+
 # Migration
 - [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
 
