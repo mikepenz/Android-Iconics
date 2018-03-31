@@ -87,6 +87,7 @@ implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.2@aar'
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
 Set the `IconicsLayoutInflater` as new `LayoutInflaterFactory`. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml. This is compatible with libs which wrap the `baseContext` like [Calligraphy](https://github.com/chrisjenx/Calligraphy). This does not work on FAB's please use the `Context-Injection` instead.
+
 If compileSdkVersion >= 26:
 ```java
 @Override
