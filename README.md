@@ -62,14 +62,14 @@ implementation "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
-```
+```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
 implementation "com.mikepenz:iconics-views:3.0.3@aar"
 ```
 
 
 ## 2. Choose your desired fonts
-```groove
+```gradle
 implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.0.6.0@aar'
@@ -146,7 +146,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
     android:layout_width="48dp"
     android:layout_height="48dp"
     app:ico_color="@color/md_red_A200"
-    app:ico_icon="gmd-plus-circle"
+    app:ico_icon="gmd-plus-circle" // or @string/gmd_plus_circle with our generator
     app:ico_size="48dp" />
     
     //other possible attributes
@@ -178,7 +178,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
     android:layout_width="72dp"
     android:layout_height="72dp"
     app:iiv_color="@android:color/holo_red_dark"
-    app:iiv_icon="gmd-favorite" />
+    app:iiv_icon="gmd-favorite" />  // or @string/gmd_favorite with our generator
 ```
 
 #### As IconicsTextView
@@ -208,45 +208,21 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 
 
 # Available fonts
-* [Google Material Design Icons](https://github.com/google/material-design-icons)
-  * "gmd"
-  * **ORIGINAL by Google** implementation 'com.mikepenz:google-material-typeface:+.original@aar'
-* [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
-  * "gmi"
-  * **Google Material Iconic** implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'
-* [Fontawesome](https://fontawesome.com/)
-  * "faw"
-  * implementation 'com.mikepenz:fontawesome-typeface:+@aar'
-* [Meteocons](http://www.alessioatzeni.com/meteocons/)
-  * "met"
-  * implementation 'com.mikepenz:meteocons-typeface:+@aar'
-* [Octicons](https://github.com/github/octicons)
-  * "oct"
-  * implementation 'com.mikepenz:octicons-typeface:+@aar'
-* [Community Material](http://materialdesignicons.com/)
-  * "cmd"
-  * implementation 'com.mikepenz:community-material-typeface:+@aar'
-* [Weather Icons](https://erikflowers.github.io/weather-icons/)
-  * "wic"
-  * implementation 'com.mikepenz:weather-icons-typeface:+@aar'
-* [Typeicons](http://typicons.com/)
-  * "typ"
-  * implementation 'com.mikepenz:typeicons-typeface:+@aar'
-* [Entypo](http://www.entypo.com/)
-  * "ent"
-  * implementation 'com.mikepenz:entypo-typeface:+@aar'
-* [Devicon](http://devicon.fr/)
-  * "dev"
-  * implementation 'com.mikepenz:devicon-typeface:+@aar'
-* [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
-  * "fou"
-  * implementation 'com.mikepenz:foundation-icons-typeface:+@aar'
-* [Ionicons](http://ionicons.com/)
-  * "ion"
-  * implementation 'com.mikepenz:ionicons-typeface:+@aar'
-* [Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)
-  * "pe7"
-  * implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'
+|Link|Prefix|Dependency|
+|---|---|---|
+|[Google Material Design Icons](https://github.com/google/material-design-icons) **ORIGINAL by Google**|gmd|implementation 'com.mikepenz:google-material-typeface:+.original@aar'|
+|[Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) **Google Material Iconic**|gmi|implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'|
+|[Fontawesome](https://fontawesome.com/)|faw|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
+|[Meteocons](http://www.alessioatzeni.com/meteocons/)|met|implementation 'com.mikepenz:meteocons-typeface:+@aar'|
+|[Octicons](https://github.com/github/octicons)|oct|implementation 'com.mikepenz:octicons-typeface:+@aar'|
+|[Community Material](http://materialdesignicons.com/)|cmd|implementation 'com.mikepenz:community-material-typeface:+@aar'|
+|[Weather Icons](https://erikflowers.github.io/weather-icons/)|wic|implementation 'com.mikepenz:weather-icons-typeface:+@aar'|
+|[Typeicons](http://typicons.com/)|typ|implementation 'com.mikepenz:typeicons-typeface:+@aar'|
+|[Entypo](http://www.entypo.com/)|ent|implementation 'com.mikepenz:entypo-typeface:+@aar'|
+|[Devicon](http://devicon.fr/)|dev|implementation 'com.mikepenz:devicon-typeface:+@aar'|
+|[Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)|fou|implementation 'com.mikepenz:foundation-icons-typeface:+@aar'|
+|[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
+|[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repoistories.
 
@@ -268,7 +244,6 @@ public class CustomApplication extends Application {
         Iconics.registerFont(new CustomFont());
     }
 }
-
 ```
 
 ### Advanced IconicsBuilder
@@ -332,12 +307,12 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 # Developed By
 
 * Mike Penz 
- * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
- * [paypal.me/mikepenz](http://paypal.me/mikepenz)
+* [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
+* [paypal.me/mikepenz](http://paypal.me/mikepenz)
 
 # License
 
-    Copyright 2016 Mike Penz
+    Copyright 2018 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
