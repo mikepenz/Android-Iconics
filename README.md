@@ -72,7 +72,7 @@ implementation "com.mikepenz:iconics-views:3.0.4@aar"
 ```gradle
 implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.0.6.0@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.0.13.0@aar'
 implementation 'com.mikepenz:octicons-typeface:3.2.0.4@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.4@aar'
 implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
