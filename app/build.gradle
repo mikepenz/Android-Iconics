@@ -18,8 +18,8 @@ android {
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
-        versionCode 30030
-        versionName "3.0.3"
+        versionCode 30040
+        versionName "3.0.4"
 
         setProperty("archivesBaseName", "Android Iconics-v$versionName-c$versionCode")
     }

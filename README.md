@@ -57,14 +57,14 @@ For generating string field for each of icons of your font, you can use this sim
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconcis library (without any widgets)
-implementation "com.mikepenz:iconics-core:3.0.3@aar"
+implementation "com.mikepenz:iconics-core:3.0.4@aar"
 implementation "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:3.0.3@aar"
+implementation "com.mikepenz:iconics-views:3.0.4@aar"
 ```
 
 
