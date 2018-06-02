@@ -66,7 +66,7 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
     /**
      * Attributes priority:
      * <p>
-     * Attributes with mark 'all' < attributes with some else mark ('start', 'top' etc)<br>
+     * Attributes with mark 'all' attributes with some else mark ('start', 'top' etc)<br>
      * Working like as 'style' xml-attribute - local overrides global
      * <p>
      * <b>IMPORTANT TRICK</b>
@@ -225,7 +225,7 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
     /**
      * Attributes priority:
      * <p>
-     * Attributes with mark 'all' < attributes with some else mark ('start', 'top' etc)<br>
+     * Attributes with mark 'all' attributes with some else mark ('start', 'top' etc)<br>
      * Working like as 'style' xml-attribute - local overrides global
      * <p>
      * <b>IMPORTANT TRICK</b>

@@ -112,7 +112,14 @@ public class IconicsMenuInflaterUtil {
                             }
                             IconicsDrawable icon = IconicsAttrsApplier.getIconicsDrawable(context, attrs);
                             if (icon != null) {
-                                int id = Integer.parseInt(attrsMap.get("id").replace("@", ""));
+                                String idAsString = attrsMap.get("id").replace("@", "");
+
+                                // If the id is not in literal format, look it up using the name.
+                                if (idAsString.startsWith("+id/")) {
+                                    idAsString = idAsString.replace("+id/", "");
+                                }
+
+                                int id = context.getResources().getIdentifier(idAsString, "id", context.getPackageName());
                                 menu.findItem(id).setIcon(icon);
                             }
                             break;
@@ -120,7 +127,7 @@ public class IconicsMenuInflaterUtil {
                         case XML_MENU:
                             // TODO: maybe we must pass in the sub menu in this case, not sure if the function menu.findItem(id) will search through sub items
                             if (checkSubMenus) {
-                                parseMenu(context, attrs, parser, menu, checkSubMenus);
+                                parseMenu(context, attrs, parser, menu, true);
                             }
                             break;
 
