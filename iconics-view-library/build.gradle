@@ -1,14 +1,12 @@
 apply plugin: 'com.android.library'
 
-group "com.mikepenz"
-
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
         versionCode 3030
         versionName "3.0.3"
     }
@@ -31,5 +29,5 @@ if (project.hasProperty('pushall') || project.hasProperty('libraryviewsonly')) {
 
 dependencies {
     implementation project(':library-core')
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${versions.supportLib}"
 }

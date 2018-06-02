@@ -16,15 +16,13 @@
 
 apply plugin: 'com.android.library'
 
-group "com.mikepenz"
-
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 10004
         versionName "1.0.0.4"

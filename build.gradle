@@ -1,6 +1,19 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext {
+        setup = [
+                compileSdk: 27,
+                buildTools: "27.0.3",
+                minSdk    : 14,
+                targetSdk : 27
+        ]
+
+        versions = [
+                supportLib: "27.1.1"
+        ]
+    }
+
     repositories {
         google()
         jcenter()
@@ -11,15 +24,10 @@ buildscript {
     }
 }
 
-ext {
-    compileSdkVersion = 27
-    buildToolsVersion = "27.0.3"
-    supportLibVersion = "27.1.1"
-    minSdkVersion = 14
-    targetSdkVersion = 27
-}
-
 allprojects {
+    group "com.mikepenz"
+    version "3.0.3"
+
     repositories {
         google()
         jcenter()
