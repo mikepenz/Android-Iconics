@@ -113,16 +113,13 @@ public class IconicsMenuInflaterUtil {
                             IconicsDrawable icon = IconicsAttrsApplier.getIconicsDrawable(context, attrs);
                             if (icon != null) {
                                 String idAsString = attrsMap.get("id").replace("@", "");
-                                int id;
 
                                 // If the id is not in literal format, look it up using the name.
                                 if (idAsString.startsWith("+id/")) {
-                                    String name = idAsString.replace("+id/", "");
-                                    id = context.getResources().getIdentifier(name, "id", context.getPackageName());
-                                } else {
-                                    id = Integer.parseInt(idAsString);
+                                    idAsString = idAsString.replace("+id/", "");
                                 }
 
+                                int id = context.getResources().getIdentifier(idAsString, "id", context.getPackageName());
                                 menu.findItem(id).setIcon(icon);
                             }
                             break;
