@@ -49,6 +49,11 @@ For generating string field for each of icons of your font, you can use this sim
 
 [Android-Iconics String Generator](https://github.com/zTrap/Android-Iconics-String-Generator)
 
+# Android module generator
+For generating an android modules from your custom font on Fontastic and keeping it update easily, you can use this gradle plugin:
+
+[Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
+
 # Migration
 - [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
 
