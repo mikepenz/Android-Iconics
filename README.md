@@ -49,6 +49,12 @@ For generating string field for each of icons of your font, you can use this sim
 
 [Android-Iconics String Generator](https://github.com/zTrap/Android-Iconics-String-Generator)
 
+# Android module generator
+
+A awesome gradle plugin which can automatically fetch a font from Fontastic, and generate the Android Module for your project.
+
+[Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
+
 # Migration
 - [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
 
@@ -303,6 +309,7 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 # Special Contributor
 - [Peter Gulko](https://github.com/zTrap) Thanks for providing better XML support for compound Iconics drawables, and for doing the initial work of splitting up core and views library
+- [Baptiste Lagache](https://github.com/ligol) Thanks for the gradle font module generator
 - Also thanks for all the other contributors.
 
 # Credits
