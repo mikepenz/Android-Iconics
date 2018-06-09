@@ -39,9 +39,7 @@ android {
     }
 }
 if (project.hasProperty('pushall') || project.hasProperty('octicons')) {
-    apply from: '../gradle-mvn-push.gradle'
-    apply plugin: 'com.novoda.bintray-release'
-    apply from: '../gradle-jcenter-push.gradle'
+    apply from: '../gradle-release.gradle'
 }
 
 dependencies {
