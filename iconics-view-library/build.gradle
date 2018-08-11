@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
-        versionCode 3040
-        versionName "3.0.4"
+        versionCode release.versionCode
+        versionName release.versionName
     }
     buildTypes {
         release {
@@ -22,12 +22,10 @@ android {
 }
 
 if (project.hasProperty('pushall') || project.hasProperty('libraryviewsonly')) {
-    apply from: '../gradle-mvn-push.gradle'
-    apply plugin: 'com.novoda.bintray-release'
-    apply from: '../gradle-jcenter-push.gradle'
+    apply from: '../gradle-release.gradle'
 }
 
 dependencies {
     implementation project(':library-core')
-    implementation "com.android.support:appcompat-v7:${versions.supportLib}"
+    implementation "androidx.appcompat:appcompat:${versions.androidXVersion}"
 }

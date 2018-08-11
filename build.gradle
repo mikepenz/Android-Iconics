@@ -1,16 +1,19 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     ext {
+        release = [
+                versionName: "3.1.0-rc01",
+                versionCode: 3100
+        ]
+
         setup = [
-                compileSdk: 27,
-                buildTools: "27.0.3",
+                compileSdk: 28,
+                buildTools: "28.0.2",
                 minSdk    : 14,
-                targetSdk : 27
+                targetSdk : 28
         ]
 
         versions = [
-                supportLib: "27.1.1"
+                androidXVersion: '1.0.0-rc01'
         ]
     }
 
@@ -18,15 +21,16 @@ buildscript {
         google()
         jcenter()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath 'com.novoda:bintray-release:0.8.1'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha05'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }
 }
 
 allprojects {
     group "com.mikepenz"
-    version "3.0.4"
 
     repositories {
         google()

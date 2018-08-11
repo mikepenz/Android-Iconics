@@ -2,9 +2,8 @@
 
 if [ "$1" = "release" ];
 then
-    ./gradlew clean build uploadArchives generatePomFileForReleasePublication bintrayUpload -Plibrarycoreonly
-    ./gradlew build uploadArchives generatePomFileForReleasePublication bintrayUpload -x test -Plibraryviewsonly
+    ./gradlew clean build bintrayUpload -Plibrarycoreonly
+    ./gradlew build bintrayUpload -x test -Plibraryviewsonly
 else
-    ./gradlew clean build uploadArchives -Plibrarycoreonly
-    ./gradlew build uploadArchives -x test -Plibraryviewsonly
+    echo todo
 fi
