@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
-        versionCode 3040
-        versionName "3.0.4"
+        versionCode release.versionCode
+        versionName release.versionName
     }
     buildTypes {
         release {
@@ -27,5 +27,5 @@ if (project.hasProperty('pushall') || project.hasProperty('libraryviewsonly')) {
 
 dependencies {
     implementation project(':library-core')
-    implementation "com.android.support:appcompat-v7:${versions.supportLib}"
+    implementation "androidx.appcompat:appcompat:${versions.androidXVersion}"
 }

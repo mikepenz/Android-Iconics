@@ -48,13 +48,13 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DimenRes;
-import android.support.annotation.Dimension;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DimenRes;
+import androidx.annotation.Dimension;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
@@ -63,8 +63,8 @@ import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.Utils;
 
-import static android.support.annotation.Dimension.DP;
-import static android.support.annotation.Dimension.PX;
+import static androidx.annotation.Dimension.DP;
+import static androidx.annotation.Dimension.PX;
 import static android.view.View.LAYER_TYPE_SOFTWARE;
 
 /**
@@ -73,13 +73,13 @@ import static android.view.View.LAYER_TYPE_SOFTWARE;
 @SuppressWarnings("JavaDoc, UnusedReturnValue, WeakerAccess, unused, MethodDoesntCallSuperMethod, SameParameterValue")
 public class IconicsDrawable extends Drawable {
     /**
-     * Size of {@link android.support.v7.widget.Toolbar} icon in dp
+     * Size of {@link androidx.appcompat.widget.Toolbar} icon in dp
      */
     @Dimension(unit = DP)
     public static final int TOOLBAR_ICON_SIZE = 24;
 
     /**
-     * Size of {@link android.support.v7.widget.Toolbar} icon padding in dp
+     * Size of {@link androidx.appcompat.widget.Toolbar} icon padding in dp
      */
     @Dimension(unit = DP)
     public static final int TOOLBAR_ICON_PADDING = 1;

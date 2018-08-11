@@ -17,9 +17,9 @@
 package com.mikepenz.iconics.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 import com.mikepenz.iconics.Iconics;
@@ -29,7 +29,7 @@ import com.mikepenz.iconics.internal.CompoundIconsBundle;
 import com.mikepenz.iconics.internal.IconicsView;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsTextView extends AppCompatTextView implements CompoundIconicsDrawables, IconicsView {
     protected final CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();

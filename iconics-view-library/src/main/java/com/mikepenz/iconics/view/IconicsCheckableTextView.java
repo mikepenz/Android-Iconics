@@ -18,9 +18,9 @@ package com.mikepenz.iconics.view;
 
 import android.content.Context;
 import android.graphics.drawable.StateListDrawable;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
-import android.support.v4.widget.TextViewCompat;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.core.widget.TextViewCompat;
 import android.util.AttributeSet;
 import android.view.SoundEffectConstants;
 import android.widget.Checkable;
@@ -31,7 +31,7 @@ import com.mikepenz.iconics.internal.CompoundIconsBundle;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 import com.mikepenz.iconics.utils.Utils;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
