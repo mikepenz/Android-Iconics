@@ -9,6 +9,8 @@ android {
         targetSdkVersion setup.targetSdk
         versionCode release.versionCode
         versionName release.versionName
+
+        resValue "string", "iconics_lib_version", "${versionName}"
     }
     buildTypes {
         release {

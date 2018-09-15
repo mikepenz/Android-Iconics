@@ -51,7 +51,7 @@ afterEvaluate { project ->
         key = project.hasProperty('bintray.apikey') ? project.property('bintray.apikey') : System.getenv('BINTRAY_API_KEY')
         def gpgkey = project.hasProperty('bintray.gpg.key') ? project.property('bintray.gpg.key') : System.getenv('BINTRAY_GPG_KEY')
         def gpgpass = project.hasProperty('bintray.gpg.password') ? project.property('bintray.gpg.password') : System.getenv('BINTRAY_GPG_PASS')
-        def versionName = project.release.versionName
+        def versionName = android.defaultConfig.versionName
 
         publications('release')
 
@@ -124,7 +124,7 @@ afterEvaluate { project ->
             release(MavenPublication) {
                 groupId GROUP
                 artifactId POM_ARTIFACT_ID
-                version project.release.versionName
+                version android.defaultConfig.versionName
                 artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
                 artifact androidSourcesJar
                 artifact androidJavadocsJar

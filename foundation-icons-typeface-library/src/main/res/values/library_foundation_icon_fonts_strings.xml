@@ -6,7 +6,7 @@
     <string name="library_Foundation_Icon_Fonts_libraryName">Foundation_Icon_Fonts</string>
     <string name="library_Foundation_Icon_Fonts_libraryDescription">A custom collection of 283 icons that are stored in a handy web font.</string>
     <string name="library_Foundation_Icon_Fonts_libraryWebsite">http://zurb.com/playground/foundation-icon-fonts-3</string>
-    <string name="library_Foundation_Icon_Fonts_libraryVersion">3.0.0.4</string>
+    <string name="library_Foundation_Icon_Fonts_libraryVersion">@string/foundation_version</string>
     <string name="library_Foundation_Icon_Fonts_licenseId">mit</string>
     <string name="library_Foundation_Icon_Fonts_isOpenSource">false</string>
     <string name="library_Foundation_Icon_Fonts_repositoryLink"></string>

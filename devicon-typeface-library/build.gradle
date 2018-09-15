@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Mike Penz
+ * Copyright 2018 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 apply plugin: 'com.android.library'
 
 android {
@@ -24,8 +23,10 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 20004
-        versionName "2.0.0.4"
+        versionCode 20005
+        versionName "2.0.0.5"
+
+        resValue "string", "devicon_version", "${versionName}"
     }
     buildTypes {
         release {

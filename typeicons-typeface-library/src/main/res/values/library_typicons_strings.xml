@@ -6,7 +6,7 @@
     <string name="library_Typicons_libraryName">Typicons</string>
     <string name="library_Typicons_libraryDescription"></string>
     <string name="library_Typicons_libraryWebsite">http://typicons.com/</string>
-    <string name="library_Typicons_libraryVersion">2.0.7.4</string>
+    <string name="library_Typicons_libraryVersion">@string/typeicons_version</string>
     <string name="library_Typicons_licenseId">sil_ofl_1_1</string>
     <string name="library_Typicons_isOpenSource">true</string>
     <string name="library_Typicons_repositoryLink">https://github.com/stephenhutchings/typicons.font</string>

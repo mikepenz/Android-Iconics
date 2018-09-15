@@ -24,8 +24,10 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 10004
-        versionName "1.0.0.4"
+        versionCode 10005
+        versionName "1.0.0.5"
+
+        resValue "string", "entypo_version", "${versionName}"
     }
     buildTypes {
         release {

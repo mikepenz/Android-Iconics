@@ -24,8 +24,10 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 20104
-        versionName "2.0.10.4"
+        versionCode 20105
+        versionName "2.0.10.5"
+
+        resValue "string", "weathericons_version", "${versionName}"
     }
     buildTypes {
         release {
