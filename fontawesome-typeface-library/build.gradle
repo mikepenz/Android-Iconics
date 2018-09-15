@@ -8,8 +8,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 50130
-        versionName "5.0.13.0"
+        versionCode 53010
+        versionName "5.3.1.0"
     }
     buildTypes {
         release {
