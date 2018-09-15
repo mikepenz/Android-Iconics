@@ -24,8 +24,10 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 11004
-        versionName "1.1.0.4"
+        versionCode 11005
+        versionName "1.1.0.5"
+
+        resValue "string", "meteocons_version", "${versionName}"
     }
     buildTypes {
         release {

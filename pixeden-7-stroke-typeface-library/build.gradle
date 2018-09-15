@@ -24,8 +24,10 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 12002
-        versionName "1.2.0.2"
+        versionCode 12003
+        versionName "1.2.0.3"
+
+        resValue "string", "pixeden7_version", "${versionName}"
     }
     buildTypes {
         release {

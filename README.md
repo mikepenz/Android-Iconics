@@ -77,19 +77,19 @@ To use appcompat please use a version smaller than 3.1.0. (See the releases on G
 
 ## 2. Choose your desired fonts
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
-implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.3.original@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.3.1.1@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.4@aar'
-implementation 'com.mikepenz:meteocons-typeface:1.1.0.4@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.5@aar'
+implementation 'com.mikepenz:meteocons-typeface:1.1.0.5@aar'
 implementation 'com.mikepenz:community-material-typeface:2.7.94.1@aar'
-implementation 'com.mikepenz:weather-icons-typeface:2.0.10.4@aar'
-implementation 'com.mikepenz:typeicons-typeface:2.0.7.4@aar'
-implementation 'com.mikepenz:entypo-typeface:1.0.0.4@aar'
-implementation 'com.mikepenz:devicon-typeface:2.0.0.4@aar'
-implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.4@aar'
-implementation 'com.mikepenz:ionicons-typeface:2.0.1.4@aar'
-implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.2@aar'
+implementation 'com.mikepenz:weather-icons-typeface:2.0.10.5@aar'
+implementation 'com.mikepenz:typeicons-typeface:2.0.7.5@aar'
+implementation 'com.mikepenz:entypo-typeface:1.0.0.5@aar'
+implementation 'com.mikepenz:devicon-typeface:2.0.0.5@aar'
+implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.5@aar'
+implementation 'com.mikepenz:ionicons-typeface:2.0.1.5@aar'
+implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)

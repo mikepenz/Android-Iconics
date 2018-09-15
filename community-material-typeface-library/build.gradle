@@ -27,6 +27,8 @@ android {
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 27941
         versionName "2.7.94.1"
+
+        resValue "string", "community_material_version", "${versionName}"
     }
     buildTypes {
         release {

@@ -8,8 +8,10 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 53010
-        versionName "5.3.1.0"
+        versionCode 53011
+        versionName "5.3.1.1"
+
+        resValue "string", "fontawesome_version", "${versionName}"
     }
     buildTypes {
         release {

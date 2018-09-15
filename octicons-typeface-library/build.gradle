@@ -24,8 +24,10 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 32004
-        versionName "3.2.0.4"
+        versionCode 32005
+        versionName "3.2.0.5"
+
+        resValue "string", "octicons_version", "${versionName}"
     }
     buildTypes {
         release {
