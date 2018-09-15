@@ -25,8 +25,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 20461
-        versionName "2.0.46.1"
+        versionCode 27941
+        versionName "2.7.94.1"
     }
     buildTypes {
         release {

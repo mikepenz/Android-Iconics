@@ -2,6 +2,14 @@
 
 ### Library
 
+#### Community Material Icons > v2.7.94
+* With the update of the community material icons, the amount of icons exceeded the allowed length of an enum. Thus it was split up in `CommunityMaterial.Icon` and `CommunityMaterial.Icon2` if you use the icons via code, please use the depending enum.
+  * The icons were split apart by the letter `h`. All icons starting from `a` to `g` are in the `CommunityMaterial.Icon` enum, all icons from `h` to `z` are in the `CommunityMaterial.Icon2` enum.
+
+#### v3.1.x
+* Upgraded the library to use `androidX` dependencies. This means your project will need to depend on `androidX` dependencies too. If you still use appcompat please consider using a version older than v3.1.x. 
+* Further details about migrating to androidX and a overview can be found on the official docs. https://developer.android.com/topic/libraries/support-library/refactor
+
 #### 2.9.5
 * the attributes for the `IconicsMenuInflaterUtil` start now with `ico_` instead of `iiv_`
 * the `IconicsMenuInflaterUtil` was moved into the `core` module to simplify code
