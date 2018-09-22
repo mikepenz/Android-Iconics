@@ -63,7 +63,7 @@ dependencies {
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
     // https://github.com/mikepenz/Materialize
-    implementation 'com.mikepenz:materialize:1.2.0-rc01'
+    implementation 'com.mikepenz:materialize:1.2.0'
 
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
