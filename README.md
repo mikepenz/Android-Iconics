@@ -63,14 +63,14 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconcis library (without any widgets)
-implementation "com.mikepenz:iconics-core:3.1.0-rc01"
+implementation "com.mikepenz:iconics-core:3.1.0"
 implementation "androidx.appcompat:appcompat:${androidXVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:3.1.0-rc01"
+implementation "com.mikepenz:iconics-views:3.1.0"
 ```
 
 To use appcompat please use a version smaller than 3.1.0. (See the releases on GitHub)
