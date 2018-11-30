@@ -19,13 +19,14 @@ package com.mikepenz.iconics.context;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.text.TextUtils;
+
+import com.mikepenz.iconics.IconicsDrawable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleableRes;
-import android.text.TextUtils;
-
-import com.mikepenz.iconics.IconicsDrawable;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -34,11 +35,10 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 @RestrictTo(LIBRARY_GROUP)
 public class IconicsAttrsExtractor {
-    private final static int DEF_COLOR = Integer.MIN_VALUE;
     private final static int DEF_SIZE = -1;
 
-    @NonNull private final Context mContext;
-    @NonNull private final TypedArray mTypedArray;
+    private final @NonNull Context mContext;
+    private final @NonNull TypedArray mTypedArray;
 
     @StyleableRes private int mIconId;
     @StyleableRes private int mSizeId;
@@ -61,84 +61,80 @@ public class IconicsAttrsExtractor {
     }
 
     //region chain setters
-    public IconicsAttrsExtractor iconId(@StyleableRes int iconId) {
+    public @NonNull IconicsAttrsExtractor iconId(@StyleableRes int iconId) {
         mIconId = iconId;
         return this;
     }
 
-    public IconicsAttrsExtractor sizeId(@StyleableRes int sizeId) {
+    public @NonNull IconicsAttrsExtractor sizeId(@StyleableRes int sizeId) {
         mSizeId = sizeId;
         return this;
     }
 
-    public IconicsAttrsExtractor colorsId(@StyleableRes int colorsId) {
+    public @NonNull IconicsAttrsExtractor colorsId(@StyleableRes int colorsId) {
         mColorsId = colorsId;
         return this;
     }
 
-    public IconicsAttrsExtractor paddingId(@StyleableRes int paddingId) {
+    public @NonNull IconicsAttrsExtractor paddingId(@StyleableRes int paddingId) {
         mPaddingId = paddingId;
         return this;
     }
 
-    public IconicsAttrsExtractor contourColorId(@StyleableRes int contourColorId) {
+    public @NonNull IconicsAttrsExtractor contourColorId(@StyleableRes int contourColorId) {
         mContourColorId = contourColorId;
         return this;
     }
 
-    public IconicsAttrsExtractor contourWidthId(@StyleableRes int contourWidthId) {
+    public @NonNull IconicsAttrsExtractor contourWidthId(@StyleableRes int contourWidthId) {
         mContourWidthId = contourWidthId;
         return this;
     }
 
-    public IconicsAttrsExtractor backgroundColorId(@StyleableRes int backgroundColorId) {
+    public @NonNull IconicsAttrsExtractor backgroundColorId(@StyleableRes int backgroundColorId) {
         mBackgroundColorId = backgroundColorId;
         return this;
     }
 
-    public IconicsAttrsExtractor cornerRadiusId(@StyleableRes int cornerRadiusId) {
+    public @NonNull IconicsAttrsExtractor cornerRadiusId(@StyleableRes int cornerRadiusId) {
         mCornerRadiusId = cornerRadiusId;
         return this;
     }
 
-    public IconicsAttrsExtractor backgroundContourColorId(@StyleableRes int backgroundContourColorId) {
+    public @NonNull IconicsAttrsExtractor backgroundContourColorId(@StyleableRes int backgroundContourColorId) {
         mBackgroundContourColorId = backgroundContourColorId;
         return this;
     }
 
-    public IconicsAttrsExtractor backgroundContourWidthId(@StyleableRes int backgroundContourWidthId) {
+    public @NonNull IconicsAttrsExtractor backgroundContourWidthId(@StyleableRes int backgroundContourWidthId) {
         mBackgroundContourWidthId = backgroundContourWidthId;
         return this;
     }
 
-    public IconicsAttrsExtractor offsetXId(@StyleableRes int offsetXId) {
+    public @NonNull IconicsAttrsExtractor offsetXId(@StyleableRes int offsetXId) {
         mOffsetXId = offsetXId;
         return this;
     }
 
-    public IconicsAttrsExtractor offsetYId(@StyleableRes int offsetYId) {
+    public @NonNull IconicsAttrsExtractor offsetYId(@StyleableRes int offsetYId) {
         mOffsetYId = offsetYId;
         return this;
     }
     //endregion
 
-    @NonNull
-    public IconicsDrawable extractNonNull() {
+    public @NonNull IconicsDrawable extractNonNull() {
         return extract(null, false, true);
     }
 
-    @Nullable
-    public IconicsDrawable extract(@Nullable IconicsDrawable icon) {
+    public @Nullable IconicsDrawable extract(@Nullable IconicsDrawable icon) {
         return extract(icon, false, false);
     }
 
-    @Nullable
-    public IconicsDrawable extract() {
+    public @Nullable IconicsDrawable extract() {
         return extract(null, false, false);
     }
 
-    @Nullable
-    public IconicsDrawable extractWithOffsets() {
+    public @Nullable IconicsDrawable extractWithOffsets() {
         return extract(null, true, false);
     }
 
@@ -162,24 +158,24 @@ public class IconicsAttrsExtractor {
         if (padding != DEF_SIZE) {
             icon = createIfNeeds(icon, mContext).paddingPx(padding);
         }
-        int contourColor = mTypedArray.getColor(mContourColorId, DEF_COLOR);
-        if (contourColor != DEF_COLOR) {
+        ColorStateList contourColor = mTypedArray.getColorStateList(mContourColorId);
+        if (contourColor != null) {
             icon = createIfNeeds(icon, mContext).contourColor(contourColor);
         }
         int contourWidth = mTypedArray.getDimensionPixelSize(mContourWidthId, DEF_SIZE);
         if (contourWidth != DEF_SIZE) {
             icon = createIfNeeds(icon, mContext).contourWidthPx(contourWidth);
         }
-        int backgroundColor = mTypedArray.getColor(mBackgroundColorId, DEF_COLOR);
-        if (backgroundColor != DEF_COLOR) {
+        ColorStateList backgroundColor = mTypedArray.getColorStateList(mBackgroundColorId);
+        if (backgroundColor != null) {
             icon = createIfNeeds(icon, mContext).backgroundColor(backgroundColor);
         }
         int cornerRadius = mTypedArray.getDimensionPixelSize(mCornerRadiusId, DEF_SIZE);
         if (cornerRadius != DEF_SIZE) {
             icon = createIfNeeds(icon, mContext).roundedCornersPx(cornerRadius);
         }
-        int backgroundContourColor = mTypedArray.getColor(mBackgroundContourColorId, DEF_COLOR);
-        if (backgroundContourColor != DEF_COLOR) {
+        ColorStateList backgroundContourColor = mTypedArray.getColorStateList(mBackgroundContourColorId);
+        if (backgroundContourColor != null) {
             icon = createIfNeeds(icon, mContext).backgroundContourColor(backgroundContourColor);
         }
         int backgroundContourWidth = mTypedArray.getDimensionPixelSize(mBackgroundContourWidthId, DEF_SIZE);
@@ -202,16 +198,16 @@ public class IconicsAttrsExtractor {
         return icon;
     }
 
-    @Nullable
-    private static IconicsDrawable copyIfCan(@Nullable IconicsDrawable drawable) {
+    private static @Nullable IconicsDrawable copyIfCan(@Nullable IconicsDrawable drawable) {
         if (drawable != null) {
             return drawable.clone();
         }
         return null;
     }
 
-    @NonNull
-    private static IconicsDrawable createIfNeeds(@Nullable IconicsDrawable drawable, Context context){
+    private static @NonNull IconicsDrawable createIfNeeds(
+            @Nullable IconicsDrawable drawable,
+            @NonNull Context context){
         if (drawable == null){
             drawable = new IconicsDrawable(context);
         }
