@@ -485,7 +485,7 @@ public abstract class IconicsAnimationProcessor {
         mDrawable = null;
         onDrawableDetached();
 
-        if (mDrawable != null) {
+        if (drawable != null) {
             mDrawable = drawable;
             onDrawableAttached();
 
