@@ -18,18 +18,20 @@ package com.mikepenz.iconics.view;
 
 import android.content.Context;
 import android.graphics.drawable.StateListDrawable;
-import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
-import androidx.core.widget.TextViewCompat;
 import android.util.AttributeSet;
 import android.view.SoundEffectConstants;
 import android.widget.Checkable;
 
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import com.mikepenz.iconics.internal.CheckedCompoundIconicsDrawables;
 import com.mikepenz.iconics.internal.CompoundIconsBundle;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 import com.mikepenz.iconics.utils.Utils;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.core.widget.TextViewCompat;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -69,8 +71,18 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
         setClickable(true);
         //taking normal state attrs
         super.applyAttr(context, attrs, defStyle);
+        checkAnimation(mIconsBundle.mBottomIcon);
+        checkAnimation(mIconsBundle.mTopIcon);
+        checkAnimation(mIconsBundle.mEndIcon);
+        checkAnimation(mIconsBundle.mStartIcon);
+
         //taking checked state attrs
         applyAttr(context, attrs, defStyle);
+
+        checkAnimation(mCheckedIconsBundle.mBottomIcon);
+        checkAnimation(mCheckedIconsBundle.mTopIcon);
+        checkAnimation(mCheckedIconsBundle.mEndIcon);
+        checkAnimation(mCheckedIconsBundle.mStartIcon);
         //setting created icons
         setIcons();
     }
@@ -209,35 +221,43 @@ public class IconicsCheckableTextView extends IconicsTextView implements Checkab
 
     @Override
     public void setCheckedDrawableStart(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mStartIcon = drawable;
+        mCheckedIconsBundle.mStartIcon = checkAnimation(drawable);
         setIcons();
     }
 
     @Override
     public void setCheckedDrawableTop(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mTopIcon = drawable;
+        mCheckedIconsBundle.mTopIcon = checkAnimation(drawable);
         setIcons();
     }
 
     @Override
     public void setCheckedDrawableEnd(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mEndIcon = drawable;
+        mCheckedIconsBundle.mEndIcon = checkAnimation(drawable);
         setIcons();
     }
 
     @Override
     public void setCheckedDrawableBottom(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mBottomIcon = drawable;
+        mCheckedIconsBundle.mBottomIcon = checkAnimation(drawable);
         setIcons();
     }
 
     @Override
     public void setCheckedDrawableForAll(@Nullable IconicsDrawable drawable) {
-        mCheckedIconsBundle.mStartIcon = drawable;
-        mCheckedIconsBundle.mTopIcon = drawable;
-        mCheckedIconsBundle.mEndIcon = drawable;
-        mCheckedIconsBundle.mBottomIcon = drawable;
+        mCheckedIconsBundle.mStartIcon = checkAnimation(drawable);
+        mCheckedIconsBundle.mTopIcon = checkAnimation(drawable);
+        mCheckedIconsBundle.mEndIcon = checkAnimation(drawable);
+        mCheckedIconsBundle.mBottomIcon = checkAnimation(drawable);
         setIcons();
+    }
+
+    private @Nullable IconicsDrawable checkAnimation(@Nullable IconicsDrawable drawable) {
+        if (drawable == null) return null;
+        if (drawable instanceof IconicsAnimatedDrawable) {
+            ((IconicsAnimatedDrawable) drawable).animateIn(this);
+        }
+        return drawable;
     }
     //endregion
 

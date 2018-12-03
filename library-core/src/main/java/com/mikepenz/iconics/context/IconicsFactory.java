@@ -1,7 +1,7 @@
 package com.mikepenz.iconics.context;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.appcompat.view.menu.ActionMenuItemView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -12,17 +12,14 @@ import android.widget.TextView;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import com.mikepenz.iconics.core.R;
 
-@SuppressWarnings("RestrictedApi, JavaDoc")
+import androidx.appcompat.view.menu.ActionMenuItemView;
+
 class IconicsFactory {
-    /**
-     * @param view
-     * @param context
-     * @param attrs
-     * @return
-     */
-    public View onViewCreated(View view, Context context, AttributeSet attrs) {
+
+    View onViewCreated(View view, Context context, AttributeSet attrs) {
         if (view != null && view.getTag(R.id.iconics_tag_id) != Boolean.TRUE) {
             onViewCreatedInternal(view, context, attrs);
             view.setTag(R.id.iconics_tag_id, Boolean.TRUE);
@@ -30,12 +27,8 @@ class IconicsFactory {
         return view;
     }
 
-    /**
-     * @param view
-     * @param context
-     * @param attrs
-     */
-    void onViewCreatedInternal(View view, final Context context, AttributeSet attrs) {
+    @SuppressLint("RestrictedApi")
+    private void onViewCreatedInternal(View view, final Context context, AttributeSet attrs) {
         if (attrs == null) {
             return;
         }
@@ -44,6 +37,10 @@ class IconicsFactory {
             IconicsDrawable drawable = IconicsAttrsApplier.getIconicsDrawable(context, attrs);
             if (drawable != null) {
                 ((ActionMenuItemView) view).setIcon(drawable);
+
+                if (drawable instanceof IconicsAnimatedDrawable) {
+                    ((IconicsAnimatedDrawable) drawable).animateIn(view);
+                }
             }
         } else if (view instanceof EditText) {
             //handle iconics
@@ -74,6 +71,10 @@ class IconicsFactory {
             IconicsDrawable drawable = IconicsAttrsApplier.getIconicsDrawable(context, attrs);
             if (drawable != null) {
                 ((ImageView) view).setImageDrawable(drawable);
+
+                if (drawable instanceof IconicsAnimatedDrawable) {
+                    ((IconicsAnimatedDrawable) drawable).animateIn(view);
+                }
             }
         }
     }

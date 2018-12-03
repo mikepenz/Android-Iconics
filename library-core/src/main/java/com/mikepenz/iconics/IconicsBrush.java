@@ -20,13 +20,19 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
+
+import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
+ * Helper class to control applying state changes to colors and paint. Also for compact providing
+ * into {@link IconicsAnimationProcessor AnimationProcessor}
+ *
  * @author pa.gulko zTrap (28.11.2018)
  */
-public class IconicsBrush<T extends Paint> implements Cloneable {
+public class IconicsBrush<T extends Paint> {
     private @Nullable ColorStateList mColors;
     private @NonNull final T mPaint;
     private @Nullable int[] mState;
@@ -36,21 +42,41 @@ public class IconicsBrush<T extends Paint> implements Cloneable {
         mPaint = paint;
     }
 
+    /**
+     * @param colors which will be applied on {@link #getPaint()} for drawing current state
+     * */
     public void setColors(@Nullable ColorStateList colors) {
         mColors = colors;
+        applyState(mState);
     }
 
+    /**
+     * @return colors which applied on {@link #getPaint()} for drawing current state
+     * */
     public @Nullable ColorStateList getColorsList() {
         return mColors;
     }
 
+    /**
+     * @return paint. Will be used for drawing something (icon, background etc.)
+     * */
     public @NonNull T getPaint() {
         return mPaint;
     }
 
-    public void setAlpha(int alpha) {
+    /**
+     * @param alpha channel for colors
+     * */
+    public void setAlpha(@IntRange(from = 0, to = 255) int alpha) {
         mAlpha = alpha;
         mPaint.setAlpha(alpha);
+    }
+
+    /**
+     * @return alpha channel for colors
+     * */
+    public @IntRange(from = 0, to = 255) int getAlpha() {
+        return mAlpha;
     }
 
     boolean isStateful() {

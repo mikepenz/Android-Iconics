@@ -264,7 +264,30 @@
                     app:iiv_background_contour_color="@color/color_states_bg_contour"
                     app:iiv_contour_color="@color/color_states_contour"
                     app:iiv_background_contour_width="2dp"
-                    app:iiv_contour_width="2dp"/>
+                    app:iiv_contour_width="2dp"
+                    app:iiv_shadow_color="@color/md_green_A400"
+                    app:iiv_shadow_dx="4dp"
+                    app:iiv_shadow_dy="4dp"
+                    app:iiv_shadow_radius="4dp"/>
+
+                <com.mikepenz.iconics.view.IconicsImageButton
+                    android:id="@+id/test7"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+
+                    app:iiv_size="60dp"
+                    app:iiv_corner_radius="60dp"
+                    app:iiv_icon="gmd_autorenew"
+                    app:iiv_color="@color/color_states_icon"
+                    app:iiv_background_color="@color/color_states_bg"
+                    app:iiv_background_contour_color="@color/color_states_bg_contour"
+                    app:iiv_contour_color="@color/color_states_contour"
+                    app:iiv_background_contour_width="2dp"
+                    app:iiv_contour_width="2dp"
+                    app:iiv_animations="spin|blink_alpha|blink_scale"/>
             </LinearLayout>
 
             <com.mikepenz.iconics.view.IconicsButton
