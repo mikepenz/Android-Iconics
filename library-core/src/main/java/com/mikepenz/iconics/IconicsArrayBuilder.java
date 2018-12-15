@@ -22,7 +22,7 @@ public class IconicsArrayBuilder {
         mIcons.add(Pair.create((Object) icon, (Typeface) null));
         return this;
     }
-    
+
     public IconicsArrayBuilder add(String icon) {
         return add(icon, Typeface.DEFAULT);
     }

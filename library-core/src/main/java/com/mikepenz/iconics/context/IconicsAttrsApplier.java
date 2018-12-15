@@ -20,12 +20,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
-import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.core.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.core.R;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -35,8 +35,9 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @RestrictTo(LIBRARY_GROUP)
 public class IconicsAttrsApplier {
 
-    public static @Nullable IconicsDrawable getIconicsDrawable(@NonNull Context ctx,
-                                                               @Nullable AttributeSet attrs) {
+    public static @Nullable
+    IconicsDrawable getIconicsDrawable(@NonNull Context ctx,
+                                       @Nullable AttributeSet attrs) {
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.Iconics);
         try {
             return new IconicsAttrsExtractor(ctx, a)

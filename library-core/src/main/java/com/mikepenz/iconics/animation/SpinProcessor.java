@@ -21,13 +21,13 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextPaint;
 
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+
 import com.mikepenz.iconics.IconicsBrush;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
 
 /**
  * @author pa.gulko zTrap (30.11.2018)
@@ -35,7 +35,7 @@ import androidx.annotation.NonNull;
 public class SpinProcessor extends IconicsAnimationProcessor {
     /**
      * Duration used for all instances of this processor by default. 2000 ms by default.
-     * */
+     */
     public static int defaultDuration = 2000;
 
     public final static int DIRECTION_CLOCKWISE = +1;
@@ -46,7 +46,8 @@ public class SpinProcessor extends IconicsAnimationProcessor {
     private @interface Direction {
     }
 
-    private @Direction int mDirection = DIRECTION_CLOCKWISE;
+    private @Direction
+    int mDirection = DIRECTION_CLOCKWISE;
     private boolean mIsDrawableShadowCleared = false;
 
     {
@@ -56,24 +57,29 @@ public class SpinProcessor extends IconicsAnimationProcessor {
     /**
      * @param direction The direction of the spin, {@link #DIRECTION_CLOCKWISE clockwise (+1)}
      *                  or {@link #DIRECTION_COUNTER_CLOCKWISE counter clockwise (-1)}
-     * */
-    public @NonNull SpinProcessor direction(@Direction int direction) {
+     */
+    public @NonNull
+    SpinProcessor direction(@Direction int direction) {
         mDirection = direction;
         return this;
     }
 
     /**
      * @return the direction of the spin, clockwise (+1) or counter clockwise (-1)
-     * */
-    public @Direction int getDirection() {
+     */
+    public @Direction
+    int getDirection() {
         return (int) Math.signum(mDirection);
     }
 
-    @Override public @NonNull String animationTag() {
+    @Override
+    public @NonNull
+    String animationTag() {
         return "spin";
     }
 
-    @Override protected void processPreDraw(
+    @Override
+    protected void processPreDraw(
             @NonNull Canvas canvas,
             @NonNull IconicsBrush<TextPaint> iconBrush,
             @NonNull IconicsBrush<Paint> iconContourBrush,
@@ -95,11 +101,13 @@ public class SpinProcessor extends IconicsAnimationProcessor {
         canvas.rotate(degrees, bounds.width() / 2, bounds.height() / 2);
     }
 
-    @Override protected void processPostDraw(@NonNull Canvas canvas) {
+    @Override
+    protected void processPostDraw(@NonNull Canvas canvas) {
         canvas.restore();
     }
 
-    @Override protected void onDrawableDetached() {
+    @Override
+    protected void onDrawableDetached() {
         mIsDrawableShadowCleared = false;
     }
 }

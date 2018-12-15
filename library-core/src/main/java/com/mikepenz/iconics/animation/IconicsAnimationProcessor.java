@@ -26,6 +26,13 @@ import android.os.Build;
 import android.text.TextPaint;
 import android.view.animation.LinearInterpolator;
 
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.util.Consumer;
+
 import com.mikepenz.iconics.IconicsBrush;
 
 import java.lang.annotation.Retention;
@@ -34,22 +41,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.FloatRange;
-import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.util.Consumer;
-
 /**
  * @author pa.gulko zTrap (28.11.2018)
  */
 public abstract class IconicsAnimationProcessor {
-    private static final @NonNull TimeInterpolator sDefaultInterpolator = new LinearInterpolator();
+    private static final @NonNull
+    TimeInterpolator sDefaultInterpolator = new LinearInterpolator();
 
-    private final @NonNull ValueAnimator mAnimator = ValueAnimator.ofFloat(0, 100);
+    private final @NonNull
+    ValueAnimator mAnimator = ValueAnimator.ofFloat(0, 100);
 
-    private @Nullable IconicsAnimatedDrawable mDrawable;
+    private @Nullable
+    IconicsAnimatedDrawable mDrawable;
     private boolean mIsStartRequested = false;
 
     /**
@@ -68,7 +71,8 @@ public abstract class IconicsAnimationProcessor {
      */
     public static final int INFINITE = ValueAnimator.INFINITE;
 
-    protected @NonNull TimeInterpolator mInterpolator = sDefaultInterpolator;
+    protected @NonNull
+    TimeInterpolator mInterpolator = sDefaultInterpolator;
     protected long mDuration = 300;
     protected int mRepeatCount = INFINITE;
     protected int mRepeatMode = RESTART;
@@ -76,42 +80,51 @@ public abstract class IconicsAnimationProcessor {
 
     @IntDef({RESTART, REVERSE})
     @Retention(RetentionPolicy.SOURCE)
-    private @interface RepeatMode {}
+    private @interface RepeatMode {
+    }
 
     /**
      * The set of listeners to be sent events through the life of an animation.
      */
-    private @Nullable List<IconicsAnimationListener> mListeners = null;
+    private @Nullable
+    List<IconicsAnimationListener> mListeners = null;
 
     /**
      * The set of listeners to be sent pause/resume events through the life
      * of an animation.
      */
-    private @Nullable List<IconicsAnimationPauseListener> mPauseListeners = null;
+    private @Nullable
+    List<IconicsAnimationPauseListener> mPauseListeners = null;
 
     private final Animator.AnimatorListener mProxyListener = new Animator.AnimatorListener() {
 
-        @Override public void onAnimationStart(Animator animation, boolean isReverse) {
+        @Override
+        public void onAnimationStart(Animator animation, boolean isReverse) {
             forEachListeners(l -> l.onAnimationStart(IconicsAnimationProcessor.this, isReverse));
         }
 
-        @Override public void onAnimationEnd(Animator animation, boolean isReverse) {
+        @Override
+        public void onAnimationEnd(Animator animation, boolean isReverse) {
             forEachListeners(l -> l.onAnimationEnd(IconicsAnimationProcessor.this, isReverse));
         }
 
-        @Override public void onAnimationStart(Animator animation) {
+        @Override
+        public void onAnimationStart(Animator animation) {
             forEachListeners(l -> l.onAnimationStart(IconicsAnimationProcessor.this));
         }
 
-        @Override public void onAnimationEnd(Animator animation) {
+        @Override
+        public void onAnimationEnd(Animator animation) {
             forEachListeners(l -> l.onAnimationEnd(IconicsAnimationProcessor.this));
         }
 
-        @Override public void onAnimationCancel(Animator animation) {
+        @Override
+        public void onAnimationCancel(Animator animation) {
             forEachListeners(l -> l.onAnimationCancel(IconicsAnimationProcessor.this));
         }
 
-        @Override public void onAnimationRepeat(Animator animation) {
+        @Override
+        public void onAnimationRepeat(Animator animation) {
             forEachListeners(l -> l.onAnimationRepeat(IconicsAnimationProcessor.this));
         }
 
@@ -126,11 +139,13 @@ public abstract class IconicsAnimationProcessor {
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     private final Animator.AnimatorPauseListener mProxyPauseListener = new Animator.AnimatorPauseListener() {
 
-        @Override public void onAnimationPause(Animator animation) {
+        @Override
+        public void onAnimationPause(Animator animation) {
             forEachListeners(l -> l.onAnimationPause(IconicsAnimationProcessor.this));
         }
 
-        @Override public void onAnimationResume(Animator animation) {
+        @Override
+        public void onAnimationResume(Animator animation) {
             forEachListeners(l -> l.onAnimationResume(IconicsAnimationProcessor.this));
         }
 
@@ -144,15 +159,17 @@ public abstract class IconicsAnimationProcessor {
 
     /**
      * @return Tag which will be used to apply this processor via xml
-     * */
-    public abstract @NonNull String animationTag();
+     */
+    public abstract @NonNull
+    String animationTag();
 
     /**
      * Sets the length of the animation. The default duration is 300 milliseconds.
      *
      * @param duration The length of the animation. This value cannot be negative.
      */
-    public @NonNull IconicsAnimationProcessor duration(long duration, @NonNull TimeUnit timeUnit) {
+    public @NonNull
+    IconicsAnimationProcessor duration(long duration, @NonNull TimeUnit timeUnit) {
         mDuration = timeUnit.toMillis(duration);
         return this;
     }
@@ -164,7 +181,8 @@ public abstract class IconicsAnimationProcessor {
      *
      * @param value {@link #RESTART} or {@link #REVERSE}
      */
-    public @NonNull IconicsAnimationProcessor repeatMode(@RepeatMode int value) {
+    public @NonNull
+    IconicsAnimationProcessor repeatMode(@RepeatMode int value) {
         mRepeatMode = value;
         return this;
     }
@@ -177,7 +195,8 @@ public abstract class IconicsAnimationProcessor {
      *
      * @param repeatCount the number of times the animation should be repeated
      */
-    public @NonNull IconicsAnimationProcessor repeatCount(int repeatCount) {
+    public @NonNull
+    IconicsAnimationProcessor repeatCount(int repeatCount) {
         mRepeatCount = repeatCount;
         return this;
     }
@@ -191,7 +210,8 @@ public abstract class IconicsAnimationProcessor {
      * @param interpolator the interpolator to be used by this processor. A value of {@code null}
      *                     will result in linear interpolation.
      */
-    public @NonNull IconicsAnimationProcessor interpolator(@NonNull TimeInterpolator interpolator) {
+    public @NonNull
+    IconicsAnimationProcessor interpolator(@NonNull TimeInterpolator interpolator) {
         if (interpolator != null) {
             mInterpolator = interpolator;
         } else {
@@ -205,8 +225,9 @@ public abstract class IconicsAnimationProcessor {
      * with the view is attached to window. Default value is {@code true}.
      *
      * @param startImmediately the flag
-     * */
-    public @NonNull IconicsAnimationProcessor startImmediately(boolean startImmediately) {
+     */
+    public @NonNull
+    IconicsAnimationProcessor startImmediately(boolean startImmediately) {
         mIsStartImmediately = startImmediately;
         return this;
     }
@@ -214,8 +235,9 @@ public abstract class IconicsAnimationProcessor {
     /**
      * Starts the animation, if processor is attached to drawable, otherwise sets flag to start
      * animation immediately after attaching
-     * */
-    public @NonNull IconicsAnimationProcessor start() {
+     */
+    public @NonNull
+    IconicsAnimationProcessor start() {
         mAnimator.setInterpolator(mInterpolator);
         mAnimator.setDuration(mDuration);
         mAnimator.setRepeatCount(mRepeatCount);
@@ -236,7 +258,8 @@ public abstract class IconicsAnimationProcessor {
      *
      * @param listener the listener to be added to the current set of listeners for this processor.
      */
-    public @NonNull IconicsAnimationProcessor addListener(@NonNull IconicsAnimationListener listener) {
+    public @NonNull
+    IconicsAnimationProcessor addListener(@NonNull IconicsAnimationListener listener) {
         if (mListeners == null) {
             mListeners = new ArrayList<>();
             mAnimator.addListener(mProxyListener);
@@ -266,10 +289,11 @@ public abstract class IconicsAnimationProcessor {
      * Adds a pause listener to this processor.
      *
      * @param listener the listener to be added to the current set of pause listeners
-     * for this processor.
+     *                 for this processor.
      */
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    public @NonNull IconicsAnimationProcessor addPauseListener(@NonNull IconicsAnimationPauseListener listener) {
+    public @NonNull
+    IconicsAnimationProcessor addPauseListener(@NonNull IconicsAnimationPauseListener listener) {
         if (mPauseListeners == null) {
             mPauseListeners = new ArrayList<>();
             mAnimator.addPauseListener(mProxyPauseListener);
@@ -282,7 +306,7 @@ public abstract class IconicsAnimationProcessor {
      * Removes a pause listener from the set listening to this processor.
      *
      * @param listener the listener to be removed from the current set of pause
-     * listeners for this processor.
+     *                 listeners for this processor.
      */
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     public void removePauseListener(@NonNull IconicsAnimationPauseListener listener) {
@@ -321,7 +345,7 @@ public abstract class IconicsAnimationProcessor {
      * {@link IconicsAnimationListener#onAnimationCancel(IconicsAnimationProcessor)} to
      * its listeners, followed by an
      * {@link IconicsAnimationListener#onAnimationEnd(IconicsAnimationProcessor)} message.
-     *
+     * <p>
      * This method must be called on the thread that is running the processor.
      */
     public void cancel() {
@@ -333,7 +357,7 @@ public abstract class IconicsAnimationProcessor {
      * animated, then calling the
      * {@link IconicsAnimationListener#onAnimationEnd(IconicsAnimationProcessor)} method on
      * its listeners.
-     *
+     * <p>
      * This method must be called on the thread that is running the processor.
      */
     public void end() {
@@ -396,7 +420,6 @@ public abstract class IconicsAnimationProcessor {
      * Returns whether this processor is currently in a paused state.
      *
      * @return True if the processor is currently paused, false otherwise.
-     *
      * @see #pause()
      * @see #resume()
      */
@@ -408,7 +431,7 @@ public abstract class IconicsAnimationProcessor {
     /**
      * Will be called before {@link android.graphics.drawable.Drawable#draw(Canvas) .draw(Canvas)}.
      * Useful for some changes, based on {@link android.graphics.Paint Paint}
-     * */
+     */
     protected void processPreDraw(
             @NonNull Canvas canvas,
             @NonNull IconicsBrush<TextPaint> iconBrush,
@@ -421,28 +444,29 @@ public abstract class IconicsAnimationProcessor {
      * Will be called after {@link android.graphics.drawable.Drawable#draw(Canvas) .draw(Canvas)}.
      * Useful for some changes, based on canvas and need to restore canvas after drawing the icon
      * (scale, rotate etc.).
-     * */
+     */
     protected void processPostDraw(@NonNull Canvas canvas) {
     }
 
     /**
      * Return the drawable's current state
-     *
+     * <p>
      * Nullability contract: calling this into
      * {@link #processPreDraw(Canvas, IconicsBrush, IconicsBrush, IconicsBrush, IconicsBrush)} or
      * {@link #processPostDraw(Canvas)} is guaranteed return {@code @NonNull} value, otherwise it
      * can be {@code @Nullable}.
      *
      * @return The current state of the drawable
-     * */
-    protected @Nullable int[] getDrawableState() {
+     */
+    protected @Nullable
+    int[] getDrawableState() {
         return mDrawable == null ? null : mDrawable.getState();
     }
 
     /**
      * Return the drawable's bounds Rect. Note: for efficiency, the returned object may be the same
      * object stored in the drawable (though this is not guaranteed).
-     *
+     * <p>
      * Nullability contract: calling this into
      * {@link #processPreDraw(Canvas, IconicsBrush, IconicsBrush, IconicsBrush, IconicsBrush)} or
      * {@link #processPostDraw(Canvas)} is guaranteed return {@code @NonNull} value, otherwise it
@@ -451,14 +475,16 @@ public abstract class IconicsAnimationProcessor {
      * @return The bounds of the drawable (which may change later, so caller beware). DO NOT ALTER
      * the returned object as it may change the stored bounds of this drawable.
      */
-    protected @Nullable Rect getDrawableBounds() {
+    protected @Nullable
+    Rect getDrawableBounds() {
         return mDrawable == null ? null : mDrawable.getBounds();
     }
 
     /**
      * @return completed percent of animation
-     * */
-    protected @FloatRange(from = 0, to = 100) float getAnimatedPercent() {
+     */
+    protected @FloatRange(from = 0, to = 100)
+    float getAnimatedPercent() {
         return (float) mAnimator.getAnimatedValue();
     }
 
@@ -466,7 +492,7 @@ public abstract class IconicsAnimationProcessor {
      * Called when a drawable was attached and now {@link #getDrawableBounds()} and
      * {@link #getDrawableState()} will return valid values. Good place to set some
      * drawable-dependent fields
-     * */
+     */
     protected void onDrawableAttached() {
     }
 
@@ -474,13 +500,13 @@ public abstract class IconicsAnimationProcessor {
      * Called when a drawable was detached and now {@link #getDrawableBounds()} and
      * {@link #getDrawableState()} will return {@code null}. Good place to reset some
      * drawable-dependent fields
-     * */
+     */
     protected void onDrawableDetached() {
     }
 
     /**
      * Internal set an drawable to this processor
-     * */
+     */
     void setDrawable(@Nullable IconicsAnimatedDrawable drawable) {
         mDrawable = null;
         onDrawableDetached();

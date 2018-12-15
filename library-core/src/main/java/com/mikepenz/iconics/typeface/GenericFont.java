@@ -60,55 +60,68 @@ public class GenericFont implements ITypeface {
         mChars.put(mMappingPrefix + "_" + name, aChar);
     }
 
-    @Override public IIcon getIcon(String key) {
+    @Override
+    public IIcon getIcon(String key) {
         return new Icon(mChars.get(key)).withTypeface(this);
     }
 
-    @Override public HashMap<String, Character> getCharacters() {
+    @Override
+    public HashMap<String, Character> getCharacters() {
         return new HashMap<>();
     }
 
-    @Override public String getMappingPrefix() {
+    @Override
+    public String getMappingPrefix() {
         return mMappingPrefix;
     }
 
-    @Override public String getFontName() {
+    @Override
+    public String getFontName() {
         return mFontName;
     }
 
-    @Override public String getVersion() {
+    @Override
+    public String getVersion() {
         return "1.0.0";
     }
 
-    @Override public int getIconCount() {
+    @Override
+    public int getIconCount() {
         return mChars.size();
     }
 
-    @Override public Collection<String> getIcons() {
+    @Override
+    public Collection<String> getIcons() {
         return mChars.keySet();
     }
 
-    @Override public String getAuthor() {
+    @Override
+    public String getAuthor() {
         return mAuthor;
     }
 
-    @Override public String getUrl() {
+    @Override
+    public String getUrl() {
         return "";
     }
 
-    @Override public String getDescription() {
+    @Override
+    public String getDescription() {
         return "";
     }
 
-    @Override public String getLicense() {
+    @Override
+    public String getLicense() {
         return "";
     }
 
-    @Override public String getLicenseUrl() {
+    @Override
+    public String getLicenseUrl() {
         return "";
     }
 
-    @Override public Typeface getTypeface(Context context) {
+    @Override
+    public Typeface getTypeface(Context context) {
         if (typeface == null) {
             try {
                 typeface = Typeface.createFromAsset(context.getAssets(), mFontFile);
@@ -139,22 +152,26 @@ public class GenericFont implements ITypeface {
             return this;
         }
 
-        @Override public String getFormattedName() {
+        @Override
+        public String getFormattedName() {
             return "{" + getName() + "}";
         }
 
-        @Override public String getName() {
+        @Override
+        public String getName() {
             if (mName != null) {
                 return mName;
             }
             return String.valueOf(aChar);
         }
 
-        @Override public char getCharacter() {
+        @Override
+        public char getCharacter() {
             return aChar;
         }
 
-        @Override public ITypeface getTypeface() {
+        @Override
+        public ITypeface getTypeface() {
             if (mTypeface != null) {
                 return mTypeface;
             } else {

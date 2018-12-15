@@ -13,6 +13,7 @@ public class GenericsUtil {
 
     /**
      * a helper to get the string fields from the R class
+     *
      * @deprecated use {@link #getDefinedFonts(Context)} instead
      */
     @Deprecated

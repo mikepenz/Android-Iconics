@@ -20,11 +20,11 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
-
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
 
 /**
  * Helper class to control applying state changes to colors and paint. Also for compact providing
@@ -33,9 +33,12 @@ import androidx.annotation.Nullable;
  * @author pa.gulko zTrap (28.11.2018)
  */
 public class IconicsBrush<T extends Paint> {
-    private @Nullable ColorStateList mColors;
-    private @NonNull final T mPaint;
-    private @Nullable int[] mState;
+    private @Nullable
+    ColorStateList mColors;
+    private @NonNull
+    final T mPaint;
+    private @Nullable
+    int[] mState;
     private int mAlpha;
 
     public IconicsBrush(@NonNull T paint) {
@@ -44,7 +47,7 @@ public class IconicsBrush<T extends Paint> {
 
     /**
      * @param colors which will be applied on {@link #getPaint()} for drawing current state
-     * */
+     */
     public void setColors(@Nullable ColorStateList colors) {
         mColors = colors;
         applyState(mState);
@@ -52,21 +55,23 @@ public class IconicsBrush<T extends Paint> {
 
     /**
      * @return colors which applied on {@link #getPaint()} for drawing current state
-     * */
-    public @Nullable ColorStateList getColorsList() {
+     */
+    public @Nullable
+    ColorStateList getColorsList() {
         return mColors;
     }
 
     /**
      * @return paint. Will be used for drawing something (icon, background etc.)
-     * */
-    public @NonNull T getPaint() {
+     */
+    public @NonNull
+    T getPaint() {
         return mPaint;
     }
 
     /**
      * @param alpha channel for colors
-     * */
+     */
     public void setAlpha(@IntRange(from = 0, to = 255) int alpha) {
         mAlpha = alpha;
         mPaint.setAlpha(alpha);
@@ -74,8 +79,9 @@ public class IconicsBrush<T extends Paint> {
 
     /**
      * @return alpha channel for colors
-     * */
-    public @IntRange(from = 0, to = 255) int getAlpha() {
+     */
+    public @IntRange(from = 0, to = 255)
+    int getAlpha() {
         return mAlpha;
     }
 

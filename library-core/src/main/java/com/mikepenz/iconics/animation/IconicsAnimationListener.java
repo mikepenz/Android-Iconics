@@ -23,9 +23,9 @@ public interface IconicsAnimationListener {
 
     /**
      * Notifies the start of the animation as well as the animation's overall play direction.
-     * This method's default behavior is to call 
-     * {@link #onAnimationStart(IconicsAnimationProcessor)}. This method can be overridden, 
-     * though not required, to get the additional play direction info when an animation starts. 
+     * This method's default behavior is to call
+     * {@link #onAnimationStart(IconicsAnimationProcessor)}. This method can be overridden,
+     * though not required, to get the additional play direction info when an animation starts.
      * Skipping calling super when overriding this method results in
      * {@link #onAnimationStart(IconicsAnimationProcessor)} not getting called.
      *
@@ -39,7 +39,7 @@ public interface IconicsAnimationListener {
     /**
      * Notifies the end of the animation. This callback is not invoked
      * for animations with repeat count set to INFINITE.
-     *
+     * <p>
      * This method's default behavior is to call {@link #onAnimationEnd(IconicsAnimationProcessor)}.
      * This method can be overridden, though not required, to get the additional play direction info
      * when an animation ends. Skipping calling super when overriding this method results in

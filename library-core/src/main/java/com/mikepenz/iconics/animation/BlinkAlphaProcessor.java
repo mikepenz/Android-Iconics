@@ -20,10 +20,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.TextPaint;
 
-import com.mikepenz.iconics.IconicsBrush;
-
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
+
+import com.mikepenz.iconics.IconicsBrush;
 
 /**
  * @author pa.gulko zTrap (30.11.2018)
@@ -31,11 +31,13 @@ import androidx.annotation.NonNull;
 public class BlinkAlphaProcessor extends IconicsAnimationProcessor {
     /**
      * Duration used for all instances of this processor by default. 500 ms by default.
-     * */
+     */
     public static int defaultDuration = 500;
 
-    private @IntRange(from = 0, to = 255) int mMinimumAlpha = 0;
-    private @IntRange(from = 0, to = 255) int mMaximumAlpha = 255;
+    private @IntRange(from = 0, to = 255)
+    int mMinimumAlpha = 0;
+    private @IntRange(from = 0, to = 255)
+    int mMaximumAlpha = 255;
 
     {
         mRepeatMode = REVERSE;
@@ -44,39 +46,46 @@ public class BlinkAlphaProcessor extends IconicsAnimationProcessor {
 
     /**
      * @param minimumAlpha The alpha which will be used as minimal available value.
-     * */
-    public @NonNull BlinkAlphaProcessor minimumAlpha(@IntRange(from = 0, to = 255) int minimumAlpha) {
+     */
+    public @NonNull
+    BlinkAlphaProcessor minimumAlpha(@IntRange(from = 0, to = 255) int minimumAlpha) {
         mMinimumAlpha = minimumAlpha;
         return this;
     }
 
     /**
      * @param maximumAlpha The alpha which will be used as maximal available value.
-     * */
-    public @NonNull BlinkAlphaProcessor maximumAlpha(@IntRange(from = 0, to = 255) int maximumAlpha) {
+     */
+    public @NonNull
+    BlinkAlphaProcessor maximumAlpha(@IntRange(from = 0, to = 255) int maximumAlpha) {
         mMaximumAlpha = maximumAlpha;
         return this;
     }
 
     /**
      * @return The minimal available alpha.
-     * */
-    public @IntRange(from = 0, to = 255) int getMinimumAlpha() {
+     */
+    public @IntRange(from = 0, to = 255)
+    int getMinimumAlpha() {
         return mMinimumAlpha;
     }
 
     /**
      * @return The maximal available alpha.
-     * */
-    public @IntRange(from = 0, to = 255) int getMaximumAlpha() {
+     */
+    public @IntRange(from = 0, to = 255)
+    int getMaximumAlpha() {
         return mMaximumAlpha;
     }
 
-    @Override public @NonNull String animationTag() {
+    @Override
+    public @NonNull
+    String animationTag() {
         return "blink_alpha";
     }
 
-    @Override protected void processPreDraw(
+    @Override
+    protected void processPreDraw(
             @NonNull Canvas canvas,
             @NonNull IconicsBrush<TextPaint> iconBrush,
             @NonNull IconicsBrush<Paint> iconContourBrush,
