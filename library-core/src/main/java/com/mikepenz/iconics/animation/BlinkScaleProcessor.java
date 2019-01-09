@@ -21,10 +21,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextPaint;
 
+import com.mikepenz.iconics.IconicsBrush;
+
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
-
-import com.mikepenz.iconics.IconicsBrush;
 
 /**
  * @author pa.gulko zTrap (30.11.2018)
@@ -35,10 +35,10 @@ public class BlinkScaleProcessor extends IconicsAnimationProcessor {
      */
     public static int defaultDuration = 500;
 
-    private @FloatRange(from = 0)
-    float mMinimumScale = 0;
-    private @FloatRange(from = 0)
-    float mMaximumScale = 1;
+    @FloatRange(from = 0)
+    private float mMinimumScale = 0;
+    @FloatRange(from = 0)
+    private float mMaximumScale = 1;
 
     {
         mRepeatMode = REVERSE;
@@ -48,8 +48,8 @@ public class BlinkScaleProcessor extends IconicsAnimationProcessor {
     /**
      * @param minimumScale The scale which will be used as minimal available value.
      */
-    public @NonNull
-    BlinkScaleProcessor minimumScale(@FloatRange(from = 0) float minimumScale) {
+    @NonNull
+    public BlinkScaleProcessor minimumScale(@FloatRange(from = 0) float minimumScale) {
         mMinimumScale = minimumScale;
         return this;
     }
@@ -57,8 +57,8 @@ public class BlinkScaleProcessor extends IconicsAnimationProcessor {
     /**
      * @param maximumScale The scale which will be used as maximal available value.
      */
-    public @NonNull
-    BlinkScaleProcessor maximumScale(@FloatRange(from = 0) float maximumScale) {
+    @NonNull
+    public BlinkScaleProcessor maximumScale(@FloatRange(from = 0) float maximumScale) {
         mMaximumScale = maximumScale;
         return this;
     }
@@ -66,22 +66,22 @@ public class BlinkScaleProcessor extends IconicsAnimationProcessor {
     /**
      * @return The minimal available scale.
      */
-    public @FloatRange(from = 0)
-    float getMinimumScale() {
+    @FloatRange(from = 0)
+    public float getMinimumScale() {
         return mMinimumScale;
     }
 
     /**
      * @return The minimal available scale.
      */
-    public @FloatRange(from = 0)
-    float getMaximumScale() {
+    @FloatRange(from = 0)
+    public float getMaximumScale() {
         return mMaximumScale;
     }
 
     @Override
-    public @NonNull
-    String animationTag() {
+    @NonNull
+    public String animationTag() {
         return "blink_scale";
     }
 

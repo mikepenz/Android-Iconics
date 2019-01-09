@@ -26,13 +26,6 @@ import android.os.Build;
 import android.text.TextPaint;
 import android.view.animation.LinearInterpolator;
 
-import androidx.annotation.FloatRange;
-import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.util.Consumer;
-
 import com.mikepenz.iconics.IconicsBrush;
 
 import java.lang.annotation.Retention;
@@ -41,18 +34,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.util.Consumer;
+
 /**
  * @author pa.gulko zTrap (28.11.2018)
  */
 public abstract class IconicsAnimationProcessor {
-    private static final @NonNull
-    TimeInterpolator sDefaultInterpolator = new LinearInterpolator();
+    @NonNull
+    private static final TimeInterpolator sDefaultInterpolator = new LinearInterpolator();
 
-    private final @NonNull
-    ValueAnimator mAnimator = ValueAnimator.ofFloat(0, 100);
+    @NonNull
+    private final ValueAnimator mAnimator = ValueAnimator.ofFloat(0, 100);
 
-    private @Nullable
-    IconicsAnimatedDrawable mDrawable;
+    @Nullable
+    private IconicsAnimatedDrawable mDrawable;
     private boolean mIsStartRequested = false;
 
     /**
@@ -71,8 +71,8 @@ public abstract class IconicsAnimationProcessor {
      */
     public static final int INFINITE = ValueAnimator.INFINITE;
 
-    protected @NonNull
-    TimeInterpolator mInterpolator = sDefaultInterpolator;
+    @NonNull
+    protected TimeInterpolator mInterpolator = sDefaultInterpolator;
     protected long mDuration = 300;
     protected int mRepeatCount = INFINITE;
     protected int mRepeatMode = RESTART;
@@ -86,15 +86,15 @@ public abstract class IconicsAnimationProcessor {
     /**
      * The set of listeners to be sent events through the life of an animation.
      */
-    private @Nullable
-    List<IconicsAnimationListener> mListeners = null;
+    @Nullable
+    private List<IconicsAnimationListener> mListeners = null;
 
     /**
      * The set of listeners to be sent pause/resume events through the life
      * of an animation.
      */
-    private @Nullable
-    List<IconicsAnimationPauseListener> mPauseListeners = null;
+    @Nullable
+    private List<IconicsAnimationPauseListener> mPauseListeners = null;
 
     private final Animator.AnimatorListener mProxyListener = new Animator.AnimatorListener() {
 
@@ -160,16 +160,16 @@ public abstract class IconicsAnimationProcessor {
     /**
      * @return Tag which will be used to apply this processor via xml
      */
-    public abstract @NonNull
-    String animationTag();
+    @NonNull
+    public abstract String animationTag();
 
     /**
      * Sets the length of the animation. The default duration is 300 milliseconds.
      *
      * @param duration The length of the animation. This value cannot be negative.
      */
-    public @NonNull
-    IconicsAnimationProcessor duration(long duration, @NonNull TimeUnit timeUnit) {
+    @NonNull
+    public IconicsAnimationProcessor duration(long duration, @NonNull TimeUnit timeUnit) {
         mDuration = timeUnit.toMillis(duration);
         return this;
     }
@@ -181,8 +181,8 @@ public abstract class IconicsAnimationProcessor {
      *
      * @param value {@link #RESTART} or {@link #REVERSE}
      */
-    public @NonNull
-    IconicsAnimationProcessor repeatMode(@RepeatMode int value) {
+    @NonNull
+    public IconicsAnimationProcessor repeatMode(@RepeatMode int value) {
         mRepeatMode = value;
         return this;
     }
@@ -195,8 +195,8 @@ public abstract class IconicsAnimationProcessor {
      *
      * @param repeatCount the number of times the animation should be repeated
      */
-    public @NonNull
-    IconicsAnimationProcessor repeatCount(int repeatCount) {
+    @NonNull
+    public IconicsAnimationProcessor repeatCount(int repeatCount) {
         mRepeatCount = repeatCount;
         return this;
     }
@@ -210,8 +210,8 @@ public abstract class IconicsAnimationProcessor {
      * @param interpolator the interpolator to be used by this processor. A value of {@code null}
      *                     will result in linear interpolation.
      */
-    public @NonNull
-    IconicsAnimationProcessor interpolator(@NonNull TimeInterpolator interpolator) {
+    @NonNull
+    public IconicsAnimationProcessor interpolator(@NonNull TimeInterpolator interpolator) {
         if (interpolator != null) {
             mInterpolator = interpolator;
         } else {
@@ -226,8 +226,8 @@ public abstract class IconicsAnimationProcessor {
      *
      * @param startImmediately the flag
      */
-    public @NonNull
-    IconicsAnimationProcessor startImmediately(boolean startImmediately) {
+    @NonNull
+    public IconicsAnimationProcessor startImmediately(boolean startImmediately) {
         mIsStartImmediately = startImmediately;
         return this;
     }
@@ -236,8 +236,8 @@ public abstract class IconicsAnimationProcessor {
      * Starts the animation, if processor is attached to drawable, otherwise sets flag to start
      * animation immediately after attaching
      */
-    public @NonNull
-    IconicsAnimationProcessor start() {
+    @NonNull
+    public IconicsAnimationProcessor start() {
         mAnimator.setInterpolator(mInterpolator);
         mAnimator.setDuration(mDuration);
         mAnimator.setRepeatCount(mRepeatCount);
@@ -258,8 +258,8 @@ public abstract class IconicsAnimationProcessor {
      *
      * @param listener the listener to be added to the current set of listeners for this processor.
      */
-    public @NonNull
-    IconicsAnimationProcessor addListener(@NonNull IconicsAnimationListener listener) {
+    @NonNull
+    public IconicsAnimationProcessor addListener(@NonNull IconicsAnimationListener listener) {
         if (mListeners == null) {
             mListeners = new ArrayList<>();
             mAnimator.addListener(mProxyListener);
@@ -292,8 +292,8 @@ public abstract class IconicsAnimationProcessor {
      *                 for this processor.
      */
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    public @NonNull
-    IconicsAnimationProcessor addPauseListener(@NonNull IconicsAnimationPauseListener listener) {
+    @NonNull
+    public IconicsAnimationProcessor addPauseListener(@NonNull IconicsAnimationPauseListener listener) {
         if (mPauseListeners == null) {
             mPauseListeners = new ArrayList<>();
             mAnimator.addPauseListener(mProxyPauseListener);
@@ -458,8 +458,8 @@ public abstract class IconicsAnimationProcessor {
      *
      * @return The current state of the drawable
      */
-    protected @Nullable
-    int[] getDrawableState() {
+    @Nullable
+    protected int[] getDrawableState() {
         return mDrawable == null ? null : mDrawable.getState();
     }
 
@@ -475,16 +475,16 @@ public abstract class IconicsAnimationProcessor {
      * @return The bounds of the drawable (which may change later, so caller beware). DO NOT ALTER
      * the returned object as it may change the stored bounds of this drawable.
      */
-    protected @Nullable
-    Rect getDrawableBounds() {
+    @Nullable
+    protected Rect getDrawableBounds() {
         return mDrawable == null ? null : mDrawable.getBounds();
     }
 
     /**
      * @return completed percent of animation
      */
-    protected @FloatRange(from = 0, to = 100)
-    float getAnimatedPercent() {
+    @FloatRange(from = 0, to = 100)
+    protected float getAnimatedPercent() {
         return (float) mAnimator.getAnimatedValue();
     }
 

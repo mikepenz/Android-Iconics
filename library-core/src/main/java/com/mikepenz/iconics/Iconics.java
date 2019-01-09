@@ -24,9 +24,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
@@ -41,16 +38,19 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 @SuppressWarnings("UnusedReturnValue, WeakerAccess, unused")
 public final class Iconics {
-    public static final @NonNull
-    String TAG = Iconics.class.getSimpleName();
+    @NonNull
+    public static final String TAG = Iconics.class.getSimpleName();
 
     private static boolean INIT_DONE = false;
-    private static final @NonNull
-    HashMap<String, ITypeface> FONTS = new HashMap<>();
-    private static final @NonNull
-    HashMap<String, Class<? extends IconicsAnimationProcessor>> PROCESSORS = new HashMap<>();
+    @NonNull
+    private static final HashMap<String, ITypeface> FONTS = new HashMap<>();
+    @NonNull
+    private static final HashMap<String, Class<? extends IconicsAnimationProcessor>> PROCESSORS = new HashMap<>();
 
     /**
      * initializes the FONTS. This also tries to find all founds automatically via their font file
@@ -136,9 +136,9 @@ public final class Iconics {
         PROCESSORS.put(processor.animationTag(), processor.getClass());
     }
 
-    public static @Nullable
-    IconicsAnimationProcessor findProcessor(@NonNull Context ctx,
-                                            @NonNull String animationTag) {
+    @Nullable
+    public static IconicsAnimationProcessor findProcessor(@NonNull Context ctx,
+                                                          @NonNull String animationTag) {
         init(ctx);
 
         Class<? extends IconicsAnimationProcessor> processorClass = PROCESSORS.get(animationTag);
@@ -166,8 +166,8 @@ public final class Iconics {
     /**
      * return all registered FONTS
      */
-    public static @NonNull
-    Collection<ITypeface> getRegisteredFonts(@NonNull Context ctx) {
+    @NonNull
+    public static Collection<ITypeface> getRegisteredFonts(@NonNull Context ctx) {
         init(ctx);
         return FONTS.values();
     }
@@ -175,8 +175,8 @@ public final class Iconics {
     /**
      * tries to find a font by its key in all registered FONTS
      */
-    public static @Nullable
-    ITypeface findFont(@NonNull Context ctx, @NonNull String key) {
+    @Nullable
+    public static ITypeface findFont(@NonNull Context ctx, @NonNull String key) {
         init(ctx);
         return FONTS.get(key);
     }
@@ -184,8 +184,8 @@ public final class Iconics {
     /**
      * fetches the font from the Typeface of an IIcon
      */
-    public static @NonNull
-    ITypeface findFont(@NonNull IIcon icon) {
+    @NonNull
+    public static ITypeface findFont(@NonNull IIcon icon) {
         return icon.getTypeface();
     }
 
@@ -198,8 +198,8 @@ public final class Iconics {
      * all characters, it will also directly replace icon font placeholders with the correct mapping.
      * Afterwards it will apply the styles
      */
-    public static @NonNull
-    Spanned style(@NonNull Context ctx, @NonNull Spanned textSpanned) {
+    @NonNull
+    public static Spanned style(@NonNull Context ctx, @NonNull Spanned textSpanned) {
         return style(ctx, null, textSpanned, null, null);
     }
 
@@ -208,12 +208,12 @@ public final class Iconics {
      * all characters, it will also directly replace icon font placeholders with the correct mapping.
      * Afterwards it will apply the styles
      */
-    public static @NonNull
-    Spanned style(@NonNull Context ctx,
-                  @Nullable HashMap<String, ITypeface> fonts,
-                  @NonNull Spanned textSpanned,
-                  @Nullable List<CharacterStyle> styles,
-                  @Nullable HashMap<String, List<CharacterStyle>> stylesFor) {
+    @NonNull
+    public static Spanned style(@NonNull Context ctx,
+                                @Nullable HashMap<String, ITypeface> fonts,
+                                @NonNull Spanned textSpanned,
+                                @Nullable List<CharacterStyle> styles,
+                                @Nullable HashMap<String, List<CharacterStyle>> stylesFor) {
         fonts = init(ctx, fonts);
 
         //find all icons which should be replaced with the iconFont
@@ -255,16 +255,16 @@ public final class Iconics {
     }
 
     public static class IconicsBuilderString {
-        private @NonNull
-        Context ctx;
-        private @NonNull
-        Spanned text;
-        private @NonNull
-        List<CharacterStyle> withStyles;
-        private @NonNull
-        HashMap<String, List<CharacterStyle>> withStylesFor;
-        private @NonNull
-        List<ITypeface> fonts;
+        @NonNull
+        private Context ctx;
+        @NonNull
+        private Spanned text;
+        @NonNull
+        private List<CharacterStyle> withStyles;
+        @NonNull
+        private HashMap<String, List<CharacterStyle>> withStylesFor;
+        @NonNull
+        private List<ITypeface> fonts;
 
         public IconicsBuilderString(@NonNull Context ctx,
                                     @NonNull List<ITypeface> fonts,
@@ -278,8 +278,8 @@ public final class Iconics {
             this.withStylesFor = stylesFor;
         }
 
-        public @NonNull
-        Spanned build() {
+        @NonNull
+        public Spanned build() {
             HashMap<String, ITypeface> mappedFonts = new HashMap<>();
             for (ITypeface font : fonts) {
                 mappedFonts.put(font.getMappingPrefix(), font);
@@ -289,16 +289,16 @@ public final class Iconics {
     }
 
     public static class IconicsBuilderView {
-        private @NonNull
-        Context ctx;
-        private @NonNull
-        TextView view;
-        private @NonNull
-        List<CharacterStyle> withStyles;
-        private @NonNull
-        HashMap<String, List<CharacterStyle>> withStylesFor;
-        private @NonNull
-        List<ITypeface> fonts;
+        @NonNull
+        private Context ctx;
+        @NonNull
+        private TextView view;
+        @NonNull
+        private List<CharacterStyle> withStyles;
+        @NonNull
+        private HashMap<String, List<CharacterStyle>> withStylesFor;
+        @NonNull
+        private List<ITypeface> fonts;
 
         public IconicsBuilderView(@NonNull Context ctx,
                                   @NonNull List<ITypeface> fonts,
@@ -337,26 +337,26 @@ public final class Iconics {
     }
 
     public static class IconicsBuilder {
-        private final @NonNull
-        List<CharacterStyle> styles = new LinkedList<>();
-        private final @NonNull
-        HashMap<String, List<CharacterStyle>> stylesFor = new HashMap<>();
-        private final @NonNull
-        List<ITypeface> fonts = new LinkedList<>();
-        private @NonNull
-        Context ctx;
+        @NonNull
+        private final List<CharacterStyle> styles = new LinkedList<>();
+        @NonNull
+        private final HashMap<String, List<CharacterStyle>> stylesFor = new HashMap<>();
+        @NonNull
+        private final List<ITypeface> fonts = new LinkedList<>();
+        @NonNull
+        private Context ctx;
 
         public IconicsBuilder() {
         }
 
-        public @NonNull
-        IconicsBuilder ctx(@NonNull Context ctx) {
+        @NonNull
+        public IconicsBuilder ctx(@NonNull Context ctx) {
             this.ctx = ctx;
             return this;
         }
 
-        public @NonNull
-        IconicsBuilder style(@NonNull CharacterStyle... styles) {
+        @NonNull
+        public IconicsBuilder style(@NonNull CharacterStyle... styles) {
             if (styles != null && styles.length > 0) {
                 Collections.addAll(this.styles, styles);
             }
@@ -367,9 +367,9 @@ public final class Iconics {
          * this method allows you to apply additional styles on icons , just provide all
          * CharacterStyles you want to apply on the given IIcon
          */
-        public @NonNull
-        IconicsBuilder styleFor(@NonNull IIcon styleFor,
-                                @NonNull CharacterStyle... styles) {
+        @NonNull
+        public IconicsBuilder styleFor(@NonNull IIcon styleFor,
+                                       @NonNull CharacterStyle... styles) {
             return styleFor(styleFor.getName(), styles);
         }
 
@@ -377,9 +377,9 @@ public final class Iconics {
          * this method allows you to apply additional styles on icons , just provide all
          * CharacterStyles you want to apply on the given icon (by it's name faw-android)
          */
-        public @NonNull
-        IconicsBuilder styleFor(@NonNull String styleFor,
-                                @NonNull CharacterStyle... styles) {
+        @NonNull
+        public IconicsBuilder styleFor(@NonNull String styleFor,
+                                       @NonNull CharacterStyle... styles) {
             styleFor = styleFor.replace("-", "_");
 
             if (!stylesFor.containsKey(styleFor)) {
@@ -397,8 +397,8 @@ public final class Iconics {
         /**
          * adds additional fonts which should be used to apply the icons
          */
-        public @NonNull
-        IconicsBuilder font(@NonNull ITypeface font) {
+        @NonNull
+        public IconicsBuilder font(@NonNull ITypeface font) {
             this.fonts.add(font);
             return this;
         }
@@ -406,48 +406,48 @@ public final class Iconics {
         /**
          * defines where the icons should be applied to
          */
-        public @NonNull
-        IconicsBuilderString on(@NonNull Spanned on) {
+        @NonNull
+        public IconicsBuilderString on(@NonNull Spanned on) {
             return new IconicsBuilderString(ctx, fonts, on, styles, stylesFor);
         }
 
         /**
          * defines where the icons should be applied to
          */
-        public @NonNull
-        IconicsBuilderString on(@NonNull String on) {
+        @NonNull
+        public IconicsBuilderString on(@NonNull String on) {
             return on(new SpannableString(on));
         }
 
         /**
          * defines where the icons should be applied to
          */
-        public @NonNull
-        IconicsBuilderString on(@NonNull CharSequence on) {
+        @NonNull
+        public IconicsBuilderString on(@NonNull CharSequence on) {
             return on(on.toString());
         }
 
         /**
          * defines where the icons should be applied to
          */
-        public @NonNull
-        IconicsBuilderString on(@NonNull StringBuilder on) {
+        @NonNull
+        public IconicsBuilderString on(@NonNull StringBuilder on) {
             return on(on.toString());
         }
 
         /**
          * defines where the icons should be applied to
          */
-        public @NonNull
-        IconicsBuilderView on(@NonNull TextView on) {
+        @NonNull
+        public IconicsBuilderView on(@NonNull TextView on) {
             return new IconicsBuilderView(ctx, fonts, on, styles, stylesFor);
         }
 
         /**
          * defines where the icons should be applied to
          */
-        public @NonNull
-        IconicsBuilderView on(@NonNull Button on) {
+        @NonNull
+        public IconicsBuilderView on(@NonNull Button on) {
             return new IconicsBuilderView(ctx, fonts, on, styles, stylesFor);
         }
     }
