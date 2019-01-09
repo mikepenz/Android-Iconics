@@ -21,17 +21,17 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
-import androidx.annotation.StyleableRes;
-
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.StyleableRes;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -43,50 +43,50 @@ public class IconicsAttrsExtractor {
     private final static int DEF_COLOR = Integer.MIN_VALUE;
     private final static int DEF_SIZE = -1;
 
-    private final @NonNull
-    Context mContext;
-    private final @NonNull
-    TypedArray mTypedArray;
+    @NonNull
+    private final Context mContext;
+    @NonNull
+    private final TypedArray mTypedArray;
 
-    private @StyleableRes
-    int mIconId;
-    private @StyleableRes
-    int mSizeId;
-    private @StyleableRes
-    int mColorsId;
-    private @StyleableRes
-    int mPaddingId;
-    private @StyleableRes
-    int mOffsetXId;
-    private @StyleableRes
-    int mOffsetYId;
+    @StyleableRes
+    private int mIconId;
+    @StyleableRes
+    private int mSizeId;
+    @StyleableRes
+    private int mColorsId;
+    @StyleableRes
+    private int mPaddingId;
+    @StyleableRes
+    private int mOffsetXId;
+    @StyleableRes
+    private int mOffsetYId;
 
-    private @StyleableRes
-    int mContourColorId;
-    private @StyleableRes
-    int mContourWidthId;
+    @StyleableRes
+    private int mContourColorId;
+    @StyleableRes
+    private int mContourWidthId;
 
-    private @StyleableRes
-    int mBackgroundColorId;
-    private @StyleableRes
-    int mCornerRadiusId;
+    @StyleableRes
+    private int mBackgroundColorId;
+    @StyleableRes
+    private int mCornerRadiusId;
 
-    private @StyleableRes
-    int mBackgroundContourColorId;
-    private @StyleableRes
-    int mBackgroundContourWidthId;
+    @StyleableRes
+    private int mBackgroundContourColorId;
+    @StyleableRes
+    private int mBackgroundContourWidthId;
 
-    private @StyleableRes
-    int mShadowRadiusId;
-    private @StyleableRes
-    int mShadowDxId;
-    private @StyleableRes
-    int mShadowDyId;
-    private @StyleableRes
-    int mShadowColorId;
+    @StyleableRes
+    private int mShadowRadiusId;
+    @StyleableRes
+    private int mShadowDxId;
+    @StyleableRes
+    private int mShadowDyId;
+    @StyleableRes
+    private int mShadowColorId;
 
-    private @StyleableRes
-    int mAnimationsId;
+    @StyleableRes
+    private int mAnimationsId;
 
 
     public IconicsAttrsExtractor(@NonNull Context context, @NonNull TypedArray typedArray) {
@@ -95,126 +95,126 @@ public class IconicsAttrsExtractor {
     }
 
     //region chain setters
-    public @NonNull
-    IconicsAttrsExtractor iconId(@StyleableRes int iconId) {
+    @NonNull
+    public IconicsAttrsExtractor iconId(@StyleableRes int iconId) {
         mIconId = iconId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor sizeId(@StyleableRes int sizeId) {
+    @NonNull
+    public IconicsAttrsExtractor sizeId(@StyleableRes int sizeId) {
         mSizeId = sizeId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor colorsId(@StyleableRes int colorsId) {
+    @NonNull
+    public IconicsAttrsExtractor colorsId(@StyleableRes int colorsId) {
         mColorsId = colorsId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor paddingId(@StyleableRes int paddingId) {
+    @NonNull
+    public IconicsAttrsExtractor paddingId(@StyleableRes int paddingId) {
         mPaddingId = paddingId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor offsetXId(@StyleableRes int offsetXId) {
+    @NonNull
+    public IconicsAttrsExtractor offsetXId(@StyleableRes int offsetXId) {
         mOffsetXId = offsetXId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor offsetYId(@StyleableRes int offsetYId) {
+    @NonNull
+    public IconicsAttrsExtractor offsetYId(@StyleableRes int offsetYId) {
         mOffsetYId = offsetYId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor contourColorId(@StyleableRes int contourColorId) {
+    @NonNull
+    public IconicsAttrsExtractor contourColorId(@StyleableRes int contourColorId) {
         mContourColorId = contourColorId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor contourWidthId(@StyleableRes int contourWidthId) {
+    @NonNull
+    public IconicsAttrsExtractor contourWidthId(@StyleableRes int contourWidthId) {
         mContourWidthId = contourWidthId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor backgroundColorId(@StyleableRes int backgroundColorId) {
+    @NonNull
+    public IconicsAttrsExtractor backgroundColorId(@StyleableRes int backgroundColorId) {
         mBackgroundColorId = backgroundColorId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor cornerRadiusId(@StyleableRes int cornerRadiusId) {
+    @NonNull
+    public IconicsAttrsExtractor cornerRadiusId(@StyleableRes int cornerRadiusId) {
         mCornerRadiusId = cornerRadiusId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor backgroundContourColorId(@StyleableRes int backgroundContourColorId) {
+    @NonNull
+    public IconicsAttrsExtractor backgroundContourColorId(@StyleableRes int backgroundContourColorId) {
         mBackgroundContourColorId = backgroundContourColorId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor backgroundContourWidthId(@StyleableRes int backgroundContourWidthId) {
+    @NonNull
+    public IconicsAttrsExtractor backgroundContourWidthId(@StyleableRes int backgroundContourWidthId) {
         mBackgroundContourWidthId = backgroundContourWidthId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor shadowRadiusId(@StyleableRes int shadowRadiusId) {
+    @NonNull
+    public IconicsAttrsExtractor shadowRadiusId(@StyleableRes int shadowRadiusId) {
         mShadowRadiusId = shadowRadiusId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor shadowDxId(@StyleableRes int shadowDxId) {
+    @NonNull
+    public IconicsAttrsExtractor shadowDxId(@StyleableRes int shadowDxId) {
         mShadowDxId = shadowDxId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor shadowDyId(@StyleableRes int shadowDyId) {
+    @NonNull
+    public IconicsAttrsExtractor shadowDyId(@StyleableRes int shadowDyId) {
         mShadowDyId = shadowDyId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor shadowColorId(@StyleableRes int shadowColorId) {
+    @NonNull
+    public IconicsAttrsExtractor shadowColorId(@StyleableRes int shadowColorId) {
         mShadowColorId = shadowColorId;
         return this;
     }
 
-    public @NonNull
-    IconicsAttrsExtractor animationsId(@StyleableRes int animationsId) {
+    @NonNull
+    public IconicsAttrsExtractor animationsId(@StyleableRes int animationsId) {
         mAnimationsId = animationsId;
         return this;
     }
     //endregion
 
-    public @NonNull
-    IconicsDrawable extractNonNull() {
+    @NonNull
+    public IconicsDrawable extractNonNull() {
         return extract(null, false, true);
     }
 
-    public @Nullable
-    IconicsDrawable extract(@Nullable IconicsDrawable icon) {
+    @Nullable
+    public IconicsDrawable extract(@Nullable IconicsDrawable icon) {
         return extract(icon, false, false);
     }
 
-    public @Nullable
-    IconicsDrawable extract() {
+    @Nullable
+    public IconicsDrawable extract() {
         return extract(null, false, false);
     }
 
-    public @Nullable
-    IconicsDrawable extractWithOffsets() {
+    @Nullable
+    public IconicsDrawable extractWithOffsets() {
         return extract(null, true, false);
     }
 
@@ -327,16 +327,16 @@ public class IconicsAttrsExtractor {
         return icon;
     }
 
-    private static @Nullable
-    IconicsDrawable copyIfCan(@Nullable IconicsDrawable drawable) {
+    @Nullable
+    private static IconicsDrawable copyIfCan(@Nullable IconicsDrawable drawable) {
         if (drawable != null) {
             return drawable.clone();
         }
         return null;
     }
 
-    private static @NonNull
-    IconicsDrawable createIfNeeds(
+    @NonNull
+    private static IconicsDrawable createIfNeeds(
             @Nullable IconicsDrawable drawable,
             @NonNull Context context) {
         if (drawable == null) {

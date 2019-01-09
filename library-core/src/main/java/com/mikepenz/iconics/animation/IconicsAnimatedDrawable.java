@@ -20,10 +20,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
@@ -31,13 +27,17 @@ import com.mikepenz.iconics.typeface.ITypeface;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+
 /**
  * @author pa.gulko zTrap (28.11.2018)
  */
 @SuppressWarnings("UnusedReturnValue, WeakerAccess, unused")
 public class IconicsAnimatedDrawable extends IconicsDrawable {
-    private @NonNull
-    List<IconicsAnimationProcessor> mProcessors = new ArrayList<>();
+    @NonNull
+    private List<IconicsAnimationProcessor> mProcessors = new ArrayList<>();
 
     public IconicsAnimatedDrawable(Context context) {
         super(context);
@@ -93,8 +93,8 @@ public class IconicsAnimatedDrawable extends IconicsDrawable {
     /**
      * Attach an {@link IconicsAnimationProcessor processor} to this drawable
      */
-    public @NonNull
-    IconicsAnimatedDrawable processor(@NonNull IconicsAnimationProcessor processor) {
+    @NonNull
+    public IconicsAnimatedDrawable processor(@NonNull IconicsAnimationProcessor processor) {
         if (processor == null) return this;
         processor.setDrawable(this);
         mProcessors.add(processor);
@@ -104,8 +104,8 @@ public class IconicsAnimatedDrawable extends IconicsDrawable {
     /**
      * Attach an {@link IconicsAnimationProcessor processors} to this drawable
      */
-    public @NonNull
-    IconicsAnimatedDrawable processors(@NonNull IconicsAnimationProcessor... processors) {
+    @NonNull
+    public IconicsAnimatedDrawable processors(@NonNull IconicsAnimationProcessor... processors) {
         if (processors == null || processors.length == 0) return this;
         for (IconicsAnimationProcessor processor : processors) {
             processor(processor);
@@ -117,8 +117,8 @@ public class IconicsAnimatedDrawable extends IconicsDrawable {
      * @return The runner which used for animations. Animations can be easily removed by calling
      * {@link Runner#unset()}
      */
-    public @NonNull
-    Runner animateIn(@Nullable View view) {
+    @NonNull
+    public Runner animateIn(@Nullable View view) {
         Runner runner = new Runner();
         runner.setFor(view, this);
         return runner;
@@ -126,10 +126,10 @@ public class IconicsAnimatedDrawable extends IconicsDrawable {
 
     public static class Runner {
         private boolean mIsAttached = false;
-        private @Nullable
-        View mView;
-        private @Nullable
-        IconicsAnimatedDrawable mDrawable;
+        @Nullable
+        private View mView;
+        @Nullable
+        private IconicsAnimatedDrawable mDrawable;
 
         private Runner() {
         }

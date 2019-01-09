@@ -20,11 +20,11 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
+
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
 
 /**
  * Helper class to control applying state changes to colors and paint. Also for compact providing
@@ -33,12 +33,12 @@ import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
  * @author pa.gulko zTrap (28.11.2018)
  */
 public class IconicsBrush<T extends Paint> {
-    private @Nullable
-    ColorStateList mColors;
-    private @NonNull
-    final T mPaint;
-    private @Nullable
-    int[] mState;
+    @Nullable
+    private ColorStateList mColors;
+    @NonNull
+    private final T mPaint;
+    @Nullable
+    private int[] mState;
     private int mAlpha;
 
     public IconicsBrush(@NonNull T paint) {
@@ -56,16 +56,16 @@ public class IconicsBrush<T extends Paint> {
     /**
      * @return colors which applied on {@link #getPaint()} for drawing current state
      */
-    public @Nullable
-    ColorStateList getColorsList() {
+    @Nullable
+    public ColorStateList getColorsList() {
         return mColors;
     }
 
     /**
      * @return paint. Will be used for drawing something (icon, background etc.)
      */
-    public @NonNull
-    T getPaint() {
+    @NonNull
+    public T getPaint() {
         return mPaint;
     }
 
@@ -80,8 +80,8 @@ public class IconicsBrush<T extends Paint> {
     /**
      * @return alpha channel for colors
      */
-    public @IntRange(from = 0, to = 255)
-    int getAlpha() {
+    @IntRange(from = 0, to = 255)
+    public int getAlpha() {
         return mAlpha;
     }
 

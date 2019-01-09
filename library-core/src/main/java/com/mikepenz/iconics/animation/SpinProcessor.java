@@ -21,13 +21,13 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextPaint;
 
-import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
-
 import com.mikepenz.iconics.IconicsBrush;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
 
 /**
  * @author pa.gulko zTrap (30.11.2018)
@@ -46,8 +46,8 @@ public class SpinProcessor extends IconicsAnimationProcessor {
     private @interface Direction {
     }
 
-    private @Direction
-    int mDirection = DIRECTION_CLOCKWISE;
+    @Direction
+    private int mDirection = DIRECTION_CLOCKWISE;
     private boolean mIsDrawableShadowCleared = false;
 
     {
@@ -58,8 +58,8 @@ public class SpinProcessor extends IconicsAnimationProcessor {
      * @param direction The direction of the spin, {@link #DIRECTION_CLOCKWISE clockwise (+1)}
      *                  or {@link #DIRECTION_COUNTER_CLOCKWISE counter clockwise (-1)}
      */
-    public @NonNull
-    SpinProcessor direction(@Direction int direction) {
+    @NonNull
+    public SpinProcessor direction(@Direction int direction) {
         mDirection = direction;
         return this;
     }
@@ -67,14 +67,14 @@ public class SpinProcessor extends IconicsAnimationProcessor {
     /**
      * @return the direction of the spin, clockwise (+1) or counter clockwise (-1)
      */
-    public @Direction
-    int getDirection() {
+    @Direction
+    public int getDirection() {
         return (int) Math.signum(mDirection);
     }
 
     @Override
-    public @NonNull
-    String animationTag() {
+    @NonNull
+    public String animationTag() {
         return "spin";
     }
 
