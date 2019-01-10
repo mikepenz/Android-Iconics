@@ -17,13 +17,13 @@
 package com.mikepenz.iconics.internal;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.RestrictTo;
-import android.support.v4.widget.TextViewCompat;
+import androidx.annotation.RestrictTo;
+import androidx.core.widget.TextViewCompat;
 import android.widget.TextView;
 
 import com.mikepenz.iconics.IconicsDrawable;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * @author pa.gulko zTrap (06.07.2017)

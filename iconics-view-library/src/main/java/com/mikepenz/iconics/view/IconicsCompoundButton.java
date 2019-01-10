@@ -17,18 +17,20 @@
 package com.mikepenz.iconics.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
 import android.util.AttributeSet;
 import android.widget.CompoundButton;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import com.mikepenz.iconics.internal.CheckableIconBundle;
 import com.mikepenz.iconics.internal.IconicsView;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
@@ -54,6 +56,8 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
         mIconsBundle.createIcons(context);
         applyAttr(context, attrs, defStyle);
+        checkAnimation(mIconsBundle.mCheckedIcon);
+        checkAnimation(mIconsBundle.mUncheckedIcon);
         setButtonDrawable(mIconsBundle.createStates(context));
     }
 
@@ -65,12 +69,12 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     }
 
     public void setCheckedIcon(@Nullable IconicsDrawable icon) {
-        mIconsBundle.mCheckedIcon = icon;
+        mIconsBundle.mCheckedIcon = checkAnimation(icon);
         setButtonDrawable(mIconsBundle.createStates(getContext()));
     }
 
     public void setUncheckedIcon(@Nullable IconicsDrawable icon) {
-        mIconsBundle.mUncheckedIcon = icon;
+        mIconsBundle.mUncheckedIcon = checkAnimation(icon);
         setButtonDrawable(mIconsBundle.createStates(getContext()));
     }
 
@@ -88,6 +92,14 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
         } else {
             return null;
         }
+    }
+
+    private @Nullable IconicsDrawable checkAnimation(@Nullable IconicsDrawable drawable) {
+        if (drawable == null) return null;
+        if (drawable instanceof IconicsAnimatedDrawable) {
+            ((IconicsAnimatedDrawable) drawable).animateIn(this);
+        }
+        return drawable;
     }
 
     @Override

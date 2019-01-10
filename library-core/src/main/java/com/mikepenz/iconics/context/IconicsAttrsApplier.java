@@ -18,14 +18,16 @@ package com.mikepenz.iconics.context;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
 import android.util.AttributeSet;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.core.R;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * @author pa.gulko zTrap (07.10.2017)
@@ -34,7 +36,8 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 public class IconicsAttrsApplier {
 
     @Nullable
-    public static IconicsDrawable getIconicsDrawable(Context ctx, AttributeSet attrs) {
+    public static IconicsDrawable getIconicsDrawable(@NonNull Context ctx,
+                                                     @Nullable AttributeSet attrs) {
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.Iconics);
         try {
             return new IconicsAttrsExtractor(ctx, a)
@@ -42,17 +45,19 @@ public class IconicsAttrsApplier {
                     .colorsId(R.styleable.Iconics_ico_color)
                     .sizeId(R.styleable.Iconics_ico_size)
                     .paddingId(R.styleable.Iconics_ico_padding)
+                    .offsetXId(R.styleable.Iconics_ico_offset_x)
+                    .offsetYId(R.styleable.Iconics_ico_offset_y)
                     .contourColorId(R.styleable.Iconics_ico_contour_color)
                     .contourWidthId(R.styleable.Iconics_ico_contour_width)
                     .backgroundColorId(R.styleable.Iconics_ico_background_color)
                     .cornerRadiusId(R.styleable.Iconics_ico_corner_radius)
                     .backgroundContourColorId(R.styleable.Iconics_ico_background_contour_color)
                     .backgroundContourWidthId(R.styleable.Iconics_ico_background_contour_width)
-                    .offsetXId(R.styleable.Iconics_ico_offset_x)
-                    .offsetYId(R.styleable.Iconics_ico_offset_y)
-                    .shadowColorId(R.styleable.Iconics_ico_shadow_color)
-                    .shadowDeltaId(R.styleable.Iconics_ico_shadow_delta)
                     .shadowRadiusId(R.styleable.Iconics_ico_shadow_radius)
+                    .shadowDxId(R.styleable.Iconics_ico_shadow_dx)
+                    .shadowDyId(R.styleable.Iconics_ico_shadow_dy)
+                    .shadowColorId(R.styleable.Iconics_ico_shadow_color)
+                    .animationsId(R.styleable.Iconics_ico_animations)
                     .extractWithOffsets();
         } finally {
             a.recycle();

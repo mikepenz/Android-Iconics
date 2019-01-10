@@ -49,6 +49,12 @@ For generating string field for each of icons of your font, you can use this sim
 
 [Android-Iconics String Generator](https://github.com/zTrap/Android-Iconics-String-Generator)
 
+# Android module generator
+
+A awesome gradle plugin which can automatically fetch a font from Fontastic, and generate the Android Module for your project.
+
+[Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
+
 # Migration
 - [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
 
@@ -57,32 +63,33 @@ For generating string field for each of icons of your font, you can use this sim
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconcis library (without any widgets)
-implementation "com.mikepenz:iconics-core:3.0.3@aar"
-implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+implementation "com.mikepenz:iconics-core:3.1.0"
+implementation "androidx.appcompat:appcompat:${androidXVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:3.0.3@aar"
+implementation "com.mikepenz:iconics-views:3.1.0"
 ```
 
+To use appcompat please use a version smaller than 3.1.0. (See the releases on GitHub)
 
 ## 2. Choose your desired fonts
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
-implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.4@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.0.6.0@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.4@aar'
-implementation 'com.mikepenz:meteocons-typeface:1.1.0.4@aar'
-implementation 'com.mikepenz:community-material-typeface:2.0.46.1@aar'
-implementation 'com.mikepenz:weather-icons-typeface:2.0.10.4@aar'
-implementation 'com.mikepenz:typeicons-typeface:2.0.7.4@aar'
-implementation 'com.mikepenz:entypo-typeface:1.0.0.4@aar'
-implementation 'com.mikepenz:devicon-typeface:2.0.0.4@aar'
-implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.4@aar'
-implementation 'com.mikepenz:ionicons-typeface:2.0.1.4@aar'
-implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.2@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.3.original@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.3.1.1@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.5@aar'
+implementation 'com.mikepenz:meteocons-typeface:1.1.0.5@aar'
+implementation 'com.mikepenz:community-material-typeface:2.7.94.1@aar'
+implementation 'com.mikepenz:weather-icons-typeface:2.0.10.5@aar'
+implementation 'com.mikepenz:typeicons-typeface:2.0.7.5@aar'
+implementation 'com.mikepenz:entypo-typeface:1.0.0.5@aar'
+implementation 'com.mikepenz:devicon-typeface:2.0.0.5@aar'
+implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.5@aar'
+implementation 'com.mikepenz:ionicons-typeface:2.0.1.5@aar'
+implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
@@ -303,6 +310,7 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 # Special Contributor
 - [Peter Gulko](https://github.com/zTrap) Thanks for providing better XML support for compound Iconics drawables, and for doing the initial work of splitting up core and views library
+- [Baptiste Lagache](https://github.com/ligol) Thanks for the gradle font module generator
 - Also thanks for all the other contributors.
 
 # Credits

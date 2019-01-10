@@ -17,16 +17,18 @@
 package com.mikepenz.iconics.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import com.mikepenz.iconics.internal.IconicsView;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.appcompat.widget.AppCompatImageView;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsImageView extends AppCompatImageView implements IconicsView {
 
@@ -59,7 +61,7 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
     }
 
     public void setIcon(@Nullable IconicsDrawable icon) {
-        setImageDrawable(icon);
+        setImageDrawable(checkAnimation(icon));
     }
 
     public IconicsDrawable getIcon() {
@@ -68,5 +70,13 @@ public class IconicsImageView extends AppCompatImageView implements IconicsView 
         } else {
             return null;
         }
+    }
+
+    private @Nullable IconicsDrawable checkAnimation(@Nullable IconicsDrawable drawable) {
+        if (drawable == null) return null;
+        if (drawable instanceof IconicsAnimatedDrawable) {
+            ((IconicsAnimatedDrawable) drawable).animateIn(this);
+        }
+        return drawable;
     }
 }

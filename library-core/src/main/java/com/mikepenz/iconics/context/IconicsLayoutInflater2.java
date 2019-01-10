@@ -1,9 +1,10 @@
 package com.mikepenz.iconics.context;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatDelegate;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 /**
  * Created by bschnack on 07.18.17.

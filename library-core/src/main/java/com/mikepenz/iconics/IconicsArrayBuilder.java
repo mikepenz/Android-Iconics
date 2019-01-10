@@ -35,7 +35,7 @@ public class IconicsArrayBuilder {
     }
 
     public IconicsArrayBuilder add(IIcon icon) {
-        mIcons.add(Pair.create((Object) icon, (Typeface) null));
+        mIcons.add(Pair.create(icon, null));
         return this;
     }
 
@@ -48,12 +48,12 @@ public class IconicsArrayBuilder {
     }
 
     public IconicsArrayBuilder add(String icon, Typeface typeface) {
-        mIcons.add(Pair.create((Object) icon, typeface));
+        mIcons.add(Pair.create(icon, typeface));
         return this;
     }
 
     public IconicsArrayBuilder add(Character icon, Typeface typeface) {
-        mIcons.add(Pair.create((Object) icon, typeface));
+        mIcons.add(Pair.create(icon, typeface));
         return this;
     }
 

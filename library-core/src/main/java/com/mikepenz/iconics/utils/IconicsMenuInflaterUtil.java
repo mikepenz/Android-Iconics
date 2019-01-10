@@ -32,6 +32,8 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.HashMap;
 
+import androidx.annotation.NonNull;
+
 /**
  * Created by flisar on 23.05.2017.
  */
@@ -51,19 +53,40 @@ public class IconicsMenuInflaterUtil {
      * Default menu inflater
      * Uses the IconicsImageView styleable tags to get the iconics data of menu items
      */
-    public static void inflate(MenuInflater inflater, Context context, int menuId, Menu menu) {
+    public static void inflate(@NonNull MenuInflater inflater,
+                               @NonNull Context context,
+                               int menuId,
+                               @NonNull Menu menu) {
         inflate(inflater, context, menuId, menu, false);
     }
 
     /*
-     * Default menu inflater
-     * Uses the IconicsImageView styleable tags to get the iconics data of menu items
+     * Inflates an menu by resource id and uses the styleable tags to get the iconics data of menu
+     * items
      *
      * By default, menus don't show icons for sub menus, but this can be enabled via reflection
      * So use this function if you want that sub menu icons are checked as well
      */
-    public static void inflate(MenuInflater inflater, Context context, int menuId, Menu menu, boolean checkSubMenus) {
+    public static void inflate(@NonNull MenuInflater inflater,
+                               @NonNull Context context,
+                               int menuId,
+                               @NonNull Menu menu,
+                               boolean checkSubMenus) {
         inflater.inflate(menuId, menu);
+        parseXmlAndSetIconicsDrawables(context, menuId, menu, checkSubMenus);
+    }
+
+    /**
+     * Uses the styleable tags to get the iconics data of menu items. Useful for set icons into
+     * {@code BottomNavigationView}
+     * <p>
+     * By default, menus don't show icons for sub menus, but this can be enabled via reflection
+     * So use this function if you want that sub menu icons are checked as well
+     */
+    public static void parseXmlAndSetIconicsDrawables(@NonNull Context context,
+                                                      int menuId,
+                                                      @NonNull Menu menu,
+                                                      boolean checkSubMenus) {
         try {
             XmlResourceParser parser = context.getResources().getXml(menuId);
             AttributeSet attrs = Xml.asAttributeSet(parser);
@@ -75,7 +98,11 @@ public class IconicsMenuInflaterUtil {
         }
     }
 
-    private static void parseMenu(Context context, AttributeSet attrs, XmlPullParser parser, Menu menu, boolean checkSubMenus) throws XmlPullParserException, IOException {
+    private static void parseMenu(@NonNull Context context,
+                                  @NonNull AttributeSet attrs,
+                                  @NonNull XmlPullParser parser,
+                                  @NonNull Menu menu,
+                                  boolean checkSubMenus) throws XmlPullParserException, IOException {
         int eventType = parser.getEventType();
         String tagName;
         boolean lookingForEndOfUnknownTag = false;
@@ -112,7 +139,14 @@ public class IconicsMenuInflaterUtil {
                             }
                             IconicsDrawable icon = IconicsAttrsApplier.getIconicsDrawable(context, attrs);
                             if (icon != null) {
-                                int id = Integer.parseInt(attrsMap.get("id").replace("@", ""));
+                                String idAsString = attrsMap.get("id").replace("@", "");
+
+                                // If the id is not in literal format, look it up using the name.
+                                if (idAsString.startsWith("+id/")) {
+                                    idAsString = idAsString.replace("+id/", "");
+                                }
+
+                                int id = context.getResources().getIdentifier(idAsString, "id", context.getPackageName());
                                 menu.findItem(id).setIcon(icon);
                             }
                             break;
@@ -120,7 +154,7 @@ public class IconicsMenuInflaterUtil {
                         case XML_MENU:
                             // TODO: maybe we must pass in the sub menu in this case, not sure if the function menu.findItem(id) will search through sub items
                             if (checkSubMenus) {
-                                parseMenu(context, attrs, parser, menu, checkSubMenus);
+                                parseMenu(context, attrs, parser, menu, true);
                             }
                             break;
 

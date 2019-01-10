@@ -17,19 +17,21 @@
 package com.mikepenz.iconics.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables;
 import com.mikepenz.iconics.internal.CompoundIconsBundle;
 import com.mikepenz.iconics.internal.IconicsView;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.appcompat.widget.AppCompatTextView;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 public class IconicsTextView extends AppCompatTextView implements CompoundIconicsDrawables, IconicsView {
     protected final CompoundIconsBundle mIconsBundle = new CompoundIconsBundle();
@@ -51,6 +53,10 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
     @RestrictTo(LIBRARY_GROUP)
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
         applyAttr(context, attrs, defStyle);
+        checkAnimation(mIconsBundle.mBottomIcon);
+        checkAnimation(mIconsBundle.mTopIcon);
+        checkAnimation(mIconsBundle.mEndIcon);
+        checkAnimation(mIconsBundle.mStartIcon);
         setIcons();
     }
 
@@ -103,35 +109,43 @@ public class IconicsTextView extends AppCompatTextView implements CompoundIconic
 
     @Override
     public void setDrawableStart(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mStartIcon = drawable;
+        mIconsBundle.mStartIcon = checkAnimation(drawable);
         setIcons();
     }
 
     @Override
     public void setDrawableTop(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mTopIcon = drawable;
+        mIconsBundle.mTopIcon = checkAnimation(drawable);
         setIcons();
     }
 
     @Override
     public void setDrawableEnd(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mEndIcon = drawable;
+        mIconsBundle.mEndIcon = checkAnimation(drawable);
         setIcons();
     }
 
     @Override
     public void setDrawableBottom(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mBottomIcon = drawable;
+        mIconsBundle.mBottomIcon = checkAnimation(drawable);
         setIcons();
     }
 
     @Override
     public void setDrawableForAll(@Nullable IconicsDrawable drawable) {
-        mIconsBundle.mStartIcon = drawable;
-        mIconsBundle.mTopIcon = drawable;
-        mIconsBundle.mEndIcon = drawable;
-        mIconsBundle.mBottomIcon = drawable;
+        mIconsBundle.mStartIcon = checkAnimation(drawable);
+        mIconsBundle.mTopIcon = checkAnimation(drawable);
+        mIconsBundle.mEndIcon = checkAnimation(drawable);
+        mIconsBundle.mBottomIcon = checkAnimation(drawable);
         setIcons();
+    }
+
+    private @Nullable IconicsDrawable checkAnimation(@Nullable IconicsDrawable drawable) {
+        if (drawable == null) return null;
+        if (drawable instanceof IconicsAnimatedDrawable) {
+            ((IconicsAnimatedDrawable) drawable).animateIn(this);
+        }
+        return drawable;
     }
     //endregion
 

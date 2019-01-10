@@ -1,13 +1,13 @@
 package com.mikepenz.iconics.sample;
 
 
-import android.app.Application;
-
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.sample.typeface.CustomFont;
 import com.mikepenz.iconics.typeface.GenericFont;
 
-public class CustomApplication extends Application {
+import androidx.multidex.MultiDexApplication;
+
+public class CustomApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {

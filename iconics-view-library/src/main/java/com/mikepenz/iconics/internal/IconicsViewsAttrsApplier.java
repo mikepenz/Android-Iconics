@@ -18,9 +18,6 @@ package com.mikepenz.iconics.internal;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
 import android.util.AttributeSet;
 
 import com.mikepenz.iconics.IconicsDrawable;
@@ -28,7 +25,11 @@ import com.mikepenz.iconics.context.IconicsAttrsApplier;
 import com.mikepenz.iconics.context.IconicsAttrsExtractor;
 import com.mikepenz.iconics.view.R;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * @author pa.gulko zTrap (07.07.2017)
@@ -36,11 +37,11 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @RestrictTo(LIBRARY_GROUP)
 @SuppressWarnings("ConstantConditions")
 public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
-    
+
 
     //region IconicsImageView
-    @Nullable
-    public static IconicsDrawable getIconicsImageViewDrawable(Context ctx, AttributeSet attrs){
+    public static @Nullable IconicsDrawable getIconicsImageViewDrawable(@NonNull Context ctx,
+                                                                        @Nullable AttributeSet attrs) {
         final TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
         try {
             return new IconicsAttrsExtractor(ctx, a)
@@ -54,9 +55,11 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                     .cornerRadiusId(R.styleable.IconicsImageView_iiv_corner_radius)
                     .backgroundContourColorId(R.styleable.IconicsImageView_iiv_background_contour_color)
                     .backgroundContourWidthId(R.styleable.IconicsImageView_iiv_background_contour_width)
-                    .shadowColorId(R.styleable.IconicsImageView_iiv_shadow_color)
-                    .shadowDeltaId(R.styleable.IconicsImageView_iiv_shadow_delta)
                     .shadowRadiusId(R.styleable.IconicsImageView_iiv_shadow_radius)
+                    .shadowDxId(R.styleable.IconicsImageView_iiv_shadow_dx)
+                    .shadowDyId(R.styleable.IconicsImageView_iiv_shadow_dy)
+                    .shadowColorId(R.styleable.IconicsImageView_iiv_shadow_color)
+                    .animationsId(R.styleable.IconicsImageView_iiv_animations)
                     .extract();
         } finally {
             a.recycle();
@@ -69,14 +72,16 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
     /**
      * Attributes priority:
      * <p>
-     * Attributes with mark 'all' < attributes with some else mark ('start', 'top' etc)<br>
+     * Attributes with mark 'all' attributes with some else mark ('start', 'top' etc)<br>
      * Working like as 'style' xml-attribute - local overrides global
      * <p>
      * <b>IMPORTANT TRICK</b>
      * <p>
      * For overriding some of attributes to default use resources with prefix 'default_'
      */
-    public static void readIconicsTextView(Context ctx, AttributeSet attrs, CompoundIconsBundle bundle) {
+    public static void readIconicsTextView(@NonNull Context ctx,
+                                           @Nullable AttributeSet attrs,
+                                           @NonNull CompoundIconsBundle bundle) {
         final TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, 0, 0);
         //obtaining attributes for all icons
         IconicsDrawable allIcon = getIconicsTextViewAllDrawable(ctx, a);
@@ -96,8 +101,8 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
         a.recycle();
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsTextViewAllDrawable(Context ctx, TypedArray a) {
+    public static @Nullable IconicsDrawable getIconicsTextViewAllDrawable(@NonNull Context ctx,
+                                                                          @Nullable TypedArray a) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_all_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_all_color)
@@ -109,14 +114,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_all_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_all_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_all_background_contour_width)
-                .shadowColorId(R.styleable.IconicsTextView_iiv_all_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsTextView_iiv_all_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsTextView_iiv_all_shadow_radius)
+                .shadowDxId(R.styleable.IconicsTextView_iiv_all_shadow_dx)
+                .shadowDyId(R.styleable.IconicsTextView_iiv_all_shadow_dy)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_all_shadow_color)
+                .animationsId(R.styleable.IconicsTextView_iiv_all_animations)
                 .extract();
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsTextViewStartDrawable(Context ctx, TypedArray a, @Nullable IconicsDrawable icon) {
+    public static @Nullable IconicsDrawable getIconicsTextViewStartDrawable(@NonNull Context ctx,
+                                                                            @Nullable TypedArray a,
+                                                                            @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_start_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_start_color)
@@ -128,14 +136,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_start_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_start_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_start_background_contour_width)
-                .shadowColorId(R.styleable.IconicsTextView_iiv_start_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsTextView_iiv_start_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsTextView_iiv_start_shadow_radius)
+                .shadowDxId(R.styleable.IconicsTextView_iiv_start_shadow_dx)
+                .shadowDyId(R.styleable.IconicsTextView_iiv_start_shadow_dy)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_start_shadow_color)
+                .animationsId(R.styleable.IconicsTextView_iiv_start_animations)
                 .extract(icon);
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsTextViewTopDrawable(Context ctx, TypedArray a, @Nullable IconicsDrawable icon) {
+    public static @Nullable IconicsDrawable getIconicsTextViewTopDrawable(@NonNull Context ctx,
+                                                                          @Nullable TypedArray a,
+                                                                          @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_top_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_top_color)
@@ -147,14 +158,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_top_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_top_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_top_background_contour_width)
-                .shadowColorId(R.styleable.IconicsTextView_iiv_top_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsTextView_iiv_top_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsTextView_iiv_top_shadow_radius)
+                .shadowDxId(R.styleable.IconicsTextView_iiv_top_shadow_dx)
+                .shadowDyId(R.styleable.IconicsTextView_iiv_top_shadow_dy)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_top_shadow_color)
+                .animationsId(R.styleable.IconicsTextView_iiv_top_animations)
                 .extract(icon);
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsTextViewEndDrawable(Context ctx, TypedArray a, @Nullable IconicsDrawable icon) {
+    public static @Nullable IconicsDrawable getIconicsTextViewEndDrawable(@NonNull Context ctx,
+                                                                          @Nullable TypedArray a,
+                                                                          @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_end_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_end_color)
@@ -166,14 +180,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_end_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_end_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_end_background_contour_width)
-                .shadowColorId(R.styleable.IconicsTextView_iiv_end_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsTextView_iiv_end_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsTextView_iiv_end_shadow_radius)
+                .shadowDxId(R.styleable.IconicsTextView_iiv_end_shadow_dx)
+                .shadowDyId(R.styleable.IconicsTextView_iiv_end_shadow_dy)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_end_shadow_color)
+                .animationsId(R.styleable.IconicsTextView_iiv_end_animations)
                 .extract(icon);
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsTextViewBottomDrawable(Context ctx, TypedArray a, @Nullable IconicsDrawable icon) {
+    public static @Nullable IconicsDrawable getIconicsTextViewBottomDrawable(@NonNull Context ctx,
+                                                                             @Nullable TypedArray a,
+                                                                             @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_bottom_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_bottom_color)
@@ -185,15 +202,19 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsTextView_iiv_bottom_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsTextView_iiv_bottom_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsTextView_iiv_bottom_background_contour_width)
-                .shadowColorId(R.styleable.IconicsTextView_iiv_bottom_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsTextView_iiv_bottom_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsTextView_iiv_bottom_shadow_radius)
+                .shadowDxId(R.styleable.IconicsTextView_iiv_bottom_shadow_dx)
+                .shadowDyId(R.styleable.IconicsTextView_iiv_bottom_shadow_dy)
+                .shadowColorId(R.styleable.IconicsTextView_iiv_bottom_shadow_color)
+                .animationsId(R.styleable.IconicsTextView_iiv_bottom_animations)
                 .extract(icon);
     }
     //endregion
 
     //region IconicsCompoundButton
-    public static void readIconicsCompoundButton(Context ctx, AttributeSet attrs, CheckableIconBundle icon) {
+    public static void readIconicsCompoundButton(@NonNull Context ctx,
+                                                 @Nullable AttributeSet attrs,
+                                                 @NonNull CheckableIconBundle icon) {
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.IconicsCompoundButton, 0, 0);
 
         //obtaining attributes for Unchecked icon state
@@ -205,8 +226,8 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
         a.recycle();
     }
 
-    @NonNull
-    public static IconicsDrawable getIconicsCompoundButtonUncheckedDrawable(Context ctx, TypedArray a) {
+    public static @NonNull IconicsDrawable getIconicsCompoundButtonUncheckedDrawable(@NonNull Context ctx,
+                                                                                     @Nullable TypedArray a) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCompoundButton_iiv_unchecked_icon)
                 .colorsId(R.styleable.IconicsCompoundButton_iiv_unchecked_color)
@@ -218,14 +239,16 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCompoundButton_iiv_unchecked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_width)
-                .shadowColorId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_radius)
                 .shadowRadiusId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_radius)
+                .shadowDxId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_dx)
+                .shadowDyId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_dy)
+                .shadowColorId(R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_color)
+                .animationsId(R.styleable.IconicsCompoundButton_iiv_unchecked_animations)
                 .extractNonNull();
     }
 
-    @NonNull
-    public static IconicsDrawable getIconicsCompoundButtonCheckedDrawable(Context ctx, TypedArray a) {
+    public static @NonNull IconicsDrawable getIconicsCompoundButtonCheckedDrawable(@NonNull Context ctx,
+                                                                                   @Nullable TypedArray a) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCompoundButton_iiv_checked_icon)
                 .colorsId(R.styleable.IconicsCompoundButton_iiv_checked_color)
@@ -237,9 +260,11 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCompoundButton_iiv_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCompoundButton_iiv_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCompoundButton_iiv_checked_background_contour_width)
-                .shadowColorId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_radius)
+                .shadowDxId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_dx)
+                .shadowDyId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_dy)
+                .shadowColorId(R.styleable.IconicsCompoundButton_iiv_checked_shadow_color)
+                .animationsId(R.styleable.IconicsCompoundButton_iiv_checked_animations)
                 .extractNonNull();
     }
     //endregion
@@ -249,14 +274,16 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
     /**
      * Attributes priority:
      * <p>
-     * Attributes with mark 'all' < attributes with some else mark ('start', 'top' etc)<br>
+     * Attributes with mark 'all' attributes with some else mark ('start', 'top' etc)<br>
      * Working like as 'style' xml-attribute - local overrides global
      * <p>
      * <b>IMPORTANT TRICK</b>
      * <p>
      * For overriding some of attributes to default use resources with prefix 'default_'
      */
-    public static void readIconicsCheckableTextView(Context ctx, AttributeSet attrs, CompoundIconsBundle bundle) {
+    public static void readIconicsCheckableTextView(@NonNull Context ctx,
+                                                    @Nullable AttributeSet attrs,
+                                                    @NonNull CompoundIconsBundle bundle) {
         TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView, 0, 0);
 
         //obtaining attributes for all icons
@@ -277,8 +304,8 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
         a.recycle();
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsCheckableTextViewAllDrawable(Context ctx, TypedArray a) {
+    public static @Nullable IconicsDrawable getIconicsCheckableTextViewAllDrawable(@NonNull Context ctx,
+                                                                                   @Nullable TypedArray a) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_all_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_all_checked_color)
@@ -290,14 +317,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_all_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_width)
-                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_radius)
+                .shadowDxId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_dx)
+                .shadowDyId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_dy)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_color)
+                .animationsId(R.styleable.IconicsCheckableTextView_iiv_all_checked_animations)
                 .extract();
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsCheckableTextViewStartDrawable(Context ctx, TypedArray a, @Nullable IconicsDrawable icon) {
+    public static @Nullable IconicsDrawable getIconicsCheckableTextViewStartDrawable(@NonNull Context ctx,
+                                                                                     @Nullable TypedArray a,
+                                                                                     @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_start_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_start_checked_color)
@@ -309,14 +339,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_start_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_width)
-                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_radius)
+                .shadowDxId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_dx)
+                .shadowDyId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_dy)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_color)
+                .animationsId(R.styleable.IconicsCheckableTextView_iiv_start_checked_animations)
                 .extract(icon);
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsCheckableTextViewTopDrawable(Context ctx, TypedArray a, @Nullable IconicsDrawable icon) {
+    public static @Nullable IconicsDrawable getIconicsCheckableTextViewTopDrawable(@NonNull Context ctx,
+                                                                                   @Nullable TypedArray a,
+                                                                                   @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_top_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_top_checked_color)
@@ -328,14 +361,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_top_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_width)
-                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_radius)
+                .shadowDxId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_dx)
+                .shadowDyId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_dy)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_color)
+                .animationsId(R.styleable.IconicsCheckableTextView_iiv_top_checked_animations)
                 .extract(icon);
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsCheckableTextViewEndDrawable(Context ctx, TypedArray a, @Nullable IconicsDrawable icon) {
+    public static @Nullable IconicsDrawable getIconicsCheckableTextViewEndDrawable(@NonNull Context ctx,
+                                                                                   @Nullable TypedArray a,
+                                                                                   @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_end_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_end_checked_color)
@@ -347,14 +383,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_end_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_width)
-                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_radius)
+                .shadowDxId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_dx)
+                .shadowDyId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_dy)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_color)
+                .animationsId(R.styleable.IconicsCheckableTextView_iiv_end_checked_animations)
                 .extract(icon);
     }
 
-    @Nullable
-    public static IconicsDrawable getIconicsCheckableTextViewBottomDrawable(Context ctx, TypedArray a, @Nullable IconicsDrawable icon) {
+    public static @Nullable IconicsDrawable getIconicsCheckableTextViewBottomDrawable(@NonNull Context ctx,
+                                                                                      @Nullable TypedArray a,
+                                                                                      @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color)
@@ -366,14 +405,17 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .cornerRadiusId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_corner_radius)
                 .backgroundContourColorId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_color)
                 .backgroundContourWidthId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_width)
-                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_color)
-                .shadowDeltaId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_delta)
                 .shadowRadiusId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_radius)
+                .shadowDxId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_dx)
+                .shadowDyId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_dy)
+                .shadowColorId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_color)
+                .animationsId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_animations)
                 .extract(icon);
     }
     //endregion
 
-    public static boolean isIconicsAnimateChanges(Context context, AttributeSet attrs) {
+    public static boolean isIconicsAnimateChanges(@NonNull Context context,
+                                                  @Nullable AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconicsAnimateChanges, 0, 0);
         try {
             return a.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true);

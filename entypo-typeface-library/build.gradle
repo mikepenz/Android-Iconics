@@ -16,18 +16,18 @@
 
 apply plugin: 'com.android.library'
 
-group "com.mikepenz"
-
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 10004
-        versionName "1.0.0.4"
+        versionCode 10005
+        versionName "1.0.0.5"
+
+        resValue "string", "entypo_version", "${versionName}"
     }
     buildTypes {
         release {
@@ -41,9 +41,7 @@ android {
     }
 }
 if (project.hasProperty('pushall') || project.hasProperty('Entypoonly')) {
-    apply from: '../gradle-mvn-push.gradle'
-    apply plugin: 'com.novoda.bintray-release'
-    apply from: '../gradle-jcenter-push.gradle'
+    apply from: '../gradle-release.gradle'
 }
 
 dependencies {
