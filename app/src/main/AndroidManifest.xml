@@ -26,10 +26,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".PlaygroundActivity"
@@ -43,6 +39,14 @@
             android:name=".OldAutomaticActivity"
             android:label="@string/title_activity_old_automatic"
             android:theme="@style/MaterialDrawerTheme.Light.ActionBar" />
+        <activity android:name=".FourActivity"
+                  android:label="@string/title_activity_old_automatic"
+                  android:theme="@style/MaterialDrawerTheme.Light.ActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

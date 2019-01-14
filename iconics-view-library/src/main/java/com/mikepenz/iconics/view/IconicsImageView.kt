@@ -19,38 +19,25 @@ package com.mikepenz.iconics.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ImageView
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
 import androidx.appcompat.widget.AppCompatImageView
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.internal.IconicsView
+import com.mikepenz.iconics.ver_four.IconicsDrawable
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
+import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
 
 open class IconicsImageView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyle: Int = 0
-) : AppCompatImageView(context, attrs, defStyle), IconicsView {
+) : AppCompatImageView(context, attrs, defStyle) {
 
     var icon: IconicsDrawable?
         get() = drawable as? IconicsDrawable
         set(icon) = setImageDrawable(tryToEnableIconicsAnimation(icon))
 
     init {
-        @Suppress("LeakingThis")
-        initialize(context, attrs, defStyle)
-    }
-
-    @RestrictTo(LIBRARY_GROUP)
-    override fun initialize(context: Context, attrs: AttributeSet?, defStyle: Int) {
         //set the scale type for this view
         scaleType = ImageView.ScaleType.CENTER_INSIDE
 
-        applyAttr(context, attrs, defStyle)
-    }
-
-    @RestrictTo(LIBRARY_GROUP)
-    override fun applyAttr(context: Context, attrs: AttributeSet?, defStyle: Int) {
         icon = IconicsViewsAttrsApplier.getIconicsImageViewDrawable(context, attrs)
     }
 }

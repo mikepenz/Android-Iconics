@@ -19,22 +19,20 @@ package com.mikepenz.iconics.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
 import androidx.appcompat.widget.AppCompatTextView
-import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.ver_four.Iconics
+import com.mikepenz.iconics.ver_four.IconicsDrawable
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
-import com.mikepenz.iconics.internal.IconicsView
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
+import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
 
 open class IconicsTextView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyle: Int = android.R.attr.textViewStyle
-) : AppCompatTextView(context, attrs, defStyle), CompoundIconicsDrawables, IconicsView {
-    internal val iconsBundle = CompoundIconsBundle()
+) : AppCompatTextView(context, attrs, defStyle), CompoundIconicsDrawables {
+    internal val iconsBundle: CompoundIconsBundle = CompoundIconsBundle()
 
     //region CompoundIconicsDrawablesImpl
     override var iconicsDrawableStart: IconicsDrawable?
@@ -66,25 +64,15 @@ open class IconicsTextView @JvmOverloads constructor(
         }
 
     init {
-        @Suppress("LeakingThis")
-        initialize(context, attrs, defStyle)
-    }
+        IconicsViewsAttrsApplier.readIconicsTextView(context, attrs, iconsBundle)
 
-    @RestrictTo(LIBRARY_GROUP)
-    override fun initialize(context: Context, attrs: AttributeSet?, defStyle: Int) {
-        applyAttr(context, attrs, defStyle)
         tryToEnableIconicsAnimation(
-                iconsBundle.bottomIcon,
-                iconsBundle.topIcon,
-                iconsBundle.endIcon,
-                iconsBundle.startIcon
+            iconsBundle.bottomIcon,
+            iconsBundle.topIcon,
+            iconsBundle.endIcon,
+            iconsBundle.startIcon
         )
         setIcons()
-    }
-
-    @RestrictTo(LIBRARY_GROUP)
-    override fun applyAttr(context: Context, attrs: AttributeSet?, defStyle: Int) {
-        IconicsViewsAttrsApplier.readIconicsTextView(context, attrs, iconsBundle)
     }
 
     private fun setIcons() {
@@ -102,7 +90,7 @@ open class IconicsTextView @JvmOverloads constructor(
 
     override fun setText(text: CharSequence, type: TextView.BufferType) {
         if (!isInEditMode) {
-            super.setText(Iconics.IconicsBuilder().ctx(context).on(text).build(), type)
+            super.setText(Iconics.Builder().ctx(context).on(text).build(), type)
         } else {
             super.setText(text, type)
         }

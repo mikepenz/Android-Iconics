@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_FoundationIcons">com.mikepenz.foundation_icons_typeface_library.FoundationIcons</string>
+    <string name="define_font_FoundationIcons">com.mikepenz.iconics.typeface.foundationicons.FoundationIcons</string>
 </resources>

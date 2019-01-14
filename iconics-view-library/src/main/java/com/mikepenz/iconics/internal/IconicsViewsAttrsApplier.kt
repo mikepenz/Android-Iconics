@@ -21,8 +21,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.core.content.res.use
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.context.IconicsAttrsExtractor
+import com.mikepenz.iconics.ver_four.IconicsDrawable
 import com.mikepenz.iconics.view.R
 
 /**
@@ -34,24 +33,24 @@ internal object IconicsViewsAttrsApplier {
     //region IconicsImageView
     fun getIconicsImageViewDrawable(ctx: Context, attrs: AttributeSet?): IconicsDrawable? {
         return ctx.obtainStyledAttributes(attrs, R.styleable.IconicsImageView).use {
-            IconicsAttrsExtractor(
-                    context = ctx,
-                    typedArray = it,
-                    iconId = R.styleable.IconicsImageView_iiv_icon,
-                    colorsId = R.styleable.IconicsImageView_iiv_color,
-                    sizeId = R.styleable.IconicsImageView_iiv_size,
-                    paddingId = R.styleable.IconicsImageView_iiv_padding,
-                    contourColorId = R.styleable.IconicsImageView_iiv_contour_color,
-                    contourWidthId = R.styleable.IconicsImageView_iiv_contour_width,
-                    backgroundColorId = R.styleable.IconicsImageView_iiv_background_color,
-                    cornerRadiusId = R.styleable.IconicsImageView_iiv_corner_radius,
-                    backgroundContourColorId = R.styleable.IconicsImageView_iiv_background_contour_color,
-                    backgroundContourWidthId = R.styleable.IconicsImageView_iiv_background_contour_width,
-                    shadowRadiusId = R.styleable.IconicsImageView_iiv_shadow_radius,
-                    shadowDxId = R.styleable.IconicsImageView_iiv_shadow_dx,
-                    shadowDyId = R.styleable.IconicsImageView_iiv_shadow_dy,
-                    shadowColorId = R.styleable.IconicsImageView_iiv_shadow_color,
-                    animationsId = R.styleable.IconicsImageView_iiv_animations
+            com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+                context = ctx,
+                typedArray = it,
+                iconId = R.styleable.IconicsImageView_iiv_icon,
+                colorsId = R.styleable.IconicsImageView_iiv_color,
+                sizeId = R.styleable.IconicsImageView_iiv_size,
+                paddingId = R.styleable.IconicsImageView_iiv_padding,
+                contourColorId = R.styleable.IconicsImageView_iiv_contour_color,
+                contourWidthId = R.styleable.IconicsImageView_iiv_contour_width,
+                backgroundColorId = R.styleable.IconicsImageView_iiv_background_color,
+                cornerRadiusId = R.styleable.IconicsImageView_iiv_corner_radius,
+                backgroundContourColorId = R.styleable.IconicsImageView_iiv_background_contour_color,
+                backgroundContourWidthId = R.styleable.IconicsImageView_iiv_background_contour_width,
+                shadowRadiusId = R.styleable.IconicsImageView_iiv_shadow_radius,
+                shadowDxId = R.styleable.IconicsImageView_iiv_shadow_dx,
+                shadowDyId = R.styleable.IconicsImageView_iiv_shadow_dy,
+                shadowColorId = R.styleable.IconicsImageView_iiv_shadow_color,
+                animationsId = R.styleable.IconicsImageView_iiv_animations
             ).extract()
         }
     }
@@ -93,112 +92,112 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsTextViewAllDrawable(ctx: Context, a: TypedArray): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsTextView_iiv_all_icon,
-                colorsId = R.styleable.IconicsTextView_iiv_all_color,
-                sizeId = R.styleable.IconicsTextView_iiv_all_size,
-                paddingId = R.styleable.IconicsTextView_iiv_all_padding,
-                contourColorId = R.styleable.IconicsTextView_iiv_all_contour_color,
-                contourWidthId = R.styleable.IconicsTextView_iiv_all_contour_width,
-                backgroundColorId = R.styleable.IconicsTextView_iiv_all_background_color,
-                cornerRadiusId = R.styleable.IconicsTextView_iiv_all_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsTextView_iiv_all_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsTextView_iiv_all_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsTextView_iiv_all_shadow_radius,
-                shadowDxId = R.styleable.IconicsTextView_iiv_all_shadow_dx,
-                shadowDyId = R.styleable.IconicsTextView_iiv_all_shadow_dy,
-                shadowColorId = R.styleable.IconicsTextView_iiv_all_shadow_color,
-                animationsId = R.styleable.IconicsTextView_iiv_all_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsTextView_iiv_all_icon,
+            colorsId = R.styleable.IconicsTextView_iiv_all_color,
+            sizeId = R.styleable.IconicsTextView_iiv_all_size,
+            paddingId = R.styleable.IconicsTextView_iiv_all_padding,
+            contourColorId = R.styleable.IconicsTextView_iiv_all_contour_color,
+            contourWidthId = R.styleable.IconicsTextView_iiv_all_contour_width,
+            backgroundColorId = R.styleable.IconicsTextView_iiv_all_background_color,
+            cornerRadiusId = R.styleable.IconicsTextView_iiv_all_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsTextView_iiv_all_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsTextView_iiv_all_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsTextView_iiv_all_shadow_radius,
+            shadowDxId = R.styleable.IconicsTextView_iiv_all_shadow_dx,
+            shadowDyId = R.styleable.IconicsTextView_iiv_all_shadow_dy,
+            shadowColorId = R.styleable.IconicsTextView_iiv_all_shadow_color,
+            animationsId = R.styleable.IconicsTextView_iiv_all_animations
         ).extract()
     }
 
     private fun getIconicsTextViewStartDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsTextView_iiv_start_icon,
-                colorsId = R.styleable.IconicsTextView_iiv_start_color,
-                sizeId = R.styleable.IconicsTextView_iiv_start_size,
-                paddingId = R.styleable.IconicsTextView_iiv_start_padding,
-                contourColorId = R.styleable.IconicsTextView_iiv_start_contour_color,
-                contourWidthId = R.styleable.IconicsTextView_iiv_start_contour_width,
-                backgroundColorId = R.styleable.IconicsTextView_iiv_start_background_color,
-                cornerRadiusId = R.styleable.IconicsTextView_iiv_start_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsTextView_iiv_start_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsTextView_iiv_start_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsTextView_iiv_start_shadow_radius,
-                shadowDxId = R.styleable.IconicsTextView_iiv_start_shadow_dx,
-                shadowDyId = R.styleable.IconicsTextView_iiv_start_shadow_dy,
-                shadowColorId = R.styleable.IconicsTextView_iiv_start_shadow_color,
-                animationsId = R.styleable.IconicsTextView_iiv_start_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsTextView_iiv_start_icon,
+            colorsId = R.styleable.IconicsTextView_iiv_start_color,
+            sizeId = R.styleable.IconicsTextView_iiv_start_size,
+            paddingId = R.styleable.IconicsTextView_iiv_start_padding,
+            contourColorId = R.styleable.IconicsTextView_iiv_start_contour_color,
+            contourWidthId = R.styleable.IconicsTextView_iiv_start_contour_width,
+            backgroundColorId = R.styleable.IconicsTextView_iiv_start_background_color,
+            cornerRadiusId = R.styleable.IconicsTextView_iiv_start_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsTextView_iiv_start_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsTextView_iiv_start_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsTextView_iiv_start_shadow_radius,
+            shadowDxId = R.styleable.IconicsTextView_iiv_start_shadow_dx,
+            shadowDyId = R.styleable.IconicsTextView_iiv_start_shadow_dy,
+            shadowColorId = R.styleable.IconicsTextView_iiv_start_shadow_color,
+            animationsId = R.styleable.IconicsTextView_iiv_start_animations
         ).extract(icon)
     }
 
     private fun getIconicsTextViewTopDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsTextView_iiv_top_icon,
-                colorsId = R.styleable.IconicsTextView_iiv_top_color,
-                sizeId = R.styleable.IconicsTextView_iiv_top_size,
-                paddingId = R.styleable.IconicsTextView_iiv_top_padding,
-                contourColorId = R.styleable.IconicsTextView_iiv_top_contour_color,
-                contourWidthId = R.styleable.IconicsTextView_iiv_top_contour_width,
-                backgroundColorId = R.styleable.IconicsTextView_iiv_top_background_color,
-                cornerRadiusId = R.styleable.IconicsTextView_iiv_top_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsTextView_iiv_top_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsTextView_iiv_top_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsTextView_iiv_top_shadow_radius,
-                shadowDxId = R.styleable.IconicsTextView_iiv_top_shadow_dx,
-                shadowDyId = R.styleable.IconicsTextView_iiv_top_shadow_dy,
-                shadowColorId = R.styleable.IconicsTextView_iiv_top_shadow_color,
-                animationsId = R.styleable.IconicsTextView_iiv_top_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsTextView_iiv_top_icon,
+            colorsId = R.styleable.IconicsTextView_iiv_top_color,
+            sizeId = R.styleable.IconicsTextView_iiv_top_size,
+            paddingId = R.styleable.IconicsTextView_iiv_top_padding,
+            contourColorId = R.styleable.IconicsTextView_iiv_top_contour_color,
+            contourWidthId = R.styleable.IconicsTextView_iiv_top_contour_width,
+            backgroundColorId = R.styleable.IconicsTextView_iiv_top_background_color,
+            cornerRadiusId = R.styleable.IconicsTextView_iiv_top_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsTextView_iiv_top_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsTextView_iiv_top_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsTextView_iiv_top_shadow_radius,
+            shadowDxId = R.styleable.IconicsTextView_iiv_top_shadow_dx,
+            shadowDyId = R.styleable.IconicsTextView_iiv_top_shadow_dy,
+            shadowColorId = R.styleable.IconicsTextView_iiv_top_shadow_color,
+            animationsId = R.styleable.IconicsTextView_iiv_top_animations
         ).extract(icon)
     }
 
     private fun getIconicsTextViewEndDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsTextView_iiv_end_icon,
-                colorsId = R.styleable.IconicsTextView_iiv_end_color,
-                sizeId = R.styleable.IconicsTextView_iiv_end_size,
-                paddingId = R.styleable.IconicsTextView_iiv_end_padding,
-                contourColorId = R.styleable.IconicsTextView_iiv_end_contour_color,
-                contourWidthId = R.styleable.IconicsTextView_iiv_end_contour_width,
-                backgroundColorId = R.styleable.IconicsTextView_iiv_end_background_color,
-                cornerRadiusId = R.styleable.IconicsTextView_iiv_end_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsTextView_iiv_end_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsTextView_iiv_end_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsTextView_iiv_end_shadow_radius,
-                shadowDxId = R.styleable.IconicsTextView_iiv_end_shadow_dx,
-                shadowDyId = R.styleable.IconicsTextView_iiv_end_shadow_dy,
-                shadowColorId = R.styleable.IconicsTextView_iiv_end_shadow_color,
-                animationsId = R.styleable.IconicsTextView_iiv_end_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsTextView_iiv_end_icon,
+            colorsId = R.styleable.IconicsTextView_iiv_end_color,
+            sizeId = R.styleable.IconicsTextView_iiv_end_size,
+            paddingId = R.styleable.IconicsTextView_iiv_end_padding,
+            contourColorId = R.styleable.IconicsTextView_iiv_end_contour_color,
+            contourWidthId = R.styleable.IconicsTextView_iiv_end_contour_width,
+            backgroundColorId = R.styleable.IconicsTextView_iiv_end_background_color,
+            cornerRadiusId = R.styleable.IconicsTextView_iiv_end_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsTextView_iiv_end_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsTextView_iiv_end_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsTextView_iiv_end_shadow_radius,
+            shadowDxId = R.styleable.IconicsTextView_iiv_end_shadow_dx,
+            shadowDyId = R.styleable.IconicsTextView_iiv_end_shadow_dy,
+            shadowColorId = R.styleable.IconicsTextView_iiv_end_shadow_color,
+            animationsId = R.styleable.IconicsTextView_iiv_end_animations
         ).extract(icon)
     }
 
     private fun getIconicsTextViewBottomDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsTextView_iiv_bottom_icon,
-                colorsId = R.styleable.IconicsTextView_iiv_bottom_color,
-                sizeId = R.styleable.IconicsTextView_iiv_bottom_size,
-                paddingId = R.styleable.IconicsTextView_iiv_bottom_padding,
-                contourColorId = R.styleable.IconicsTextView_iiv_bottom_contour_color,
-                contourWidthId = R.styleable.IconicsTextView_iiv_bottom_contour_width,
-                backgroundColorId = R.styleable.IconicsTextView_iiv_bottom_background_color,
-                cornerRadiusId = R.styleable.IconicsTextView_iiv_bottom_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsTextView_iiv_bottom_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsTextView_iiv_bottom_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsTextView_iiv_bottom_shadow_radius,
-                shadowDxId = R.styleable.IconicsTextView_iiv_bottom_shadow_dx,
-                shadowDyId = R.styleable.IconicsTextView_iiv_bottom_shadow_dy,
-                shadowColorId = R.styleable.IconicsTextView_iiv_bottom_shadow_color,
-                animationsId = R.styleable.IconicsTextView_iiv_bottom_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsTextView_iiv_bottom_icon,
+            colorsId = R.styleable.IconicsTextView_iiv_bottom_color,
+            sizeId = R.styleable.IconicsTextView_iiv_bottom_size,
+            paddingId = R.styleable.IconicsTextView_iiv_bottom_padding,
+            contourColorId = R.styleable.IconicsTextView_iiv_bottom_contour_color,
+            contourWidthId = R.styleable.IconicsTextView_iiv_bottom_contour_width,
+            backgroundColorId = R.styleable.IconicsTextView_iiv_bottom_background_color,
+            cornerRadiusId = R.styleable.IconicsTextView_iiv_bottom_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsTextView_iiv_bottom_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsTextView_iiv_bottom_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsTextView_iiv_bottom_shadow_radius,
+            shadowDxId = R.styleable.IconicsTextView_iiv_bottom_shadow_dx,
+            shadowDyId = R.styleable.IconicsTextView_iiv_bottom_shadow_dy,
+            shadowColorId = R.styleable.IconicsTextView_iiv_bottom_shadow_color,
+            animationsId = R.styleable.IconicsTextView_iiv_bottom_animations
         ).extract(icon)
     }
     //endregion
@@ -216,46 +215,46 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCompoundButtonUncheckedDrawable(ctx: Context, a: TypedArray): IconicsDrawable {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsCompoundButton_iiv_unchecked_icon,
-                colorsId = R.styleable.IconicsCompoundButton_iiv_unchecked_color,
-                sizeId = R.styleable.IconicsCompoundButton_iiv_unchecked_size,
-                paddingId = R.styleable.IconicsCompoundButton_iiv_unchecked_padding,
-                contourColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_contour_color,
-                contourWidthId = R.styleable.IconicsCompoundButton_iiv_unchecked_contour_width,
-                backgroundColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_background_color,
-                cornerRadiusId = R.styleable.IconicsCompoundButton_iiv_unchecked_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_radius,
-                shadowDxId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_dx,
-                shadowDyId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_dy,
-                shadowColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_color,
-                animationsId = R.styleable.IconicsCompoundButton_iiv_unchecked_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsCompoundButton_iiv_unchecked_icon,
+            colorsId = R.styleable.IconicsCompoundButton_iiv_unchecked_color,
+            sizeId = R.styleable.IconicsCompoundButton_iiv_unchecked_size,
+            paddingId = R.styleable.IconicsCompoundButton_iiv_unchecked_padding,
+            contourColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_contour_color,
+            contourWidthId = R.styleable.IconicsCompoundButton_iiv_unchecked_contour_width,
+            backgroundColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_background_color,
+            cornerRadiusId = R.styleable.IconicsCompoundButton_iiv_unchecked_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsCompoundButton_iiv_unchecked_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_radius,
+            shadowDxId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_dx,
+            shadowDyId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_dy,
+            shadowColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_color,
+            animationsId = R.styleable.IconicsCompoundButton_iiv_unchecked_animations
         ).extractNonNull()
     }
 
     private fun getIconicsCompoundButtonCheckedDrawable(ctx: Context, a: TypedArray): IconicsDrawable {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsCompoundButton_iiv_checked_icon,
-                colorsId = R.styleable.IconicsCompoundButton_iiv_checked_color,
-                sizeId = R.styleable.IconicsCompoundButton_iiv_checked_size,
-                paddingId = R.styleable.IconicsCompoundButton_iiv_checked_padding,
-                contourColorId = R.styleable.IconicsCompoundButton_iiv_checked_contour_color,
-                contourWidthId = R.styleable.IconicsCompoundButton_iiv_checked_contour_width,
-                backgroundColorId = R.styleable.IconicsCompoundButton_iiv_checked_background_color,
-                cornerRadiusId = R.styleable.IconicsCompoundButton_iiv_checked_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsCompoundButton_iiv_checked_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsCompoundButton_iiv_checked_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_radius,
-                shadowDxId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_dx,
-                shadowDyId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_dy,
-                shadowColorId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_color,
-                animationsId = R.styleable.IconicsCompoundButton_iiv_checked_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsCompoundButton_iiv_checked_icon,
+            colorsId = R.styleable.IconicsCompoundButton_iiv_checked_color,
+            sizeId = R.styleable.IconicsCompoundButton_iiv_checked_size,
+            paddingId = R.styleable.IconicsCompoundButton_iiv_checked_padding,
+            contourColorId = R.styleable.IconicsCompoundButton_iiv_checked_contour_color,
+            contourWidthId = R.styleable.IconicsCompoundButton_iiv_checked_contour_width,
+            backgroundColorId = R.styleable.IconicsCompoundButton_iiv_checked_background_color,
+            cornerRadiusId = R.styleable.IconicsCompoundButton_iiv_checked_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsCompoundButton_iiv_checked_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsCompoundButton_iiv_checked_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_radius,
+            shadowDxId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_dx,
+            shadowDyId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_dy,
+            shadowColorId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_color,
+            animationsId = R.styleable.IconicsCompoundButton_iiv_checked_animations
         ).extractNonNull()
     }
     //endregion
@@ -296,112 +295,112 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCheckableTextViewAllDrawable(ctx: Context, a: TypedArray): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsCheckableTextView_iiv_all_checked_icon,
-                colorsId = R.styleable.IconicsCheckableTextView_iiv_all_checked_color,
-                sizeId = R.styleable.IconicsCheckableTextView_iiv_all_checked_size,
-                paddingId = R.styleable.IconicsCheckableTextView_iiv_all_checked_padding,
-                contourColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_color,
-                contourWidthId = R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_width,
-                backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_background_color,
-                cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_all_checked_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_radius,
-                shadowDxId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_dx,
-                shadowDyId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_dy,
-                shadowColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_color,
-                animationsId = R.styleable.IconicsCheckableTextView_iiv_all_checked_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsCheckableTextView_iiv_all_checked_icon,
+            colorsId = R.styleable.IconicsCheckableTextView_iiv_all_checked_color,
+            sizeId = R.styleable.IconicsCheckableTextView_iiv_all_checked_size,
+            paddingId = R.styleable.IconicsCheckableTextView_iiv_all_checked_padding,
+            contourColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_color,
+            contourWidthId = R.styleable.IconicsCheckableTextView_iiv_all_checked_contour_width,
+            backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_background_color,
+            cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_all_checked_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_all_checked_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_radius,
+            shadowDxId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_dx,
+            shadowDyId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_dy,
+            shadowColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_color,
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_all_checked_animations
         ).extract()
     }
 
     private fun getIconicsCheckableTextViewStartDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsCheckableTextView_iiv_start_checked_icon,
-                colorsId = R.styleable.IconicsCheckableTextView_iiv_start_checked_color,
-                sizeId = R.styleable.IconicsCheckableTextView_iiv_start_checked_size,
-                paddingId = R.styleable.IconicsCheckableTextView_iiv_start_checked_padding,
-                contourColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_contour_color,
-                contourWidthId = R.styleable.IconicsCheckableTextView_iiv_start_checked_contour_width,
-                backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_background_color,
-                cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_start_checked_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_radius,
-                shadowDxId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_dx,
-                shadowDyId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_dy,
-                shadowColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_color,
-                animationsId = R.styleable.IconicsCheckableTextView_iiv_start_checked_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsCheckableTextView_iiv_start_checked_icon,
+            colorsId = R.styleable.IconicsCheckableTextView_iiv_start_checked_color,
+            sizeId = R.styleable.IconicsCheckableTextView_iiv_start_checked_size,
+            paddingId = R.styleable.IconicsCheckableTextView_iiv_start_checked_padding,
+            contourColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_contour_color,
+            contourWidthId = R.styleable.IconicsCheckableTextView_iiv_start_checked_contour_width,
+            backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_background_color,
+            cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_start_checked_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_start_checked_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_radius,
+            shadowDxId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_dx,
+            shadowDyId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_dy,
+            shadowColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_color,
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_start_checked_animations
         ).extract(icon)
     }
 
     private fun getIconicsCheckableTextViewTopDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsCheckableTextView_iiv_top_checked_icon,
-                colorsId = R.styleable.IconicsCheckableTextView_iiv_top_checked_color,
-                sizeId = R.styleable.IconicsCheckableTextView_iiv_top_checked_size,
-                paddingId = R.styleable.IconicsCheckableTextView_iiv_top_checked_padding,
-                contourColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_contour_color,
-                contourWidthId = R.styleable.IconicsCheckableTextView_iiv_top_checked_contour_width,
-                backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_background_color,
-                cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_top_checked_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_radius,
-                shadowDxId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_dx,
-                shadowDyId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_dy,
-                shadowColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_color,
-                animationsId = R.styleable.IconicsCheckableTextView_iiv_top_checked_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsCheckableTextView_iiv_top_checked_icon,
+            colorsId = R.styleable.IconicsCheckableTextView_iiv_top_checked_color,
+            sizeId = R.styleable.IconicsCheckableTextView_iiv_top_checked_size,
+            paddingId = R.styleable.IconicsCheckableTextView_iiv_top_checked_padding,
+            contourColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_contour_color,
+            contourWidthId = R.styleable.IconicsCheckableTextView_iiv_top_checked_contour_width,
+            backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_background_color,
+            cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_top_checked_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_top_checked_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_radius,
+            shadowDxId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_dx,
+            shadowDyId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_dy,
+            shadowColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_color,
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_top_checked_animations
         ).extract(icon)
     }
 
     private fun getIconicsCheckableTextViewEndDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsCheckableTextView_iiv_end_checked_icon,
-                colorsId = R.styleable.IconicsCheckableTextView_iiv_end_checked_color,
-                sizeId = R.styleable.IconicsCheckableTextView_iiv_end_checked_size,
-                paddingId = R.styleable.IconicsCheckableTextView_iiv_end_checked_padding,
-                contourColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_contour_color,
-                contourWidthId = R.styleable.IconicsCheckableTextView_iiv_end_checked_contour_width,
-                backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_background_color,
-                cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_end_checked_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_radius,
-                shadowDxId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_dx,
-                shadowDyId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_dy,
-                shadowColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_color,
-                animationsId = R.styleable.IconicsCheckableTextView_iiv_end_checked_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsCheckableTextView_iiv_end_checked_icon,
+            colorsId = R.styleable.IconicsCheckableTextView_iiv_end_checked_color,
+            sizeId = R.styleable.IconicsCheckableTextView_iiv_end_checked_size,
+            paddingId = R.styleable.IconicsCheckableTextView_iiv_end_checked_padding,
+            contourColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_contour_color,
+            contourWidthId = R.styleable.IconicsCheckableTextView_iiv_end_checked_contour_width,
+            backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_background_color,
+            cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_end_checked_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_end_checked_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_radius,
+            shadowDxId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_dx,
+            shadowDyId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_dy,
+            shadowColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_color,
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_end_checked_animations
         ).extract(icon)
     }
 
     private fun getIconicsCheckableTextViewBottomDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return IconicsAttrsExtractor(
-                context = ctx,
-                typedArray = a,
-                iconId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon,
-                colorsId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color,
-                sizeId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_size,
-                paddingId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_padding,
-                contourColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_contour_color,
-                contourWidthId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_contour_width,
-                backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_color,
-                cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_corner_radius,
-                backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_color,
-                backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_width,
-                shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_radius,
-                shadowDxId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_dx,
-                shadowDyId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_dy,
-                shadowColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_color,
-                animationsId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_animations
+        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            context = ctx,
+            typedArray = a,
+            iconId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon,
+            colorsId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color,
+            sizeId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_size,
+            paddingId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_padding,
+            contourColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_contour_color,
+            contourWidthId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_contour_width,
+            backgroundColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_color,
+            cornerRadiusId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_corner_radius,
+            backgroundContourColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_color,
+            backgroundContourWidthId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_background_contour_width,
+            shadowRadiusId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_radius,
+            shadowDxId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_dx,
+            shadowDyId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_dy,
+            shadowColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_color,
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_animations
         ).extract(icon)
     }
     //endregion

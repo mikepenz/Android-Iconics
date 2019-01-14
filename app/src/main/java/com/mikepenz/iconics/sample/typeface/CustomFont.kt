@@ -18,26 +18,26 @@ package com.mikepenz.iconics.sample.typeface
 
 import android.content.Context
 import android.graphics.Typeface
-import com.mikepenz.iconics.typeface.IIcon
-import com.mikepenz.iconics.typeface.ITypeface
-import java.util.*
+import com.mikepenz.iconics.ver_four.typeface.IIcon
+import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import java.util.HashMap
+import java.util.LinkedList
 
 /**
  * Created by mikepenz on 01.11.14.
  */
+@Suppress("EnumEntryName", "LeakingThis")
 class CustomFont : ITypeface {
 
     override val characters: HashMap<String, Char>
         get() {
-            if (mChars == null) {
+            if (chars == null) {
                 val aChars = HashMap<String, Char>()
-                for (v in Icon.values()) {
-                    aChars[v.name] = v.character
-                }
-                mChars = aChars
+                Icon.values().associateTo(aChars) { it.name to it.character }
+                chars = aChars
             }
 
-            return mChars
+            return chars!!
         }
 
     override val mappingPrefix: String
@@ -50,7 +50,7 @@ class CustomFont : ITypeface {
         get() = "1.0.0"
 
     override val iconCount: Int
-        get() = mChars!!.size
+        get() = characters.size
 
     override val icons: Collection<String>
         get() {
@@ -62,7 +62,6 @@ class CustomFont : ITypeface {
 
             return icons
         }
-
 
     override val author: String
         get() = "SampleCustomFont"
@@ -79,58 +78,42 @@ class CustomFont : ITypeface {
     override val licenseUrl: String
         get() = ""
 
-    override fun getIcon(key: String): IIcon {
-        return Icon.valueOf(key)
-    }
+    override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    override fun getTypeface(context: Context): Typeface? {
+    override fun getTypeface(ctx: Context): Typeface {
         if (typeface == null) {
-            try {
-                typeface = Typeface.createFromAsset(context.assets, "fonts/$TTF_FILE")
+            typeface = try {
+                Typeface.createFromAsset(ctx.assets, "fonts/${TTF_FILE}")
             } catch (e: Exception) {
-                return null
+                Typeface.DEFAULT
             }
-
         }
-        return typeface
+        return typeface!!
     }
 
-    enum class Icon private constructor(character: Char) : IIcon {
+    enum class Icon constructor(character: Char) : IIcon {
         fon_test1('\ue800'),
         fon_test2('\ue801');
 
         override var character: Char = ' '
             internal set
 
-        override val formattedName: String
-            get() = "{$name}"
-
-        override val name: String
-            get() = name
-
         init {
             this.character = character
         }
 
-        override fun getTypeface(): ITypeface {
-            if (typeface == null) {
-                typeface = CustomFont()
-            }
-            return typeface
-        }
+        override val typeface: ITypeface
+            get() = savedTypeface
 
         companion object {
-
             // remember the typeface so we can use it later
-            private var typeface: ITypeface? = null
+            private val savedTypeface: ITypeface by lazy { CustomFont() }
         }
     }
 
     companion object {
-        private val TTF_FILE = "fontello.ttf"
-
+        private const val TTF_FILE = "fontello.ttf"
         private var typeface: Typeface? = null
-
-        private var mChars: HashMap<String, Char>? = null
+        private var chars: HashMap<String, Char>? = null
     }
 }

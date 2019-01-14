@@ -23,18 +23,35 @@ import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.style.*
-import android.view.*
-import android.widget.*
+import android.text.style.BackgroundColorSpan
+import android.text.style.DynamicDrawableSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.ImageSpan
+import android.text.style.RelativeSizeSpan
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.mikepenz.iconics.typeface.fonrawesome.FontAwesome
-import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.IconicsArrayBuilder
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.utils.IconicsMenuInflaterUtil
 import com.mikepenz.iconics.typeface.octicons.Octicons
-
+import com.mikepenz.iconics.ver_four.utils.IconicsMenuInflaterUtil
+import com.mikepenz.iconics.ver_four.Iconics
+import com.mikepenz.iconics.ver_four.IconicsArrayBuilder
+import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.ver_four.utils.toIconicsColor
+import com.mikepenz.iconics.ver_four.utils.toIconicsSizeDp
+import kotlinx.android.synthetic.main.activity_playground.list
+import kotlinx.android.synthetic.main.activity_playground.test1
+import kotlinx.android.synthetic.main.activity_playground.test2
+import kotlinx.android.synthetic.main.activity_playground.test3
+import kotlinx.android.synthetic.main.activity_playground.test4
+import kotlinx.android.synthetic.main.activity_playground.test5
+import kotlinx.android.synthetic.main.activity_playground.test6
+import kotlinx.android.synthetic.main.activity_playground.toolbar
 
 class PlaygroundActivity : AppCompatActivity() {
 
@@ -43,52 +60,87 @@ class PlaygroundActivity : AppCompatActivity() {
         setContentView(R.layout.activity_playground)
 
         // Handle Toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         //Show how to style the text of an existing TextView
-        val tv1 = findViewById<TextView>(R.id.test1)
-        Iconics.IconicsBuilder().ctx(this)
-                .style(ForegroundColorSpan(Color.WHITE), BackgroundColorSpan(Color.BLACK), RelativeSizeSpan(2f))
-                .styleFor("faw-adjust", BackgroundColorSpan(Color.RED), ForegroundColorSpan(Color.parseColor("#33000000")), RelativeSizeSpan(2f))
-                .on(tv1)
+        Iconics.Builder().ctx(this)
+                .style(
+                    ForegroundColorSpan(Color.WHITE),
+                    BackgroundColorSpan(Color.BLACK),
+                    RelativeSizeSpan(2f)
+                )
+                .styleFor(
+                    "faw-adjust",
+                    BackgroundColorSpan(Color.RED),
+                    ForegroundColorSpan(Color.parseColor("#33000000")),
+                    RelativeSizeSpan(2f)
+                )
+                .on(test1)
                 .build()
 
         //You can also do some advanced stuff like setting an image within a text
-        val tv2 = findViewById<TextView>(R.id.test5)
-        val sb = SpannableString(tv2.text)
-        val d = IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDp(48).paddingDp(4)
-        sb.setSpan(ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        tv2.text = sb
+        val sb = SpannableString(test5.text)
+        val d = IconicsDrawable(this, FontAwesome.Icon.faw_android)
+                .size(48.toIconicsSizeDp())
+                .padding(4.toIconicsSizeDp())
+        sb.setSpan(
+            ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM),
+            1,
+            2,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        test5.text = sb
 
         //Set the icon of an ImageView (or something else) as drawable
-        val iv2 = findViewById<ImageView>(R.id.test2)
-        iv2.setImageDrawable(IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1))
+        test2.setImageDrawable(
+            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
+                    .size(48.toIconicsSizeDp())
+                    .color("#aaFF0000".toIconicsColor())
+                    .contourWidth(1.toIconicsSizeDp())
+        )
 
         //Set the icon of an ImageView (or something else) as bitmap
-        val iv3 = findViewById<ImageView>(R.id.test3)
-        iv3.setImageBitmap(IconicsDrawable(this, FontAwesome.Icon.faw_android).sizeDpX(48).sizeDpY(32).paddingDp(4).roundedCornersDp(8).color(Color.parseColor("#deFF0000")).toBitmap())
+        test3.setImageBitmap(
+            IconicsDrawable(this, FontAwesome.Icon.faw_android)
+                    .sizeX(48.toIconicsSizeDp())
+                    .sizeY(32.toIconicsSizeDp())
+                    .padding(4.toIconicsSizeDp())
+                    .roundedCorners(8.toIconicsSizeDp())
+                    .color("#deFF0000".toIconicsColor())
+                    .toBitmap()
+        )
 
         //Show how to style the text of an existing button
-        val b4 = findViewById<Button>(R.id.test4)
-        Iconics.IconicsBuilder().ctx(this)
+        Iconics.Builder().ctx(this)
                 .style(BackgroundColorSpan(Color.BLACK))
                 .style(RelativeSizeSpan(2f))
                 .style(ForegroundColorSpan(Color.WHITE))
-                .on(b4)
+                .on(test4)
                 .build()
 
         //Show how to style the text of an existing button
-        val b6 = findViewById<ImageButton>(R.id.test6)
         val iconStateListDrawable = StateListDrawable()
-        iconStateListDrawable.addState(intArrayOf(android.R.attr.state_pressed), IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up).sizeDp(48).color(Color.parseColor("#aaFF0000")).contourWidthDp(1))
-        iconStateListDrawable.addState(intArrayOf(), IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up).sizeDp(48).color(Color.parseColor("#aa00FF00")).contourWidthDp(2))
-        b6.setImageDrawable(iconStateListDrawable)
+        iconStateListDrawable.addState(
+            intArrayOf(android.R.attr.state_pressed),
+            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
+                    .size(48.toIconicsSizeDp())
+                    .color("#aaFF0000".toIconicsColor())
+                    .contourWidth(1.toIconicsSizeDp())
+        )
+        iconStateListDrawable.addState(
+            intArrayOf(),
+            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
+                    .size(48.toIconicsSizeDp())
+                    .color("#aa00FF00".toIconicsColor())
+                    .contourWidth(2.toIconicsSizeDp())
+        )
+        test6.setImageDrawable(iconStateListDrawable)
 
-        val listView = findViewById<ListView>(R.id.list)
-
-        val iconicsDrawableBase = IconicsDrawable(this).actionBar().color(Color.GREEN).backgroundColor(Color.RED)
+        val iconicsDrawableBase = IconicsDrawable(this)
+                .actionBar()
+                .color(Color.GREEN.toIconicsColor())
+                .backgroundColor(Color.RED.toIconicsColor())
         val array = IconicsArrayBuilder(iconicsDrawableBase)
                 .add(FontAwesome.Icon.faw_android)
                 .add(Octicons.Icon.oct_octoface)
@@ -97,7 +149,7 @@ class PlaygroundActivity : AppCompatActivity() {
                 .add(";)")
                 .build()
 
-        listView.adapter = IconsAdapter(this, array)
+        list.adapter = IconsAdapter(this, array)
 
     }
 
@@ -114,17 +166,16 @@ class PlaygroundActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private inner class IconsAdapter internal constructor(context: Context, objects: Array<IconicsDrawable>) : ArrayAdapter<IconicsDrawable>(context, 0, objects) {
+    private inner class IconsAdapter internal constructor(
+        context: Context,
+        objects: Array<IconicsDrawable>
+    ) : ArrayAdapter<IconicsDrawable>(context, 0, objects) {
 
-        private val mInflater: LayoutInflater
-
-        init {
-            mInflater = LayoutInflater.from(context)
-        }
+        private val inflater: LayoutInflater = LayoutInflater.from(context)
 
         @SuppressLint("ViewHolder")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            val v = mInflater.inflate(R.layout.row_icon_array, parent, false)
+            val v = inflater.inflate(R.layout.row_icon_array, parent, false)
 
             val icon = v.findViewById<ImageView>(android.R.id.icon)
             icon.setImageDrawable(getItem(position))

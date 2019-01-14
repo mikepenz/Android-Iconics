@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_Entypo">com.mikepenz.entypo_typeface_library.Entypo</string>
+    <string name="define_font_Entypo">com.mikepenz.iconics.typeface.entypo.Entypo</string>
 </resources>

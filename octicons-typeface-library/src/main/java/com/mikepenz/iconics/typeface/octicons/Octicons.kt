@@ -17,8 +17,8 @@ package com.mikepenz.iconics.typeface.octicons
 
 import android.content.Context
 import android.graphics.Typeface
-import com.mikepenz.iconics.typeface.IIcon
-import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.ver_four.typeface.IIcon
+import com.mikepenz.iconics.ver_four.typeface.ITypeface
 import java.util.LinkedList
 import kotlin.collections.Collection
 import kotlin.collections.HashMap

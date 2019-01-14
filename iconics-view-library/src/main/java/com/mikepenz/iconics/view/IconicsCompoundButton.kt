@@ -20,13 +20,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.CompoundButton
 import android.widget.TextView
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
-import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.ver_four.Iconics
+import com.mikepenz.iconics.ver_four.IconicsDrawable
 import com.mikepenz.iconics.internal.CheckableIconBundle
-import com.mikepenz.iconics.internal.IconicsView
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
+import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
@@ -35,7 +33,7 @@ open class IconicsCompoundButton @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyle: Int = 0
-) : CompoundButton(context, attrs, defStyle), IconicsView {
+) : CompoundButton(context, attrs, defStyle) {
     private val iconsBundle = CheckableIconBundle()
 
     var checkedIcon: IconicsDrawable?
@@ -53,27 +51,18 @@ open class IconicsCompoundButton @JvmOverloads constructor(
         }
 
     init {
-        @Suppress("LeakingThis")
-        initialize(context, attrs, defStyle)
-    }
-
-    @RestrictTo(LIBRARY_GROUP)
-    override fun initialize(context: Context, attrs: AttributeSet?, defStyle: Int) {
         iconsBundle.createIcons(context)
-        applyAttr(context, attrs, defStyle)
+
+        IconicsViewsAttrsApplier.readIconicsCompoundButton(context, attrs, iconsBundle)
+        iconsBundle.animateChanges = IconicsViewsAttrsApplier.isIconicsAnimateChanges(context, attrs)
+
         tryToEnableIconicsAnimation(iconsBundle.checkedIcon, iconsBundle.uncheckedIcon)
         buttonDrawable = iconsBundle.createStates(context)
     }
 
-    @RestrictTo(LIBRARY_GROUP)
-    override fun applyAttr(context: Context, attrs: AttributeSet?, defStyle: Int) {
-        IconicsViewsAttrsApplier.readIconicsCompoundButton(context, attrs, iconsBundle)
-        iconsBundle.animateChanges = IconicsViewsAttrsApplier.isIconicsAnimateChanges(context, attrs)
-    }
-
     override fun setText(text: CharSequence, type: TextView.BufferType) {
         if (!isInEditMode) {
-            super.setText(Iconics.IconicsBuilder().ctx(context).on(text).build(), type)
+            super.setText(Iconics.Builder().ctx(context).on(text).build(), type)
         } else {
             super.setText(text, type)
         }

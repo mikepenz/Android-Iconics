@@ -21,8 +21,9 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.fastadapter.items.AbstractItem
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.IconicsSize
+import com.mikepenz.iconics.ver_four.IconicsColor
+import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.ver_four.IconicsSize
 import com.mikepenz.iconics.sample.R
 import com.mikepenz.iconics.view.IconicsImageView
 
@@ -54,7 +55,8 @@ class IconItem(icon: String) : AbstractItem<IconItem, IconItem.ViewHolder>() {
     override fun bindView(holder: ViewHolder, payloads: List<*>?) {
         super.bindView(holder, payloads)
 
-        holder.image.icon = IconicsDrawable(holder.image.context, icon!!)
+        holder.image.icon =
+                IconicsDrawable(holder.image.context, icon!!)
         holder.name.text = icon
 
         holder.image.icon!!

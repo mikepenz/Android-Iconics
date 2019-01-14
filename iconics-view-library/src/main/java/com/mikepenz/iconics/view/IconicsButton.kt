@@ -19,21 +19,19 @@ package com.mikepenz.iconics.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
 import androidx.appcompat.widget.AppCompatButton
-import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.ver_four.Iconics
+import com.mikepenz.iconics.ver_four.IconicsDrawable
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
-import com.mikepenz.iconics.internal.IconicsView
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
+import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
 
 open class IconicsButton @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyle: Int = R.attr.buttonStyle
-) : AppCompatButton(context, attrs, defStyle), IconicsView, CompoundIconicsDrawables {
+) : AppCompatButton(context, attrs, defStyle), CompoundIconicsDrawables {
     private val iconsBundle = CompoundIconsBundle()
 
     //region CompoundIconicsDrawablesImpl
@@ -66,25 +64,15 @@ open class IconicsButton @JvmOverloads constructor(
         }
 
     init {
-        initialize(context, attrs, defStyle)
-    }
-
-    @RestrictTo(LIBRARY_GROUP)
-    override fun initialize(context: Context, attrs: AttributeSet?, defStyle: Int) {
-        applyAttr(context, attrs, defStyle)
+        IconicsViewsAttrsApplier.readIconicsTextView(context, attrs, iconsBundle)
         //setting created icons
         tryToEnableIconicsAnimation(
-                iconsBundle.bottomIcon,
-                iconsBundle.topIcon,
-                iconsBundle.endIcon,
-                iconsBundle.startIcon
+            iconsBundle.bottomIcon,
+            iconsBundle.topIcon,
+            iconsBundle.endIcon,
+            iconsBundle.startIcon
         )
         setIcons()
-    }
-
-    @RestrictTo(LIBRARY_GROUP)
-    override fun applyAttr(context: Context, attrs: AttributeSet?, defStyle: Int) {
-        IconicsViewsAttrsApplier.readIconicsTextView(context, attrs, iconsBundle)
     }
 
     private fun setIcons() {
@@ -107,7 +95,7 @@ open class IconicsButton @JvmOverloads constructor(
         isAllCaps = false
 
         if (!isInEditMode) {
-            super.setText(Iconics.IconicsBuilder().ctx(context).on(text).build(), type)
+            super.setText(Iconics.Builder().ctx(context).on(text).build(), type)
         } else {
             super.setText(text, type)
         }

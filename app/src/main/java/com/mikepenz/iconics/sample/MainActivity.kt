@@ -16,34 +16,10 @@
 
 package com.mikepenz.iconics.sample
 
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
-import com.mikepenz.aboutlibraries.Libs
-import com.mikepenz.aboutlibraries.LibsBuilder
-import com.mikepenz.iconics.typeface.fonrawesome.FontAwesome
-import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.IconicsSize
-import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 import com.mikepenz.materialdrawer.Drawer
-import com.mikepenz.materialdrawer.DrawerBuilder
-import com.mikepenz.materialdrawer.holder.BadgeStyle
-import com.mikepenz.materialdrawer.holder.StringHolder
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
-import com.mikepenz.materialdrawer.util.KeyboardUtil
-import java.util.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Handle Toolbar
+        /*// Handle Toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -76,12 +52,8 @@ class MainActivity : AppCompatActivity() {
                     .withName(font.fontName)
                     .withBadge("" + font.icons.size)
                     .withDescription(if (TextUtils.isEmpty(font.author)) font.version else font.version + " - " + font.author)
-                    .withBadgeStyle(
-                            BadgeStyle().withColorRes(R.color.md_grey_200)
-                    )
-                    .withIcon(
-                            getRandomIcon(font)
-                    )
+                    .withBadgeStyle(BadgeStyle().withColorRes(R.color.md_grey_200))
+                    .withIcon(getRandomIcon(font))
                     .withIdentifier(count.toLong())
 
             if (font.mappingPrefix == "gmd") {
@@ -112,19 +84,24 @@ class MainActivity : AppCompatActivity() {
                 .withFireOnInitialOnClick(true)
                 .withSelectedItem(mIdentifierGmd.toLong())
                 .build()
+                */
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu items for use in the action bar
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_main, menu)
 
         //
         menu.findItem(R.id.search).setIcon(
-                IconicsDrawable(this, MaterialDesignIconic.Icon.gmi_search)
-                        .color(IconicsColor.colorInt(Color.WHITE))
-                        .size(IconicsSize.dp(24f))
-                        .respectFontBounds(true))
+            IconicsDrawable(
+                this,
+                MaterialDesignIconic.Icon.gmi_search
+            )
+                    .color(IconicsColor.colorInt(Color.WHITE))
+                    .size(IconicsSize.dp(24f))
+                    .respectFontBounds(true)
+        )
 
         val searchView = menu.findItem(R.id.search).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -134,12 +111,10 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-
             override fun onQueryTextChange(s: String): Boolean {
                 search(s)
                 return true
             }
-
 
             private fun search(s: String) {
                 mCurrentSearch = s
@@ -155,7 +130,10 @@ class MainActivity : AppCompatActivity() {
                                 }
                             }
                         }
-                        mDrawer!!.updateBadge(count.toLong(), StringHolder(foundCount.toString() + ""))
+                        mDrawer!!.updateBadge(
+                            count.toLong(),
+                            StringHolder(foundCount.toString() + "")
+                        )
 
                         count++
                     }
@@ -167,9 +145,11 @@ class MainActivity : AppCompatActivity() {
         })
 
         val menuItem = menu.findItem(R.id.action_opensource)
-        menuItem.setIcon(IconicsDrawable(this, FontAwesome.Icon.faw_github)
-                .actionBar()
-                .color(IconicsColor.colorInt(Color.WHITE)))
+        menuItem.setIcon(
+            IconicsDrawable(this, FontAwesome.Icon.faw_github)
+                    .actionBar()
+                    .color(IconicsColor.colorInt(Color.WHITE))
+        )
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -224,7 +204,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun loadIcons(fontName: String) {
         val ft = supportFragmentManager.beginTransaction()
         mIconsFragment = IconsFragment.newInstance(fontName)
@@ -234,4 +213,5 @@ class MainActivity : AppCompatActivity() {
         ft.replace(R.id.content, mIconsFragment!!)
         ft.commit()
     }
+    */
 }

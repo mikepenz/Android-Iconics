@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_GoogleMaterial">com.mikepenz.google_material_typeface_library.GoogleMaterial</string>
+    <string name="define_font_GoogleMaterial">com.mikepenz.iconics.typeface.googlematerial.GoogleMaterial</string>
 </resources>

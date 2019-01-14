@@ -21,7 +21,7 @@
         android:id="@+id/menu_item_1"
         android:title="Item 1"
         app:showAsAction="always"
-        app:ico_color="@android:color/white"
+        app:ico_color="@android:color/holo_blue_dark"
         app:ico_icon="gmd_favorite"
         app:ico_size="24dp"/>
 

@@ -19,15 +19,13 @@ package com.mikepenz.iconics.sample
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.widget.TextView
-
-import com.mikepenz.iconics.context.IconicsContextWrapper
-
+import com.mikepenz.iconics.ver_four.context.IconicsContextWrapper
+import kotlinx.android.synthetic.main.activity_automatic.test4
 
 class OldAutomaticActivity : Activity() {
     override fun attachBaseContext(newBase: Context) {
         //not compatible with Calligraphy
-        super.attachBaseContext(IconicsContextWrapper.wrap(newBase))
+        super.attachBaseContext(com.mikepenz.iconics.ver_four.context.IconicsContextWrapper.wrap(newBase))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +33,6 @@ class OldAutomaticActivity : Activity() {
         setContentView(R.layout.activity_automatic)
 
         //set a new text on the textView and set the icon font on it
-        (findViewById<View>(R.id.test4) as TextView).text = "{gmd-favorite} GIF"
+        test4.text = "{gmd-favorite} GIF"
     }
 }

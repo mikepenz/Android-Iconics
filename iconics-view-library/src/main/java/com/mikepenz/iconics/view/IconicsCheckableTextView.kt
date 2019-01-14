@@ -22,22 +22,21 @@ import android.util.AttributeSet
 import android.view.SoundEffectConstants
 import android.view.View
 import android.widget.Checkable
-import androidx.annotation.RestrictTo
-import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
 import androidx.core.widget.TextViewCompat
-import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.internal.CheckedCompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
-import com.mikepenz.iconics.utils.IconicsUtils
+import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
+import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.ver_four.utils.IconicsUtils
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
  */
 open class IconicsCheckableTextView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = android.R.attr.textViewStyle
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = android.R.attr.textViewStyle
 ) : IconicsTextView(context, attrs, defStyle), Checkable, CheckedCompoundIconicsDrawables {
 
     companion object {
@@ -51,6 +50,25 @@ open class IconicsCheckableTextView @JvmOverloads constructor(
     private var isBroadcasting: Boolean = false
 
     private var onCheckedChangeListener: OnCheckedChangeListener? = null
+
+    init {
+        isFocusable = true
+        isClickable = true
+
+        //taking checked state attrs
+        IconicsViewsAttrsApplier.readIconicsCheckableTextView(context, attrs, checkedIconsBundle)
+        isAnimateChanges = IconicsViewsAttrsApplier.isIconicsAnimateChanges(context, attrs)
+
+        tryToEnableIconicsAnimation(
+            checkedIconsBundle.bottomIcon,
+            checkedIconsBundle.topIcon,
+            checkedIconsBundle.endIcon,
+            checkedIconsBundle.startIcon
+        )
+
+        //setting created icons
+        setIcons()
+    }
 
     //region CheckedCompoundIconicsDrawablesImpl
     override var checkedIconicsDrawableStart: IconicsDrawable?
@@ -81,81 +99,49 @@ open class IconicsCheckableTextView @JvmOverloads constructor(
             setIcons()
         }
 
-    @RestrictTo(LIBRARY_GROUP)
-    override fun initialize(context: Context, attrs: AttributeSet?, defStyle: Int) {
-        isFocusable = true
-        isClickable = true
-        //taking normal state attrs
-        super.applyAttr(context, attrs, defStyle)
-        tryToEnableIconicsAnimation(
-                iconsBundle.bottomIcon,
-                iconsBundle.topIcon,
-                iconsBundle.endIcon,
-                iconsBundle.startIcon
-        )
-
-        //taking checked state attrs
-        applyAttr(context, attrs, defStyle)
-
-        tryToEnableIconicsAnimation(
-                checkedIconsBundle.bottomIcon,
-                checkedIconsBundle.topIcon,
-                checkedIconsBundle.endIcon,
-                checkedIconsBundle.startIcon
-        )
-
-        //setting created icons
-        setIcons()
-    }
-
-    @RestrictTo(LIBRARY_GROUP)
-    override fun applyAttr(context: Context, attrs: AttributeSet?, defStyle: Int) {
-        IconicsViewsAttrsApplier.readIconicsCheckableTextView(context, attrs, checkedIconsBundle)
-        isAnimateChanges = IconicsViewsAttrsApplier.isIconicsAnimateChanges(context, attrs)
-    }
-
     private fun setIcons() {
-        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(this,
-                createStatesStart(),
-                createStatesTop(),
-                createStatesEnd(),
-                createStatesBottom()
+        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(
+            this,
+            createStatesStart(),
+            createStatesTop(),
+            createStatesEnd(),
+            createStatesBottom()
         )
     }
 
     private fun createStatesStart(): StateListDrawable {
         return IconicsUtils.getCheckableIconStateList(
-                context,
-                iconsBundle.startIcon,
-                checkedIconsBundle.startIcon,
-                isAnimateChanges
+            context,
+            iconsBundle.startIcon,
+            checkedIconsBundle.startIcon,
+            isAnimateChanges
         )
     }
 
     private fun createStatesTop(): StateListDrawable {
         return IconicsUtils.getCheckableIconStateList(
-                context,
-                iconsBundle.topIcon,
-                checkedIconsBundle.topIcon,
-                isAnimateChanges
+            context,
+            iconsBundle.topIcon,
+            checkedIconsBundle.topIcon,
+            isAnimateChanges
         )
     }
 
     private fun createStatesEnd(): StateListDrawable {
         return IconicsUtils.getCheckableIconStateList(
-                context,
-                iconsBundle.endIcon,
-                checkedIconsBundle.endIcon,
-                isAnimateChanges
+            context,
+            iconsBundle.endIcon,
+            checkedIconsBundle.endIcon,
+            isAnimateChanges
         )
     }
 
     private fun createStatesBottom(): StateListDrawable {
         return IconicsUtils.getCheckableIconStateList(
-                context,
-                iconsBundle.bottomIcon,
-                checkedIconsBundle.bottomIcon,
-                isAnimateChanges
+            context,
+            iconsBundle.bottomIcon,
+            checkedIconsBundle.bottomIcon,
+            isAnimateChanges
         )
     }
 

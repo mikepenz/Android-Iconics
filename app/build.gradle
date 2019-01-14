@@ -108,12 +108,13 @@ dependencies {
     implementation('com.mikepenz:aboutlibraries:6.2.0') {
         transitive = true
         exclude module: "fastadapter"
-        exclude module: "iconics-core"
+        //exclude module: "iconics-core"
         exclude group: "com.android.support"
     }
 
     implementation project(':library-core')
     implementation project(':iconics-view-library')
+    implementation project(':iconics-view-material-library')
     implementation project(':fontawesome-typeface-library')
     implementation project(':material-design-iconic-typeface-library')
     implementation project(':google-material-typeface-library')

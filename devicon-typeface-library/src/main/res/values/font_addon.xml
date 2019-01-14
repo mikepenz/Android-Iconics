@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_DevIcon">com.mikepenz.devicon_typeface_library.DevIcon</string>
+    <string name="define_font_DevIcon">com.mikepenz.iconics.typeface.devicon.DevIcon</string>
 </resources>

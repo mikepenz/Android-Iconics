@@ -16,7 +16,7 @@
 
 package com.mikepenz.iconics.internal
 
-import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.ver_four.IconicsDrawable
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
