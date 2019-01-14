@@ -11,8 +11,10 @@
 # Generated files
 bin/
 gen/
-.idea/*
 *.iml
+!.idea/codeStyles/codeStyleConfig.xml
+!.idea/codeStyles/Project.xml
+.idea/*
 
 # Gradle files
 .gradle/

@@ -1,4 +1,22 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+/*
+ * Copyright (c) 2019 Mike Penz
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 //wrap with try and catch so the build is working even if the signing stuff is missing
 try {
     apply from: '../../../signing.gradle'
@@ -54,10 +72,10 @@ android {
 dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation "androidx.appcompat:appcompat:${versions.androidXVersion}"
-    implementation "com.google.android.material:material:${versions.androidXVersion}"
-    implementation "androidx.recyclerview:recyclerview:${versions.androidXVersion}"
-    implementation "androidx.cardview:cardview:${versions.androidXVersion}"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "com.google.android.material:material:${versions.androidX}"
+    implementation "androidx.recyclerview:recyclerview:${versions.androidX}"
+    implementation "androidx.cardview:cardview:${versions.androidX}"
 
     // used to base on some backwards compatible themes
     // contains util classes to support various android versions, and clean up code
@@ -111,4 +129,9 @@ dependencies {
     implementation project(':pixeden-7-stroke-typeface-library')
 
     testImplementation 'junit:junit:4.12'
+    implementation "androidx.core:core-ktx:$versions.ktx.core"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+}
+repositories {
+    mavenCentral()
 }
