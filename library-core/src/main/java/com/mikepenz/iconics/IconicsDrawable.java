@@ -159,6 +159,14 @@ public class IconicsDrawable extends Drawable {
     public IconicsDrawable(@NonNull Context context) {
         mContext = context.getApplicationContext();
 
+        mIconBrush.getPaint().setStyle(Paint.Style.FILL);
+        mIconBrush.getPaint().setTextAlign(Paint.Align.CENTER);
+        mIconBrush.getPaint().setUnderlineText(false);
+
+        mContourBrush.getPaint().setStyle(Paint.Style.STROKE);
+
+        mBackgroundContourBrush.getPaint().setStyle(Paint.Style.STROKE);
+
         icon(' ');
     }
 
@@ -186,14 +194,6 @@ public class IconicsDrawable extends Drawable {
         this(context);
 
         icon(typeface, icon);
-
-        mIconBrush.getPaint().setStyle(Paint.Style.FILL);
-        mIconBrush.getPaint().setTextAlign(Paint.Align.CENTER);
-        mIconBrush.getPaint().setUnderlineText(false);
-
-        mContourBrush.getPaint().setStyle(Paint.Style.STROKE);
-
-        mBackgroundContourBrush.getPaint().setStyle(Paint.Style.STROKE);
     }
 
     //region getters
