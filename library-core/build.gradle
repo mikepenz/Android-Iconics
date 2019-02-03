@@ -33,5 +33,5 @@ if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:${versions.androidXVersion}"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
 }
