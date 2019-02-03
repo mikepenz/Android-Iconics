@@ -23,11 +23,15 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
     apply from: '../gradle-release.gradle'
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat:${versions.androidXVersion}"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
 }

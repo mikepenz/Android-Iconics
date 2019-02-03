@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2014 Mike Penz
  * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +18,7 @@
  * <p/>
  * http://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=OFL_plaintext&filename=OFL.txt
  */
+
 package com.mikepenz.iconics.typeface;
 
 import android.content.Context;
@@ -47,7 +48,7 @@ public class GenericFont implements ITypeface {
 
     public GenericFont(String fontName, String author, String mappingPrefix, String fontFile) {
         if (mappingPrefix.length() != 3) {
-            new IllegalArgumentException("MappingPrefix must be 3 char long");
+            throw new IllegalArgumentException("MappingPrefix must be 3 char long");
         }
         this.mFontName = fontName;
         this.mAuthor = author;

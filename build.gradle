@@ -1,19 +1,20 @@
 buildscript {
     ext {
         release = [
-                versionName: "3.1.0",
-                versionCode: 31000
+                versionName: "3.2.0",
+                versionCode: 32000
         ]
 
         setup = [
                 compileSdk: 28,
-                buildTools: "28.0.2",
+                buildTools: "28.0.3",
                 minSdk    : 14,
                 targetSdk : 28
         ]
 
         versions = [
-                androidXVersion: '1.0.0'
+                androidX : '1.0.0',
+                appCompat: '1.0.2'
         ]
     }
 
@@ -23,7 +24,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0-alpha11'
+        classpath 'com.android.tools.build:gradle:3.3.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }

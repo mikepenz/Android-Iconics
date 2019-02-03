@@ -1,10 +1,11 @@
 package com.mikepenz.iconics.context;
 
 import android.content.Context;
-import androidx.core.view.LayoutInflaterFactory;
-import androidx.appcompat.app.AppCompatDelegate;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.view.LayoutInflaterFactory;
 
 /**
  * Created by mikepenz on 01.12.15.
