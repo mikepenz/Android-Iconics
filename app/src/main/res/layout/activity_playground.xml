@@ -497,6 +497,40 @@
             </LinearLayout>
             <!--endregion-->
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="BottomNavigationView Showcase" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_yellow_200"
+                    app:itemIconTint="@color/color_states_bottom_navigation_icons"
+                    app:menu="@menu/menu_navigation" />
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/navigation_auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_green_200"
+                    app:menu="@menu/menu_playground" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

@@ -29,7 +29,6 @@ import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.utils.GenericsUtil
 import com.mikepenz.iconics.utils.InternalIconicsUtils
-import java.util.Collections
 import java.util.HashMap
 import java.util.LinkedList
 
@@ -84,7 +83,7 @@ object Iconics {
         if (FONTS.size == 0) {
             throw IllegalArgumentException(
                 "At least one font needs to be registered first\n" +
-                        "    via ${javaClass.canonicalName}.registerFont(Iconics.kt:111)"
+                        "    via ${javaClass.canonicalName}.registerFont(Iconics.kt:110)"
             )
         } else {
             INIT_DONE = true
@@ -275,21 +274,13 @@ object Iconics {
         }
     }
 
-    class Builder {
+    class Builder(private val ctx: Context) {
         private val styles = LinkedList<CharacterStyle>()
         private val stylesFor = HashMap<String, MutableList<CharacterStyle>>()
         private val fonts = LinkedList<ITypeface>()
-        private lateinit var ctx: Context
-
-        fun ctx(ctx: Context): Builder {
-            this.ctx = ctx
-            return this
-        }
 
         fun style(vararg styles: CharacterStyle): Builder {
-            if (styles.isNotEmpty()) {
-                Collections.addAll(this.styles, *styles)
-            }
+            this.styles.addAll(styles)
             return this
         }
 

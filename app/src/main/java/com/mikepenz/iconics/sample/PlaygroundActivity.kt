@@ -39,12 +39,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsArrayBuilder
 import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.communitymaterial.CommunityMaterial
 import com.mikepenz.iconics.typeface.library.fonrawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.utils.inflateWithIconics
+import com.mikepenz.iconics.utils.parseXmlAndSetIconicsDrawables
 import com.mikepenz.iconics.utils.toIconicsColor
 import com.mikepenz.iconics.utils.toIconicsSizeDp
 import kotlinx.android.synthetic.main.activity_playground.list
+import kotlinx.android.synthetic.main.activity_playground.navigation
+import kotlinx.android.synthetic.main.activity_playground.navigation_auto
 import kotlinx.android.synthetic.main.activity_playground.test1
 import kotlinx.android.synthetic.main.activity_playground.test2
 import kotlinx.android.synthetic.main.activity_playground.test3
@@ -61,10 +65,11 @@ class PlaygroundActivity : AppCompatActivity() {
 
         // Handle Toolbar
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Show how to style the text of an existing TextView
-        Iconics.Builder().ctx(this)
+        Iconics.Builder()
+                .ctx(this)
                 .style(
                     ForegroundColorSpan(Color.WHITE),
                     BackgroundColorSpan(Color.BLACK),
@@ -151,6 +156,20 @@ class PlaygroundActivity : AppCompatActivity() {
 
         list.adapter = IconsAdapter(this, array)
 
+        // Create icons for menu_navigation
+        val planningIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_history)
+        val homeIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_home)
+        val calendarIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon.cmd_calendar)
+
+        // Set icons
+        navigation.menu.apply {
+            findItem(R.id.navigation_home).icon = planningIcon
+            findItem(R.id.navigation_dashboard).icon = homeIcon
+            findItem(R.id.navigation_notifications).icon = calendarIcon
+        }
+
+        // Automatically process all icons in menu
+        navigation_auto.menu.parseXmlAndSetIconicsDrawables(this, R.menu.menu_playground)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
