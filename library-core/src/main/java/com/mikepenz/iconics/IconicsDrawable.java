@@ -35,36 +35,17 @@ package com.mikepenz.iconics;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PixelFormat;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Typeface;
+import android.graphics.*;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
-
+import androidx.annotation.*;
+import androidx.core.content.ContextCompat;
 import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.Utils;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.DimenRes;
-import androidx.annotation.Dimension;
-import androidx.annotation.IntRange;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import static android.view.View.LAYER_TYPE_SOFTWARE;
 import static androidx.annotation.Dimension.DP;
@@ -349,13 +330,13 @@ public class IconicsDrawable extends Drawable {
                 .roundedCornersRxPx(mRoundedCornerRx)
                 .roundedCornersRyPx(mRoundedCornerRy)
                 // icon contour
-                .drawContour(mDrawContour)
                 .contourColor(mContourBrush.getColorsList())
                 .contourWidthPx(mContourWidth)
+                .drawContour(mDrawContour)
                 // background contour
-                .drawBackgroundContour(mDrawBackgroundContour)
                 .backgroundContourColor(mBackgroundContourBrush.getColorsList())
                 .backgroundContourWidthPx(mBackgroundContourWidth)
+                .drawBackgroundContour(mDrawBackgroundContour)
                 // shadow
                 .shadowPx(mShadowRadius, mShadowDx, mShadowDy, mShadowColor)
                 // common
@@ -1282,7 +1263,7 @@ public class IconicsDrawable extends Drawable {
 
         if (mRoundedCornerRy > -1 && mRoundedCornerRx > -1) {
             if (mDrawBackgroundContour) {
-                float halfContourSize = mBackgroundContourWidth / 2;
+                float halfContourSize = mBackgroundContourWidth / 2f;
                 RectF rectF = new RectF(
                         halfContourSize,
                         halfContourSize,
@@ -1325,7 +1306,7 @@ public class IconicsDrawable extends Drawable {
     @Override
     public void setTintList(@Nullable ColorStateList tint) {
         mTint = tint;
-        mTintFilter = updateTintFilter(tint, mTintMode);
+        updateTintFilter();
 
         invalidateSelf();
     }
@@ -1333,7 +1314,7 @@ public class IconicsDrawable extends Drawable {
     @Override
     public void setTintMode(@NonNull PorterDuff.Mode tintMode) {
         mTintMode = tintMode;
-        mTintFilter = updateTintFilter(mTint, tintMode);
+        updateTintFilter();
 
         invalidateSelf();
     }
@@ -1353,18 +1334,18 @@ public class IconicsDrawable extends Drawable {
         return mIconBrush.isStateful()
                 || mContourBrush.isStateful()
                 || mBackgroundBrush.isStateful()
-                || mBackgroundContourBrush.isStateful();
+                || mBackgroundContourBrush.isStateful()
+                || mTint != null && mTint.isStateful();
     }
 
     @Override
     public boolean setState(@NonNull int[] stateSet) {
-        boolean b = super.setState(stateSet);
-        return b || mIconBrush.isStateful()
+        return super.setState(stateSet)
+                || mIconBrush.isStateful()
                 || mContourBrush.isStateful()
                 || mBackgroundBrush.isStateful()
                 || mBackgroundContourBrush.isStateful()
-                || mColorFilter != null
-                || mTintFilter != null;
+                || mTint != null && mTint.isStateful();
     }
 
     @Override
@@ -1383,13 +1364,13 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     protected boolean onStateChange(@NonNull int[] stateSet) {
-        boolean isNeedsRedraw = mIconBrush.applyState(stateSet);
-        isNeedsRedraw |= mContourBrush.applyState(stateSet);
-        isNeedsRedraw |= mBackgroundBrush.applyState(stateSet);
-        isNeedsRedraw |= mBackgroundContourBrush.applyState(stateSet);
+        boolean isNeedsRedraw = mIconBrush.applyState(stateSet)
+                | mContourBrush.applyState(stateSet)
+                | mBackgroundBrush.applyState(stateSet)
+                | mBackgroundContourBrush.applyState(stateSet);
 
         if (mTint != null && mTintMode != null) {
-            mTintFilter = updateTintFilter(mTint, mTintMode);
+            updateTintFilter();
             isNeedsRedraw = true;
         }
 
@@ -1497,15 +1478,15 @@ public class IconicsDrawable extends Drawable {
      * Ensures the tint filter is consistent with the current tint color and
      * mode.
      */
-    private PorterDuffColorFilter updateTintFilter(@Nullable ColorStateList tint,
-                                                   @Nullable PorterDuff.Mode tintMode) {
-        if (tint == null || tintMode == null) {
-            return null;
+    private void updateTintFilter() {
+        if (mTint == null || mTintMode == null) {
+            mTintFilter = null;
+            return;
         }
         // setMode, setColor of PorterDuffColorFilter are not public method in SDK v7. (Thanks @Google still not accessible in API v24)
         // Therefore we create a new one all the time here. Don't expect this is called often.
-        final int color = tint.getColorForState(getState(), Color.TRANSPARENT);
-        return new PorterDuffColorFilter(color, tintMode);
+        int color = mTint.getColorForState(getState(), Color.TRANSPARENT);
+        mTintFilter = new PorterDuffColorFilter(color, mTintMode);
     }
     //endregion
 }

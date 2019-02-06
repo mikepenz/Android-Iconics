@@ -19,16 +19,13 @@ package com.mikepenz.iconics.internal;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsAttrsApplier;
 import com.mikepenz.iconics.context.IconicsAttrsExtractor;
 import com.mikepenz.iconics.view.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
-
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
@@ -38,10 +35,10 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @SuppressWarnings("ConstantConditions")
 public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
 
-
     //region IconicsImageView
-    public static @Nullable IconicsDrawable getIconicsImageViewDrawable(@NonNull Context ctx,
-                                                                        @Nullable AttributeSet attrs) {
+    @Nullable
+    public static IconicsDrawable getIconicsImageViewDrawable(@NonNull Context ctx,
+                                                              @Nullable AttributeSet attrs) {
         final TypedArray a = ctx.obtainStyledAttributes(attrs, R.styleable.IconicsImageView);
         try {
             return new IconicsAttrsExtractor(ctx, a)
@@ -101,8 +98,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
         a.recycle();
     }
 
-    public static @Nullable IconicsDrawable getIconicsTextViewAllDrawable(@NonNull Context ctx,
-                                                                          @Nullable TypedArray a) {
+    @Nullable
+    public static IconicsDrawable getIconicsTextViewAllDrawable(@NonNull Context ctx,
+                                                                @Nullable TypedArray a) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_all_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_all_color)
@@ -122,9 +120,10 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extract();
     }
 
-    public static @Nullable IconicsDrawable getIconicsTextViewStartDrawable(@NonNull Context ctx,
-                                                                            @Nullable TypedArray a,
-                                                                            @Nullable IconicsDrawable icon) {
+    @Nullable
+    public static IconicsDrawable getIconicsTextViewStartDrawable(@NonNull Context ctx,
+                                                                  @Nullable TypedArray a,
+                                                                  @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_start_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_start_color)
@@ -144,9 +143,10 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extract(icon);
     }
 
-    public static @Nullable IconicsDrawable getIconicsTextViewTopDrawable(@NonNull Context ctx,
-                                                                          @Nullable TypedArray a,
-                                                                          @Nullable IconicsDrawable icon) {
+    @Nullable
+    public static IconicsDrawable getIconicsTextViewTopDrawable(@NonNull Context ctx,
+                                                                @Nullable TypedArray a,
+                                                                @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_top_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_top_color)
@@ -166,9 +166,10 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extract(icon);
     }
 
-    public static @Nullable IconicsDrawable getIconicsTextViewEndDrawable(@NonNull Context ctx,
-                                                                          @Nullable TypedArray a,
-                                                                          @Nullable IconicsDrawable icon) {
+    @Nullable
+    public static IconicsDrawable getIconicsTextViewEndDrawable(@NonNull Context ctx,
+                                                                @Nullable TypedArray a,
+                                                                @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_end_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_end_color)
@@ -188,9 +189,10 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extract(icon);
     }
 
-    public static @Nullable IconicsDrawable getIconicsTextViewBottomDrawable(@NonNull Context ctx,
-                                                                             @Nullable TypedArray a,
-                                                                             @Nullable IconicsDrawable icon) {
+    @Nullable
+    public static IconicsDrawable getIconicsTextViewBottomDrawable(@NonNull Context ctx,
+                                                                   @Nullable TypedArray a,
+                                                                   @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsTextView_iiv_bottom_icon)
                 .colorsId(R.styleable.IconicsTextView_iiv_bottom_color)
@@ -226,8 +228,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
         a.recycle();
     }
 
-    public static @NonNull IconicsDrawable getIconicsCompoundButtonUncheckedDrawable(@NonNull Context ctx,
-                                                                                     @Nullable TypedArray a) {
+    @NonNull
+    public static IconicsDrawable getIconicsCompoundButtonUncheckedDrawable(@NonNull Context ctx,
+                                                                            @Nullable TypedArray a) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCompoundButton_iiv_unchecked_icon)
                 .colorsId(R.styleable.IconicsCompoundButton_iiv_unchecked_color)
@@ -247,8 +250,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extractNonNull();
     }
 
-    public static @NonNull IconicsDrawable getIconicsCompoundButtonCheckedDrawable(@NonNull Context ctx,
-                                                                                   @Nullable TypedArray a) {
+    @NonNull
+    public static IconicsDrawable getIconicsCompoundButtonCheckedDrawable(@NonNull Context ctx,
+                                                                          @Nullable TypedArray a) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCompoundButton_iiv_checked_icon)
                 .colorsId(R.styleable.IconicsCompoundButton_iiv_checked_color)
@@ -304,8 +308,9 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
         a.recycle();
     }
 
-    public static @Nullable IconicsDrawable getIconicsCheckableTextViewAllDrawable(@NonNull Context ctx,
-                                                                                   @Nullable TypedArray a) {
+    @Nullable
+    public static IconicsDrawable getIconicsCheckableTextViewAllDrawable(@NonNull Context ctx,
+                                                                         @Nullable TypedArray a) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_all_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_all_checked_color)
@@ -325,9 +330,10 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extract();
     }
 
-    public static @Nullable IconicsDrawable getIconicsCheckableTextViewStartDrawable(@NonNull Context ctx,
-                                                                                     @Nullable TypedArray a,
-                                                                                     @Nullable IconicsDrawable icon) {
+    @Nullable
+    public static IconicsDrawable getIconicsCheckableTextViewStartDrawable(@NonNull Context ctx,
+                                                                           @Nullable TypedArray a,
+                                                                           @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_start_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_start_checked_color)
@@ -347,9 +353,10 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extract(icon);
     }
 
-    public static @Nullable IconicsDrawable getIconicsCheckableTextViewTopDrawable(@NonNull Context ctx,
-                                                                                   @Nullable TypedArray a,
-                                                                                   @Nullable IconicsDrawable icon) {
+    @Nullable
+    public static IconicsDrawable getIconicsCheckableTextViewTopDrawable(@NonNull Context ctx,
+                                                                         @Nullable TypedArray a,
+                                                                         @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_top_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_top_checked_color)
@@ -369,9 +376,10 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extract(icon);
     }
 
-    public static @Nullable IconicsDrawable getIconicsCheckableTextViewEndDrawable(@NonNull Context ctx,
-                                                                                   @Nullable TypedArray a,
-                                                                                   @Nullable IconicsDrawable icon) {
+    @Nullable
+    public static IconicsDrawable getIconicsCheckableTextViewEndDrawable(@NonNull Context ctx,
+                                                                         @Nullable TypedArray a,
+                                                                         @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_end_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_end_checked_color)
@@ -391,9 +399,10 @@ public class IconicsViewsAttrsApplier extends IconicsAttrsApplier {
                 .extract(icon);
     }
 
-    public static @Nullable IconicsDrawable getIconicsCheckableTextViewBottomDrawable(@NonNull Context ctx,
-                                                                                      @Nullable TypedArray a,
-                                                                                      @Nullable IconicsDrawable icon) {
+    @Nullable
+    public static IconicsDrawable getIconicsCheckableTextViewBottomDrawable(@NonNull Context ctx,
+                                                                            @Nullable TypedArray a,
+                                                                            @Nullable IconicsDrawable icon) {
         return new IconicsAttrsExtractor(ctx, a)
                 .iconId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon)
                 .colorsId(R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color)

@@ -122,7 +122,7 @@ public class IconicsBrush<T extends Paint> {
         }
 
         int alpha = Color.alpha(colorForState);
-        if (alpha != 255 && alpha != mAlpha) {
+        if (alpha != mAlpha) {
             setAlpha(alpha);
             isInvalidate = true;
         }

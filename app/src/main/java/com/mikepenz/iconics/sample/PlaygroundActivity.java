@@ -21,9 +21,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
@@ -42,7 +39,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsArrayBuilder;
@@ -57,7 +58,7 @@ public class PlaygroundActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playground);
-        
+
         // Handle Toolbar
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -115,23 +116,42 @@ public class PlaygroundActivity extends AppCompatActivity {
 
         listView.setAdapter(new IconsAdapter(this, array));
 
+        // Create icons for menu_navigation
+        IconicsDrawable planningIcon =
+                new IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_history);
+        IconicsDrawable homeIcon = new IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_home);
+        IconicsDrawable calendarIcon =
+                new IconicsDrawable(this).icon(CommunityMaterial.Icon.cmd_calendar);
+
+        // Set icons
+        Menu menu = ((BottomNavigationView) findViewById(R.id.navigation)).getMenu();
+        menu.findItem(R.id.navigation_home).setIcon(planningIcon);
+        menu.findItem(R.id.navigation_dashboard).setIcon(homeIcon);
+        menu.findItem(R.id.navigation_notifications).setIcon(calendarIcon);
+
+        // Automatically process all icons in menu
+        Menu menu2 = ((BottomNavigationView) findViewById(R.id.navigation_auto)).getMenu();
+        IconicsMenuInflaterUtil.parseXmlAndSetIconicsDrawables(
+                this,
+                R.menu.menu_playground,
+                menu2);
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         IconicsMenuInflaterUtil.inflate(getMenuInflater(), this, R.menu.menu_playground, menu);
         return super.onCreateOptionsMenu(menu);
     }
-    
+
     private class IconsAdapter extends ArrayAdapter<IconicsDrawable> {
 
         private final LayoutInflater mInflater;
