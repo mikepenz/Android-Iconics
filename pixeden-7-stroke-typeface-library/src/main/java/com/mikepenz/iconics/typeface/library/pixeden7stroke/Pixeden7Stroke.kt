@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.pixeden7stroke
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class Pixeden7Stroke : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.pixeden_7_stroke_font_v1_2_0
+    override val fontRes: Int
+        get() = R.font.pixeden_7_stroke_font_v1_2_0
 
     override val characters: HashMap<String, Char>
         get() {
@@ -69,7 +70,7 @@ class Pixeden7Stroke : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         pe7_7s_album('\ue6aa'),
         pe7_7s_arc('\ue6ab'),
         pe7_7s_back_2('\ue6ac'),
@@ -272,13 +273,6 @@ class Pixeden7Stroke : ITypeface {
         pe7_7s_albums('\ue67d'),
         pe7_7s_alarm('\ue67e'),
         pe7_7s_airplay('\ue67f');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

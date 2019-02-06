@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.weathericons
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class WeatherIcons : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.weather_icons_v2_0_10
+    override val fontRes: Int
+        get() = R.font.weather_icons_v2_0_10
 
     override val characters: HashMap<String, Char>
         get() {
@@ -59,7 +60,9 @@ class WeatherIcons : ITypeface {
         get() = "http://weathericons.io/"
 
     override val description: String
-        get() = "Weather Icons is the only icon font and CSS with 222 weather themed icons, ready to be dropped right into Bootstrap, or any project that needs high quality weather, maritime, and meteorological based icons!"
+        get() = "Weather Icons is the only icon font and CSS with 222 weather themed icons, " +
+                "ready to be dropped right into Bootstrap, or any project that needs high " +
+                "quality weather, maritime, and meteorological based icons!"
 
     override val license: String
         get() = "SIL OFL 1.1"
@@ -69,7 +72,7 @@ class WeatherIcons : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         wic_day_sunny('\uf00d'),
         wic_day_cloudy('\uf002'),
         wic_day_cloudy_gusts('\uf000'),
@@ -660,13 +663,6 @@ class WeatherIcons : ITypeface {
         wic_wu_sunny('\uf00d'),
         wic_wu_tstorms('\uf01e'),
         wic_wu_unknown('\uf00d');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

@@ -22,18 +22,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.LayoutInflaterCompat
-import com.mikepenz.iconics.ver_four.context.IconicsLayoutInflater2
-
+import com.mikepenz.iconics.context.IconicsLayoutInflater2
 
 class AutomaticActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //define the IconicsLayoutInflater
         //this is compatible with calligraphy and other libs which wrap the baseContext
-        LayoutInflaterCompat.setFactory2(layoutInflater,
-                                         com.mikepenz.iconics.ver_four.context.IconicsLayoutInflater2(
-                                             delegate
-                                         )
-        )
+        LayoutInflaterCompat.setFactory2(layoutInflater, IconicsLayoutInflater2(delegate))
 
         //call super.onCreate
         super.onCreate(savedInstanceState)

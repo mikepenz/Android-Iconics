@@ -16,17 +16,17 @@
 package com.mikepenz.iconics.typeface.library.ionicons
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
-import java.util.HashMap
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class Ionicons : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.ionicons_font_v2_0_1_1
+    override val fontRes: Int
+        get() = R.font.ionicons_font_v2_0_1_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -70,7 +70,7 @@ class Ionicons : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         ion_alert('\uf101'),
         ion_alert_circled('\uf100'),
         ion_android_add('\uf2c7'),
@@ -804,13 +804,6 @@ class Ionicons : ITypeface {
         ion_woman('\uf25d'),
         ion_wrench('\uf2ba'),
         ion_xbox('\uf30c');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

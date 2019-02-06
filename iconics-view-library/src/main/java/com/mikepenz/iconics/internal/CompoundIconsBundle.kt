@@ -18,7 +18,7 @@ package com.mikepenz.iconics.internal
 
 import android.widget.TextView
 import androidx.core.widget.TextViewCompat
-import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.IconicsDrawable
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
@@ -32,11 +32,12 @@ internal class CompoundIconsBundle {
     fun setIcons(textView: TextView) {
         val drawables = TextViewCompat.getCompoundDrawablesRelative(textView)
 
-        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(textView,
-                startIcon ?: drawables[0],
-                topIcon ?: drawables[1],
-                endIcon ?: drawables[2],
-                bottomIcon ?: drawables[3]
+        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(
+            textView,
+            startIcon ?: drawables[0],
+            topIcon ?: drawables[1],
+            endIcon ?: drawables[2],
+            bottomIcon ?: drawables[3]
         )
     }
 }

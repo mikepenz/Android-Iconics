@@ -18,8 +18,8 @@ package com.mikepenz.iconics.internal
 
 import android.content.Context
 import android.graphics.drawable.StateListDrawable
-import com.mikepenz.iconics.ver_four.IconicsDrawable
-import com.mikepenz.iconics.ver_four.utils.IconicsUtils
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.utils.IconicsUtils
 
 /**
  * @author pa.gulko zTrap (07.07.2017)

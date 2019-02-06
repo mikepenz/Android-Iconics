@@ -20,14 +20,14 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
-import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
 import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
 
 open class IconicsImageView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
 ) : AppCompatImageView(context, attrs, defStyle) {
 
     var icon: IconicsDrawable?

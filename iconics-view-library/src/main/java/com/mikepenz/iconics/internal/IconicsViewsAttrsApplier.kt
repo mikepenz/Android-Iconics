@@ -21,8 +21,8 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.core.content.res.use
-import com.mikepenz.iconics.ver_four.IconicsDrawable
-import com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.context.IconicsAttrsExtractor
 import com.mikepenz.iconics.view.R
 
 /**
@@ -111,7 +111,11 @@ internal object IconicsViewsAttrsApplier {
         ).extract()
     }
 
-    private fun getIconicsTextViewStartDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
+    private fun getIconicsTextViewStartDrawable(
+        ctx: Context,
+        a: TypedArray,
+        icon: IconicsDrawable?
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -133,7 +137,11 @@ internal object IconicsViewsAttrsApplier {
         ).extract(icon)
     }
 
-    private fun getIconicsTextViewTopDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
+    private fun getIconicsTextViewTopDrawable(
+        ctx: Context,
+        a: TypedArray,
+        icon: IconicsDrawable?
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -155,7 +163,11 @@ internal object IconicsViewsAttrsApplier {
         ).extract(icon)
     }
 
-    private fun getIconicsTextViewEndDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
+    private fun getIconicsTextViewEndDrawable(
+        ctx: Context,
+        a: TypedArray,
+        icon: IconicsDrawable?
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -177,7 +189,11 @@ internal object IconicsViewsAttrsApplier {
         ).extract(icon)
     }
 
-    private fun getIconicsTextViewBottomDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
+    private fun getIconicsTextViewBottomDrawable(
+        ctx: Context,
+        a: TypedArray,
+        icon: IconicsDrawable?
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -212,7 +228,10 @@ internal object IconicsViewsAttrsApplier {
         }
     }
 
-    private fun getIconicsCompoundButtonUncheckedDrawable(ctx: Context, a: TypedArray): IconicsDrawable {
+    private fun getIconicsCompoundButtonUncheckedDrawable(
+        ctx: Context,
+        a: TypedArray
+    ): IconicsDrawable {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -234,7 +253,10 @@ internal object IconicsViewsAttrsApplier {
         ).extractNonNull()
     }
 
-    private fun getIconicsCompoundButtonCheckedDrawable(ctx: Context, a: TypedArray): IconicsDrawable {
+    private fun getIconicsCompoundButtonCheckedDrawable(
+        ctx: Context,
+        a: TypedArray
+    ): IconicsDrawable {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -272,7 +294,11 @@ internal object IconicsViewsAttrsApplier {
      *
      * For overriding some of attributes to default use resources with prefix 'default_'
      */
-    fun readIconicsCheckableTextView(ctx: Context, attrs: AttributeSet?, bundle: CompoundIconsBundle) {
+    fun readIconicsCheckableTextView(
+        ctx: Context,
+        attrs: AttributeSet?,
+        bundle: CompoundIconsBundle
+    ) {
         ctx.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView, 0, 0).use {
 
             //obtaining attributes for all icons
@@ -292,7 +318,10 @@ internal object IconicsViewsAttrsApplier {
         }
     }
 
-    private fun getIconicsCheckableTextViewAllDrawable(ctx: Context, a: TypedArray): IconicsDrawable? {
+    private fun getIconicsCheckableTextViewAllDrawable(
+        ctx: Context,
+        a: TypedArray
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -314,7 +343,11 @@ internal object IconicsViewsAttrsApplier {
         ).extract()
     }
 
-    private fun getIconicsCheckableTextViewStartDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
+    private fun getIconicsCheckableTextViewStartDrawable(
+        ctx: Context,
+        a: TypedArray,
+        icon: IconicsDrawable?
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -336,7 +369,11 @@ internal object IconicsViewsAttrsApplier {
         ).extract(icon)
     }
 
-    private fun getIconicsCheckableTextViewTopDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
+    private fun getIconicsCheckableTextViewTopDrawable(
+        ctx: Context,
+        a: TypedArray,
+        icon: IconicsDrawable?
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -358,7 +395,11 @@ internal object IconicsViewsAttrsApplier {
         ).extract(icon)
     }
 
-    private fun getIconicsCheckableTextViewEndDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
+    private fun getIconicsCheckableTextViewEndDrawable(
+        ctx: Context,
+        a: TypedArray,
+        icon: IconicsDrawable?
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
@@ -380,7 +421,11 @@ internal object IconicsViewsAttrsApplier {
         ).extract(icon)
     }
 
-    private fun getIconicsCheckableTextViewBottomDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
+    private fun getIconicsCheckableTextViewBottomDrawable(
+        ctx: Context,
+        a: TypedArray,
+        icon: IconicsDrawable?
+    ): IconicsDrawable? {
         return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,

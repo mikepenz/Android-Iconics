@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.materialdesigniconic
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class MaterialDesignIconic : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.material_design_iconic_font_v2_2_0
+    override val fontRes: Int
+        get() = R.font.material_design_iconic_font_v2_2_0
 
     override val characters: HashMap<String, Char>
         get() {
@@ -59,7 +60,8 @@ class MaterialDesignIconic : ITypeface {
         get() = "http://zavoloklom.github.io/material-design-iconic-font/"
 
     override val description: String
-        get() = "Material Design Iconic Font is a full suite of material design icons (created and maintained by Google) for easy scalable vector graphics on websites."
+        get() = "Material Design Iconic Font is a full suite of material design icons (created " +
+                "and maintained by Google) for easy scalable vector graphics on websites."
 
     override val license: String
         get() = "SIL OFL 1.1"
@@ -69,7 +71,7 @@ class MaterialDesignIconic : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         //Google material design
         gmi_3d_rotation('\uf101'),
         gmi_airplane_off('\uf102'),
@@ -957,13 +959,6 @@ class MaterialDesignIconic : ITypeface {
         gmi_local_wc('\uf211'),
         gmi_my_location('\uf299'),
         gmi_directions('\uf1e7');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

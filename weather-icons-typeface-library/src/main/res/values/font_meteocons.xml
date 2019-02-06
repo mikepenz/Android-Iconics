@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_weather_icons">com.mikepenz.iconics.typeface.weathericons.WeatherIcons</string>
+    <string name="define_font_weather_icons">com.mikepenz.iconics.typeface.library.weathericons.WeatherIcons</string>
 </resources>

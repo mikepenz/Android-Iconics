@@ -16,18 +16,23 @@
 
 package com.mikepenz.iconics.sample
 
-import android.content.res.Resources
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.mikepenz.iconics.utils.IconicsUtils
 
 /**
  * @author pa.gulko zTrap (28.10.2017)
  */
 class SpaceItemDecoration : RecyclerView.ItemDecoration() {
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-        val space = Math.ceil((8 * Resources.getSystem().displayMetrics.density).toDouble()).toInt() // 8 dp
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        val space = IconicsUtils.convertDpToPx(view.context, 8)
         val position = parent.getChildAdapterPosition(view)
         if (position < 2) {
             outRect.top = space

@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.fonrawesome
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class FontAwesome : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.fontawesome_font_v5_3_1_1
+    override val fontRes: Int
+        get() = R.font.fontawesome_font_v5_3_1_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -59,7 +60,8 @@ class FontAwesome : ITypeface {
         get() = "https://fontawesome.com/"
 
     override val description: String
-        get() = "Get vector icons and social logos on your website with Font Awesome, the webs most popular icon set and toolkit."
+        get() = "Get vector icons and social logos on your website with Font Awesome, the webs " +
+                "most popular icon set and toolkit."
 
     override val license: String
         get() = "SIL OFL 1.1"
@@ -69,7 +71,7 @@ class FontAwesome : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         faw_500px('\uf26e'),
         faw_accessible_icon('\uf368'),
         faw_accusoft('\uf369'),
@@ -1411,13 +1413,6 @@ class FontAwesome : ITypeface {
         faw_x_ray('\uf497'),
         faw_yen_sign('\uf177'),
         faw_yin_yang('\uf6ad');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

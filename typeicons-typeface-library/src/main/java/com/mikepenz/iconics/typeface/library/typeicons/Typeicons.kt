@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.typeicons
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class Typeicons : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.typeicons_font_v2_0_7_1
+    override val fontRes: Int
+        get() = R.font.typeicons_font_v2_0_7_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -69,7 +70,7 @@ class Typeicons : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         typ_adjust_brightness('\ue000'),
         typ_adjust_contrast('\ue001'),
         typ_anchor_outline('\ue002'),
@@ -406,13 +407,6 @@ class Typeicons : ITypeface {
         typ_zoom_out('\ue14d'),
         typ_zoom_outline('\ue14e'),
         typ_zoom('\ue14f');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

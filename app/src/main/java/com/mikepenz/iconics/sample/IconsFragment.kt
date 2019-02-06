@@ -34,14 +34,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.listeners.OnBindViewHolderListener
+import com.mikepenz.iconics.Iconics
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.sample.item.IconItem
-import com.mikepenz.iconics.ver_four.Iconics
-import com.mikepenz.iconics.ver_four.IconicsDrawable
-import com.mikepenz.iconics.ver_four.IconicsSize
-import com.mikepenz.iconics.ver_four.utils.IconicsUtils
-import com.mikepenz.iconics.ver_four.utils.toIconicsColor
-import com.mikepenz.iconics.ver_four.utils.toIconicsColorRes
-import com.mikepenz.iconics.ver_four.utils.toIconicsSizeDp
+import com.mikepenz.iconics.utils.IconicsUtils
+import com.mikepenz.iconics.utils.toIconicsColor
+import com.mikepenz.iconics.utils.toIconicsColorRes
+import com.mikepenz.iconics.utils.toIconicsSizeDp
 import com.mikepenz.materialize.util.UIUtils
 import java.util.ArrayList
 import java.util.Random
@@ -150,7 +150,7 @@ class IconsFragment : Fragment() {
             override fun onBindViewHolder(
                 viewHolder: RecyclerView.ViewHolder,
                 position: Int,
-                payloads: List<*>
+                payloads: MutableList<Any>
             ) {
                 val holder = viewHolder as IconItem.ViewHolder
 

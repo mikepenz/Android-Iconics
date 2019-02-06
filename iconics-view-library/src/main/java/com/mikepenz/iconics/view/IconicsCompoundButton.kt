@@ -20,8 +20,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.CompoundButton
 import android.widget.TextView
-import com.mikepenz.iconics.ver_four.Iconics
-import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.Iconics
+import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.internal.CheckableIconBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
 import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
@@ -30,9 +30,9 @@ import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
  * @author pa.gulko zTrap (06.07.2017)
  */
 open class IconicsCompoundButton @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
 ) : CompoundButton(context, attrs, defStyle) {
     private val iconsBundle = CheckableIconBundle()
 

@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_Pixeden7Stroke">com.mikepenz.iconics.typeface.pixeden7stroke.Pixeden7Stroke</string>
+    <string name="define_font_Pixeden7Stroke">com.mikepenz.iconics.typeface.library.pixeden7stroke.Pixeden7Stroke</string>
 </resources>

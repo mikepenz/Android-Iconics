@@ -17,16 +17,17 @@
 package com.mikepenz.iconics.internal
 
 import android.view.View
-import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
 
 internal fun View.tryToEnableIconicsAnimation(drawable: IconicsDrawable?): IconicsDrawable? {
     if (drawable == null) return null
-    if (drawable is com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable) {
+    if (drawable is IconicsAnimatedDrawable) {
         drawable.animateIn(this)
     }
     return drawable
 }
 
 internal fun View.tryToEnableIconicsAnimation(vararg drawables: IconicsDrawable?) {
-    drawables.mapNotNull { (it as? com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable) }.forEach { it.animateIn(this) }
+    drawables.mapNotNull { (it as? IconicsAnimatedDrawable) }.forEach { it.animateIn(this) }
 }

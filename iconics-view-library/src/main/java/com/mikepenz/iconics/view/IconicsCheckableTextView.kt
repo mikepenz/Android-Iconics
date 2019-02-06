@@ -23,12 +23,12 @@ import android.view.SoundEffectConstants
 import android.view.View
 import android.widget.Checkable
 import androidx.core.widget.TextViewCompat
+import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.internal.CheckedCompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
 import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
-import com.mikepenz.iconics.ver_four.IconicsDrawable
-import com.mikepenz.iconics.ver_four.utils.IconicsUtils
+import com.mikepenz.iconics.utils.IconicsUtils
 
 /**
  * @author pa.gulko zTrap (06.07.2017)

@@ -20,17 +20,17 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
-import com.mikepenz.iconics.ver_four.Iconics
-import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.Iconics
+import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
 import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
 
 open class IconicsTextView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = android.R.attr.textViewStyle
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = android.R.attr.textViewStyle
 ) : AppCompatTextView(context, attrs, defStyle), CompoundIconicsDrawables {
     internal val iconsBundle: CompoundIconsBundle = CompoundIconsBundle()
 

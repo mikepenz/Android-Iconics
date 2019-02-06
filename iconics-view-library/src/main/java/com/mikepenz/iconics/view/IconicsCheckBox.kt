@@ -23,9 +23,9 @@ import android.util.AttributeSet
  * @author pa.gulko zTrap (06.07.2017)
  */
 open class IconicsCheckBox @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = android.R.attr.checkboxStyle
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = android.R.attr.checkboxStyle
 ) : IconicsCompoundButton(context, attrs, defStyle) {
 
     override fun getAccessibilityClassName(): CharSequence {

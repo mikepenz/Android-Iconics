@@ -15,6 +15,11 @@
           <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
         </value>
       </option>
+      <option name="VALUE_RESOURCE_FILE_SETTINGS">
+        <value>
+          <option name="WRAP_ATTRIBUTES" value="4" />
+        </value>
+      </option>
       <option name="OTHER_SETTINGS">
         <value>
           <option name="INSERT_LINE_BREAK_BEFORE_NAMESPACE_DECLARATION" value="true" />
@@ -57,9 +62,8 @@
       </extensions>
     </Objective-C-extensions>
     <XML>
-      <option name="XML_ATTRIBUTE_WRAP" value="2" />
+      <option name="XML_ATTRIBUTE_WRAP" value="4" />
       <option name="XML_TEXT_WRAP" value="0" />
-      <option name="XML_KEEP_LINE_BREAKS" value="false" />
       <option name="XML_KEEP_BLANK_LINES" value="1" />
       <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
     </XML>

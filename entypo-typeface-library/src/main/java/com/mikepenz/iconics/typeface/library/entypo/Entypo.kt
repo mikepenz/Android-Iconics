@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.entypo
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class Entypo : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.entypo_font_v1_0_0_1
+    override val fontRes: Int
+        get() = R.font.entypo_font_v1_0_0_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -69,7 +70,7 @@ class Entypo : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         ent_add_to_list('\ue900'),
         ent_classic_computer('\ue901'),
         ent_controller_fast_backward('\ue902'),
@@ -455,13 +456,6 @@ class Entypo : ITypeface {
         ent_vimeo('\uea7e'),
         ent_youtube_with_circle('\uea7f'),
         ent_youtube('\uea80');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

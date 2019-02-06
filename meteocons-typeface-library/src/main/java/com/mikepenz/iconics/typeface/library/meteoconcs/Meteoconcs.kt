@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.meteoconcs
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class Meteoconcs : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.meteocons_v1_1_1
+    override val fontRes: Int
+        get() = R.font.meteocons_v1_1_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -59,7 +60,9 @@ class Meteoconcs : ITypeface {
         get() = "http://www.alessioatzeni.com/meteocons/"
 
     override val description: String
-        get() = "Meteocons is a set of weather icons, it containing 40+ icons available in PSD, CSH, EPS, SVG, Desktop font and Web font. All icon and updates are free and always will be."
+        get() = "Meteocons is a set of weather icons, it containing 40+ icons available in PSD, " +
+                "CSH, EPS, SVG, Desktop font and Web font. All icon and updates are free and " +
+                "always will be."
 
     override val license: String
         get() = ""
@@ -67,11 +70,9 @@ class Meteoconcs : ITypeface {
     override val licenseUrl: String
         get() = ""
 
-    override fun getIcon(key: String): IIcon {
-        return Icon.valueOf(key)
-    }
+    override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         met_windy_rain_inv('\ue800'),
         met_snow_inv('\ue801'),
         met_snow_heavy_inv('\ue802'),
@@ -119,13 +120,6 @@ class Meteoconcs : ITypeface {
         met_hail('\ue82c'),
         met_clouds('\ue82d'),
         met_clouds_flash('\ue82e');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

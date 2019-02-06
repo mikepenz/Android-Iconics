@@ -91,13 +91,11 @@ dependencies {
     implementation 'com.mikepenz:fastadapter-extensions-expandable:3.3.1'
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
-    testImplementation ('ru.ztrap.iconics:string-generator:1.0.2') {
-        transitive = true
-        exclude module: "iconics-core"
-    }
+    // https://github.com/zTrap/Android-Iconics-String-Generator
+    testImplementation 'ru.ztrap.iconics:string-generator:1.0.2'
 
-    //used to generate the drawer on the left
-    //https://github.com/mikepenz/MaterialDrawer
+    // used to generate the drawer on the left
+    // https://github.com/mikepenz/MaterialDrawer
     implementation('com.mikepenz:materialdrawer:6.1.2') {
         transitive = true
         exclude module: "fastadapter"
@@ -115,7 +113,6 @@ dependencies {
 
     implementation project(':library-core')
     implementation project(':iconics-view-library')
-    implementation project(':iconics-view-material-library')
     implementation project(':fontawesome-typeface-library')
     implementation project(':material-design-iconic-typeface-library')
     implementation project(':google-material-typeface-library')

@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.communitymaterial
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class CommunityMaterial : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.communitymaterial_font_v2_7_94_1
+    override val fontRes: Int
+        get() = R.font.communitymaterial_font_v2_7_94_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -66,10 +67,12 @@ class CommunityMaterial : ITypeface {
         get() = "http://materialdesignicons.com/"
 
     override val description: String
-        get() = "Material Design Icons are the official open-source icons featured in the Google Material Design specification."
+        get() = "Material Design Icons are the official open-source icons featured in the Google " +
+                "Material Design specification."
 
     override val license: String
-        get() = "Templates - Free, Community Icons - SIL Open Font License 1.1, Google Material Design Icons: Attribution 4.0 International"
+        get() = "Templates - Free, Community Icons - SIL Open Font License 1.1, Google Material " +
+                "Design Icons: Attribution 4.0 International"
 
     override val licenseUrl: String
         get() = "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/license.txt"
@@ -83,7 +86,7 @@ class CommunityMaterial : ITypeface {
         }
     }
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         // Material design icons (v2.7.94)
         cmd_access_point('\uF002'),
         cmd_access_point_network('\uF003'),
@@ -1425,14 +1428,6 @@ class CommunityMaterial : ITypeface {
         cmd_guitar_pick_outline('\uF2C6'),
         cmd_guy_fawkes_mask('\uF824');
 
-        override var character: Char = ' '
-            internal set
-
-        init {
-            @Suppress("LeakingThis")
-            this.character = character
-        }
-
         override val typeface: ITypeface
             get() = savedTypeface
 
@@ -1442,7 +1437,7 @@ class CommunityMaterial : ITypeface {
         }
     }
 
-    enum class Icon2 constructor(character: Char) : IIcon {
+    enum class Icon2 constructor(override val character: Char) : IIcon {
         // Material design icons (v2.7.94)
         cmd_hackernews('\uF624'),
         cmd_hail('\uFAC0'),
@@ -2900,16 +2895,6 @@ class CommunityMaterial : ITypeface {
         cmd_zodiac_taurus('\uFA86'),
         cmd_zodiac_virgo('\uFA87'),
         cmd_blank('\uF68C');
-
-        override var character: Char = ' '
-            internal set
-
-        override val formattedName: String
-            get() = "{$name}"
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

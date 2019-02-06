@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_fontawesome">com.mikepenz.iconics.typeface.fonrawesome.FontAwesome</string>
+    <string name="define_font_fontawesome">com.mikepenz.iconics.typeface.library.fonrawesome.FontAwesome</string>
 </resources>

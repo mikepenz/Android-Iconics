@@ -45,10 +45,6 @@
             android:name=".OldAutomaticActivity"
             android:label="@string/title_activity_old_automatic"
             android:theme="@style/MaterialDrawerTheme.Light.ActionBar" />
-        <activity android:name=".FourActivity"
-                  android:label="@string/title_activity_old_automatic"
-                  android:theme="@style/MaterialDrawerTheme.Light.ActionBar" >
-        </activity>
     </application>
 
 </manifest>

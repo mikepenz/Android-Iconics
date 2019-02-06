@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_octicons">com.mikepenz.iconics.typeface.octicons.Octicons</string>
+    <string name="define_font_octicons">com.mikepenz.iconics.typeface.library.octicons.Octicons</string>
 </resources>

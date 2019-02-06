@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-import com.mikepenz.iconics.typeface.library.meteoconcs.Meteoconcs
-import com.mikepenz.iconics.typeface.library.octicons.Octicons
-import com.mikepenz.iconics.typeface.library.pixeden7stroke.Pixeden7Stroke
 import com.mikepenz.iconics.typeface.library.communitymaterial.CommunityMaterial
 import com.mikepenz.iconics.typeface.library.devicon.DevIcon
 import com.mikepenz.iconics.typeface.library.entypo.Entypo
@@ -25,6 +22,9 @@ import com.mikepenz.iconics.typeface.library.foundationicons.FoundationIcons
 import com.mikepenz.iconics.typeface.library.googlematerial.GoogleMaterial
 import com.mikepenz.iconics.typeface.library.ionicons.Ionicons
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
+import com.mikepenz.iconics.typeface.library.meteoconcs.Meteoconcs
+import com.mikepenz.iconics.typeface.library.octicons.Octicons
+import com.mikepenz.iconics.typeface.library.pixeden7stroke.Pixeden7Stroke
 import com.mikepenz.iconics.typeface.library.typeicons.Typeicons
 import com.mikepenz.iconics.typeface.library.weathericons.WeatherIcons
 import org.junit.Test

@@ -17,15 +17,17 @@
 package com.mikepenz.iconics.typeface.library.devicon
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class DevIcon : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.devicon_font_v2_0_0_1
+    override val fontRes: Int
+        get() = R.font.devicon_font_v2_0_0_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -37,31 +39,41 @@ class DevIcon : ITypeface {
             return chars!!
         }
 
-    override val mappingPrefix: String = "dev"
+    override val mappingPrefix: String
+        get() = "dev"
 
-    override val fontName: String = "DevIcon"
+    override val fontName: String
+        get() = "DevIcon"
 
-    override val version: String = "2.0.0.1"
+    override val version: String
+        get() = "2.0.0.1"
 
-    override val iconCount: Int = characters.size
+    override val iconCount: Int
+        get() = characters.size
 
-    override val icons: Collection<String> = Icon.values().map { it.name }.toList()
+    override val icons: Collection<String>
+        get() = Icon.values().map { it.name }.toCollection(LinkedList())
 
-    override val author: String = "Konpa"
+    override val author: String
+        get() = "Konpa"
 
-    override val url: String = "http://devicon.fr/"
+    override val url: String
+        get() = "http://devicon.fr/"
 
-    override val description: String = "Devicon is a set of icons representing programming " +
-            "languages, designing & development tools. You can use it as a font or directly " +
-            "copy/paste the svg code into your project."
+    override val description: String
+        get() = "Devicon is a set of icons representing programming languages, designing & " +
+                "development tools. You can use it as a font or directly copy/paste the svg code " +
+                "into your project."
 
-    override val license: String =  "MIT License"
+    override val license: String
+        get() = "MIT License"
 
-    override val licenseUrl: String = "https://github.com/konpa/devicon/blob/master/LICENSE"
+    override val licenseUrl: String
+        get() = "https://github.com/konpa/devicon/blob/master/LICENSE"
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         dev_ssh_plain_wordmark('\ue900'),
         dev_ssh_plain('\ue901'),
         dev_sourcetree_plain_wordmark('\ue902'),
@@ -224,13 +236,6 @@ class DevIcon : ITypeface {
         dev_yii_plain('\uec02'),
         dev_zend_plain_wordmark('\uec03'),
         dev_zend_plain('\uec04');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

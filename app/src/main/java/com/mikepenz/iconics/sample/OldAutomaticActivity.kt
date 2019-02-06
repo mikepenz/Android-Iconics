@@ -19,13 +19,13 @@ package com.mikepenz.iconics.sample
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import com.mikepenz.iconics.ver_four.context.IconicsContextWrapper
+import com.mikepenz.iconics.context.IconicsContextWrapper
 import kotlinx.android.synthetic.main.activity_automatic.test4
 
 class OldAutomaticActivity : Activity() {
     override fun attachBaseContext(newBase: Context) {
         //not compatible with Calligraphy
-        super.attachBaseContext(com.mikepenz.iconics.ver_four.context.IconicsContextWrapper.wrap(newBase))
+        super.attachBaseContext(IconicsContextWrapper.wrap(newBase))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

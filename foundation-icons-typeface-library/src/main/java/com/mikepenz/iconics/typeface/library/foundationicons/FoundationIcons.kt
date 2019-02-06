@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.foundationicons
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class FoundationIcons : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.foundation_icons_font_v3_0_0_1
+    override val fontRes: Int
+        get() = R.font.foundation_icons_font_v3_0_0_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -69,7 +70,7 @@ class FoundationIcons : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         fou_address_book('\uf100'),
         fou_alert('\uf101'),
         fou_align_center('\uf102'),
@@ -353,13 +354,6 @@ class FoundationIcons : ITypeface {
         fou_yen('\uf218'),
         fou_zoom_in('\uf219'),
         fou_zoom_out('\uf21a');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

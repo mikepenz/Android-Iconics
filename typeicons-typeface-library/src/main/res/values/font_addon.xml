@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_Typeicons">com.mikepenz.iconics.typeface.typeicons.Typeicons</string>
+    <string name="define_font_Typeicons">com.mikepenz.iconics.typeface.library.typeicons.Typeicons</string>
 </resources>

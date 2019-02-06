@@ -16,5 +16,5 @@
   -->
 
 <resources>
-    <string name="define_font_Ionicons">com.mikepenz.iconics.typeface.ionicons.Ionicons</string>
+    <string name="define_font_Ionicons">com.mikepenz.iconics.typeface.library.ionicons.Ionicons</string>
 </resources>

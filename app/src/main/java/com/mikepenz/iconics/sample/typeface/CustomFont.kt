@@ -18,8 +18,8 @@ package com.mikepenz.iconics.sample.typeface
 
 import android.graphics.Typeface
 import com.mikepenz.iconics.sample.R
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.HashMap
 import java.util.LinkedList
 

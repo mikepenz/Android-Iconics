@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.octicons
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class Octicons : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.octicons_v3_2_0
+    override val fontRes: Int
+        get() = R.font.octicons_v3_2_0
 
     override val characters: HashMap<String, Char>
         get() {
@@ -69,7 +70,7 @@ class Octicons : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         //Octicons
         oct_alert('\uf02d'),
         oct_arrow_down('\uf03f'),
@@ -264,13 +265,6 @@ class Octicons : ITypeface {
         oct_remove_close('\uf081'),
         oct_x('\uf081'),
         oct_zap('\u26A1');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

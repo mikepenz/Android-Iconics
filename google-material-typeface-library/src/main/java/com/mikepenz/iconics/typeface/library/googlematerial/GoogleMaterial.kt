@@ -16,16 +16,17 @@
 package com.mikepenz.iconics.typeface.library.googlematerial
 
 import android.graphics.Typeface
-import com.mikepenz.iconics.ver_four.typeface.IIcon
-import com.mikepenz.iconics.ver_four.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.typeface.ITypeface
 import java.util.LinkedList
 
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class GoogleMaterial : ITypeface {
 
     override var typeface: Typeface? = null
 
-    override val fontRes: Int = R.font.google_material_font_v3_0_1_0_original
+    override val fontRes: Int
+        get() = R.font.google_material_font_v3_0_1_0_original
 
     override val characters: HashMap<String, Char>
         get() {
@@ -59,7 +60,8 @@ class GoogleMaterial : ITypeface {
         get() = "https://github.com/google/material-design-icons"
 
     override val description: String
-        get() = "Material design icons are the official icon set from Google that are designed under the material design guidelines."
+        get() = "Material design icons are the official icon set from Google that are designed " +
+                "under the material design guidelines."
 
     override val license: String
         get() = "CC-BY 4.0"
@@ -69,7 +71,7 @@ class GoogleMaterial : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         gmd_3d_rotation('\ue84d'),
         gmd_ac_unit('\ueb3b'),
         gmd_access_alarm('\ue190'),
@@ -1002,13 +1004,6 @@ class GoogleMaterial : ITypeface {
         gmd_zoom_in('\ue8ff'),
         gmd_zoom_out('\ue900'),
         gmd_zoom_out_map('\ue56b');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

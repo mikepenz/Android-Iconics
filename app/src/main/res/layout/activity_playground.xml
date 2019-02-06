@@ -255,7 +255,7 @@
                     app:iiv_background_contour_color="@color/color_states_bg_contour"
                     app:iiv_contour_color="@color/color_states_contour"
                     app:iiv_background_contour_width="2dp"
-                    app:iiv_contour_width="2dp"  />
+                    app:iiv_contour_width="2dp" />
 
                 <com.mikepenz.iconics.view.IconicsImageButton
                     android:id="@+id/test7"

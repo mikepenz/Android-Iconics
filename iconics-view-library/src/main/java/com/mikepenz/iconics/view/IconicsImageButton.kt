@@ -21,9 +21,9 @@ import android.util.AttributeSet
 import android.widget.ImageButton
 
 open class IconicsImageButton @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = android.R.attr.buttonStyle
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = android.R.attr.buttonStyle
 ) : IconicsImageView(context, attrs, defStyle) {
 
     init {
