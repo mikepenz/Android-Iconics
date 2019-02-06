@@ -26,24 +26,16 @@ object GenericsUtil {
 
     /** Helper to get the string fields with name starts "define_font_" from the R class */
     @JvmStatic fun getDefinedFonts(ctx: Context): Array<String> {
-        return com.mikepenz.iconics.ver_four.utils.GenericsUtil.resolveRClass(ctx.packageName)?.let {
-            com.mikepenz.iconics.ver_four.utils.GenericsUtil.getDefinedFonts(
-                ctx,
-                it.fields
-            )
-        }
-                ?: emptyArray()
+        return GenericsUtil.resolveRClass(ctx.packageName)?.let {
+            GenericsUtil.getDefinedFonts(ctx, it.fields)
+        } ?: emptyArray()
     }
 
     /** Helper to get the string fields with name starts "define_processor_" from the R class */
     @JvmStatic fun getDefinedProcessors(ctx: Context): Array<String> {
-        return com.mikepenz.iconics.ver_four.utils.GenericsUtil.resolveRClass(ctx.packageName)?.let {
-            com.mikepenz.iconics.ver_four.utils.GenericsUtil.getDefinedProcessors(
-                ctx,
-                it.fields
-            )
-        }
-                ?: emptyArray()
+        return GenericsUtil.resolveRClass(ctx.packageName)?.let {
+            GenericsUtil.getDefinedProcessors(ctx, it.fields)
+        } ?: emptyArray()
     }
 
     /** Helper to resolve the correct R Class for the package */
@@ -68,12 +60,7 @@ object GenericsUtil {
      */
     @JvmStatic private fun getDefinedFonts(ctx: Context, fields: Array<Field>): Array<String> {
         return fields.filter { it.name.contains("define_font_") }
-                .map {
-                    com.mikepenz.iconics.ver_four.utils.GenericsUtil.getStringResourceByName(
-                        ctx,
-                        it.name
-                    )
-                }
+                .map { GenericsUtil.getStringResourceByName(ctx, it.name) }
                 .toTypedArray()
     }
 
@@ -85,16 +72,11 @@ object GenericsUtil {
      */
     @JvmStatic private fun getDefinedProcessors(ctx: Context, fields: Array<Field>): Array<String> {
         return fields.filter { it.name.contains("define_processor_") }
-                .map {
-                    com.mikepenz.iconics.ver_four.utils.GenericsUtil.getStringResourceByName(
-                        ctx,
-                        it.name
-                    )
-                }
+                .map { GenericsUtil.getStringResourceByName(ctx, it.name) }
                 .toTypedArray()
     }
 
-    /**A helper method to retrieve a string by it's resource name */
+    /** A helper method to retrieve a string by it's resource name */
     @JvmStatic private fun getStringResourceByName(ctx: Context, resourceName: String): String {
         val resId = ctx.resources.getIdentifier(resourceName, "string", ctx.packageName)
         return if (resId == 0) "" else ctx.getString(resId)

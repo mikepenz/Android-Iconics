@@ -16,7 +16,7 @@
   -->
 
 <resources>
-    <string name="define_processor_spin">com.mikepenz.iconics.animation.SpinProcessor</string>
-    <string name="define_processor_blink_alpha">com.mikepenz.iconics.animation.BlinkAlphaProcessor</string>
-    <string name="define_processor_blink_scale">com.mikepenz.iconics.animation.BlinkScaleProcessor</string>
+    <string name="define_processor_spin">com.mikepenz.iconics.ver_four.animation.SpinProcessor</string>
+    <string name="define_processor_blink_alpha">com.mikepenz.iconics.ver_four.animation.BlinkAlphaProcessor</string>
+    <string name="define_processor_blink_scale">com.mikepenz.iconics.ver_four.animation.BlinkScaleProcessor</string>
 </resources>

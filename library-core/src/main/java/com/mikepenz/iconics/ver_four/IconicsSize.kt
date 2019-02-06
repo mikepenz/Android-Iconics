@@ -29,32 +29,30 @@ class IconicsSize private constructor() : IconicsExtractor {
     companion object {
 
         /** Size of [androidx.appcompat.widget.Toolbar] icon in dp */
-        @JvmField val TOOLBAR_ICON_SIZE =
-                dp(24f)
+        @JvmField val TOOLBAR_ICON_SIZE: IconicsSize = dp(24f)
 
         /** Size of [androidx.appcompat.widget.Toolbar] icon padding in dp */
-        @JvmField val TOOLBAR_ICON_PADDING =
-                dp(1f)
+        @JvmField val TOOLBAR_ICON_PADDING: IconicsSize = dp(1f)
 
         /** @param dp The size in density-independent pixels (dp). */
-        @JvmStatic fun dp(@Dimension(unit = Dimension.DP) dp: Number): IconicsSize =
-                IconicsSize().also { it.dp = dp }
+        @JvmStatic fun dp(@Dimension(unit = Dimension.DP) dp: Number): IconicsSize {
+            return IconicsSize().also { it.dp = dp }
+        }
 
         /** @param px The size in pixels (px). */
-        @JvmStatic fun px(@Dimension(unit = Dimension.PX) px: Number): IconicsSize =
-                IconicsSize().also { it.px = px }
+        @JvmStatic fun px(@Dimension(unit = Dimension.PX) px: Number): IconicsSize {
+            return IconicsSize().also { it.px = px }
+        }
 
         /** @param res The dimension resource. */
-        @JvmStatic fun res(@DimenRes res: Int): IconicsSize =
-                IconicsSize().also { it.dimenRes = res }
+        @JvmStatic fun res(@DimenRes res: Int): IconicsSize {
+            return IconicsSize().also { it.dimenRes = res }
+        }
     }
 
-    @Dimension(unit = Dimension.DP) private var dp =
-            IconicsExtractor.DEF_SIZE
-    @Dimension(unit = Dimension.PX) private var px =
-            IconicsExtractor.DEF_SIZE
-    @DimenRes private var dimenRes =
-            IconicsExtractor.DEF_RESOURCE
+    @Dimension(unit = Dimension.DP) private var dp: Number = IconicsExtractor.DEF_SIZE
+    @Dimension(unit = Dimension.PX) private var px: Number = IconicsExtractor.DEF_SIZE
+    @DimenRes private var dimenRes: Int = IconicsExtractor.DEF_RESOURCE
 
     internal fun extractFloat(context: Context): Float {
         if (px == IconicsExtractor.DEF_SIZE) {

@@ -47,9 +47,9 @@ class IconicsArrayBuilder(private val iconBase: IconicsDrawable) {
 
         icons.forEachIndexed { index, (icon, typeface) ->
             when (icon) {
-                is IIcon -> iconicsDrawables[index] = iconBase.clone().icon(icon)
-                is Char -> iconicsDrawables[index] = iconBase.clone().icon(icon, typeface)
-                is String -> iconicsDrawables[index] = iconBase.clone().iconText(icon, typeface)
+                is IIcon -> iconicsDrawables.add(index, iconBase.clone().icon(icon))
+                is Char -> iconicsDrawables.add(index, iconBase.clone().icon(icon, typeface))
+                is String -> iconicsDrawables.add(index, iconBase.clone().iconText(icon, typeface))
             }
         }
 

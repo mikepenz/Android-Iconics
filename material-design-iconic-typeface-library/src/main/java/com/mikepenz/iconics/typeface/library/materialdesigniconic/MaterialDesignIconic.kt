@@ -15,19 +15,17 @@
  */
 package com.mikepenz.iconics.typeface.library.materialdesigniconic
 
-import android.content.Context
 import android.graphics.Typeface
 import com.mikepenz.iconics.ver_four.typeface.IIcon
 import com.mikepenz.iconics.ver_four.typeface.ITypeface
 import java.util.LinkedList
-import kotlin.collections.Collection
-import kotlin.collections.HashMap
-import kotlin.collections.associateTo
-import kotlin.collections.map
-import kotlin.collections.toCollection
 
 @Suppress("EnumEntryName", "LeakingThis")
 class MaterialDesignIconic : ITypeface {
+
+    override var typeface: Typeface? = null
+
+    override val fontRes: Int = R.font.material_design_iconic_font_v2_2_0
 
     override val characters: HashMap<String, Char>
         get() {
@@ -70,17 +68,6 @@ class MaterialDesignIconic : ITypeface {
         get() = "http://scripts.sil.org/OFL"
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
-
-    override fun getTypeface(ctx: Context): Typeface {
-        if (typeface == null) {
-            typeface = try {
-                Typeface.createFromAsset(ctx.assets, "fonts/$TTF_FILE")
-            } catch (e: Exception) {
-                Typeface.DEFAULT
-            }
-        }
-        return typeface!!
-    }
 
     enum class Icon constructor(character: Char) : IIcon {
         //Google material design
@@ -988,8 +975,6 @@ class MaterialDesignIconic : ITypeface {
     }
 
     companion object {
-        private const val TTF_FILE = "material-design-iconic-font-v2.2.0.ttf"
-        private var typeface: Typeface? = null
         private var chars: HashMap<String, Char>? = null
     }
 }

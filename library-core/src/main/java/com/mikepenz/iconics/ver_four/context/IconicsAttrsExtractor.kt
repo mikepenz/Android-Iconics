@@ -23,6 +23,7 @@ import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
 import androidx.annotation.StyleableRes
 import com.mikepenz.iconics.ver_four.Iconics
 import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor
 import com.mikepenz.iconics.ver_four.utils.toIconicsColor
 import com.mikepenz.iconics.ver_four.utils.toIconicsSizePx
 
@@ -80,9 +81,7 @@ class IconicsAttrsExtractor(
     }
 
     private fun extract(icon: IconicsDrawable?, extractOffsets: Boolean): IconicsDrawable? {
-        var processedIcon = icon
-
-        processedIcon = copyIfCan(processedIcon)
+        var processedIcon = icon.copyIfCan()
 
         // region icon
         val i = typedArray.getString(iconId)
@@ -90,16 +89,13 @@ class IconicsAttrsExtractor(
             processedIcon = processedIcon.createIfNeeds(context).icon(i)
         }
         typedArray.getColorStateList(colorsId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .color(it.toIconicsColor())
+            processedIcon = processedIcon.createIfNeeds(context).color(it.toIconicsColor())
         }
         typedArray.getDimensionPixelSize(sizeId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .size(it.toIconicsSizePx())
+            processedIcon = processedIcon.createIfNeeds(context).size(it.toIconicsSizePx())
         }
         typedArray.getDimensionPixelSize(paddingId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .padding(it.toIconicsSizePx())
+            processedIcon = processedIcon.createIfNeeds(context).padding(it.toIconicsSizePx())
         }
         if (extractOffsets) {
             typedArray.getDimensionPixelSize(offsetYId)?.let {
@@ -126,9 +122,8 @@ class IconicsAttrsExtractor(
                     .backgroundColor(it.toIconicsColor())
         }
         typedArray.getDimensionPixelSize(cornerRadiusId)?.let {
-            processedIcon = processedIcon.createIfNeeds(
-                context
-            ).roundedCorners(it.toIconicsSizePx())
+            processedIcon = processedIcon.createIfNeeds(context)
+                    .roundedCorners(it.toIconicsSizePx())
         }
         // endregion
         // region background contour
@@ -145,15 +140,12 @@ class IconicsAttrsExtractor(
         val shadowRadius = typedArray.getDimensionPixelSize(shadowRadiusId)
         val shadowDx = typedArray.getDimensionPixelSize(shadowDxId)
         val shadowDy = typedArray.getDimensionPixelSize(shadowDyId)
-        val shadowColor = typedArray.getColor(
-            shadowColorId,
-            IconicsAttrsExtractor.DEF_COLOR
-        )
+        val shadowColor = typedArray.getColor(shadowColorId, DEF_COLOR)
 
         if (shadowRadius != null
                 && shadowDx != null
                 && shadowDy != null
-                && shadowColor != IconicsAttrsExtractor.DEF_COLOR) {
+                && shadowColor != DEF_COLOR) {
             processedIcon = processedIcon.createIfNeeds(context).shadow(
                 shadowRadius.toIconicsSizePx(),
                 shadowDx.toIconicsSizePx(),
@@ -169,8 +161,7 @@ class IconicsAttrsExtractor(
         // region animations
         val animations = typedArray.getString(animationsId)
         if (!animations.isNullOrBlank()) {
-            val processors =
-                    ArrayList<com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor>()
+            val processors = ArrayList<IconicsAnimationProcessor>()
 
             val animationsList = animations.split("\\|".toRegex())
                     .dropLastWhile { it.isEmpty() }
@@ -188,13 +179,10 @@ class IconicsAttrsExtractor(
     }
 
     private fun TypedArray.getDimensionPixelSize(@StyleableRes index: Int): Int? {
-        return getDimensionPixelSize(index, IconicsAttrsExtractor.DEF_SIZE)
-                .takeIf { it != IconicsAttrsExtractor.DEF_SIZE }
+        return getDimensionPixelSize(index, DEF_SIZE).takeIf { it != DEF_SIZE }
     }
 
-    private fun copyIfCan(drawable: IconicsDrawable?): IconicsDrawable? {
-        return drawable?.clone()
-    }
+    private fun IconicsDrawable?.copyIfCan(): IconicsDrawable? = this?.clone()
 
     private fun IconicsDrawable?.createIfNeeds(context: Context): IconicsDrawable {
         return this ?: IconicsDrawable(context)

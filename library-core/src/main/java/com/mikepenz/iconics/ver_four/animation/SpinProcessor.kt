@@ -27,14 +27,14 @@ import com.mikepenz.iconics.ver_four.IconicsBrush
  */
 open class SpinProcessor(
     /** The direction of the spin */
-    open var direction: com.mikepenz.iconics.ver_four.animation.SpinProcessor.Direction = com.mikepenz.iconics.ver_four.animation.SpinProcessor.Direction.CLOCKWISE,
+    open var direction: SpinProcessor.Direction = SpinProcessor.Direction.CLOCKWISE,
 
-    override var interpolator: TimeInterpolator = com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.Companion.DEFAULT_INTERPOLATOR,
-    override var duration: Long = com.mikepenz.iconics.ver_four.animation.SpinProcessor.Companion.DEFAULT_DURATION,
-    override var repeatCount: Int = com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.Companion.INFINITE,
-    override var repeatMode: com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.RepeatMode = com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.RepeatMode.RESTART,
+    override var interpolator: TimeInterpolator = IconicsAnimationProcessor.DEFAULT_INTERPOLATOR,
+    override var duration: Long = SpinProcessor.DEFAULT_DURATION,
+    override var repeatCount: Int = IconicsAnimationProcessor.INFINITE,
+    override var repeatMode: IconicsAnimationProcessor.RepeatMode = IconicsAnimationProcessor.RepeatMode.RESTART,
     override var isStartImmediately: Boolean = true
-) : com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor(interpolator, duration, repeatCount, repeatMode, isStartImmediately) {
+) : IconicsAnimationProcessor(interpolator, duration, repeatCount, repeatMode, isStartImmediately) {
 
     companion object {
         /** Duration used for all instances of this processor by default. 2000 ms by default. */
@@ -43,7 +43,7 @@ open class SpinProcessor(
 
     private var isDrawableShadowCleared = false
 
-    override fun animationTag(): String = "spin"
+    override val animationTag: String = "spin"
 
     override fun processPreDraw(
         canvas: Canvas,

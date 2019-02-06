@@ -39,7 +39,7 @@ class IconicsBrush<T : Paint>(
 
     /** alpha channel for colors */
     @IntRange(from = 0, to = 255)
-    var alpha: Int = 0
+    var alpha: Int = 255
         set(alpha) {
             field = alpha
             paint.alpha = alpha
@@ -78,10 +78,14 @@ class IconicsBrush<T : Paint>(
         }
 
         val alpha = Color.alpha(colorForState)
-        if (alpha != 255 && alpha != this.alpha) {
+        if (alpha != this.alpha) {
             this.alpha = alpha
             isInvalidate = true
         }
         return isInvalidate
+    }
+
+    override fun toString(): String {
+        return "color=#${Integer.toHexString(paint.color)}, state=$state, colorList=$colorsList"
     }
 }

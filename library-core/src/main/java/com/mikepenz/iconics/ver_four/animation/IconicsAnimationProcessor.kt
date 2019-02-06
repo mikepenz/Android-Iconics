@@ -41,7 +41,7 @@ abstract class IconicsAnimationProcessor(
      * as acceleration and deceleration. The default value is
      * [android.view.animation.LinearInterpolator]
      */
-    open var interpolator: TimeInterpolator = com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.Companion.DEFAULT_INTERPOLATOR,
+    open var interpolator: TimeInterpolator = IconicsAnimationProcessor.DEFAULT_INTERPOLATOR,
 
     /**
      * Sets the length of the animation. The default duration is 300 milliseconds. This value
@@ -84,17 +84,17 @@ abstract class IconicsAnimationProcessor(
 
     private val animator: ValueAnimator = ValueAnimator.ofFloat(0f, 100f)
 
-    private var drawable: com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable? = null
+    private var drawable: IconicsAnimatedDrawable? = null
     private var isStartRequested: Boolean = false
 
     /** The set of listeners to be sent events through the life of an animation. */
-    private var listeners: MutableList<com.mikepenz.iconics.ver_four.animation.IconicsAnimationListener>? = null
+    private var listeners: MutableList<IconicsAnimationListener>? = null
 
     /**
      * The set of listeners to be sent pause/resume events through the life
      * of an animation.
      */
-    private var pauseListeners: MutableList<com.mikepenz.iconics.ver_four.animation.IconicsAnimationPauseListener>? = null
+    private var pauseListeners: MutableList<IconicsAnimationPauseListener>? = null
 
     private val proxyListener = object : Animator.AnimatorListener {
 
@@ -184,13 +184,13 @@ abstract class IconicsAnimationProcessor(
         get() = animator.animatedValue as Float
 
     /** @return Tag which will be used to apply this processor via xml */
-    abstract fun animationTag(): String
+    abstract val animationTag: String
 
     /**
      * Starts the animation, if processor is attached to drawable, otherwise sets flag to start
      * animation immediately after attaching
      */
-    fun start(): com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor {
+    fun start(): IconicsAnimationProcessor {
         animator.interpolator = interpolator
         animator.duration = duration
         animator.repeatCount = repeatCount
@@ -211,7 +211,7 @@ abstract class IconicsAnimationProcessor(
      *
      * @param listener the listener to be added to the current set of listeners for this processor.
      */
-    fun addListener(listener: com.mikepenz.iconics.ver_four.animation.IconicsAnimationListener): com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor {
+    fun addListener(listener: IconicsAnimationListener): IconicsAnimationProcessor {
         if (listeners == null) {
             listeners = ArrayList()
             animator.addListener(proxyListener)
@@ -226,7 +226,7 @@ abstract class IconicsAnimationProcessor(
      * @param listener the listener to be removed from the current set of listeners for this
      * processor.
      */
-    fun removeListener(listener: com.mikepenz.iconics.ver_four.animation.IconicsAnimationListener) {
+    fun removeListener(listener: IconicsAnimationListener) {
         listeners?.remove(listener)
         if (listeners?.size == 0) {
             listeners = null
@@ -241,7 +241,7 @@ abstract class IconicsAnimationProcessor(
      * processor.
      */
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    fun addPauseListener(listener: com.mikepenz.iconics.ver_four.animation.IconicsAnimationPauseListener): com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor {
+    fun addPauseListener(listener: IconicsAnimationPauseListener): IconicsAnimationProcessor {
         if (pauseListeners == null) {
             pauseListeners = ArrayList()
             animator.addPauseListener(proxyPauseListener)
@@ -257,7 +257,7 @@ abstract class IconicsAnimationProcessor(
      * this processor.
      */
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    fun removePauseListener(listener: com.mikepenz.iconics.ver_four.animation.IconicsAnimationPauseListener) {
+    fun removePauseListener(listener: IconicsAnimationPauseListener) {
         pauseListeners?.remove(listener)
         if (pauseListeners?.size == 0) {
             pauseListeners = null
@@ -363,7 +363,7 @@ abstract class IconicsAnimationProcessor(
     protected open fun onDrawableDetached() {}
 
     /** Internal set an drawable to this processor */
-    internal fun setDrawable(drawable: com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable?) {
+    internal fun setDrawable(drawable: IconicsAnimatedDrawable?) {
         this.drawable = null
         onDrawableDetached()
 

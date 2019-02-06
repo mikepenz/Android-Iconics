@@ -36,19 +36,19 @@ open class BlinkAlphaProcessor(
      */
     @IntRange(from = 0, to = 255) open var maximumAlpha: Int = 255,
 
-    override var interpolator: TimeInterpolator = com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.Companion.DEFAULT_INTERPOLATOR,
-    override var duration: Long = com.mikepenz.iconics.ver_four.animation.BlinkAlphaProcessor.Companion.DEFAULT_DURATION,
-    override var repeatCount: Int = com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.Companion.INFINITE,
-    override var repeatMode: com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.RepeatMode = com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor.RepeatMode.REVERSE,
+    override var interpolator: TimeInterpolator = IconicsAnimationProcessor.DEFAULT_INTERPOLATOR,
+    override var duration: Long = BlinkAlphaProcessor.DEFAULT_DURATION,
+    override var repeatCount: Int = IconicsAnimationProcessor.INFINITE,
+    override var repeatMode: IconicsAnimationProcessor.RepeatMode = IconicsAnimationProcessor.RepeatMode.REVERSE,
     override var isStartImmediately: Boolean = true
-) : com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor(interpolator, duration, repeatCount, repeatMode, isStartImmediately) {
+) : IconicsAnimationProcessor(interpolator, duration, repeatCount, repeatMode, isStartImmediately) {
 
     companion object {
         /** Duration used for all instances of this processor by default. 500 ms by default. */
         @JvmField var DEFAULT_DURATION = 500L
     }
 
-    override fun animationTag(): String = "blink_alpha"
+    override val animationTag: String = "blink_alpha"
 
     override fun processPreDraw(
         canvas: Canvas,

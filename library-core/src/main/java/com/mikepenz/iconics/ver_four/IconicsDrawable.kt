@@ -48,14 +48,12 @@ open class IconicsDrawable(context: Context) : Drawable() {
     protected val backgroundBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val contourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
 
+    protected val context: Context = context.applicationContext
+
     private val paddingBounds = Rect()
     private val pathBounds = RectF()
 
     private val path = Path()
-
-    protected val context: Context = context
-
-    private val constantState by lazy { IconicsDrawableConstantState(this) }
 
     private var sizeX: Int = -1
     private var sizeY: Int = -1
@@ -87,8 +85,6 @@ open class IconicsDrawable(context: Context) : Drawable() {
     private var iconColorFilter: ColorFilter? = null
 
     init {
-        icon(' ')
-
         iconBrush.paint.apply {
             style = Paint.Style.FILL
             textAlign = Paint.Align.CENTER
@@ -98,6 +94,8 @@ open class IconicsDrawable(context: Context) : Drawable() {
         contourBrush.paint.style = Paint.Style.STROKE
 
         backgroundContourBrush.paint.style = Paint.Style.STROKE
+
+        icon(' ')
     }
 
     constructor(context: Context, icon: Char) : this(context) {
@@ -135,8 +133,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
 
     /** @return the icon color */
     val color: Int
-        @ColorInt
-        get() = iconBrush.colorForCurrentState
+        @ColorInt get() = iconBrush.colorForCurrentState
 
     /** @return the icon colors */
     val colorList: ColorStateList?
@@ -144,8 +141,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
 
     /** @return the icon contour color */
     val contourColor: Int
-        @ColorInt
-        get() = contourBrush.colorForCurrentState
+        @ColorInt get() = contourBrush.colorForCurrentState
 
     /** @return the contour colors */
     val contourColorList: ColorStateList?
@@ -153,8 +149,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
 
     /** @return the icon background color */
     val backgroundColor: Int
-        @ColorInt
-        get() = backgroundBrush.colorForCurrentState
+        @ColorInt get() = backgroundBrush.colorForCurrentState
 
     /** @return the background colors */
     val backgroundColorList: ColorStateList?
@@ -162,8 +157,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
 
     /** @return the icon background contour color */
     val backgroundContourColor: Int
-        @ColorInt
-        get() = backgroundContourBrush.colorForCurrentState
+        @ColorInt get() = backgroundContourBrush.colorForCurrentState
 
     /** @return the background contour colors */
     val backgroundContourColorList: ColorStateList?
@@ -208,42 +202,41 @@ open class IconicsDrawable(context: Context) : Drawable() {
         return copyTo(IconicsAnimatedDrawable(context))
     }
 
-    private fun <T : IconicsDrawable> copyTo(drawable: T): T {
+    private fun <T : IconicsDrawable> copyTo(other: T): T {
         // icon
-        drawable.apply {
-            iconBrush.colorsList?.let { color(it.toIconicsColor()) }
-            sizeX(sizeX.toIconicsSizePx())
-            sizeY(sizeY.toIconicsSizePx())
-            iconOffsetX(iconOffsetX.toIconicsSizePx())
-            iconOffsetY(iconOffsetY.toIconicsSizePx())
-            padding(iconPadding.toIconicsSizePx())
-            typeface(iconBrush.paint.typeface)
-            // background
-            backgroundBrush.colorsList?.let { backgroundColor(it.toIconicsColor()) }
-            roundedCornersRx(roundedCornerRx.toIconicsSizePx())
-            roundedCornersRy(roundedCornerRy.toIconicsSizePx())
-            // icon contour
-            drawContour(isDrawContour)
-            contourBrush.colorsList?.let { contourColor(it.toIconicsColor()) }
-            contourWidth(contourWidth.toIconicsSizePx())
-            // background contour
-            drawBackgroundContour(isDrawBackgroundContour)
-            backgroundContourBrush.colorsList?.let { backgroundContourColor(it.toIconicsColor()) }
-            backgroundContourWidth(backgroundContourWidth.toIconicsSizePx())
-            // shadow
-            shadow(
-                shadowRadius.toIconicsSizePx(),
-                shadowDx.toIconicsSizePx(),
-                shadowDy.toIconicsSizePx(),
-                shadowColor.toIconicsColor()
-            )
-            // common
-            alpha(compatAlpha)
-        }
+        colorList?.let { other.color(it.toIconicsColor()) }
+        other.sizeX(sizeX.toIconicsSizePx())
+        other.sizeY(sizeY.toIconicsSizePx())
+        other.iconOffsetX(iconOffsetX.toIconicsSizePx())
+        other.iconOffsetY(iconOffsetY.toIconicsSizePx())
+        other.padding(iconPadding.toIconicsSizePx())
+        other.typeface(iconBrush.paint.typeface)
+        other.respectFontBounds(isRespectFontBounds)
+        // background
+        backgroundColorList?.let { other.backgroundColor(it.toIconicsColor()) }
+        other.roundedCornersRx(roundedCornerRx.toIconicsSizePx())
+        other.roundedCornersRy(roundedCornerRy.toIconicsSizePx())
+        // icon contour
+        contourColorList?.let { other.contourColor(it.toIconicsColor()) }
+        other.contourWidth(contourWidth.toIconicsSizePx())
+        other.drawContour(isDrawContour)
+        // background contour
+        backgroundContourColorList?.let { other.backgroundContourColor(it.toIconicsColor()) }
+        other.backgroundContourWidth(backgroundContourWidth.toIconicsSizePx())
+        other.drawBackgroundContour(isDrawBackgroundContour)
+        // shadow
+        other.shadow(
+            shadowRadius.toIconicsSizePx(),
+            shadowDx.toIconicsSizePx(),
+            shadowDy.toIconicsSizePx(),
+            shadowColor.toIconicsColor()
+        )
+        // common
+        other.alpha(compatAlpha)
 
-        icon?.let(drawable::icon) ?: plainIcon?.let { drawable.iconText(it) }
+        icon?.let(other::icon) ?: plainIcon?.let { other.iconText(it) }
 
-        return drawable
+        return other
     }
 
     /**
@@ -1048,9 +1041,9 @@ open class IconicsDrawable(context: Context) : Drawable() {
 
     override fun onStateChange(stateSet: IntArray): Boolean {
         var isNeedsRedraw = (iconBrush.applyState(stateSet)
-                || contourBrush.applyState(stateSet)
-                || backgroundBrush.applyState(stateSet)
-                || backgroundContourBrush.applyState(stateSet))
+                or contourBrush.applyState(stateSet)
+                or backgroundBrush.applyState(stateSet)
+                or backgroundContourBrush.applyState(stateSet))
 
         if (tint != null && tintMode != null) {
             tintFilter = updateTintFilter(tint, tintMode)
@@ -1088,10 +1081,6 @@ open class IconicsDrawable(context: Context) : Drawable() {
         iconColorFilter = null
 
         invalidateSelf()
-    }
-
-    override fun getConstantState(): ConstantState? {
-        return constantState
     }
 
     /** Update the Padding Bounds */

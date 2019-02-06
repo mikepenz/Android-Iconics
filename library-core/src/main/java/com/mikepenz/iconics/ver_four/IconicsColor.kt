@@ -30,17 +30,20 @@ class IconicsColor private constructor() : IconicsExtractor {
 
     companion object {
 
-        /** @param colorInt The color, usually from android.graphics.Color or 0xFF012345. */
-        @JvmStatic fun colorInt(@ColorInt colorInt: Int): IconicsColor =
-                IconicsColor().also { it.colorInt = colorInt }
+        /** @param colorInt The color, usually from [android.graphics.Color] or 0xFF012345. */
+        @JvmStatic fun colorInt(@ColorInt colorInt: Int): IconicsColor {
+            return IconicsColor().also { it.colorInt = colorInt }
+        }
 
         /** @param colorRes The color resource, from your R file. */
-        @JvmStatic fun colorRes(@ColorRes colorRes: Int): IconicsColor =
-                IconicsColor().also { it.colorRes = colorRes }
+        @JvmStatic fun colorRes(@ColorRes colorRes: Int): IconicsColor {
+            return IconicsColor().also { it.colorRes = colorRes }
+        }
 
         /** @param colorList The color state list. */
-        @JvmStatic fun colorList(colorList: ColorStateList): IconicsColor =
-                IconicsColor().also { it.colorList = colorList }
+        @JvmStatic fun colorList(colorList: ColorStateList): IconicsColor {
+            return IconicsColor().also { it.colorList = colorList }
+        }
 
         /**
          * Parse the color string, and return the corresponding color-int. If the string cannot be
@@ -51,19 +54,13 @@ class IconicsColor private constructor() : IconicsExtractor {
          * 'teal'.
          */
         @JvmStatic fun parse(colorString: String): IconicsColor {
-            return colorInt(
-                Color.parseColor(
-                    colorString
-                )
-            )
+            return colorInt(Color.parseColor(colorString))
         }
     }
 
     private var colorList: ColorStateList? = null
-    @ColorInt private var colorInt: Int =
-            IconicsExtractor.DEF_COLOR
-    @ColorRes private var colorRes: Int =
-            IconicsExtractor.DEF_RESOURCE
+    @ColorInt private var colorInt: Int = IconicsExtractor.DEF_COLOR
+    @ColorRes private var colorRes: Int = IconicsExtractor.DEF_RESOURCE
 
     internal fun extractList(context: Context): ColorStateList? {
         var colorStateList = colorList

@@ -91,7 +91,10 @@ dependencies {
     implementation 'com.mikepenz:fastadapter-extensions-expandable:3.3.1'
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
-    testImplementation 'ru.ztrap.iconics:string-generator:1.0.2'
+    testImplementation ('ru.ztrap.iconics:string-generator:1.0.2') {
+        transitive = true
+        exclude module: "iconics-core"
+    }
 
     //used to generate the drawer on the left
     //https://github.com/mikepenz/MaterialDrawer
@@ -107,7 +110,7 @@ dependencies {
     implementation('com.mikepenz:aboutlibraries:6.2.1') {
         transitive = true
         exclude module: "fastadapter"
-        //exclude module: "iconics-core"
+        exclude module: "iconics-core"
     }
 
     implementation project(':library-core')

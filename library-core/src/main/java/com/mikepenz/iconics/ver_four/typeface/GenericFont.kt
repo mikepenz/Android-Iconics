@@ -18,7 +18,7 @@ package com.mikepenz.iconics.ver_four.typeface
 
 import android.content.Context
 import android.graphics.Typeface
-import java.util.*
+import java.util.HashMap
 
 /**
  * Created by mikepenz on 01.11.14.
@@ -29,8 +29,11 @@ open class GenericFont : ITypeface {
     override val mappingPrefix: String
     private val fontFile: String
 
-    private var typeface: Typeface? = null
     private val chars = HashMap<String, Char>()
+
+    override var typeface: Typeface? = null
+
+    override val fontRes: Int = -1
 
     override val characters: HashMap<String, Char>
         get() = chars
@@ -39,10 +42,10 @@ open class GenericFont : ITypeface {
         get() = "1.0.0"
 
     override val iconCount: Int
-        get() = chars.size
+        get() = characters.size
 
     override val icons: Collection<String>
-        get() = chars.keys
+        get() = characters.keys
 
     override val url: String
         get() = ""
@@ -58,12 +61,10 @@ open class GenericFont : ITypeface {
 
     protected constructor() : this("GenericFont", "GenericAuthor", "", "")
 
-    constructor(mappingPrefix: String, fontFile: String) : this(
-        "GenericFont",
-        "GenericAuthor",
-        mappingPrefix,
-        fontFile
-    )
+    constructor(
+        mappingPrefix: String,
+        fontFile: String
+    ) : this("GenericFont", "GenericAuthor", mappingPrefix, fontFile)
 
     @Suppress("LeakingThis")
     constructor(fontName: String, author: String, mappingPrefix: String, fontFile: String) {

@@ -20,16 +20,16 @@ import android.content.Context
 import android.graphics.Canvas
 import android.view.View
 import androidx.core.view.ViewCompat
+import com.mikepenz.iconics.ver_four.IconicsDrawable
 import com.mikepenz.iconics.ver_four.typeface.IIcon
 import com.mikepenz.iconics.ver_four.typeface.ITypeface
-import com.mikepenz.iconics.ver_four.IconicsDrawable
-import java.util.*
+import java.util.ArrayList
 
 /**
  * @author pa.gulko zTrap (28.11.2018)
  */
 open class IconicsAnimatedDrawable : IconicsDrawable {
-    private val processors = ArrayList<com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor>()
+    private val processors = ArrayList<IconicsAnimationProcessor>()
 
     constructor(context: Context) : super(context)
 
@@ -39,13 +39,11 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
 
     constructor(context: Context, icon: IIcon) : super(context, icon)
 
-    protected constructor(context: Context, typeface: ITypeface, icon: IIcon) : super(
-        context,
-        typeface,
-        icon
-    )
-
-    override fun getAlpha(): Int = iconBrush.alpha
+    protected constructor(
+        context: Context,
+        typeface: ITypeface,
+        icon: IIcon
+    ) : super(context, typeface, icon)
 
     // FI-LO
     override fun draw(canvas: Canvas) {
@@ -65,14 +63,14 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
     }
 
     /** Attach an [processor][IconicsAnimationProcessor] to this drawable */
-    fun processor(processor: com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor): com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable {
+    fun processor(processor: IconicsAnimationProcessor): IconicsAnimatedDrawable {
         processor.setDrawable(this)
         processors.add(processor)
         return this
     }
 
     /** Attach an [processors][IconicsAnimationProcessor] to this drawable */
-    fun processors(vararg processors: com.mikepenz.iconics.ver_four.animation.IconicsAnimationProcessor): com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable {
+    fun processors(vararg processors: IconicsAnimationProcessor): IconicsAnimatedDrawable {
         if (processors.isEmpty()) return this
         processors.forEach { processor(it) }
         return this
@@ -82,15 +80,14 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
      * @return The runner which used for animations. Animations can be easily removed by calling
      * [Runner.unset]
      */
-    fun animateIn(view: View): com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable.Runner {
-        return com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable.Runner()
-                .also { it.setFor(view, this) }
+    fun animateIn(view: View): IconicsAnimatedDrawable.Runner {
+        return IconicsAnimatedDrawable.Runner().also { it.setFor(view, this) }
     }
 
     class Runner internal constructor() {
         private var isAttached = false
         private var view: View? = null
-        private var drawable: com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable? = null
+        private var drawable: IconicsAnimatedDrawable? = null
 
         private val listener = object : View.OnAttachStateChangeListener {
 
@@ -111,10 +108,8 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
             }
         }
 
-        /**
-         * Setup all animations to provided drawable and view
-         */
-        fun setFor(view: View, drawable: com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable) {
+        /** Setup all animations to provided drawable and view */
+        fun setFor(view: View, drawable: IconicsAnimatedDrawable) {
             unset()
             this.view = view
             this.drawable = drawable
@@ -124,9 +119,7 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
             view.addOnAttachStateChangeListener(listener)
         }
 
-        /**
-         * Clear all animations from previously provided drawable and view
-         */
+        /** Clear all animations from previously provided drawable and view */
         fun unset() {
             drawable = null
             view?.removeOnAttachStateChangeListener(listener)

@@ -22,6 +22,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.core.content.res.use
 import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor
 import com.mikepenz.iconics.view.R
 
 /**
@@ -33,7 +34,7 @@ internal object IconicsViewsAttrsApplier {
     //region IconicsImageView
     fun getIconicsImageViewDrawable(ctx: Context, attrs: AttributeSet?): IconicsDrawable? {
         return ctx.obtainStyledAttributes(attrs, R.styleable.IconicsImageView).use {
-            com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+            IconicsAttrsExtractor(
                 context = ctx,
                 typedArray = it,
                 iconId = R.styleable.IconicsImageView_iiv_icon,
@@ -61,13 +62,10 @@ internal object IconicsViewsAttrsApplier {
     /**
      * Attributes priority:
      *
-     *
      * Attributes with mark 'all' attributes with some else mark ('start', 'top' etc)<br></br>
      * Working like as 'style' xml-attribute - local overrides global
      *
-     *
      * **IMPORTANT TRICK**
-     *
      *
      * For overriding some of attributes to default use resources with prefix 'default_'
      */
@@ -92,7 +90,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsTextViewAllDrawable(ctx: Context, a: TypedArray): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_all_icon,
@@ -114,7 +112,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsTextViewStartDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_start_icon,
@@ -136,7 +134,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsTextViewTopDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_top_icon,
@@ -158,7 +156,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsTextViewEndDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_end_icon,
@@ -180,7 +178,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsTextViewBottomDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_bottom_icon,
@@ -215,7 +213,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCompoundButtonUncheckedDrawable(ctx: Context, a: TypedArray): IconicsDrawable {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsCompoundButton_iiv_unchecked_icon,
@@ -237,7 +235,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCompoundButtonCheckedDrawable(ctx: Context, a: TypedArray): IconicsDrawable {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsCompoundButton_iiv_checked_icon,
@@ -295,7 +293,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCheckableTextViewAllDrawable(ctx: Context, a: TypedArray): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_all_checked_icon,
@@ -317,7 +315,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCheckableTextViewStartDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_start_checked_icon,
@@ -339,7 +337,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCheckableTextViewTopDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_top_checked_icon,
@@ -361,7 +359,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCheckableTextViewEndDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_end_checked_icon,
@@ -383,7 +381,7 @@ internal object IconicsViewsAttrsApplier {
     }
 
     private fun getIconicsCheckableTextViewBottomDrawable(ctx: Context, a: TypedArray, icon: IconicsDrawable?): IconicsDrawable? {
-        return com.mikepenz.iconics.ver_four.context.IconicsAttrsExtractor(
+        return IconicsAttrsExtractor(
             context = ctx,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon,

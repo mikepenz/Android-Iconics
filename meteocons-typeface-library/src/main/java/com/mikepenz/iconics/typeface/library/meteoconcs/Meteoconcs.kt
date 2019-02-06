@@ -15,15 +15,17 @@
  */
 package com.mikepenz.iconics.typeface.library.meteoconcs
 
-import android.content.Context
 import android.graphics.Typeface
 import com.mikepenz.iconics.ver_four.typeface.IIcon
 import com.mikepenz.iconics.ver_four.typeface.ITypeface
 import java.util.LinkedList
-import kotlin.collections.HashMap
 
 @Suppress("EnumEntryName", "LeakingThis")
 class Meteoconcs : ITypeface {
+
+    override var typeface: Typeface? = null
+
+    override val fontRes: Int = R.font.meteocons_v1_1_1
 
     override val characters: HashMap<String, Char>
         get() {
@@ -67,17 +69,6 @@ class Meteoconcs : ITypeface {
 
     override fun getIcon(key: String): IIcon {
         return Icon.valueOf(key)
-    }
-
-    override fun getTypeface(ctx: Context): Typeface {
-        if (typeface == null) {
-            typeface = try {
-                Typeface.createFromAsset(ctx.assets, "fonts/$TTF_FILE")
-            } catch (e: Exception) {
-                Typeface.DEFAULT
-            }
-        }
-        return typeface!!
     }
 
     enum class Icon constructor(character: Char) : IIcon {
@@ -146,8 +137,6 @@ class Meteoconcs : ITypeface {
     }
 
     companion object {
-        private const val TTF_FILE = "meteocons-v1.1.1.ttf"
-        private var typeface: Typeface? = null
         private var chars: HashMap<String, Char>? = null
     }
 }

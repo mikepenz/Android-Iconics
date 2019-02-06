@@ -18,7 +18,7 @@ package com.mikepenz.iconics.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.ver_four.typeface.ITypeface
 import com.mikepenz.materialdrawer.Drawer
 
 class MainActivity : AppCompatActivity() {

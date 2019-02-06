@@ -14,7 +14,4 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.mikepenz.material_design_iconic_typeface_library">
-
-    <application />
-</manifest>
+<manifest package="com.mikepenz.iconics.typeface.library.materialdesigniconic" />

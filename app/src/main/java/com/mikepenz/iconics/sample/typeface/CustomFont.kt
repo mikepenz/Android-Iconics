@@ -16,8 +16,8 @@
 
 package com.mikepenz.iconics.sample.typeface
 
-import android.content.Context
 import android.graphics.Typeface
+import com.mikepenz.iconics.sample.R
 import com.mikepenz.iconics.ver_four.typeface.IIcon
 import com.mikepenz.iconics.ver_four.typeface.ITypeface
 import java.util.HashMap
@@ -28,6 +28,10 @@ import java.util.LinkedList
  */
 @Suppress("EnumEntryName", "LeakingThis")
 class CustomFont : ITypeface {
+
+    override var typeface: Typeface? = null
+
+    override val fontRes: Int = R.font.fontello
 
     override val characters: HashMap<String, Char>
         get() {
@@ -52,16 +56,14 @@ class CustomFont : ITypeface {
     override val iconCount: Int
         get() = characters.size
 
-    override val icons: Collection<String>
-        get() {
-            val icons = LinkedList<String>()
+    override val icons: Collection<String> by lazy {
+        val icons = LinkedList<String>()
 
-            for (value in Icon.values()) {
-                icons.add(value.name)
-            }
-
-            return icons
+        for (value in Icon.values()) {
+            icons.add(value.name)
         }
+        icons
+    }
 
     override val author: String
         get() = "SampleCustomFont"
@@ -79,17 +81,6 @@ class CustomFont : ITypeface {
         get() = ""
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
-
-    override fun getTypeface(ctx: Context): Typeface {
-        if (typeface == null) {
-            typeface = try {
-                Typeface.createFromAsset(ctx.assets, "fonts/${TTF_FILE}")
-            } catch (e: Exception) {
-                Typeface.DEFAULT
-            }
-        }
-        return typeface!!
-    }
 
     enum class Icon constructor(character: Char) : IIcon {
         fon_test1('\ue800'),
@@ -112,8 +103,6 @@ class CustomFont : ITypeface {
     }
 
     companion object {
-        private const val TTF_FILE = "fontello.ttf"
-        private var typeface: Typeface? = null
         private var chars: HashMap<String, Char>? = null
     }
 }

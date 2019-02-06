@@ -36,12 +36,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.mikepenz.iconics.typeface.fonrawesome.FontAwesome
-import com.mikepenz.iconics.typeface.octicons.Octicons
-import com.mikepenz.iconics.ver_four.utils.IconicsMenuInflaterUtil
+import com.mikepenz.iconics.typeface.library.fonrawesome.FontAwesome
+import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.ver_four.Iconics
 import com.mikepenz.iconics.ver_four.IconicsArrayBuilder
 import com.mikepenz.iconics.ver_four.IconicsDrawable
+import com.mikepenz.iconics.ver_four.utils.inflateWithIconics
 import com.mikepenz.iconics.ver_four.utils.toIconicsColor
 import com.mikepenz.iconics.ver_four.utils.toIconicsSizeDp
 import kotlinx.android.synthetic.main.activity_playground.list
@@ -162,7 +162,7 @@ class PlaygroundActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        IconicsMenuInflaterUtil.inflate(menuInflater, this, R.menu.menu_playground, menu)
+        menuInflater.inflateWithIconics(this, R.menu.menu_playground, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

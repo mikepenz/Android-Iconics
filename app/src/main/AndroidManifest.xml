@@ -30,7 +30,13 @@
         <activity
             android:name=".PlaygroundActivity"
             android:label="@string/title_activity_playground"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".AutomaticActivity"
             android:label="@string/title_activity_automatic"
@@ -42,10 +48,6 @@
         <activity android:name=".FourActivity"
                   android:label="@string/title_activity_old_automatic"
                   android:theme="@style/MaterialDrawerTheme.Light.ActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

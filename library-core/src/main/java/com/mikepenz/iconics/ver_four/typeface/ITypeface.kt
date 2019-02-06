@@ -18,12 +18,18 @@ package com.mikepenz.iconics.ver_four.typeface
 
 import android.content.Context
 import android.graphics.Typeface
+import androidx.annotation.FontRes
+import androidx.core.content.res.ResourcesCompat
 import java.util.HashMap
 
 /**
  * Created by mikepenz on 01.11.14.
  */
 interface ITypeface {
+
+    var typeface: Typeface?
+
+    @get:FontRes val fontRes: Int
 
     val characters: HashMap<String, Char>
 
@@ -55,5 +61,12 @@ interface ITypeface {
 
     fun getIcon(key: String): IIcon
 
-    fun getTypeface(ctx: Context): Typeface
+    fun getTypeface(ctx: Context): Typeface {
+        if (typeface == null) {
+            typeface = kotlin.runCatching {
+                ResourcesCompat.getFont(ctx, fontRes)
+            }.getOrNull() ?: Typeface.DEFAULT
+        }
+        return typeface!!
+    }
 }

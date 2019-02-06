@@ -18,7 +18,9 @@ package com.mikepenz.iconics.sample
 
 
 import androidx.multidex.MultiDexApplication
+import com.mikepenz.iconics.sample.typeface.CustomFont
 import com.mikepenz.iconics.ver_four.Iconics
+import com.mikepenz.iconics.ver_four.typeface.GenericFont
 
 class CustomApplication : MultiDexApplication() {
 
@@ -26,21 +28,21 @@ class CustomApplication : MultiDexApplication() {
         super.onCreate()
 
         //register custom fonts like this (or also provide a font definition file)
-        //Iconics.registerFont(CustomFont())
+        Iconics.markInitDone()
+        Iconics.registerFont(CustomFont())
         Iconics.init(this)
 
         //Generic font creation process
-//        val gf2 =
-//                GenericFont(
-//                    "GenericFont",
-//                    "SampleGenericFont",
-//                    "gmf",
-//                    "fonts/materialdrawerfont.ttf"
-//                )
-//        gf2.registerIcon("person", '\ue800')
-//        gf2.registerIcon("up", '\ue801')
-//        gf2.registerIcon("down", '\ue802')
-//        Iconics.registerFont(gf2)
+        val gf2 = GenericFont(
+                    "GenericFont",
+                    "SampleGenericFont",
+                    "gmf",
+                    "font/materialdrawerfont.ttf"
+                )
+        gf2.registerIcon("person", '\ue800')
+        gf2.registerIcon("up", '\ue801')
+        gf2.registerIcon("down", '\ue802')
+        Iconics.registerFont(gf2)
 
         //Enable the below line to not allow the automatic font detection via the included string fields. This helps to increase performance by a tiny bit.
         //Iconics.markInitDone();

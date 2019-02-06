@@ -47,7 +47,7 @@ fun @receiver:ColorInt Int.toIconicsColor(): IconicsColor {
 }
 
 /** Pretty converter to [IconicsColor.parse] */
-fun @receiver:ColorInt String.toIconicsColor(): IconicsColor {
+fun String.toIconicsColor(): IconicsColor {
     return IconicsColor.parse(this)
 }
 
@@ -65,7 +65,7 @@ fun @receiver:ColorRes Int.toIconicsColorRes(): IconicsColor {
  * Pretty converter to [androidx.core.graphics.drawable.IconCompat]
  *
  * Note: use [IconCompat.toIcon] to transform into Platform's Icon
- * */
+ */
 fun IconicsDrawable.toAndroidIconCompat(): IconCompat {
     return IconCompat.createWithBitmap(toBitmap())
 }

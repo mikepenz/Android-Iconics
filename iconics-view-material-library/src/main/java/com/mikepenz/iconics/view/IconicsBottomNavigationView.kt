@@ -19,10 +19,11 @@ package com.mikepenz.iconics.view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.view.SupportMenuInflater
+import android.view.MenuInflater
 import com.google.android.material.bottomnavigation.BottomNavigationPresenter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mikepenz.iconics.ver_four.utils.inflateWithIconics
+import kotlin.reflect.KClass
 import kotlin.reflect.full.declaredMembers
 import kotlin.reflect.jvm.isAccessible
 
@@ -37,21 +38,24 @@ class IconicsBottomNavigationView @JvmOverloads constructor(
 
     @SuppressLint("RestrictedApi")
     override fun inflateMenu(resId: Int) {
-        IconicsBottomNavigationView::class.declaredMembers.first { it.name == "presenter" }
-                .apply {
-                    isAccessible = true
-                    this as BottomNavigationPresenter
-                    setUpdateSuspended(true)
-                    SupportMenuInflater(context).inflateWithIconics(context, resId, menu)
-                    setUpdateSuspended(false)
-                    updateMenuView(true)
-                }
-        //itemIconTintList = null
-//        super.inflateMenu(resId)
-//        menu.parseXmlAndSetIconicsDrawables(context, resId)
-//        menu.forEach {
-//            it.icon.clearColorFilter()
-//        }
+        BottomNavigationView::class.presenter.apply {
+            setUpdateSuspended(true)
+            BottomNavigationView::class.menuInflater.inflateWithIconics(context, resId, menu)
+            setUpdateSuspended(false)
+            updateMenuView(true)
+        }
+    }
 
+    private val KClass<BottomNavigationView>.presenter: BottomNavigationPresenter
+        get() = getMember("presenter")
+
+    private val KClass<BottomNavigationView>.menuInflater: MenuInflater
+        get() = getMember("getMenuInflater")
+
+    private inline fun <reified T> KClass<BottomNavigationView>.getMember(name: String): T {
+        return declaredMembers.first { it.name == name }.let {
+            it.isAccessible = true
+            it.call(this@IconicsBottomNavigationView) as T
+        }
     }
 }

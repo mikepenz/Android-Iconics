@@ -26,19 +26,16 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
-import com.mikepenz.iconics.ver_four.Iconics
 import com.mikepenz.iconics.core.R
+import com.mikepenz.iconics.ver_four.Iconics
+import com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable
 
 internal object IconicsFactory {
 
     @JvmStatic
     fun onViewCreated(view: View?, context: Context, attrs: AttributeSet): View? {
         if (view != null && view.getTag(R.id.iconics_tag_id) != true) {
-            com.mikepenz.iconics.ver_four.context.IconicsFactory.onViewCreatedInternal(
-                view,
-                context,
-                attrs
-            )
+            IconicsFactory.onViewCreatedInternal(view, context, attrs)
             view.setTag(R.id.iconics_tag_id, true)
         }
         return view
@@ -53,13 +50,10 @@ internal object IconicsFactory {
 
         when (view) {
             is ActionMenuItemView -> {
-                com.mikepenz.iconics.ver_four.context.IconicsAttrsApplier.getIconicsDrawable(
-                    context,
-                    attrs
-                )?.let {
+                IconicsAttrsApplier.getIconicsDrawable(context, attrs)?.let {
                     view.setIcon(it)
 
-                    (it as? com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable)?.animateIn(view)
+                    (it as? IconicsAnimatedDrawable)?.animateIn(view)
                 }
             }
             is EditText -> {
@@ -83,13 +77,10 @@ internal object IconicsFactory {
                 })
             }
             is ImageView -> {
-                com.mikepenz.iconics.ver_four.context.IconicsAttrsApplier.getIconicsDrawable(
-                    context,
-                    attrs
-                )?.let {
+                IconicsAttrsApplier.getIconicsDrawable(context, attrs)?.let {
                     view.setImageDrawable(it)
 
-                    (it as? com.mikepenz.iconics.ver_four.animation.IconicsAnimatedDrawable)?.animateIn(view)
+                    (it as? IconicsAnimatedDrawable)?.animateIn(view)
                 }
             }
         }

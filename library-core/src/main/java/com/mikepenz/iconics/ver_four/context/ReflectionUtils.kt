@@ -60,4 +60,9 @@ internal object ReflectionUtils {
             Log.e(Iconics.TAG, "Can't invoke method using reflection", e)
         }
     }
+
+    /** A helper method to instantiate class by name */
+    inline fun <reified T> classForName(name: String): T {
+        return Class.forName(name).newInstance() as T
+    }
 }

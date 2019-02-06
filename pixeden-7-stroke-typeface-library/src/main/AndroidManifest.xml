@@ -14,6 +14,4 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.mikepenz.pixeden_7_stroke_typeface_library">
-    <application/>
-</manifest>
+<manifest package="com.mikepenz.iconics.typeface.library.pixeden7stroke" />

@@ -15,18 +15,18 @@
  */
 
 import com.mikepenz.iconics.typeface.library.meteoconcs.Meteoconcs
-import com.mikepenz.iconics.typeface.octicons.Octicons
-import com.mikepenz.iconics.typeface.pixeden7stroke.Pixeden7Stroke
-import com.mikepenz.iconics.typeface.communitymaterial.CommunityMaterial
-import com.mikepenz.iconics.typeface.devicon.DevIcon
-import com.mikepenz.iconics.typeface.entypo.Entypo
-import com.mikepenz.iconics.typeface.fonrawesome.FontAwesome
-import com.mikepenz.iconics.typeface.foundationicons.FoundationIcons
-import com.mikepenz.iconics.typeface.googlematerial.GoogleMaterial
-import com.mikepenz.iconics.typeface.ionicons.Ionicons
+import com.mikepenz.iconics.typeface.library.octicons.Octicons
+import com.mikepenz.iconics.typeface.library.pixeden7stroke.Pixeden7Stroke
+import com.mikepenz.iconics.typeface.library.communitymaterial.CommunityMaterial
+import com.mikepenz.iconics.typeface.library.devicon.DevIcon
+import com.mikepenz.iconics.typeface.library.entypo.Entypo
+import com.mikepenz.iconics.typeface.library.fonrawesome.FontAwesome
+import com.mikepenz.iconics.typeface.library.foundationicons.FoundationIcons
+import com.mikepenz.iconics.typeface.library.googlematerial.GoogleMaterial
+import com.mikepenz.iconics.typeface.library.ionicons.Ionicons
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
-import com.mikepenz.iconics.typeface.typeicons.Typeicons
-import com.mikepenz.iconics.typeface.weathericons.WeatherIcons
+import com.mikepenz.iconics.typeface.library.typeicons.Typeicons
+import com.mikepenz.iconics.typeface.library.weathericons.WeatherIcons
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4

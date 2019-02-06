@@ -22,7 +22,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -36,10 +35,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.listeners.OnBindViewHolderListener
 import com.mikepenz.iconics.sample.item.IconItem
-import com.mikepenz.iconics.ver_four.utils.IconicsUtils
 import com.mikepenz.iconics.ver_four.Iconics
 import com.mikepenz.iconics.ver_four.IconicsDrawable
 import com.mikepenz.iconics.ver_four.IconicsSize
+import com.mikepenz.iconics.ver_four.utils.IconicsUtils
 import com.mikepenz.iconics.ver_four.utils.toIconicsColor
 import com.mikepenz.iconics.ver_four.utils.toIconicsColorRes
 import com.mikepenz.iconics.ver_four.utils.toIconicsSizeDp
@@ -100,13 +99,11 @@ class IconsFragment : Fragment() {
 
             for (iTypeface in Iconics.getRegisteredFonts(activity!!)) {
                 if (iTypeface.fontName.equals(fontName!!, ignoreCase = true)) {
-                    if (iTypeface.icons != null) {
-                        for (icon in iTypeface.icons) {
-                            mIcons.add(IconItem(icon))
-                        }
-                        mAdapter!!.set(mIcons)
-                        break
+                    for (icon in iTypeface.icons) {
+                        mIcons.add(IconItem(icon))
                     }
+                    mAdapter!!.set(mIcons)
+                    break
                 }
             }
         }
@@ -197,20 +194,13 @@ class IconsFragment : Fragment() {
             override fun unBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
                 val item =
                         viewHolder.itemView.getTag(com.mikepenz.fastadapter.R.id.fastadapter_item) as IconItem
-                if (item != null) {
-                    item.unbindView(viewHolder as IconItem.ViewHolder)
-                    //remove set tag's
-                    viewHolder.itemView.setTag(com.mikepenz.fastadapter.R.id.fastadapter_item, null)
-                    viewHolder.itemView.setTag(
-                        com.mikepenz.fastadapter.R.id.fastadapter_item_adapter,
-                        null
-                    )
-                } else {
-                    Log.e(
-                        "FastAdapter",
-                        "The bindView method of this item should set the `Tag` on its itemView (https://github.com/mikepenz/FastAdapter/blob/develop/library-core/src/main/java/com/mikepenz/fastadapter/items/AbstractItem.java#L189)"
-                    )
-                }
+                item.unbindView(viewHolder as IconItem.ViewHolder)
+                //remove set tag's
+                viewHolder.itemView.setTag(com.mikepenz.fastadapter.R.id.fastadapter_item, null)
+                viewHolder.itemView.setTag(
+                    com.mikepenz.fastadapter.R.id.fastadapter_item_adapter,
+                    null
+                )
             }
 
             override fun onViewAttachedToWindow(
