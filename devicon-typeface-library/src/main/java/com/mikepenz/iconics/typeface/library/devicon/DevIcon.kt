@@ -24,8 +24,6 @@ import java.util.LinkedList
 @Suppress("EnumEntryName")
 class DevIcon : ITypeface {
 
-    override var typeface: Typeface? = null
-
     override val fontRes: Int
         get() = R.font.devicon_font_v2_0_0_1
 

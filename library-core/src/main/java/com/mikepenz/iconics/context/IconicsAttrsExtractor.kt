@@ -167,7 +167,7 @@ class IconicsAttrsExtractor(
                     .dropLastWhile { it.isEmpty() }
                     .toTypedArray()
 
-            animationsList.mapNotNull { Iconics.findProcessor(context, it) }
+            animationsList.mapNotNull { Iconics.findProcessor(it) }
                     .toCollection(processors)
 
             processedIcon = processedIcon.createIfNeeds(context)

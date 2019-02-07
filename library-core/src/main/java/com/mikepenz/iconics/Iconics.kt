@@ -15,6 +15,7 @@
  */
 package com.mikepenz.iconics
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.text.Editable
 import android.text.SpannableString
@@ -32,19 +33,22 @@ import com.mikepenz.iconics.utils.InternalIconicsUtils
 import java.util.HashMap
 import java.util.LinkedList
 
+@SuppressLint("StaticFieldLeak")
 object Iconics {
     internal val TAG = Iconics::class.java.simpleName
 
     private var INIT_DONE = false
     private val FONTS = HashMap<String, ITypeface>()
     private val PROCESSORS = HashMap<String, Class<out IconicsAnimationProcessor>>()
+    lateinit var applicationContext: Context
+        internal set
 
     /**
      * Initializes the FONTS. This also tries to find all founds automatically via their font file
      */
-    fun init(ctx: Context) {
+    fun init() {
         if (!INIT_DONE) {
-            GenericsUtil.getDefinedFonts(ctx).forEach {
+            GenericsUtil.getDefinedFonts(applicationContext).forEach {
                 try {
                     val typeface: ITypeface = ReflectionUtils.classForName(it)
                     validateFont(typeface)
@@ -53,7 +57,7 @@ object Iconics {
                     Log.e(TAG, "Can't init font: $it")
                 }
             }
-            GenericsUtil.getDefinedProcessors(ctx).forEach {
+            GenericsUtil.getDefinedProcessors(applicationContext).forEach {
                 try {
                     registerProcessor(ReflectionUtils.classForName(it))
                 } catch (e: Exception) {
@@ -68,8 +72,8 @@ object Iconics {
      * This makes sure the FONTS are initialized. If the given fonts Map is empty we set the
      * initialized FONTS on it
      */
-    private fun init(ctx: Context, fonts: Map<String, ITypeface>?): Map<String, ITypeface> {
-        init(ctx)
+    private fun init(fonts: Map<String, ITypeface>?): Map<String, ITypeface> {
+        init()
         return if (fonts == null || fonts.isEmpty()) FONTS else fonts
     }
 
@@ -93,13 +97,12 @@ object Iconics {
     /**
      * Test if the icon exists in the currently loaded fonts
      *
-     * @param context A context to access application resources
      * @param icon    The icon to verify
      * @return true if the icon is available
      */
-    fun isIconExists(context: Context, icon: String): Boolean {
+    fun isIconExists(icon: String): Boolean {
         return try {
-            findFont(context, icon.substring(0, 3))?.getIcon(icon.replace("-", "_"))
+            findFont(icon.substring(0, 3))?.getIcon(icon.replace("-", "_"))
             true
         } catch (ignore: Exception) {
             false
@@ -120,8 +123,8 @@ object Iconics {
     }
 
     /** Tries to find a processor by its key in all registered PROCESSORS */
-    fun findProcessor(ctx: Context, animationTag: String): IconicsAnimationProcessor? {
-        init(ctx)
+    fun findProcessor(animationTag: String): IconicsAnimationProcessor? {
+        init()
 
         PROCESSORS[animationTag]?.also {
             try {
@@ -142,14 +145,22 @@ object Iconics {
     }
 
     /** Return all registered FONTS */
-    fun getRegisteredFonts(ctx: Context): Collection<ITypeface> {
-        init(ctx)
-        return FONTS.values
-    }
+    val registeredFonts: Collection<ITypeface>
+        get() {
+            init()
+            return FONTS.values
+        }
+
+    /** Return all registered PROCESSORS */
+    val registeredProcessors: Collection<Class<out IconicsAnimationProcessor>>
+        get() {
+            init()
+            return PROCESSORS.values
+        }
 
     /** Tries to find a font by its key in all registered FONTS */
-    fun findFont(ctx: Context, key: String): ITypeface? {
-        init(ctx)
+    fun findFont(key: String): ITypeface? {
+        init()
         return FONTS[key]
     }
 
@@ -163,8 +174,8 @@ object Iconics {
      * all characters, it will also directly replace icon font placeholders with the correct
      * mapping. Afterwards it will apply the styles
      */
-    fun style(ctx: Context, textSpanned: Spanned): Spanned {
-        return style(ctx, null, textSpanned, null, null)
+    fun style(textSpanned: Spanned): Spanned {
+        return style(null, textSpanned, null, null)
     }
 
     /**
@@ -173,7 +184,6 @@ object Iconics {
      * mapping. Afterwards it will apply the styles
      */
     fun style(
-        ctx: Context,
         fonts: Map<String, ITypeface>?,
         textSpanned: Spanned,
         styles: List<CharacterStyle>?,
@@ -181,7 +191,7 @@ object Iconics {
     ): Spanned {
 
         //find all icons which should be replaced with the iconFont
-        val textStyleContainer = init(ctx, fonts).let {
+        val textStyleContainer = init(fonts).let {
             InternalIconicsUtils.findIcons(textSpanned, it)
         }
 
@@ -189,13 +199,7 @@ object Iconics {
         val sb = SpannableString.valueOf(textStyleContainer.spannableStringBuilder)
 
         //set all the icons and styles
-        InternalIconicsUtils.applyStyles(
-            ctx,
-            sb,
-            textStyleContainer.styleContainers,
-            styles,
-            stylesFor
-        )
+        InternalIconicsUtils.applyStyles(sb, textStyleContainer.styleContainers, styles, stylesFor)
 
         return sb
     }
@@ -204,8 +208,8 @@ object Iconics {
      * Iterates over the editable once and replace icon font placeholders with the correct mapping.
      * Afterwards it will apply the styles
      */
-    fun styleEditable(ctx: Context, editable: Editable) {
-        styleEditable(ctx, null, editable, null, null)
+    fun styleEditable(editable: Editable) {
+        styleEditable(null, editable, null, null)
     }
 
     /**
@@ -213,7 +217,6 @@ object Iconics {
      * Afterwards it will apply the styles
      */
     fun styleEditable(
-        ctx: Context,
         fonts: Map<String, ITypeface>?,
         textSpanned: Editable,
         styles: List<CharacterStyle>?,
@@ -221,16 +224,15 @@ object Iconics {
     ) {
 
         //find all icons which should be replaced with the iconFont
-        val styleContainers = init(ctx, fonts).let {
+        val styleContainers = init(fonts).let {
             InternalIconicsUtils.findIconsFromEditable(textSpanned, it)
         }
 
         //set all the icons and styles
-        InternalIconicsUtils.applyStyles(ctx, textSpanned, styleContainers, styles, stylesFor)
+        InternalIconicsUtils.applyStyles(textSpanned, styleContainers, styles, stylesFor)
     }
 
     class BuilderString(
-        private val ctx: Context,
         private val fonts: List<ITypeface>,
         private val text: Spanned,
         private val withStyles: List<CharacterStyle>,
@@ -239,12 +241,11 @@ object Iconics {
 
         fun build(): Spanned {
             val mappedFonts = fonts.associateBy { it.mappingPrefix }
-            return style(ctx, mappedFonts, text, withStyles, withStylesFor)
+            return style(mappedFonts, text, withStyles, withStylesFor)
         }
     }
 
     class BuilderView(
-        private val ctx: Context,
         private val fonts: List<ITypeface>,
         private val view: TextView,
         private val withStyles: List<CharacterStyle>,
@@ -257,10 +258,9 @@ object Iconics {
 
             //DO NOT STYLE EDITABLE (comes from EditText) as this causes bad issues with the cursor!
             if (view.text is Spanned) {
-                view.text = style(ctx, mappedFonts, view.text as Spanned, withStyles, withStylesFor)
+                view.text = style(mappedFonts, view.text as Spanned, withStyles, withStylesFor)
             } else {
                 view.text = style(
-                    ctx,
                     mappedFonts,
                     SpannableString(view.text),
                     withStyles,
@@ -274,7 +274,7 @@ object Iconics {
         }
     }
 
-    class Builder(private val ctx: Context) {
+    class Builder {
         private val styles = LinkedList<CharacterStyle>()
         private val stylesFor = HashMap<String, MutableList<CharacterStyle>>()
         private val fonts = LinkedList<ITypeface>()
@@ -310,33 +310,21 @@ object Iconics {
         }
 
         /** Defines where the icons should be applied to */
-        fun on(on: Spanned): BuilderString {
-            return BuilderString(ctx, fonts, on, styles, stylesFor)
-        }
+        fun on(on: Spanned): BuilderString = BuilderString(fonts, on, styles, stylesFor)
 
         /** Defines where the icons should be applied to */
-        fun on(on: String): BuilderString {
-            return on(SpannableString(on))
-        }
+        fun on(on: String): BuilderString = on(SpannableString(on))
 
         /** Defines where the icons should be applied to */
-        fun on(on: CharSequence): BuilderString {
-            return on(on.toString())
-        }
+        fun on(on: CharSequence): BuilderString = on(on.toString())
 
         /** Defines where the icons should be applied to */
-        fun on(on: StringBuilder): BuilderString {
-            return on(on.toString())
-        }
+        fun on(on: StringBuilder): BuilderString = on(on.toString())
 
         /** Defines where the icons should be applied to */
-        fun on(on: TextView): BuilderView {
-            return BuilderView(ctx, fonts, on, styles, stylesFor)
-        }
+        fun on(on: TextView): BuilderView = BuilderView(fonts, on, styles, stylesFor)
 
         /** Defines where the icons should be applied to */
-        fun on(on: Button): BuilderView {
-            return BuilderView(ctx, fonts, on, styles, stylesFor)
-        }
+        fun on(on: Button): BuilderView = BuilderView(fonts, on, styles, stylesFor)
     }
 }

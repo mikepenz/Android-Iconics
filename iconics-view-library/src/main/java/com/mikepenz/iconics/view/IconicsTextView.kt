@@ -22,10 +22,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
-import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 
 open class IconicsTextView @JvmOverloads constructor(
     context: Context,
@@ -90,7 +90,7 @@ open class IconicsTextView @JvmOverloads constructor(
 
     override fun setText(text: CharSequence, type: TextView.BufferType) {
         if (!isInEditMode) {
-            super.setText(Iconics.Builder(context).on(text).build(), type)
+            super.setText(Iconics.Builder().on(text).build(), type)
         } else {
             super.setText(text, type)
         }

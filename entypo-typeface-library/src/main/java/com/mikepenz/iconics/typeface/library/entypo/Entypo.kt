@@ -23,8 +23,6 @@ import java.util.LinkedList
 @Suppress("EnumEntryName")
 class Entypo : ITypeface {
 
-    override var typeface: Typeface? = null
-
     override val fontRes: Int
         get() = R.font.entypo_font_v1_0_0_1
 

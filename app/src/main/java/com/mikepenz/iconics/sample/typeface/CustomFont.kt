@@ -16,7 +16,6 @@
 
 package com.mikepenz.iconics.sample.typeface
 
-import android.graphics.Typeface
 import com.mikepenz.iconics.sample.R
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
@@ -26,10 +25,8 @@ import java.util.LinkedList
 /**
  * Created by mikepenz on 01.11.14.
  */
-@Suppress("EnumEntryName", "LeakingThis")
+@Suppress("EnumEntryName")
 class CustomFont : ITypeface {
-
-    override var typeface: Typeface? = null
 
     override val fontRes: Int = R.font.fontello
 
@@ -56,14 +53,8 @@ class CustomFont : ITypeface {
     override val iconCount: Int
         get() = characters.size
 
-    override val icons: Collection<String> by lazy {
-        val icons = LinkedList<String>()
-
-        for (value in Icon.values()) {
-            icons.add(value.name)
-        }
-        icons
-    }
+    override val icons: Collection<String>
+        get() = Icon.values().map { it.name }.toCollection(LinkedList())
 
     override val author: String
         get() = "SampleCustomFont"
@@ -82,16 +73,9 @@ class CustomFont : ITypeface {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    enum class Icon constructor(character: Char) : IIcon {
+    enum class Icon constructor(override val character: Char) : IIcon {
         fon_test1('\ue800'),
         fon_test2('\ue801');
-
-        override var character: Char = ' '
-            internal set
-
-        init {
-            this.character = character
-        }
 
         override val typeface: ITypeface
             get() = savedTypeface

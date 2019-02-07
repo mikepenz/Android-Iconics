@@ -23,8 +23,6 @@ import java.util.LinkedList
 @Suppress("EnumEntryName")
 class FoundationIcons : ITypeface {
 
-    override var typeface: Typeface? = null
-
     override val fontRes: Int
         get() = R.font.foundation_icons_font_v3_0_0_1
 

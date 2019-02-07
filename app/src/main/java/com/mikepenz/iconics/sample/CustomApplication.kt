@@ -28,7 +28,7 @@ class CustomApplication : MultiDexApplication() {
 
         //register custom fonts like this (or also provide a font definition file)
         Iconics.registerFont(CustomFont())
-        Iconics.init(this)
+        Iconics.init()
 
         //Generic font creation process
         val gf2 = GenericFont(

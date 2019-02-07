@@ -23,8 +23,6 @@ import java.util.LinkedList
 @Suppress("EnumEntryName")
 class Meteoconcs : ITypeface {
 
-    override var typeface: Typeface? = null
-
     override val fontRes: Int
         get() = R.font.meteocons_v1_1_1
 

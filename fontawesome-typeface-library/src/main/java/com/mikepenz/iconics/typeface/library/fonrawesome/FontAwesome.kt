@@ -23,8 +23,6 @@ import java.util.LinkedList
 @Suppress("EnumEntryName")
 class FontAwesome : ITypeface {
 
-    override var typeface: Typeface? = null
-
     override val fontRes: Int
         get() = R.font.fontawesome_font_v5_3_1_1
 

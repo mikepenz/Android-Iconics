@@ -16,8 +16,8 @@
 
 package com.mikepenz.iconics.typeface
 
-import android.content.Context
 import android.graphics.Typeface
+import com.mikepenz.iconics.Iconics
 import java.util.HashMap
 
 /**
@@ -31,7 +31,12 @@ open class GenericFont : ITypeface {
 
     private val chars = HashMap<String, Char>()
 
-    override var typeface: Typeface? = null
+    override val rawTypeface: Typeface
+        get() = try {
+            Typeface.createFromAsset(Iconics.applicationContext.assets, fontFile)
+        } catch (ignored: Exception) {
+            Typeface.DEFAULT
+        }
 
     override val fontRes: Int = -1
 
@@ -82,17 +87,6 @@ open class GenericFont : ITypeface {
     }
 
     override fun getIcon(key: String): IIcon = Icon(chars[key]!!).withTypeface(this)
-
-    override fun getTypeface(ctx: Context): Typeface {
-        if (typeface == null) {
-            typeface = try {
-                Typeface.createFromAsset(ctx.assets, fontFile)
-            } catch (e: Exception) {
-                Typeface.DEFAULT
-            }
-        }
-        return typeface!!
-    }
 
     inner class Icon : IIcon {
 

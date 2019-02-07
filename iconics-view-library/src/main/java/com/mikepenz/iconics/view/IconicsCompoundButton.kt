@@ -22,9 +22,9 @@ import android.widget.CompoundButton
 import android.widget.TextView
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.internal.CheckableIconBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
-import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
@@ -62,13 +62,11 @@ open class IconicsCompoundButton @JvmOverloads constructor(
 
     override fun setText(text: CharSequence, type: TextView.BufferType) {
         if (!isInEditMode) {
-            super.setText(Iconics.Builder(context).on(text).build(), type)
+            super.setText(Iconics.Builder().on(text).build(), type)
         } else {
             super.setText(text, type)
         }
     }
 
-    override fun getAccessibilityClassName(): CharSequence {
-        return IconicsCompoundButton::class.java.name
-    }
+    override fun getAccessibilityClassName(): CharSequence = IconicsCompoundButton::class.java.name
 }

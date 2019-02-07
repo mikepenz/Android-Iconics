@@ -16,7 +16,6 @@
 
 package com.mikepenz.iconics.utils
 
-import android.content.Context
 import android.text.Editable
 import android.text.ParcelableSpan
 import android.text.Spannable
@@ -149,7 +148,7 @@ internal object InternalIconicsUtils {
                             iconStart,
                             iconStart + 1,
                             iconString,
-                            fonts[fontKey]!!
+                            fonts.getValue(fontKey)
                         )
                     } else {
                         Log.e(Iconics.TAG, "Wrong icon name: $iconString")
@@ -297,7 +296,6 @@ internal object InternalIconicsUtils {
     /**
      * Applies all given styles on the given Spannable
      *
-     * @param ctx
      * @param text            the text which will get the Styles applied
      * @param styleContainers all styles to apply
      * @param styles          additional CharacterStyles to apply
@@ -305,7 +303,6 @@ internal object InternalIconicsUtils {
      */
     @JvmStatic
     fun applyStyles(
-        ctx: Context,
         text: Spannable,
         styleContainers: List<StyleContainer>,
         styles: List<CharacterStyle>?,
@@ -321,7 +318,7 @@ internal object InternalIconicsUtils {
                 text.setSpan(styleOrSpan, it.startIndex, it.endIndex, it.flags)
             } else {
                 text.setSpan(
-                    IconicsTypefaceSpan("sans-serif", it.font!!.getTypeface(ctx)),
+                    IconicsTypefaceSpan("sans-serif", it.font!!.rawTypeface),
                     it.startIndex,
                     it.endIndex,
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

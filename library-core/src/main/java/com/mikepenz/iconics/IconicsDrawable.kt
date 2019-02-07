@@ -257,7 +257,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
      */
     fun icon(icon: String): IconicsDrawable {
         try {
-            Iconics.findFont(context, icon.substring(0, 3))?.let {
+            Iconics.findFont(icon.substring(0, 3))?.let {
                 icon(it.getIcon(icon.replace("-", "_")))
             }
         } catch (ex: Exception) {
@@ -340,7 +340,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
     fun icon(icon: IIcon): IconicsDrawable {
         plainIcon = null
         this.icon = icon
-        iconBrush.paint.typeface = icon.typeface.getTypeface(context)
+        iconBrush.paint.typeface = icon.typeface.rawTypeface
 
         invalidateSelf()
         return this
@@ -353,7 +353,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
      */
     protected fun icon(typeface: ITypeface, icon: IIcon): IconicsDrawable {
         this.icon = icon
-        iconBrush.paint.typeface = typeface.getTypeface(context)
+        iconBrush.paint.typeface = typeface.rawTypeface
 
         invalidateSelf()
         return this

@@ -56,11 +56,11 @@ internal object IconicsFactory {
             }
             is EditText -> {
                 //for an editText we only style initial as styling the Editable causes problems!
-                Iconics.Builder(context).on(view as TextView).build()
+                Iconics.Builder().on(view as TextView).build()
             }
             is TextView -> {
                 //handle iconics
-                Iconics.Builder(context).on(view).build()
+                Iconics.Builder().on(view).build()
 
                 view.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(cs: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -70,7 +70,7 @@ internal object IconicsFactory {
                     }
 
                     override fun afterTextChanged(editable: Editable) {
-                        Iconics.styleEditable(context, editable)
+                        Iconics.styleEditable(editable)
                     }
                 })
             }

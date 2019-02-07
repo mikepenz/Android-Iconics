@@ -22,10 +22,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
-import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 
 open class IconicsButton @JvmOverloads constructor(
     context: Context,
@@ -95,7 +95,7 @@ open class IconicsButton @JvmOverloads constructor(
         isAllCaps = false
 
         if (!isInEditMode) {
-            super.setText(Iconics.Builder(context).on(text).build(), type)
+            super.setText(Iconics.Builder().on(text).build(), type)
         } else {
             super.setText(text, type)
         }

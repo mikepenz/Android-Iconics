@@ -97,7 +97,7 @@ class IconsFragment : Fragment() {
         if (arguments != null) {
             val fontName = arguments!!.getString(FONT_NAME)
 
-            for (iTypeface in Iconics.getRegisteredFonts(activity!!)) {
+            for (iTypeface in Iconics.registeredFonts) {
                 if (iTypeface.fontName.equals(fontName!!, ignoreCase = true)) {
                     for (icon in iTypeface.icons) {
                         mIcons.add(IconItem(icon))

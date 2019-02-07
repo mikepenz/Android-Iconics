@@ -16,10 +16,10 @@
 
 package com.mikepenz.iconics.typeface
 
-import android.content.Context
 import android.graphics.Typeface
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
+import com.mikepenz.iconics.Iconics
 import java.util.HashMap
 
 /**
@@ -27,15 +27,17 @@ import java.util.HashMap
  */
 interface ITypeface {
 
-    var typeface: Typeface?
+    val rawTypeface: Typeface
+        get() = kotlin.runCatching {
+            ResourcesCompat.getFont(Iconics.applicationContext, fontRes)
+        }.getOrNull() ?: Typeface.DEFAULT
 
     @get:FontRes val fontRes: Int
 
     val characters: HashMap<String, Char>
 
     /**
-     * The Mapping Prefix to identify this font
-     * must have a length of 3
+     * The Mapping Prefix to identify this font must have a length of 3
      *
      * @return mappingPrefix (length = 3)
      */
@@ -60,13 +62,4 @@ interface ITypeface {
     val licenseUrl: String
 
     fun getIcon(key: String): IIcon
-
-    fun getTypeface(ctx: Context): Typeface {
-        if (typeface == null) {
-            typeface = kotlin.runCatching {
-                ResourcesCompat.getFont(ctx, fontRes)
-            }.getOrNull() ?: Typeface.DEFAULT
-        }
-        return typeface!!
-    }
 }

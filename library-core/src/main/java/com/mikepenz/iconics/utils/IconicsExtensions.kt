@@ -34,9 +34,7 @@ import com.mikepenz.iconics.context.IconicsLayoutInflater
 import com.mikepenz.iconics.context.IconicsLayoutInflater2
 
 /** Adaptation for [IconicsContextWrapper] */
-fun Context.wrapByIconics(): ContextWrapper {
-    return IconicsContextWrapper.wrap(this)
-}
+fun Context.wrapByIconics(): ContextWrapper = IconicsContextWrapper.wrap(this)
 
 /**
  * Compatible adaptation for setting IconicsLayoutInflater
@@ -64,17 +62,13 @@ fun MenuInflater.inflateWithIconics(
 }
 
 /** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderString.build] */
-fun Context.iconicsBuilder(
+fun Any.iconicsBuilder(
     block: Iconics.Builder.() -> Iconics.BuilderString
-): Spanned {
-    val builder = Iconics.Builder(this)
-    return block(builder).build()
-}
+): Spanned = block(Iconics.Builder()).build()
 
 /** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderView.build] */
-fun Context.iconicsBuilder(block: Iconics.Builder.() -> Iconics.BuilderView) {
-    val builder = Iconics.Builder(this)
-    block(builder).build()
+fun Any.iconicsBuilder(block: Iconics.Builder.() -> Iconics.BuilderView) {
+    block(Iconics.Builder()).build()
 }
 
 /** Adaptation for [IconicsArrayBuilder] with auto-executing [IconicsArrayBuilder.build] */

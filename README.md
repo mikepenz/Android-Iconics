@@ -300,9 +300,9 @@ Exclude `R` from ProGuard to enable the font addon auto detection
 All other ProGuard rules are now bundled internally with each font. 
 
 # Kotlin support
-Also we have some extensions for easy use on kotlin in the library below
+Also we have some extensions for easy use on kotlin in the library below (deprecated since 4.0.0)
 
-[Android-Iconics Kt](https://github.com/zTrap/Android-Iconics-Kt)
+[~Android-Iconics Kt~](https://github.com/zTrap/Android-Iconics-Kt)
 
 # Demo
 You can try the sample application out. It's on Google Play ;)

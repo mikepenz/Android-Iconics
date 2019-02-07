@@ -15,4 +15,14 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.mikepenz.iconics.core" />
+<manifest
+    package="com.mikepenz.iconics.core"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <provider
+            android:authorities="com.mikepenz.iconics.core.provider"
+            android:name="com.mikepenz.iconics.IconicsContentProvider"
+            android:exported="false"
+            android:initOrder="100"/>
+    </application>
+</manifest>
