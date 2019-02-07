@@ -1,1 +1,1 @@
--keep class com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic { *; }
+-keep class com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic { *; }

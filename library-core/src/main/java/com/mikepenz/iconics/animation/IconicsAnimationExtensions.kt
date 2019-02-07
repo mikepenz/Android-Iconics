@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-package com.mikepenz.iconics.internal
+package com.mikepenz.iconics.animation
 
 import android.view.View
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
 
-internal fun View.tryToEnableIconicsAnimation(drawable: IconicsDrawable?): IconicsDrawable? {
-    if (drawable == null) return null
-    if (drawable is IconicsAnimatedDrawable) {
-        drawable.animateIn(this)
-    }
+fun View.tryToEnableIconicsAnimation(drawable: IconicsDrawable?): IconicsDrawable? {
+    (drawable as? IconicsAnimatedDrawable)?.let { drawable.animateIn(this) }
     return drawable
 }
 
-internal fun View.tryToEnableIconicsAnimation(vararg drawables: IconicsDrawable?) {
+fun View.tryToEnableIconicsAnimation(vararg drawables: IconicsDrawable?) {
     drawables.mapNotNull { (it as? IconicsAnimatedDrawable) }.forEach { it.animateIn(this) }
 }

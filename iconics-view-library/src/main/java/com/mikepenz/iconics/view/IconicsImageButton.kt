@@ -30,11 +30,7 @@ open class IconicsImageButton @JvmOverloads constructor(
         isFocusable = true
     }
 
-    override fun onSetAlpha(alpha: Int): Boolean {
-        return false
-    }
+    override fun onSetAlpha(alpha: Int): Boolean = false
 
-    override fun getAccessibilityClassName(): CharSequence {
-        return ImageButton::class.java.name
-    }
+    override fun getAccessibilityClassName(): CharSequence = ImageButton::class.java.name
 }

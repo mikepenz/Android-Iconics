@@ -1,1 +1,1 @@
--keep class com.mikepenz.iconics.typeface.pixeden_7_stroke.Pixeden7Stroke { *; }
+-keep class com.mikepenz.iconics.typeface.library.pixeden7stroke.Pixeden7Stroke { *; }

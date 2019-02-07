@@ -30,13 +30,8 @@ import java.lang.reflect.Method
 internal object ReflectionUtils {
 
     fun getField(clazz: Class<*>, fieldName: String): Field? {
-        kotlin.runCatching {
-            val f = clazz.getDeclaredField(fieldName)
-            f.isAccessible = true
-            return f
-        }
-
-        return null
+        return kotlin.runCatching { clazz.getDeclaredField(fieldName) }
+                .getOrNull()?.also { it.isAccessible = true }
     }
 
     operator fun getValue(field: Field, obj: Any): Any? {

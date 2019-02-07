@@ -1,1 +1,1 @@
--keep class com.mikepenz.iconics.typeface.entypo.Entypo { *; }
+-keep class com.mikepenz.iconics.typeface.library.entypo.Entypo { *; }

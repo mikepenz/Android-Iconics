@@ -27,7 +27,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
 import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
+import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.core.R
 
 internal object IconicsFactory {
@@ -51,17 +51,16 @@ internal object IconicsFactory {
         when (view) {
             is ActionMenuItemView -> {
                 IconicsAttrsApplier.getIconicsDrawable(context, attrs)?.let {
-                    view.setIcon(it)
-                    (it as? IconicsAnimatedDrawable)?.animateIn(view)
+                    view.setIcon(view.tryToEnableIconicsAnimation(it))
                 }
             }
             is EditText -> {
                 //for an editText we only style initial as styling the Editable causes problems!
-                Iconics.Builder().ctx(context).on(view as TextView).build()
+                Iconics.Builder(context).on(view as TextView).build()
             }
             is TextView -> {
                 //handle iconics
-                Iconics.Builder().ctx(context).on(view).build()
+                Iconics.Builder(context).on(view).build()
 
                 view.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(cs: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -77,8 +76,7 @@ internal object IconicsFactory {
             }
             is ImageView -> {
                 IconicsAttrsApplier.getIconicsDrawable(context, attrs)?.let {
-                    view.setImageDrawable(it)
-                    (it as? IconicsAnimatedDrawable)?.animateIn(view)
+                    view.setImageDrawable(view.tryToEnableIconicsAnimation(it))
                 }
             }
         }

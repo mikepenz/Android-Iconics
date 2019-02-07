@@ -26,17 +26,12 @@ import android.view.LayoutInflater
  */
 class IconicsContextWrapper private constructor(base: Context) : ContextWrapper(base) {
 
-    private var inflater: LayoutInflater? = null
+    private val inflater by lazy {
+        InternalLayoutInflater(LayoutInflater.from(baseContext), this, false)
+    }
 
     override fun getSystemService(name: String): Any? {
         return if (Context.LAYOUT_INFLATER_SERVICE == name) {
-            if (inflater == null) {
-                inflater = InternalLayoutInflater(
-                    LayoutInflater.from(baseContext),
-                    this,
-                    false
-                )
-            }
             inflater
         } else {
             super.getSystemService(name)
@@ -44,8 +39,6 @@ class IconicsContextWrapper private constructor(base: Context) : ContextWrapper(
     }
 
     companion object {
-        @JvmStatic fun wrap(base: Context): ContextWrapper {
-            return IconicsContextWrapper(base)
-        }
+        @JvmStatic fun wrap(base: Context): ContextWrapper = IconicsContextWrapper(base)
     }
 }

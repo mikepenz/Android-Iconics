@@ -24,7 +24,7 @@ import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.internal.CheckableIconBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
-import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
+import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
@@ -62,7 +62,7 @@ open class IconicsCompoundButton @JvmOverloads constructor(
 
     override fun setText(text: CharSequence, type: TextView.BufferType) {
         if (!isInEditMode) {
-            super.setText(Iconics.Builder().ctx(context).on(text).build(), type)
+            super.setText(Iconics.Builder(context).on(text).build(), type)
         } else {
             super.setText(text, type)
         }

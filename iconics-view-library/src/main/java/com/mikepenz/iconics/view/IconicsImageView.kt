@@ -22,7 +22,7 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
-import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
+import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 
 open class IconicsImageView @JvmOverloads constructor(
     context: Context,

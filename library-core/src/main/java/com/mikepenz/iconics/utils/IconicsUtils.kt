@@ -28,7 +28,7 @@ object IconicsUtils {
      * Enables the [View.LAYER_TYPE_SOFTWARE] for the view holding this icon, to enable correct
      * shadowLayer drawing
      *
-     * @param view the view holding this `IconicsDrawable`
+     * @param view the view holding `IconicsDrawable`
      * @see View.setLayerType
      */
     @JvmStatic fun enableShadowSupport(view: View) {
@@ -50,16 +50,15 @@ object IconicsUtils {
         checkedIcon: Drawable?,
         animate: Boolean = true
     ): StateListDrawable {
-        val iconStateListDrawable = StateListDrawable()
-        iconStateListDrawable.addState(intArrayOf(android.R.attr.state_checked), checkedIcon)
-        iconStateListDrawable.addState(intArrayOf(-android.R.attr.state_checked), icon)
+        return StateListDrawable().apply {
+            addState(intArrayOf(android.R.attr.state_checked), checkedIcon)
+            addState(intArrayOf(-android.R.attr.state_checked), icon)
 
-        if (animate) {
-            val duration = ctx.resources.getInteger(android.R.integer.config_shortAnimTime)
-            iconStateListDrawable.setEnterFadeDuration(duration)
-            iconStateListDrawable.setExitFadeDuration(duration)
+            if (animate) {
+                val duration = ctx.resources.getInteger(android.R.integer.config_shortAnimTime)
+                setEnterFadeDuration(duration)
+                setExitFadeDuration(duration)
+            }
         }
-
-        return iconStateListDrawable
     }
 }

@@ -67,13 +67,13 @@ fun MenuInflater.inflateWithIconics(
 fun Context.iconicsBuilder(
     block: Iconics.Builder.() -> Iconics.BuilderString
 ): Spanned {
-    val builder = Iconics.Builder().ctx(this)
+    val builder = Iconics.Builder(this)
     return block(builder).build()
 }
 
 /** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderView.build] */
 fun Context.iconicsBuilder(block: Iconics.Builder.() -> Iconics.BuilderView) {
-    val builder = Iconics.Builder().ctx(this)
+    val builder = Iconics.Builder(this)
     block(builder).build()
 }
 

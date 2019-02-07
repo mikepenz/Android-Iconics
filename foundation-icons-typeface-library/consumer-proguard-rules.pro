@@ -1,1 +1,1 @@
--keep class com.mikepenz.iconics.typeface.foundationicons.FoundationIcons { *; }
+-keep class com.mikepenz.iconics.typeface.library.foundationicons.FoundationIcons { *; }

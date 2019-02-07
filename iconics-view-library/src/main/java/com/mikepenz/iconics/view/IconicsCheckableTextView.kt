@@ -24,10 +24,10 @@ import android.view.View
 import android.widget.Checkable
 import androidx.core.widget.TextViewCompat
 import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.internal.CheckedCompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
-import com.mikepenz.iconics.internal.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.utils.IconicsUtils
 
 /**
@@ -177,9 +177,7 @@ open class IconicsCheckableTextView @JvmOverloads constructor(
         return drawableState
     }
 
-    override fun isChecked(): Boolean {
-        return isChecked
-    }
+    override fun isChecked(): Boolean = isChecked
 
     override fun toggle() {
         isChecked = !isChecked

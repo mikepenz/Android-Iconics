@@ -68,8 +68,7 @@ class PlaygroundActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Show how to style the text of an existing TextView
-        Iconics.Builder()
-                .ctx(this)
+        Iconics.Builder(this)
                 .style(
                     ForegroundColorSpan(Color.WHITE),
                     BackgroundColorSpan(Color.BLACK),
@@ -117,7 +116,7 @@ class PlaygroundActivity : AppCompatActivity() {
         )
 
         //Show how to style the text of an existing button
-        Iconics.Builder().ctx(this)
+        Iconics.Builder(this)
                 .style(BackgroundColorSpan(Color.BLACK))
                 .style(RelativeSizeSpan(2f))
                 .style(ForegroundColorSpan(Color.WHITE))

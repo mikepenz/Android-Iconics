@@ -1,1 +1,1 @@
--keep class com.mikepenz.iconics.typeface.ionicons.Ionicons { *; }
+-keep class com.mikepenz.iconics.typeface.library.ionicons.Ionicons { *; }

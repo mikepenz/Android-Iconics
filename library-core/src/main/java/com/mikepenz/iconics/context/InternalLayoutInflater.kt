@@ -66,13 +66,7 @@ internal class InternalLayoutInflater : LayoutInflater {
 
     @Throws(ClassNotFoundException::class)
     override fun onCreateView(parent: View, name: String, attrs: AttributeSet): View? {
-        return IconicsFactory.onViewCreated(
-            super.onCreateView(
-                parent,
-                name,
-                attrs
-            ), context, attrs
-        )
+        return IconicsFactory.onViewCreated(super.onCreateView(parent, name, attrs), context, attrs)
     }
 
     // ===
