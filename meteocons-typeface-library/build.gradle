@@ -50,6 +50,3 @@ dependencies {
     implementation project(':library-core')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }
-repositories {
-    mavenCentral()
-}

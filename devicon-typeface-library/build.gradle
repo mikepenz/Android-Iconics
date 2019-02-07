@@ -37,6 +37,12 @@ android {
         }
     }
 
+
+
+
+
+
+
     lintOptions {
         abortOnError false
     }
@@ -48,7 +54,4 @@ if (project.hasProperty('pushall') || project.hasProperty('DevIcononly')) {
 dependencies {
     implementation project(':library-core')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
-}
-repositories {
-    mavenCentral()
 }

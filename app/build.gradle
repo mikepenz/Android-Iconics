@@ -131,6 +131,3 @@ dependencies {
     implementation "androidx.core:core-ktx:$versions.ktx.core"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }
-repositories {
-    mavenCentral()
-}
