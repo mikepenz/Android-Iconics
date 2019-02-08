@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Mike Penz
+ * Copyright 2019 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,28 @@
 
 package com.mikepenz.iconics.internal;
 
-import android.content.Context;
-import android.util.AttributeSet;
+import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
- * @author pa.gulko zTrap (09.07.2017)
+ * @author pa.gulko zTrap (06.02.2019)
  */
 @RestrictTo(LIBRARY_GROUP)
-public interface IconicsView {
+public class IconicsViewsUtils {
 
+    @Nullable
     @RestrictTo(LIBRARY_GROUP)
-    void initialize(Context context, AttributeSet attrs, int defStyle);
-
-    @RestrictTo(LIBRARY_GROUP)
-    void applyAttr(Context context, AttributeSet attrs, int defStyle);
+    public static IconicsDrawable checkAnimation(@Nullable IconicsDrawable drawable,
+                                                 @NonNull View view) {
+        if (drawable == null) return null;
+        if (drawable instanceof IconicsAnimatedDrawable) {
+            ((IconicsAnimatedDrawable) drawable).animateIn(view);
+        }
+        return drawable;
+    }
 }

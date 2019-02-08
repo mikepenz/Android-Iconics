@@ -19,17 +19,15 @@ package com.mikepenz.iconics.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.CompoundButton;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import com.mikepenz.iconics.Iconics;
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import com.mikepenz.iconics.internal.CheckableIconBundle;
 import com.mikepenz.iconics.internal.IconicsView;
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
-
+import com.mikepenz.iconics.internal.IconicsViewsUtils;
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
@@ -58,8 +56,8 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     public void initialize(Context context, AttributeSet attrs, int defStyle) {
         mIconsBundle.createIcons(context);
         applyAttr(context, attrs, defStyle);
-        checkAnimation(mIconsBundle.mCheckedIcon);
-        checkAnimation(mIconsBundle.mUncheckedIcon);
+        IconicsViewsUtils.checkAnimation(mIconsBundle.mCheckedIcon, this);
+        IconicsViewsUtils.checkAnimation(mIconsBundle.mUncheckedIcon, this);
         setButtonDrawable(mIconsBundle.createStates(context));
     }
 
@@ -71,43 +69,34 @@ public class IconicsCompoundButton extends CompoundButton implements IconicsView
     }
 
     public void setCheckedIcon(@Nullable IconicsDrawable icon) {
-        mIconsBundle.mCheckedIcon = checkAnimation(icon);
+        mIconsBundle.mCheckedIcon = IconicsViewsUtils.checkAnimation(icon, this);
         setButtonDrawable(mIconsBundle.createStates(getContext()));
     }
 
     public void setUncheckedIcon(@Nullable IconicsDrawable icon) {
-        mIconsBundle.mUncheckedIcon = checkAnimation(icon);
+        mIconsBundle.mUncheckedIcon = IconicsViewsUtils.checkAnimation(icon, this);
         setButtonDrawable(mIconsBundle.createStates(getContext()));
     }
 
+    @Nullable
     public IconicsDrawable getCheckedIcon() {
-        if (mIconsBundle.mCheckedIcon != null) {
-            return mIconsBundle.mCheckedIcon;
-        } else {
-            return null;
-        }
+        return mIconsBundle.mCheckedIcon;
     }
 
+    @Nullable
     public IconicsDrawable getUncheckedIcon() {
-        if (mIconsBundle.mUncheckedIcon != null) {
-            return mIconsBundle.mUncheckedIcon;
-        } else {
-            return null;
-        }
-    }
-
-    private @Nullable IconicsDrawable checkAnimation(@Nullable IconicsDrawable drawable) {
-        if (drawable == null) return null;
-        if (drawable instanceof IconicsAnimatedDrawable) {
-            ((IconicsAnimatedDrawable) drawable).animateIn(this);
-        }
-        return drawable;
+        return mIconsBundle.mUncheckedIcon;
     }
 
     @Override
-    public void setText(CharSequence text, BufferType type) {
+    public void setText(@Nullable CharSequence text, @NonNull BufferType type) {
         if (!isInEditMode()) {
-            super.setText(new Iconics.IconicsBuilder().ctx(getContext()).on(text).build(), type);
+            super.setText(
+                    new Iconics.IconicsBuilder()
+                            .ctx(getContext())
+                            .on(text == null ? "" : text)
+                            .build(),
+                    type);
         } else {
             super.setText(text, type);
         }

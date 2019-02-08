@@ -17,12 +17,11 @@
 package com.mikepenz.iconics.internal;
 
 import android.graphics.drawable.Drawable;
+import android.widget.TextView;
+import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.widget.TextViewCompat;
-import android.widget.TextView;
-
 import com.mikepenz.iconics.IconicsDrawable;
-
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
@@ -30,9 +29,13 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  */
 @RestrictTo(LIBRARY_GROUP)
 public class CompoundIconsBundle {
+    @Nullable
     public IconicsDrawable mStartIcon;
+    @Nullable
     public IconicsDrawable mTopIcon;
+    @Nullable
     public IconicsDrawable mEndIcon;
+    @Nullable
     public IconicsDrawable mBottomIcon;
 
     public void setIcons(TextView textView) {

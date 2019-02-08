@@ -18,9 +18,7 @@ package com.mikepenz.iconics.internal;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-
 import com.mikepenz.iconics.IconicsDrawable;
-
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
@@ -29,12 +27,16 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @RestrictTo(LIBRARY_GROUP)
 public interface CompoundIconicsDrawables {
 
+    @Nullable
     IconicsDrawable getIconicsDrawableStart();
 
+    @Nullable
     IconicsDrawable getIconicsDrawableTop();
 
+    @Nullable
     IconicsDrawable getIconicsDrawableEnd();
 
+    @Nullable
     IconicsDrawable getIconicsDrawableBottom();
 
     void setDrawableStart(@Nullable IconicsDrawable drawable);
