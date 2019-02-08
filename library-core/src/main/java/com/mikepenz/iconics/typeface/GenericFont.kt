@@ -17,6 +17,7 @@
 package com.mikepenz.iconics.typeface
 
 import android.graphics.Typeface
+import androidx.annotation.FontRes
 import com.mikepenz.iconics.Iconics
 import java.util.HashMap
 
@@ -27,6 +28,8 @@ open class GenericFont : ITypeface {
     override val fontName: String
     override val author: String
     override val mappingPrefix: String
+    override val fontRes: Int
+
     private val fontFile: String
 
     private val chars = HashMap<String, Char>()
@@ -35,10 +38,8 @@ open class GenericFont : ITypeface {
         get() = try {
             Typeface.createFromAsset(Iconics.applicationContext.assets, fontFile)
         } catch (ignored: Exception) {
-            Typeface.DEFAULT
+            super.rawTypeface
         }
-
-    override val fontRes: Int = -1
 
     override val characters: HashMap<String, Char>
         get() = chars
@@ -71,6 +72,11 @@ open class GenericFont : ITypeface {
         fontFile: String
     ) : this("GenericFont", "GenericAuthor", mappingPrefix, fontFile)
 
+    constructor(
+        mappingPrefix: String,
+        @FontRes fontRes: Int
+    ) : this("GenericFont", "GenericAuthor", mappingPrefix, fontRes)
+
     @Suppress("LeakingThis")
     constructor(fontName: String, author: String, mappingPrefix: String, fontFile: String) {
         if (mappingPrefix.length != 3) {
@@ -80,6 +86,19 @@ open class GenericFont : ITypeface {
         this.author = author
         this.mappingPrefix = mappingPrefix
         this.fontFile = fontFile
+        this.fontRes = -1
+    }
+
+    @Suppress("LeakingThis")
+    constructor(fontName: String, author: String, mappingPrefix: String, @FontRes fontRes: Int) {
+        if (mappingPrefix.length != 3) {
+            throw IllegalArgumentException("MappingPrefix must be 3 char long")
+        }
+        this.fontName = fontName
+        this.author = author
+        this.mappingPrefix = mappingPrefix
+        this.fontFile = ""
+        this.fontRes = fontRes
     }
 
     fun registerIcon(name: String, char: Char) {

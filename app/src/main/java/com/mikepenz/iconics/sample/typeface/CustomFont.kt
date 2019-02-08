@@ -28,7 +28,8 @@ import java.util.LinkedList
 @Suppress("EnumEntryName")
 class CustomFont : ITypeface {
 
-    override val fontRes: Int = R.font.fontello
+    override val fontRes: Int
+        get() = R.font.fontello
 
     override val characters: HashMap<String, Char>
         get() {
