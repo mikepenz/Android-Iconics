@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright 2019 Mike Penz
   ~
@@ -15,22 +16,18 @@
   -->
 
 <menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_item_1"
-        android:title="Item 1"
-        app:showAsAction="always"
-        app:ico_color="@android:color/white"
-        app:ico_icon="gmd_favorite"
-        app:ico_size="24dp" />
+        android:id="@+id/navigation_home"
+        android:title="Item 1" />
 
     <item
-        android:id="@+id/menu_item_2"
-        android:title="Item 2"
-        app:showAsAction="always"
-        app:ico_color="@android:color/holo_blue_bright"
-        app:ico_icon="gmd_star"
-        app:ico_size="24dp" />
+        android:id="@+id/navigation_dashboard"
+        android:title="Item 2" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:title="Item 3" />
+
 </menu>
