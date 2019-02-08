@@ -19,12 +19,10 @@ package com.mikepenz.iconics;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
-
-import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
-
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.mikepenz.iconics.animation.IconicsAnimationProcessor;
 
 /**
  * Helper class to control applying state changes to colors and paint. Also for compact providing
@@ -122,7 +120,7 @@ public class IconicsBrush<T extends Paint> {
         }
 
         int alpha = Color.alpha(colorForState);
-        if (alpha != 255 && alpha != mAlpha) {
+        if (alpha != mAlpha) {
             setAlpha(alpha);
             isInvalidate = true;
         }

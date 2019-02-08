@@ -22,17 +22,14 @@ import android.util.AttributeSet;
 import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuInflater;
-
+import androidx.annotation.NonNull;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsAttrsApplier;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.HashMap;
-
-import androidx.annotation.NonNull;
 
 /**
  * Created by flisar on 23.05.2017.
@@ -96,6 +93,19 @@ public class IconicsMenuInflaterUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Uses the styleable tags to get the iconics data of menu items. Useful for set icons into
+     * {@code BottomNavigationView}
+     * <p>
+     * By default, menus don't show icons for sub menus, but this can be enabled via reflection
+     * So use this function if you want that sub menu icons are checked as well
+     */
+    public static void parseXmlAndSetIconicsDrawables(@NonNull Context context,
+                                                      int menuId,
+                                                      @NonNull Menu menu) {
+        parseXmlAndSetIconicsDrawables(context, menuId, menu, false);
     }
 
     private static void parseMenu(@NonNull Context context,
