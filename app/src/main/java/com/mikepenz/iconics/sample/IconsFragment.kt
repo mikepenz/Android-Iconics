@@ -32,8 +32,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
+import com.mikepenz.fastadapter.IAdapter
+import com.mikepenz.fastadapter.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.listeners.OnBindViewHolderListener
+import com.mikepenz.fastadapter.listeners.OnTouchListener
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
@@ -86,7 +88,7 @@ class IconsFragment : Fragment() {
 
         // Init and Setup RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.list)
-        recyclerView.layoutManager = GridLayoutManager(activity, 2)
+        recyclerView.layoutManager = GridLayoutManager(activity, 2) as RecyclerView.LayoutManager?
         recyclerView.addItemDecoration(SpaceItemDecoration())
         //animator not yet working
         recyclerView.itemAnimator = DefaultItemAnimator()
@@ -113,40 +115,50 @@ class IconsFragment : Fragment() {
 
     private fun configAdapter() {
         //our popup on touch
-        mAdapter!!.withOnTouchListener { v, motionEvent, _, item, _ ->
-            val a = motionEvent.action
-            if (a == MotionEvent.ACTION_DOWN) {
-                if (mPopup != null && mPopup!!.isShowing) {
-                    mPopup!!.dismiss()
-                }
-                val icon = IconicsDrawable(v.context)
-                        .icon(item.icon!!)
-                        .size(IconicsSize.dp(144f))
-                        .padding(IconicsSize.dp(8f))
-                        .backgroundColor("#DDFFFFFF".toIconicsColor())
-                        .roundedCorners(IconicsSize.dp(12f))
-                val imageView = ImageView(v.context)
-                imageView.setImageDrawable(
-                    icon
-                )
-                val size = UIUtils.convertDpToPixel(144f, v.context).toInt()
-                mPopup = PopupWindow(imageView, size, size)
-                mPopup!!.showAsDropDown(v)
+        mAdapter?.onTouchListener = object : OnTouchListener<IconItem> {
+            override fun onTouch(
+                v: View,
+                event: MotionEvent,
+                adapter: IAdapter<IconItem>,
+                item: IconItem,
+                position: Int
+            ): Boolean {
+                val a = event.action
+                if (a == MotionEvent.ACTION_DOWN) {
+                    if (mPopup != null && mPopup!!.isShowing) {
+                        mPopup!!.dismiss()
+                    }
+                    val icon = IconicsDrawable(v.context)
+                            .icon(item.icon!!)
+                            .size(IconicsSize.dp(144f))
+                            .padding(IconicsSize.dp(8f))
+                            .backgroundColor("#DDFFFFFF".toIconicsColor())
+                            .roundedCorners(IconicsSize.dp(12f))
+                    val imageView = ImageView(v.context)
+                    imageView.setImageDrawable(
+                        icon
+                    )
+                    val size = UIUtils.convertDpToPixel(144f, v.context).toInt()
+                    mPopup = PopupWindow(imageView, size, size)
+                    mPopup!!.showAsDropDown(v)
 
-                //copy to clipboard
-                val clipboard =
-                        v.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                val clip = ClipData.newPlainText("Android-Iconics icon", icon.icon!!.formattedName)
-                clipboard.primaryClip = clip
-            } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL || a == MotionEvent.ACTION_OUTSIDE) {
-                if (mPopup != null && mPopup!!.isShowing) {
-                    mPopup!!.dismiss()
+                    //copy to clipboard
+                    val clipboard =
+                            v.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("Android-Iconics icon", icon.icon!!.formattedName)
+                    clipboard.primaryClip = clip
+                } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL || a == MotionEvent.ACTION_OUTSIDE) {
+                    if (mPopup != null && mPopup!!.isShowing) {
+                        mPopup!!.dismiss()
+                    }
                 }
+                return false
             }
-            false
         }
 
-        mAdapter!!.withOnBindViewHolderListener(object : OnBindViewHolderListener {
+
+        mAdapter?.onBindViewHolderListener = object : OnBindViewHolderListener {
+
             override fun onBindViewHolder(
                 viewHolder: RecyclerView.ViewHolder,
                 position: Int,
@@ -203,27 +215,25 @@ class IconsFragment : Fragment() {
                 )
             }
 
-            override fun onViewAttachedToWindow(
-                viewHolder: RecyclerView.ViewHolder,
-                position: Int
-            ) {
-
-            }
-
-            override fun onViewDetachedFromWindow(
-                viewHolder: RecyclerView.ViewHolder,
-                position: Int
-            ) {
-
-            }
-
             override fun onFailedToRecycleView(
                 viewHolder: RecyclerView.ViewHolder,
                 position: Int
             ): Boolean {
                 return false
             }
-        })
+
+            override fun onViewAttachedToWindow(
+                viewHolder: RecyclerView.ViewHolder,
+                position: Int
+            ) {
+            }
+
+            override fun onViewDetachedFromWindow(
+                viewHolder: RecyclerView.ViewHolder,
+                position: Int
+            ) {
+            }
+        }
     }
 
     internal fun onSearch(s: String?) {

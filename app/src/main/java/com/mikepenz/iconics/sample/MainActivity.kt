@@ -16,10 +16,35 @@
 
 package com.mikepenz.iconics.sample
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
+import com.mikepenz.aboutlibraries.Libs
+import com.mikepenz.aboutlibraries.LibsBuilder
+import com.mikepenz.iconics.Iconics
+import com.mikepenz.iconics.IconicsColor
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.IconicsSize
+import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.typeface.library.fonrawesome.FontAwesome
+import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.mikepenz.materialdrawer.Drawer
+import com.mikepenz.materialdrawer.DrawerBuilder
+import com.mikepenz.materialdrawer.holder.BadgeStyle
+import com.mikepenz.materialdrawer.holder.StringHolder
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
+import com.mikepenz.materialize.util.KeyboardUtil
+import java.util.Collections
+import java.util.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,17 +60,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*// Handle Toolbar
+        // Handle Toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
 
         //order fonts by their name
-        mFonts = ArrayList(Iconics.getRegisteredFonts(this))
+        mFonts = ArrayList(Iconics.registeredFonts)
         Collections.sort(mFonts!!) { object1, object2 -> object1.fontName.compareTo(object2.fontName) }
 
         //add all icons of all registered Fonts to the list
-        val items = ArrayList<IDrawerItem<*, *>>(Iconics.getRegisteredFonts(this).size)
+        val items = ArrayList<IDrawerItem<*>>(Iconics.registeredFonts.size)
         var count = 0
         for (font in mFonts!!) {
             val pdi = PrimaryDrawerItem()
@@ -84,10 +109,9 @@ class MainActivity : AppCompatActivity() {
                 .withFireOnInitialOnClick(true)
                 .withSelectedItem(mIdentifierGmd.toLong())
                 .build()
-                */
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu items for use in the action bar
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_main, menu)
@@ -213,5 +237,4 @@ class MainActivity : AppCompatActivity() {
         ft.replace(R.id.content, mIconsFragment!!)
         ft.commit()
     }
-    */
 }

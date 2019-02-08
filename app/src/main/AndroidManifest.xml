@@ -15,7 +15,9 @@
   ~ limitations under the License.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.mikepenz.iconics.sample">
 
     <application
@@ -24,19 +26,18 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
+        android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
-        </activity>
-        <activity
-            android:name=".PlaygroundActivity"
-            android:label="@string/title_activity_playground"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PlaygroundActivity"
+            android:label="@string/title_activity_playground"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".AutomaticActivity"
             android:label="@string/title_activity_automatic"

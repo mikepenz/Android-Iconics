@@ -31,7 +31,7 @@ import com.mikepenz.iconics.view.IconicsImageView
  * Created by mikepenz on 26.07.16.
  */
 
-class IconItem(icon: String) : AbstractItem<IconItem, IconItem.ViewHolder>() {
+class IconItem(icon: String) : AbstractItem<IconItem.ViewHolder>() {
     var icon: String? = null
         private set
 
@@ -44,13 +44,11 @@ class IconItem(icon: String) : AbstractItem<IconItem, IconItem.ViewHolder>() {
         this.icon = icon
     }
 
-    override fun getType(): Int {
-        return R.id.item_row_icon
-    }
+    override val layoutRes: Int
+        get() = R.layout.row_icon
 
-    override fun getLayoutRes(): Int {
-        return R.layout.row_icon
-    }
+    override val type: Int
+        get() = R.id.item_row_icon
 
     override fun bindView(holder: ViewHolder, payloads: MutableList<Any>) {
         super.bindView(holder, payloads)
