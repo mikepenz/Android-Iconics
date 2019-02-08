@@ -20,7 +20,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
         <provider
-            android:authorities="com.mikepenz.iconics.core.provider"
+            android:authorities="${applicationId}.iconics.core.provider"
             android:name="com.mikepenz.iconics.IconicsContentProvider"
             android:exported="false"
             android:initOrder="100"/>
