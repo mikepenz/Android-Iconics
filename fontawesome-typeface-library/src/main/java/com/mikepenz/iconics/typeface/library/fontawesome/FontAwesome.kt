@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mikepenz.iconics.typeface.library.fonrawesome
+package com.mikepenz.iconics.typeface.library.fontawesome
 
 import android.graphics.Typeface
 import com.mikepenz.iconics.typeface.IIcon
