@@ -115,15 +115,11 @@ class MainActivity : AppCompatActivity() {
         inflater.inflate(R.menu.menu_main, menu)
 
         //
-        menu.findItem(R.id.search).setIcon(
-            IconicsDrawable(
-                this,
-                MaterialDesignIconic.Icon.gmi_search
-            )
-                    .color(IconicsColor.colorInt(Color.WHITE))
-                    .size(IconicsSize.dp(24f))
-                    .respectFontBounds(true)
-        )
+        menu.findItem(R.id.search).icon = IconicsDrawable(
+            this,
+            MaterialDesignIconic.Icon.gmi_search
+        ).color(IconicsColor.colorInt(Color.WHITE)).size(IconicsSize.dp(24f))
+                .respectFontBounds(true)
 
         val searchView = menu.findItem(R.id.search).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

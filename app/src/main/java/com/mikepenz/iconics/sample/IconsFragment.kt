@@ -64,12 +64,16 @@ class IconsFragment : Fragment() {
 
     fun randomize(randomize: Boolean) {
         mRandomize = randomize
-        mAdapter.notifyAdapterDataSetChanged()
+        if (::mAdapter.isInitialized) {
+            mAdapter.notifyAdapterDataSetChanged()
+        }
     }
 
     fun shadow(shadow: Boolean) {
         mShadow = shadow
-        mAdapter.notifyAdapterDataSetChanged()
+        if (::mAdapter.isInitialized) {
+            mAdapter.notifyAdapterDataSetChanged()
+        }
     }
 
     override fun onCreateView(
@@ -240,19 +244,21 @@ class IconsFragment : Fragment() {
 
     internal fun onSearch(s: String?) {
         mSearch = s
-
-        if (TextUtils.isEmpty(s)) {
-            mAdapter.clear()
-            mAdapter.setNewList(mIcons)
-        } else {
-            val tmpList = ArrayList<IconItem>()
-            for (icon in mIcons) {
-                val i = icon.icon ?: continue
-                if (i.toLowerCase().contains(s?.toLowerCase() ?: "")) {
-                    tmpList.add(icon)
+        
+        if (::mAdapter.isInitialized) {
+            if (TextUtils.isEmpty(s)) {
+                mAdapter.clear()
+                mAdapter.setNewList(mIcons)
+            } else {
+                val tmpList = ArrayList<IconItem>()
+                for (icon in mIcons) {
+                    val i = icon.icon ?: continue
+                    if (i.toLowerCase().contains(s?.toLowerCase() ?: "")) {
+                        tmpList.add(icon)
+                    }
                 }
+                mAdapter.setNewList(tmpList)
             }
-            mAdapter.setNewList(tmpList)
         }
     }
 
