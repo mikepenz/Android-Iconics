@@ -63,26 +63,27 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconics library (without any widgets)
-implementation "com.mikepenz:iconics-core:3.2.1"
+implementation "com.mikepenz:iconics-core:4.0.0-b1"
 implementation "androidx.appcompat:appcompat:${androidXVersion}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:3.2.1"
+implementation "com.mikepenz:iconics-views:4.0.0-b1"
 ```
 
+For the non kotlin variant please use a version smaller than 4.x.y (See the releases on GitHub)
 To use appcompat please use a version smaller than 3.1.0. (See the releases on GitHub)
 
 ## 2. Choose your desired fonts
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:3.0.1.3.original@aar'
-implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.3.1.1@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.5@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.6-kotlin@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.3.1.2-kotlin@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.6-kotlin@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.5@aar'
-implementation 'com.mikepenz:community-material-typeface:2.7.94.1@aar'
+implementation 'com.mikepenz:community-material-typeface:2.7.94.2-kotlin@aar'
 implementation 'com.mikepenz:weather-icons-typeface:2.0.10.5@aar'
 implementation 'com.mikepenz:typeicons-typeface:2.0.7.5@aar'
 implementation 'com.mikepenz:entypo-typeface:1.0.0.5@aar'

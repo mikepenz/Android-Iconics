@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 22005
-        versionName "2.2.0.5"
+        versionCode 22006
+        versionName "2.2.0.6-kotlin"
 
         resValue "string", "materialdesigniconic_version", "${versionName}"
     }
