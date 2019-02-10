@@ -21,8 +21,8 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.text.TextPaint
 import com.mikepenz.iconics.IconicsBrush
-import com.mikepenz.iconics.animation.SpinProcessor.Direction.CLOCKWISE
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor.RepeatMode.RESTART
+import com.mikepenz.iconics.animation.SpinProcessor.Direction.CLOCKWISE
 
 /**
  * @author pa.gulko zTrap (30.11.2018)
@@ -67,7 +67,9 @@ open class SpinProcessor(
         val bounds = drawableBounds
         val degrees = animatedPercent * 3.6f * direction.sign
 
-        canvas.rotate(degrees, (bounds!!.width() / 2).toFloat(), (bounds.height() / 2).toFloat())
+        bounds?.let {
+            canvas.rotate(degrees, (it.width() / 2).toFloat(), (it.height() / 2).toFloat())
+        }
     }
 
     override fun processPostDraw(canvas: Canvas) {

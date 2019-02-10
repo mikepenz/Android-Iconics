@@ -95,9 +95,11 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
                 isAttached = true
                 ViewCompat.postOnAnimation(v, object : Runnable {
                     override fun run() {
-                        if (isAttached && drawable != null) {
-                            v.invalidateDrawable(drawable!!)
-                            ViewCompat.postOnAnimation(v, this)
+                        if (isAttached) {
+                            drawable?.let {
+                                v.invalidateDrawable(it)
+                                ViewCompat.postOnAnimation(v, this)
+                            }
                         }
                     }
                 })

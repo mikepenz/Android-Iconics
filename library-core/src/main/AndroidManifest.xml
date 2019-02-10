@@ -18,11 +18,12 @@
 <manifest
     package="com.mikepenz.iconics.core"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <application>
         <provider
             android:authorities="${applicationId}.iconics.core.provider"
             android:name="com.mikepenz.iconics.IconicsContentProvider"
             android:exported="false"
-            android:initOrder="100"/>
+            android:initOrder="100" />
     </application>
 </manifest>

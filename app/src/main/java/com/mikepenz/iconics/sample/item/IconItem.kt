@@ -53,19 +53,17 @@ class IconItem(icon: String) : AbstractItem<IconItem.ViewHolder>() {
     override fun bindView(holder: ViewHolder, payloads: MutableList<Any>) {
         super.bindView(holder, payloads)
 
-        holder.image.icon =
-                IconicsDrawable(holder.image.context, icon!!)
-        holder.name.text = icon
+        val icon = IconicsDrawable(holder.image.context, this.icon ?: " ")
+        holder.image.icon = icon
+        holder.name.text = this.icon
 
-        holder.image.icon!!
-                .color(IconicsColor.colorInt(Color.BLACK))
+        icon.color(IconicsColor.colorInt(Color.BLACK))
                 .padding(IconicsSize.dp(0f))
                 .contourWidth(IconicsSize.dp(0f))
                 .contourColor(IconicsColor.colorInt(Color.TRANSPARENT))
-        holder.image.setBackgroundColor(Color.TRANSPARENT)
+                .respectFontBounds(true) //as we want to respect the bounds of the original font in the icon list
 
-        //as we want to respect the bounds of the original font in the icon list
-        holder.image.icon!!.respectFontBounds(true)
+        holder.image.setBackgroundColor(Color.TRANSPARENT)
     }
 
     override fun getViewHolder(v: View): ViewHolder {
@@ -73,12 +71,7 @@ class IconItem(icon: String) : AbstractItem<IconItem.ViewHolder>() {
     }
 
     class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var name: TextView
-        var image: IconicsImageView
-
-        init {
-            name = itemView.findViewById(R.id.name)
-            image = itemView.findViewById(R.id.icon)
-        }
+        var name: TextView = itemView.findViewById(R.id.name)
+        var image: IconicsImageView = itemView.findViewById(R.id.icon)
     }
 }

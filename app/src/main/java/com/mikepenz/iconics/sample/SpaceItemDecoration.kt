@@ -25,7 +25,6 @@ import com.mikepenz.iconics.utils.IconicsUtils
  * @author pa.gulko zTrap (28.10.2017)
  */
 class SpaceItemDecoration : RecyclerView.ItemDecoration() {
-
     override fun getItemOffsets(
         outRect: Rect,
         view: View,

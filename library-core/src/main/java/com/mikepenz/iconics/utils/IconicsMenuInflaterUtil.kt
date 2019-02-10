@@ -131,7 +131,7 @@ object IconicsMenuInflaterUtil {
                                 }
                                 val icon = IconicsAttrsApplier.getIconicsDrawable(context, attrs)
                                 if (icon != null) {
-                                    var idAsString = attrsMap["id"]!!.replace("@", "")
+                                    var idAsString = attrsMap["id"]?.replace("@", "") ?: ""
 
                                     //If the id is not in literal format, look it up using the name.
                                     idAsString = idAsString.removePrefix("+id/")

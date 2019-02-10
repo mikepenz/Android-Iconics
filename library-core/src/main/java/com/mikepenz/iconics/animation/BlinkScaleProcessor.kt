@@ -60,13 +60,10 @@ open class BlinkScaleProcessor(
         val scale = animatedPercent * scaleByPercent
         val bounds = drawableBounds
 
-        canvas.save()
-        canvas.scale(
-            scale,
-            scale,
-            (bounds!!.width() / 2).toFloat(),
-            (bounds.height() / 2).toFloat()
-        )
+        bounds?.let {
+            canvas.save()
+            canvas.scale(scale, scale, (it.width() / 2).toFloat(), (it.height() / 2).toFloat())
+        }
     }
 
     override fun processPostDraw(canvas: Canvas) {

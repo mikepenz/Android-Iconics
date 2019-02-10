@@ -61,7 +61,9 @@ internal class InternalLayoutInflater : LayoutInflater {
             view = super.onCreateView(name, attrs)
         }
 
-        return IconicsFactory.onViewCreated(view!!, view!!.context, attrs)
+        return view?.let {
+            IconicsFactory.onViewCreated(it, it.context, attrs)
+        }
     }
 
     @Throws(ClassNotFoundException::class)
@@ -156,19 +158,20 @@ internal class InternalLayoutInflater : LayoutInflater {
                     "mConstructorArgs"
                 )
             }
+            val constructorArgs = this.constructorArgs ?: return null
 
             @Suppress("UNCHECKED_CAST")
-            val constArgs = ReflectionUtils.getValue(constructorArgs!!, this) as Array<Any>
+            val constArgs = ReflectionUtils.getValue(constructorArgs, this) as Array<Any>
             val lastContext = constArgs[0]
             // The LayoutInflater actually finds out the correct context to use. We just need to set
             // it on the mConstructor for the internal method.
             // Set the constructor ars up for the createView, not sure why we can't pass these in.
             constArgs[0] = viewContext
-            ReflectionUtils.setValue(constructorArgs!!, this, constArgs)
+            ReflectionUtils.setValue(constructorArgs, this, constArgs)
 
             kotlin.runCatching { createdView = createView(name, null, attrs) }
             constArgs[0] = lastContext
-            ReflectionUtils.setValue(constructorArgs!!, this, constArgs)
+            ReflectionUtils.setValue(constructorArgs, this, constArgs)
         }
         return createdView
     }

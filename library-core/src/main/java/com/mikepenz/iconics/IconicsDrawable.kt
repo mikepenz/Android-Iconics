@@ -34,6 +34,11 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.Log
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
+import androidx.annotation.Dimension
+import androidx.annotation.Dimension.DP
+import androidx.annotation.Dimension.PX
 import androidx.annotation.IntRange
 import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
 import com.mikepenz.iconics.typeface.IIcon
@@ -1182,6 +1187,9 @@ open class IconicsDrawable(context: Context) : Drawable() {
 
     /** Ensures the tint filter is consistent with the current tint color and mode. */
     private fun updateTintFilter() {
+        val tint = this.tint
+        val tintMode = this.tintMode
+
         if (tint == null || tintMode == null) {
             tintFilter = null
             return
@@ -1189,7 +1197,45 @@ open class IconicsDrawable(context: Context) : Drawable() {
         // setMode, setColor of PorterDuffColorFilter are not public method in SDK v7.
         // (Thanks @Google still not accessible in API v24)
         // Therefore we create a new one all the time here. Don't expect this is called often.
-        val color = tint!!.getColorForState(state, Color.TRANSPARENT)
-        tintFilter = PorterDuffColorFilter(color, tintMode!!)
+        val color = tint.getColorForState(state, Color.TRANSPARENT)
+        tintFilter = PorterDuffColorFilter(color, tintMode)
     }
+}
+
+// VARIOUS convenient extension functions for quick common setters
+
+fun IconicsDrawable.colorString(colorString: String): IconicsDrawable {
+    return this.color(IconicsColor.parse(colorString))
+}
+
+fun IconicsDrawable.colorRes(@ColorRes colorRes: Int): IconicsDrawable {
+    return this.color(IconicsColor.colorRes(colorRes))
+}
+
+fun IconicsDrawable.colorInt(@ColorInt colorInt: Int): IconicsDrawable {
+    return this.color(IconicsColor.colorInt(colorInt))
+}
+
+fun IconicsDrawable.sizeDp(@Dimension(unit = DP) sizeDp: Int): IconicsDrawable {
+    return this.size(IconicsSize.dp(sizeDp))
+}
+
+fun IconicsDrawable.sizePx(@Dimension(unit = PX) sizePx: Int): IconicsDrawable {
+    return this.size(IconicsSize.px(sizePx))
+}
+
+fun IconicsDrawable.sizeRes(@DimenRes sizeRes: Int): IconicsDrawable {
+    return this.size(IconicsSize.res(sizeRes))
+}
+
+fun IconicsDrawable.paddingDp(@Dimension(unit = DP) sizeDp: Int): IconicsDrawable {
+    return this.padding(IconicsSize.dp(sizeDp))
+}
+
+fun IconicsDrawable.paddingPx(@Dimension(unit = PX) sizePx: Int): IconicsDrawable {
+    return this.padding(IconicsSize.px(sizePx))
+}
+
+fun IconicsDrawable.paddingRes(@DimenRes sizeRes: Int): IconicsDrawable {
+    return this.padding(IconicsSize.res(sizeRes))
 }

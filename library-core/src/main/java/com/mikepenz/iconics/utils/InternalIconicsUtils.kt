@@ -317,16 +317,18 @@ internal object InternalIconicsUtils {
             if (styleOrSpan != null) {
                 text.setSpan(styleOrSpan, it.startIndex, it.endIndex, it.flags)
             } else {
-                text.setSpan(
-                    IconicsTypefaceSpan("sans-serif", it.font!!.rawTypeface),
-                    it.startIndex,
-                    it.endIndex,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
+                it.font?.let { font ->
+                    text.setSpan(
+                        IconicsTypefaceSpan("sans-serif", font.rawTypeface),
+                        it.startIndex,
+                        it.endIndex,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
             }
 
             if (stylesFor?.containsKey(it.icon) == true) {
-                stylesFor[it.icon]!!.forEach { characterStyle ->
+                stylesFor[it.icon]?.forEach { characterStyle ->
                     text.setSpan(
                         CharacterStyle.wrap(characterStyle),
                         it.startIndex,

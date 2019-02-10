@@ -17,12 +17,11 @@
 package com.mikepenz.iconics.sample
 
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.LayoutInflaterCompat
 import com.mikepenz.iconics.context.IconicsLayoutInflater2
+import kotlinx.android.synthetic.main.activity_automatic.test4
+import kotlinx.android.synthetic.main.activity_automatic.toolbar
 
 class AutomaticActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +34,10 @@ class AutomaticActivity : AppCompatActivity() {
         setContentView(R.layout.activity_automatic)
 
         // Handle Toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //set a new text on the textView and set the icon font on it
-        (findViewById<View>(R.id.test4) as TextView).text = "{gmd-favorite} GIF"
+        test4.text = "{gmd-favorite} GIF"
     }
 }

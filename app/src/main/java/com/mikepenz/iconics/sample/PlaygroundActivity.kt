@@ -194,10 +194,8 @@ class PlaygroundActivity : AppCompatActivity() {
         @SuppressLint("ViewHolder")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val v = inflater.inflate(R.layout.row_icon_array, parent, false)
-
             val icon = v.findViewById<ImageView>(android.R.id.icon)
             icon.setImageDrawable(getItem(position))
-
             return v
         }
     }

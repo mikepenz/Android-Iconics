@@ -25,13 +25,13 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
+import com.mikepenz.iconics.colorInt
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
@@ -43,6 +43,7 @@ import com.mikepenz.materialdrawer.holder.StringHolder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialize.util.KeyboardUtil
+import kotlinx.android.synthetic.main.activity_main.toolbar
 import java.util.Collections
 import java.util.Random
 
@@ -51,28 +52,26 @@ class MainActivity : AppCompatActivity() {
     private var mIconsFragment: IconsFragment? = null
     private var mRandomize: Boolean = false
     private var mShadow: Boolean = false
-    private var mFonts: List<ITypeface>? = null
+    private lateinit var mFonts: List<ITypeface>
     private var mIdentifierGmd = 0
     private var mCurrentSearch: String? = null
-    private var mDrawer: Drawer? = null
+    private lateinit var mDrawer: Drawer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Handle Toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //order fonts by their name
         mFonts = ArrayList(Iconics.registeredFonts)
-        Collections.sort(mFonts!!) { object1, object2 -> object1.fontName.compareTo(object2.fontName) }
+        Collections.sort(mFonts) { object1, object2 -> object1.fontName.compareTo(object2.fontName) }
 
         //add all icons of all registered Fonts to the list
         val items = ArrayList<IDrawerItem<*>>(Iconics.registeredFonts.size)
-        var count = 0
-        for (font in mFonts!!) {
+        for ((count, font) in mFonts.withIndex()) {
             val pdi = PrimaryDrawerItem()
                     .withName(font.fontName)
                     .withBadge("" + font.icons.size)
@@ -85,15 +84,14 @@ class MainActivity : AppCompatActivity() {
                 mIdentifierGmd = count
             }
             items.add(pdi)
-            count++
         }
 
         mDrawer = DrawerBuilder().withActivity(this)
                 .withToolbar(toolbar)
                 .withDrawerItems(items)
                 .withOnDrawerItemClickListener { view, i, iDrawerItem ->
-                    loadIcons(mFonts!![i].fontName)
-                    supportActionBar!!.title = mFonts!![i].fontName
+                    loadIcons(mFonts[i].fontName)
+                    supportActionBar?.title = mFonts?.get(i).fontName
 
                     false
                 }
@@ -143,37 +141,29 @@ class MainActivity : AppCompatActivity() {
             private fun search(s: String) {
                 mCurrentSearch = s
 
-                if (mDrawer != null) {
-                    var count = 0
-                    for (font in mFonts!!) {
-                        var foundCount = 0
-                        if (font.icons != null) {
-                            for (icon in font.icons) {
-                                if (icon.toLowerCase().contains(s.toLowerCase())) {
-                                    foundCount++
-                                }
-                            }
+                for ((count, font) in mFonts.withIndex()) {
+                    var foundCount = 0
+                    for (icon in font.icons) {
+                        if (icon.toLowerCase().contains(s.toLowerCase())) {
+                            foundCount++
                         }
-                        mDrawer!!.updateBadge(
-                            count.toLong(),
-                            StringHolder(foundCount.toString() + "")
-                        )
-
-                        count++
                     }
+                    mDrawer.updateBadge(
+                        count.toLong(),
+                        StringHolder(foundCount.toString() + "")
+                    )
+
                 }
 
                 //filter out the current fragment
-                if (mIconsFragment != null) mIconsFragment!!.onSearch(s)
+                mIconsFragment?.onSearch(s)
             }
         })
 
         val menuItem = menu.findItem(R.id.action_opensource)
-        menuItem.setIcon(
-            IconicsDrawable(this, FontAwesome.Icon.faw_github)
-                    .actionBar()
-                    .color(IconicsColor.colorInt(Color.WHITE))
-        )
+        menuItem.icon = IconicsDrawable(this, FontAwesome.Icon.faw_github)
+                .actionBar()
+                .colorInt(Color.WHITE)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -191,19 +181,19 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.action_randomize -> {
                 item.isChecked = !item.isChecked
-                mIconsFragment!!.randomize(item.isChecked)
+                mIconsFragment?.randomize(item.isChecked)
                 mRandomize = item.isChecked
                 return true
             }
             R.id.action_shadow -> {
                 item.isChecked = !item.isChecked
-                mIconsFragment!!.shadow(item.isChecked)
+                mIconsFragment?.shadow(item.isChecked)
                 mShadow = item.isChecked
                 return true
             }
             R.id.action_opensource -> {
                 LibsBuilder()
-                        .withFields(R.string::class.java!!.getFields())
+                        .withFields(R.string::class.java.getFields())
                         .withLicenseShown(true)
                         .withActivityTitle(getString(R.string.action_opensource))
                         .withActivityTheme(R.style.AppTheme)
@@ -230,11 +220,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadIcons(fontName: String) {
         val ft = supportFragmentManager.beginTransaction()
-        mIconsFragment = IconsFragment.newInstance(fontName)
-        mIconsFragment!!.randomize(mRandomize)
-        mIconsFragment!!.shadow(mShadow)
-        mIconsFragment!!.onSearch(mCurrentSearch)
-        ft.replace(R.id.content, mIconsFragment!!)
+        val mIconsFragment = IconsFragment.newInstance(fontName)
+        mIconsFragment.randomize(mRandomize)
+        mIconsFragment.shadow(mShadow)
+        mIconsFragment.onSearch(mCurrentSearch)
+        ft.replace(R.id.content, mIconsFragment)
         ft.commit()
+        this.mIconsFragment = mIconsFragment
     }
 }
