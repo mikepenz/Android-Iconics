@@ -12,8 +12,6 @@
 bin/
 gen/
 *.iml
-!.idea/codeStyles/codeStyleConfig.xml
-!.idea/codeStyles/Project.xml
 .idea/*
 
 # Gradle files
