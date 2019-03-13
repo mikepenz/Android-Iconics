@@ -136,6 +136,9 @@ public abstract class IconicsAnimationProcessor {
         }
     };
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    private Object mProxyPauseListener;
+
     /**
      * @return Tag which will be used to apply this processor via xml
      */
@@ -275,25 +278,10 @@ public abstract class IconicsAnimationProcessor {
     public IconicsAnimationProcessor addPauseListener(@NonNull IconicsAnimationPauseListener listener) {
         if (mPauseListeners == null) {
             mPauseListeners = new ArrayList<>();
-            mAnimator.addPauseListener(new Animator.AnimatorPauseListener() {
-
-                @Override
-                public void onAnimationPause(Animator animation) {
-                    forEachListeners(l -> l.onAnimationPause(IconicsAnimationProcessor.this));
-                }
-
-                @Override
-                public void onAnimationResume(Animator animation) {
-                    forEachListeners(l -> l.onAnimationResume(IconicsAnimationProcessor.this));
-                }
-
-                private void forEachListeners(Consumer<IconicsAnimationPauseListener> consumer) {
-                    if (mPauseListeners == null) return;
-                    for (IconicsAnimationPauseListener l : mPauseListeners) {
-                        consumer.accept(l);
-                    }
-                }
-            });
+            if (mProxyPauseListener == null) {
+                initProxyPauseListener();
+            }
+            mAnimator.addPauseListener((Animator.AnimatorPauseListener) mProxyPauseListener);
         }
         mPauseListeners.add(listener);
         return this;
@@ -313,6 +301,7 @@ public abstract class IconicsAnimationProcessor {
         mPauseListeners.remove(listener);
         if (mPauseListeners.size() == 0) {
             mPauseListeners = null;
+            mAnimator.removePauseListener((Animator.AnimatorPauseListener) mProxyPauseListener);
         }
     }
 
@@ -330,6 +319,7 @@ public abstract class IconicsAnimationProcessor {
             if (mPauseListeners != null) {
                 mPauseListeners.clear();
                 mPauseListeners = null;
+                mAnimator.removePauseListener((Animator.AnimatorPauseListener) mProxyPauseListener);
             }
         }
     }
@@ -516,5 +506,28 @@ public abstract class IconicsAnimationProcessor {
         } else {
             mAnimator.cancel();
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    private void initProxyPauseListener() {
+        mProxyPauseListener = new Animator.AnimatorPauseListener() {
+
+            @Override
+            public void onAnimationPause(Animator animation) {
+                forEachListeners(l -> l.onAnimationPause(IconicsAnimationProcessor.this));
+            }
+
+            @Override
+            public void onAnimationResume(Animator animation) {
+                forEachListeners(l -> l.onAnimationResume(IconicsAnimationProcessor.this));
+            }
+
+            private void forEachListeners(Consumer<IconicsAnimationPauseListener> consumer) {
+                if (mPauseListeners == null) return;
+                for (IconicsAnimationPauseListener l : mPauseListeners) {
+                    consumer.accept(l);
+                }
+            }
+        };
     }
 }
