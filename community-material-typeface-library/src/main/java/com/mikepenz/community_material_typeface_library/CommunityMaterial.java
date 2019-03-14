@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class CommunityMaterial implements ITypeface {
-    private static final String TTF_FILE = "community-material-font-v3.5.95.ttf";
+    private static final String TTF_FILE = "community-material-font-v3.5.95.1.ttf";
     private static Typeface typeface = null;
     private static HashMap<String, Character> mChars;
 
@@ -69,7 +69,7 @@ public class CommunityMaterial implements ITypeface {
 
     @Override
     public String getVersion() {
-        return "3.5.95";
+        return "3.5.95.1";
     }
 
     @Override
