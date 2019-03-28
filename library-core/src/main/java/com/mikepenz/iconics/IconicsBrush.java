@@ -37,10 +37,11 @@ public class IconicsBrush<T extends Paint> {
     private final T mPaint;
     @Nullable
     private int[] mState;
-    private int mAlpha;
+    private int mAlpha = 255;
 
     public IconicsBrush(@NonNull T paint) {
         mPaint = paint;
+        mPaint.setAlpha(mAlpha);
     }
 
     /**
@@ -48,7 +49,6 @@ public class IconicsBrush<T extends Paint> {
      */
     public void setColors(@Nullable ColorStateList colors) {
         mColors = colors;
-        applyState(mState);
     }
 
     /**
