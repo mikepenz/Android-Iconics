@@ -1,1 +1,1 @@
--keep class com.mikepenz.meteocons_typeface_library.Meteoconcs { *; }
+-keep class com.mikepenz.iconics.typeface.library.meteoconcs.Meteoconcs { *; }
