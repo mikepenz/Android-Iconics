@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.mikepenz.iconics
 
 import android.content.Context
@@ -43,17 +45,20 @@ import androidx.annotation.IntRange
 import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.utils.clearedIconName
+import com.mikepenz.iconics.utils.iconPrefix
 import com.mikepenz.iconics.utils.toIconicsColor
+import com.mikepenz.iconics.utils.toIconicsColorRes
+import com.mikepenz.iconics.utils.toIconicsSizeDp
 import com.mikepenz.iconics.utils.toIconicsSizePx
+import com.mikepenz.iconics.utils.toIconicsSizeRes
 
 /** A custom [Drawable] which can display icons from icon fonts. */
-open class IconicsDrawable(context: Context) : Drawable() {
+open class IconicsDrawable(protected val context: Context) : Drawable() {
     protected val iconBrush = IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundContourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val contourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
-
-    protected val context: Context = context.applicationContext
 
     private val paddingBounds = Rect()
     private val pathBounds = RectF()
@@ -262,11 +267,9 @@ open class IconicsDrawable(context: Context) : Drawable() {
      */
     fun icon(icon: String): IconicsDrawable {
         try {
-            Iconics.findFont(icon.substring(0, 3))?.let {
-                icon(it.getIcon(icon.replace("-", "_")))
-            }
+            Iconics.findFont(icon.iconPrefix)?.let { icon(it.getIcon(icon.clearedIconName)) }
         } catch (ex: Exception) {
-            Log.e(Iconics.TAG, "Wrong icon name: $icon")
+            Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong icon name: $icon")
         }
 
         return this
@@ -408,7 +411,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun color(colors: IconicsColor): IconicsDrawable {
-        iconBrush.setColors(colors.extractList(context))
+        iconBrush.colorsList = colors.extractList(context)
         if (iconBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -496,9 +499,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun actionBar(): IconicsDrawable {
-        return size(IconicsSize.TOOLBAR_ICON_SIZE).padding(
-            IconicsSize.TOOLBAR_ICON_PADDING
-        )
+        return size(IconicsSize.TOOLBAR_ICON_SIZE).padding(IconicsSize.TOOLBAR_ICON_PADDING)
     }
 
     /**
@@ -589,7 +590,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun backgroundContourColor(colors: IconicsColor): IconicsDrawable {
-        backgroundContourBrush.setColors(colors.extractList(context))
+        backgroundContourBrush.colorsList = colors.extractList(context)
         if (backgroundContourBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -612,7 +613,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun contourColor(colors: IconicsColor): IconicsDrawable {
-        contourBrush.setColors(colors.extractList(context))
+        contourBrush.colorsList = colors.extractList(context)
         if (contourBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -646,7 +647,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
             isInvalidate = true
         }
 
-        backgroundBrush.setColors(colors.extractList(context))
+        backgroundBrush.colorsList = colors.extractList(context)
         if (backgroundBrush.applyState(state)) {
             isInvalidate = true
         }
@@ -754,8 +755,8 @@ open class IconicsDrawable(context: Context) : Drawable() {
      *
      * @return The current IconicsDrawable for chaining.
      * @see Paint.setShadowLayer
-     * []
      * @see com.mikepenz.iconics.utils.IconicsUtils.enableShadowSupport
+     * @see clearShadow
      */
     fun shadow(
         radiusProducer: () -> IconicsSize? = { shadowRadius.toIconicsSizePx() },
@@ -782,6 +783,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      * @see Paint.setShadowLayer
      * @see com.mikepenz.iconics.utils.IconicsUtils.enableShadowSupport
+     * @see clearShadow
      */
     fun shadow(
         radius: IconicsSize = shadowRadius.toIconicsSizePx(),
@@ -866,7 +868,9 @@ open class IconicsDrawable(context: Context) : Drawable() {
     }
 
     /**
-     * @see drawBackgroundContour
+     * Enable/disable background contour drawing.
+     *
+     * @return The current IconicsDrawable for chaining.
      */
     fun drawBackgroundContour(
         drawBackgroundContourProducer: () -> Boolean?
@@ -981,6 +985,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
         return this
     }
 
+    // magic happens here ;)
     override fun draw(canvas: Canvas) {
         if (icon == null && plainIcon == null) return
 
@@ -1017,7 +1022,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
             }
         }
 
-        kotlin.runCatching { path.close() }
+        runCatching { path.close() }
 
         if (isDrawContour) {
             canvas.drawPath(path, contourBrush.paint)
@@ -1044,11 +1049,7 @@ open class IconicsDrawable(context: Context) : Drawable() {
 
     override fun onBoundsChange(bounds: Rect) {
         offsetIcon(bounds)
-        try {
-            path.close()
-        } catch (ignored: Exception) {
-        }
-
+        runCatching { path.close() }
         super.onBoundsChange(bounds)
     }
 
@@ -1060,7 +1061,9 @@ open class IconicsDrawable(context: Context) : Drawable() {
                 || tint?.isStateful == true
     }
 
-    override fun setState(stateSet: IntArray): Boolean {
+    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+    // in some cases (e.g. on API 16) stateSet might be null
+    override fun setState(stateSet: IntArray?): Boolean {
         return super.setState(stateSet)
                 || iconBrush.isStateful
                 || contourBrush.isStateful
@@ -1080,7 +1083,8 @@ open class IconicsDrawable(context: Context) : Drawable() {
         return PixelFormat.TRANSLUCENT
     }
 
-    override fun onStateChange(stateSet: IntArray): Boolean {
+    // in some cases (e.g. on API 16) stateSet might be null
+    override fun onStateChange(stateSet: IntArray?): Boolean {
         var isNeedsRedraw = (iconBrush.applyState(stateSet)
                 or contourBrush.applyState(stateSet)
                 or backgroundBrush.applyState(stateSet)
@@ -1204,38 +1208,14 @@ open class IconicsDrawable(context: Context) : Drawable() {
 
 // VARIOUS convenient extension functions for quick common setters
 
-fun IconicsDrawable.colorString(colorString: String): IconicsDrawable {
-    return this.color(IconicsColor.parse(colorString))
-}
+inline fun IconicsDrawable.colorString(colorString: String) = color(colorString.toIconicsColor())
+inline fun IconicsDrawable.colorRes(@ColorRes colorRes: Int) = color(colorRes.toIconicsColorRes())
+inline fun IconicsDrawable.colorInt(@ColorInt colorInt: Int) = color(colorInt.toIconicsColor())
 
-fun IconicsDrawable.colorRes(@ColorRes colorRes: Int): IconicsDrawable {
-    return this.color(IconicsColor.colorRes(colorRes))
-}
+inline fun IconicsDrawable.sizeDp(@Dimension(unit = DP) sizeDp: Int) = size(sizeDp.toIconicsSizeDp())
+inline fun IconicsDrawable.sizePx(@Dimension(unit = PX) sizePx: Int) = size(sizePx.toIconicsSizePx())
+inline fun IconicsDrawable.sizeRes(@DimenRes sizeRes: Int) = size(sizeRes.toIconicsSizeRes())
 
-fun IconicsDrawable.colorInt(@ColorInt colorInt: Int): IconicsDrawable {
-    return this.color(IconicsColor.colorInt(colorInt))
-}
-
-fun IconicsDrawable.sizeDp(@Dimension(unit = DP) sizeDp: Int): IconicsDrawable {
-    return this.size(IconicsSize.dp(sizeDp))
-}
-
-fun IconicsDrawable.sizePx(@Dimension(unit = PX) sizePx: Int): IconicsDrawable {
-    return this.size(IconicsSize.px(sizePx))
-}
-
-fun IconicsDrawable.sizeRes(@DimenRes sizeRes: Int): IconicsDrawable {
-    return this.size(IconicsSize.res(sizeRes))
-}
-
-fun IconicsDrawable.paddingDp(@Dimension(unit = DP) sizeDp: Int): IconicsDrawable {
-    return this.padding(IconicsSize.dp(sizeDp))
-}
-
-fun IconicsDrawable.paddingPx(@Dimension(unit = PX) sizePx: Int): IconicsDrawable {
-    return this.padding(IconicsSize.px(sizePx))
-}
-
-fun IconicsDrawable.paddingRes(@DimenRes sizeRes: Int): IconicsDrawable {
-    return this.padding(IconicsSize.res(sizeRes))
-}
+inline fun IconicsDrawable.paddingDp(@Dimension(unit = DP) sizeDp: Int) = padding(sizeDp.toIconicsSizeDp())
+inline fun IconicsDrawable.paddingPx(@Dimension(unit = PX) sizePx: Int) = padding(sizePx.toIconicsSizePx())
+inline fun IconicsDrawable.paddingRes(@DimenRes sizeRes: Int) = padding(sizeRes.toIconicsSizeRes())

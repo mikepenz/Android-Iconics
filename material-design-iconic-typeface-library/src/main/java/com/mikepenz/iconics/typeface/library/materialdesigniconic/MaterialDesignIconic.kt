@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.materialdesigniconic
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class MaterialDesignIconic : ITypeface {
+object MaterialDesignIconic : ITypeface {
 
     override val fontRes: Int
         get() = R.font.material_design_iconic_font_v2_2_0
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "gmi"
@@ -47,7 +42,7 @@ class MaterialDesignIconic : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Google. TTF created by Sergey Kupletsky"
@@ -956,16 +951,6 @@ class MaterialDesignIconic : ITypeface {
         gmi_my_location('\uf299'),
         gmi_directions('\uf1e7');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { MaterialDesignIconic() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { MaterialDesignIconic }
     }
 }

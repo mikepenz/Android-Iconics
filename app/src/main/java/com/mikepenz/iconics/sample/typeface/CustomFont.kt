@@ -19,28 +19,20 @@ package com.mikepenz.iconics.sample.typeface
 import com.mikepenz.iconics.sample.R
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import java.util.HashMap
 import java.util.LinkedList
 
 /**
  * Created by mikepenz on 01.11.14.
  */
 @Suppress("EnumEntryName")
-class CustomFont : ITypeface {
+object CustomFont : ITypeface {
 
     override val fontRes: Int
         get() = R.font.fontello
 
-    override val characters: Map<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "fon"
@@ -55,7 +47,7 @@ class CustomFont : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = Icon.values().map { it.name }.toCollection(LinkedList())
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "SampleCustomFont"
@@ -78,16 +70,6 @@ class CustomFont : ITypeface {
         fon_test1('\ue800'),
         fon_test2('\ue801');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { CustomFont() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { CustomFont }
     }
 }

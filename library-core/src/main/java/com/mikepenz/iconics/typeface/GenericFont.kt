@@ -19,15 +19,19 @@ package com.mikepenz.iconics.typeface
 import android.graphics.Typeface
 import androidx.annotation.FontRes
 import com.mikepenz.iconics.Iconics
-import java.util.HashMap
+import com.mikepenz.iconics.utils.IconicsPreconditions
+import java.util.LinkedList
 
 /**
  * Created by mikepenz on 01.11.14.
  */
 open class GenericFont : ITypeface {
     override val fontName: String
+
     override val author: String
+
     override val mappingPrefix: String
+
     override val fontRes: Int
 
     private val fontFile: String
@@ -41,7 +45,7 @@ open class GenericFont : ITypeface {
             super.rawTypeface
         }
 
-    override val characters: HashMap<String, Char>
+    override val characters: Map<String, Char>
         get() = chars
 
     override val version: String
@@ -51,7 +55,7 @@ open class GenericFont : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val url: String
         get() = ""
@@ -79,9 +83,7 @@ open class GenericFont : ITypeface {
 
     @Suppress("LeakingThis")
     constructor(fontName: String, author: String, mappingPrefix: String, fontFile: String) {
-        if (mappingPrefix.length != 3) {
-            throw IllegalArgumentException("MappingPrefix must be 3 char long")
-        }
+        IconicsPreconditions.checkMappingPrefix(mappingPrefix)
         this.fontName = fontName
         this.author = author
         this.mappingPrefix = mappingPrefix
@@ -91,9 +93,7 @@ open class GenericFont : ITypeface {
 
     @Suppress("LeakingThis")
     constructor(fontName: String, author: String, mappingPrefix: String, @FontRes fontRes: Int) {
-        if (mappingPrefix.length != 3) {
-            throw IllegalArgumentException("MappingPrefix must be 3 char long")
-        }
+        IconicsPreconditions.checkMappingPrefix(mappingPrefix)
         this.fontName = fontName
         this.author = author
         this.mappingPrefix = mappingPrefix
@@ -105,20 +105,11 @@ open class GenericFont : ITypeface {
         chars[mappingPrefix + "_" + name] = char
     }
 
-    override fun getIcon(key: String): IIcon = Icon(chars[key]!!).withTypeface(this)
+    override fun getIcon(key: String): IIcon = Icon(key, chars.getValue(key)).withTypeface(this)
 
     inner class Icon : IIcon {
-
         private val customName: String?
-        override var character: Char = ' '
-            private set
         private var customTypeface: ITypeface? = null
-
-        override val name: String
-            get() = customName ?: character.toString()
-
-        override val typeface: ITypeface
-            get() = customTypeface ?: this@GenericFont
 
         constructor(c: Char) {
             this.customName = null
@@ -130,7 +121,15 @@ open class GenericFont : ITypeface {
             this.character = c
         }
 
-        fun withTypeface(typeface: ITypeface): Icon {
+        override val character: Char
+
+        override val name: String
+            get() = customName ?: character.toString()
+
+        override val typeface: ITypeface
+            get() = customTypeface ?: this@GenericFont
+
+        fun withTypeface(typeface: ITypeface?): Icon {
             this.customTypeface = typeface
             return this
         }

@@ -6,7 +6,7 @@
 Now libraries is kotlin-first
 
 * Font files
-  * Font's store now based on default way to store fonts. (moved from assets to font-specific resource assets)
+  * Font's store now based on default way to store fonts. (moved from common assets to font-specific resource assets)
 * `Iconics`
   * No context from now required. We get the application context via ContentProvider
 * `Iconics.IconicsBuilder`
@@ -18,10 +18,10 @@ Now libraries is kotlin-first
   * All getters now have property-syntax
   * All producer-provided methods from [Android-Iconics Kt](https://github.com/zTrap/Android-Iconics-Kt) are included in class and can return nullable value (value will be set only when not null)
   * `enableShadowSupport(View)` moved to `IconicsUtils`
-* `IconicsFactory` now can not be instantiated
+* All `utils` classes and typeface libraries now can not be instantiated
 * `ITypeface`
   * Method `getTypeface(Context)` replaced with field `rawTypeface`
-  * Automatically retrieves raw font from file by provided `fontRes`
+  * Automatically retrieves raw font from file by provided `fontRes` (see [GenericFont.kt](/library-core/src/main/java/com/mikepenz/iconics/typeface/GenericFont.kt) if You wont to use old scheme)
 
 #### Community Material Icons > v2.7.94
 * With the update of the community material icons, the amount of icons exceeded the allowed length of an enum. Thus it was split up in `CommunityMaterial.Icon` and `CommunityMaterial.Icon2` if you use the icons via code, please use the depending enum.

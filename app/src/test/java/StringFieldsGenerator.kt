@@ -39,60 +39,59 @@ import ru.ztrap.iconics.IconicsStringGenerator
 class StringFieldsGenerator : IconicsStringGenerator() {
 
     @Test fun generateCommunityMaterial() {
-        generateIconsFrom(CommunityMaterial())
+        generateIconsFrom(CommunityMaterial)
     }
 
     @Test fun generateDevIcon() {
-        generateIconsFrom(DevIcon())
+        generateIconsFrom(DevIcon)
     }
 
     @Test fun generateEntypo() {
-        generateIconsFrom(Entypo())
+        generateIconsFrom(Entypo)
     }
 
     @Test fun generateFontAwesome() {
-        generateIconsFrom(FontAwesome())
+        generateIconsFrom(FontAwesome)
     }
 
     @Test fun generateFoundationIcons() {
-        generateIconsFrom(FoundationIcons())
+        generateIconsFrom(FoundationIcons)
     }
 
     @Test fun generateGoogleMaterial() {
-        generateIconsFrom(GoogleMaterial())
+        generateIconsFrom(GoogleMaterial)
     }
 
     @Test fun generateIonicons() {
-        generateIconsFrom(Ionicons())
+        generateIconsFrom(Ionicons)
     }
 
     @Test fun generateMaterialDesignIconic() {
-        generateIconsFrom(MaterialDesignIconic())
+        generateIconsFrom(MaterialDesignIconic)
     }
 
     @Test fun generateMeteoconcs() {
-        generateIconsFrom(Meteoconcs())
+        generateIconsFrom(Meteoconcs)
     }
 
     @Test fun generateOcticons() {
-        generateIconsFrom(Octicons())
+        generateIconsFrom(Octicons)
     }
 
     @Test fun generatePixeden7Stroke() {
-        generateIconsFrom(Pixeden7Stroke())
+        generateIconsFrom(Pixeden7Stroke)
     }
 
     @Test fun generateTypeicons() {
-        generateIconsFrom(Typeicons())
+        generateIconsFrom(Typeicons)
     }
 
     @Test fun generateWeatherIcons() {
-        generateIconsFrom(WeatherIcons())
+        generateIconsFrom(WeatherIcons)
     }
 
-    override fun fileCreationStrategy(): IconicsStringGenerator.FileCreationStrategy {
-        return IconicsStringGenerator.FileCreationStrategy.SAVE_ONLY_CURRENT
-    }
+    override val fileCreationStrategy: IconicsStringGenerator.FileCreationStrategy
+        get() = IconicsStringGenerator.FileCreationStrategy.SAVE_ONLY_CURRENT
 
-    override fun modifierCurrent(): String = ""
+    override val modifierCurrent: String get() = ""
 }

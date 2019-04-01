@@ -20,12 +20,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
-import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
+import com.mikepenz.iconics.utils.buildIconics
 
 open class IconicsButton @JvmOverloads constructor(
     context: Context,
@@ -66,12 +66,7 @@ open class IconicsButton @JvmOverloads constructor(
     init {
         IconicsViewsAttrsApplier.readIconicsTextView(context, attrs, iconsBundle)
         //setting created icons
-        tryToEnableIconicsAnimation(
-            iconsBundle.bottomIcon,
-            iconsBundle.topIcon,
-            iconsBundle.endIcon,
-            iconsBundle.startIcon
-        )
+        iconsBundle.apply { tryToEnableIconicsAnimation(bottomIcon, topIcon, endIcon, startIcon) }
         setIcons()
     }
 
@@ -80,10 +75,12 @@ open class IconicsButton @JvmOverloads constructor(
     }
 
     override fun setDrawableForAll(drawable: IconicsDrawable?) {
-        iconsBundle.startIcon = tryToEnableIconicsAnimation(drawable)
-        iconsBundle.topIcon = tryToEnableIconicsAnimation(drawable)
-        iconsBundle.endIcon = tryToEnableIconicsAnimation(drawable)
-        iconsBundle.bottomIcon = tryToEnableIconicsAnimation(drawable)
+        iconsBundle.apply {
+            startIcon = tryToEnableIconicsAnimation(drawable)
+            topIcon = tryToEnableIconicsAnimation(drawable)
+            endIcon = tryToEnableIconicsAnimation(drawable)
+            bottomIcon = tryToEnableIconicsAnimation(drawable)
+        }
         setIcons()
     }
     //endregion
@@ -95,7 +92,7 @@ open class IconicsButton @JvmOverloads constructor(
         isAllCaps = false
 
         if (!isInEditMode) {
-            super.setText(Iconics.Builder().on(text).build(), type)
+            super.setText(text.buildIconics(), type)
         } else {
             super.setText(text, type)
         }

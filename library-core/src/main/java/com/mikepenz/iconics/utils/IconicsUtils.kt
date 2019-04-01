@@ -43,6 +43,7 @@ object IconicsUtils {
         ).toInt()
     }
 
+    @JvmStatic
     @JvmOverloads
     fun getCheckableIconStateList(
         ctx: Context,

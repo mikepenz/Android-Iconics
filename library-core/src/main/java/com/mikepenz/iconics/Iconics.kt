@@ -21,7 +21,7 @@ import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.CharacterStyle
-import android.util.Log
+import android.util.Log.ERROR
 import android.widget.Button
 import android.widget.TextView
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor
@@ -29,39 +29,48 @@ import com.mikepenz.iconics.context.ReflectionUtils
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.utils.GenericsUtil
+import com.mikepenz.iconics.utils.IconicsLogger
+import com.mikepenz.iconics.utils.IconicsPreconditions
 import com.mikepenz.iconics.utils.InternalIconicsUtils
-import java.util.HashMap
+import com.mikepenz.iconics.utils.clearedIconName
+import com.mikepenz.iconics.utils.iconPrefix
 import java.util.LinkedList
 
 @SuppressLint("StaticFieldLeak")
 object Iconics {
-    internal val TAG = Iconics::class.java.simpleName
 
     private var INIT_DONE = false
     private val FONTS = HashMap<String, ITypeface>()
     private val PROCESSORS = HashMap<String, Class<out IconicsAnimationProcessor>>()
-    lateinit var applicationContext: Context
+
+    @JvmField internal val TAG = Iconics::class.java.simpleName
+    @JvmStatic lateinit var applicationContext: Context
         internal set
+
+    @JvmField var logger: IconicsLogger = IconicsLogger.DEFAULT
+
+    @JvmStatic fun init(applicationContext: Context) {
+        this.applicationContext = applicationContext
+        init()
+    }
 
     /**
      * Initializes the FONTS. This also tries to find all founds automatically via their font file
      */
-    fun init() {
+    @JvmStatic fun init() {
         if (!INIT_DONE) {
             GenericsUtil.getDefinedFonts(applicationContext).forEach {
                 try {
-                    val typeface: ITypeface = ReflectionUtils.classForName(it)
-                    validateFont(typeface)
-                    FONTS[typeface.mappingPrefix] = typeface
+                    registerFont(ReflectionUtils.getInstanceForName(it))
                 } catch (e: Exception) {
-                    Log.e(TAG, "Can't init font: $it")
+                    logger.log(ERROR, TAG, "Can't init font: $it", e)
                 }
             }
             GenericsUtil.getDefinedProcessors(applicationContext).forEach {
                 try {
-                    registerProcessor(ReflectionUtils.classForName(it))
+                    registerProcessor(ReflectionUtils.getInstanceForName(it))
                 } catch (e: Exception) {
-                    Log.e(TAG, "Can't init processor: $it")
+                    logger.log(ERROR, TAG, "Can't init processor: $it", e)
                 }
             }
             INIT_DONE = true
@@ -72,22 +81,22 @@ object Iconics {
      * This makes sure the FONTS are initialized. If the given fonts Map is empty we set the
      * initialized FONTS on it
      */
-    private fun init(fonts: Map<String, ITypeface>?): Map<String, ITypeface> {
+    @JvmStatic private fun init(fonts: Map<String, ITypeface>?): Map<String, ITypeface> {
         init()
-        return if (fonts == null || fonts.isEmpty()) FONTS else fonts
+        return if (fonts.isNullOrEmpty()) FONTS else fonts
     }
 
     /**
-     * This allows to mark the initialization as done, even if `init(Context ctx)` was not called
+     * This allows to mark the initialization as done, even if `init(ctx: Context)` was not called
      * prior.
      * It requires at least one font to be registered manually in the
      * [android.app.Application.onCreate] via [registerFont].
      */
-    fun markInitDone() {
-        if (FONTS.size == 0) {
+    @JvmStatic fun markInitDone() {
+        if (FONTS.isEmpty()) {
             throw IllegalArgumentException(
                 "At least one font needs to be registered first\n" +
-                        "    via ${javaClass.canonicalName}.registerFont(Iconics.kt:110)"
+                        "    via ${javaClass.canonicalName}.registerFont(Iconics.kt:117)"
             )
         } else {
             INIT_DONE = true
@@ -100,72 +109,65 @@ object Iconics {
      * @param icon    The icon to verify
      * @return true if the icon is available
      */
-    fun isIconExists(icon: String): Boolean {
-        return try {
-            findFont(icon.substring(0, 3))?.getIcon(icon.replace("-", "_"))
-            true
-        } catch (ignore: Exception) {
-            false
-        }
+    @JvmStatic fun isIconExists(icon: String): Boolean {
+        return runCatching { findFont(icon.iconPrefix)!!.getIcon(icon.clearedIconName) }.isSuccess
     }
 
     /** Registers a fonts into the FONTS array for performance */
-    fun registerFont(font: ITypeface): Boolean {
-        validateFont(font)
-
-        FONTS[font.mappingPrefix] = font
+    @JvmStatic fun registerFont(font: ITypeface): Boolean {
+        FONTS[font.mappingPrefix] = font.validate()
         return true
     }
 
     /** Registers a processor into the PROCESSORS array for performance */
-    fun registerProcessor(processor: IconicsAnimationProcessor) {
+    @JvmStatic fun registerProcessor(processor: IconicsAnimationProcessor) {
         PROCESSORS[processor.animationTag] = processor.javaClass
     }
 
     /** Tries to find a processor by its key in all registered PROCESSORS */
-    fun findProcessor(animationTag: String): IconicsAnimationProcessor? {
+    @JvmStatic fun findProcessor(animationTag: String): IconicsAnimationProcessor? {
         init()
 
         PROCESSORS[animationTag]?.also {
             try {
-                return it.newInstance()
+                return ReflectionUtils.getInstanceOf(it.kotlin)
             } catch (e: IllegalAccessException) {
-                Log.e(TAG, "Can't create processor for animation tag $animationTag", e)
+                logger.log(ERROR, TAG, "Can't create processor for animation tag $animationTag", e)
             } catch (e: InstantiationException) {
-                Log.e(TAG, "Can't create processor for animation tag $animationTag", e)
+                logger.log(ERROR, TAG, "Can't create processor for animation tag $animationTag", e)
             }
         }
         return null
     }
 
     /** Perform a basic sanity check for a font. */
-    private fun validateFont(font: ITypeface) {
-        if (font.mappingPrefix.length == 3) return
-        throw IllegalArgumentException("The mapping prefix of a font must be 3 characters long.")
+    @JvmStatic private fun ITypeface.validate(): ITypeface {
+        IconicsPreconditions.checkMappingPrefix(mappingPrefix)
+        return this
     }
 
     /** Return all registered FONTS */
-    val registeredFonts: Collection<ITypeface>
+    @JvmStatic val registeredFonts: List<ITypeface>
         get() {
             init()
-            return FONTS.values
+            return FONTS.values.toList()
         }
 
     /** Return all registered PROCESSORS */
-    val registeredProcessors: Collection<Class<out IconicsAnimationProcessor>>
+    @JvmStatic val registeredProcessors: List<Class<out IconicsAnimationProcessor>>
         get() {
             init()
-            return PROCESSORS.values
+            return PROCESSORS.values.toList()
         }
 
     /** Tries to find a font by its key in all registered FONTS */
-    fun findFont(key: String): ITypeface? {
+    @JvmStatic fun findFont(key: String): ITypeface? {
         init()
         return FONTS[key]
     }
 
     /** Fetches the font from the Typeface of an IIcon */
-    fun findFont(icon: IIcon): ITypeface {
+    @JvmStatic fun findFont(icon: IIcon): ITypeface {
         return icon.typeface
     }
 
@@ -174,7 +176,7 @@ object Iconics {
      * all characters, it will also directly replace icon font placeholders with the correct
      * mapping. Afterwards it will apply the styles
      */
-    fun style(textSpanned: Spanned): Spanned {
+    @JvmStatic fun style(textSpanned: Spanned): Spanned {
         return style(null, textSpanned, null, null)
     }
 
@@ -183,7 +185,7 @@ object Iconics {
      * all characters, it will also directly replace icon font placeholders with the correct
      * mapping. Afterwards it will apply the styles
      */
-    fun style(
+    @JvmStatic fun style(
         fonts: Map<String, ITypeface>?,
         textSpanned: Spanned,
         styles: List<CharacterStyle>?,
@@ -208,7 +210,7 @@ object Iconics {
      * Iterates over the editable once and replace icon font placeholders with the correct mapping.
      * Afterwards it will apply the styles
      */
-    fun styleEditable(editable: Editable) {
+    @JvmStatic fun styleEditable(editable: Editable) {
         styleEditable(null, editable, null, null)
     }
 
@@ -216,7 +218,7 @@ object Iconics {
      * Iterates over the editable once and replace icon font placeholders with the correct mapping.
      * Afterwards it will apply the styles
      */
-    fun styleEditable(
+    @JvmStatic fun styleEditable(
         fonts: Map<String, ITypeface>?,
         textSpanned: Editable,
         styles: List<CharacterStyle>?,
@@ -254,7 +256,7 @@ object Iconics {
 
         fun build() {
             val mappedFonts = HashMap<String, ITypeface>()
-            fonts.forEach { mappedFonts[it.mappingPrefix] = it }
+            fonts.associateTo(mappedFonts) { it.mappingPrefix to it }
 
             //DO NOT STYLE EDITABLE (comes from EditText) as this causes bad issues with the cursor!
             if (view.text is Spanned) {
@@ -297,7 +299,7 @@ object Iconics {
          * CharacterStyles you want to apply on the given icon (by it's name faw-android)
          */
         fun styleFor(styleFor: String, vararg styles: CharacterStyle): Builder {
-            val clearedStyleFor = styleFor.replace("-", "_")
+            val clearedStyleFor = styleFor.clearedIconName
 
             styles.forEach { stylesFor.getOrPut(clearedStyleFor) { LinkedList() }.add(it) }
             return this

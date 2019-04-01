@@ -23,6 +23,9 @@ import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.LayoutInflaterCompat
@@ -62,13 +65,33 @@ fun MenuInflater.inflateWithIconics(
 }
 
 /** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderString.build] */
-fun Any.iconicsBuilder(
-    block: Iconics.Builder.() -> Iconics.BuilderString
-): Spanned = block(Iconics.Builder()).build()
+fun Spanned.buildIconics(block: Iconics.Builder.() -> Unit = {}): Spanned {
+    return Iconics.Builder().also(block).on(this).build()
+}
+
+/** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderString.build] */
+fun String.buildIconics(block: Iconics.Builder.() -> Unit = {}): Spanned {
+    return Iconics.Builder().also(block).on(this).build()
+}
+
+/** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderString.build] */
+fun CharSequence.buildIconics(block: Iconics.Builder.() -> Unit = {}): Spanned {
+    return Iconics.Builder().also(block).on(this).build()
+}
+
+/** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderString.build] */
+fun StringBuilder.buildIconics(block: Iconics.Builder.() -> Unit = {}): Spanned {
+    return Iconics.Builder().also(block).on(this).build()
+}
 
 /** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderView.build] */
-fun Any.iconicsBuilder(block: Iconics.Builder.() -> Iconics.BuilderView) {
-    block(Iconics.Builder()).build()
+fun TextView.buildIconics(block: Iconics.Builder.() -> Unit = {}) {
+    Iconics.Builder().also(block).on(this).build()
+}
+
+/** Adaptation for [Iconics.Builder] with auto-executing [Iconics.BuilderView.build] */
+fun Button.buildIconics(block: Iconics.Builder.() -> Unit = {}) {
+    Iconics.Builder().also(block).on(this).build()
 }
 
 /** Adaptation for [IconicsArrayBuilder] with auto-executing [IconicsArrayBuilder.build] */
@@ -79,6 +102,14 @@ fun IconicsDrawable.createArray(
     return block(builder).build()
 }
 
+/**
+ * Uses the styleable tags to get the iconics data of menu items. Useful for set icons into
+ * `BottomNavigationView`
+ *
+ *
+ * By default, menus don't show icons for sub menus, but this can be enabled via reflection
+ * So use this function if you want that sub menu icons are checked as well
+ */
 @JvmOverloads
 fun Menu.parseXmlAndSetIconicsDrawables(
     context: Context,
@@ -86,4 +117,20 @@ fun Menu.parseXmlAndSetIconicsDrawables(
     checkSubMenu: Boolean = false
 ) {
     IconicsMenuInflaterUtil.parseXmlAndSetIconicsDrawables(context, menuId, this, checkSubMenu)
+}
+
+/** Returns icon prefix (first 3 chars) */
+val String.iconPrefix
+    get() = substring(0, 3)
+
+/** Returns cleared icon name (all hyphens are replaced with underscores) */
+val String.clearedIconName
+    get() = (this as CharSequence).clearedIconName
+
+/** Returns cleared icon name (all hyphens are replaced with underscores) */
+val CharSequence.clearedIconName: String
+    get() = replace("-".toRegex(), "_")
+
+fun View.enableShadowSupport() {
+    IconicsUtils.enableShadowSupport(this)
 }

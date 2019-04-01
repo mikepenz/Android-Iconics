@@ -36,7 +36,7 @@ import com.mikepenz.iconics.utils.IconicsUtils
 open class IconicsCheckableTextView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyle: Int = android.R.attr.textViewStyle
+    defStyle: Int = androidx.appcompat.R.attr.checkedTextViewStyle
 ) : IconicsTextView(context, attrs, defStyle), Checkable, CheckedCompoundIconicsDrawables {
 
     companion object {

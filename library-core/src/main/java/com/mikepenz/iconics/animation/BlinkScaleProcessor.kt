@@ -28,9 +28,9 @@ import com.mikepenz.iconics.animation.IconicsAnimationProcessor.RepeatMode.REVER
  * @author pa.gulko zTrap (30.11.2018)
  */
 open class BlinkScaleProcessor(
-    /** @return The minimal available scale. */
+    /** The minimal available scale. */
     @FloatRange(from = 0.0) open var minimumScale: Float = 0f,
-    /** @return The maximal available scale. */
+    /** The maximal available scale. */
     @FloatRange(from = 0.0) open var maximumScale: Float = 1f,
 
     override var interpolator: TimeInterpolator = DEFAULT_INTERPOLATOR,

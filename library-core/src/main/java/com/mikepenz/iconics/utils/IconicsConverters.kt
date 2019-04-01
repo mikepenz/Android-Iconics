@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.mikepenz.iconics.utils
 
 import android.content.res.ColorStateList
@@ -27,37 +29,37 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 
 /** Pretty converter to [IconicsSize.dp] */
-fun @receiver:Dimension(unit = Dimension.DP) Number.toIconicsSizeDp(): IconicsSize {
+inline fun @receiver:Dimension(unit = Dimension.DP) Number.toIconicsSizeDp(): IconicsSize {
     return IconicsSize.dp(this)
 }
 
 /** Pretty converter to [IconicsSize.px] */
-fun @receiver:Dimension(unit = Dimension.PX) Number.toIconicsSizePx(): IconicsSize {
+inline fun @receiver:Dimension(unit = Dimension.PX) Number.toIconicsSizePx(): IconicsSize {
     return IconicsSize.px(this)
 }
 
 /** Pretty converter to [IconicsSize.res] */
-fun @receiver:DimenRes Int.toIconicsSizeRes(): IconicsSize {
+inline fun @receiver:DimenRes Int.toIconicsSizeRes(): IconicsSize {
     return IconicsSize.res(toInt())
 }
 
 /** Pretty converter to [IconicsColor.colorInt] */
-fun @receiver:ColorInt Int.toIconicsColor(): IconicsColor {
+inline fun @receiver:ColorInt Int.toIconicsColor(): IconicsColor {
     return IconicsColor.colorInt(this)
 }
 
 /** Pretty converter to [IconicsColor.parse] */
-fun String.toIconicsColor(): IconicsColor {
+inline fun String.toIconicsColor(): IconicsColor {
     return IconicsColor.parse(this)
 }
 
 /** Pretty converter to [IconicsColor.colorList] */
-fun ColorStateList.toIconicsColor(): IconicsColor {
+inline fun ColorStateList.toIconicsColor(): IconicsColor {
     return IconicsColor.colorList(this)
 }
 
 /** Pretty converter to [IconicsColor.colorRes] */
-fun @receiver:ColorRes Int.toIconicsColorRes(): IconicsColor {
+inline fun @receiver:ColorRes Int.toIconicsColorRes(): IconicsColor {
     return IconicsColor.colorRes(this)
 }
 
@@ -66,6 +68,6 @@ fun @receiver:ColorRes Int.toIconicsColorRes(): IconicsColor {
  *
  * Note: use [IconCompat.toIcon] to transform into Platform's Icon
  */
-fun IconicsDrawable.toAndroidIconCompat(): IconCompat {
+inline fun IconicsDrawable.toAndroidIconCompat(): IconCompat {
     return IconCompat.createWithBitmap(toBitmap())
 }

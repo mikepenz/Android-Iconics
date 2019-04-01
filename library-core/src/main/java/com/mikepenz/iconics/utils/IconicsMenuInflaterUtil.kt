@@ -17,6 +17,7 @@
 package com.mikepenz.iconics.utils
 
 import android.content.Context
+import android.content.res.XmlResourceParser
 import android.util.AttributeSet
 import android.util.Log
 import android.util.Xml
@@ -27,7 +28,6 @@ import com.mikepenz.iconics.context.IconicsAttrsApplier
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
-import java.util.HashMap
 
 /**
  * Created by flisar on 23.05.2017.
@@ -39,6 +39,8 @@ object IconicsMenuInflaterUtil {
 
     /** Item tag name in XML. */
     private const val XML_ITEM = "item"
+
+    private val EOD get() = RuntimeException("Unexpected end of document")
 
     /**
      * Inflates an menu by resource id and uses the styleable tags to get the iconics data of menu
@@ -76,15 +78,16 @@ object IconicsMenuInflaterUtil {
         menu: Menu,
         checkSubMenus: Boolean = false
     ) {
+        var parser: XmlResourceParser? = null
         try {
-            context.resources.getXml(menuId).use {
-                val attrs = Xml.asAttributeSet(it)
-                parseMenu(context, attrs, it, menu, checkSubMenus)
-            }
+            parser = context.resources.getLayout(menuId)
+            parser.let { parseMenu(context, Xml.asAttributeSet(it), it, menu, checkSubMenus) }
         } catch (e: XmlPullParserException) {
-            Log.e(Iconics.TAG, "Error while parse menu", e)
+            Iconics.logger.log(Log.ERROR, Iconics.TAG, "Error while parse menu", e)
         } catch (e: IOException) {
-            Log.e(Iconics.TAG, "Error while parse menu", e)
+            Iconics.logger.log(Log.ERROR, Iconics.TAG, "Error while parse menu", e)
+        } finally {
+            parser?.close()
         }
     }
 
@@ -96,53 +99,22 @@ object IconicsMenuInflaterUtil {
         menu: Menu,
         checkSubMenus: Boolean
     ) {
-        var eventType = parser.eventType
+        var currentParserEvent = parser.skipToStartMenu()
         var tagName: String
         var lookingForEndOfUnknownTag = false
         var unknownTagName: String? = null
 
-        // This loop will skip to the menu start tag
-        do {
-            if (eventType == XmlPullParser.START_TAG) {
-                tagName = parser.name
-                if (XML_MENU == tagName) {
-                    // Go to next tag
-                    eventType = parser.next()
-                    break
-                }
-
-                throw RuntimeException("Expected <menu> tag but got $tagName")
-            }
-            eventType = parser.next()
-        } while (eventType != XmlPullParser.END_DOCUMENT)
-
         var reachedEndOfMenu = false
         while (!reachedEndOfMenu) {
-            when (eventType) {
+
+            when (currentParserEvent) {
                 XmlPullParser.START_TAG -> {
                     if (!lookingForEndOfUnknownTag) {
                         tagName = parser.name
+
                         when (tagName) {
                             XML_ITEM -> {
-                                val attrsMap = HashMap<String, String>()
-                                for (i in 0 until parser.attributeCount) {
-                                    attrsMap[parser.getAttributeName(i)] =
-                                            parser.getAttributeValue(i)
-                                }
-                                val icon = IconicsAttrsApplier.getIconicsDrawable(context, attrs)
-                                if (icon != null) {
-                                    var idAsString = attrsMap["id"]?.replace("@", "") ?: ""
-
-                                    //If the id is not in literal format, look it up using the name.
-                                    idAsString = idAsString.removePrefix("+id/")
-
-                                    val id = context.resources.getIdentifier(
-                                        idAsString,
-                                        "id",
-                                        context.packageName
-                                    )
-                                    menu.findItem(id).icon = icon
-                                }
+                                parseItem(context, attrs, menu)
                             }
                             XML_MENU -> {
                                 if (checkSubMenus) {
@@ -165,9 +137,50 @@ object IconicsMenuInflaterUtil {
                         reachedEndOfMenu = true
                     }
                 }
-                XmlPullParser.END_DOCUMENT -> throw RuntimeException("Unexpected end of document")
+                XmlPullParser.END_DOCUMENT -> {
+                    throw EOD
+                }
             }
-            eventType = parser.next()
+
+            currentParserEvent = parser.next()
         }
+    }
+
+    @JvmStatic
+    private fun XmlPullParser.skipToStartMenu(): Int {
+        do {
+            if (eventType == XmlPullParser.START_TAG) {
+                if (XML_MENU == name) {
+                    return next()
+                }
+
+                throw RuntimeException("Expected <menu> tag but got $name")
+            }
+        } while (next() != XmlPullParser.END_DOCUMENT)
+
+        throw EOD
+    }
+
+    @JvmStatic
+    private fun parseItem(
+        context: Context,
+        attrs: AttributeSet,
+        menu: Menu
+    ) {
+        val attrsMap = mutableMapOf<String, String>()
+        repeat(attrs.attributeCount) {
+            attrsMap[attrs.getAttributeName(it)] = attrs.getAttributeValue(it)
+        }
+
+        attrsMap["id"]
+                ?.replace("@", "")
+                ?.removePrefix("+id/")
+                ?.let { context.resources.getIdentifier(it, "id", context.packageName) }
+                ?.let { menu.findItem(it) }
+                ?.let { menuItem ->
+                    IconicsAttrsApplier.getIconicsDrawable(context, attrs)?.let {
+                        menuItem.icon = it
+                    }
+                }
     }
 }

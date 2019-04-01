@@ -22,22 +22,17 @@ import com.mikepenz.iconics.typeface.library.community.R
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class CommunityMaterial : ITypeface {
+object CommunityMaterial : ITypeface {
 
     override val fontRes: Int
         get() = R.font.community_material_font_v3_5_95_1
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                Icon2.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-
-            return chars!!
+    override val characters: Map<String, Char> by lazy {
+        mutableMapOf<String, Char>().apply {
+            Icon.values().associateTo(this) { it.name to it.character }
+            Icon2.values().associateTo(this) { it.name to it.character }
         }
+    }
 
     override val mappingPrefix: String
         get() = "cmd"
@@ -52,12 +47,7 @@ class CommunityMaterial : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() {
-            val icons = LinkedList<String>()
-            Icon.values().map { it.name }.toCollection(icons)
-            Icon2.values().map { it.name }.toCollection(icons)
-            return icons
-        }
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Templarian / Community / Google"
@@ -1910,13 +1900,7 @@ class CommunityMaterial : ITypeface {
         cmd_guitar_pick_outline('\uF2C6'),
         cmd_guy_fawkes_mask('\uF824');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { CommunityMaterial() }
-        }
+        override val typeface: ITypeface by lazy { CommunityMaterial }
     }
 
     enum class Icon2 constructor(override val character: Char) : IIcon {
@@ -3694,17 +3678,6 @@ class CommunityMaterial : ITypeface {
         cmd_zodiac_virgo('\uFA87'),
         cmd_blank('\uF68C');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { CommunityMaterial() }
-        }
+        override val typeface: ITypeface by lazy { CommunityMaterial }
     }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
-    }
-
 }

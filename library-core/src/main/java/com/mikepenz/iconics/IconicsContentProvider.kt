@@ -36,7 +36,7 @@ internal class IconicsContentProvider : ContentProvider() {
     ): Cursor? = null
 
     override fun onCreate(): Boolean {
-        Iconics.applicationContext = context!!.applicationContext
+        Iconics.init(context!!.applicationContext)
         return true
     }
 

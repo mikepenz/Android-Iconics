@@ -146,10 +146,10 @@ afterEvaluate { project ->
                 artifact androidJavadocsJar
 
                 pom.withXml {
-                    asNode().appendNode('name', POM_NAME);
-                    asNode().appendNode('description', POM_DESCRIPTION);
-                    asNode().appendNode('url', POM_SCM_URL);
-                    def dependenciesNode = asNode().appendNode('dependencies');
+                    asNode().appendNode('name', POM_NAME)
+                    asNode().appendNode('description', POM_DESCRIPTION)
+                    asNode().appendNode('url', POM_SCM_URL)
+                    def dependenciesNode = asNode().appendNode('dependencies')
                     configurations.implementation.allDependencies.each {
                         // Ensure dependencies such as fileTree are not included.
                         if (it.name != 'unspecified') {

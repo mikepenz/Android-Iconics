@@ -18,22 +18,17 @@ package com.mikepenz.iconics.typeface.library.devicon
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class DevIcon : ITypeface {
+object DevIcon : ITypeface {
 
     override val fontRes: Int
         get() = R.font.devicon_font_v2_0_0_1
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "dev"
@@ -48,7 +43,7 @@ class DevIcon : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Konpa"
@@ -233,16 +228,6 @@ class DevIcon : ITypeface {
         dev_zend_plain_wordmark('\uec03'),
         dev_zend_plain('\uec04');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { DevIcon() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { DevIcon }
     }
 }

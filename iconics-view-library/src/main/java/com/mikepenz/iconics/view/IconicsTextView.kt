@@ -26,6 +26,7 @@ import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.internal.CompoundIconicsDrawables
 import com.mikepenz.iconics.internal.CompoundIconsBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
+import com.mikepenz.iconics.utils.buildIconics
 
 open class IconicsTextView @JvmOverloads constructor(
     context: Context,
@@ -90,7 +91,7 @@ open class IconicsTextView @JvmOverloads constructor(
 
     override fun setText(text: CharSequence, type: TextView.BufferType) {
         if (!isInEditMode) {
-            super.setText(Iconics.Builder().on(text).build(), type)
+            super.setText(text.buildIconics(), type)
         } else {
             super.setText(text, type)
         }

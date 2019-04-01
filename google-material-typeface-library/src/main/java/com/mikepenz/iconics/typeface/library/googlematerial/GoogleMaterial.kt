@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.googlematerial
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class GoogleMaterial : ITypeface {
+object GoogleMaterial : ITypeface {
 
     override val fontRes: Int
         get() = R.font.google_material_font_v3_0_1_0_original
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "gmd"
@@ -47,7 +42,7 @@ class GoogleMaterial : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Google"
@@ -1001,16 +996,6 @@ class GoogleMaterial : ITypeface {
         gmd_zoom_out('\ue900'),
         gmd_zoom_out_map('\ue56b');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { GoogleMaterial() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { GoogleMaterial }
     }
 }

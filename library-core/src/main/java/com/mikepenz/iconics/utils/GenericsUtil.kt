@@ -25,17 +25,13 @@ import java.lang.reflect.Field
 object GenericsUtil {
 
     /** Helper to get the string fields with name starts "define_font_" from the R class */
-    @JvmStatic fun getDefinedFonts(ctx: Context): Array<String> {
-        return resolveRClass(ctx.packageName)?.let {
-            getDefinedFonts(ctx, it.fields)
-        } ?: emptyArray()
+    @JvmStatic fun getDefinedFonts(ctx: Context): Array<out String> {
+        return resolveRClass(ctx.packageName)?.let { getDefinedFonts(ctx, it.fields) }.orEmpty()
     }
 
     /** Helper to get the string fields with name starts "define_processor_" from the R class */
-    @JvmStatic fun getDefinedProcessors(ctx: Context): Array<String> {
-        return resolveRClass(ctx.packageName)?.let {
-            getDefinedProcessors(ctx, it.fields)
-        } ?: emptyArray()
+    @JvmStatic fun getDefinedProcessors(ctx: Context): Array<out String> {
+        return resolveRClass(ctx.packageName)?.let { getDefinedProcessors(ctx, it.fields) }.orEmpty()
     }
 
     /** Helper to resolve the correct R Class for the package */

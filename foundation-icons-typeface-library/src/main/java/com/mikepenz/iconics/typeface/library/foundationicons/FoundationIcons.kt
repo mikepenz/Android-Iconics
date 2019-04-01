@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.foundationicons
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class FoundationIcons : ITypeface {
+object FoundationIcons : ITypeface {
 
     override val fontRes: Int
         get() = R.font.foundation_icons_font_v3_0_0_1
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "fou"
@@ -47,7 +42,7 @@ class FoundationIcons : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "ZURB Inc."
@@ -351,16 +346,6 @@ class FoundationIcons : ITypeface {
         fou_zoom_in('\uf219'),
         fou_zoom_out('\uf21a');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { FoundationIcons() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { FoundationIcons }
     }
 }

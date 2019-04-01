@@ -16,12 +16,13 @@
 
 package com.mikepenz.iconics.context
 
-import android.util.Log
+import android.util.Log.ERROR
 import com.mikepenz.iconics.Iconics
-
 import java.lang.reflect.Field
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
+import kotlin.reflect.KClass
+import kotlin.reflect.full.createInstance
 
 /**
  * Base created by Christopher Jenkins
@@ -30,16 +31,16 @@ import java.lang.reflect.Method
 internal object ReflectionUtils {
 
     fun getField(clazz: Class<*>, fieldName: String): Field? {
-        return kotlin.runCatching { clazz.getDeclaredField(fieldName) }
+        return runCatching { clazz.getDeclaredField(fieldName) }
                 .getOrNull()?.also { it.isAccessible = true }
     }
 
-    operator fun getValue(field: Field, obj: Any): Any? {
-        return kotlin.runCatching { field.get(obj) }.getOrNull()
+    fun getValue(field: Field, obj: Any): Any? {
+        return runCatching { field.get(obj) }.getOrNull()
     }
 
-    operator fun setValue(field: Field, obj: Any, value: Any) {
-        kotlin.runCatching { field.set(obj, value) }
+    fun setValue(field: Field, obj: Any, value: Any) {
+        runCatching { field.set(obj, value) }
     }
 
     fun getMethod(clazz: Class<*>, methodName: String): Method? {
@@ -50,14 +51,19 @@ internal object ReflectionUtils {
         try {
             method?.invoke(obj, *args)
         } catch (e: IllegalAccessException) {
-            Log.e(Iconics.TAG, "Can't invoke method using reflection", e)
+            Iconics.logger.log(ERROR, Iconics.TAG, "Can't invoke method using reflection", e)
         } catch (e: InvocationTargetException) {
-            Log.e(Iconics.TAG, "Can't invoke method using reflection", e)
+            Iconics.logger.log(ERROR, Iconics.TAG, "Can't invoke method using reflection", e)
         }
     }
 
     /** A helper method to instantiate class by name */
-    inline fun <reified T> classForName(name: String): T {
-        return Class.forName(name).newInstance() as T
+    inline fun <reified T : Any> getInstanceForName(name: String): T {
+        return getInstanceOf(Class.forName(name).kotlin) as T
+    }
+
+    @Suppress("NOTHING_TO_INLINE")
+    inline fun <T : Any> getInstanceOf(cls: KClass<T>): T {
+        return cls.objectInstance ?: cls.createInstance()
     }
 }

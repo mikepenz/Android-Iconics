@@ -70,7 +70,7 @@ internal object IconicsViewsAttrsApplier {
      * For overriding some of attributes to default use resources with prefix 'default_'
      */
     fun readIconicsTextView(ctx: Context, attrs: AttributeSet?, bundle: CompoundIconsBundle) {
-        ctx.obtainStyledAttributes(attrs, R.styleable.IconicsTextView, 0, 0).use {
+        ctx.obtainStyledAttributes(attrs, R.styleable.IconicsTextView).use {
 
             //obtaining attributes for all icons
             val allIcon = getIconicsTextViewAllDrawable(ctx, it)
@@ -218,7 +218,7 @@ internal object IconicsViewsAttrsApplier {
 
     //region IconicsCompoundButton
     fun readIconicsCompoundButton(ctx: Context, attrs: AttributeSet?, icon: CheckableIconBundle) {
-        ctx.obtainStyledAttributes(attrs, R.styleable.IconicsCompoundButton, 0, 0).use {
+        ctx.obtainStyledAttributes(attrs, R.styleable.IconicsCompoundButton).use {
 
             //obtaining attributes for Unchecked icon state
             icon.uncheckedIcon = getIconicsCompoundButtonUncheckedDrawable(ctx, it)
@@ -284,13 +284,10 @@ internal object IconicsViewsAttrsApplier {
     /**
      * Attributes priority:
      *
-     *
      * Attributes with mark 'all' attributes with some else mark ('start', 'top' etc)<br></br>
      * Working like as 'style' xml-attribute - local overrides global
      *
-     *
      * **IMPORTANT TRICK**
-     *
      *
      * For overriding some of attributes to default use resources with prefix 'default_'
      */
@@ -299,7 +296,7 @@ internal object IconicsViewsAttrsApplier {
         attrs: AttributeSet?,
         bundle: CompoundIconsBundle
     ) {
-        ctx.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView, 0, 0).use {
+        ctx.obtainStyledAttributes(attrs, R.styleable.IconicsCheckableTextView).use {
 
             //obtaining attributes for all icons
             val allIcon = getIconicsCheckableTextViewAllDrawable(ctx, it)
@@ -449,7 +446,7 @@ internal object IconicsViewsAttrsApplier {
     //endregion
 
     fun isIconicsAnimateChanges(context: Context, attrs: AttributeSet?): Boolean {
-        return context.obtainStyledAttributes(attrs, R.styleable.IconicsAnimateChanges, 0, 0).use {
+        return context.obtainStyledAttributes(attrs, R.styleable.IconicsAnimateChanges).use {
             it.getBoolean(R.styleable.IconicsAnimateChanges_iiv_animate_icon_changes, true)
         }
     }

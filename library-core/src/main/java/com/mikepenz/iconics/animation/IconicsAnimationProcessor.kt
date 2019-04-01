@@ -44,15 +44,15 @@ abstract class IconicsAnimationProcessor(
     open var interpolator: TimeInterpolator = DEFAULT_INTERPOLATOR,
 
     /**
-     * Sets the length of the animation. The default duration is 300 milliseconds. This value
+     * The length of the animation. The default duration is 300 milliseconds. This value
      * cannot be negative.
      */
     open var duration: Long = 300,
 
     /**
      * Sets how many times the animation should be repeated. If the repeat
-     * count is 0, the animation is never repeated. If the repeat count is
-     * greater than 0 or [INFINITE], the repeat mode will be taken
+     * count is `0`, the animation is never repeated. If the repeat count is
+     * greater than `0` or [INFINITE], the repeat mode will be taken
      * into account. The repeat count is [INFINITE] by default.
      */
     open var repeatCount: Int = INFINITE,
@@ -60,7 +60,7 @@ abstract class IconicsAnimationProcessor(
     /**
      * Defines what this animation should do when it reaches the end. This
      * setting is applied only when the repeat count is either greater than
-     * 0 or [INFINITE]. Defaults to [RepeatMode.RESTART].
+     * `0` or [INFINITE]. Defaults to [RepeatMode.RESTART].
      *
      * @see RepeatMode
      */
@@ -90,10 +90,7 @@ abstract class IconicsAnimationProcessor(
     /** The set of listeners to be sent events through the life of an animation. */
     private var listeners: MutableList<IconicsAnimationListener>? = null
 
-    /**
-     * The set of listeners to be sent pause/resume events through the life
-     * of an animation.
-     */
+    /** The set of listeners to be sent pause/resume events through the life of an animation. */
     private var pauseListeners: MutableList<IconicsAnimationPauseListener>? = null
 
     private val proxyListener = object : Animator.AnimatorListener {
@@ -123,23 +120,25 @@ abstract class IconicsAnimationProcessor(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
-    private val proxyPauseListener = object : Animator.AnimatorPauseListener {
+    private val proxyPauseListener by lazy {
+        @RequiresApi(Build.VERSION_CODES.KITKAT)
+        object : Animator.AnimatorPauseListener {
 
-        override fun onAnimationPause(animation: Animator) {
-            pauseListeners?.forEach { it.onAnimationPause(this@IconicsAnimationProcessor) }
-        }
+            override fun onAnimationPause(animation: Animator) {
+                pauseListeners?.forEach { it.onAnimationPause(this@IconicsAnimationProcessor) }
+            }
 
-        override fun onAnimationResume(animation: Animator) {
-            pauseListeners?.forEach { it.onAnimationResume(this@IconicsAnimationProcessor) }
+            override fun onAnimationResume(animation: Animator) {
+                pauseListeners?.forEach { it.onAnimationResume(this@IconicsAnimationProcessor) }
+            }
         }
     }
 
-    /** @return Whether the processor has been started and not yet ended. */
+    /** Whether the processor has been started and not yet ended. */
     val isStarted: Boolean
         get() = animator.isStarted
 
-    /** @return Whether the processor is running. */
+    /** Whether the processor is running. */
     val isRunning: Boolean
         get() = animator.isRunning
 
@@ -178,12 +177,12 @@ abstract class IconicsAnimationProcessor(
     protected val drawableBounds: Rect?
         get() = drawable?.bounds
 
-    /** @return completed percent of animation */
+    /** Completed percent of animation */
+    @get:FloatRange(from = 0.0, to = 100.0)
     protected val animatedPercent: Float
-        @FloatRange(from = 0.0, to = 100.0)
         get() = animator.animatedValue as Float
 
-    /** @return Tag which will be used to apply this processor via xml */
+    /** Tag which will be used to apply this processor via xml */
     abstract val animationTag: String
 
     /**
@@ -358,17 +357,20 @@ abstract class IconicsAnimationProcessor(
 
     /**
      * Called when a drawable was detached and now [drawableBounds] and [drawableState] will
-     * return `null`. Good place to reset some drawable-dependent fields
+     * return `null`. Good place to clear some drawable-dependent fields
      */
     protected open fun onDrawableDetached() {}
 
     /** Internal set an drawable to this processor */
     internal fun setDrawable(drawable: IconicsAnimatedDrawable?) {
-        this.drawable = null
-        onDrawableDetached()
+        if (this.drawable != null) {
+            this.drawable = null
+            onDrawableDetached()
+        }
+
+        this.drawable = drawable
 
         if (drawable != null) {
-            this.drawable = drawable
             onDrawableAttached()
 
             if (isStartImmediately || isStartRequested) {
@@ -381,12 +383,12 @@ abstract class IconicsAnimationProcessor(
 
     enum class RepeatMode(internal val valueAnimatorConst: Int) {
         /**
-         * When the animation reaches the end and `repeatCount` is INFINITE
+         * When the animation reaches the end and [repeatCount] is [INFINITE]
          * or a positive value, the animation restarts from the beginning.
          */
         RESTART(ValueAnimator.RESTART),
         /**
-         * When the animation reaches the end and `repeatCount` is INFINITE
+         * When the animation reaches the end and [repeatCount] is [INFINITE]
          * or a positive value, the animation reverses direction on every iteration.
          */
         REVERSE(ValueAnimator.REVERSE)

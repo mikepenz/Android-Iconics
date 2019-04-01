@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.weathericons
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class WeatherIcons : ITypeface {
+object WeatherIcons : ITypeface {
 
     override val fontRes: Int
         get() = R.font.weather_icons_v2_0_10
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "wic"
@@ -47,7 +42,7 @@ class WeatherIcons : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Erik Flowers"
@@ -660,16 +655,6 @@ class WeatherIcons : ITypeface {
         wic_wu_tstorms('\uf01e'),
         wic_wu_unknown('\uf00d');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { WeatherIcons() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { WeatherIcons }
     }
 }

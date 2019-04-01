@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.meteoconcs
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class Meteoconcs : ITypeface {
+object Meteoconcs : ITypeface {
 
     override val fontRes: Int
         get() = R.font.meteocons_v1_1_1
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "met"
@@ -47,7 +42,7 @@ class Meteoconcs : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Alessio Atzeni"
@@ -117,16 +112,6 @@ class Meteoconcs : ITypeface {
         met_clouds('\ue82d'),
         met_clouds_flash('\ue82e');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { Meteoconcs() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { Meteoconcs }
     }
 }

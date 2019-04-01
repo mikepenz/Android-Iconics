@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.entypo
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class Entypo : ITypeface {
+object Entypo : ITypeface {
 
     override val fontRes: Int
         get() = R.font.entypo_font_v1_0_0_1
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "ent"
@@ -47,7 +42,7 @@ class Entypo : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Daniel Bruce"
@@ -453,16 +448,6 @@ class Entypo : ITypeface {
         ent_youtube_with_circle('\uea7f'),
         ent_youtube('\uea80');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { Entypo() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { Entypo }
     }
 }

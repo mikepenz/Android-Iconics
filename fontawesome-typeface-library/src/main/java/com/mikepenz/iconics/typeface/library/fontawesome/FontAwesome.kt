@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.fontawesome
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class FontAwesome : ITypeface {
+object FontAwesome : ITypeface {
 
     override val fontRes: Int
         get() = R.font.fontawesome_font_v5_3_1_1
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "faw"
@@ -47,7 +42,7 @@ class FontAwesome : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Dave Gandy"
@@ -1410,16 +1405,6 @@ class FontAwesome : ITypeface {
         faw_yen_sign('\uf177'),
         faw_yin_yang('\uf6ad');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { FontAwesome() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { FontAwesome }
     }
 }

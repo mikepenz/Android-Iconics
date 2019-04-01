@@ -29,6 +29,7 @@ import androidx.appcompat.view.menu.ActionMenuItemView
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.core.R
+import com.mikepenz.iconics.utils.buildIconics
 
 internal object IconicsFactory {
 
@@ -55,12 +56,11 @@ internal object IconicsFactory {
                 }
             }
             is EditText -> {
-                //for an editText we only style initial as styling the Editable causes problems!
-                Iconics.Builder().on(view as TextView).build()
+                // for an editText we only style initial as styling the Editable causes problems!
+                view.buildIconics()
             }
             is TextView -> {
-                //handle iconics
-                Iconics.Builder().on(view).build()
+                view.buildIconics()
 
                 view.addTextChangedListener(object : TextWatcher {
                     override fun beforeTextChanged(cs: CharSequence, i: Int, i1: Int, i2: Int) {

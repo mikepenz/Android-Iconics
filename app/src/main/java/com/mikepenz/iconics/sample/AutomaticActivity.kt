@@ -18,8 +18,7 @@ package com.mikepenz.iconics.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.LayoutInflaterCompat
-import com.mikepenz.iconics.context.IconicsLayoutInflater2
+import com.mikepenz.iconics.utils.setIconicsFactory
 import kotlinx.android.synthetic.main.activity_automatic.test4
 import kotlinx.android.synthetic.main.activity_automatic.toolbar
 
@@ -27,7 +26,7 @@ class AutomaticActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //define the IconicsLayoutInflater
         //this is compatible with calligraphy and other libs which wrap the baseContext
-        LayoutInflaterCompat.setFactory2(layoutInflater, IconicsLayoutInflater2(delegate))
+        layoutInflater.setIconicsFactory(delegate)
 
         //call super.onCreate
         super.onCreate(savedInstanceState)

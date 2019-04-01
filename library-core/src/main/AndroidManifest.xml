@@ -21,6 +21,7 @@
 
     <application>
         <provider
+            android:enabled="@bool/is_iconics_content_provider_enabled"
             android:authorities="${applicationId}.iconics.core.provider"
             android:name="com.mikepenz.iconics.IconicsContentProvider"
             android:exported="false"

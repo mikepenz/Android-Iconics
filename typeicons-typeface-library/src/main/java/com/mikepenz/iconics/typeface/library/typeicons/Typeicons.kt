@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.typeicons
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class Typeicons : ITypeface {
+object Typeicons : ITypeface {
 
     override val fontRes: Int
         get() = R.font.typeicons_font_v2_0_7_1
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "typ"
@@ -47,7 +42,7 @@ class Typeicons : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Stephen Hutchings"
@@ -404,16 +399,6 @@ class Typeicons : ITypeface {
         typ_zoom_outline('\ue14e'),
         typ_zoom('\ue14f');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { Typeicons() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { Typeicons }
     }
 }

@@ -55,20 +55,19 @@ internal class InternalLayoutInflater : LayoutInflater {
     override fun onCreateView(name: String, attrs: AttributeSet): View? {
         var view: View? = null
 
-        classPrefixList.forEach { kotlin.runCatching { view = createView(name, it, attrs) } }
+        classPrefixList.forEach { runCatching { view = createView(name, it, attrs) } }
         // In this case we want to let the base class take a crack at it.
         if (view == null) {
             view = super.onCreateView(name, attrs)
         }
 
-        return view?.let {
-            IconicsFactory.onViewCreated(it, it.context, attrs)
-        }
+        return view?.let { IconicsFactory.onViewCreated(it, it.context, attrs) }
     }
 
     @Throws(ClassNotFoundException::class)
     override fun onCreateView(parent: View?, name: String, attrs: AttributeSet): View? {
-        return IconicsFactory.onViewCreated(super.onCreateView(parent, name, attrs), context, attrs)
+        val view = super.onCreateView(parent, name, attrs)
+        return IconicsFactory.onViewCreated(view, context, attrs)
     }
 
     // ===
@@ -169,7 +168,7 @@ internal class InternalLayoutInflater : LayoutInflater {
             constArgs[0] = viewContext
             ReflectionUtils.setValue(constructorArgs, this, constArgs)
 
-            kotlin.runCatching { createdView = createView(name, null, attrs) }
+            runCatching { createdView = createView(name, null, attrs) }
             constArgs[0] = lastContext
             ReflectionUtils.setValue(constructorArgs, this, constArgs)
         }
@@ -186,11 +185,8 @@ internal class InternalLayoutInflater : LayoutInflater {
     ) : LayoutInflater.Factory {
 
         override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-            return IconicsFactory.onViewCreated(
-                factory.onCreateView(name, context, attrs),
-                context,
-                attrs
-            )
+            val view = factory.onCreateView(name, context, attrs)
+            return IconicsFactory.onViewCreated(view, context, attrs)
         }
     }
 
@@ -201,11 +197,8 @@ internal class InternalLayoutInflater : LayoutInflater {
     ) : LayoutInflater.Factory2 {
 
         override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-            return IconicsFactory.onViewCreated(
-                factory2.onCreateView(name, context, attrs),
-                context,
-                attrs
-            )
+            val view = factory2.onCreateView(name, context, attrs)
+            return IconicsFactory.onViewCreated(view, context, attrs)
         }
 
         override fun onCreateView(
@@ -214,11 +207,8 @@ internal class InternalLayoutInflater : LayoutInflater {
             context: Context,
             attrs: AttributeSet
         ): View? {
-            return IconicsFactory.onViewCreated(
-                factory2.onCreateView(parent, name, context, attrs),
-                context,
-                attrs
-            )
+            val view = factory2.onCreateView(parent, name, context, attrs)
+            return IconicsFactory.onViewCreated(view, context, attrs)
         }
     }
 
@@ -238,16 +228,9 @@ internal class InternalLayoutInflater : LayoutInflater {
             context: Context,
             attrs: AttributeSet
         ): View? {
-            return IconicsFactory.onViewCreated(
-                inflater.createCustomViewInternal(
-                    factory2.onCreateView(parent, name, context, attrs),
-                    name,
-                    context,
-                    attrs
-                ),
-                context,
-                attrs
-            )
+            val view = factory2.onCreateView(parent, name, context, attrs)
+            val customView = inflater.createCustomViewInternal(view, name, context, attrs)
+            return IconicsFactory.onViewCreated(customView, context, attrs)
         }
     }
 

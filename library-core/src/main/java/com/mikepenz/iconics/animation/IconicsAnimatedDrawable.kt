@@ -23,6 +23,7 @@ import androidx.core.view.ViewCompat
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.lang.ref.WeakReference
 import java.util.ArrayList
 
 /**
@@ -86,7 +87,7 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
 
     class Runner internal constructor() {
         private var isAttached = false
-        private var view: View? = null
+        private var view: WeakReference<View>? = null
         private var drawable: IconicsAnimatedDrawable? = null
 
         private val listener = object : View.OnAttachStateChangeListener {
@@ -95,7 +96,7 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
                 isAttached = true
                 ViewCompat.postOnAnimation(v, object : Runnable {
                     override fun run() {
-                        if (isAttached) {
+                        if (isAttached && view?.get() != null) {
                             drawable?.let {
                                 v.invalidateDrawable(it)
                                 ViewCompat.postOnAnimation(v, this)
@@ -113,7 +114,7 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
         /** Setup all animations to provided drawable and view */
         fun setFor(view: View, drawable: IconicsAnimatedDrawable) {
             unset()
-            this.view = view
+            this.view = WeakReference(view)
             this.drawable = drawable
             if (ViewCompat.isAttachedToWindow(view)) {
                 listener.onViewAttachedToWindow(view)
@@ -124,7 +125,10 @@ open class IconicsAnimatedDrawable : IconicsDrawable {
         /** Clear all animations from previously provided drawable and view */
         fun unset() {
             drawable = null
-            view?.removeOnAttachStateChangeListener(listener)
+            view?.let {
+                it.get()?.removeOnAttachStateChangeListener(listener)
+                it.clear()
+            }
             view = null
             isAttached = false
         }

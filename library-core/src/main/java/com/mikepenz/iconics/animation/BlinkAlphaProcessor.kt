@@ -28,9 +28,9 @@ import com.mikepenz.iconics.animation.IconicsAnimationProcessor.RepeatMode.REVER
  * @author pa.gulko zTrap (30.11.2018)
  */
 open class BlinkAlphaProcessor(
-    /** @return The minimal available alpha. */
+    /** The minimal available alpha. */
     @IntRange(from = 0, to = 255) open var minimumAlpha: Int = 0,
-    /** @return The maximal available alpha. */
+    /** The maximal available alpha. */
     @IntRange(from = 0, to = 255) open var maximumAlpha: Int = 255,
 
     override var interpolator: TimeInterpolator = DEFAULT_INTERPOLATOR,

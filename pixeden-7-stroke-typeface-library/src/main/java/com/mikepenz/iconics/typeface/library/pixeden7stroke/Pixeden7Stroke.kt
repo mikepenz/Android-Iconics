@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.pixeden7stroke
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class Pixeden7Stroke : ITypeface {
+object Pixeden7Stroke : ITypeface {
 
     override val fontRes: Int
         get() = R.font.pixeden_7_stroke_font_v1_2_0
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "pe7"
@@ -47,7 +42,7 @@ class Pixeden7Stroke : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Riccardo Montagnin"
@@ -270,16 +265,6 @@ class Pixeden7Stroke : ITypeface {
         pe7_7s_alarm('\ue67e'),
         pe7_7s_airplay('\ue67f');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { Pixeden7Stroke() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { Pixeden7Stroke }
     }
 }

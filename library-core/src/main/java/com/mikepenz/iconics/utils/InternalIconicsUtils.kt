@@ -51,7 +51,7 @@ internal object InternalIconicsUtils {
 
         // remember the previous style spans
         editable.getSpans<ParcelableSpan>(0, editable.length, ParcelableSpan::class.java)
-                .map {
+                .mapTo(existingSpans) {
                     StyleContainer(
                         editable.getSpanStart(it),
                         editable.getSpanEnd(it),
@@ -59,10 +59,9 @@ internal object InternalIconicsUtils {
                         editable.getSpanFlags(it)
                     )
                 }
-                .toCollection(existingSpans)
 
         editable.getSpans<CharacterStyle>(0, editable.length, CharacterStyle::class.java)
-                .map {
+                .mapTo(existingSpans) {
                     StyleContainer(
                         editable.getSpanStart(it),
                         editable.getSpanEnd(it),
@@ -70,11 +69,10 @@ internal object InternalIconicsUtils {
                         editable.getSpanFlags(it)
                     )
                 }
-                .toCollection(existingSpans)
 
         //SpannableStringBuilder has an issue which causes this to crash
         //https://github.com/mikepenz/Android-Iconics/issues/155#issue-141629137
-        kotlin.runCatching { editable.clearSpans() }
+        runCatching { editable.clearSpans() }
 
         var iconStart = -1
         var i = 0
@@ -126,38 +124,32 @@ internal object InternalIconicsUtils {
         //make sure to check only for possible icons
         if (iconEnd - iconStart >= 6) {
             //build the iconString
-            val iconString =
-                    editable.subSequence(iconStart + 1, iconEnd).replace("-".toRegex(), "_")
+            val iconString = editable.substring(iconStart + 1, iconEnd).clearedIconName
             //find out the fontKey
-            val fontKey = editable.subSequence(iconStart + 1, iconStart + 4).toString()
+            val fontKey = editable.substring(iconStart + 1, iconStart + 4)
 
             try {
                 //get the correct character for this Font and Icon
-                val typeface = fonts[fontKey]
-                if (typeface != null) {
+                fonts[fontKey]?.also { typeface ->
                     //get the icon for the iconString
-                    val icon = kotlin.runCatching { typeface.getIcon(iconString) }.getOrNull()
                     //we can only add an icon which is a font
-                    if (icon != null) {
+                    runCatching { typeface.getIcon(iconString) }.getOrNull()?.also { icon ->
                         //get and add the mapped char to the string
-                        val fontChar = icon.character
-                        editable.replace(iconStart, iconEnd + 1, fontChar.toString())
+                        editable.replace(iconStart, iconEnd + 1, icon.character.toString())
 
                         //add the current icon to the container
                         return StyleContainer(
                             iconStart,
                             iconStart + 1,
                             iconString,
-                            fonts.getValue(fontKey)
+                            typeface
                         )
-                    } else {
-                        Log.e(Iconics.TAG, "Wrong icon name: $iconString")
                     }
-                } else {
-                    Log.e(Iconics.TAG, "Wrong fontId: $iconString")
+                    Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong icon name: $iconString")
                 }
+                Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong fontId: $iconString")
             } catch (e: IllegalArgumentException) {
-                Log.e(Iconics.TAG, "Wrong icon name: $iconString")
+                Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong icon name: $iconString")
             }
         }
         return null
@@ -173,9 +165,8 @@ internal object InternalIconicsUtils {
         val existingSpans = LinkedList<StyleContainer>()
 
         // remember the previous style spans
-
         spannable.getSpans(0, spannable.length, ParcelableSpan::class.java)
-                .map {
+                .mapTo(existingSpans) {
                     StyleContainer(
                         spannable.getSpanStart(it),
                         spannable.getSpanEnd(it),
@@ -183,10 +174,9 @@ internal object InternalIconicsUtils {
                         spannable.getSpanFlags(it)
                     )
                 }
-                .toCollection(existingSpans)
 
         spannable.getSpans(0, spannable.length, CharacterStyle::class.java)
-                .map {
+                .mapTo(existingSpans) {
                     StyleContainer(
                         spannable.getSpanStart(it),
                         spannable.getSpanEnd(it),
@@ -194,7 +184,6 @@ internal object InternalIconicsUtils {
                         spannable.getSpanFlags(it)
                     )
                 }
-                .toCollection(existingSpans)
 
         //the new string built with the replaced icons
         val spannedString = SpannableStringBuilder()
@@ -257,21 +246,17 @@ internal object InternalIconicsUtils {
         //make sure to check only for possible icons
         if (tempIconString.length >= 6) {
             //build the iconString
-            val iconString = tempIconString.subSequence(1, tempIconString.length - 1)
-                    .replace("-".toRegex(), "_")
+            val iconString = tempIconString.substring(1, tempIconString.length - 1).clearedIconName
             //find out the fontKey
-            val fontKey = tempIconString.subSequence(1, 4).toString()
+            val fontKey = tempIconString.substring(1, 4)
 
             //get the correct character for this Font and Icon
-            val typeface = fonts[fontKey]
-            if (typeface != null) {
+            fonts[fontKey]?.also { typeface ->
                 //get the icon for the iconString
-                val icon = kotlin.runCatching { typeface.getIcon(iconString) }.getOrNull()
-                //we can only add an icon which is a font
-                if (icon != null) {
+                runCatching { typeface.getIcon(iconString) }.getOrNull()?.also { icon ->
+                    //we can only add an icon which is a font
                     //get and add the mapped char to the string
-                    val fontChar = icon.character
-                    spannedString.append(fontChar)
+                    spannedString.append(icon.character)
 
                     //add the current icon to the container
                     return StyleContainer(
@@ -280,12 +265,10 @@ internal object InternalIconicsUtils {
                         iconString,
                         typeface
                     )
-                } else {
-                    Log.e(Iconics.TAG, "Wrong icon name: $iconString")
                 }
-            } else {
-                Log.e(Iconics.TAG, "Wrong fontId: $iconString")
+                Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong icon name: $iconString")
             }
+            Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong fontId: $iconString")
         }
 
         //if this was no working icon we add the tempIconString and return null
@@ -309,11 +292,8 @@ internal object InternalIconicsUtils {
         stylesFor: Map<String, MutableList<CharacterStyle>>?
     ) {
         styleContainers.forEach {
-            val styleOrSpan: Any? = when {
-                it.style != null -> it.style
-                it.span != null -> it.span
-                else -> null
-            }
+            val styleOrSpan = it.style ?: it.span
+
             if (styleOrSpan != null) {
                 text.setSpan(styleOrSpan, it.startIndex, it.endIndex, it.flags)
             } else {

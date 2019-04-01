@@ -38,7 +38,7 @@ class IconicsLayoutInflater(
         context: Context,
         attrs: AttributeSet
     ): View? {
-        val result = appCompatDelegate.createView(parent, name, context, attrs)
-        return IconicsFactory.onViewCreated(result, context, attrs)
+        val view = appCompatDelegate.createView(parent, name, context, attrs)
+        return IconicsFactory.onViewCreated(view, context, attrs)
     }
 }

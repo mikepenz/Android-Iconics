@@ -17,22 +17,17 @@ package com.mikepenz.iconics.typeface.library.ionicons
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-class Ionicons : ITypeface {
+object Ionicons : ITypeface {
 
     override val fontRes: Int
         get() = R.font.ionicons_font_v2_0_1_1
 
-    override val characters: HashMap<String, Char>
-        get() {
-            if (chars == null) {
-                val aChars = HashMap<String, Char>()
-                Icon.values().associateTo(aChars) { it.name to it.character }
-                chars = aChars
-            }
-            return chars!!
-        }
+    override val characters: Map<String, Char> by lazy {
+        Icon.values().associate { it.name to it.character }
+    }
 
     override val mappingPrefix: String
         get() = "ion"
@@ -47,7 +42,7 @@ class Ionicons : ITypeface {
         get() = characters.size
 
     override val icons: List<String>
-        get() = characters.keys.toList()
+        get() = characters.keys.toCollection(LinkedList())
 
     override val author: String
         get() = "Benjsperry"
@@ -801,16 +796,6 @@ class Ionicons : ITypeface {
         ion_wrench('\uf2ba'),
         ion_xbox('\uf30c');
 
-        override val typeface: ITypeface
-            get() = savedTypeface
-
-        companion object {
-            // remember the typeface so we can use it later
-            private val savedTypeface: ITypeface by lazy { Ionicons() }
-        }
-    }
-
-    companion object {
-        private var chars: HashMap<String, Char>? = null
+        override val typeface: ITypeface by lazy { Ionicons }
     }
 }

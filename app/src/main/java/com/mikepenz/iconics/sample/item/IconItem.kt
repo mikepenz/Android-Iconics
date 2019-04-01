@@ -24,6 +24,7 @@ import com.mikepenz.fastadapter.items.AbstractItem
 import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
+import com.mikepenz.iconics.colorInt
 import com.mikepenz.iconics.sample.R
 import com.mikepenz.iconics.view.IconicsImageView
 
@@ -57,7 +58,7 @@ class IconItem(icon: String) : AbstractItem<IconItem.ViewHolder>() {
         holder.image.icon = icon
         holder.name.text = this.icon
 
-        icon.color(IconicsColor.colorInt(0xFF000000.toInt()))
+        icon.colorInt(0xFF000000.toInt())
                 .padding(IconicsSize.dp(0f))
                 .contourWidth(IconicsSize.dp(0f))
                 .contourColor(IconicsColor.colorInt(Color.TRANSPARENT))

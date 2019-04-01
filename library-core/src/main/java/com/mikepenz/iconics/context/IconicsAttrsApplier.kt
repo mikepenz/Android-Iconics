@@ -32,7 +32,7 @@ import com.mikepenz.iconics.core.R
 @SuppressLint("Recycle")
 object IconicsAttrsApplier {
 
-    fun getIconicsDrawable(ctx: Context, attrs: AttributeSet?): IconicsDrawable? {
+    @JvmStatic fun getIconicsDrawable(ctx: Context, attrs: AttributeSet?): IconicsDrawable? {
         return ctx.obtainStyledAttributes(attrs, R.styleable.Iconics).use {
             IconicsAttrsExtractor(
                 context = ctx,

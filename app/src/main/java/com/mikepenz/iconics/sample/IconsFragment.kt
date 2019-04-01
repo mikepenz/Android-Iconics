@@ -21,13 +21,16 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.MotionEvent.ACTION_CANCEL
+import android.view.MotionEvent.ACTION_OUTSIDE
+import android.view.MotionEvent.ACTION_UP
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
@@ -41,10 +44,10 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.sample.item.IconItem
 import com.mikepenz.iconics.utils.IconicsUtils
+import com.mikepenz.iconics.utils.enableShadowSupport
 import com.mikepenz.iconics.utils.toIconicsColor
 import com.mikepenz.iconics.utils.toIconicsColorRes
 import com.mikepenz.iconics.utils.toIconicsSizeDp
-import com.mikepenz.materialize.util.UIUtils
 import kotlinx.android.synthetic.main.icons_fragment.list
 import java.util.ArrayList
 import java.util.Random
@@ -54,26 +57,22 @@ import kotlin.math.abs
  * Created by a557114 on 16/04/2015.
  */
 class IconsFragment : Fragment() {
-    private val mIcons = ArrayList<IconItem>()
-    private lateinit var mAdapter: FastItemAdapter<IconItem>
-    private var mRandomize: Boolean = false
-    private var mShadow: Boolean = false
-    private var mSearch: String? = null
-    private var popup: PopupWindow? = null
-    private val mRandom = Random()
+    private val random = Random()
+    private val icons = ArrayList<IconItem>()
+    private val adapter by lazy { FastItemAdapter<IconItem>() }
+    private var randomize: Boolean = false
+    private var shadow: Boolean = false
+    private var search: String? = null
+    private lateinit var popup: PopupWindow
 
     fun randomize(randomize: Boolean) {
-        mRandomize = randomize
-        if (::mAdapter.isInitialized) {
-            mAdapter.notifyAdapterDataSetChanged()
-        }
+        this.randomize = randomize
+        adapter.notifyAdapterDataSetChanged()
     }
 
     fun shadow(shadow: Boolean) {
-        mShadow = shadow
-        if (::mAdapter.isInitialized) {
-            mAdapter.notifyAdapterDataSetChanged()
-        }
+        this.shadow = shadow
+        adapter.notifyAdapterDataSetChanged()
     }
 
     override fun onCreateView(
@@ -81,42 +80,42 @@ class IconsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.icons_fragment, null, false)
+        return inflater.inflate(R.layout.icons_fragment, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Init and Setup RecyclerView
-        val recyclerView = list
-        recyclerView.layoutManager = GridLayoutManager(activity, 2)
-        recyclerView.addItemDecoration(SpaceItemDecoration())
-        //animator not yet working
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        mAdapter = FastItemAdapter()
-        configAdapter()
-        recyclerView.adapter = mAdapter
+        list.also {
+            it.layoutManager = GridLayoutManager(activity, 2)
+            it.addItemDecoration(SpaceItemDecoration())
+            //animator not yet working
+            it.itemAnimator = DefaultItemAnimator()
+            configAdapter()
+            it.adapter = adapter
+        }
 
         arguments?.let { arguments ->
             arguments.getString(FONT_NAME).let { fontName ->
-                for (iTypeface in Iconics.registeredFonts) {
-                    if (iTypeface.fontName.equals(fontName, ignoreCase = true)) {
-                        for (icon in iTypeface.icons) {
-                            mIcons.add(IconItem(icon))
+                icons.clear()
+                Iconics.registeredFonts
+                        .firstOrNull { it.fontName.equals(fontName, true) }
+                        ?.let { iTypeface ->
+                            val iconItems = iTypeface.icons.asSequence().map(::IconItem)
+
+                            icons.addAll(iconItems)
+                            adapter.set(icons)
                         }
-                        mAdapter.set(mIcons)
-                        break
-                    }
-                }
             }
         }
         //filter if a search param was provided
-        onSearch(mSearch)
+        onSearch(search)
     }
 
     private fun configAdapter() {
         //our popup on touch
-        mAdapter.onTouchListener = object : OnTouchListener<IconItem> {
+        adapter.onTouchListener = object : OnTouchListener<IconItem> {
             override fun onTouch(
                 v: View,
                 event: MotionEvent,
@@ -126,9 +125,7 @@ class IconsFragment : Fragment() {
             ): Boolean {
                 val a = event.action
                 if (a == MotionEvent.ACTION_DOWN) {
-                    if (popup?.isShowing == true) {
-                        popup?.dismiss()
-                    }
+                    dismissPopup()
 
                     val i = item.icon ?: return false
                     val icon = IconicsDrawable(v.context)
@@ -137,14 +134,20 @@ class IconsFragment : Fragment() {
                             .padding(IconicsSize.dp(8f))
                             .backgroundColor("#DDFFFFFF".toIconicsColor())
                             .roundedCorners(IconicsSize.dp(12f))
-                    val imageView = ImageView(v.context)
-                    imageView.setImageDrawable(
-                        icon
-                    )
-                    val size = UIUtils.convertDpToPixel(144f, v.context).toInt()
-                    val popup = PopupWindow(imageView, size, size)
-                    this@IconsFragment.popup = popup
-                    popup.showAsDropDown(v)
+
+                    ImageView(v.context).let { imageView ->
+                        imageView.setImageDrawable(icon)
+
+                        if (!::popup.isInitialized) {
+                            val size = IconicsUtils.convertDpToPx(v.context, 144)
+
+                            PopupWindow(size, size).let { popup ->
+                                this@IconsFragment.popup = popup
+                            }
+                        }
+                        popup.contentView = imageView
+                        popup.showAsDropDown(v)
+                    }
 
                     //copy to clipboard
                     val clipboard =
@@ -152,17 +155,15 @@ class IconsFragment : Fragment() {
                     val clip =
                             ClipData.newPlainText("Android-Iconics icon", icon.icon?.formattedName)
                     clipboard.primaryClip = clip
-                } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL || a == MotionEvent.ACTION_OUTSIDE) {
-                    if (popup?.isShowing == true) {
-                        popup?.dismiss()
-                    }
+                } else if (a in arrayOf(ACTION_UP, ACTION_CANCEL, ACTION_OUTSIDE)) {
+                    dismissPopup()
                 }
                 return false
             }
         }
 
 
-        mAdapter.onBindViewHolderListener = object : OnBindViewHolderListener {
+        adapter.onBindViewHolderListener = object : OnBindViewHolderListener {
 
             override fun onBindViewHolder(
                 viewHolder: RecyclerView.ViewHolder,
@@ -171,33 +172,33 @@ class IconsFragment : Fragment() {
             ) {
                 val holder = viewHolder as IconItem.ViewHolder
 
-                val item = mAdapter.getItem(position)
+                val item = adapter.getItem(position)
 
                 if (item != null) {
                     //set the R.id.fastadapter_item tag of this item to the item object (can be used when retrieving the view)
-                    viewHolder.itemView.setTag(com.mikepenz.fastadapter.R.id.fastadapter_item, item)
+                    holder.itemView.setTag(com.mikepenz.fastadapter.R.id.fastadapter_item, item)
 
                     //as we overwrite the default listener
                     item.bindView(holder, payloads)
 
 
                     holder.image.icon?.let {
-                        if (mRandomize) {
+                        if (randomize) {
                             it.color(getRandomColor(position).toIconicsColorRes())
-                                    .padding(mRandom.nextInt(12).toIconicsSizeDp())
-                                    .contourWidth(mRandom.nextInt(2).toIconicsSizeDp())
+                                    .padding(random.nextInt(12).toIconicsSizeDp())
+                                    .contourWidth(random.nextInt(2).toIconicsSizeDp())
                                     .contourColor(getRandomColor(position - 2).toIconicsColor())
 
-                            val y = mRandom.nextInt(10)
+                            val y = random.nextInt(10)
                             if (y % 4 == 0) {
                                 it.backgroundColor(getRandomColor(position - 4).toIconicsColorRes())
-                                        .roundedCorners((2 + mRandom.nextInt(10)).toIconicsSizeDp())
+                                        .roundedCorners((2 + random.nextInt(10)).toIconicsSizeDp())
                             }
                         }
                     }
 
-                    if (mShadow) {
-                        IconicsUtils.enableShadowSupport(holder.image)
+                    if (shadow) {
+                        holder.image.enableShadowSupport()
                         //holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
                         holder.image.icon?.shadow(
                             radius = 1.toIconicsSizeDp(),
@@ -243,22 +244,20 @@ class IconsFragment : Fragment() {
     }
 
     internal fun onSearch(s: String?) {
-        mSearch = s
-        
-        if (::mAdapter.isInitialized) {
-            if (TextUtils.isEmpty(s)) {
-                mAdapter.clear()
-                mAdapter.setNewList(mIcons)
-            } else {
-                val tmpList = ArrayList<IconItem>()
-                for (icon in mIcons) {
-                    val i = icon.icon ?: continue
-                    if (i.toLowerCase().contains(s?.toLowerCase() ?: "")) {
-                        tmpList.add(icon)
-                    }
-                }
-                mAdapter.setNewList(tmpList)
-            }
+        search = s
+
+        if (s.isNullOrBlank()) {
+            adapter.clear()
+            adapter.setNewList(icons)
+        } else {
+            val tmpList = icons.filter { it.icon?.contains(s, true) == true }
+            adapter.setNewList(tmpList)
+        }
+    }
+
+    private fun dismissPopup() {
+        if (::popup.isInitialized && popup.isShowing) {
+            popup.dismiss()
         }
     }
 
@@ -285,7 +284,7 @@ class IconsFragment : Fragment() {
 
         fun newInstance(fontName: String): IconsFragment {
             return IconsFragment().apply {
-                arguments = Bundle().apply { putString(FONT_NAME, fontName) }
+                arguments = bundleOf(FONT_NAME to fontName)
             }
         }
     }

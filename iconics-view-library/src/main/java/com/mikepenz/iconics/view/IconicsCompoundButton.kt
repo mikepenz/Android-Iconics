@@ -20,11 +20,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.CompoundButton
 import android.widget.TextView
-import com.mikepenz.iconics.Iconics
+import androidx.core.widget.CompoundButtonCompat
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
 import com.mikepenz.iconics.internal.CheckableIconBundle
 import com.mikepenz.iconics.internal.IconicsViewsAttrsApplier
+import com.mikepenz.iconics.utils.buildIconics
 
 /**
  * @author pa.gulko zTrap (06.07.2017)
@@ -58,11 +59,17 @@ open class IconicsCompoundButton @JvmOverloads constructor(
 
         tryToEnableIconicsAnimation(iconsBundle.checkedIcon, iconsBundle.uncheckedIcon)
         buttonDrawable = iconsBundle.createStates(context)
+
+        @Suppress("LeakingThis")
+        CompoundButtonCompat.getButtonDrawable(this)?.let {
+            minWidth = it.minimumWidth
+            minHeight = it.minimumHeight
+        }
     }
 
     override fun setText(text: CharSequence, type: TextView.BufferType) {
         if (!isInEditMode) {
-            super.setText(Iconics.Builder().on(text).build(), type)
+            super.setText(text.buildIconics(), type)
         } else {
             super.setText(text, type)
         }

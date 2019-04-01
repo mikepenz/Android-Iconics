@@ -27,7 +27,7 @@ import com.mikepenz.iconics.Iconics
 interface ITypeface {
 
     val rawTypeface: Typeface
-        get() = kotlin.runCatching {
+        get() = runCatching {
             ResourcesCompat.getFont(Iconics.applicationContext, fontRes)
         }.getOrNull() ?: Typeface.DEFAULT
 
@@ -35,11 +35,7 @@ interface ITypeface {
 
     val characters: Map<String, Char>
 
-    /**
-     * The Mapping Prefix to identify this font must have a length of 3
-     *
-     * @return mappingPrefix (length = 3)
-     */
+    /** The Mapping Prefix to identify this font must have a length of 3 */
     val mappingPrefix: String
 
     val fontName: String

@@ -46,13 +46,13 @@ import java.util.Random
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var fonts: List<ITypeface>
+    private lateinit var drawer: Drawer
     private var iconsFragment: IconsFragment? = null
     private var isRandomize: Boolean = false
     private var isShadowEnabled: Boolean = false
-    private lateinit var fonts: List<ITypeface>
     private var identifierGmd = 0
     private var currentSearch: String? = null
-    private lateinit var drawer: Drawer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,16 +63,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //order fonts by their name
-        fonts = Iconics.registeredFonts.sortedWith(Comparator { o1, o2 ->
-            o1.fontName.compareTo(o2.fontName)
-        })
+        fonts = Iconics.registeredFonts.sortedBy { it.fontName }
 
         //add all icons of all registered Fonts to the list
         val items = ArrayList<IDrawerItem<*>>(Iconics.registeredFonts.size)
         fonts.forEachIndexed { index, font ->
             val pdi = PrimaryDrawerItem()
                     .withName(font.fontName)
-                    .withBadge("" + font.icons.size)
+                    .withBadge(font.icons.size.toString())
                     .withDescription(if (font.author.isEmpty()) font.version else font.version + " - " + font.author)
                     .withBadgeStyle(BadgeStyle().withColorRes(R.color.md_grey_200))
                     .withIcon(getRandomIcon(font))
@@ -88,8 +86,10 @@ class MainActivity : AppCompatActivity() {
                 .withToolbar(toolbar)
                 .withDrawerItems(items)
                 .withOnDrawerItemClickListener { _, i, _ ->
-                    loadIcons(fonts[i].fontName)
-                    supportActionBar?.title = fonts[i].fontName
+                    fonts[i].fontName.also {
+                        loadIcons(it)
+                        supportActionBar?.title = it
+                    }
 
                     false
                 }
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
                 currentSearch = s
 
                 fonts.forEachIndexed { index, font ->
-                    val foundCount = font.icons.count { it.contains(s, false) }
+                    val foundCount = font.icons.count { it.contains(s, true) }
                     drawer.updateBadge(
                         index.toLong(),
                         StringHolder(foundCount.toString())
@@ -157,7 +157,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getRandomIcon(typeface: ITypeface): IIcon {
         val random = Random().nextInt(typeface.icons.size)
-        return typeface.getIcon(typeface.icons[random])
+        val icon = typeface.icons.toList()[random]
+        return typeface.getIcon(icon)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

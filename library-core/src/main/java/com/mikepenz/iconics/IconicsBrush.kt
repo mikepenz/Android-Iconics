@@ -28,19 +28,19 @@ import androidx.annotation.IntRange
  * @author pa.gulko zTrap (28.11.2018)
  */
 class IconicsBrush<T : Paint>(
-    /** @return paint. Will be used for drawing something (icon, background etc.) */
+    /** Will be used for drawing something (icon, background etc.) */
     val paint: T
 ) {
+    private var state: IntArray? = null
+
     init {
         paint.alpha = 255
     }
 
-    /** @return colors which applied on [.getPaint] for drawing current state */
+    /** Colors which applied on [paint] for drawing current state */
     var colorsList: ColorStateList? = null
-        private set
-    private var state: IntArray? = null
 
-    /** alpha channel for colors */
+    /** Alpha channel for colors */
     @IntRange(from = 0, to = 255)
     var alpha: Int = 255
         set(alpha) {
@@ -48,22 +48,17 @@ class IconicsBrush<T : Paint>(
             paint.alpha = alpha
         }
 
-    internal val isStateful: Boolean
+    val isStateful: Boolean
         get() = colorsList?.isStateful == true
 
-    internal val colorForCurrentState: Int
+    val colorForCurrentState: Int
         get() = colorsList?.defaultColor?.let { getColorForCurrentState(it) } ?: Color.TRANSPARENT
 
-    /** @param colors which will be applied on [.getPaint] for drawing current state */
-    fun setColors(colors: ColorStateList?) {
-        colorsList = colors
-    }
-
-    internal fun getColorForCurrentState(defaultColor: Int): Int {
+    fun getColorForCurrentState(defaultColor: Int): Int {
         return colorsList?.getColorForState(state, defaultColor) ?: defaultColor
     }
 
-    internal fun applyState(state: IntArray): Boolean {
+    fun applyState(state: IntArray?): Boolean {
         this.state = state
 
         var isInvalidate = false

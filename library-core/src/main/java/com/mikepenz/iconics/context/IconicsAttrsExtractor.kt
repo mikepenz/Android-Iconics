@@ -81,7 +81,7 @@ class IconicsAttrsExtractor(
     }
 
     private fun extract(icon: IconicsDrawable?, extractOffsets: Boolean): IconicsDrawable? {
-        var processedIcon = icon.copyIfCan()
+        var processedIcon = icon?.clone()
 
         // region icon
         val i = typedArray.getString(iconId)
@@ -161,14 +161,9 @@ class IconicsAttrsExtractor(
         // region animations
         val animations = typedArray.getString(animationsId)
         if (!animations.isNullOrBlank()) {
-            val processors = ArrayList<IconicsAnimationProcessor>()
-
-            val animationsList = animations.split("\\|".toRegex())
+            val processors = animations.split("\\|".toRegex())
                     .dropLastWhile { it.isEmpty() }
-                    .toTypedArray()
-
-            animationsList.mapNotNull { Iconics.findProcessor(it) }
-                    .toCollection(processors)
+                    .mapNotNull { Iconics.findProcessor(it) }
 
             processedIcon = processedIcon.createIfNeeds(context)
                     .toAnimatedDrawable()
@@ -181,8 +176,6 @@ class IconicsAttrsExtractor(
     private fun TypedArray.getDimensionPixelSize(@StyleableRes index: Int): Int? {
         return getDimensionPixelSize(index, DEF_SIZE).takeIf { it != DEF_SIZE }
     }
-
-    private fun IconicsDrawable?.copyIfCan(): IconicsDrawable? = this?.clone()
 
     private fun IconicsDrawable?.createIfNeeds(context: Context): IconicsDrawable {
         return this ?: IconicsDrawable(context)
