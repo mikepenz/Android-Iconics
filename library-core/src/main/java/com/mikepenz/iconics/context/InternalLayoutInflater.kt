@@ -67,7 +67,7 @@ internal class InternalLayoutInflater : LayoutInflater {
     }
 
     @Throws(ClassNotFoundException::class)
-    override fun onCreateView(parent: View, name: String, attrs: AttributeSet): View? {
+    override fun onCreateView(parent: View?, name: String, attrs: AttributeSet): View? {
         return IconicsFactory.onViewCreated(super.onCreateView(parent, name, attrs), context, attrs)
     }
 
@@ -209,7 +209,7 @@ internal class InternalLayoutInflater : LayoutInflater {
         }
 
         override fun onCreateView(
-            parent: View,
+            parent: View?,
             name: String,
             context: Context,
             attrs: AttributeSet
@@ -233,7 +233,7 @@ internal class InternalLayoutInflater : LayoutInflater {
     ) : InternalLayoutInflater.WrapperFactory2(factory2) {
 
         override fun onCreateView(
-            parent: View,
+            parent: View?,
             name: String,
             context: Context,
             attrs: AttributeSet
