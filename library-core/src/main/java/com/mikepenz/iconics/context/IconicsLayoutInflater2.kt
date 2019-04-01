@@ -31,7 +31,7 @@ class IconicsLayoutInflater2(
 ) : LayoutInflater.Factory2 {
 
     override fun onCreateView(
-        parent: View,
+        parent: View?,
         name: String,
         context: Context,
         attrs: AttributeSet
