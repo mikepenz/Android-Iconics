@@ -27,6 +27,7 @@ import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.typeface.library.pixeden7stroke.Pixeden7Stroke
 import com.mikepenz.iconics.typeface.library.typeicons.Typeicons
 import com.mikepenz.iconics.typeface.library.weathericons.WeatherIcons
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -35,10 +36,11 @@ import ru.ztrap.iconics.IconicsStringGenerator
 /**
  * @author pa.gulko zTrap (29.10.2017)
  */
+@Ignore
 @RunWith(JUnit4::class)
 class StringFieldsGenerator : IconicsStringGenerator() {
 
-    /*@Test fun generateCommunityMaterial() {
+    @Test fun generateCommunityMaterial() {
         generateIconsFrom(CommunityMaterial)
     }
 
@@ -88,7 +90,7 @@ class StringFieldsGenerator : IconicsStringGenerator() {
 
     @Test fun generateWeatherIcons() {
         generateIconsFrom(WeatherIcons)
-    }*/
+    }
 
     override val fileCreationStrategy: IconicsStringGenerator.FileCreationStrategy
         get() = IconicsStringGenerator.FileCreationStrategy.SAVE_ONLY_CURRENT

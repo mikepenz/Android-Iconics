@@ -87,13 +87,13 @@ class IconsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Init and Setup RecyclerView
-        list.also {
-            it.layoutManager = GridLayoutManager(activity, 2)
-            it.addItemDecoration(SpaceItemDecoration())
+        list.apply {
+            layoutManager = GridLayoutManager(activity, 2)
+            addItemDecoration(SpaceItemDecoration())
             //animator not yet working
-            it.itemAnimator = DefaultItemAnimator()
+            itemAnimator = DefaultItemAnimator()
             configAdapter()
-            it.adapter = adapter
+            adapter = this@IconsFragment.adapter
         }
 
         arguments?.let { arguments ->
@@ -123,23 +123,25 @@ class IconsFragment : Fragment() {
                 item: IconItem,
                 position: Int
             ): Boolean {
+                val ctx = v.context
+
                 val a = event.action
                 if (a == MotionEvent.ACTION_DOWN) {
                     dismissPopup()
 
                     val i = item.icon ?: return false
-                    val icon = IconicsDrawable(v.context)
+                    val icon = IconicsDrawable(ctx)
                             .icon(i)
                             .size(IconicsSize.dp(144f))
                             .padding(IconicsSize.dp(8f))
                             .backgroundColor("#DDFFFFFF".toIconicsColor())
                             .roundedCorners(IconicsSize.dp(12f))
 
-                    ImageView(v.context).let { imageView ->
+                    ImageView(ctx).let { imageView ->
                         imageView.setImageDrawable(icon)
 
                         if (!::popup.isInitialized) {
-                            val size = IconicsUtils.convertDpToPx(v.context, 144)
+                            val size = IconicsUtils.convertDpToPx(ctx, 144)
 
                             PopupWindow(size, size).let { popup ->
                                 this@IconsFragment.popup = popup
@@ -150,11 +152,12 @@ class IconsFragment : Fragment() {
                     }
 
                     //copy to clipboard
-                    val clipboard =
-                            v.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip =
-                            ClipData.newPlainText("Android-Iconics icon", icon.icon?.formattedName)
-                    clipboard.primaryClip = clip
+                    (ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).run {
+                        primaryClip = ClipData.newPlainText(
+                            "Android-Iconics icon",
+                            icon.icon?.formattedName
+                        )
+                    }
                 } else if (a in arrayOf(ACTION_UP, ACTION_CANCEL, ACTION_OUTSIDE)) {
                     dismissPopup()
                 }
