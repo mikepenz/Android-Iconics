@@ -64,7 +64,7 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 ```gradle
 //the core iconics library (without any widgets)
 implementation "com.mikepenz:iconics-core:4.0.0-b1"
-implementation "androidx.appcompat:appcompat:${androidXVersion}"
+implementation "androidx.appcompat:appcompat:$versions.appCompat"
 ```
 
 ## 1b. (optional) Add the view's dependency
@@ -227,13 +227,20 @@ Licenses for all included fonts are linked inside the class or can be found on t
 ### Register fonts
 
 If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the `Application`.
+You can manually provide `applicationContext` and trigger initialization, or you can use our `IconicsContentProvider` and do absolutely nothing.
+
+If you want to use tha manual way - place this value into your resources
+```xml
+<bool name="is_iconics_content_provider_enabled">false</bool>
+```
+And initialize Iconics as you wish
 ```kotlin
 class CustomApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
         //only required if you add a custom or generic font on your own
-        Iconics.init()
+        Iconics.init(applicationContext)
 
         //register custom fonts like this (or also provide a font definition file)
         Iconics.registerFont(CustomFont())
