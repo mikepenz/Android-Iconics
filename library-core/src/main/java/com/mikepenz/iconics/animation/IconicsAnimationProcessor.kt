@@ -29,6 +29,7 @@ import androidx.annotation.FloatRange
 import androidx.annotation.RequiresApi
 import com.mikepenz.iconics.IconicsBrush
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor.Companion.INFINITE
+import com.mikepenz.iconics.animation.IconicsAnimationProcessor.RepeatMode
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor.RepeatMode.RESTART
 
 /**

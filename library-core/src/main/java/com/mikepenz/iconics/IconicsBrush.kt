@@ -41,45 +41,33 @@ class IconicsBrush<T : Paint>(
     var colorsList: ColorStateList? = null
 
     /** Alpha channel for colors */
-    @IntRange(from = 0, to = 255)
-    var alpha: Int = 255
-        set(alpha) {
-            field = alpha
-            paint.alpha = alpha
+    var alpha: Int
+        get() {
+            return paint.alpha
+        }
+        set(@IntRange(from = 0, to = 255) alpha) {
+            if (paint.alpha != alpha) {
+                paint.alpha = alpha
+            }
         }
 
     val isStateful: Boolean
         get() = colorsList?.isStateful == true
 
     val colorForCurrentState: Int
-        get() = colorsList?.defaultColor?.let { getColorForCurrentState(it) } ?: Color.TRANSPARENT
+        get() = getColorForCurrentState(colorsList?.defaultColor ?: Color.TRANSPARENT)
 
-    fun getColorForCurrentState(defaultColor: Int): Int {
+    private fun getColorForCurrentState(defaultColor: Int): Int {
         return colorsList?.getColorForState(state, defaultColor) ?: defaultColor
     }
 
     fun applyState(state: IntArray?): Boolean {
         this.state = state
 
-        var isInvalidate = false
-
         val colorForState = colorForCurrentState
-        val red = Color.red(colorForState)
-        val green = Color.green(colorForState)
-        val blue = Color.blue(colorForState)
-
-        val colorRgb = Color.rgb(red, green, blue)
-        if (colorRgb != paint.color) {
-            paint.color = colorRgb
-            isInvalidate = true
-        }
-
-        val alpha = Color.alpha(colorForState)
-        if (alpha != this.alpha) {
-            this.alpha = alpha
-            isInvalidate = true
-        }
-        return isInvalidate
+        val oldColor = paint.color
+        paint.color = colorForState
+        return paint.color != oldColor
     }
 
     override fun toString(): String {

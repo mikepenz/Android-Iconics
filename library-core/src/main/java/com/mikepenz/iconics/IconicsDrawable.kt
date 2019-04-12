@@ -55,7 +55,11 @@ import com.mikepenz.iconics.utils.toIconicsSizeRes
 
 /** A custom [Drawable] which can display icons from icon fonts. */
 open class IconicsDrawable(protected val context: Context) : Drawable() {
-    protected val iconBrush = IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG))
+    protected val iconBrush =
+            IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG)).apply {
+                colorsList =
+                        ColorStateList.valueOf(Color.BLACK)
+            }
     protected val backgroundContourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val contourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
@@ -90,7 +94,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
     private var shadowColor = Color.TRANSPARENT
 
     private var tint: ColorStateList? = null
-    private var tintMode: PorterDuff.Mode? = PorterDuff.Mode.SRC_IN
+    private var tintMode: PorterDuff.Mode = PorterDuff.Mode.SRC_IN
     private var tintFilter: ColorFilter? = null
     private var iconColorFilter: ColorFilter? = null
 
@@ -1086,11 +1090,11 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
     // in some cases (e.g. on API 16) stateSet might be null
     override fun onStateChange(stateSet: IntArray?): Boolean {
         var isNeedsRedraw = (iconBrush.applyState(stateSet)
-                or contourBrush.applyState(stateSet)
-                or backgroundBrush.applyState(stateSet)
-                or backgroundContourBrush.applyState(stateSet))
+                || contourBrush.applyState(stateSet)
+                || backgroundBrush.applyState(stateSet)
+                || backgroundContourBrush.applyState(stateSet))
 
-        if (tint != null && tintMode != null) {
+        if (tint != null) {
             updateTintFilter()
             isNeedsRedraw = true
         }
@@ -1194,7 +1198,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
         val tint = this.tint
         val tintMode = this.tintMode
 
-        if (tint == null || tintMode == null) {
+        if (tint == null) {
             tintFilter = null
             return
         }
@@ -1212,10 +1216,18 @@ inline fun IconicsDrawable.colorString(colorString: String) = color(colorString.
 inline fun IconicsDrawable.colorRes(@ColorRes colorRes: Int) = color(colorRes.toIconicsColorRes())
 inline fun IconicsDrawable.colorInt(@ColorInt colorInt: Int) = color(colorInt.toIconicsColor())
 
-inline fun IconicsDrawable.sizeDp(@Dimension(unit = DP) sizeDp: Int) = size(sizeDp.toIconicsSizeDp())
-inline fun IconicsDrawable.sizePx(@Dimension(unit = PX) sizePx: Int) = size(sizePx.toIconicsSizePx())
+inline fun IconicsDrawable.sizeDp(@Dimension(unit = DP) sizeDp: Int) =
+        size(sizeDp.toIconicsSizeDp())
+
+inline fun IconicsDrawable.sizePx(@Dimension(unit = PX) sizePx: Int) =
+        size(sizePx.toIconicsSizePx())
+
 inline fun IconicsDrawable.sizeRes(@DimenRes sizeRes: Int) = size(sizeRes.toIconicsSizeRes())
 
-inline fun IconicsDrawable.paddingDp(@Dimension(unit = DP) sizeDp: Int) = padding(sizeDp.toIconicsSizeDp())
-inline fun IconicsDrawable.paddingPx(@Dimension(unit = PX) sizePx: Int) = padding(sizePx.toIconicsSizePx())
+inline fun IconicsDrawable.paddingDp(@Dimension(unit = DP) sizeDp: Int) =
+        padding(sizeDp.toIconicsSizeDp())
+
+inline fun IconicsDrawable.paddingPx(@Dimension(unit = PX) sizePx: Int) =
+        padding(sizePx.toIconicsSizePx())
+
 inline fun IconicsDrawable.paddingRes(@DimenRes sizeRes: Int) = padding(sizeRes.toIconicsSizeRes())
