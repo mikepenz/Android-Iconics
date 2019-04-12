@@ -35,34 +35,18 @@ package com.mikepenz.iconics;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PixelFormat;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Typeface;
+import android.graphics.*;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.DimenRes;
-import androidx.annotation.Dimension;
-import androidx.annotation.IntRange;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.*;
 import androidx.core.content.ContextCompat;
 import com.mikepenz.iconics.animation.IconicsAnimatedDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
 import com.mikepenz.iconics.typeface.ITypeface;
 import com.mikepenz.iconics.utils.Utils;
+
 import static android.view.View.LAYER_TYPE_SOFTWARE;
 import static androidx.annotation.Dimension.DP;
 import static androidx.annotation.Dimension.PX;
@@ -94,24 +78,20 @@ public class IconicsDrawable extends Drawable {
 
     // icon
     @NonNull
-    protected final IconicsBrush<TextPaint> mIconBrush = new IconicsBrush<>(
-            new TextPaint(Paint.ANTI_ALIAS_FLAG));
+    protected final IconicsBrush<TextPaint> mIconBrush = new IconicsBrush<>(new TextPaint(Paint.ANTI_ALIAS_FLAG)).setColors(ColorStateList.valueOf(Color.BLACK));
 
     // background
     @NonNull
-    protected final IconicsBrush<Paint> mBackgroundBrush = new IconicsBrush<>(
-            new Paint(Paint.ANTI_ALIAS_FLAG));
+    protected final IconicsBrush<Paint> mBackgroundBrush = new IconicsBrush<>(new Paint(Paint.ANTI_ALIAS_FLAG));
 
     // contour
     @NonNull
-    protected final IconicsBrush<Paint> mContourBrush = new IconicsBrush<>(
-            new Paint(Paint.ANTI_ALIAS_FLAG));
+    protected final IconicsBrush<Paint> mContourBrush = new IconicsBrush<>(new Paint(Paint.ANTI_ALIAS_FLAG));
     private boolean mDrawContour;
 
     // background contour
     @NonNull
-    protected final IconicsBrush<Paint> mBackgroundContourBrush = new IconicsBrush<>(
-            new Paint(Paint.ANTI_ALIAS_FLAG));
+    protected final IconicsBrush<Paint> mBackgroundContourBrush = new IconicsBrush<>(new Paint(Paint.ANTI_ALIAS_FLAG));
     private boolean mDrawBackgroundContour;
 
     private int mRoundedCornerRx = -1;
@@ -1381,11 +1361,11 @@ public class IconicsDrawable extends Drawable {
     @Override
     protected boolean onStateChange(@NonNull int[] stateSet) {
         boolean isNeedsRedraw = mIconBrush.applyState(stateSet)
-                | mContourBrush.applyState(stateSet)
-                | mBackgroundBrush.applyState(stateSet)
-                | mBackgroundContourBrush.applyState(stateSet);
+                || mContourBrush.applyState(stateSet)
+                || mBackgroundBrush.applyState(stateSet)
+                || mBackgroundContourBrush.applyState(stateSet);
 
-        if (mTint != null && mTintMode != null) {
+        if (mTint != null) {
             updateTintFilter();
             isNeedsRedraw = true;
         }
@@ -1495,7 +1475,7 @@ public class IconicsDrawable extends Drawable {
      * mode.
      */
     private void updateTintFilter() {
-        if (mTint == null || mTintMode == null) {
+        if (mTint == null) {
             mTintFilter = null;
             return;
         }

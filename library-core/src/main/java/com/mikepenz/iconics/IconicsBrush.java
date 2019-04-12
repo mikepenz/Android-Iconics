@@ -37,18 +37,17 @@ public class IconicsBrush<T extends Paint> {
     private final T mPaint;
     @Nullable
     private int[] mState;
-    private int mAlpha = 255;
 
     public IconicsBrush(@NonNull T paint) {
         mPaint = paint;
-        mPaint.setAlpha(mAlpha);
     }
 
     /**
      * @param colors which will be applied on {@link #getPaint()} for drawing current state
      */
-    public void setColors(@Nullable ColorStateList colors) {
+    public IconicsBrush<T> setColors(@Nullable ColorStateList colors) {
         mColors = colors;
+        return this;
     }
 
     /**
@@ -71,8 +70,9 @@ public class IconicsBrush<T extends Paint> {
      * @param alpha channel for colors
      */
     public void setAlpha(@IntRange(from = 0, to = 255) int alpha) {
-        mAlpha = alpha;
-        mPaint.setAlpha(alpha);
+        if (mPaint.getAlpha() != alpha) {
+            mPaint.setAlpha(alpha);
+        }
     }
 
     /**
@@ -80,7 +80,7 @@ public class IconicsBrush<T extends Paint> {
      */
     @IntRange(from = 0, to = 255)
     public int getAlpha() {
-        return mAlpha;
+        return mPaint.getAlpha();
     }
 
     boolean isStateful() {
@@ -106,24 +106,9 @@ public class IconicsBrush<T extends Paint> {
     boolean applyState(@NonNull int[] state) {
         mState = state;
 
-        boolean isInvalidate = false;
-
         int colorForState = getColorForCurrentState();
-        int red = Color.red(colorForState);
-        int green = Color.green(colorForState);
-        int blue = Color.blue(colorForState);
-
-        int colorRgb = Color.rgb(red, green, blue);
-        if (colorRgb != mPaint.getColor()) {
-            mPaint.setColor(colorRgb);
-            isInvalidate = true;
-        }
-
-        int alpha = Color.alpha(colorForState);
-        if (alpha != mAlpha) {
-            setAlpha(alpha);
-            isInvalidate = true;
-        }
-        return isInvalidate;
+        int oldColor = mPaint.getColor();
+        mPaint.setColor(colorForState);
+        return mPaint.getColor() != oldColor;
     }
 }
