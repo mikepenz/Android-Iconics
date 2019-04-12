@@ -23,7 +23,6 @@ import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
 import androidx.annotation.StyleableRes
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.animation.IconicsAnimationProcessor
 import com.mikepenz.iconics.utils.toIconicsColor
 import com.mikepenz.iconics.utils.toIconicsSizePx
 

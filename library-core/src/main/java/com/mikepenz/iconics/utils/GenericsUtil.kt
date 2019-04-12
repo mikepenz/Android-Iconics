@@ -31,7 +31,8 @@ object GenericsUtil {
 
     /** Helper to get the string fields with name starts "define_processor_" from the R class */
     @JvmStatic fun getDefinedProcessors(ctx: Context): Array<out String> {
-        return resolveRClass(ctx.packageName)?.let { getDefinedProcessors(ctx, it.fields) }.orEmpty()
+        return resolveRClass(ctx.packageName)?.let { getDefinedProcessors(ctx, it.fields) }
+                .orEmpty()
     }
 
     /** Helper to resolve the correct R Class for the package */
