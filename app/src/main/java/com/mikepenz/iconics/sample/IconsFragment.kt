@@ -35,10 +35,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mikepenz.fastadapter.IAdapter
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.listeners.OnBindViewHolderListener
-import com.mikepenz.fastadapter.listeners.OnTouchListener
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
@@ -115,21 +113,15 @@ class IconsFragment : Fragment() {
 
     private fun configAdapter() {
         //our popup on touch
-        adapter.onTouchListener = object : OnTouchListener<IconItem> {
-            override fun onTouch(
-                v: View,
-                event: MotionEvent,
-                adapter: IAdapter<IconItem>,
-                item: IconItem,
-                position: Int
-            ): Boolean {
-                val ctx = v.context
+        adapter.onTouchListener = { v, event, _, item, _ ->
+            val ctx = v.context
 
-                val a = event.action
-                if (a == MotionEvent.ACTION_DOWN) {
-                    dismissPopup()
+            val a = event.action
+            if (a == MotionEvent.ACTION_DOWN) {
+                dismissPopup()
 
-                    val i = item.icon ?: return false
+                val i = item.icon
+                if (i != null) {
                     val icon = IconicsDrawable(ctx)
                             .icon(i)
                             .size(IconicsSize.dp(144f))
@@ -161,10 +153,9 @@ class IconsFragment : Fragment() {
                 } else if (a in arrayOf(ACTION_UP, ACTION_CANCEL, ACTION_OUTSIDE)) {
                     dismissPopup()
                 }
-                return false
             }
+            false
         }
-
 
         adapter.onBindViewHolderListener = object : OnBindViewHolderListener {
 

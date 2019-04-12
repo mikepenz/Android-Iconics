@@ -91,10 +91,10 @@ dependencies {
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    implementation 'com.mikepenz:fastadapter:4.0.0-beta1'
-    implementation 'com.mikepenz:fastadapter-extensions-utils:4.0.0-beta1'
-    implementation 'com.mikepenz:fastadapter-extensions-ui:4.0.0-beta1'
-    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.0.0-beta1'
+    implementation 'com.mikepenz:fastadapter:4.0.0-rc03'
+    implementation 'com.mikepenz:fastadapter-extensions-utils:4.0.0-rc03'
+    implementation 'com.mikepenz:fastadapter-extensions-ui:4.0.0-rc03'
+    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.0.0-rc03'
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
     // https://github.com/zTrap/Android-Iconics-String-Generator
@@ -102,7 +102,7 @@ dependencies {
 
     // used to generate the drawer on the left
     // https://github.com/mikepenz/MaterialDrawer
-    implementation('com.mikepenz:materialdrawer:7.0.0-alpha2i') {
+    implementation('com.mikepenz:materialdrawer:7.0.0-beta01') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "fastadapter-extensions-expandable"

@@ -17,7 +17,7 @@
 buildscript {
     ext {
         release = [
-                versionName: "4.0.0-b1",
+                versionName: "4.0.0-rc01",
                 versionCode: 40000
         ]
 

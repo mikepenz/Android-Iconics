@@ -85,14 +85,16 @@ class MainActivity : AppCompatActivity() {
         drawer = DrawerBuilder().withActivity(this)
                 .withToolbar(toolbar)
                 .withDrawerItems(items)
-                .withOnDrawerItemClickListener { _, i, _ ->
-                    fonts[i].fontName.also {
-                        loadIcons(it)
-                        supportActionBar?.title = it
-                    }
+                .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
+                    override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                        fonts[position].fontName.also {
+                            loadIcons(it)
+                            supportActionBar?.title = it
+                        }
 
-                    false
-                }
+                        return false
+                    }
+                })
                 .withOnDrawerListener(object : Drawer.OnDrawerListener {
                     override fun onDrawerOpened(drawerView: View) {
                         KeyboardUtil.hideKeyboard(this@MainActivity)
