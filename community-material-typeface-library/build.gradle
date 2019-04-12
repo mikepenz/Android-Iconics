@@ -28,7 +28,7 @@ android {
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 35951
-        versionName "3.5.95.1"
+        versionName "3.5.95.1-kotlin"
 
         resValue "string", "community_material_version", "${versionName}"
     }
