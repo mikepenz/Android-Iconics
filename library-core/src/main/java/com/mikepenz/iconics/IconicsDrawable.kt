@@ -55,11 +55,7 @@ import com.mikepenz.iconics.utils.toIconicsSizeRes
 
 /** A custom [Drawable] which can display icons from icon fonts. */
 open class IconicsDrawable(protected val context: Context) : Drawable() {
-    protected val iconBrush =
-            IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG)).apply {
-                colorsList =
-                        ColorStateList.valueOf(Color.BLACK)
-            }
+    protected val iconBrush = IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundContourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val contourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
@@ -99,10 +95,13 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
     private var iconColorFilter: ColorFilter? = null
 
     init {
-        iconBrush.paint.apply {
-            style = Paint.Style.FILL
-            textAlign = Paint.Align.CENTER
-            isUnderlineText = false
+        iconBrush.also {
+            it.colorsList = ColorStateList.valueOf(Color.BLACK)
+            it.paint.apply {
+                style = Paint.Style.FILL
+                textAlign = Paint.Align.CENTER
+                isUnderlineText = false
+            }
         }
 
         contourBrush.paint.style = Paint.Style.STROKE
@@ -815,6 +814,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      */
     fun clearShadow(): IconicsDrawable {
         iconBrush.paint.clearShadowLayer()
+
         invalidateSelf()
         return this
     }
@@ -916,6 +916,8 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      */
     fun colorFilter(cf: ColorFilter?): IconicsDrawable {
         colorFilter = cf
+
+        invalidateSelf()
         return this
     }
 
@@ -1077,7 +1079,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
     }
 
     override fun getOpacity(): Int {
-        if (tintFilter != null || iconBrush.paint.colorFilter != null) {
+        if (tintFilter != null || iconColorFilter != null) {
             return PixelFormat.TRANSLUCENT
         }
         when (alpha) {
@@ -1089,10 +1091,10 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
 
     // in some cases (e.g. on API 16) stateSet might be null
     override fun onStateChange(stateSet: IntArray?): Boolean {
-        var isNeedsRedraw = (iconBrush.applyState(stateSet)
-                || contourBrush.applyState(stateSet)
-                || backgroundBrush.applyState(stateSet)
-                || backgroundContourBrush.applyState(stateSet))
+        var isNeedsRedraw = iconBrush.applyState(stateSet)
+        isNeedsRedraw = contourBrush.applyState(stateSet) || isNeedsRedraw
+        isNeedsRedraw = backgroundBrush.applyState(stateSet) || isNeedsRedraw
+        isNeedsRedraw = backgroundContourBrush.applyState(stateSet) || isNeedsRedraw
 
         if (tint != null) {
             updateTintFilter()
