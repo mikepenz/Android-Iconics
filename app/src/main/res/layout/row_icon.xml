@@ -20,13 +20,13 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:clickable="true"
+    android:foreground="?selectableItemBackgroundBorderless"
     android:focusable="true">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@drawable/button_rect_list_normal"
         android:clickable="false"
         android:gravity="center_vertical"
         android:paddingEnd="8dp"

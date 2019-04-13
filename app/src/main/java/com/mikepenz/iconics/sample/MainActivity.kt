@@ -201,6 +201,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(applicationContext, OldAutomaticActivity::class.java))
                 return true
             }
+            R.id.action_test -> {
+                startActivity(Intent(applicationContext, TestActivity::class.java))
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }

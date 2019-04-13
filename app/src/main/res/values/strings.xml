@@ -29,5 +29,6 @@
     <string name="action_playground">Playground</string>
     <string name="action_automatic">Automatic Mapping</string>
     <string name="action_old_automatic">Old Automatic Mapping</string>
+    <string name="action_test">Test</string>
     <string name="search_title">Suche</string>
 </resources>

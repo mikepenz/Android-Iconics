@@ -50,4 +50,8 @@
         android:id="@+id/action_old_automatic"
         android:title="@string/action_old_automatic"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_test"
+        android:title="@string/action_test"
+        app:showAsAction="never" />
 </menu>
