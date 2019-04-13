@@ -1360,10 +1360,10 @@ public class IconicsDrawable extends Drawable {
 
     @Override
     protected boolean onStateChange(@NonNull int[] stateSet) {
-        boolean isNeedsRedraw = mIconBrush.applyState(stateSet)
-                || mContourBrush.applyState(stateSet)
-                || mBackgroundBrush.applyState(stateSet)
-                || mBackgroundContourBrush.applyState(stateSet);
+        boolean isNeedsRedraw = mIconBrush.applyState(stateSet);
+        isNeedsRedraw |= mContourBrush.applyState(stateSet);
+        isNeedsRedraw |= mBackgroundBrush.applyState(stateSet);
+        isNeedsRedraw |= mBackgroundContourBrush.applyState(stateSet);
 
         if (mTint != null) {
             updateTintFilter();
