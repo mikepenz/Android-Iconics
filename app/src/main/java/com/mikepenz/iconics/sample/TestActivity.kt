@@ -75,7 +75,7 @@ class TestActivity : AppCompatActivity() {
         adapter.add(TestItem("ColorStr (red)", IconicsDrawable(this, icon).colorString("#FF0000")))
         adapter.add(TestItem("#AAFF0000", IconicsDrawable(this, icon).colorString("#AAFF0000")))
         adapter.add(TestItem("Alpha(50%) (red)", IconicsDrawable(this, icon).colorInt(Color.RED).alpha(255/2)))
-        adapter.add(TestItem("ColorStateList", IconicsDrawable(this, icon).color(IconicsColor.colorList(colorStateList))))
+        adapter.add(TestItem("ColorStateList", IconicsDrawable(this, icon).color(IconicsColor.colorRes(R.color.color_states_bg))))
 
         adapter.add(TestItem("Padding 8dp", IconicsDrawable(this, icon).paddingDp(8)))
         adapter.add(TestItem("OffsetX 8dp", IconicsDrawable(this, icon).iconOffsetX(IconicsSize.dp(8))))
@@ -87,9 +87,9 @@ class TestActivity : AppCompatActivity() {
         adapter.add(TestItem("Contour (red)(1dp)", IconicsDrawable(this, icon).contourColor(IconicsColor.colorInt(Color.RED)).contourWidth(IconicsSize.dp(1))))
         adapter.add(TestItem("!!?? BackgroundContour (red)(1dp)", IconicsDrawable(this, icon).backgroundContourColor(IconicsColor.colorInt(Color.RED)).backgroundContourWidth(IconicsSize.dp(1)).drawBackgroundContour(true)))
 
-        adapter.add(TestItem("Background (CSL)", IconicsDrawable(this, icon).backgroundColor(IconicsColor.colorList(colorStateList))))
-        adapter.add(TestItem("Contour (CSL)(1dp)", IconicsDrawable(this, icon).contourColor(IconicsColor.colorList(colorStateList)).contourWidth(IconicsSize.dp(1))))
-        adapter.add(TestItem("!!?? BackgroundContour (CSL)(1dp)", IconicsDrawable(this, icon).backgroundContourColor(IconicsColor.colorList(colorStateList)).backgroundContourWidth(IconicsSize.dp(1)).drawBackgroundContour(true)))
+        adapter.add(TestItem("Background (CSL)", IconicsDrawable(this, icon).backgroundColor(IconicsColor.colorRes(R.color.color_states_bg))))
+        adapter.add(TestItem("Contour (CSL)(1dp)", IconicsDrawable(this, icon).contourColor(IconicsColor.colorRes(R.color.color_states_bg)).contourWidth(IconicsSize.dp(1))))
+        adapter.add(TestItem("!!?? BackgroundContour (CSL)(1dp)", IconicsDrawable(this, icon).backgroundContourColor(IconicsColor.colorRes(R.color.color_states_bg)).backgroundContourWidth(IconicsSize.dp(1)).drawBackgroundContour(true)))
         // @formatter:on
     }
 
