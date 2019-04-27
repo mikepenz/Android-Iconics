@@ -21,8 +21,7 @@ import com.mikepenz.iconics.Iconics
 import java.lang.reflect.Field
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
-import kotlin.reflect.KClass
-import kotlin.reflect.full.createInstance
+import java.lang.reflect.Modifier
 
 /**
  * Base created by Christopher Jenkins
@@ -59,11 +58,35 @@ internal object ReflectionUtils {
 
     /** A helper method to instantiate class by name */
     inline fun <reified T : Any> getInstanceForName(name: String): T {
-        return getInstanceOf(Class.forName(name).kotlin) as T
+        return getInstanceOf(Class.forName(name)) as T
     }
 
-    @Suppress("NOTHING_TO_INLINE")
-    inline fun <T : Any> getInstanceOf(cls: KClass<T>): T {
-        return cls.objectInstance ?: cls.createInstance()
+    /**
+     * A helper method to instantiate a class or Kotlin object. This could be easier by using
+     * kotlin-reflection, but is done with JVM reflection to avoid the large dependency.
+     */
+    @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
+    inline fun <T : Any> getInstanceOf(cls: Class<T>): T {
+        val instanceField = try {
+            cls.getField("INSTANCE")
+        } catch (err: NoSuchFieldException) {
+            null
+        }
+
+        return if (
+            instanceField != null &&
+            Modifier.isFinal(instanceField.modifiers) &&
+            Modifier.isStatic(instanceField.modifiers)
+        ) {
+            // This is a Kotlin object.
+            instanceField.get(null) as T
+        } else {
+            // This is a regular class.
+            val constructor = cls.getDeclaredConstructor().apply {
+                isAccessible = true
+            }
+
+            constructor.newInstance()
+        }
     }
 }

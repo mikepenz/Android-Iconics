@@ -25,6 +25,7 @@ android {
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
+        consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode release.versionCode
         versionName release.versionName
 
@@ -54,5 +55,4 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$versions.appCompat"
     implementation "androidx.core:core-ktx:$versions.ktx.core"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 }
