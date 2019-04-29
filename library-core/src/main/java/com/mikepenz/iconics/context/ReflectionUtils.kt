@@ -67,11 +67,7 @@ internal object ReflectionUtils {
      */
     @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
     inline fun <T : Any> getInstanceOf(cls: Class<T>): T {
-        val instanceField = try {
-            cls.getField("INSTANCE")
-        } catch (err: NoSuchFieldException) {
-            null
-        }
+        val instanceField = runCatching { cls.getField("INSTANCE") }.getOrNull()
 
         return if (
             instanceField != null &&
@@ -82,11 +78,7 @@ internal object ReflectionUtils {
             instanceField.get(null) as T
         } else {
             // This is a regular class.
-            val constructor = cls.getDeclaredConstructor().apply {
-                isAccessible = true
-            }
-
-            constructor.newInstance()
+            cls.newInstance()
         }
     }
 }
