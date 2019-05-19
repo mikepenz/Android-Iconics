@@ -1,1 +1,1 @@
--keep class com.mikepenz.iconics.typeface.library.communitymaterial.CommunityMaterial { *; }
+-keep class com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial { *; }

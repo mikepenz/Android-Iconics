@@ -130,7 +130,7 @@ object Iconics {
 
         PROCESSORS[animationTag]?.also {
             try {
-                return ReflectionUtils.getInstanceOf(it.kotlin)
+                return ReflectionUtils.getInstanceOf(it)
             } catch (e: IllegalAccessException) {
                 logger.log(ERROR, TAG, "Can't create processor for animation tag $animationTag", e)
             } catch (e: InstantiationException) {
