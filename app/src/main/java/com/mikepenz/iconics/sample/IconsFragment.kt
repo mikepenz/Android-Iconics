@@ -22,10 +22,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.MotionEvent.ACTION_CANCEL
-import android.view.MotionEvent.ACTION_OUTSIDE
-import android.view.MotionEvent.ACTION_UP
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -92,6 +88,13 @@ class IconsFragment : Fragment() {
             itemAnimator = DefaultItemAnimator()
             configAdapter()
             adapter = this@IconsFragment.adapter
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    dismissPopup()
+                }
+            })
         }
 
         arguments?.let { arguments ->
@@ -113,13 +116,11 @@ class IconsFragment : Fragment() {
 
     private fun configAdapter() {
         //our popup on touch
-        adapter.onTouchListener = { v, event, _, item, _ ->
-            val ctx = v.context
+        adapter.onClickListener = { v, _, item, _ ->
+            dismissPopup()
 
-            val a = event.action
-            if (a == MotionEvent.ACTION_DOWN) {
-                dismissPopup()
-
+            val ctx = v?.context
+            if (ctx != null) {
                 val i = item.icon
                 if (i != null) {
                     val icon = IconicsDrawable(ctx)
@@ -150,8 +151,6 @@ class IconsFragment : Fragment() {
                             icon.icon?.formattedName
                         )
                     }
-                } else if (a in arrayOf(ACTION_UP, ACTION_CANCEL, ACTION_OUTSIDE)) {
-                    dismissPopup()
                 }
             }
             false
