@@ -309,8 +309,12 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 # Developed By
 
 * Mike Penz 
-* [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
-* [paypal.me/mikepenz](http://paypal.me/mikepenz)
+  * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
+  * [paypal.me/mikepenz](http://paypal.me/mikepenz)
+
+
+* Peter Gulko
+  * [github.com/zTrap](https://github.com/zTrap)
 
 # License
 
