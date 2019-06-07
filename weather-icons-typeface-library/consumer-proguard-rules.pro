@@ -1,1 +1,1 @@
--keep class com.mikepenz.weather_icons_typeface_library.WeatherIcons { *; }
+-keep class com.mikepenz.iconics.typeface.library.weathericons.WeatherIcons { *; }

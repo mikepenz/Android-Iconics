@@ -62,66 +62,54 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 
 ## 1. Provide the gradle dependency
 ```gradle
-//the core iconcis library (without any widgets)
-implementation "com.mikepenz:iconics-core:3.2.5"
-implementation "androidx.appcompat:appcompat:${androidXVersion}"
+//the core iconics library (without any widgets)
+implementation "com.mikepenz:iconics-core:4.0.0"
+implementation "androidx.appcompat:appcompat:$versions.appCompat"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:3.2.5"
+implementation "com.mikepenz:iconics-views:4.0.0"
 ```
 
+For the non kotlin variant please use a version smaller than 4.x.y (See the releases on GitHub)
 To use appcompat please use a version smaller than 3.1.0. (See the releases on GitHub)
 
 ## 2. Choose your desired fonts
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:3.0.1.3.original@aar'
-implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.5@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.3.1.1@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.5@aar'
-implementation 'com.mikepenz:meteocons-typeface:1.1.0.5@aar'
-implementation 'com.mikepenz:community-material-typeface:3.5.95.1@aar'
-implementation 'com.mikepenz:weather-icons-typeface:2.0.10.5@aar'
-implementation 'com.mikepenz:typeicons-typeface:2.0.7.5@aar'
-implementation 'com.mikepenz:entypo-typeface:1.0.0.5@aar'
-implementation 'com.mikepenz:devicon-typeface:2.0.0.5@aar'
-implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.5@aar'
-implementation 'com.mikepenz:ionicons-typeface:2.0.1.5@aar'
-implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.6-kotlin@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.3.1.2-kotlin@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.6-kotlin@aar'
+implementation 'com.mikepenz:meteocons-typeface:1.1.0.5-kotlin@aar'
+implementation 'com.mikepenz:community-material-typeface:3.5.95.1-kotlin@aar'
+implementation 'com.mikepenz:weather-icons-typeface:2.0.10.5-kotlin@aar'
+implementation 'com.mikepenz:typeicons-typeface:2.0.7.5-kotlin@aar'
+implementation 'com.mikepenz:entypo-typeface:1.0.0.5-kotlin@aar'
+implementation 'com.mikepenz:devicon-typeface:2.0.0.5-kotlin@aar'
+implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.5-kotlin@aar'
+implementation 'com.mikepenz:ionicons-typeface:2.0.1.5-kotlin@aar'
+implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3-kotlin@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
 Set the `IconicsLayoutInflater` as new `LayoutInflaterFactory`. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml. This is compatible with libs which wrap the `baseContext` like [Calligraphy](https://github.com/chrisjenx/Calligraphy). This does not work on FAB's please use the `Context-Injection` instead.
 
-If compileSdkVersion >= 26:
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    LayoutInflaterCompat.setFactory2(getLayoutInflater(), new IconicsLayoutInflater2(getDelegate()));
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+    layoutInflater.setIconicsFactory(delegate)
+    super.onCreate(savedInstanceState)
     //...
-    super.onCreate(savedInstanceState);
-    //...
-}
-```
-Else:
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
-    //...
-    super.onCreate(savedInstanceState);
     //...
 }
 ```
 
 ### 3. ALTERNATIVE: Inject into Context (optional)
 Wrap the `Activity` context. This will enable the same features as Step 3.1., but is not compatible with other libs wrapping the `baseContext`.
-```java
-@Override
-protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
+```kotlin
+override fun attachBaseContext(newBase: Context) {
+    super.attachBaseContext(newBase.wrapByIconics())
 }
 ```
 
@@ -129,11 +117,11 @@ protected void attachBaseContext(Context newBase) {
 # Usage
 ## Use as drawable
 
-```java
-new IconicsDrawable(this)
+```kotlin
+IconicsDrawable(this)
     .icon(FontAwesome.Icon.faw_android)
-    .color(Color.RED)
-    .sizeDp(24)
+    .color(Color.RED.toIconicsColor())
+    .size(24.toIconicsSizeDp())
 ```
 
 ## Use via XML
@@ -239,17 +227,23 @@ Licenses for all included fonts are linked inside the class or can be found on t
 ### Register fonts
 
 If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the `Application`.
-```java
-public class CustomApplication extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
+You can manually provide `applicationContext` and trigger initialization, or you can use our `IconicsContentProvider` and do absolutely nothing.
+
+If you want to use tha manual way - place this value into your resources
+```xml
+<bool name="is_iconics_content_provider_enabled">false</bool>
+```
+And initialize Iconics as you wish
+```kotlin
+class CustomApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
 
         //only required if you add a custom or generic font on your own
-        Iconics.init(getApplicationContext());
+        Iconics.init(applicationContext)
 
         //register custom fonts like this (or also provide a font definition file)
-        Iconics.registerFont(new CustomFont());
+        Iconics.registerFont(CustomFont())
     }
 }
 ```
@@ -257,21 +251,21 @@ public class CustomApplication extends Application {
 ### Advanced IconicsBuilder
 Everything is easy and simple. Right? But now you got a single icon within your textview and you need additional styling?
 Just define the style for all icons or only a specific one. You can find this in the PlaygroundActivity of the sample too.
-```java
-new Iconics.IconicsBuilder().ctx(this)
-                .style(new ForegroundColorSpan(Color.WHITE), new BackgroundColorSpan(Color.BLACK), new RelativeSizeSpan(2f))
-                .styleFor(FontAwesome.Icon.faw_adjust, new BackgroundColorSpan(Color.RED))
+```kotlin
+Iconics.Builder()
+    .style(ForegroundColorSpan(Color.WHITE), BackgroundColorSpan(Color.BLACK), RelativeSizeSpan(2f))
+    .styleFor(FontAwesome.Icon.faw_adjust, BackgroundColorSpan(Color.RED))
                 .on(tv1)
-                .build();
+    .build()
 ```
 
 ### String icon-key or typeface enum
 Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use the enum provided by a specific font. Both is valid:
-```java
-  new IconicsDrawable(this, "faw-adjust").actionBar()
+```kotlin
+IconicsDrawable(this, "faw-adjust").actionBar()
 ```
-```java
-  new IconicsDrawable(this, FontAwesome.Icon.faw_adjust).sizeDp(24).paddingDp(1)
+```kotlin
+IconicsDrawable(this, FontAwesome.Icon.faw_adjust).size(24.toIconicsSizeDp()).padding(1.toIconicsSizeDp())
 ```
 
 
@@ -299,17 +293,11 @@ Exclude `R` from ProGuard to enable the font addon auto detection
 ```
 All other ProGuard rules are now bundled internally with each font. 
 
-# Kotlin support
-Also we have some extensions for easy use on kotlin in the library below
-
-[Android-Iconics Kt](https://github.com/zTrap/Android-Iconics-Kt)
-
 # Demo
 You can try the sample application out. It's on Google Play ;)
 https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 # Special Contributor
-- [Peter Gulko](https://github.com/zTrap) Thanks for providing better XML support for compound Iconics drawables, and for doing the initial work of splitting up core and views library
 - [Baptiste Lagache](https://github.com/ligol) Thanks for the gradle font module generator
 - Also thanks for all the other contributors.
 
@@ -339,5 +327,3 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-

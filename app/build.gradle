@@ -1,4 +1,22 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+/*
+ * Copyright (c) 2019 Mike Penz
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 //wrap with try and catch so the build is working even if the signing stuff is missing
 try {
     apply from: '../../../signing.gradle'
@@ -49,6 +67,11 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    packagingOptions {
+        exclude 'META-INF/library-core_release.kotlin_module'
+        exclude 'META-INF/library_release.kotlin_module'
+    }
 }
 
 dependencies {
@@ -68,16 +91,18 @@ dependencies {
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    implementation 'com.mikepenz:fastadapter:3.3.1'
-    implementation 'com.mikepenz:fastadapter-commons:3.3.1'
-    implementation 'com.mikepenz:fastadapter-extensions-expandable:3.3.1'
+    implementation 'com.mikepenz:fastadapter:4.0.0-rc03'
+    implementation 'com.mikepenz:fastadapter-extensions-utils:4.0.0-rc03'
+    implementation 'com.mikepenz:fastadapter-extensions-ui:4.0.0-rc03'
+    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.0.0-rc03'
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
-    testImplementation 'ru.ztrap.iconics:string-generator:1.0.2'
+    // https://github.com/zTrap/Android-Iconics-String-Generator
+    testImplementation 'ru.ztrap.iconics:string-generator:1.0.4'
 
-    //used to generate the drawer on the left
-    //https://github.com/mikepenz/MaterialDrawer
-    implementation('com.mikepenz:materialdrawer:6.1.2') {
+    // used to generate the drawer on the left
+    // https://github.com/mikepenz/MaterialDrawer
+    implementation('com.mikepenz:materialdrawer:7.0.0-beta01') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "fastadapter-extensions-expandable"
@@ -86,7 +111,7 @@ dependencies {
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    implementation('com.mikepenz:aboutlibraries:6.2.1') {
+    implementation('com.mikepenz:aboutlibraries:7.0.0-rc1') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
@@ -109,4 +134,6 @@ dependencies {
     implementation project(':pixeden-7-stroke-typeface-library')
 
     testImplementation 'junit:junit:4.12'
+    implementation "androidx.core:core-ktx:$versions.ktx.core"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }
