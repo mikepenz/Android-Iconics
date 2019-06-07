@@ -33,7 +33,7 @@ buildscript {
                 androidX : '1.0.0',
                 appCompat: '1.0.2',
                 ktx      : [
-                        core: '1.0.1'
+                        core: '1.0.2'
                 ]
         ]
     }
@@ -44,7 +44,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
