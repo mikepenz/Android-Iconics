@@ -1047,8 +1047,8 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
         invalidateSelf()
     }
 
-    override fun setTintMode(tintMode: PorterDuff.Mode) {
-        this.tintMode = tintMode
+    override fun setTintMode(tintMode: PorterDuff.Mode?) {
+        this.tintMode = tintMode ?: PorterDuff.Mode.SRC_IN
         updateTintFilter()
 
         invalidateSelf()
@@ -1068,9 +1068,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
                 || tint?.isStateful == true
     }
 
-    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-    // in some cases (e.g. on API 16) stateSet might be null
-    override fun setState(stateSet: IntArray?): Boolean {
+    override fun setState(stateSet: IntArray): Boolean {
         return super.setState(stateSet)
                 || iconBrush.isStateful
                 || contourBrush.isStateful
