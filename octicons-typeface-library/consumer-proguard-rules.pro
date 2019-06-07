@@ -1,1 +1,1 @@
--keep class com.mikepenz.octicons_typeface_library.Octicons { *; }
+-keep class com.mikepenz.iconics.typeface.library.octicons.Octicons { *; }

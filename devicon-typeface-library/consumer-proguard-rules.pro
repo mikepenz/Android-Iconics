@@ -1,1 +1,1 @@
--keep class com.mikepenz.devicon_typeface_library.DevIcon { *; }
+-keep class com.mikepenz.iconics.typeface.library.devicon.DevIcon { *; }

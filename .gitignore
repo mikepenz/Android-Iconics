@@ -11,8 +11,8 @@
 # Generated files
 bin/
 gen/
-.idea/*
 *.iml
+.idea/*
 
 # Gradle files
 .gradle/

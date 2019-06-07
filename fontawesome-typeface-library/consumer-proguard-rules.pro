@@ -1,1 +1,1 @@
--keep class com.mikepenz.fontawesome_typeface_library.FontAwesome { *; }
+-keep class com.mikepenz.iconics.typeface.library.fonrawesome.FontAwesome { *; }
