@@ -63,10 +63,10 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //order fonts by their name
-        fonts = Iconics.registeredFonts.sortedBy { it.fontName }
+        fonts = Iconics.getRegisteredFonts(this).sortedBy { it.fontName }
 
         //add all icons of all registered Fonts to the list
-        val items = ArrayList<IDrawerItem<*>>(Iconics.registeredFonts.size)
+        val items = ArrayList<IDrawerItem<*>>(fonts.size)
         fonts.forEachIndexed { index, font ->
             val pdi = PrimaryDrawerItem()
                     .withName(font.fontName)

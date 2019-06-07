@@ -39,6 +39,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsArrayBuilder
 import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.paddingDp
+import com.mikepenz.iconics.sizeDp
 import com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.octicons.Octicons
@@ -86,8 +88,8 @@ class PlaygroundActivity : AppCompatActivity() {
         //You can also do some advanced stuff like setting an image within a text
         val sb = SpannableString(test5.text)
         val d = IconicsDrawable(this, FontAwesome.Icon.faw_android)
-                .size(48.toIconicsSizeDp())
-                .padding(4.toIconicsSizeDp())
+                .sizeDp(48)
+                .paddingDp(4)
         sb.setSpan(
             ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM),
             1,

@@ -49,16 +49,21 @@ object Iconics {
 
     @JvmField var logger: IconicsLogger = IconicsLogger.DEFAULT
 
-    @JvmStatic fun init(applicationContext: Context) {
-        this.applicationContext = applicationContext
-        init()
-    }
-
     /**
      * Initializes the FONTS. This also tries to find all founds automatically via their font file
      */
-    @JvmStatic fun init() {
+    @JvmStatic fun init(context: Context? = null) {
+        if (context != null) {
+            if (!::applicationContext.isInitialized) {
+                this.applicationContext = context.applicationContext
+            }
+        }
+
         if (!INIT_DONE) {
+            if (!::applicationContext.isInitialized) {
+                throw RuntimeException("A 'Iconics.init(context)' has to happen first. Call from your application. Usually this happens via an 'IconicsDrawable' usage.")
+            }
+
             GenericsUtil.getDefinedFonts(applicationContext).forEach {
                 try {
                     registerFont(ReflectionUtils.getInstanceForName(it))
@@ -147,11 +152,16 @@ object Iconics {
     }
 
     /** Return all registered FONTS */
-    @JvmStatic val registeredFonts: List<ITypeface>
+    private val registeredFonts: List<ITypeface>
         get() {
-            init()
             return FONTS.values.toList()
         }
+
+    /** Return all registered FONTS */
+    @JvmStatic fun getRegisteredFonts(context: Context? = null): List<ITypeface> {
+        init(context)
+        return registeredFonts
+    }
 
     /** Return all registered PROCESSORS */
     @JvmStatic val registeredProcessors: List<Class<out IconicsAnimationProcessor>>
@@ -160,9 +170,15 @@ object Iconics {
             return PROCESSORS.values.toList()
         }
 
+    /** Return all registered PROCESSORS */
+    @JvmStatic fun getRegisteredProcessors(context: Context? = null): List<Class<out IconicsAnimationProcessor>> {
+        init(context)
+        return registeredProcessors
+    }
+
     /** Tries to find a font by its key in all registered FONTS */
-    @JvmStatic fun findFont(key: String): ITypeface? {
-        init()
+    @JvmStatic fun findFont(key: String, context: Context? = null): ITypeface? {
+        init(context)
         return FONTS[key]
     }
 

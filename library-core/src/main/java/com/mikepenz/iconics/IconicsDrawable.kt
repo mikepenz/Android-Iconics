@@ -95,6 +95,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
     private var iconColorFilter: ColorFilter? = null
 
     init {
+        Iconics.init(context)
         iconBrush.also {
             it.colorsList = ColorStateList.valueOf(Color.BLACK)
             it.paint.apply {

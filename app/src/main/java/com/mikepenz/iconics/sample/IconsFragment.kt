@@ -100,7 +100,7 @@ class IconsFragment : Fragment() {
         arguments?.let { arguments ->
             arguments.getString(FONT_NAME).let { fontName ->
                 icons.clear()
-                Iconics.registeredFonts
+                Iconics.getRegisteredFonts(context)
                         .firstOrNull { it.fontName.equals(fontName, true) }
                         ?.let { iTypeface ->
                             val iconItems = iTypeface.icons.asSequence().map(::IconItem)
@@ -146,9 +146,11 @@ class IconsFragment : Fragment() {
 
                     //copy to clipboard
                     (ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).run {
-                        primaryClip = ClipData.newPlainText(
-                            "Android-Iconics icon",
-                            icon.icon?.formattedName
+                        setPrimaryClip(
+                            ClipData.newPlainText(
+                                "Android-Iconics icon",
+                                icon.icon?.formattedName
+                            )
                         )
                     }
                 }

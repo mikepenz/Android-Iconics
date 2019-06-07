@@ -28,7 +28,6 @@ class CustomApplication : MultiDexApplication() {
 
         //register custom fonts like this (or also provide a font definition file)
         Iconics.registerFont(CustomFont)
-        Iconics.init(this)
 
         //Generic font creation process
         GenericFont("GenericFont", "SampleGenericFont", "gmf", "font/materialdrawerfont.ttf")
