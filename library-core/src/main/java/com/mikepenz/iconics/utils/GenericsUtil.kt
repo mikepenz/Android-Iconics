@@ -44,7 +44,7 @@ object GenericsUtil {
             } catch (e: ClassNotFoundException) {
                 tempPackageName = tempPackageName.substringBeforeLast('.', "")
             }
-        } while (packageName.isNotBlank())
+        } while (tempPackageName.isNotBlank())
 
         return null
     }
