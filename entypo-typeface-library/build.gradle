@@ -27,7 +27,7 @@ android {
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 10005
-        versionName "1.0.0.5"
+        versionName "1.0.0.5-kotlin"
 
         resValue "string", "entypo_version", "${versionName}"
     }

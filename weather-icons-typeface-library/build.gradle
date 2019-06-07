@@ -27,7 +27,7 @@ android {
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 20105
-        versionName "2.0.10.5"
+        versionName "2.0.10.5-kotlin"
 
         resValue "string", "weathericons_version", "${versionName}"
     }

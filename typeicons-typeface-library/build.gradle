@@ -27,7 +27,7 @@ android {
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 20705
-        versionName "2.0.7.5"
+        versionName "2.0.7.5-kotlin"
 
         resValue "string", "typeicons_version", "${versionName}"
     }
