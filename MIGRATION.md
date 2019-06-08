@@ -3,7 +3,7 @@
 ### Library
 
 ### core v3.x.x -> 4.x.x
-Now libraries is kotlin-first
+Now libray is kotlin-first
 
 * Font files
   * Font's store now based on default way to store fonts. (moved from common assets to font-specific resource assets)
