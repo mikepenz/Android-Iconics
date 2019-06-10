@@ -220,7 +220,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 |[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
 |[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
 
-Licenses for all included fonts are linked inside the class or can be found on the coresponding repoistories.
+Licenses for all included fonts are linked inside the class or can be found on the coresponding repositories.
 
 # Advanced Usage
 
