@@ -218,32 +218,37 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
 
     private fun <T : IconicsDrawable> copyTo(other: T): T {
         // icon
-        other.color { colorList?.toIconicsColor() }
-                .sizeX(sizeX.toIconicsSizePx())
-                .sizeY(sizeY.toIconicsSizePx())
-                .iconOffsetX(iconOffsetX.toIconicsSizePx())
-                .iconOffsetY(iconOffsetY.toIconicsSizePx())
-                .padding(iconPadding.toIconicsSizePx())
+        colorList?.also { other.color(IconicsColor.colorList(it)) }
+        // background
+        backgroundColorList?.also { other.backgroundColor(IconicsColor.colorList(it)) }
+        // icon contour
+        contourColorList?.also { other.contourColor(IconicsColor.colorList(it)) }
+        // background contour
+        backgroundContourColorList?.also { other.backgroundContourColor(IconicsColor.colorList(it)) }
+
+        // icon
+        other.sizeX(IconicsSize.px(sizeX))
+                .sizeY(IconicsSize.px(sizeY))
+                .iconOffsetX(IconicsSize.px(iconOffsetX))
+                .iconOffsetY(IconicsSize.px(iconOffsetY))
+                .padding(IconicsSize.px(iconPadding))
                 .typeface(iconBrush.paint.typeface)
                 .respectFontBounds(isRespectFontBounds)
                 // background
-                .backgroundColor { backgroundColorList?.toIconicsColor() }
-                .roundedCornersRx(roundedCornerRx.toIconicsSizePx())
-                .roundedCornersRy(roundedCornerRy.toIconicsSizePx())
+                .roundedCornersRx(IconicsSize.px(roundedCornerRx))
+                .roundedCornersRy(IconicsSize.px(roundedCornerRy))
                 // icon contour
-                .contourColor { contourColorList?.toIconicsColor() }
-                .contourWidth(contourWidth.toIconicsSizePx())
+                .contourWidth(IconicsSize.px(contourWidth))
                 .drawContour(isDrawContour)
                 // background contour
-                .backgroundContourColor { backgroundContourColorList?.toIconicsColor() }
-                .backgroundContourWidth(backgroundContourWidth.toIconicsSizePx())
+                .backgroundContourWidth(IconicsSize.px(backgroundContourWidth))
                 .drawBackgroundContour(isDrawBackgroundContour)
                 // shadow
                 .shadow(
-                    shadowRadius.toIconicsSizePx(),
-                    shadowDx.toIconicsSizePx(),
-                    shadowDy.toIconicsSizePx(),
-                    shadowColor.toIconicsColor()
+                    IconicsSize.px(shadowRadius),
+                    IconicsSize.px(shadowDx),
+                    IconicsSize.px(shadowDy),
+                    IconicsColor.colorInt(shadowColor)
                 )
                 // common
                 .alpha(compatAlpha)
@@ -763,10 +768,10 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @see clearShadow
      */
     fun shadow(
-        radiusProducer: () -> IconicsSize? = { shadowRadius.toIconicsSizePx() },
-        dxProducer: () -> IconicsSize? = { shadowDx.toIconicsSizePx() },
-        dyProducer: () -> IconicsSize? = { shadowDy.toIconicsSizePx() },
-        colorProducer: () -> IconicsColor? = { shadowColor.toIconicsColor() }
+        radiusProducer: () -> IconicsSize? = { IconicsSize.px(shadowRadius) },
+        dxProducer: () -> IconicsSize? = { IconicsSize.px(shadowDx) },
+        dyProducer: () -> IconicsSize? = { IconicsSize.px(shadowDy) },
+        colorProducer: () -> IconicsColor? = { IconicsColor.colorInt(shadowColor) }
     ): IconicsDrawable {
         val radius = radiusProducer()
         val dx = dxProducer()
@@ -790,10 +795,10 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @see clearShadow
      */
     fun shadow(
-        radius: IconicsSize = shadowRadius.toIconicsSizePx(),
-        dx: IconicsSize = shadowDx.toIconicsSizePx(),
-        dy: IconicsSize = shadowDy.toIconicsSizePx(),
-        color: IconicsColor = shadowColor.toIconicsColor()
+        radius: IconicsSize = IconicsSize.px(shadowRadius),
+        dx: IconicsSize = IconicsSize.px(shadowDx),
+        dy: IconicsSize = IconicsSize.px(shadowDy),
+        color: IconicsColor = IconicsColor.colorInt(shadowColor)
     ): IconicsDrawable {
         shadowRadius = radius.extractFloat(context)
         shadowDx = dx.extractFloat(context)
@@ -1212,23 +1217,65 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
 }
 
 // VARIOUS convenient extension functions for quick common setters
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("colorString", "com.mikepenz.iconics.utils.colorString")
+)
+inline fun IconicsDrawable.colorString(colorString: String) =
+        color(colorString.toIconicsColor())
 
-inline fun IconicsDrawable.colorString(colorString: String) = color(colorString.toIconicsColor())
-inline fun IconicsDrawable.colorRes(@ColorRes colorRes: Int) = color(colorRes.toIconicsColorRes())
-inline fun IconicsDrawable.colorInt(@ColorInt colorInt: Int) = color(colorInt.toIconicsColor())
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("colorRes", "com.mikepenz.iconics.utils.colorRes")
+)
+inline fun IconicsDrawable.colorRes(@ColorRes colorRes: Int) =
+        color(colorRes.toIconicsColorRes())
 
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("colorInt", "com.mikepenz.iconics.utils.colorInt")
+)
+inline fun IconicsDrawable.colorInt(@ColorInt colorInt: Int) =
+        color(colorInt.toIconicsColor())
+
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("sizeDp", "com.mikepenz.iconics.utils.sizeDp")
+)
 inline fun IconicsDrawable.sizeDp(@Dimension(unit = DP) sizeDp: Int) =
         size(sizeDp.toIconicsSizeDp())
 
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("sizePx", "com.mikepenz.iconics.utils.sizePx")
+)
 inline fun IconicsDrawable.sizePx(@Dimension(unit = PX) sizePx: Int) =
         size(sizePx.toIconicsSizePx())
 
-inline fun IconicsDrawable.sizeRes(@DimenRes sizeRes: Int) = size(sizeRes.toIconicsSizeRes())
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("sizeRes", "com.mikepenz.iconics.utils.sizeRes")
+)
+inline fun IconicsDrawable.sizeRes(@DimenRes sizeRes: Int) =
+        size(sizeRes.toIconicsSizeRes())
 
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("paddingDp", "com.mikepenz.iconics.utils.paddingDp")
+)
 inline fun IconicsDrawable.paddingDp(@Dimension(unit = DP) sizeDp: Int) =
         padding(sizeDp.toIconicsSizeDp())
 
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("paddingPx", "com.mikepenz.iconics.utils.paddingPx")
+)
 inline fun IconicsDrawable.paddingPx(@Dimension(unit = PX) sizePx: Int) =
         padding(sizePx.toIconicsSizePx())
 
-inline fun IconicsDrawable.paddingRes(@DimenRes sizeRes: Int) = padding(sizeRes.toIconicsSizeRes())
+@Deprecated(
+    message = "Moved to new class",
+    replaceWith = ReplaceWith("paddingRes", "com.mikepenz.iconics.utils.paddingRes")
+)
+inline fun IconicsDrawable.paddingRes(@DimenRes sizeRes: Int) =
+        padding(sizeRes.toIconicsSizeRes())

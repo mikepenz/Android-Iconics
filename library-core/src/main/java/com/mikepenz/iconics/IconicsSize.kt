@@ -16,6 +16,7 @@
 
 package com.mikepenz.iconics
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.annotation.DimenRes
 import androidx.annotation.Dimension
@@ -24,10 +25,9 @@ import com.mikepenz.iconics.utils.IconicsUtils
 /**
  * @author pa.gulko zTrap (20.01.2018)
  */
-class IconicsSize private constructor() : IconicsExtractor {
+sealed class IconicsSize : IconicsExtractor {
 
     companion object {
-
         /** Size of [androidx.appcompat.widget.Toolbar] icon in dp */
         @JvmField val TOOLBAR_ICON_SIZE: IconicsSize = dp(24f)
 
@@ -35,38 +35,65 @@ class IconicsSize private constructor() : IconicsExtractor {
         @JvmField val TOOLBAR_ICON_PADDING: IconicsSize = dp(1f)
 
         /** @param dp The size in density-independent pixels (dp). */
-        @JvmStatic fun dp(@Dimension(unit = Dimension.DP) dp: Number): IconicsSize {
-            return IconicsSize().also { it.dp = dp }
+        @SuppressLint("SupportAnnotationUsage")
+        @JvmStatic
+        fun dp(@Dimension(unit = Dimension.DP) dp: Number): IconicsSize {
+            return IconicsSizeDp(dp)
         }
 
         /** @param px The size in pixels (px). */
-        @JvmStatic fun px(@Dimension(unit = Dimension.PX) px: Number): IconicsSize {
-            return IconicsSize().also { it.px = px }
+        @SuppressLint("SupportAnnotationUsage")
+        @JvmStatic
+        fun px(@Dimension(unit = Dimension.PX) px: Number): IconicsSize {
+            return IconicsSizePx(px)
         }
 
         /** @param res The dimension resource. */
-        @JvmStatic fun res(@DimenRes res: Int): IconicsSize {
-            return IconicsSize().also { it.dimenRes = res }
+        @JvmStatic
+        fun res(@DimenRes res: Int): IconicsSize {
+            return IconicsSizeRes(res)
         }
     }
 
-    @Dimension(unit = Dimension.DP) private var dp: Number = IconicsExtractor.DEF_SIZE
-    @Dimension(unit = Dimension.PX) private var px: Number = IconicsExtractor.DEF_SIZE
-    @DimenRes private var dimenRes: Int = IconicsExtractor.DEF_RESOURCE
+    internal abstract fun extractFloat(context: Context): Float
 
-    internal fun extractFloat(context: Context): Float {
-        if (px == IconicsExtractor.DEF_SIZE) {
-            if (dp != IconicsExtractor.DEF_SIZE) {
-                return IconicsUtils.convertDpToPx(context, dp).toFloat().also { px = it }
-            }
-            if (dimenRes != IconicsExtractor.DEF_RESOURCE) {
-                return context.resources.getDimensionPixelSize(dimenRes).toFloat().also { px = it }
-            }
-        }
-        return px.toFloat()
+    internal abstract fun extract(context: Context): Int
+}
+
+class IconicsSizeDp internal constructor(
+    @SuppressLint("SupportAnnotationUsage")
+    @Dimension(unit = Dimension.DP)
+    private val dp: Number
+) : IconicsSize() {
+    var pxCache: Int? = null
+
+    override fun extractFloat(context: Context): Float = extract(context).toFloat()
+
+    override fun extract(context: Context): Int {
+        val pxCache = pxCache ?: IconicsUtils.convertDpToPx(context, dp)
+        this.pxCache = pxCache
+        return pxCache
+    }
+}
+
+class IconicsSizePx internal constructor(
+    @SuppressLint("SupportAnnotationUsage")
+    @Dimension(unit = Dimension.PX)
+    private val px: Number
+) : IconicsSize() {
+    override fun extractFloat(context: Context): Float = px.toFloat()
+
+    override fun extract(context: Context): Int = px.toInt()
+}
+
+class IconicsSizeRes internal constructor(
+    @DimenRes private val res: Int
+) : IconicsSize() {
+    // note we should not cache the value, as a configurationchange could mean different values
+
+    override fun extractFloat(context: Context): Float {
+        return extract(context).toFloat()
     }
 
-    internal fun extract(context: Context): Int {
-        return extractFloat(context).toInt()
-    }
+    override fun extract(context: Context): Int = context.resources.getDimensionPixelSize(res)
 }

@@ -34,14 +34,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.listeners.OnBindViewHolderListener
 import com.mikepenz.iconics.Iconics
+import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.sample.item.IconItem
 import com.mikepenz.iconics.utils.IconicsUtils
+import com.mikepenz.iconics.utils.backgroundColorRes
+import com.mikepenz.iconics.utils.backgroundColorString
+import com.mikepenz.iconics.utils.colorRes
+import com.mikepenz.iconics.utils.contourColorRes
+import com.mikepenz.iconics.utils.contourWidthDp
 import com.mikepenz.iconics.utils.enableShadowSupport
-import com.mikepenz.iconics.utils.toIconicsColor
-import com.mikepenz.iconics.utils.toIconicsColorRes
-import com.mikepenz.iconics.utils.toIconicsSizeDp
+import com.mikepenz.iconics.utils.paddingDp
+import com.mikepenz.iconics.utils.roundedCornersDp
+import com.mikepenz.iconics.utils.sizeDp
 import kotlinx.android.synthetic.main.icons_fragment.list
 import java.util.ArrayList
 import java.util.Random
@@ -125,10 +131,10 @@ class IconsFragment : Fragment() {
                 if (i != null) {
                     val icon = IconicsDrawable(ctx)
                             .icon(i)
-                            .size(IconicsSize.dp(144f))
-                            .padding(IconicsSize.dp(8f))
-                            .backgroundColor("#DDFFFFFF".toIconicsColor())
-                            .roundedCorners(IconicsSize.dp(12f))
+                            .sizeDp(144)
+                            .paddingDp(8)
+                            .backgroundColorString("#DDFFFFFF")
+                            .roundedCornersDp(12)
 
                     ImageView(ctx).let { imageView ->
                         imageView.setImageDrawable(icon)
@@ -179,15 +185,15 @@ class IconsFragment : Fragment() {
 
                     holder.image.icon?.let {
                         if (randomize) {
-                            it.color(getRandomColor(position).toIconicsColorRes())
-                                    .padding(random.nextInt(12).toIconicsSizeDp())
-                                    .contourWidth(random.nextInt(2).toIconicsSizeDp())
-                                    .contourColor(getRandomColor(position - 2).toIconicsColor())
+                            it.colorRes(getRandomColor(position))
+                                    .paddingDp(random.nextInt(12))
+                                    .contourWidthDp(random.nextInt(2))
+                                    .contourColorRes(getRandomColor(position - 2))
 
                             val y = random.nextInt(10)
                             if (y % 4 == 0) {
-                                it.backgroundColor(getRandomColor(position - 4).toIconicsColorRes())
-                                        .roundedCorners((2 + random.nextInt(10)).toIconicsSizeDp())
+                                it.backgroundColorRes(getRandomColor(position - 4))
+                                        .roundedCorners(IconicsSize.dp((2 + random.nextInt(10))))
                             }
                         }
                     }
@@ -196,10 +202,10 @@ class IconsFragment : Fragment() {
                         holder.image.enableShadowSupport()
                         //holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
                         holder.image.icon?.shadow(
-                            radius = 1.toIconicsSizeDp(),
-                            dx = 1.toIconicsSizeDp(),
-                            dy = 1.toIconicsSizeDp(),
-                            color = Color.argb(200, 0, 0, 0).toIconicsColor()
+                            radius = IconicsSize.dp(1),
+                            dx = IconicsSize.dp(1),
+                            dy = IconicsSize.dp(1),
+                            color = IconicsColor.colorInt(Color.argb(200, 0, 0, 0))
                         )
                     }
                 }

@@ -28,12 +28,12 @@ import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.colorInt
-import com.mikepenz.iconics.sizeDp
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.holder.BadgeStyle
@@ -86,7 +86,11 @@ class MainActivity : AppCompatActivity() {
                 .withToolbar(toolbar)
                 .withDrawerItems(items)
                 .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
-                    override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                    override fun onItemClick(
+                        view: View?,
+                        position: Int,
+                        drawerItem: IDrawerItem<*>
+                    ): Boolean {
                         fonts[position].fontName.also {
                             loadIcons(it)
                             supportActionBar?.title = it

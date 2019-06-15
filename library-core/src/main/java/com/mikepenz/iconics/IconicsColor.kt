@@ -62,13 +62,13 @@ sealed class IconicsColor {
     internal abstract fun extract(context: Context): Int
 }
 
-class IconicsColorInt internal constructor(private val color: Int) : IconicsColor() {
+class IconicsColorInt internal constructor(@ColorInt private val color: Int) : IconicsColor() {
     override fun extractList(context: Context): ColorStateList? = ColorStateList.valueOf(color)
 
     override fun extract(context: Context): Int = color
 }
 
-class IconicsColorRes internal constructor(private val colorRes: Int) : IconicsColor() {
+class IconicsColorRes internal constructor(@ColorRes private val colorRes: Int) : IconicsColor() {
     override fun extractList(context: Context): ColorStateList? =
             ContextCompat.getColorStateList(context, colorRes)
 
