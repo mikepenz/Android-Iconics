@@ -18,6 +18,7 @@
 
 package com.mikepenz.iconics.utils
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -29,11 +30,13 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 
 /** Pretty converter to [IconicsSize.dp] */
+@SuppressLint("SupportAnnotationUsage")
 inline fun @receiver:Dimension(unit = Dimension.DP) Number.toIconicsSizeDp(): IconicsSize {
     return IconicsSize.dp(this)
 }
 
 /** Pretty converter to [IconicsSize.px] */
+@SuppressLint("SupportAnnotationUsage")
 inline fun @receiver:Dimension(unit = Dimension.PX) Number.toIconicsSizePx(): IconicsSize {
     return IconicsSize.px(this)
 }
