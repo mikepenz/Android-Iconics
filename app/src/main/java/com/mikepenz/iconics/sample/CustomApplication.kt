@@ -22,7 +22,6 @@ import com.mikepenz.iconics.sample.typeface.CustomFont
 import com.mikepenz.iconics.typeface.GenericFont
 
 class CustomApplication : MultiDexApplication() {
-
     override fun onCreate() {
         super.onCreate()
 
@@ -42,5 +41,4 @@ class CustomApplication : MultiDexApplication() {
         // fields. This helps to increase performance by a tiny bit.
         //Iconics.markInitDone()
     }
-
 }

@@ -91,7 +91,6 @@ internal class InternalLayoutInflater : LayoutInflater {
             // Sets both Factory/Factory2
             factory2 = factory2
         }
-
     }
 
     override fun setFactory(factory: LayoutInflater.Factory) {
