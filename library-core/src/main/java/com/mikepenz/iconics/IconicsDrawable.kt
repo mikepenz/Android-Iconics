@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-@file:Suppress("NOTHING_TO_INLINE")
+@file:Suppress("NOTHING_TO_INLINE", "LargeClass")
 
 package com.mikepenz.iconics
 
@@ -778,6 +778,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
         val dy = dyProducer()
         val color = colorProducer()
 
+        @Suppress("ComplexCondition")
         if (radius != null && dx != null && dy != null && color != null) {
             shadow(radius, dx, dy, color)
         }

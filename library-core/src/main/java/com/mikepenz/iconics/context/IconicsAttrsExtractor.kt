@@ -142,6 +142,7 @@ class IconicsAttrsExtractor(
         val shadowDy = typedArray.getDimensionPixelSize(shadowDyId)
         val shadowColor = typedArray.getColor(shadowColorId, DEF_COLOR)
 
+        @Suppress("ComplexCondition")
         if (shadowRadius != null
                 && shadowDx != null
                 && shadowDy != null
