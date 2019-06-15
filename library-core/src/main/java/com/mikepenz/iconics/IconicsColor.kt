@@ -72,9 +72,7 @@ class IconicsColorRes internal constructor(private val colorRes: Int) : IconicsC
     override fun extractList(context: Context): ColorStateList? =
             ContextCompat.getColorStateList(context, colorRes)
 
-    override fun extract(context: Context): Int =
-            ContextCompat.getColorStateList(context, colorRes)?.defaultColor
-                    ?: ContextCompat.getColor(context, colorRes)
+    override fun extract(context: Context): Int = ContextCompat.getColor(context, colorRes)
 }
 
 class IconicsColorList internal constructor(private val colorList: ColorStateList) : IconicsColor() {
