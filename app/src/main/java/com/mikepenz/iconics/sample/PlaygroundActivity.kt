@@ -38,16 +38,16 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsArrayBuilder
+import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.paddingDp
-import com.mikepenz.iconics.sizeDp
+import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.utils.inflateWithIconics
+import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.parseXmlAndSetIconicsDrawables
-import com.mikepenz.iconics.utils.toIconicsColor
-import com.mikepenz.iconics.utils.toIconicsSizeDp
+import com.mikepenz.iconics.utils.sizeDp
 import kotlinx.android.synthetic.main.activity_playground.list
 import kotlinx.android.synthetic.main.activity_playground.navigation
 import kotlinx.android.synthetic.main.activity_playground.navigation_auto
@@ -101,19 +101,19 @@ class PlaygroundActivity : AppCompatActivity() {
         //Set the icon of an ImageView (or something else) as drawable
         test2.setImageDrawable(
             IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
-                    .size(48.toIconicsSizeDp())
-                    .color("#aaFF0000".toIconicsColor())
-                    .contourWidth(1.toIconicsSizeDp())
+                    .size(IconicsSize.dp(48))
+                    .color(IconicsColor.parse("#aaFF0000"))
+                    .contourWidth(IconicsSize.dp(1))
         )
 
         //Set the icon of an ImageView (or something else) as bitmap
         test3.setImageBitmap(
             IconicsDrawable(this, FontAwesome.Icon.faw_android)
-                    .sizeX(48.toIconicsSizeDp())
-                    .sizeY(32.toIconicsSizeDp())
-                    .padding(4.toIconicsSizeDp())
-                    .roundedCorners(8.toIconicsSizeDp())
-                    .color("#deFF0000".toIconicsColor())
+                    .sizeX(IconicsSize.dp(48))
+                    .sizeY(IconicsSize.dp(32))
+                    .padding(IconicsSize.dp(4))
+                    .roundedCorners(IconicsSize.dp(8))
+                    .color(IconicsColor.parse("#deFF0000"))
                     .toBitmap()
         )
 
@@ -130,23 +130,23 @@ class PlaygroundActivity : AppCompatActivity() {
         iconStateListDrawable.addState(
             intArrayOf(android.R.attr.state_pressed),
             IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
-                    .size(48.toIconicsSizeDp())
-                    .color("#aaFF0000".toIconicsColor())
-                    .contourWidth(1.toIconicsSizeDp())
+                    .size(IconicsSize.dp(48))
+                    .color(IconicsColor.parse("#aaFF0000"))
+                    .contourWidth(IconicsSize.dp(1))
         )
         iconStateListDrawable.addState(
             intArrayOf(),
             IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
-                    .size(48.toIconicsSizeDp())
-                    .color("#aa00FF00".toIconicsColor())
-                    .contourWidth(2.toIconicsSizeDp())
+                    .size(IconicsSize.dp(48))
+                    .color(IconicsColor.parse("#aa00FF00"))
+                    .contourWidth(IconicsSize.dp(2))
         )
         test6.setImageDrawable(iconStateListDrawable)
 
         val iconicsDrawableBase = IconicsDrawable(this)
                 .actionBar()
-                .color(Color.GREEN.toIconicsColor())
-                .backgroundColor(Color.RED.toIconicsColor())
+                .color(IconicsColor.colorInt(Color.GREEN))
+                .backgroundColor(IconicsColor.colorInt(Color.RED))
         val array = IconicsArrayBuilder(iconicsDrawableBase)
                 .add(FontAwesome.Icon.faw_android)
                 .add(Octicons.Icon.oct_octoface)
