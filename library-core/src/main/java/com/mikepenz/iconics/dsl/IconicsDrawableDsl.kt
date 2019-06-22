@@ -4,7 +4,6 @@ import android.content.Context
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.typeface.IIcon
-import com.mikepenz.iconics.utils.colorRes
 
 fun Context.iconicsDrawable(icon: IIcon, block: IconicsDrawableDsl.() -> Unit): IconicsDrawable {
     return IconicsDrawable(this).apply {
@@ -30,7 +29,6 @@ class IconicsDrawableDsl(internal val drawable: IconicsDrawable) {
         get() = nonReadable()
         set(value) {
             drawable.sizeX(value)
-            drawable.colorRes()
         }
 
     var sizeY: IconicsSize
