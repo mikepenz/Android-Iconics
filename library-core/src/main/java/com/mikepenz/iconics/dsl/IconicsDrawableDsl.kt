@@ -2,20 +2,16 @@ package com.mikepenz.iconics.dsl
 
 import android.content.Context
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.IconicsExtractor
 import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.utils.colorRes
 
-fun Context.iconicsDrawable(icon: (IconicsIconDsl.() -> IIcon)? = null, block: IconicsDrawable.() -> Unit): IconicsDrawable {
+fun Context.iconicsDrawable(icon: IIcon, block: IconicsDrawableDsl.() -> Unit): IconicsDrawable {
     return IconicsDrawable(this).apply {
-        if (icon != null) {
-            icon(IconicsIconDsl.icon())
-        }
-    }.apply(block)
+        icon(icon)
+        IconicsDrawableDsl(this).apply(block)
+    }
 }
-
-
-object IconicsIconDsl
 
 internal class NonReadablePropertyException : Exception()
 
@@ -24,7 +20,30 @@ internal fun nonReadable(): Nothing = throw NonReadablePropertyException()
 internal const val NON_READABLE = "Non readable property."
 
 class IconicsDrawableDsl(internal val drawable: IconicsDrawable) {
-    var sizeX: IconicsSize = IconicsSize.px(IconicsExtractor.DEF_SIZE)
+
+    fun sizePx(px: Number): IconicsSize = IconicsSize.px(px)
+    fun sizeDp(dp: Number): IconicsSize = IconicsSize.dp(dp)
+    fun sizeRes(res: Int): IconicsSize = IconicsSize.res(res)
+
+    var sizeX: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
+        set(value) {
+            drawable.sizeX(value)
+            drawable.colorRes()
+        }
+
+    var sizeY: IconicsSize
+        @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+        get() = nonReadable()
+        set(value) {
+            drawable.sizeY(value)
+        }
+
+    var size: IconicsSize
+        @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+        get() = nonReadable()
+        set(value) {
+            drawable.size(value)
+        }
 }
