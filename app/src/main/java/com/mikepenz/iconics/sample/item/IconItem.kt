@@ -24,8 +24,8 @@ import com.mikepenz.fastadapter.items.AbstractItem
 import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
-import com.mikepenz.iconics.colorInt
 import com.mikepenz.iconics.sample.R
+import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.view.IconicsImageView
 
 /**

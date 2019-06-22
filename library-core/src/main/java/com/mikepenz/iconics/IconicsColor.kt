@@ -24,25 +24,24 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 
 /**
- * @author pa.gulko zTrap (20.01.2018)
+ * Describes a color. Might be a colorInt, colorRes, or colorStateList
  */
-class IconicsColor private constructor() : IconicsExtractor {
-
+sealed class IconicsColor {
     companion object {
 
         /** @param colorInt The color, usually from [android.graphics.Color] or 0xFF012345. */
         @JvmStatic fun colorInt(@ColorInt colorInt: Int): IconicsColor {
-            return IconicsColor().also { it.colorInt = colorInt }
+            return IconicsColorInt(colorInt)
         }
 
         /** @param colorRes The color resource, from your R file. */
         @JvmStatic fun colorRes(@ColorRes colorRes: Int): IconicsColor {
-            return IconicsColor().also { it.colorRes = colorRes }
+            return IconicsColorRes(colorRes)
         }
 
         /** @param colorList The color state list. */
         @JvmStatic fun colorList(colorList: ColorStateList): IconicsColor {
-            return IconicsColor().also { it.colorList = colorList }
+            return IconicsColorList(colorList)
         }
 
         /**
@@ -58,25 +57,27 @@ class IconicsColor private constructor() : IconicsExtractor {
         }
     }
 
-    private var colorList: ColorStateList? = null
-    @ColorInt private var colorInt: Int = IconicsExtractor.DEF_COLOR
-    @ColorRes private var colorRes: Int = IconicsExtractor.DEF_RESOURCE
+    internal abstract fun extractList(context: Context): ColorStateList?
 
-    internal fun extractList(context: Context): ColorStateList? {
-        var colorStateList = colorList
-        if (colorRes != IconicsExtractor.DEF_RESOURCE) {
-            colorStateList = ContextCompat.getColorStateList(context, colorRes)
-        }
-        if (colorInt != IconicsExtractor.DEF_COLOR) {
-            colorStateList = ColorStateList.valueOf(colorInt)
-        }
-        return colorStateList
-    }
+    internal abstract fun extract(context: Context): Int
+}
 
-    internal fun extract(context: Context): Int {
-        if (colorRes != IconicsExtractor.DEF_RESOURCE) {
-            colorInt = ContextCompat.getColor(context, colorRes)
-        }
-        return colorInt
-    }
+class IconicsColorInt internal constructor(@ColorInt private val color: Int) : IconicsColor() {
+    override fun extractList(context: Context): ColorStateList? = ColorStateList.valueOf(color)
+
+    override fun extract(context: Context): Int = color
+}
+
+class IconicsColorRes internal constructor(@ColorRes private val colorRes: Int) : IconicsColor() {
+    override fun extractList(context: Context): ColorStateList? =
+            ContextCompat.getColorStateList(context, colorRes)
+
+    override fun extract(context: Context): Int = ContextCompat.getColor(context, colorRes)
+}
+
+class IconicsColorList internal constructor(private val colorList: ColorStateList) : IconicsColor() {
+    override fun extractList(context: Context): ColorStateList? = colorList
+
+    override fun extract(context: Context): Int =
+            colorList.defaultColor // use the default color in this case
 }
