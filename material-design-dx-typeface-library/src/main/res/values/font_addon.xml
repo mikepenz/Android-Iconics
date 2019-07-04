@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_font_MaterialDesignIconsIconFont">com.mikepenz.iconics.typeface.library.materialdesigndx.MaterialDesignDx</string>
+</resources>
