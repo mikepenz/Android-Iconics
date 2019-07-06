@@ -81,7 +81,7 @@ To use appcompat please use a version smaller than 3.1.0. (See the releases on G
 ```gradle
 implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.6-kotlin@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.3.1.2-kotlin@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
 implementation 'com.mikepenz:octicons-typeface:3.2.0.6-kotlin@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.5-kotlin@aar'
 implementation 'com.mikepenz:community-material-typeface:3.5.95.1-kotlin@aar'
