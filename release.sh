@@ -18,6 +18,7 @@ then
     #./gradlew build bintrayUpload -x test -x lint -PPixeden7Strokeonly
     #./gradlew build bintrayUpload -x test -x lint -PTypeiconsonly
     #./gradlew build bintrayUpload -x test -x lint -Pweathericonsonly
+    #./gradlew build bintrayUpload -x test -x lint -Pmaterialdesigndxonly
 else
     echo todo
 fi

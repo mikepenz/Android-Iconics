@@ -40,6 +40,7 @@ Use the icons in the variation you need them.
 - [Devicon](http://devicon.fr/)
 - [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
 - [Ionicons](http://ionicons.com/)
+- [Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)
 
 **Need more?**
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
@@ -91,6 +92,7 @@ implementation 'com.mikepenz:devicon-typeface:2.0.0.5-kotlin@aar'
 implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.5-kotlin@aar'
 implementation 'com.mikepenz:ionicons-typeface:2.0.1.5-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3-kotlin@aar'
+implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.0-kotlin@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
@@ -219,6 +221,7 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 |[Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)|fou|implementation 'com.mikepenz:foundation-icons-typeface:+@aar'|
 |[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
 |[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
+|[Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)|cmf|implementation 'com.mikepenz:material-design-icons-dx-typeface:+@aar'|
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repositories.
 
@@ -318,7 +321,7 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 # License
 
-    Copyright 2018 Mike Penz
+    Copyright 2019 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

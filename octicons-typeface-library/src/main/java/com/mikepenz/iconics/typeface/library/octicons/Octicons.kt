@@ -54,7 +54,7 @@ object Octicons : ITypeface {
         get() = "GitHub's icon font https://octicons.github.com/"
 
     override val license: String
-        get() = " SIL OFL 1.1"
+        get() = "SIL OFL 1.1"
 
     override val licenseUrl: String
         get() = "http://scripts.sil.org/OFL"
