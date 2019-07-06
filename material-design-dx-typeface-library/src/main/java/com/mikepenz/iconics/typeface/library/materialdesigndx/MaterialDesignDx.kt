@@ -54,10 +54,10 @@ object MaterialDesignDx : ITypeface {
         get() = "MDIDX - Same Material Design icons, Better DX"
 
     override val license: String
-        get() = ""
+        get() = "Apache 2.0"
 
     override val licenseUrl: String
-        get() = ""
+        get() = "https://www.apache.org/licenses/LICENSE-2.0"
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 

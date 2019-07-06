@@ -132,6 +132,7 @@ dependencies {
     implementation project(':foundation-icons-typeface-library')
     implementation project(':ionicons-typeface-library')
     implementation project(':pixeden-7-stroke-typeface-library')
+    implementation project(':material-design-dx-typeface-library')
 
     testImplementation 'junit:junit:4.12'
     implementation "androidx.core:core-ktx:$versions.ktx.core"
