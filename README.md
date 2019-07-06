@@ -81,7 +81,7 @@ To use appcompat please use a version smaller than 3.1.0. (See the releases on G
 ```gradle
 implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.6-kotlin@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.3.1.2-kotlin@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
 implementation 'com.mikepenz:octicons-typeface:3.2.0.6-kotlin@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.5-kotlin@aar'
 implementation 'com.mikepenz:community-material-typeface:3.5.95.1-kotlin@aar'
@@ -282,7 +282,7 @@ own custom icon font from *.svg files then you can use following tools:
 * [Fontastic](http://app.fontastic.me)
 * let me know if you find other tools.
 
-After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](http://android-iconics.mikepenz.com).
+After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](https://android-iconics.mikepenz.com).
 Enter all the information. Add the *.ttf and *.css and click the button. It will generate and download the icon font addon as
 zip. (this tool is local only, no files are sent to a server, you can safely use it with any icons)
 
