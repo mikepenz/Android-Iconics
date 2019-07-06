@@ -14,6 +14,11 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.typeface.IIcon
 
+// Notify user that the DSL is currently experimental
+@Experimental(level = Experimental.Level.WARNING)
+annotation class ExperimentalIconicsDSL
+
+@ExperimentalIconicsDSL
 fun Context.iconicsDrawable(icon: IIcon, block: IconicsDrawableDsl.() -> Unit): IconicsDrawable {
     return IconicsDrawable(this).apply {
         icon(icon)
@@ -21,7 +26,12 @@ fun Context.iconicsDrawable(icon: IIcon, block: IconicsDrawableDsl.() -> Unit): 
     }
 }
 
-fun Context.iconicsDrawable(icon: String, typeface: Typeface? = null, block: IconicsDrawableDsl.() -> Unit): IconicsDrawable {
+@ExperimentalIconicsDSL
+fun Context.iconicsDrawable(
+    icon: String,
+    typeface: Typeface? = null,
+    block: IconicsDrawableDsl.() -> Unit
+): IconicsDrawable {
     return IconicsDrawable(this).apply {
         iconText(icon, typeface)
         IconicsDrawableDsl(this).apply(block)
@@ -34,6 +44,7 @@ internal fun nonReadable(): Nothing = throw NonReadablePropertyException()
 
 internal const val NON_READABLE = "Non readable property."
 
+@ExperimentalIconicsDSL
 open class IconicsDrawableDsl(internal val drawable: IconicsDrawable) {
 
     fun sizePx(size: Number): IconicsSize = IconicsSize.px(size)
