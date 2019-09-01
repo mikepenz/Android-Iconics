@@ -1,4 +1,4 @@
-# Android-Iconics  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics-core/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.mikepenz/iconics-core) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--Iconics-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1164)
+# Android-Iconics  [ ![Download](https://api.bintray.com/packages/mikepenz/maven/com.mikepenz%3Aiconics-core/images/download.svg) ](https://bintray.com/mikepenz/maven/com.mikepenz%3Aiconics-core/_latestVersion)
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/banner.png)
 
@@ -40,6 +40,7 @@ Use the icons in the variation you need them.
 - [Devicon](http://devicon.fr/)
 - [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
 - [Ionicons](http://ionicons.com/)
+- [Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)
 
 **Need more?**
 Provide additional fonts for you project, or even create your custom font with just the icons you need.
@@ -63,14 +64,14 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconics library (without any widgets)
-implementation "com.mikepenz:iconics-core:4.0.0"
-implementation "androidx.appcompat:appcompat:$versions.appCompat"
+implementation "com.mikepenz:iconics-core:4.0.1-b02"
+implementation "androidx.appcompat:appcompat:${versions.appCompat}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:4.0.0"
+implementation "com.mikepenz:iconics-views:4.0.1-b02"
 ```
 
 For the non kotlin variant please use a version smaller than 4.x.y (See the releases on GitHub)
@@ -80,7 +81,7 @@ To use appcompat please use a version smaller than 3.1.0. (See the releases on G
 ```gradle
 implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.6-kotlin@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.3.1.2-kotlin@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
 implementation 'com.mikepenz:octicons-typeface:3.2.0.6-kotlin@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.5-kotlin@aar'
 implementation 'com.mikepenz:community-material-typeface:3.5.95.1-kotlin@aar'
@@ -91,6 +92,7 @@ implementation 'com.mikepenz:devicon-typeface:2.0.0.5-kotlin@aar'
 implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.5-kotlin@aar'
 implementation 'com.mikepenz:ionicons-typeface:2.0.1.5-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3-kotlin@aar'
+implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.0-kotlin@aar'
 ```
 
 ## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
@@ -219,8 +221,9 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
 |[Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)|fou|implementation 'com.mikepenz:foundation-icons-typeface:+@aar'|
 |[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
 |[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
+|[Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)|cmf|implementation 'com.mikepenz:material-design-icons-dx-typeface:+@aar'|
 
-Licenses for all included fonts are linked inside the class or can be found on the coresponding repoistories.
+Licenses for all included fonts are linked inside the class or can be found on the coresponding repositories.
 
 # Advanced Usage
 
@@ -279,7 +282,7 @@ own custom icon font from *.svg files then you can use following tools:
 * [Fontastic](http://app.fontastic.me)
 * let me know if you find other tools.
 
-After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](http://android-iconics.mikepenz.com).
+After you got those two files, head over to the icon addon creation tool [android-iconics.mikepenz.com](https://android-iconics.mikepenz.com).
 Enter all the information. Add the *.ttf and *.css and click the button. It will generate and download the icon font addon as
 zip. (this tool is local only, no files are sent to a server, you can safely use it with any icons)
 
@@ -309,12 +312,16 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 # Developed By
 
 * Mike Penz 
-* [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
-* [paypal.me/mikepenz](http://paypal.me/mikepenz)
+  * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
+  * [paypal.me/mikepenz](http://paypal.me/mikepenz)
+
+
+* Peter Gulko
+  * [github.com/zTrap](https://github.com/zTrap)
 
 # License
 
-    Copyright 2018 Mike Penz
+    Copyright 2019 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

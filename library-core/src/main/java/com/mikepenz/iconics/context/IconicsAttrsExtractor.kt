@@ -22,9 +22,9 @@ import androidx.annotation.RestrictTo
 import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
 import androidx.annotation.StyleableRes
 import com.mikepenz.iconics.Iconics
+import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.utils.toIconicsColor
-import com.mikepenz.iconics.utils.toIconicsSizePx
+import com.mikepenz.iconics.IconicsSize
 
 /**
  * @author pa.gulko zTrap (30.10.2017)
@@ -88,51 +88,52 @@ class IconicsAttrsExtractor(
             processedIcon = processedIcon.createIfNeeds(context).icon(i)
         }
         typedArray.getColorStateList(colorsId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).color(it.toIconicsColor())
+            processedIcon = processedIcon.createIfNeeds(context).color(IconicsColor.colorList(it))
         }
         typedArray.getDimensionPixelSize(sizeId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).size(it.toIconicsSizePx())
+            processedIcon = processedIcon.createIfNeeds(context).size(IconicsSize.px(it))
         }
         typedArray.getDimensionPixelSize(paddingId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).padding(it.toIconicsSizePx())
+            processedIcon = processedIcon.createIfNeeds(context).padding(IconicsSize.px(it))
         }
         if (extractOffsets) {
             typedArray.getDimensionPixelSize(offsetYId)?.let {
                 processedIcon = processedIcon.createIfNeeds(context)
-                        .iconOffsetY(it.toIconicsSizePx())
+                        .iconOffsetY(IconicsSize.px(it))
             }
             typedArray.getDimensionPixelSize(offsetXId)?.let {
                 processedIcon = processedIcon.createIfNeeds(context)
-                        .iconOffsetX(it.toIconicsSizePx())
+                        .iconOffsetX(IconicsSize.px(it))
             }
         }
         // endregion
         // region contour
         typedArray.getColorStateList(contourColorId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).contourColor(it.toIconicsColor())
+            processedIcon =
+                    processedIcon.createIfNeeds(context).contourColor(IconicsColor.colorList(it))
         }
         typedArray.getDimensionPixelSize(contourWidthId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).contourWidth(it.toIconicsSizePx())
+            processedIcon = processedIcon.createIfNeeds(context).contourWidth(IconicsSize.px(it))
         }
         // endregion
         // region background
         typedArray.getColorStateList(backgroundColorId)?.let {
             processedIcon = processedIcon.createIfNeeds(context)
-                    .backgroundColor(it.toIconicsColor())
+                    .backgroundColor(IconicsColor.colorList(it))
         }
         typedArray.getDimensionPixelSize(cornerRadiusId)?.let {
             processedIcon = processedIcon.createIfNeeds(context)
-                    .roundedCorners(it.toIconicsSizePx())
+                    .roundedCorners(IconicsSize.px(it))
         }
         // endregion
         // region background contour
         typedArray.getColorStateList(backgroundContourColorId)?.let {
             processedIcon = processedIcon.createIfNeeds(context)
-                    .backgroundContourColor(it.toIconicsColor())
+                    .backgroundContourColor(IconicsColor.colorList(it))
         }
         typedArray.getDimensionPixelSize(backgroundContourWidthId)?.let {
             processedIcon = processedIcon.createIfNeeds(context)
-                    .backgroundContourWidth(it.toIconicsSizePx())
+                    .backgroundContourWidth(IconicsSize.px(it))
         }
         // endregion
         // region shadow
@@ -141,15 +142,16 @@ class IconicsAttrsExtractor(
         val shadowDy = typedArray.getDimensionPixelSize(shadowDyId)
         val shadowColor = typedArray.getColor(shadowColorId, DEF_COLOR)
 
+        @Suppress("ComplexCondition")
         if (shadowRadius != null
                 && shadowDx != null
                 && shadowDy != null
                 && shadowColor != DEF_COLOR) {
             processedIcon = processedIcon.createIfNeeds(context).shadow(
-                shadowRadius.toIconicsSizePx(),
-                shadowDx.toIconicsSizePx(),
-                shadowDy.toIconicsSizePx(),
-                shadowColor.toIconicsColor()
+                IconicsSize.px(shadowRadius),
+                IconicsSize.px(shadowDx),
+                IconicsSize.px(shadowDy),
+                IconicsColor.colorInt(shadowColor)
             )
         }
         // endregion

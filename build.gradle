@@ -17,8 +17,8 @@
 buildscript {
     ext {
         release = [
-                versionName: "4.0.0",
-                versionCode: 40000
+                versionName: "4.0.1-b02",
+                versionCode: 40010
         ]
 
         setup = [
@@ -29,25 +29,35 @@ buildscript {
         ]
 
         versions = [
-                kotlin   : '1.3.31',
-                androidX : '1.0.0',
-                appCompat: '1.0.2',
-                ktx      : [
+                kotlin          : '1.3.50',
+                androidX        : '1.0.0',
+                recyclerView    : '1.1.0-beta01',
+                material        : '1.1.0-alpha07',
+                appcompat       : '1.1.0-rc01',
+                drawerlayout    : '1.1.0-alpha02',
+                constraintLayout: '2.0.0-beta2',
+                cardview        : '1.0.0',
+                ktx             : [
                         core: '1.0.2'
-                ]
+                ],
+                detekt          : '1.0.0-RC15',
         ]
     }
 
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.5.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
     }
 }
 
@@ -58,5 +68,13 @@ allprojects {
         google()
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+}
+
+subprojects {
+    apply from: '../detekt.gradle'
+
+    dependencies {
+        detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${versions.detekt}"
     }
 }

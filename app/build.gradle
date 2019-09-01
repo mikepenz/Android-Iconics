@@ -77,10 +77,10 @@ android {
 dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
-    implementation "com.google.android.material:material:${versions.androidX}"
-    implementation "androidx.recyclerview:recyclerview:${versions.androidX}"
-    implementation "androidx.cardview:cardview:${versions.androidX}"
+    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
+    implementation "androidx.cardview:cardview:${versions.cardview}"
 
     // used to base on some backwards compatible themes
     // contains util classes to support various android versions, and clean up code
@@ -91,10 +91,10 @@ dependencies {
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    implementation 'com.mikepenz:fastadapter:4.0.0-rc03'
-    implementation 'com.mikepenz:fastadapter-extensions-utils:4.0.0-rc03'
-    implementation 'com.mikepenz:fastadapter-extensions-ui:4.0.0-rc03'
-    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.0.0-rc03'
+    implementation 'com.mikepenz:fastadapter:4.0.1'
+    implementation 'com.mikepenz:fastadapter-extensions-utils:4.0.1'
+    implementation 'com.mikepenz:fastadapter-extensions-ui:4.0.1'
+    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.0.1'
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
     // https://github.com/zTrap/Android-Iconics-String-Generator
@@ -102,7 +102,7 @@ dependencies {
 
     // used to generate the drawer on the left
     // https://github.com/mikepenz/MaterialDrawer
-    implementation('com.mikepenz:materialdrawer:7.0.0-beta01') {
+    implementation('com.mikepenz:materialdrawer:7.0.0-rc01') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "fastadapter-extensions-expandable"
@@ -111,7 +111,7 @@ dependencies {
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    implementation('com.mikepenz:aboutlibraries:7.0.0-rc1') {
+    implementation('com.mikepenz:aboutlibraries:7.0.1') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
@@ -132,6 +132,7 @@ dependencies {
     implementation project(':foundation-icons-typeface-library')
     implementation project(':ionicons-typeface-library')
     implementation project(':pixeden-7-stroke-typeface-library')
+    implementation project(':material-design-dx-typeface-library')
 
     testImplementation 'junit:junit:4.12'
     implementation "androidx.core:core-ktx:$versions.ktx.core"

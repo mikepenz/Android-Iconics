@@ -10,7 +10,7 @@ before_install:
 jdk:
   - oraclejdk8
 script:
-  - ./gradlew clean build
+  - ./gradlew clean build detekt
 branches:
   except:
     - gh-pages
