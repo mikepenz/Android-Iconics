@@ -46,6 +46,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    // specify the artifactId as module-name for kotlin
+    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }
 if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
     apply from: '../gradle-release.gradle'
