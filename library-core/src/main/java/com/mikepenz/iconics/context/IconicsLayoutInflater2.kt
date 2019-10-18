@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatDelegate
 /**
  * Created by bschnack on 07.18.17.
  */
+@Deprecated(message = "Use the IconicsImageView or IconicsTextView instead")
 class IconicsLayoutInflater2(
     private val appCompatDelegate: AppCompatDelegate
 ) : LayoutInflater.Factory2 {

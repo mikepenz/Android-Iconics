@@ -72,9 +72,9 @@ class MainActivity : AppCompatActivity() {
                     .withName(font.fontName)
                     .withBadge(font.icons.size.toString())
                     .withDescription(if (font.author.isEmpty()) font.version else font.version + " - " + font.author)
-                    .withBadgeStyle(BadgeStyle().withColorRes(R.color.md_grey_200))
                     .withIcon(getRandomIcon(font))
                     .withIdentifier(index.toLong())
+                    .withBadgeStyle(BadgeStyle().withColorRes(R.color.md_grey_200))
 
             if (font.mappingPrefix == "gmd") {
                 identifierGmd = index
@@ -195,14 +195,6 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_playground -> {
                 startActivity(Intent(applicationContext, PlaygroundActivity::class.java))
-                return true
-            }
-            R.id.action_automatic -> {
-                startActivity(Intent(applicationContext, AutomaticActivity::class.java))
-                return true
-            }
-            R.id.action_old_automatic -> {
-                startActivity(Intent(applicationContext, OldAutomaticActivity::class.java))
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

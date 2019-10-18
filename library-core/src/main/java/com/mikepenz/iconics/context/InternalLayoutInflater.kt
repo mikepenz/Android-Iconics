@@ -30,6 +30,7 @@ import java.lang.reflect.Field
  * Base created by Christopher Jenkins
  * https://github.com/chrisjenx/Calligraphy
  */
+@Deprecated(message = "Use the IconicsImageView or IconicsTextView instead")
 internal class InternalLayoutInflater : LayoutInflater {
     // Reflection Hax
     private var isSetPrivateFactory = false
