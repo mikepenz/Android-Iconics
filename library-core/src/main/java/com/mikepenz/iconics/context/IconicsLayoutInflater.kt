@@ -28,6 +28,7 @@ import androidx.core.view.LayoutInflaterFactory
 /**
  * Created by mikepenz on 01.12.15.
  */
+@Deprecated(message = "Use the IconicsImageView or IconicsTextView instead")
 class IconicsLayoutInflater(
     private val appCompatDelegate: AppCompatDelegate
 ) : LayoutInflaterFactory {

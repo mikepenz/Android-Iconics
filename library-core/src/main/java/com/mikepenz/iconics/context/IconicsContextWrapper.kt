@@ -24,6 +24,7 @@ import android.view.LayoutInflater
  * Base created by Christopher Jenkins
  * https://github.com/chrisjenx/Calligraphy
  */
+@Deprecated(message = "Use the IconicsImageView or IconicsTextView instead")
 class IconicsContextWrapper private constructor(base: Context) : ContextWrapper(base) {
 
     private val inflater by lazy {

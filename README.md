@@ -95,27 +95,6 @@ implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3-kotlin@aar'
 implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.0-kotlin@aar'
 ```
 
-## 3. Define IconicsLayoutInflater to enable automatic xml icons detection (optional)
-Set the `IconicsLayoutInflater` as new `LayoutInflaterFactory`. This will enable automatic icon detection for `TextViews`,`Buttons`, and allow you to set icons on `ImageView`'s via xml. This is compatible with libs which wrap the `baseContext` like [Calligraphy](https://github.com/chrisjenx/Calligraphy). This does not work on FAB's please use the `Context-Injection` instead.
-
-```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    layoutInflater.setIconicsFactory(delegate)
-    super.onCreate(savedInstanceState)
-    //...
-    //...
-}
-```
-
-### 3. ALTERNATIVE: Inject into Context (optional)
-Wrap the `Activity` context. This will enable the same features as Step 3.1., but is not compatible with other libs wrapping the `baseContext`.
-```kotlin
-override fun attachBaseContext(newBase: Context) {
-    super.attachBaseContext(newBase.wrapByIconics())
-}
-```
-
-
 # Usage
 ## Use as drawable
 

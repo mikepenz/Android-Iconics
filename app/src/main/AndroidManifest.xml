@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,14 +37,6 @@
             android:name=".PlaygroundActivity"
             android:label="@string/title_activity_playground"
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
-        <activity
-            android:name=".AutomaticActivity"
-            android:label="@string/title_activity_automatic"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
-        <activity
-            android:name=".OldAutomaticActivity"
-            android:label="@string/title_activity_old_automatic"
-            android:theme="@style/MaterialDrawerTheme.Light.ActionBar" />
     </application>
 
 </manifest>
