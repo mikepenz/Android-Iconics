@@ -23,6 +23,7 @@ Use the icons in the variation you need them.
   - Colors
   - Contour
   - Shadow
+  - Auto mirroring for RTL (opt-in)
 - If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
 - All licenses included, best used with [AboutLibraries](https://github.com/mikepenz/AboutLibraries)
@@ -64,14 +65,14 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconics library (without any widgets)
-implementation "com.mikepenz:iconics-core:4.0.1"
+implementation "com.mikepenz:iconics-core:4.0.2"
 implementation "androidx.appcompat:appcompat:${versions.appCompat}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:4.0.1"
+implementation "com.mikepenz:iconics-views:4.0.2"
 ```
 
 For the non kotlin variant please use a version smaller than 4.x.y (See the releases on GitHub)
