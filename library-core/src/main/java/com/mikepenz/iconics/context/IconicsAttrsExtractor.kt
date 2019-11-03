@@ -55,7 +55,9 @@ class IconicsAttrsExtractor(
     @StyleableRes private var shadowDyId: Int = 0,
     @StyleableRes private var shadowColorId: Int = 0,
 
-    @StyleableRes private var animationsId: Int = 0
+    @StyleableRes private var animationsId: Int = 0,
+
+    @StyleableRes private var autoMirrorId: Int = 0
 ) {
 
     companion object {
@@ -171,6 +173,13 @@ class IconicsAttrsExtractor(
                     .processors(*processors.toTypedArray())
         }
         // endregion
+
+        //region autoMirror
+        val autoMirror = typedArray.getBoolean(autoMirrorId, false)
+        processedIcon = processedIcon.createIfNeeds(context)
+                .autoMirror(autoMirror)
+        // endregion
+
         return processedIcon
     }
 
