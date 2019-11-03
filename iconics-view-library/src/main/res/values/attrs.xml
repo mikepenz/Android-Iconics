@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,6 +34,7 @@
         <attr name="iiv_shadow_dy" format="dimension|reference" />
         <attr name="iiv_shadow_color" format="color|reference" />
         <attr name="iiv_animations" format="string" />
+        <attr name="iiv_automirror" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="IconicsTextView">
@@ -54,6 +54,7 @@
         <attr name="iiv_start_shadow_dy" format="dimension|reference" />
         <attr name="iiv_start_shadow_color" format="color|reference" />
         <attr name="iiv_start_animations" format="string" />
+        <attr name="iiv_start_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region top icon-->
@@ -72,6 +73,7 @@
         <attr name="iiv_top_shadow_dy" format="dimension|reference" />
         <attr name="iiv_top_shadow_color" format="color|reference" />
         <attr name="iiv_top_animations" format="string" />
+        <attr name="iiv_top_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region end icon-->
@@ -90,6 +92,7 @@
         <attr name="iiv_end_shadow_dy" format="dimension|reference" />
         <attr name="iiv_end_shadow_color" format="color|reference" />
         <attr name="iiv_end_animations" format="string" />
+        <attr name="iiv_end_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region bottom icon-->
@@ -108,6 +111,7 @@
         <attr name="iiv_bottom_shadow_dy" format="dimension|reference" />
         <attr name="iiv_bottom_shadow_color" format="color|reference" />
         <attr name="iiv_bottom_animations" format="string" />
+        <attr name="iiv_bottom_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region all icons-->
@@ -126,6 +130,7 @@
         <attr name="iiv_all_shadow_dy" format="dimension|reference" />
         <attr name="iiv_all_shadow_color" format="color|reference" />
         <attr name="iiv_all_animations" format="string" />
+        <attr name="iiv_all_automirror" format="boolean" />
         <!--endregion-->
     </declare-styleable>
 
@@ -146,6 +151,7 @@
         <attr name="iiv_checked_shadow_dy" format="dimension|reference" />
         <attr name="iiv_checked_shadow_color" format="color|reference" />
         <attr name="iiv_checked_animations" format="string" />
+        <attr name="iiv_checked_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region unchecked icons-->
@@ -164,6 +170,7 @@
         <attr name="iiv_unchecked_shadow_dy" format="dimension|reference" />
         <attr name="iiv_unchecked_shadow_color" format="color|reference" />
         <attr name="iiv_unchecked_animations" format="string" />
+        <attr name="iiv_unchecked_automirror" format="boolean" />
         <!--endregion-->
     </declare-styleable>
 
@@ -184,6 +191,7 @@
         <attr name="iiv_start_checked_shadow_dy" format="dimension|reference" />
         <attr name="iiv_start_checked_shadow_color" format="color|reference" />
         <attr name="iiv_start_checked_animations" format="string" />
+        <attr name="iiv_start_checked_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region top icon-->
@@ -202,6 +210,7 @@
         <attr name="iiv_top_checked_shadow_dy" format="dimension|reference" />
         <attr name="iiv_top_checked_shadow_color" format="color|reference" />
         <attr name="iiv_top_checked_animations" format="string" />
+        <attr name="iiv_top_checked_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region end icon-->
@@ -220,6 +229,7 @@
         <attr name="iiv_end_checked_shadow_dy" format="dimension|reference" />
         <attr name="iiv_end_checked_shadow_color" format="color|reference" />
         <attr name="iiv_end_checked_animations" format="string" />
+        <attr name="iiv_end_checked_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region bottom icon-->
@@ -238,6 +248,7 @@
         <attr name="iiv_bottom_checked_shadow_dy" format="dimension|reference" />
         <attr name="iiv_bottom_checked_shadow_color" format="color|reference" />
         <attr name="iiv_bottom_checked_animations" format="string" />
+        <attr name="iiv_bottom_checked_automirror" format="boolean" />
         <!--endregion-->
 
         <!--region all icons-->
@@ -256,6 +267,7 @@
         <attr name="iiv_all_checked_shadow_dy" format="dimension|reference" />
         <attr name="iiv_all_checked_shadow_color" format="color|reference" />
         <attr name="iiv_all_checked_animations" format="string" />
+        <attr name="iiv_all_checked_automirror" format="boolean" />
         <!--endregion-->
     </declare-styleable>
 

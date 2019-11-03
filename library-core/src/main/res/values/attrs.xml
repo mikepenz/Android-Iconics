@@ -33,5 +33,6 @@
         <attr name="ico_shadow_dy" format="dimension|reference" />
         <attr name="ico_shadow_color" format="color|reference" />
         <attr name="ico_animations" format="string" />
+        <attr name="ico_automirror" format="boolean" />
     </declare-styleable>
 </resources>
