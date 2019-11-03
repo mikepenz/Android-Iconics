@@ -53,7 +53,8 @@ object IconicsAttrsApplier {
                 shadowDxId = R.styleable.Iconics_ico_shadow_dx,
                 shadowDyId = R.styleable.Iconics_ico_shadow_dy,
                 shadowColorId = R.styleable.Iconics_ico_shadow_color,
-                animationsId = R.styleable.Iconics_ico_animations
+                animationsId = R.styleable.Iconics_ico_animations,
+                autoMirrorId = R.styleable.Iconics_ico_automirror
             ).extractWithOffsets()
         }
     }
