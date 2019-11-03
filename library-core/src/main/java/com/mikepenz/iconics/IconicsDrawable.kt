@@ -20,38 +20,21 @@ package com.mikepenz.iconics
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.ColorFilter
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.PixelFormat
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
-import android.graphics.Rect
-import android.graphics.RectF
-import android.graphics.Typeface
+import android.graphics.*
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.text.TextPaint
 import android.util.Log
-import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
-import androidx.annotation.DimenRes
-import androidx.annotation.Dimension
+import androidx.annotation.*
 import androidx.annotation.Dimension.DP
 import androidx.annotation.Dimension.PX
 import androidx.annotation.IntRange
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.ViewCompat
 import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.utils.clearedIconName
-import com.mikepenz.iconics.utils.iconPrefix
-import com.mikepenz.iconics.utils.toIconicsColor
-import com.mikepenz.iconics.utils.toIconicsColorRes
-import com.mikepenz.iconics.utils.toIconicsSizeDp
-import com.mikepenz.iconics.utils.toIconicsSizePx
-import com.mikepenz.iconics.utils.toIconicsSizeRes
+import com.mikepenz.iconics.utils.*
 
 /** A custom [Drawable] which can display icons from icon fonts. */
 open class IconicsDrawable(protected val context: Context) : Drawable() {
@@ -176,6 +159,15 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
     /** @return the background contour colors */
     val backgroundContourColorList: ColorStateList?
         get() = backgroundContourBrush.colorsList
+
+    /** @return if auto mirroring is enabled for this drawable */
+    var isAutoMirroredCompat: Boolean = false
+        private set(value) {
+            field = value
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                isAutoMirrored = value
+            }
+        }
 
     /**
      * Creates a BitMap to use in Widgets or anywhere else
@@ -998,6 +990,20 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
         return this
     }
 
+    /**
+     * Enable auto mirroring of this drawable when LayoutDirection is RTL
+     *
+     * Note: this is supported only on API 17 and higher
+     *
+     * @param autoMirrored enables or disables mirroring
+     */
+    fun autoMirror(autoMirrored: Boolean): IconicsDrawable {
+        isAutoMirroredCompat = autoMirrored
+
+        invalidateSelf()
+        return this
+    }
+
     // magic happens here ;)
     override fun draw(canvas: Canvas) {
         if (icon == null && plainIcon == null) return
@@ -1007,6 +1013,12 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
         updatePaddingBounds(viewBounds)
         updateTextSize(viewBounds)
         offsetIcon(viewBounds)
+
+        if (needMirroring()) {
+            // Mirror the drawable
+            canvas.translate((bounds.right - bounds.left).toFloat(), 0f);
+            canvas.scale(-1.0f, 1.0f);
+        }
 
         if (roundedCornerRy > -1 && roundedCornerRx > -1) {
             if (isDrawBackgroundContour) {
@@ -1214,6 +1226,10 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
         // Therefore we create a new one all the time here. Don't expect this is called often.
         val color = tint.getColorForState(state, Color.TRANSPARENT)
         tintFilter = PorterDuffColorFilter(color, tintMode)
+    }
+
+    private fun needMirroring(): Boolean {
+        return isAutoMirroredCompat && DrawableCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL
     }
 }
 

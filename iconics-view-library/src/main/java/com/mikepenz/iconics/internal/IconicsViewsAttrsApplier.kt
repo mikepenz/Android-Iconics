@@ -51,7 +51,8 @@ internal object IconicsViewsAttrsApplier {
                 shadowDxId = R.styleable.IconicsImageView_iiv_shadow_dx,
                 shadowDyId = R.styleable.IconicsImageView_iiv_shadow_dy,
                 shadowColorId = R.styleable.IconicsImageView_iiv_shadow_color,
-                animationsId = R.styleable.IconicsImageView_iiv_animations
+                animationsId = R.styleable.IconicsImageView_iiv_animations,
+                autoMirrorId = R.styleable.IconicsImageView_iiv_automirror
             ).extract()
         }
     }
@@ -107,7 +108,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsTextView_iiv_all_shadow_dx,
             shadowDyId = R.styleable.IconicsTextView_iiv_all_shadow_dy,
             shadowColorId = R.styleable.IconicsTextView_iiv_all_shadow_color,
-            animationsId = R.styleable.IconicsTextView_iiv_all_animations
+            animationsId = R.styleable.IconicsTextView_iiv_all_animations,
+            autoMirrorId = R.styleable.IconicsTextView_iiv_all_automirror
         ).extract()
     }
 
@@ -133,7 +135,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsTextView_iiv_start_shadow_dx,
             shadowDyId = R.styleable.IconicsTextView_iiv_start_shadow_dy,
             shadowColorId = R.styleable.IconicsTextView_iiv_start_shadow_color,
-            animationsId = R.styleable.IconicsTextView_iiv_start_animations
+            animationsId = R.styleable.IconicsTextView_iiv_start_animations,
+            autoMirrorId = R.styleable.IconicsTextView_iiv_start_automirror
         ).extract(icon)
     }
 
@@ -159,7 +162,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsTextView_iiv_top_shadow_dx,
             shadowDyId = R.styleable.IconicsTextView_iiv_top_shadow_dy,
             shadowColorId = R.styleable.IconicsTextView_iiv_top_shadow_color,
-            animationsId = R.styleable.IconicsTextView_iiv_top_animations
+            animationsId = R.styleable.IconicsTextView_iiv_top_animations,
+            autoMirrorId = R.styleable.IconicsTextView_iiv_top_automirror
         ).extract(icon)
     }
 
@@ -185,7 +189,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsTextView_iiv_end_shadow_dx,
             shadowDyId = R.styleable.IconicsTextView_iiv_end_shadow_dy,
             shadowColorId = R.styleable.IconicsTextView_iiv_end_shadow_color,
-            animationsId = R.styleable.IconicsTextView_iiv_end_animations
+            animationsId = R.styleable.IconicsTextView_iiv_end_animations,
+            autoMirrorId = R.styleable.IconicsTextView_iiv_end_automirror
         ).extract(icon)
     }
 
@@ -211,7 +216,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsTextView_iiv_bottom_shadow_dx,
             shadowDyId = R.styleable.IconicsTextView_iiv_bottom_shadow_dy,
             shadowColorId = R.styleable.IconicsTextView_iiv_bottom_shadow_color,
-            animationsId = R.styleable.IconicsTextView_iiv_bottom_animations
+            animationsId = R.styleable.IconicsTextView_iiv_bottom_animations,
+            autoMirrorId = R.styleable.IconicsTextView_iiv_bottom_automirror
         ).extract(icon)
     }
     //endregion
@@ -249,7 +255,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_dx,
             shadowDyId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_dy,
             shadowColorId = R.styleable.IconicsCompoundButton_iiv_unchecked_shadow_color,
-            animationsId = R.styleable.IconicsCompoundButton_iiv_unchecked_animations
+            animationsId = R.styleable.IconicsCompoundButton_iiv_unchecked_animations,
+            autoMirrorId = R.styleable.IconicsCompoundButton_iiv_unchecked_automirror
         ).extractNonNull()
     }
 
@@ -274,7 +281,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_dx,
             shadowDyId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_dy,
             shadowColorId = R.styleable.IconicsCompoundButton_iiv_checked_shadow_color,
-            animationsId = R.styleable.IconicsCompoundButton_iiv_checked_animations
+            animationsId = R.styleable.IconicsCompoundButton_iiv_checked_animations,
+            autoMirrorId = R.styleable.IconicsCompoundButton_iiv_checked_automirror
         ).extractNonNull()
     }
     //endregion
@@ -336,7 +344,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_dx,
             shadowDyId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_dy,
             shadowColorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_shadow_color,
-            animationsId = R.styleable.IconicsCheckableTextView_iiv_all_checked_animations
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_all_checked_animations,
+            autoMirrorId = R.styleable.IconicsCheckableTextView_iiv_all_checked_automirror
         ).extract()
     }
 
@@ -362,7 +371,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_dx,
             shadowDyId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_dy,
             shadowColorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_shadow_color,
-            animationsId = R.styleable.IconicsCheckableTextView_iiv_start_checked_animations
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_start_checked_animations,
+            autoMirrorId = R.styleable.IconicsCheckableTextView_iiv_start_checked_automirror
         ).extract(icon)
     }
 
@@ -388,7 +398,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_dx,
             shadowDyId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_dy,
             shadowColorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_shadow_color,
-            animationsId = R.styleable.IconicsCheckableTextView_iiv_top_checked_animations
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_top_checked_animations,
+            autoMirrorId = R.styleable.IconicsCheckableTextView_iiv_top_checked_automirror
         ).extract(icon)
     }
 
@@ -414,7 +425,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_dx,
             shadowDyId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_dy,
             shadowColorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_shadow_color,
-            animationsId = R.styleable.IconicsCheckableTextView_iiv_end_checked_animations
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_end_checked_animations,
+            autoMirrorId = R.styleable.IconicsCheckableTextView_iiv_end_checked_automirror
         ).extract(icon)
     }
 
@@ -440,7 +452,8 @@ internal object IconicsViewsAttrsApplier {
             shadowDxId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_dx,
             shadowDyId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_dy,
             shadowColorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_shadow_color,
-            animationsId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_animations
+            animationsId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_animations,
+            autoMirrorId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_automirror
         ).extract(icon)
     }
     //endregion

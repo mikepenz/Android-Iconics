@@ -23,6 +23,7 @@ Use the icons in the variation you need them.
   - Colors
   - Contour
   - Shadow
+  - Auto mirroring for RTL (opt-in)
 - If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
 - All licenses included, best used with [AboutLibraries](https://github.com/mikepenz/AboutLibraries)
@@ -64,14 +65,14 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconics library (without any widgets)
-implementation "com.mikepenz:iconics-core:4.0.1"
+implementation "com.mikepenz:iconics-core:4.0.2"
 implementation "androidx.appcompat:appcompat:${versions.appCompat}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:4.0.1"
+implementation "com.mikepenz:iconics-views:4.0.2"
 ```
 
 For the non kotlin variant please use a version smaller than 4.x.y (See the releases on GitHub)
@@ -117,38 +118,7 @@ Use the `{` icon-definer `}` syntax
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
 
-### As ImageView (only available if you follow Step 3 or inject the context)
-```xml
-<ImageView
-    android:layout_width="48dp"
-    android:layout_height="48dp"
-    app:ico_color="@color/md_red_A200"
-    app:ico_icon="gmd-plus-circle" // or @string/gmd_plus_circle with our generator
-    app:ico_size="48dp" />
-    
-    //other possible attributes
-    //app:ico_background_color="@android:color/transparent"
-    //app:ico_color="@color/md_red_100"
-    //app:ico_contour_color="@android:color/transparent"
-    //app:ico_contour_width="0dp"
-    //app:ico_corner_radius="0dp"
-    //app:ico_icon="gmd-plus-circle"
-    //app:ico_offset_x="0dp"
-    //app:ico_offset_y="0dp"
-    //app:ico_padding="0dp"
-    //app:ico_size="48dp"
-```
-### As TextView (only available if you inject the context)
-```xml
-<TextView
-    android:text="{gmd-bubble-chart} Chart"
-    android:textColor="@android:color/black"
-    android:layout_width="wrap_content"
-    android:layout_height="56dp"
-    android:textSize="16sp"/>
-```
-
-### Custom Views (if you do NOT follow Step 3 or inject the context)
+### Custom Views
 #### As IconicsImageView
 ```xml
 <com.mikepenz.iconics.view.IconicsImageView
@@ -156,6 +126,18 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
     android:layout_height="72dp"
     app:iiv_color="@android:color/holo_red_dark"
     app:iiv_icon="gmd-favorite" />  // or @string/gmd_favorite with our generator
+    //app:iiv_size="12dp"
+    //app:iiv_padding="2dp"
+    //app:iiv_contour_color="#FF0000"
+    //app:iiv_contour_width="2dp"
+    //app:iiv_background_color="#FFFF00"
+    //app:iiv_corner_radius="2dp"
+    //app:iiv_background_contour_color="#FF0000"
+    //app:iiv_background_contour_width="1dp"
+    //app:iiv_shadow_radius="4dp"
+    //app:iiv_shadow_dx="1dp"
+    //app:iiv_shadow_dy="1dp"
+    //app:iiv_animations="spin|blink_alpha|blink_scale"
 ```
 
 #### As IconicsTextView
