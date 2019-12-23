@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 /*
  * Copyright (c) 2019 Mike Penz
  *
@@ -72,6 +74,10 @@ android {
         exclude 'META-INF/library-core_release.kotlin_module'
         exclude 'META-INF/library_release.kotlin_module'
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -82,6 +88,11 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
     implementation "androidx.cardview:cardview:${versions.cardview}"
 
+    implementation "androidx.core:core-ktx:${versions.ktx.core}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    kapt "com.android.databinding:compiler:3.5.3"
+
     // used to base on some backwards compatible themes
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
@@ -91,10 +102,10 @@ dependencies {
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    implementation 'com.mikepenz:fastadapter:4.1.0'
-    implementation 'com.mikepenz:fastadapter-extensions-utils:4.1.0'
-    implementation 'com.mikepenz:fastadapter-extensions-ui:4.1.0'
-    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.1.0'
+    implementation 'com.mikepenz:fastadapter:4.1.2'
+    implementation 'com.mikepenz:fastadapter-extensions-utils:4.1.2'
+    implementation 'com.mikepenz:fastadapter-extensions-ui:4.1.2'
+    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.1.2'
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
     // https://github.com/zTrap/Android-Iconics-String-Generator
@@ -111,7 +122,7 @@ dependencies {
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    implementation('com.mikepenz:aboutlibraries:7.0.3') {
+    implementation('com.mikepenz:aboutlibraries:7.1.0') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
@@ -135,6 +146,4 @@ dependencies {
     implementation project(':material-design-dx-typeface-library')
 
     testImplementation 'junit:junit:4.12'
-    implementation "androidx.core:core-ktx:$versions.ktx.core"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }

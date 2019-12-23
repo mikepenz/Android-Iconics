@@ -36,37 +36,33 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsArrayBuilder
 import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
+import com.mikepenz.iconics.sample.databinding.ActivityPlaygroundBinding
 import com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.octicons.Octicons
+import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.inflateWithIconics
 import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.parseXmlAndSetIconicsDrawables
 import com.mikepenz.iconics.utils.sizeDp
-import kotlinx.android.synthetic.main.activity_playground.list
-import kotlinx.android.synthetic.main.activity_playground.navigation
-import kotlinx.android.synthetic.main.activity_playground.navigation_auto
-import kotlinx.android.synthetic.main.activity_playground.test1
-import kotlinx.android.synthetic.main.activity_playground.test2
-import kotlinx.android.synthetic.main.activity_playground.test3
-import kotlinx.android.synthetic.main.activity_playground.test4
-import kotlinx.android.synthetic.main.activity_playground.test5
-import kotlinx.android.synthetic.main.activity_playground.test6
-import kotlinx.android.synthetic.main.activity_playground.toolbar
 
 class PlaygroundActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_playground)
+
+        val binding: ActivityPlaygroundBinding =
+                DataBindingUtil.setContentView(this, R.layout.activity_playground)
 
         // Handle Toolbar
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Show how to style the text of an existing TextView
@@ -82,11 +78,11 @@ class PlaygroundActivity : AppCompatActivity() {
                     ForegroundColorSpan(Color.parseColor("#33000000")),
                     RelativeSizeSpan(2f)
                 )
-                .on(test1)
+                .on(binding.test1)
                 .build()
 
         //You can also do some advanced stuff like setting an image within a text
-        val sb = SpannableString(test5.text)
+        val sb = SpannableString(binding.test5.text)
         val d = IconicsDrawable(this, FontAwesome.Icon.faw_android)
                 .sizeDp(48)
                 .paddingDp(4)
@@ -96,10 +92,10 @@ class PlaygroundActivity : AppCompatActivity() {
             2,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        test5.text = sb
+        binding.test5.text = sb
 
         //Set the icon of an ImageView (or something else) as drawable
-        test2.setImageDrawable(
+        binding.test2.setImageDrawable(
             IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
                     .size(IconicsSize.dp(48))
                     .color(IconicsColor.parse("#aaFF0000"))
@@ -107,7 +103,7 @@ class PlaygroundActivity : AppCompatActivity() {
         )
 
         //Set the icon of an ImageView (or something else) as bitmap
-        test3.setImageBitmap(
+        binding.test3.setImageBitmap(
             IconicsDrawable(this, FontAwesome.Icon.faw_android)
                     .sizeX(IconicsSize.dp(48))
                     .sizeY(IconicsSize.dp(32))
@@ -122,7 +118,7 @@ class PlaygroundActivity : AppCompatActivity() {
                 .style(BackgroundColorSpan(Color.BLACK))
                 .style(RelativeSizeSpan(2f))
                 .style(ForegroundColorSpan(Color.WHITE))
-                .on(test4)
+                .on(binding.test4)
                 .build()
 
         //Show how to style the text of an existing button
@@ -141,7 +137,7 @@ class PlaygroundActivity : AppCompatActivity() {
                     .color(IconicsColor.parse("#aa00FF00"))
                     .contourWidth(IconicsSize.dp(2))
         )
-        test6.setImageDrawable(iconStateListDrawable)
+        binding.test6.setImageDrawable(iconStateListDrawable)
 
         val iconicsDrawableBase = IconicsDrawable(this)
                 .actionBar()
@@ -155,7 +151,7 @@ class PlaygroundActivity : AppCompatActivity() {
                 .add(";)")
                 .build()
 
-        list.adapter = IconsAdapter(this, array)
+        binding.list.adapter = IconsAdapter(this, array)
 
         // Create icons for menu_navigation
         val planningIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_history)
@@ -163,14 +159,14 @@ class PlaygroundActivity : AppCompatActivity() {
         val calendarIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon.cmd_calendar)
 
         // Set icons
-        navigation.menu.apply {
+        binding.navigation.menu.apply {
             findItem(R.id.navigation_home).icon = planningIcon
             findItem(R.id.navigation_dashboard).icon = homeIcon
             findItem(R.id.navigation_notifications).icon = calendarIcon
         }
 
         // Automatically process all icons in menu
-        navigation_auto.menu.parseXmlAndSetIconicsDrawables(this, R.menu.menu_playground)
+        binding.navigationAuto.menu.parseXmlAndSetIconicsDrawables(this, R.menu.menu_playground)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -199,6 +195,18 @@ class PlaygroundActivity : AppCompatActivity() {
             val icon = v.findViewById<ImageView>(android.R.id.icon)
             icon.setImageDrawable(getItem(position))
             return v
+        }
+    }
+
+    companion object {
+        @BindingAdapter("iconicsSrc", "iconicsColor")
+        @JvmStatic
+        fun loadIconicsImage(view: ImageView, name: String, color: Int?) {
+            view.setImageDrawable(IconicsDrawable(view.context, name).apply {
+                if (color != null) {
+                    colorInt(color)
+                }
+            })
         }
     }
 }
