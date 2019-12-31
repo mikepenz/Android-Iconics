@@ -42,7 +42,7 @@ object CommunityMaterial : ITypeface {
         get() = "Community Material Design"
 
     override val version: String
-        get() = "3.7.95.1"
+        get() = "3.7.95.2"
 
     override val iconCount: Int
         get() = characters.size
