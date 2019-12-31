@@ -42,7 +42,7 @@ object CommunityMaterial : ITypeface {
         get() = "Community Material Design"
 
     override val version: String
-        get() = "3.7.95.2"
+        get() = "3.7.95.3"
 
     override val iconCount: Int
         get() = characters.size
@@ -68,22 +68,22 @@ object CommunityMaterial : ITypeface {
         get() = "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/license.txt"
 
     override fun getIcon(key: String): IIcon {
-        return try {
-            Icon.valueOf(key)
+        try {
+            return Icon.valueOf(key)
         } catch (ex: Exception) {
             // ignore error, if not in 1st set, it has to be in the second
-            try {
-                Icon2.valueOf(key)
-            } catch (ex: Exception) {
-                // ignore error, if not in 2nd set, it has to be in the second
-                try {
-                    Icon3.valueOf(key)
-                } catch (ex: Exception) {
-                    // ignore error, if not in 3rd set, it has to be in the second
-                    Icon4.valueOf(key)
-                }
-            }
         }
+        try {
+            return Icon2.valueOf(key)
+        } catch (ex2: Exception) {
+            // ignore error, if not in 2nd set, it has to be in the second
+        }
+        try {
+            return Icon3.valueOf(key)
+        } catch (ex3: Exception) {
+            // ignore error, if not in 3rd set, it has to be in the second
+        }
+        return Icon4.valueOf(key)
     }
 
     enum class Icon constructor(override val character: Char) : IIcon {
