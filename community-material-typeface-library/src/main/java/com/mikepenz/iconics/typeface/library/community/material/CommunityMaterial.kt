@@ -72,7 +72,17 @@ object CommunityMaterial : ITypeface {
             Icon.valueOf(key)
         } catch (ex: Exception) {
             // ignore error, if not in 1st set, it has to be in the second
-            Icon2.valueOf(key)
+            try {
+                Icon2.valueOf(key)
+            } catch (ex: Exception) {
+                // ignore error, if not in 2nd set, it has to be in the second
+                try {
+                    Icon3.valueOf(key)
+                } catch (ex: Exception) {
+                    // ignore error, if not in 3rd set, it has to be in the second
+                    Icon4.valueOf(key)
+                }
+            }
         }
     }
 
