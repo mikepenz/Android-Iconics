@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'aboutlibraries-plugin'
 
 /*
  * Copyright (c) 2019 Mike Penz
@@ -113,7 +114,7 @@ dependencies {
 
     // used to generate the drawer on the left
     // https://github.com/mikepenz/MaterialDrawer
-    implementation('com.mikepenz:materialdrawer:7.0.0-rc08') {
+    implementation('com.mikepenz:materialdrawer:7.0.0') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "fastadapter-extensions-expandable"
@@ -122,7 +123,7 @@ dependencies {
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    implementation('com.mikepenz:aboutlibraries:7.1.0') {
+    implementation('com.mikepenz:aboutlibraries:8.0.0-a01') {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"
