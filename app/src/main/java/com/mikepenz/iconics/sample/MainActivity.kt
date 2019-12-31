@@ -186,7 +186,6 @@ class MainActivity : AppCompatActivity() {
                 LibsBuilder()
                         .withFields(R.string::class.java.fields)
                         .withLicenseShown(true)
-                        .withExcludedLibraries("com_mikepenz__aboutlibraries")
                         .withActivityTitle(getString(R.string.action_opensource))
                         .withActivityTheme(R.style.AppTheme)
                         .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)

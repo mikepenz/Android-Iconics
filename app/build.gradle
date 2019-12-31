@@ -123,7 +123,7 @@ dependencies {
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    implementation('com.mikepenz:aboutlibraries:8.0.0-a01') {
+    implementation("com.mikepenz:aboutlibraries:${versions.aboutLibraries}") {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "iconics-core"

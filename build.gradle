@@ -41,6 +41,7 @@ buildscript {
                         core: '1.1.0'
                 ],
                 detekt          : '1.0.0-RC15',
+                aboutLibraries  : '8.0.0-a02'
         ]
     }
 
@@ -50,9 +51,6 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
-        maven {
-            url uri('https://dl.bintray.com/mikepenz/gradle-plugins/') // TODO wait for approval in jCenter
-        }
     }
 
     dependencies {
@@ -61,7 +59,7 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
-        classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:0.1.1"
+        classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${versions.aboutLibraries}"
     }
 }
 
