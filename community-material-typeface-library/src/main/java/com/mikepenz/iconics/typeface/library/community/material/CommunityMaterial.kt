@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,4923 +23,9749 @@ import java.util.LinkedList
 @Suppress("EnumEntryName")
 object CommunityMaterial : ITypeface {
 
-    override val fontRes: Int
-        get() = R.font.community_material_font_v3_7_95_1
+    override val fontRes: Int = R.font.community_material_font_v3_7_95_1
 
-    override val characters: Map<String, Char> by lazy {
-        mutableMapOf<String, Char>().apply {
-            Icon.values().associateTo(this) { it.name to it.character }
-            Icon2.values().associateTo(this) { it.name to it.character }
-            Icon3.values().associateTo(this) { it.name to it.character }
-            Icon4.values().associateTo(this) { it.name to it.character }
-        }
-    }
+    override val characters: Map<String, Char> by lazy { Icon.characters }
 
-    override val mappingPrefix: String
-        get() = "cmd"
+    override val mappingPrefix: String = "cmd"
 
-    override val fontName: String
-        get() = "Community Material Design"
+    override val fontName: String = "Community Material Design"
 
-    override val version: String
-        get() = "3.7.95.3"
+    override val version: String = "3.7.95.3"
 
-    override val iconCount: Int
-        get() = characters.size
+    override val iconCount: Int = characters.size
 
-    override val icons: List<String>
-        get() = characters.keys.toCollection(LinkedList())
+    override val icons: List<String> by lazy { characters.keys.toCollection(LinkedList()) }
 
-    override val author: String
-        get() = "Templarian / Community / Google"
+    override val author: String = "Templarian / Community / Google"
 
-    override val url: String
-        get() = "http://materialdesignicons.com/"
+    override val url: String = "http://materialdesignicons.com/"
 
-    override val description: String
-        get() = "Material Design Icons are the official open-source icons featured in the Google " +
-                "Material Design specification."
+    override val description: String =
+            "Material Design Icons are the official open-source icons featured in the Google " +
+                    "Material Design specification."
 
-    override val license: String
-        get() = "Templates - Free, Community Icons - SIL Open Font License 1.1, Google Material " +
-                "Design Icons: Attribution 4.0 International"
+    override val license: String =
+            "Templates - Free, Community Icons - SIL Open Font License 1.1, Google Material " +
+                    "Design Icons: Attribution 4.0 International"
 
-    override val licenseUrl: String
-        get() = "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/license.txt"
+    override val licenseUrl: String =
+            "https://raw.githubusercontent.com/Templarian/MaterialDesign/master/license.txt"
 
     override fun getIcon(key: String): IIcon {
-        try {
-            return Icon.valueOf(key)
-        } catch (ex: Exception) {
-            // ignore error, if not in 1st set, it has to be in the second
+        return Icon.valueOf(key) ?: throw RuntimeException("The given Icon does not exist")
+    }
+
+    object Icon {
+        val values by lazy {
+            val items = mutableListOf<CommunityMaterialIcon>()
+
+            items
         }
-        try {
-            return Icon2.valueOf(key)
-        } catch (ex2: Exception) {
-            // ignore error, if not in 2nd set, it has to be in the second
+
+
+        val map by lazy { values.associateBy { it.name } }
+
+        val characters by lazy {
+            mutableMapOf<String, Char>().apply {
+                Icon.values.associateTo(this) { it.name to it.character }
+            }
         }
-        try {
-            return Icon3.valueOf(key)
-        } catch (ex3: Exception) {
-            // ignore error, if not in 3rd set, it has to be in the second
+
+        fun valueOf(value: String): IIcon? {
+            return map[value]
         }
-        return Icon4.valueOf(key)
+
+        @JvmField
+        val cmd_read = CommunityMaterialIcon("cmd_read", '\ue900')
+
+        @JvmField
+        val cmd_receipt = CommunityMaterialIcon("cmd_receipt", '\ue900')
+        
+        @JvmField
+        val cmd_record_circle_outline = CommunityMaterialIcon("cmd_record_circle_outline", '\ue900')
+        @JvmField
+        val cmd_record_circle = CommunityMaterialIcon("cmd_record_circle", '\ue900')
+        @JvmField
+        val cmd_record_player = CommunityMaterialIcon("cmd_record_player", '\ue900')
+        @JvmField
+        val cmd_record_rec = CommunityMaterialIcon("cmd_record_rec", '\ue900')
+        @JvmField
+        val cmd_record = CommunityMaterialIcon("cmd_record", '\ue900')
+        @JvmField
+        val cmd_rectangle_outline = CommunityMaterialIcon("cmd_rectangle_outline", '\ue900')
+        @JvmField
+        val cmd_rectangle = CommunityMaterialIcon("cmd_rectangle", '\ue900')
+        @JvmField
+        val cmd_recycle = CommunityMaterialIcon("cmd_recycle", '\ue900')
+        @JvmField
+        val cmd_reddit = CommunityMaterialIcon("cmd_reddit", '\ue900')
+        @JvmField
+        val cmd_redhat = CommunityMaterialIcon("cmd_redhat", '\ue900')
+        @JvmField
+        val cmd_redo_variant = CommunityMaterialIcon("cmd_redo_variant", '\ue900')
+        @JvmField
+        val cmd_redo = CommunityMaterialIcon("cmd_redo", '\ue900')
+        @JvmField
+        val cmd_reflect_horizontal = CommunityMaterialIcon("cmd_reflect_horizontal", '\ue900')
+        @JvmField
+        val cmd_reflect_vertical = CommunityMaterialIcon("cmd_reflect_vertical", '\ue900')
+        @JvmField
+        val cmd_refresh = CommunityMaterialIcon("cmd_refresh", '\ue900')
+        @JvmField
+        val cmd_regex = CommunityMaterialIcon("cmd_regex", '\ue900')
+        @JvmField
+        val cmd_registered_trademark = CommunityMaterialIcon("cmd_registered_trademark", '\ue900')
+        @JvmField
+        val cmd_relative_scale = CommunityMaterialIcon("cmd_relative_scale", '\ue900')
+        @JvmField
+        val cmd_reload_alert = CommunityMaterialIcon("cmd_reload_alert", '\ue900')
+        @JvmField
+        val cmd_reload = CommunityMaterialIcon("cmd_reload", '\ue900')
+        @JvmField
+        val cmd_reminder = CommunityMaterialIcon("cmd_reminder", '\ue900')
+        @JvmField
+        val cmd_remote_desktop = CommunityMaterialIcon("cmd_remote_desktop", '\ue900')
+        @JvmField
+        val cmd_remote_off = CommunityMaterialIcon("cmd_remote_off", '\ue900')
+        @JvmField
+        val cmd_remote_tv_off = CommunityMaterialIcon("cmd_remote_tv_off", '\ue900')
+        @JvmField
+        val cmd_remote_tv = CommunityMaterialIcon("cmd_remote_tv", '\ue900')
+        @JvmField
+        val cmd_remote = CommunityMaterialIcon("cmd_remote", '\ue900')
+        @JvmField
+        val cmd_rename_box = CommunityMaterialIcon("cmd_rename_box", '\ue900')
+        @JvmField
+        val cmd_reorder_horizontal = CommunityMaterialIcon("cmd_reorder_horizontal", '\ue900')
+        @JvmField
+        val cmd_reorder_vertical = CommunityMaterialIcon("cmd_reorder_vertical", '\ue900')
+        @JvmField
+        val cmd_repeat_off = CommunityMaterialIcon("cmd_repeat_off", '\ue900')
+        @JvmField
+        val cmd_repeat_once = CommunityMaterialIcon("cmd_repeat_once", '\ue900')
+        @JvmField
+        val cmd_repeat = CommunityMaterialIcon("cmd_repeat", '\ue900')
+        @JvmField
+        val cmd_replay = CommunityMaterialIcon("cmd_replay", '\ue900')
+        @JvmField
+        val cmd_reply_all_outline = CommunityMaterialIcon("cmd_reply_all_outline", '\ue900')
+        @JvmField
+        val cmd_reply_all = CommunityMaterialIcon("cmd_reply_all", '\ue900')
+        @JvmField
+        val cmd_reply_circle = CommunityMaterialIcon("cmd_reply_circle", '\ue900')
+        @JvmField
+        val cmd_reply_outline = CommunityMaterialIcon("cmd_reply_outline", '\ue900')
+        @JvmField
+        val cmd_reply = CommunityMaterialIcon("cmd_reply", '\ue900')
+        @JvmField
+        val cmd_reproduction = CommunityMaterialIcon("cmd_reproduction", '\ue900')
+        @JvmField
+        val cmd_resistor_nodes = CommunityMaterialIcon("cmd_resistor_nodes", '\ue900')
+        @JvmField
+        val cmd_resistor = CommunityMaterialIcon("cmd_resistor", '\ue900')
+        @JvmField
+        val cmd_resize_bottom_right = CommunityMaterialIcon("cmd_resize_bottom_right", '\ue900')
+        @JvmField
+        val cmd_resize = CommunityMaterialIcon("cmd_resize", '\ue900')
+        @JvmField
+        val cmd_responsive = CommunityMaterialIcon("cmd_responsive", '\ue900')
+        @JvmField
+        val cmd_restart_alert = CommunityMaterialIcon("cmd_restart_alert", '\ue900')
+        @JvmField
+        val cmd_restart_off = CommunityMaterialIcon("cmd_restart_off", '\ue900')
+        @JvmField
+        val cmd_restart = CommunityMaterialIcon("cmd_restart", '\ue900')
+        @JvmField
+        val cmd_restore_alert = CommunityMaterialIcon("cmd_restore_alert", '\ue900')
+        @JvmField
+        val cmd_restore = CommunityMaterialIcon("cmd_restore", '\ue900')
+        @JvmField
+        val cmd_rewind_5 = CommunityMaterialIcon("cmd_rewind_5", '\ue900')
+        @JvmField
+        val cmd_rewind_10 = CommunityMaterialIcon("cmd_rewind_10", '\ue900')
+        @JvmField
+        val cmd_rewind_30 = CommunityMaterialIcon("cmd_rewind_30", '\ue900')
+        @JvmField
+        val cmd_rewind_outline = CommunityMaterialIcon("cmd_rewind_outline", '\ue900')
+        @JvmField
+        val cmd_rewind = CommunityMaterialIcon("cmd_rewind", '\ue900')
+        @JvmField
+        val cmd_rhombus_medium = CommunityMaterialIcon("cmd_rhombus_medium", '\ue900')
+        @JvmField
+        val cmd_rhombus_outline = CommunityMaterialIcon("cmd_rhombus_outline", '\ue900')
+        @JvmField
+        val cmd_rhombus_split = CommunityMaterialIcon("cmd_rhombus_split", '\ue900')
+        @JvmField
+        val cmd_rhombus = CommunityMaterialIcon("cmd_rhombus", '\ue900')
+        @JvmField
+        val cmd_ribbon = CommunityMaterialIcon("cmd_ribbon", '\ue900')
+        @JvmField
+        val cmd_rice = CommunityMaterialIcon("cmd_rice", '\ue900')
+        @JvmField
+        val cmd_ring = CommunityMaterialIcon("cmd_ring", '\ue900')
+        @JvmField
+        val cmd_rivet = CommunityMaterialIcon("cmd_rivet", '\ue900')
+        @JvmField
+        val cmd_road_variant = CommunityMaterialIcon("cmd_road_variant", '\ue900')
+        @JvmField
+        val cmd_road = CommunityMaterialIcon("cmd_road", '\ue900')
+        @JvmField
+        val cmd_robber = CommunityMaterialIcon("cmd_robber", '\ue900')
+        @JvmField
+        val cmd_robot_industrial = CommunityMaterialIcon("cmd_robot_industrial", '\ue900')
+        @JvmField
+        val cmd_robot_mower_outline = CommunityMaterialIcon("cmd_robot_mower_outline", '\ue900')
+        @JvmField
+        val cmd_robot_mower = CommunityMaterialIcon("cmd_robot_mower", '\ue900')
+        @JvmField
+        val cmd_robot_vacuum_variant = CommunityMaterialIcon("cmd_robot_vacuum_variant", '\ue900')
+        @JvmField
+        val cmd_robot_vacuum = CommunityMaterialIcon("cmd_robot_vacuum", '\ue900')
+        @JvmField
+        val cmd_robot = CommunityMaterialIcon("cmd_robot", '\ue900')
+        @JvmField
+        val cmd_rocket = CommunityMaterialIcon("cmd_rocket", '\ue900')
+        @JvmField
+        val cmd_roller_skate = CommunityMaterialIcon("cmd_roller_skate", '\ue900')
+        @JvmField
+        val cmd_rollerblade = CommunityMaterialIcon("cmd_rollerblade", '\ue900')
+        @JvmField
+        val cmd_rollupjs = CommunityMaterialIcon("cmd_rollupjs", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_1 = CommunityMaterialIcon("cmd_roman_numeral_1", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_2 = CommunityMaterialIcon("cmd_roman_numeral_2", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_3 = CommunityMaterialIcon("cmd_roman_numeral_3", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_4 = CommunityMaterialIcon("cmd_roman_numeral_4", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_5 = CommunityMaterialIcon("cmd_roman_numeral_5", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_6 = CommunityMaterialIcon("cmd_roman_numeral_6", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_7 = CommunityMaterialIcon("cmd_roman_numeral_7", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_8 = CommunityMaterialIcon("cmd_roman_numeral_8", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_9 = CommunityMaterialIcon("cmd_roman_numeral_9", '\ue900')
+        @JvmField
+        val cmd_roman_numeral_10 = CommunityMaterialIcon("cmd_roman_numeral_10", '\ue900')
+        @JvmField
+        val cmd_room_service_outline = CommunityMaterialIcon("cmd_room_service_outline", '\ue900')
+        @JvmField
+        val cmd_room_service = CommunityMaterialIcon("cmd_room_service", '\ue900')
+        @JvmField
+        val cmd_rotate_3d_variant = CommunityMaterialIcon("cmd_rotate_3d_variant", '\ue900')
+        @JvmField
+        val cmd_rotate_3d = CommunityMaterialIcon("cmd_rotate_3d", '\ue900')
+        @JvmField
+        val cmd_rotate_left_variant = CommunityMaterialIcon("cmd_rotate_left_variant", '\ue900')
+        @JvmField
+        val cmd_rotate_left = CommunityMaterialIcon("cmd_rotate_left", '\ue900')
+        @JvmField
+        val cmd_rotate_orbit = CommunityMaterialIcon("cmd_rotate_orbit", '\ue900')
+        @JvmField
+        val cmd_rotate_right_variant = CommunityMaterialIcon("cmd_rotate_right_variant", '\ue900')
+        @JvmField
+        val cmd_rotate_right = CommunityMaterialIcon("cmd_rotate_right", '\ue900')
+        @JvmField
+        val cmd_rounded_corner = CommunityMaterialIcon("cmd_rounded_corner", '\ue900')
+        @JvmField
+        val cmd_router_wireless_settings = CommunityMaterialIcon("cmd_router_wireless_settings", '\ue900')
+        @JvmField
+        val cmd_router_wireless = CommunityMaterialIcon("cmd_router_wireless", '\ue900')
+        @JvmField
+        val cmd_router = CommunityMaterialIcon("cmd_router", '\ue900')
+        @JvmField
+        val cmd_routes_clock = CommunityMaterialIcon("cmd_routes_clock", '\ue900')
+        @JvmField
+        val cmd_routes = CommunityMaterialIcon("cmd_routes", '\ue900')
+        @JvmField
+        val cmd_rowing = CommunityMaterialIcon("cmd_rowing", '\ue900')
+        @JvmField
+        val cmd_rss_box = CommunityMaterialIcon("cmd_rss_box", '\ue900')
+        @JvmField
+        val cmd_rss_off = CommunityMaterialIcon("cmd_rss_off", '\ue900')
+        @JvmField
+        val cmd_rss = CommunityMaterialIcon("cmd_rss", '\ue900')
+        @JvmField
+        val cmd_ruby = CommunityMaterialIcon("cmd_ruby", '\ue900')
+        @JvmField
+        val cmd_rugby = CommunityMaterialIcon("cmd_rugby", '\ue900')
+        @JvmField
+        val cmd_ruler_square_compass = CommunityMaterialIcon("cmd_ruler_square_compass", '\ue900')
+        @JvmField
+        val cmd_ruler_square = CommunityMaterialIcon("cmd_ruler_square", '\ue900')
+        @JvmField
+        val cmd_ruler = CommunityMaterialIcon("cmd_ruler", '\ue900')
+        @JvmField
+        val cmd_run_fast = CommunityMaterialIcon("cmd_run_fast", '\ue900')
+        @JvmField
+        val cmd_run = CommunityMaterialIcon("cmd_run", '\ue900')
+        @JvmField
+        val cmd_rv_truck = CommunityMaterialIcon("cmd_rv_truck", '\ue900')
+        @JvmField
+        val cmd_sack_percent = CommunityMaterialIcon("cmd_sack_percent", '\ue900')
+        @JvmField
+        val cmd_sack = CommunityMaterialIcon("cmd_sack", '\ue900')
+        @JvmField
+        val cmd_safe_square_outline = CommunityMaterialIcon("cmd_safe_square_outline", '\ue900')
+        @JvmField
+        val cmd_safe_square = CommunityMaterialIcon("cmd_safe_square", '\ue900')
+        @JvmField
+        val cmd_safe = CommunityMaterialIcon("cmd_safe", '\ue900')
+        @JvmField
+        val cmd_safety_goggles = CommunityMaterialIcon("cmd_safety_goggles", '\ue900')
+        @JvmField
+        val cmd_sailing = CommunityMaterialIcon("cmd_sailing", '\ue900')
+        @JvmField
+        val cmd_sale = CommunityMaterialIcon("cmd_sale", '\ue900')
+        @JvmField
+        val cmd_salesforce = CommunityMaterialIcon("cmd_salesforce", '\ue900')
+        @JvmField
+        val cmd_sass = CommunityMaterialIcon("cmd_sass", '\ue900')
+        @JvmField
+        val cmd_satellite_uplink = CommunityMaterialIcon("cmd_satellite_uplink", '\ue900')
+        @JvmField
+        val cmd_satellite_variant = CommunityMaterialIcon("cmd_satellite_variant", '\ue900')
+        @JvmField
+        val cmd_satellite = CommunityMaterialIcon("cmd_satellite", '\ue900')
+        @JvmField
+        val cmd_sausage = CommunityMaterialIcon("cmd_sausage", '\ue900')
+        @JvmField
+        val cmd_saw_blade = CommunityMaterialIcon("cmd_saw_blade", '\ue900')
+        @JvmField
+        val cmd_saxophone = CommunityMaterialIcon("cmd_saxophone", '\ue900')
+        @JvmField
+        val cmd_scale_balance = CommunityMaterialIcon("cmd_scale_balance", '\ue900')
+        @JvmField
+        val cmd_scale_bathroom = CommunityMaterialIcon("cmd_scale_bathroom", '\ue900')
+        @JvmField
+        val cmd_scale_off = CommunityMaterialIcon("cmd_scale_off", '\ue900')
+        @JvmField
+        val cmd_scale = CommunityMaterialIcon("cmd_scale", '\ue900')
+        @JvmField
+        val cmd_scanner_off = CommunityMaterialIcon("cmd_scanner_off", '\ue900')
+        @JvmField
+        val cmd_scanner = CommunityMaterialIcon("cmd_scanner", '\ue900')
+        @JvmField
+        val cmd_scatter_plot_outline = CommunityMaterialIcon("cmd_scatter_plot_outline", '\ue900')
+        @JvmField
+        val cmd_scatter_plot = CommunityMaterialIcon("cmd_scatter_plot", '\ue900')
+        @JvmField
+        val cmd_school_outline = CommunityMaterialIcon("cmd_school_outline", '\ue900')
+        @JvmField
+        val cmd_school = CommunityMaterialIcon("cmd_school", '\ue900')
+        @JvmField
+        val cmd_scissors_cutting = CommunityMaterialIcon("cmd_scissors_cutting", '\ue900')
+        @JvmField
+        val cmd_scooter = CommunityMaterialIcon("cmd_scooter", '\ue900')
+        @JvmField
+        val cmd_scoreboard_outline = CommunityMaterialIcon("cmd_scoreboard_outline", '\ue900')
+        @JvmField
+        val cmd_scoreboard = CommunityMaterialIcon("cmd_scoreboard", '\ue900')
+        @JvmField
+        val cmd_screen_rotation_lock = CommunityMaterialIcon("cmd_screen_rotation_lock", '\ue900')
+        @JvmField
+        val cmd_screen_rotation = CommunityMaterialIcon("cmd_screen_rotation", '\ue900')
+        @JvmField
+        val cmd_screw_flat_top = CommunityMaterialIcon("cmd_screw_flat_top", '\ue900')
+        @JvmField
+        val cmd_screw_lag = CommunityMaterialIcon("cmd_screw_lag", '\ue900')
+        @JvmField
+        val cmd_screw_machine_flat_top = CommunityMaterialIcon("cmd_screw_machine_flat_top", '\ue900')
+        @JvmField
+        val cmd_screw_machine_round_top = CommunityMaterialIcon("cmd_screw_machine_round_top", '\ue900')
+        @JvmField
+        val cmd_screw_round_top = CommunityMaterialIcon("cmd_screw_round_top", '\ue900')
+        @JvmField
+        val cmd_screwdriver = CommunityMaterialIcon("cmd_screwdriver", '\ue900')
+        @JvmField
+        val cmd_script_outline = CommunityMaterialIcon("cmd_script_outline", '\ue900')
+        @JvmField
+        val cmd_script_text_outline = CommunityMaterialIcon("cmd_script_text_outline", '\ue900')
+        @JvmField
+        val cmd_script_text = CommunityMaterialIcon("cmd_script_text", '\ue900')
+        @JvmField
+        val cmd_script = CommunityMaterialIcon("cmd_script", '\ue900')
+        @JvmField
+        val cmd_sd = CommunityMaterialIcon("cmd_sd", '\ue900')
+        @JvmField
+        val cmd_seal_variant = CommunityMaterialIcon("cmd_seal_variant", '\ue900')
+        @JvmField
+        val cmd_seal = CommunityMaterialIcon("cmd_seal", '\ue900')
+        @JvmField
+        val cmd_search_web = CommunityMaterialIcon("cmd_search_web", '\ue900')
+        @JvmField
+        val cmd_seat_flat_angled = CommunityMaterialIcon("cmd_seat_flat_angled", '\ue900')
+        @JvmField
+        val cmd_seat_flat = CommunityMaterialIcon("cmd_seat_flat", '\ue900')
+        @JvmField
+        val cmd_seat_individual_suite = CommunityMaterialIcon("cmd_seat_individual_suite", '\ue900')
+        @JvmField
+        val cmd_seat_legroom_extra = CommunityMaterialIcon("cmd_seat_legroom_extra", '\ue900')
+        @JvmField
+        val cmd_seat_legroom_normal = CommunityMaterialIcon("cmd_seat_legroom_normal", '\ue900')
+        @JvmField
+        val cmd_seat_legroom_reduced = CommunityMaterialIcon("cmd_seat_legroom_reduced", '\ue900')
+        @JvmField
+        val cmd_seat_outline = CommunityMaterialIcon("cmd_seat_outline", '\ue900')
+        @JvmField
+        val cmd_seat_passenger = CommunityMaterialIcon("cmd_seat_passenger", '\ue900')
+        @JvmField
+        val cmd_seat_recline_extra = CommunityMaterialIcon("cmd_seat_recline_extra", '\ue900')
+        @JvmField
+        val cmd_seat_recline_normal = CommunityMaterialIcon("cmd_seat_recline_normal", '\ue900')
+        @JvmField
+        val cmd_seat = CommunityMaterialIcon("cmd_seat", '\ue900')
+        @JvmField
+        val cmd_seatbelt = CommunityMaterialIcon("cmd_seatbelt", '\ue900')
+        @JvmField
+        val cmd_security_network = CommunityMaterialIcon("cmd_security_network", '\ue900')
+        @JvmField
+        val cmd_security = CommunityMaterialIcon("cmd_security", '\ue900')
+        @JvmField
+        val cmd_seed_outline = CommunityMaterialIcon("cmd_seed_outline", '\ue900')
+        @JvmField
+        val cmd_seed = CommunityMaterialIcon("cmd_seed", '\ue900')
+        @JvmField
+        val cmd_segment = CommunityMaterialIcon("cmd_segment", '\ue900')
+        @JvmField
+        val cmd_select_all = CommunityMaterialIcon("cmd_select_all", '\ue900')
+        @JvmField
+        val cmd_select_color = CommunityMaterialIcon("cmd_select_color", '\ue900')
+        @JvmField
+        val cmd_select_compare = CommunityMaterialIcon("cmd_select_compare", '\ue900')
+        @JvmField
+        val cmd_select_drag = CommunityMaterialIcon("cmd_select_drag", '\ue900')
+        @JvmField
+        val cmd_select_group = CommunityMaterialIcon("cmd_select_group", '\ue900')
+        @JvmField
+        val cmd_select_inverse = CommunityMaterialIcon("cmd_select_inverse", '\ue900')
+        @JvmField
+        val cmd_select_marker = CommunityMaterialIcon("cmd_select_marker", '\ue900')
+        @JvmField
+        val cmd_select_multiple_marker = CommunityMaterialIcon("cmd_select_multiple_marker", '\ue900')
+        @JvmField
+        val cmd_select_multiple = CommunityMaterialIcon("cmd_select_multiple", '\ue900')
+        @JvmField
+        val cmd_select_off = CommunityMaterialIcon("cmd_select_off", '\ue900')
+        @JvmField
+        val cmd_select_place = CommunityMaterialIcon("cmd_select_place", '\ue900')
+        @JvmField
+        val cmd_select_search = CommunityMaterialIcon("cmd_select_search", '\ue900')
+        @JvmField
+        val cmd_select = CommunityMaterialIcon("cmd_select", '\ue900')
+        @JvmField
+        val cmd_selection_drag = CommunityMaterialIcon("cmd_selection_drag", '\ue900')
+        @JvmField
+        val cmd_selection_ellipse_arrow_inside = CommunityMaterialIcon("cmd_selection_ellipse_arrow_inside", '\ue900')
+        @JvmField
+        val cmd_selection_ellipse = CommunityMaterialIcon("cmd_selection_ellipse", '\ue900')
+        @JvmField
+        val cmd_selection_marker = CommunityMaterialIcon("cmd_selection_marker", '\ue900')
+        @JvmField
+        val cmd_selection_multiple_marker = CommunityMaterialIcon("cmd_selection_multiple_marker", '\ue900')
+        @JvmField
+        val cmd_selection_mutliple = CommunityMaterialIcon("cmd_selection_mutliple", '\ue900')
+        @JvmField
+        val cmd_selection_off = CommunityMaterialIcon("cmd_selection_off", '\ue900')
+        @JvmField
+        val cmd_selection_search = CommunityMaterialIcon("cmd_selection_search", '\ue900')
+        @JvmField
+        val cmd_selection = CommunityMaterialIcon("cmd_selection", '\ue900')
+        @JvmField
+        val cmd_send_check_outline = CommunityMaterialIcon("cmd_send_check_outline", '\ue900')
+        @JvmField
+        val cmd_send_check = CommunityMaterialIcon("cmd_send_check", '\ue900')
+        @JvmField
+        val cmd_send_circle_outline = CommunityMaterialIcon("cmd_send_circle_outline", '\ue900')
+        @JvmField
+        val cmd_send_circle = CommunityMaterialIcon("cmd_send_circle", '\ue900')
+        @JvmField
+        val cmd_send_clock_outline = CommunityMaterialIcon("cmd_send_clock_outline", '\ue900')
+        @JvmField
+        val cmd_send_clock = CommunityMaterialIcon("cmd_send_clock", '\ue900')
+        @JvmField
+        val cmd_send_lock_outline = CommunityMaterialIcon("cmd_send_lock_outline", '\ue900')
+        @JvmField
+        val cmd_send_lock = CommunityMaterialIcon("cmd_send_lock", '\ue900')
+        @JvmField
+        val cmd_send_outline = CommunityMaterialIcon("cmd_send_outline", '\ue900')
+        @JvmField
+        val cmd_send = CommunityMaterialIcon("cmd_send", '\ue900')
+        @JvmField
+        val cmd_serial_port = CommunityMaterialIcon("cmd_serial_port", '\ue900')
+        @JvmField
+        val cmd_server_minus = CommunityMaterialIcon("cmd_server_minus", '\ue900')
+        @JvmField
+        val cmd_server_network_off = CommunityMaterialIcon("cmd_server_network_off", '\ue900')
+        @JvmField
+        val cmd_server_network = CommunityMaterialIcon("cmd_server_network", '\ue900')
+        @JvmField
+        val cmd_server_off = CommunityMaterialIcon("cmd_server_off", '\ue900')
+        @JvmField
+        val cmd_server_plus = CommunityMaterialIcon("cmd_server_plus", '\ue900')
+        @JvmField
+        val cmd_server_remove = CommunityMaterialIcon("cmd_server_remove", '\ue900')
+        @JvmField
+        val cmd_server_security = CommunityMaterialIcon("cmd_server_security", '\ue900')
+        @JvmField
+        val cmd_server = CommunityMaterialIcon("cmd_server", '\ue900')
+        @JvmField
+        val cmd_set_all = CommunityMaterialIcon("cmd_set_all", '\ue900')
+        @JvmField
+        val cmd_set_center_right = CommunityMaterialIcon("cmd_set_center_right", '\ue900')
+        @JvmField
+        val cmd_set_center = CommunityMaterialIcon("cmd_set_center", '\ue900')
+        @JvmField
+        val cmd_set_left_center = CommunityMaterialIcon("cmd_set_left_center", '\ue900')
+        @JvmField
+        val cmd_set_left_right = CommunityMaterialIcon("cmd_set_left_right", '\ue900')
+        @JvmField
+        val cmd_set_left = CommunityMaterialIcon("cmd_set_left", '\ue900')
+        @JvmField
+        val cmd_set_none = CommunityMaterialIcon("cmd_set_none", '\ue900')
+        @JvmField
+        val cmd_set_right = CommunityMaterialIcon("cmd_set_right", '\ue900')
+        @JvmField
+        val cmd_set_top_box = CommunityMaterialIcon("cmd_set_top_box", '\ue900')
+        @JvmField
+        val cmd_settings_box = CommunityMaterialIcon("cmd_settings_box", '\ue900')
+        @JvmField
+        val cmd_settings_helper = CommunityMaterialIcon("cmd_settings_helper", '\ue900')
+        @JvmField
+        val cmd_settings_outline = CommunityMaterialIcon("cmd_settings_outline", '\ue900')
+        @JvmField
+        val cmd_settings_transfer_outline = CommunityMaterialIcon("cmd_settings_transfer_outline", '\ue900')
+        @JvmField
+        val cmd_settings_transfer = CommunityMaterialIcon("cmd_settings_transfer", '\ue900')
+        @JvmField
+        val cmd_settings = CommunityMaterialIcon("cmd_settings", '\ue900')
+        @JvmField
+        val cmd_shaker_outline = CommunityMaterialIcon("cmd_shaker_outline", '\ue900')
+        @JvmField
+        val cmd_shaker = CommunityMaterialIcon("cmd_shaker", '\ue900')
+        @JvmField
+        val cmd_shape_circle_plus = CommunityMaterialIcon("cmd_shape_circle_plus", '\ue900')
+        @JvmField
+        val cmd_shape_outline = CommunityMaterialIcon("cmd_shape_outline", '\ue900')
+        @JvmField
+        val cmd_shape_oval_plus = CommunityMaterialIcon("cmd_shape_oval_plus", '\ue900')
+        @JvmField
+        val cmd_shape_plus = CommunityMaterialIcon("cmd_shape_plus", '\ue900')
+        @JvmField
+        val cmd_shape_polygon_plus = CommunityMaterialIcon("cmd_shape_polygon_plus", '\ue900')
+        @JvmField
+        val cmd_shape_rectangle_plus = CommunityMaterialIcon("cmd_shape_rectangle_plus", '\ue900')
+        @JvmField
+        val cmd_shape_square_plus = CommunityMaterialIcon("cmd_shape_square_plus", '\ue900')
+        @JvmField
+        val cmd_shape = CommunityMaterialIcon("cmd_shape", '\ue900')
+        @JvmField
+        val cmd_share_all_outline = CommunityMaterialIcon("cmd_share_all_outline", '\ue900')
+        @JvmField
+        val cmd_share_all = CommunityMaterialIcon("cmd_share_all", '\ue900')
+        @JvmField
+        val cmd_share_circle = CommunityMaterialIcon("cmd_share_circle", '\ue900')
+        @JvmField
+        val cmd_share_off_outline = CommunityMaterialIcon("cmd_share_off_outline", '\ue900')
+        @JvmField
+        val cmd_share_off = CommunityMaterialIcon("cmd_share_off", '\ue900')
+        @JvmField
+        val cmd_share_outline = CommunityMaterialIcon("cmd_share_outline", '\ue900')
+        @JvmField
+        val cmd_share_variant = CommunityMaterialIcon("cmd_share_variant", '\ue900')
+        @JvmField
+        val cmd_share = CommunityMaterialIcon("cmd_share", '\ue900')
+        @JvmField
+        val cmd_sheep = CommunityMaterialIcon("cmd_sheep", '\ue900')
+        @JvmField
+        val cmd_shield_account_outline = CommunityMaterialIcon("cmd_shield_account_outline", '\ue900')
+        @JvmField
+        val cmd_shield_account = CommunityMaterialIcon("cmd_shield_account", '\ue900')
+        @JvmField
+        val cmd_shield_airplane_outline = CommunityMaterialIcon("cmd_shield_airplane_outline", '\ue900')
+        @JvmField
+        val cmd_shield_airplane = CommunityMaterialIcon("cmd_shield_airplane", '\ue900')
+        @JvmField
+        val cmd_shield_alert_outline = CommunityMaterialIcon("cmd_shield_alert_outline", '\ue900')
+        @JvmField
+        val cmd_shield_alert = CommunityMaterialIcon("cmd_shield_alert", '\ue900')
+        @JvmField
+        val cmd_shield_car = CommunityMaterialIcon("cmd_shield_car", '\ue900')
+        @JvmField
+        val cmd_shield_check_outline = CommunityMaterialIcon("cmd_shield_check_outline", '\ue900')
+        @JvmField
+        val cmd_shield_check = CommunityMaterialIcon("cmd_shield_check", '\ue900')
+        @JvmField
+        val cmd_shield_cross_outline = CommunityMaterialIcon("cmd_shield_cross_outline", '\ue900')
+        @JvmField
+        val cmd_shield_cross = CommunityMaterialIcon("cmd_shield_cross", '\ue900')
+        @JvmField
+        val cmd_shield_edit_outline = CommunityMaterialIcon("cmd_shield_edit_outline", '\ue900')
+        @JvmField
+        val cmd_shield_edit = CommunityMaterialIcon("cmd_shield_edit", '\ue900')
+        @JvmField
+        val cmd_shield_half_full = CommunityMaterialIcon("cmd_shield_half_full", '\ue900')
+        @JvmField
+        val cmd_shield_home_outline = CommunityMaterialIcon("cmd_shield_home_outline", '\ue900')
+        @JvmField
+        val cmd_shield_home = CommunityMaterialIcon("cmd_shield_home", '\ue900')
+        @JvmField
+        val cmd_shield_key_outline = CommunityMaterialIcon("cmd_shield_key_outline", '\ue900')
+        @JvmField
+        val cmd_shield_key = CommunityMaterialIcon("cmd_shield_key", '\ue900')
+        @JvmField
+        val cmd_shield_link_variant_outline = CommunityMaterialIcon("cmd_shield_link_variant_outline", '\ue900')
+        @JvmField
+        val cmd_shield_link_variant = CommunityMaterialIcon("cmd_shield_link_variant", '\ue900')
+        @JvmField
+        val cmd_shield_lock_outline = CommunityMaterialIcon("cmd_shield_lock_outline", '\ue900')
+        @JvmField
+        val cmd_shield_lock = CommunityMaterialIcon("cmd_shield_lock", '\ue900')
+        @JvmField
+        val cmd_shield_off_outline = CommunityMaterialIcon("cmd_shield_off_outline", '\ue900')
+        @JvmField
+        val cmd_shield_off = CommunityMaterialIcon("cmd_shield_off", '\ue900')
+        @JvmField
+        val cmd_shield_outline = CommunityMaterialIcon("cmd_shield_outline", '\ue900')
+        @JvmField
+        val cmd_shield_plus_outline = CommunityMaterialIcon("cmd_shield_plus_outline", '\ue900')
+        @JvmField
+        val cmd_shield_plus = CommunityMaterialIcon("cmd_shield_plus", '\ue900')
+        @JvmField
+        val cmd_shield_refresh_outline = CommunityMaterialIcon("cmd_shield_refresh_outline", '\ue900')
+        @JvmField
+        val cmd_shield_refresh = CommunityMaterialIcon("cmd_shield_refresh", '\ue900')
+        @JvmField
+        val cmd_shield_remove_outline = CommunityMaterialIcon("cmd_shield_remove_outline", '\ue900')
+        @JvmField
+        val cmd_shield_remove = CommunityMaterialIcon("cmd_shield_remove", '\ue900')
+        @JvmField
+        val cmd_shield_search = CommunityMaterialIcon("cmd_shield_search", '\ue900')
+        @JvmField
+        val cmd_shield_star_outline = CommunityMaterialIcon("cmd_shield_star_outline", '\ue900')
+        @JvmField
+        val cmd_shield_star = CommunityMaterialIcon("cmd_shield_star", '\ue900')
+        @JvmField
+        val cmd_shield_sun_outline = CommunityMaterialIcon("cmd_shield_sun_outline", '\ue900')
+        @JvmField
+        val cmd_shield_sun = CommunityMaterialIcon("cmd_shield_sun", '\ue900')
+        @JvmField
+        val cmd_shield = CommunityMaterialIcon("cmd_shield", '\ue900')
+        @JvmField
+        val cmd_ship_wheel = CommunityMaterialIcon("cmd_ship_wheel", '\ue900')
+        @JvmField
+        val cmd_shoe_formal = CommunityMaterialIcon("cmd_shoe_formal", '\ue900')
+        @JvmField
+        val cmd_shoe_heel = CommunityMaterialIcon("cmd_shoe_heel", '\ue900')
+        @JvmField
+        val cmd_shoe_print = CommunityMaterialIcon("cmd_shoe_print", '\ue900')
+        @JvmField
+        val cmd_shopify = CommunityMaterialIcon("cmd_shopify", '\ue900')
+        @JvmField
+        val cmd_shopping_music = CommunityMaterialIcon("cmd_shopping_music", '\ue900')
+        @JvmField
+        val cmd_shopping_outline = CommunityMaterialIcon("cmd_shopping_outline", '\ue900')
+        @JvmField
+        val cmd_shopping_search = CommunityMaterialIcon("cmd_shopping_search", '\ue900')
+        @JvmField
+        val cmd_shopping = CommunityMaterialIcon("cmd_shopping", '\ue900')
+        @JvmField
+        val cmd_shovel_off = CommunityMaterialIcon("cmd_shovel_off", '\ue900')
+        @JvmField
+        val cmd_shovel = CommunityMaterialIcon("cmd_shovel", '\ue900')
+        @JvmField
+        val cmd_shower_head = CommunityMaterialIcon("cmd_shower_head", '\ue900')
+        @JvmField
+        val cmd_shower = CommunityMaterialIcon("cmd_shower", '\ue900')
+        @JvmField
+        val cmd_shredder = CommunityMaterialIcon("cmd_shredder", '\ue900')
+        @JvmField
+        val cmd_shuffle_disabled = CommunityMaterialIcon("cmd_shuffle_disabled", '\ue900')
+        @JvmField
+        val cmd_shuffle_variant = CommunityMaterialIcon("cmd_shuffle_variant", '\ue900')
+        @JvmField
+        val cmd_shuffle = CommunityMaterialIcon("cmd_shuffle", '\ue900')
+        @JvmField
+        val cmd_sigma_lower = CommunityMaterialIcon("cmd_sigma_lower", '\ue900')
+        @JvmField
+        val cmd_sigma = CommunityMaterialIcon("cmd_sigma", '\ue900')
+        @JvmField
+        val cmd_sign_caution = CommunityMaterialIcon("cmd_sign_caution", '\ue900')
+        @JvmField
+        val cmd_sign_direction_minus = CommunityMaterialIcon("cmd_sign_direction_minus", '\ue900')
+        @JvmField
+        val cmd_sign_direction_plus = CommunityMaterialIcon("cmd_sign_direction_plus", '\ue900')
+        @JvmField
+        val cmd_sign_direction_remove = CommunityMaterialIcon("cmd_sign_direction_remove", '\ue900')
+        @JvmField
+        val cmd_sign_direction = CommunityMaterialIcon("cmd_sign_direction", '\ue900')
+        @JvmField
+        val cmd_sign_real_estate = CommunityMaterialIcon("cmd_sign_real_estate", '\ue900')
+        @JvmField
+        val cmd_sign_text = CommunityMaterialIcon("cmd_sign_text", '\ue900')
+        @JvmField
+        val cmd_signal_2g = CommunityMaterialIcon("cmd_signal_2g", '\ue900')
+        @JvmField
+        val cmd_signal_3g = CommunityMaterialIcon("cmd_signal_3g", '\ue900')
+        @JvmField
+        val cmd_signal_4g = CommunityMaterialIcon("cmd_signal_4g", '\ue900')
+        @JvmField
+        val cmd_signal_5g = CommunityMaterialIcon("cmd_signal_5g", '\ue900')
+        @JvmField
+        val cmd_signal_cellular_1 = CommunityMaterialIcon("cmd_signal_cellular_1", '\ue900')
+        @JvmField
+        val cmd_signal_cellular_2 = CommunityMaterialIcon("cmd_signal_cellular_2", '\ue900')
+        @JvmField
+        val cmd_signal_cellular_3 = CommunityMaterialIcon("cmd_signal_cellular_3", '\ue900')
+        @JvmField
+        val cmd_signal_cellular_outline = CommunityMaterialIcon("cmd_signal_cellular_outline", '\ue900')
+        @JvmField
+        val cmd_signal_distance_variant = CommunityMaterialIcon("cmd_signal_distance_variant", '\ue900')
+        @JvmField
+        val cmd_signal_hspa_plus = CommunityMaterialIcon("cmd_signal_hspa_plus", '\ue900')
+        @JvmField
+        val cmd_signal_hspa = CommunityMaterialIcon("cmd_signal_hspa", '\ue900')
+        @JvmField
+        val cmd_signal_off = CommunityMaterialIcon("cmd_signal_off", '\ue900')
+        @JvmField
+        val cmd_signal_variant = CommunityMaterialIcon("cmd_signal_variant", '\ue900')
+        @JvmField
+        val cmd_signal = CommunityMaterialIcon("cmd_signal", '\ue900')
+        @JvmField
+        val cmd_signature_freehand = CommunityMaterialIcon("cmd_signature_freehand", '\ue900')
+        @JvmField
+        val cmd_signature_image = CommunityMaterialIcon("cmd_signature_image", '\ue900')
+        @JvmField
+        val cmd_signature_text = CommunityMaterialIcon("cmd_signature_text", '\ue900')
+        @JvmField
+        val cmd_signature = CommunityMaterialIcon("cmd_signature", '\ue900')
+        @JvmField
+        val cmd_silo = CommunityMaterialIcon("cmd_silo", '\ue900')
+        @JvmField
+        val cmd_silverware_clean = CommunityMaterialIcon("cmd_silverware_clean", '\ue900')
+        @JvmField
+        val cmd_silverware_fork_knife = CommunityMaterialIcon("cmd_silverware_fork_knife", '\ue900')
+        @JvmField
+        val cmd_silverware_fork = CommunityMaterialIcon("cmd_silverware_fork", '\ue900')
+        @JvmField
+        val cmd_silverware_spoon = CommunityMaterialIcon("cmd_silverware_spoon", '\ue900')
+        @JvmField
+        val cmd_silverware_variant = CommunityMaterialIcon("cmd_silverware_variant", '\ue900')
+        @JvmField
+        val cmd_silverware = CommunityMaterialIcon("cmd_silverware", '\ue900')
+        @JvmField
+        val cmd_sim_alert = CommunityMaterialIcon("cmd_sim_alert", '\ue900')
+        @JvmField
+        val cmd_sim_off = CommunityMaterialIcon("cmd_sim_off", '\ue900')
+        @JvmField
+        val cmd_sim = CommunityMaterialIcon("cmd_sim", '\ue900')
+        @JvmField
+        val cmd_sina_weibo = CommunityMaterialIcon("cmd_sina_weibo", '\ue900')
+        @JvmField
+        val cmd_sitemap = CommunityMaterialIcon("cmd_sitemap", '\ue900')
+        @JvmField
+        val cmd_skate = CommunityMaterialIcon("cmd_skate", '\ue900')
+        @JvmField
+        val cmd_skew_less = CommunityMaterialIcon("cmd_skew_less", '\ue900')
+        @JvmField
+        val cmd_skew_more = CommunityMaterialIcon("cmd_skew_more", '\ue900')
+        @JvmField
+        val cmd_skip_backward_outline = CommunityMaterialIcon("cmd_skip_backward_outline", '\ue900')
+        @JvmField
+        val cmd_skip_backward = CommunityMaterialIcon("cmd_skip_backward", '\ue900')
+        @JvmField
+        val cmd_skip_forward_outline = CommunityMaterialIcon("cmd_skip_forward_outline", '\ue900')
+        @JvmField
+        val cmd_skip_forward = CommunityMaterialIcon("cmd_skip_forward", '\ue900')
+        @JvmField
+        val cmd_skip_next_circle_outline = CommunityMaterialIcon("cmd_skip_next_circle_outline", '\ue900')
+        @JvmField
+        val cmd_skip_next_circle = CommunityMaterialIcon("cmd_skip_next_circle", '\ue900')
+        @JvmField
+        val cmd_skip_next_outline = CommunityMaterialIcon("cmd_skip_next_outline", '\ue900')
+        @JvmField
+        val cmd_skip_next = CommunityMaterialIcon("cmd_skip_next", '\ue900')
+        @JvmField
+        val cmd_skip_previous_circle_outline = CommunityMaterialIcon("cmd_skip_previous_circle_outline", '\ue900')
+        @JvmField
+        val cmd_skip_previous_circle = CommunityMaterialIcon("cmd_skip_previous_circle", '\ue900')
+        @JvmField
+        val cmd_skip_previous_outline = CommunityMaterialIcon("cmd_skip_previous_outline", '\ue900')
+        @JvmField
+        val cmd_skip_previous = CommunityMaterialIcon("cmd_skip_previous", '\ue900')
+        @JvmField
+        val cmd_skull_crossbones_outline = CommunityMaterialIcon("cmd_skull_crossbones_outline", '\ue900')
+        @JvmField
+        val cmd_skull_crossbones = CommunityMaterialIcon("cmd_skull_crossbones", '\ue900')
+        @JvmField
+        val cmd_skull_outline = CommunityMaterialIcon("cmd_skull_outline", '\ue900')
+        @JvmField
+        val cmd_skull = CommunityMaterialIcon("cmd_skull", '\ue900')
+        @JvmField
+        val cmd_skype_business = CommunityMaterialIcon("cmd_skype_business", '\ue900')
+        @JvmField
+        val cmd_skype = CommunityMaterialIcon("cmd_skype", '\ue900')
+        @JvmField
+        val cmd_slack = CommunityMaterialIcon("cmd_slack", '\ue900')
+        @JvmField
+        val cmd_slackware = CommunityMaterialIcon("cmd_slackware", '\ue900')
+        @JvmField
+        val cmd_slash_forward_box = CommunityMaterialIcon("cmd_slash_forward_box", '\ue900')
+        @JvmField
+        val cmd_slash_forward = CommunityMaterialIcon("cmd_slash_forward", '\ue900')
+        @JvmField
+        val cmd_sleep_off = CommunityMaterialIcon("cmd_sleep_off", '\ue900')
+        @JvmField
+        val cmd_sleep = CommunityMaterialIcon("cmd_sleep", '\ue900')
+        @JvmField
+        val cmd_slope_downhill = CommunityMaterialIcon("cmd_slope_downhill", '\ue900')
+        @JvmField
+        val cmd_slope_uphill = CommunityMaterialIcon("cmd_slope_uphill", '\ue900')
+        @JvmField
+        val cmd_slot_machine_outline = CommunityMaterialIcon("cmd_slot_machine_outline", '\ue900')
+        @JvmField
+        val cmd_slot_machine = CommunityMaterialIcon("cmd_slot_machine", '\ue900')
+        @JvmField
+        val cmd_smart_card_outline = CommunityMaterialIcon("cmd_smart_card_outline", '\ue900')
+        @JvmField
+        val cmd_smart_card_reader_outline = CommunityMaterialIcon("cmd_smart_card_reader_outline", '\ue900')
+        @JvmField
+        val cmd_smart_card_reader = CommunityMaterialIcon("cmd_smart_card_reader", '\ue900')
+        @JvmField
+        val cmd_smart_card = CommunityMaterialIcon("cmd_smart_card", '\ue900')
+        @JvmField
+        val cmd_smog = CommunityMaterialIcon("cmd_smog", '\ue900')
+        @JvmField
+        val cmd_smoke_detector = CommunityMaterialIcon("cmd_smoke_detector", '\ue900')
+        @JvmField
+        val cmd_smoking_off = CommunityMaterialIcon("cmd_smoking_off", '\ue900')
+        @JvmField
+        val cmd_smoking = CommunityMaterialIcon("cmd_smoking", '\ue900')
+        @JvmField
+        val cmd_snapchat = CommunityMaterialIcon("cmd_snapchat", '\ue900')
+        @JvmField
+        val cmd_snowflake_alert = CommunityMaterialIcon("cmd_snowflake_alert", '\ue900')
+        @JvmField
+        val cmd_snowflake_melt = CommunityMaterialIcon("cmd_snowflake_melt", '\ue900')
+        @JvmField
+        val cmd_snowflake_variant = CommunityMaterialIcon("cmd_snowflake_variant", '\ue900')
+        @JvmField
+        val cmd_snowflake = CommunityMaterialIcon("cmd_snowflake", '\ue900')
+        @JvmField
+        val cmd_snowman = CommunityMaterialIcon("cmd_snowman", '\ue900')
+        @JvmField
+        val cmd_soccer_field = CommunityMaterialIcon("cmd_soccer_field", '\ue900')
+        @JvmField
+        val cmd_soccer = CommunityMaterialIcon("cmd_soccer", '\ue900')
+        @JvmField
+        val cmd_sofa = CommunityMaterialIcon("cmd_sofa", '\ue900')
+        @JvmField
+        val cmd_solar_panel_large = CommunityMaterialIcon("cmd_solar_panel_large", '\ue900')
+        @JvmField
+        val cmd_solar_panel = CommunityMaterialIcon("cmd_solar_panel", '\ue900')
+        @JvmField
+        val cmd_solar_power = CommunityMaterialIcon("cmd_solar_power", '\ue900')
+        @JvmField
+        val cmd_soldering_iron = CommunityMaterialIcon("cmd_soldering_iron", '\ue900')
+        @JvmField
+        val cmd_solid = CommunityMaterialIcon("cmd_solid", '\ue900')
+        @JvmField
+        val cmd_sort_alphabetical_ascending = CommunityMaterialIcon("cmd_sort_alphabetical_ascending", '\ue900')
+        @JvmField
+        val cmd_sort_alphabetical_descending = CommunityMaterialIcon("cmd_sort_alphabetical_descending", '\ue900')
+        @JvmField
+        val cmd_sort_alphabetical = CommunityMaterialIcon("cmd_sort_alphabetical", '\ue900')
+        @JvmField
+        val cmd_sort_ascending = CommunityMaterialIcon("cmd_sort_ascending", '\ue900')
+        @JvmField
+        val cmd_sort_descending = CommunityMaterialIcon("cmd_sort_descending", '\ue900')
+        @JvmField
+        val cmd_sort_numeric = CommunityMaterialIcon("cmd_sort_numeric", '\ue900')
+        @JvmField
+        val cmd_sort_variant_lock_open = CommunityMaterialIcon("cmd_sort_variant_lock_open", '\ue900')
+        @JvmField
+        val cmd_sort_variant_lock = CommunityMaterialIcon("cmd_sort_variant_lock", '\ue900')
+        @JvmField
+        val cmd_sort_variant_remove = CommunityMaterialIcon("cmd_sort_variant_remove", '\ue900')
+        @JvmField
+        val cmd_sort_variant = CommunityMaterialIcon("cmd_sort_variant", '\ue900')
+        @JvmField
+        val cmd_sort = CommunityMaterialIcon("cmd_sort", '\ue900')
+        @JvmField
+        val cmd_soundcloud = CommunityMaterialIcon("cmd_soundcloud", '\ue900')
+        @JvmField
+        val cmd_source_branch = CommunityMaterialIcon("cmd_source_branch", '\ue900')
+        @JvmField
+        val cmd_source_commit_end_local = CommunityMaterialIcon("cmd_source_commit_end_local", '\ue900')
+        @JvmField
+        val cmd_source_commit_end = CommunityMaterialIcon("cmd_source_commit_end", '\ue900')
+        @JvmField
+        val cmd_source_commit_local = CommunityMaterialIcon("cmd_source_commit_local", '\ue900')
+        @JvmField
+        val cmd_source_commit_next_local = CommunityMaterialIcon("cmd_source_commit_next_local", '\ue900')
+        @JvmField
+        val cmd_source_commit_start_next_local = CommunityMaterialIcon("cmd_source_commit_start_next_local", '\ue900')
+        @JvmField
+        val cmd_source_commit_start = CommunityMaterialIcon("cmd_source_commit_start", '\ue900')
+        @JvmField
+        val cmd_source_commit = CommunityMaterialIcon("cmd_source_commit", '\ue900')
+        @JvmField
+        val cmd_source_fork = CommunityMaterialIcon("cmd_source_fork", '\ue900')
+        @JvmField
+        val cmd_source_merge = CommunityMaterialIcon("cmd_source_merge", '\ue900')
+        @JvmField
+        val cmd_source_pull = CommunityMaterialIcon("cmd_source_pull", '\ue900')
+        @JvmField
+        val cmd_source_repository_multiple = CommunityMaterialIcon("cmd_source_repository_multiple", '\ue900')
+        @JvmField
+        val cmd_source_repository = CommunityMaterialIcon("cmd_source_repository", '\ue900')
+        @JvmField
+        val cmd_soy_sauce = CommunityMaterialIcon("cmd_soy_sauce", '\ue900')
+        @JvmField
+        val cmd_spa_outline = CommunityMaterialIcon("cmd_spa_outline", '\ue900')
+        @JvmField
+        val cmd_spa = CommunityMaterialIcon("cmd_spa", '\ue900')
+        @JvmField
+        val cmd_space_invaders = CommunityMaterialIcon("cmd_space_invaders", '\ue900')
+        @JvmField
+        val cmd_spade = CommunityMaterialIcon("cmd_spade", '\ue900')
+        @JvmField
+        val cmd_speaker_bluetooth = CommunityMaterialIcon("cmd_speaker_bluetooth", '\ue900')
+        @JvmField
+        val cmd_speaker_multiple = CommunityMaterialIcon("cmd_speaker_multiple", '\ue900')
+        @JvmField
+        val cmd_speaker_off = CommunityMaterialIcon("cmd_speaker_off", '\ue900')
+        @JvmField
+        val cmd_speaker_wireless = CommunityMaterialIcon("cmd_speaker_wireless", '\ue900')
+        @JvmField
+        val cmd_speaker = CommunityMaterialIcon("cmd_speaker", '\ue900')
+        @JvmField
+        val cmd_speedometer_medium = CommunityMaterialIcon("cmd_speedometer_medium", '\ue900')
+        @JvmField
+        val cmd_speedometer_slow = CommunityMaterialIcon("cmd_speedometer_slow", '\ue900')
+        @JvmField
+        val cmd_speedometer = CommunityMaterialIcon("cmd_speedometer", '\ue900')
+        @JvmField
+        val cmd_spellcheck = CommunityMaterialIcon("cmd_spellcheck", '\ue900')
+        @JvmField
+        val cmd_spider_thread = CommunityMaterialIcon("cmd_spider_thread", '\ue900')
+        @JvmField
+        val cmd_spider_web = CommunityMaterialIcon("cmd_spider_web", '\ue900')
+        @JvmField
+        val cmd_spider = CommunityMaterialIcon("cmd_spider", '\ue900')
+        @JvmField
+        val cmd_spotify = CommunityMaterialIcon("cmd_spotify", '\ue900')
+        @JvmField
+        val cmd_spotlight_beam = CommunityMaterialIcon("cmd_spotlight_beam", '\ue900')
+        @JvmField
+        val cmd_spotlight = CommunityMaterialIcon("cmd_spotlight", '\ue900')
+        @JvmField
+        val cmd_spray_bottle = CommunityMaterialIcon("cmd_spray_bottle", '\ue900')
+        @JvmField
+        val cmd_spray = CommunityMaterialIcon("cmd_spray", '\ue900')
+        @JvmField
+        val cmd_sprinkler_variant = CommunityMaterialIcon("cmd_sprinkler_variant", '\ue900')
+        @JvmField
+        val cmd_sprinkler = CommunityMaterialIcon("cmd_sprinkler", '\ue900')
+        @JvmField
+        val cmd_sprout_outline = CommunityMaterialIcon("cmd_sprout_outline", '\ue900')
+        @JvmField
+        val cmd_sprout = CommunityMaterialIcon("cmd_sprout", '\ue900')
+        @JvmField
+        val cmd_square_edit_outline = CommunityMaterialIcon("cmd_square_edit_outline", '\ue900')
+        @JvmField
+        val cmd_square_inc_cash = CommunityMaterialIcon("cmd_square_inc_cash", '\ue900')
+        @JvmField
+        val cmd_square_inc = CommunityMaterialIcon("cmd_square_inc", '\ue900')
+        @JvmField
+        val cmd_square_medium_outline = CommunityMaterialIcon("cmd_square_medium_outline", '\ue900')
+        @JvmField
+        val cmd_square_medium = CommunityMaterialIcon("cmd_square_medium", '\ue900')
+        @JvmField
+        val cmd_square_outline = CommunityMaterialIcon("cmd_square_outline", '\ue900')
+        @JvmField
+        val cmd_square_root_box = CommunityMaterialIcon("cmd_square_root_box", '\ue900')
+        @JvmField
+        val cmd_square_root = CommunityMaterialIcon("cmd_square_root", '\ue900')
+        @JvmField
+        val cmd_square_small = CommunityMaterialIcon("cmd_square_small", '\ue900')
+        @JvmField
+        val cmd_square = CommunityMaterialIcon("cmd_square", '\ue900')
+        @JvmField
+        val cmd_squeegee = CommunityMaterialIcon("cmd_squeegee", '\ue900')
+        @JvmField
+        val cmd_ssh = CommunityMaterialIcon("cmd_ssh", '\ue900')
+        @JvmField
+        val cmd_stack_exchange = CommunityMaterialIcon("cmd_stack_exchange", '\ue900')
+        @JvmField
+        val cmd_stack_overflow = CommunityMaterialIcon("cmd_stack_overflow", '\ue900')
+        @JvmField
+        val cmd_stackpath = CommunityMaterialIcon("cmd_stackpath", '\ue900')
+        @JvmField
+        val cmd_stadium_variant = CommunityMaterialIcon("cmd_stadium_variant", '\ue900')
+        @JvmField
+        val cmd_stadium = CommunityMaterialIcon("cmd_stadium", '\ue900')
+        @JvmField
+        val cmd_stairs_down = CommunityMaterialIcon("cmd_stairs_down", '\ue900')
+        @JvmField
+        val cmd_stairs_up = CommunityMaterialIcon("cmd_stairs_up", '\ue900')
+        @JvmField
+        val cmd_stairs = CommunityMaterialIcon("cmd_stairs", '\ue900')
+        @JvmField
+        val cmd_stamper = CommunityMaterialIcon("cmd_stamper", '\ue900')
+        @JvmField
+        val cmd_standard_definition = CommunityMaterialIcon("cmd_standard_definition", '\ue900')
+        @JvmField
+        val cmd_star_box_multiple_outline = CommunityMaterialIcon("cmd_star_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_star_box_multiple = CommunityMaterialIcon("cmd_star_box_multiple", '\ue900')
+        @JvmField
+        val cmd_star_box_outline = CommunityMaterialIcon("cmd_star_box_outline", '\ue900')
+        @JvmField
+        val cmd_star_box = CommunityMaterialIcon("cmd_star_box", '\ue900')
+        @JvmField
+        val cmd_star_circle_outline = CommunityMaterialIcon("cmd_star_circle_outline", '\ue900')
+        @JvmField
+        val cmd_star_circle = CommunityMaterialIcon("cmd_star_circle", '\ue900')
+        @JvmField
+        val cmd_star_face = CommunityMaterialIcon("cmd_star_face", '\ue900')
+        @JvmField
+        val cmd_star_four_points_outline = CommunityMaterialIcon("cmd_star_four_points_outline", '\ue900')
+        @JvmField
+        val cmd_star_four_points = CommunityMaterialIcon("cmd_star_four_points", '\ue900')
+        @JvmField
+        val cmd_star_half = CommunityMaterialIcon("cmd_star_half", '\ue900')
+        @JvmField
+        val cmd_star_off = CommunityMaterialIcon("cmd_star_off", '\ue900')
+        @JvmField
+        val cmd_star_outline = CommunityMaterialIcon("cmd_star_outline", '\ue900')
+        @JvmField
+        val cmd_star_three_points_outline = CommunityMaterialIcon("cmd_star_three_points_outline", '\ue900')
+        @JvmField
+        val cmd_star_three_points = CommunityMaterialIcon("cmd_star_three_points", '\ue900')
+        @JvmField
+        val cmd_star = CommunityMaterialIcon("cmd_star", '\ue900')
+        @JvmField
+        val cmd_state_machine = CommunityMaterialIcon("cmd_state_machine", '\ue900')
+        @JvmField
+        val cmd_steam_box = CommunityMaterialIcon("cmd_steam_box", '\ue900')
+        @JvmField
+        val cmd_steam = CommunityMaterialIcon("cmd_steam", '\ue900')
+        @JvmField
+        val cmd_steering_off = CommunityMaterialIcon("cmd_steering_off", '\ue900')
+        @JvmField
+        val cmd_steering = CommunityMaterialIcon("cmd_steering", '\ue900')
+        @JvmField
+        val cmd_step_backward_2 = CommunityMaterialIcon("cmd_step_backward_2", '\ue900')
+        @JvmField
+        val cmd_step_backward = CommunityMaterialIcon("cmd_step_backward", '\ue900')
+        @JvmField
+        val cmd_step_forward_2 = CommunityMaterialIcon("cmd_step_forward_2", '\ue900')
+        @JvmField
+        val cmd_step_forward = CommunityMaterialIcon("cmd_step_forward", '\ue900')
+        @JvmField
+        val cmd_stethoscope = CommunityMaterialIcon("cmd_stethoscope", '\ue900')
+        @JvmField
+        val cmd_sticker_emoji = CommunityMaterialIcon("cmd_sticker_emoji", '\ue900')
+        @JvmField
+        val cmd_sticker = CommunityMaterialIcon("cmd_sticker", '\ue900')
+        @JvmField
+        val cmd_stocking = CommunityMaterialIcon("cmd_stocking", '\ue900')
+        @JvmField
+        val cmd_stomach = CommunityMaterialIcon("cmd_stomach", '\ue900')
+        @JvmField
+        val cmd_stop_circle_outline = CommunityMaterialIcon("cmd_stop_circle_outline", '\ue900')
+        @JvmField
+        val cmd_stop_circle = CommunityMaterialIcon("cmd_stop_circle", '\ue900')
+        @JvmField
+        val cmd_stop = CommunityMaterialIcon("cmd_stop", '\ue900')
+        @JvmField
+        val cmd_store_24_hour = CommunityMaterialIcon("cmd_store_24_hour", '\ue900')
+        @JvmField
+        val cmd_store = CommunityMaterialIcon("cmd_store", '\ue900')
+        @JvmField
+        val cmd_storefront = CommunityMaterialIcon("cmd_storefront", '\ue900')
+        @JvmField
+        val cmd_stove = CommunityMaterialIcon("cmd_stove", '\ue900')
+        @JvmField
+        val cmd_strategy = CommunityMaterialIcon("cmd_strategy", '\ue900')
+        @JvmField
+        val cmd_strava = CommunityMaterialIcon("cmd_strava", '\ue900')
+        @JvmField
+        val cmd_stretch_to_page_outline = CommunityMaterialIcon("cmd_stretch_to_page_outline", '\ue900')
+        @JvmField
+        val cmd_stretch_to_page = CommunityMaterialIcon("cmd_stretch_to_page", '\ue900')
+        @JvmField
+        val cmd_string_lights_off = CommunityMaterialIcon("cmd_string_lights_off", '\ue900')
+        @JvmField
+        val cmd_string_lights = CommunityMaterialIcon("cmd_string_lights", '\ue900')
+        @JvmField
+        val cmd_subdirectory_arrow_left = CommunityMaterialIcon("cmd_subdirectory_arrow_left", '\ue900')
+        @JvmField
+        val cmd_subdirectory_arrow_right = CommunityMaterialIcon("cmd_subdirectory_arrow_right", '\ue900')
+        @JvmField
+        val cmd_subtitles_outline = CommunityMaterialIcon("cmd_subtitles_outline", '\ue900')
+        @JvmField
+        val cmd_subtitles = CommunityMaterialIcon("cmd_subtitles", '\ue900')
+        @JvmField
+        val cmd_subway_alert_variant = CommunityMaterialIcon("cmd_subway_alert_variant", '\ue900')
+        @JvmField
+        val cmd_subway_variant = CommunityMaterialIcon("cmd_subway_variant", '\ue900')
+        @JvmField
+        val cmd_subway = CommunityMaterialIcon("cmd_subway", '\ue900')
+        @JvmField
+        val cmd_summit = CommunityMaterialIcon("cmd_summit", '\ue900')
+        @JvmField
+        val cmd_sunglasses = CommunityMaterialIcon("cmd_sunglasses", '\ue900')
+        @JvmField
+        val cmd_surround_sound_2_0 = CommunityMaterialIcon("cmd_surround_sound_2_0", '\ue900')
+        @JvmField
+        val cmd_surround_sound_3_1 = CommunityMaterialIcon("cmd_surround_sound_3_1", '\ue900')
+        @JvmField
+        val cmd_surround_sound_5_1 = CommunityMaterialIcon("cmd_surround_sound_5_1", '\ue900')
+        @JvmField
+        val cmd_surround_sound_7_1 = CommunityMaterialIcon("cmd_surround_sound_7_1", '\ue900')
+        @JvmField
+        val cmd_surround_sound = CommunityMaterialIcon("cmd_surround_sound", '\ue900')
+        @JvmField
+        val cmd_svg = CommunityMaterialIcon("cmd_svg", '\ue900')
+        @JvmField
+        val cmd_swap_horizontal_bold = CommunityMaterialIcon("cmd_swap_horizontal_bold", '\ue900')
+        @JvmField
+        val cmd_swap_horizontal_circle_outline = CommunityMaterialIcon("cmd_swap_horizontal_circle_outline", '\ue900')
+        @JvmField
+        val cmd_swap_horizontal_circle = CommunityMaterialIcon("cmd_swap_horizontal_circle", '\ue900')
+        @JvmField
+        val cmd_swap_horizontal_variant = CommunityMaterialIcon("cmd_swap_horizontal_variant", '\ue900')
+        @JvmField
+        val cmd_swap_horizontal = CommunityMaterialIcon("cmd_swap_horizontal", '\ue900')
+        @JvmField
+        val cmd_swap_vertical_bold = CommunityMaterialIcon("cmd_swap_vertical_bold", '\ue900')
+        @JvmField
+        val cmd_swap_vertical_circle_outline = CommunityMaterialIcon("cmd_swap_vertical_circle_outline", '\ue900')
+        @JvmField
+        val cmd_swap_vertical_circle = CommunityMaterialIcon("cmd_swap_vertical_circle", '\ue900')
+        @JvmField
+        val cmd_swap_vertical_variant = CommunityMaterialIcon("cmd_swap_vertical_variant", '\ue900')
+        @JvmField
+        val cmd_swap_vertical = CommunityMaterialIcon("cmd_swap_vertical", '\ue900')
+        @JvmField
+        val cmd_swim = CommunityMaterialIcon("cmd_swim", '\ue900')
+        @JvmField
+        val cmd_switch = CommunityMaterialIcon("cmd_switch", '\ue900')
+        @JvmField
+        val cmd_sword_cross = CommunityMaterialIcon("cmd_sword_cross", '\ue900')
+        @JvmField
+        val cmd_sword = CommunityMaterialIcon("cmd_sword", '\ue900')
+        @JvmField
+        val cmd_symfony = CommunityMaterialIcon("cmd_symfony", '\ue900')
+        @JvmField
+        val cmd_sync_alert = CommunityMaterialIcon("cmd_sync_alert", '\ue900')
+        @JvmField
+        val cmd_sync_off = CommunityMaterialIcon("cmd_sync_off", '\ue900')
+        @JvmField
+        val cmd_sync = CommunityMaterialIcon("cmd_sync", '\ue900')
+        @JvmField
+        val cmd_tab_minus = CommunityMaterialIcon("cmd_tab_minus", '\ue900')
+        @JvmField
+        val cmd_tab_plus = CommunityMaterialIcon("cmd_tab_plus", '\ue900')
+        @JvmField
+        val cmd_tab_remove = CommunityMaterialIcon("cmd_tab_remove", '\ue900')
+        @JvmField
+        val cmd_tab_unselected = CommunityMaterialIcon("cmd_tab_unselected", '\ue900')
+        @JvmField
+        val cmd_tab = CommunityMaterialIcon("cmd_tab", '\ue900')
+        @JvmField
+        val cmd_table_border = CommunityMaterialIcon("cmd_table_border", '\ue900')
+        @JvmField
+        val cmd_table_chair = CommunityMaterialIcon("cmd_table_chair", '\ue900')
+        @JvmField
+        val cmd_table_column_plus_after = CommunityMaterialIcon("cmd_table_column_plus_after", '\ue900')
+        @JvmField
+        val cmd_table_column_plus_before = CommunityMaterialIcon("cmd_table_column_plus_before", '\ue900')
+        @JvmField
+        val cmd_table_column_remove = CommunityMaterialIcon("cmd_table_column_remove", '\ue900')
+        @JvmField
+        val cmd_table_column_width = CommunityMaterialIcon("cmd_table_column_width", '\ue900')
+        @JvmField
+        val cmd_table_column = CommunityMaterialIcon("cmd_table_column", '\ue900')
+        @JvmField
+        val cmd_table_edit = CommunityMaterialIcon("cmd_table_edit", '\ue900')
+        @JvmField
+        val cmd_table_eye = CommunityMaterialIcon("cmd_table_eye", '\ue900')
+        @JvmField
+        val cmd_table_headers_eye_off = CommunityMaterialIcon("cmd_table_headers_eye_off", '\ue900')
+        @JvmField
+        val cmd_table_headers_eye = CommunityMaterialIcon("cmd_table_headers_eye", '\ue900')
+        @JvmField
+        val cmd_table_large_plus = CommunityMaterialIcon("cmd_table_large_plus", '\ue900')
+        @JvmField
+        val cmd_table_large_remove = CommunityMaterialIcon("cmd_table_large_remove", '\ue900')
+        @JvmField
+        val cmd_table_large = CommunityMaterialIcon("cmd_table_large", '\ue900')
+        @JvmField
+        val cmd_table_merge_cells = CommunityMaterialIcon("cmd_table_merge_cells", '\ue900')
+        @JvmField
+        val cmd_table_of_contents = CommunityMaterialIcon("cmd_table_of_contents", '\ue900')
+        @JvmField
+        val cmd_table_plus = CommunityMaterialIcon("cmd_table_plus", '\ue900')
+        @JvmField
+        val cmd_table_remove = CommunityMaterialIcon("cmd_table_remove", '\ue900')
+        @JvmField
+        val cmd_table_row_height = CommunityMaterialIcon("cmd_table_row_height", '\ue900')
+        @JvmField
+        val cmd_table_row_plus_after = CommunityMaterialIcon("cmd_table_row_plus_after", '\ue900')
+        @JvmField
+        val cmd_table_row_plus_before = CommunityMaterialIcon("cmd_table_row_plus_before", '\ue900')
+        @JvmField
+        val cmd_table_row_remove = CommunityMaterialIcon("cmd_table_row_remove", '\ue900')
+        @JvmField
+        val cmd_table_row = CommunityMaterialIcon("cmd_table_row", '\ue900')
+        @JvmField
+        val cmd_table_search = CommunityMaterialIcon("cmd_table_search", '\ue900')
+        @JvmField
+        val cmd_table_settings = CommunityMaterialIcon("cmd_table_settings", '\ue900')
+        @JvmField
+        val cmd_table_tennis = CommunityMaterialIcon("cmd_table_tennis", '\ue900')
+        @JvmField
+        val cmd_table = CommunityMaterialIcon("cmd_table", '\ue900')
+        @JvmField
+        val cmd_tablet_android = CommunityMaterialIcon("cmd_tablet_android", '\ue900')
+        @JvmField
+        val cmd_tablet_cellphone = CommunityMaterialIcon("cmd_tablet_cellphone", '\ue900')
+        @JvmField
+        val cmd_tablet_dashboard = CommunityMaterialIcon("cmd_tablet_dashboard", '\ue900')
+        @JvmField
+        val cmd_tablet_ipad = CommunityMaterialIcon("cmd_tablet_ipad", '\ue900')
+        @JvmField
+        val cmd_tablet = CommunityMaterialIcon("cmd_tablet", '\ue900')
+        @JvmField
+        val cmd_taco = CommunityMaterialIcon("cmd_taco", '\ue900')
+        @JvmField
+        val cmd_tag_faces = CommunityMaterialIcon("cmd_tag_faces", '\ue900')
+        @JvmField
+        val cmd_tag_heart_outline = CommunityMaterialIcon("cmd_tag_heart_outline", '\ue900')
+        @JvmField
+        val cmd_tag_heart = CommunityMaterialIcon("cmd_tag_heart", '\ue900')
+        @JvmField
+        val cmd_tag_minus_outline = CommunityMaterialIcon("cmd_tag_minus_outline", '\ue900')
+        @JvmField
+        val cmd_tag_minus = CommunityMaterialIcon("cmd_tag_minus", '\ue900')
+        @JvmField
+        val cmd_tag_multiple = CommunityMaterialIcon("cmd_tag_multiple", '\ue900')
+        @JvmField
+        val cmd_tag_off_outline = CommunityMaterialIcon("cmd_tag_off_outline", '\ue900')
+        @JvmField
+        val cmd_tag_off = CommunityMaterialIcon("cmd_tag_off", '\ue900')
+        @JvmField
+        val cmd_tag_outline = CommunityMaterialIcon("cmd_tag_outline", '\ue900')
+        @JvmField
+        val cmd_tag_plus_outline = CommunityMaterialIcon("cmd_tag_plus_outline", '\ue900')
+        @JvmField
+        val cmd_tag_plus = CommunityMaterialIcon("cmd_tag_plus", '\ue900')
+        @JvmField
+        val cmd_tag_remove_outline = CommunityMaterialIcon("cmd_tag_remove_outline", '\ue900')
+        @JvmField
+        val cmd_tag_remove = CommunityMaterialIcon("cmd_tag_remove", '\ue900')
+        @JvmField
+        val cmd_tag_text_outline = CommunityMaterialIcon("cmd_tag_text_outline", '\ue900')
+        @JvmField
+        val cmd_tag_text = CommunityMaterialIcon("cmd_tag_text", '\ue900')
+        @JvmField
+        val cmd_tag = CommunityMaterialIcon("cmd_tag", '\ue900')
+        @JvmField
+        val cmd_tank = CommunityMaterialIcon("cmd_tank", '\ue900')
+        @JvmField
+        val cmd_tanker_truck = CommunityMaterialIcon("cmd_tanker_truck", '\ue900')
+        @JvmField
+        val cmd_tape_measure = CommunityMaterialIcon("cmd_tape_measure", '\ue900')
+        @JvmField
+        val cmd_target_account = CommunityMaterialIcon("cmd_target_account", '\ue900')
+        @JvmField
+        val cmd_target_variant = CommunityMaterialIcon("cmd_target_variant", '\ue900')
+        @JvmField
+        val cmd_target = CommunityMaterialIcon("cmd_target", '\ue900')
+        @JvmField
+        val cmd_taxi = CommunityMaterialIcon("cmd_taxi", '\ue900')
+        @JvmField
+        val cmd_tea_outline = CommunityMaterialIcon("cmd_tea_outline", '\ue900')
+        @JvmField
+        val cmd_tea = CommunityMaterialIcon("cmd_tea", '\ue900')
+        @JvmField
+        val cmd_teach = CommunityMaterialIcon("cmd_teach", '\ue900')
+        @JvmField
+        val cmd_teamviewer = CommunityMaterialIcon("cmd_teamviewer", '\ue900')
+        @JvmField
+        val cmd_telegram = CommunityMaterialIcon("cmd_telegram", '\ue900')
+        @JvmField
+        val cmd_telescope = CommunityMaterialIcon("cmd_telescope", '\ue900')
+        @JvmField
+        val cmd_television_box = CommunityMaterialIcon("cmd_television_box", '\ue900')
+        @JvmField
+        val cmd_television_classic_off = CommunityMaterialIcon("cmd_television_classic_off", '\ue900')
+        @JvmField
+        val cmd_television_classic = CommunityMaterialIcon("cmd_television_classic", '\ue900')
+        @JvmField
+        val cmd_television_clean = CommunityMaterialIcon("cmd_television_clean", '\ue900')
+        @JvmField
+        val cmd_television_guide = CommunityMaterialIcon("cmd_television_guide", '\ue900')
+        @JvmField
+        val cmd_television_off = CommunityMaterialIcon("cmd_television_off", '\ue900')
+        @JvmField
+        val cmd_television_pause = CommunityMaterialIcon("cmd_television_pause", '\ue900')
+        @JvmField
+        val cmd_television_play = CommunityMaterialIcon("cmd_television_play", '\ue900')
+        @JvmField
+        val cmd_television_stop = CommunityMaterialIcon("cmd_television_stop", '\ue900')
+        @JvmField
+        val cmd_television = CommunityMaterialIcon("cmd_television", '\ue900')
+        @JvmField
+        val cmd_temperature_celsius = CommunityMaterialIcon("cmd_temperature_celsius", '\ue900')
+        @JvmField
+        val cmd_temperature_fahrenheit = CommunityMaterialIcon("cmd_temperature_fahrenheit", '\ue900')
+        @JvmField
+        val cmd_temperature_kelvin = CommunityMaterialIcon("cmd_temperature_kelvin", '\ue900')
+        @JvmField
+        val cmd_tennis_ball = CommunityMaterialIcon("cmd_tennis_ball", '\ue900')
+        @JvmField
+        val cmd_tennis = CommunityMaterialIcon("cmd_tennis", '\ue900')
+        @JvmField
+        val cmd_tent = CommunityMaterialIcon("cmd_tent", '\ue900')
+        @JvmField
+        val cmd_terraform = CommunityMaterialIcon("cmd_terraform", '\ue900')
+        @JvmField
+        val cmd_terrain = CommunityMaterialIcon("cmd_terrain", '\ue900')
+        @JvmField
+        val cmd_test_tube_empty = CommunityMaterialIcon("cmd_test_tube_empty", '\ue900')
+        @JvmField
+        val cmd_test_tube_off = CommunityMaterialIcon("cmd_test_tube_off", '\ue900')
+        @JvmField
+        val cmd_test_tube = CommunityMaterialIcon("cmd_test_tube", '\ue900')
+        @JvmField
+        val cmd_text_recognition = CommunityMaterialIcon("cmd_text_recognition", '\ue900')
+        @JvmField
+        val cmd_text_shadow = CommunityMaterialIcon("cmd_text_shadow", '\ue900')
+        @JvmField
+        val cmd_text_short = CommunityMaterialIcon("cmd_text_short", '\ue900')
+        @JvmField
+        val cmd_text_subject = CommunityMaterialIcon("cmd_text_subject", '\ue900')
+        @JvmField
+        val cmd_text_to_speech_off = CommunityMaterialIcon("cmd_text_to_speech_off", '\ue900')
+        @JvmField
+        val cmd_text_to_speech = CommunityMaterialIcon("cmd_text_to_speech", '\ue900')
+        @JvmField
+        val cmd_text = CommunityMaterialIcon("cmd_text", '\ue900')
+        @JvmField
+        val cmd_textarea = CommunityMaterialIcon("cmd_textarea", '\ue900')
+        @JvmField
+        val cmd_textbox_password = CommunityMaterialIcon("cmd_textbox_password", '\ue900')
+        @JvmField
+        val cmd_textbox = CommunityMaterialIcon("cmd_textbox", '\ue900')
+        @JvmField
+        val cmd_texture_box = CommunityMaterialIcon("cmd_texture_box", '\ue900')
+        @JvmField
+        val cmd_texture = CommunityMaterialIcon("cmd_texture", '\ue900')
+        @JvmField
+        val cmd_theater = CommunityMaterialIcon("cmd_theater", '\ue900')
+        @JvmField
+        val cmd_theme_light_dark = CommunityMaterialIcon("cmd_theme_light_dark", '\ue900')
+        @JvmField
+        val cmd_thermometer_alert = CommunityMaterialIcon("cmd_thermometer_alert", '\ue900')
+        @JvmField
+        val cmd_thermometer_chevron_down = CommunityMaterialIcon("cmd_thermometer_chevron_down", '\ue900')
+        @JvmField
+        val cmd_thermometer_chevron_up = CommunityMaterialIcon("cmd_thermometer_chevron_up", '\ue900')
+        @JvmField
+        val cmd_thermometer_high = CommunityMaterialIcon("cmd_thermometer_high", '\ue900')
+        @JvmField
+        val cmd_thermometer_lines = CommunityMaterialIcon("cmd_thermometer_lines", '\ue900')
+        @JvmField
+        val cmd_thermometer_low = CommunityMaterialIcon("cmd_thermometer_low", '\ue900')
+        @JvmField
+        val cmd_thermometer_minus = CommunityMaterialIcon("cmd_thermometer_minus", '\ue900')
+        @JvmField
+        val cmd_thermometer_plus = CommunityMaterialIcon("cmd_thermometer_plus", '\ue900')
+        @JvmField
+        val cmd_thermometer = CommunityMaterialIcon("cmd_thermometer", '\ue900')
+        @JvmField
+        val cmd_thermostat_box = CommunityMaterialIcon("cmd_thermostat_box", '\ue900')
+        @JvmField
+        val cmd_thermostat = CommunityMaterialIcon("cmd_thermostat", '\ue900')
+        @JvmField
+        val cmd_thought_bubble_outline = CommunityMaterialIcon("cmd_thought_bubble_outline", '\ue900')
+        @JvmField
+        val cmd_thought_bubble = CommunityMaterialIcon("cmd_thought_bubble", '\ue900')
+        @JvmField
+        val cmd_thumb_down_outline = CommunityMaterialIcon("cmd_thumb_down_outline", '\ue900')
+        @JvmField
+        val cmd_thumb_down = CommunityMaterialIcon("cmd_thumb_down", '\ue900')
+        @JvmField
+        val cmd_thumb_up_outline = CommunityMaterialIcon("cmd_thumb_up_outline", '\ue900')
+        @JvmField
+        val cmd_thumb_up = CommunityMaterialIcon("cmd_thumb_up", '\ue900')
+        @JvmField
+        val cmd_thumbs_up_down = CommunityMaterialIcon("cmd_thumbs_up_down", '\ue900')
+        @JvmField
+        val cmd_ticket_account = CommunityMaterialIcon("cmd_ticket_account", '\ue900')
+        @JvmField
+        val cmd_ticket_confirmation = CommunityMaterialIcon("cmd_ticket_confirmation", '\ue900')
+        @JvmField
+        val cmd_ticket_outline = CommunityMaterialIcon("cmd_ticket_outline", '\ue900')
+        @JvmField
+        val cmd_ticket_percent = CommunityMaterialIcon("cmd_ticket_percent", '\ue900')
+        @JvmField
+        val cmd_ticket = CommunityMaterialIcon("cmd_ticket", '\ue900')
+        @JvmField
+        val cmd_tie = CommunityMaterialIcon("cmd_tie", '\ue900')
+        @JvmField
+        val cmd_tilde = CommunityMaterialIcon("cmd_tilde", '\ue900')
+        @JvmField
+        val cmd_timelapse = CommunityMaterialIcon("cmd_timelapse", '\ue900')
+        @JvmField
+        val cmd_timeline_alert_outline = CommunityMaterialIcon("cmd_timeline_alert_outline", '\ue900')
+        @JvmField
+        val cmd_timeline_alert = CommunityMaterialIcon("cmd_timeline_alert", '\ue900')
+        @JvmField
+        val cmd_timeline_clock_outline = CommunityMaterialIcon("cmd_timeline_clock_outline", '\ue900')
+        @JvmField
+        val cmd_timeline_clock = CommunityMaterialIcon("cmd_timeline_clock", '\ue900')
+        @JvmField
+        val cmd_timeline_help_outline = CommunityMaterialIcon("cmd_timeline_help_outline", '\ue900')
+        @JvmField
+        val cmd_timeline_help = CommunityMaterialIcon("cmd_timeline_help", '\ue900')
+        @JvmField
+        val cmd_timeline_outline = CommunityMaterialIcon("cmd_timeline_outline", '\ue900')
+        @JvmField
+        val cmd_timeline_plus_outline = CommunityMaterialIcon("cmd_timeline_plus_outline", '\ue900')
+        @JvmField
+        val cmd_timeline_plus = CommunityMaterialIcon("cmd_timeline_plus", '\ue900')
+        @JvmField
+        val cmd_timeline_text_outline = CommunityMaterialIcon("cmd_timeline_text_outline", '\ue900')
+        @JvmField
+        val cmd_timeline_text = CommunityMaterialIcon("cmd_timeline_text", '\ue900')
+        @JvmField
+        val cmd_timeline = CommunityMaterialIcon("cmd_timeline", '\ue900')
+        @JvmField
+        val cmd_timer_3 = CommunityMaterialIcon("cmd_timer_3", '\ue900')
+        @JvmField
+        val cmd_timer_10 = CommunityMaterialIcon("cmd_timer_10", '\ue900')
+        @JvmField
+        val cmd_timer_off = CommunityMaterialIcon("cmd_timer_off", '\ue900')
+        @JvmField
+        val cmd_timer_sand_empty = CommunityMaterialIcon("cmd_timer_sand_empty", '\ue900')
+        @JvmField
+        val cmd_timer_sand_full = CommunityMaterialIcon("cmd_timer_sand_full", '\ue900')
+        @JvmField
+        val cmd_timer_sand = CommunityMaterialIcon("cmd_timer_sand", '\ue900')
+        @JvmField
+        val cmd_timer = CommunityMaterialIcon("cmd_timer", '\ue900')
+        @JvmField
+        val cmd_timetable = CommunityMaterialIcon("cmd_timetable", '\ue900')
+        @JvmField
+        val cmd_toaster_off = CommunityMaterialIcon("cmd_toaster_off", '\ue900')
+        @JvmField
+        val cmd_toaster_oven = CommunityMaterialIcon("cmd_toaster_oven", '\ue900')
+        @JvmField
+        val cmd_toaster = CommunityMaterialIcon("cmd_toaster", '\ue900')
+        @JvmField
+        val cmd_toggle_switch_off_outline = CommunityMaterialIcon("cmd_toggle_switch_off_outline", '\ue900')
+        @JvmField
+        val cmd_toggle_switch_off = CommunityMaterialIcon("cmd_toggle_switch_off", '\ue900')
+        @JvmField
+        val cmd_toggle_switch_outline = CommunityMaterialIcon("cmd_toggle_switch_outline", '\ue900')
+        @JvmField
+        val cmd_toggle_switch = CommunityMaterialIcon("cmd_toggle_switch", '\ue900')
+        @JvmField
+        val cmd_toilet = CommunityMaterialIcon("cmd_toilet", '\ue900')
+        @JvmField
+        val cmd_toolbox_outline = CommunityMaterialIcon("cmd_toolbox_outline", '\ue900')
+        @JvmField
+        val cmd_toolbox = CommunityMaterialIcon("cmd_toolbox", '\ue900')
+        @JvmField
+        val cmd_tools = CommunityMaterialIcon("cmd_tools", '\ue900')
+        @JvmField
+        val cmd_tooltip_account = CommunityMaterialIcon("cmd_tooltip_account", '\ue900')
+        @JvmField
+        val cmd_tooltip_edit_outline = CommunityMaterialIcon("cmd_tooltip_edit_outline", '\ue900')
+        @JvmField
+        val cmd_tooltip_edit = CommunityMaterialIcon("cmd_tooltip_edit", '\ue900')
+        @JvmField
+        val cmd_tooltip_image_outline = CommunityMaterialIcon("cmd_tooltip_image_outline", '\ue900')
+        @JvmField
+        val cmd_tooltip_image = CommunityMaterialIcon("cmd_tooltip_image", '\ue900')
+        @JvmField
+        val cmd_tooltip_outline = CommunityMaterialIcon("cmd_tooltip_outline", '\ue900')
+        @JvmField
+        val cmd_tooltip_plus_outline = CommunityMaterialIcon("cmd_tooltip_plus_outline", '\ue900')
+        @JvmField
+        val cmd_tooltip_plus = CommunityMaterialIcon("cmd_tooltip_plus", '\ue900')
+        @JvmField
+        val cmd_tooltip_text_outline = CommunityMaterialIcon("cmd_tooltip_text_outline", '\ue900')
+        @JvmField
+        val cmd_tooltip_text = CommunityMaterialIcon("cmd_tooltip_text", '\ue900')
+        @JvmField
+        val cmd_tooltip = CommunityMaterialIcon("cmd_tooltip", '\ue900')
+        @JvmField
+        val cmd_tooth_outline = CommunityMaterialIcon("cmd_tooth_outline", '\ue900')
+        @JvmField
+        val cmd_tooth = CommunityMaterialIcon("cmd_tooth", '\ue900')
+        @JvmField
+        val cmd_toothbrush_electric = CommunityMaterialIcon("cmd_toothbrush_electric", '\ue900')
+        @JvmField
+        val cmd_toothbrush_paste = CommunityMaterialIcon("cmd_toothbrush_paste", '\ue900')
+        @JvmField
+        val cmd_toothbrush = CommunityMaterialIcon("cmd_toothbrush", '\ue900')
+        @JvmField
+        val cmd_tor = CommunityMaterialIcon("cmd_tor", '\ue900')
+        @JvmField
+        val cmd_tortoise = CommunityMaterialIcon("cmd_tortoise", '\ue900')
+        @JvmField
+        val cmd_toslink = CommunityMaterialIcon("cmd_toslink", '\ue900')
+        @JvmField
+        val cmd_tournament = CommunityMaterialIcon("cmd_tournament", '\ue900')
+        @JvmField
+        val cmd_tower_beach = CommunityMaterialIcon("cmd_tower_beach", '\ue900')
+        @JvmField
+        val cmd_tower_fire = CommunityMaterialIcon("cmd_tower_fire", '\ue900')
+        @JvmField
+        val cmd_towing = CommunityMaterialIcon("cmd_towing", '\ue900')
+        @JvmField
+        val cmd_toy_brick_marker_outline = CommunityMaterialIcon("cmd_toy_brick_marker_outline", '\ue900')
+        @JvmField
+        val cmd_toy_brick_marker = CommunityMaterialIcon("cmd_toy_brick_marker", '\ue900')
+        @JvmField
+        val cmd_toy_brick_minus_outline = CommunityMaterialIcon("cmd_toy_brick_minus_outline", '\ue900')
+        @JvmField
+        val cmd_toy_brick_minus = CommunityMaterialIcon("cmd_toy_brick_minus", '\ue900')
+        @JvmField
+        val cmd_toy_brick_outline = CommunityMaterialIcon("cmd_toy_brick_outline", '\ue900')
+        @JvmField
+        val cmd_toy_brick_plus_outline = CommunityMaterialIcon("cmd_toy_brick_plus_outline", '\ue900')
+        @JvmField
+        val cmd_toy_brick_plus = CommunityMaterialIcon("cmd_toy_brick_plus", '\ue900')
+        @JvmField
+        val cmd_toy_brick_remove_outline = CommunityMaterialIcon("cmd_toy_brick_remove_outline", '\ue900')
+        @JvmField
+        val cmd_toy_brick_remove = CommunityMaterialIcon("cmd_toy_brick_remove", '\ue900')
+        @JvmField
+        val cmd_toy_brick_search_outline = CommunityMaterialIcon("cmd_toy_brick_search_outline", '\ue900')
+        @JvmField
+        val cmd_toy_brick_search = CommunityMaterialIcon("cmd_toy_brick_search", '\ue900')
+        @JvmField
+        val cmd_toy_brick = CommunityMaterialIcon("cmd_toy_brick", '\ue900')
+        @JvmField
+        val cmd_track_light = CommunityMaterialIcon("cmd_track_light", '\ue900')
+        @JvmField
+        val cmd_trackpad_lock = CommunityMaterialIcon("cmd_trackpad_lock", '\ue900')
+        @JvmField
+        val cmd_trackpad = CommunityMaterialIcon("cmd_trackpad", '\ue900')
+        @JvmField
+        val cmd_tractor = CommunityMaterialIcon("cmd_tractor", '\ue900')
+        @JvmField
+        val cmd_trademark = CommunityMaterialIcon("cmd_trademark", '\ue900')
+        @JvmField
+        val cmd_traffic_light = CommunityMaterialIcon("cmd_traffic_light", '\ue900')
+        @JvmField
+        val cmd_train_car = CommunityMaterialIcon("cmd_train_car", '\ue900')
+        @JvmField
+        val cmd_train_variant = CommunityMaterialIcon("cmd_train_variant", '\ue900')
+        @JvmField
+        val cmd_train = CommunityMaterialIcon("cmd_train", '\ue900')
+        @JvmField
+        val cmd_tram_side = CommunityMaterialIcon("cmd_tram_side", '\ue900')
+        @JvmField
+        val cmd_tram = CommunityMaterialIcon("cmd_tram", '\ue900')
+        @JvmField
+        val cmd_transcribe_close = CommunityMaterialIcon("cmd_transcribe_close", '\ue900')
+        @JvmField
+        val cmd_transcribe = CommunityMaterialIcon("cmd_transcribe", '\ue900')
+        @JvmField
+        val cmd_transfer_down = CommunityMaterialIcon("cmd_transfer_down", '\ue900')
+        @JvmField
+        val cmd_transfer_left = CommunityMaterialIcon("cmd_transfer_left", '\ue900')
+        @JvmField
+        val cmd_transfer_right = CommunityMaterialIcon("cmd_transfer_right", '\ue900')
+        @JvmField
+        val cmd_transfer_up = CommunityMaterialIcon("cmd_transfer_up", '\ue900')
+        @JvmField
+        val cmd_transfer = CommunityMaterialIcon("cmd_transfer", '\ue900')
+        @JvmField
+        val cmd_transit_connection_variant = CommunityMaterialIcon("cmd_transit_connection_variant", '\ue900')
+        @JvmField
+        val cmd_transit_connection = CommunityMaterialIcon("cmd_transit_connection", '\ue900')
+        @JvmField
+        val cmd_transit_detour = CommunityMaterialIcon("cmd_transit_detour", '\ue900')
+        @JvmField
+        val cmd_transit_transfer = CommunityMaterialIcon("cmd_transit_transfer", '\ue900')
+        @JvmField
+        val cmd_transition_masked = CommunityMaterialIcon("cmd_transition_masked", '\ue900')
+        @JvmField
+        val cmd_transition = CommunityMaterialIcon("cmd_transition", '\ue900')
+        @JvmField
+        val cmd_translate_off = CommunityMaterialIcon("cmd_translate_off", '\ue900')
+        @JvmField
+        val cmd_translate = CommunityMaterialIcon("cmd_translate", '\ue900')
+        @JvmField
+        val cmd_transmission_tower = CommunityMaterialIcon("cmd_transmission_tower", '\ue900')
+        @JvmField
+        val cmd_trash_can_outline = CommunityMaterialIcon("cmd_trash_can_outline", '\ue900')
+        @JvmField
+        val cmd_trash_can = CommunityMaterialIcon("cmd_trash_can", '\ue900')
+        @JvmField
+        val cmd_tray_alert = CommunityMaterialIcon("cmd_tray_alert", '\ue900')
+        @JvmField
+        val cmd_tray_full = CommunityMaterialIcon("cmd_tray_full", '\ue900')
+        @JvmField
+        val cmd_tray_minus = CommunityMaterialIcon("cmd_tray_minus", '\ue900')
+        @JvmField
+        val cmd_tray_plus = CommunityMaterialIcon("cmd_tray_plus", '\ue900')
+        @JvmField
+        val cmd_tray_remove = CommunityMaterialIcon("cmd_tray_remove", '\ue900')
+        @JvmField
+        val cmd_tray = CommunityMaterialIcon("cmd_tray", '\ue900')
+        @JvmField
+        val cmd_treasure_chest = CommunityMaterialIcon("cmd_treasure_chest", '\ue900')
+        @JvmField
+        val cmd_tree_outline = CommunityMaterialIcon("cmd_tree_outline", '\ue900')
+        @JvmField
+        val cmd_tree = CommunityMaterialIcon("cmd_tree", '\ue900')
+        @JvmField
+        val cmd_trello = CommunityMaterialIcon("cmd_trello", '\ue900')
+        @JvmField
+        val cmd_trending_down = CommunityMaterialIcon("cmd_trending_down", '\ue900')
+        @JvmField
+        val cmd_trending_neutral = CommunityMaterialIcon("cmd_trending_neutral", '\ue900')
+        @JvmField
+        val cmd_trending_up = CommunityMaterialIcon("cmd_trending_up", '\ue900')
+        @JvmField
+        val cmd_triangle_outline = CommunityMaterialIcon("cmd_triangle_outline", '\ue900')
+        @JvmField
+        val cmd_triangle = CommunityMaterialIcon("cmd_triangle", '\ue900')
+        @JvmField
+        val cmd_triforce = CommunityMaterialIcon("cmd_triforce", '\ue900')
+        @JvmField
+        val cmd_trophy_award = CommunityMaterialIcon("cmd_trophy_award", '\ue900')
+        @JvmField
+        val cmd_trophy_broken = CommunityMaterialIcon("cmd_trophy_broken", '\ue900')
+        @JvmField
+        val cmd_trophy_outline = CommunityMaterialIcon("cmd_trophy_outline", '\ue900')
+        @JvmField
+        val cmd_trophy_variant_outline = CommunityMaterialIcon("cmd_trophy_variant_outline", '\ue900')
+        @JvmField
+        val cmd_trophy_variant = CommunityMaterialIcon("cmd_trophy_variant", '\ue900')
+        @JvmField
+        val cmd_trophy = CommunityMaterialIcon("cmd_trophy", '\ue900')
+        @JvmField
+        val cmd_truck_check_outline = CommunityMaterialIcon("cmd_truck_check_outline", '\ue900')
+        @JvmField
+        val cmd_truck_check = CommunityMaterialIcon("cmd_truck_check", '\ue900')
+        @JvmField
+        val cmd_truck_delivery_outline = CommunityMaterialIcon("cmd_truck_delivery_outline", '\ue900')
+        @JvmField
+        val cmd_truck_delivery = CommunityMaterialIcon("cmd_truck_delivery", '\ue900')
+        @JvmField
+        val cmd_truck_fast_outline = CommunityMaterialIcon("cmd_truck_fast_outline", '\ue900')
+        @JvmField
+        val cmd_truck_fast = CommunityMaterialIcon("cmd_truck_fast", '\ue900')
+        @JvmField
+        val cmd_truck_outline = CommunityMaterialIcon("cmd_truck_outline", '\ue900')
+        @JvmField
+        val cmd_truck_trailer = CommunityMaterialIcon("cmd_truck_trailer", '\ue900')
+        @JvmField
+        val cmd_truck = CommunityMaterialIcon("cmd_truck", '\ue900')
+        @JvmField
+        val cmd_trumpet = CommunityMaterialIcon("cmd_trumpet", '\ue900')
+        @JvmField
+        val cmd_tshirt_crew_outline = CommunityMaterialIcon("cmd_tshirt_crew_outline", '\ue900')
+        @JvmField
+        val cmd_tshirt_crew = CommunityMaterialIcon("cmd_tshirt_crew", '\ue900')
+        @JvmField
+        val cmd_tshirt_v_outline = CommunityMaterialIcon("cmd_tshirt_v_outline", '\ue900')
+        @JvmField
+        val cmd_tshirt_v = CommunityMaterialIcon("cmd_tshirt_v", '\ue900')
+        @JvmField
+        val cmd_tumble_dryer_alert = CommunityMaterialIcon("cmd_tumble_dryer_alert", '\ue900')
+        @JvmField
+        val cmd_tumble_dryer_off = CommunityMaterialIcon("cmd_tumble_dryer_off", '\ue900')
+        @JvmField
+        val cmd_tumble_dryer = CommunityMaterialIcon("cmd_tumble_dryer", '\ue900')
+        @JvmField
+        val cmd_tumblr_box = CommunityMaterialIcon("cmd_tumblr_box", '\ue900')
+        @JvmField
+        val cmd_tumblr_reblog = CommunityMaterialIcon("cmd_tumblr_reblog", '\ue900')
+        @JvmField
+        val cmd_tumblr = CommunityMaterialIcon("cmd_tumblr", '\ue900')
+        @JvmField
+        val cmd_tune_vertical = CommunityMaterialIcon("cmd_tune_vertical", '\ue900')
+        @JvmField
+        val cmd_tune = CommunityMaterialIcon("cmd_tune", '\ue900')
+        @JvmField
+        val cmd_turnstile_outline = CommunityMaterialIcon("cmd_turnstile_outline", '\ue900')
+        @JvmField
+        val cmd_turnstile = CommunityMaterialIcon("cmd_turnstile", '\ue900')
+        @JvmField
+        val cmd_turtle = CommunityMaterialIcon("cmd_turtle", '\ue900')
+        @JvmField
+        val cmd_twitch = CommunityMaterialIcon("cmd_twitch", '\ue900')
+        @JvmField
+        val cmd_twitter_box = CommunityMaterialIcon("cmd_twitter_box", '\ue900')
+        @JvmField
+        val cmd_twitter_circle = CommunityMaterialIcon("cmd_twitter_circle", '\ue900')
+        @JvmField
+        val cmd_twitter_retweet = CommunityMaterialIcon("cmd_twitter_retweet", '\ue900')
+        @JvmField
+        val cmd_twitter = CommunityMaterialIcon("cmd_twitter", '\ue900')
+        @JvmField
+        val cmd_two_factor_authentication = CommunityMaterialIcon("cmd_two_factor_authentication", '\ue900')
+        @JvmField
+        val cmd_typewriter = CommunityMaterialIcon("cmd_typewriter", '\ue900')
+        @JvmField
+        val cmd_uber = CommunityMaterialIcon("cmd_uber", '\ue900')
+        @JvmField
+        val cmd_ubisoft = CommunityMaterialIcon("cmd_ubisoft", '\ue900')
+        @JvmField
+        val cmd_ubuntu = CommunityMaterialIcon("cmd_ubuntu", '\ue900')
+        @JvmField
+        val cmd_ufo_outline = CommunityMaterialIcon("cmd_ufo_outline", '\ue900')
+        @JvmField
+        val cmd_ufo = CommunityMaterialIcon("cmd_ufo", '\ue900')
+        @JvmField
+        val cmd_ultra_high_definition = CommunityMaterialIcon("cmd_ultra_high_definition", '\ue900')
+        @JvmField
+        val cmd_umbraco = CommunityMaterialIcon("cmd_umbraco", '\ue900')
+        @JvmField
+        val cmd_umbrella_closed = CommunityMaterialIcon("cmd_umbrella_closed", '\ue900')
+        @JvmField
+        val cmd_umbrella_outline = CommunityMaterialIcon("cmd_umbrella_outline", '\ue900')
+        @JvmField
+        val cmd_umbrella = CommunityMaterialIcon("cmd_umbrella", '\ue900')
+        @JvmField
+        val cmd_undo_variant = CommunityMaterialIcon("cmd_undo_variant", '\ue900')
+        @JvmField
+        val cmd_undo = CommunityMaterialIcon("cmd_undo", '\ue900')
+        @JvmField
+        val cmd_unfold_less_horizontal = CommunityMaterialIcon("cmd_unfold_less_horizontal", '\ue900')
+        @JvmField
+        val cmd_unfold_less_vertical = CommunityMaterialIcon("cmd_unfold_less_vertical", '\ue900')
+        @JvmField
+        val cmd_unfold_more_horizontal = CommunityMaterialIcon("cmd_unfold_more_horizontal", '\ue900')
+        @JvmField
+        val cmd_unfold_more_vertical = CommunityMaterialIcon("cmd_unfold_more_vertical", '\ue900')
+        @JvmField
+        val cmd_ungroup = CommunityMaterialIcon("cmd_ungroup", '\ue900')
+        @JvmField
+        val cmd_unicode = CommunityMaterialIcon("cmd_unicode", '\ue900')
+        @JvmField
+        val cmd_unity = CommunityMaterialIcon("cmd_unity", '\ue900')
+        @JvmField
+        val cmd_unreal = CommunityMaterialIcon("cmd_unreal", '\ue900')
+        @JvmField
+        val cmd_untappd = CommunityMaterialIcon("cmd_untappd", '\ue900')
+        @JvmField
+        val cmd_update = CommunityMaterialIcon("cmd_update", '\ue900')
+        @JvmField
+        val cmd_upload_multiple = CommunityMaterialIcon("cmd_upload_multiple", '\ue900')
+        @JvmField
+        val cmd_upload_network_outline = CommunityMaterialIcon("cmd_upload_network_outline", '\ue900')
+        @JvmField
+        val cmd_upload_network = CommunityMaterialIcon("cmd_upload_network", '\ue900')
+        @JvmField
+        val cmd_upload_off_outline = CommunityMaterialIcon("cmd_upload_off_outline", '\ue900')
+        @JvmField
+        val cmd_upload_off = CommunityMaterialIcon("cmd_upload_off", '\ue900')
+        @JvmField
+        val cmd_upload_outline = CommunityMaterialIcon("cmd_upload_outline", '\ue900')
+        @JvmField
+        val cmd_upload = CommunityMaterialIcon("cmd_upload", '\ue900')
+        @JvmField
+        val cmd_usb_flash_drive_outline = CommunityMaterialIcon("cmd_usb_flash_drive_outline", '\ue900')
+        @JvmField
+        val cmd_usb_flash_drive = CommunityMaterialIcon("cmd_usb_flash_drive", '\ue900')
+        @JvmField
+        val cmd_usb_port = CommunityMaterialIcon("cmd_usb_port", '\ue900')
+        @JvmField
+        val cmd_usb = CommunityMaterialIcon("cmd_usb", '\ue900')
+        @JvmField
+        val cmd_valve_closed = CommunityMaterialIcon("cmd_valve_closed", '\ue900')
+        @JvmField
+        val cmd_valve_open = CommunityMaterialIcon("cmd_valve_open", '\ue900')
+        @JvmField
+        val cmd_valve = CommunityMaterialIcon("cmd_valve", '\ue900')
+        @JvmField
+        val cmd_van_passenger = CommunityMaterialIcon("cmd_van_passenger", '\ue900')
+        @JvmField
+        val cmd_van_utility = CommunityMaterialIcon("cmd_van_utility", '\ue900')
+        @JvmField
+        val cmd_vanish = CommunityMaterialIcon("cmd_vanish", '\ue900')
+        @JvmField
+        val cmd_vanity_light = CommunityMaterialIcon("cmd_vanity_light", '\ue900')
+        @JvmField
+        val cmd_variable_box = CommunityMaterialIcon("cmd_variable_box", '\ue900')
+        @JvmField
+        val cmd_variable = CommunityMaterialIcon("cmd_variable", '\ue900')
+        @JvmField
+        val cmd_vector_arrange_above = CommunityMaterialIcon("cmd_vector_arrange_above", '\ue900')
+        @JvmField
+        val cmd_vector_arrange_below = CommunityMaterialIcon("cmd_vector_arrange_below", '\ue900')
+        @JvmField
+        val cmd_vector_bezier = CommunityMaterialIcon("cmd_vector_bezier", '\ue900')
+        @JvmField
+        val cmd_vector_circle_variant = CommunityMaterialIcon("cmd_vector_circle_variant", '\ue900')
+        @JvmField
+        val cmd_vector_circle = CommunityMaterialIcon("cmd_vector_circle", '\ue900')
+        @JvmField
+        val cmd_vector_combine = CommunityMaterialIcon("cmd_vector_combine", '\ue900')
+        @JvmField
+        val cmd_vector_curve = CommunityMaterialIcon("cmd_vector_curve", '\ue900')
+        @JvmField
+        val cmd_vector_difference_ab = CommunityMaterialIcon("cmd_vector_difference_ab", '\ue900')
+        @JvmField
+        val cmd_vector_difference_ba = CommunityMaterialIcon("cmd_vector_difference_ba", '\ue900')
+        @JvmField
+        val cmd_vector_difference = CommunityMaterialIcon("cmd_vector_difference", '\ue900')
+        @JvmField
+        val cmd_vector_ellipse = CommunityMaterialIcon("cmd_vector_ellipse", '\ue900')
+        @JvmField
+        val cmd_vector_intersection = CommunityMaterialIcon("cmd_vector_intersection", '\ue900')
+        @JvmField
+        val cmd_vector_line = CommunityMaterialIcon("cmd_vector_line", '\ue900')
+        @JvmField
+        val cmd_vector_link = CommunityMaterialIcon("cmd_vector_link", '\ue900')
+        @JvmField
+        val cmd_vector_point = CommunityMaterialIcon("cmd_vector_point", '\ue900')
+        @JvmField
+        val cmd_vector_polygon = CommunityMaterialIcon("cmd_vector_polygon", '\ue900')
+        @JvmField
+        val cmd_vector_polyline_edit = CommunityMaterialIcon("cmd_vector_polyline_edit", '\ue900')
+        @JvmField
+        val cmd_vector_polyline_minus = CommunityMaterialIcon("cmd_vector_polyline_minus", '\ue900')
+        @JvmField
+        val cmd_vector_polyline_plus = CommunityMaterialIcon("cmd_vector_polyline_plus", '\ue900')
+        @JvmField
+        val cmd_vector_polyline_remove = CommunityMaterialIcon("cmd_vector_polyline_remove", '\ue900')
+        @JvmField
+        val cmd_vector_polyline = CommunityMaterialIcon("cmd_vector_polyline", '\ue900')
+        @JvmField
+        val cmd_vector_radius = CommunityMaterialIcon("cmd_vector_radius", '\ue900')
+        @JvmField
+        val cmd_vector_rectangle = CommunityMaterialIcon("cmd_vector_rectangle", '\ue900')
+        @JvmField
+        val cmd_vector_selection = CommunityMaterialIcon("cmd_vector_selection", '\ue900')
+        @JvmField
+        val cmd_vector_square = CommunityMaterialIcon("cmd_vector_square", '\ue900')
+        @JvmField
+        val cmd_vector_triangle = CommunityMaterialIcon("cmd_vector_triangle", '\ue900')
+        @JvmField
+        val cmd_vector_union = CommunityMaterialIcon("cmd_vector_union", '\ue900')
+        @JvmField
+        val cmd_venmo = CommunityMaterialIcon("cmd_venmo", '\ue900')
+        @JvmField
+        val cmd_vhs = CommunityMaterialIcon("cmd_vhs", '\ue900')
+        @JvmField
+        val cmd_vibrate_off = CommunityMaterialIcon("cmd_vibrate_off", '\ue900')
+        @JvmField
+        val cmd_vibrate = CommunityMaterialIcon("cmd_vibrate", '\ue900')
+        @JvmField
+        val cmd_video_3d_variant = CommunityMaterialIcon("cmd_video_3d_variant", '\ue900')
+        @JvmField
+        val cmd_video_3d = CommunityMaterialIcon("cmd_video_3d", '\ue900')
+        @JvmField
+        val cmd_video_4k_box = CommunityMaterialIcon("cmd_video_4k_box", '\ue900')
+        @JvmField
+        val cmd_video_account = CommunityMaterialIcon("cmd_video_account", '\ue900')
+        @JvmField
+        val cmd_video_check_outline = CommunityMaterialIcon("cmd_video_check_outline", '\ue900')
+        @JvmField
+        val cmd_video_check = CommunityMaterialIcon("cmd_video_check", '\ue900')
+        @JvmField
+        val cmd_video_image = CommunityMaterialIcon("cmd_video_image", '\ue900')
+        @JvmField
+        val cmd_video_input_antenna = CommunityMaterialIcon("cmd_video_input_antenna", '\ue900')
+        @JvmField
+        val cmd_video_input_component = CommunityMaterialIcon("cmd_video_input_component", '\ue900')
+        @JvmField
+        val cmd_video_input_hdmi = CommunityMaterialIcon("cmd_video_input_hdmi", '\ue900')
+        @JvmField
+        val cmd_video_input_scart = CommunityMaterialIcon("cmd_video_input_scart", '\ue900')
+        @JvmField
+        val cmd_video_input_svideo = CommunityMaterialIcon("cmd_video_input_svideo", '\ue900')
+        @JvmField
+        val cmd_video_minus = CommunityMaterialIcon("cmd_video_minus", '\ue900')
+        @JvmField
+        val cmd_video_off_outline = CommunityMaterialIcon("cmd_video_off_outline", '\ue900')
+        @JvmField
+        val cmd_video_off = CommunityMaterialIcon("cmd_video_off", '\ue900')
+        @JvmField
+        val cmd_video_outline = CommunityMaterialIcon("cmd_video_outline", '\ue900')
+        @JvmField
+        val cmd_video_plus = CommunityMaterialIcon("cmd_video_plus", '\ue900')
+        @JvmField
+        val cmd_video_stabilization = CommunityMaterialIcon("cmd_video_stabilization", '\ue900')
+        @JvmField
+        val cmd_video_switch = CommunityMaterialIcon("cmd_video_switch", '\ue900')
+        @JvmField
+        val cmd_video_vintage = CommunityMaterialIcon("cmd_video_vintage", '\ue900')
+        @JvmField
+        val cmd_video_wireless_outline = CommunityMaterialIcon("cmd_video_wireless_outline", '\ue900')
+        @JvmField
+        val cmd_video_wireless = CommunityMaterialIcon("cmd_video_wireless", '\ue900')
+        @JvmField
+        val cmd_video = CommunityMaterialIcon("cmd_video", '\ue900')
+        @JvmField
+        val cmd_view_agenda_outline = CommunityMaterialIcon("cmd_view_agenda_outline", '\ue900')
+        @JvmField
+        val cmd_view_agenda = CommunityMaterialIcon("cmd_view_agenda", '\ue900')
+        @JvmField
+        val cmd_view_array = CommunityMaterialIcon("cmd_view_array", '\ue900')
+        @JvmField
+        val cmd_view_carousel = CommunityMaterialIcon("cmd_view_carousel", '\ue900')
+        @JvmField
+        val cmd_view_column = CommunityMaterialIcon("cmd_view_column", '\ue900')
+        @JvmField
+        val cmd_view_comfy = CommunityMaterialIcon("cmd_view_comfy", '\ue900')
+        @JvmField
+        val cmd_view_compact_outline = CommunityMaterialIcon("cmd_view_compact_outline", '\ue900')
+        @JvmField
+        val cmd_view_compact = CommunityMaterialIcon("cmd_view_compact", '\ue900')
+        @JvmField
+        val cmd_view_dashboard_outline = CommunityMaterialIcon("cmd_view_dashboard_outline", '\ue900')
+        @JvmField
+        val cmd_view_dashboard_variant = CommunityMaterialIcon("cmd_view_dashboard_variant", '\ue900')
+        @JvmField
+        val cmd_view_dashboard = CommunityMaterialIcon("cmd_view_dashboard", '\ue900')
+        @JvmField
+        val cmd_view_day = CommunityMaterialIcon("cmd_view_day", '\ue900')
+        @JvmField
+        val cmd_view_grid_outline = CommunityMaterialIcon("cmd_view_grid_outline", '\ue900')
+        @JvmField
+        val cmd_view_grid_plus_outline = CommunityMaterialIcon("cmd_view_grid_plus_outline", '\ue900')
+        @JvmField
+        val cmd_view_grid_plus = CommunityMaterialIcon("cmd_view_grid_plus", '\ue900')
+        @JvmField
+        val cmd_view_grid = CommunityMaterialIcon("cmd_view_grid", '\ue900')
+        @JvmField
+        val cmd_view_headline = CommunityMaterialIcon("cmd_view_headline", '\ue900')
+        @JvmField
+        val cmd_view_list = CommunityMaterialIcon("cmd_view_list", '\ue900')
+        @JvmField
+        val cmd_view_module = CommunityMaterialIcon("cmd_view_module", '\ue900')
+        @JvmField
+        val cmd_view_parallel = CommunityMaterialIcon("cmd_view_parallel", '\ue900')
+        @JvmField
+        val cmd_view_quilt = CommunityMaterialIcon("cmd_view_quilt", '\ue900')
+        @JvmField
+        val cmd_view_sequential = CommunityMaterialIcon("cmd_view_sequential", '\ue900')
+        @JvmField
+        val cmd_view_split_horizontal = CommunityMaterialIcon("cmd_view_split_horizontal", '\ue900')
+        @JvmField
+        val cmd_view_split_vertical = CommunityMaterialIcon("cmd_view_split_vertical", '\ue900')
+        @JvmField
+        val cmd_view_stream = CommunityMaterialIcon("cmd_view_stream", '\ue900')
+        @JvmField
+        val cmd_view_week = CommunityMaterialIcon("cmd_view_week", '\ue900')
+        @JvmField
+        val cmd_vimeo = CommunityMaterialIcon("cmd_vimeo", '\ue900')
+        @JvmField
+        val cmd_violin = CommunityMaterialIcon("cmd_violin", '\ue900')
+        @JvmField
+        val cmd_virtual_reality = CommunityMaterialIcon("cmd_virtual_reality", '\ue900')
+        @JvmField
+        val cmd_visual_studio_code = CommunityMaterialIcon("cmd_visual_studio_code", '\ue900')
+        @JvmField
+        val cmd_visual_studio = CommunityMaterialIcon("cmd_visual_studio", '\ue900')
+        @JvmField
+        val cmd_vk_box = CommunityMaterialIcon("cmd_vk_box", '\ue900')
+        @JvmField
+        val cmd_vk_circle = CommunityMaterialIcon("cmd_vk_circle", '\ue900')
+        @JvmField
+        val cmd_vk = CommunityMaterialIcon("cmd_vk", '\ue900')
+        @JvmField
+        val cmd_vlc = CommunityMaterialIcon("cmd_vlc", '\ue900')
+        @JvmField
+        val cmd_voice_off = CommunityMaterialIcon("cmd_voice_off", '\ue900')
+        @JvmField
+        val cmd_voice = CommunityMaterialIcon("cmd_voice", '\ue900')
+        @JvmField
+        val cmd_voicemail = CommunityMaterialIcon("cmd_voicemail", '\ue900')
+        @JvmField
+        val cmd_volleyball = CommunityMaterialIcon("cmd_volleyball", '\ue900')
+        @JvmField
+        val cmd_volume_high = CommunityMaterialIcon("cmd_volume_high", '\ue900')
+        @JvmField
+        val cmd_volume_low = CommunityMaterialIcon("cmd_volume_low", '\ue900')
+        @JvmField
+        val cmd_volume_medium = CommunityMaterialIcon("cmd_volume_medium", '\ue900')
+        @JvmField
+        val cmd_volume_minus = CommunityMaterialIcon("cmd_volume_minus", '\ue900')
+        @JvmField
+        val cmd_volume_mute = CommunityMaterialIcon("cmd_volume_mute", '\ue900')
+        @JvmField
+        val cmd_volume_off = CommunityMaterialIcon("cmd_volume_off", '\ue900')
+        @JvmField
+        val cmd_volume_plus = CommunityMaterialIcon("cmd_volume_plus", '\ue900')
+        @JvmField
+        val cmd_volume_source = CommunityMaterialIcon("cmd_volume_source", '\ue900')
+        @JvmField
+        val cmd_volume_variant_off = CommunityMaterialIcon("cmd_volume_variant_off", '\ue900')
+        @JvmField
+        val cmd_volume_vibrate = CommunityMaterialIcon("cmd_volume_vibrate", '\ue900')
+        @JvmField
+        val cmd_vote_outline = CommunityMaterialIcon("cmd_vote_outline", '\ue900')
+        @JvmField
+        val cmd_vote = CommunityMaterialIcon("cmd_vote", '\ue900')
+        @JvmField
+        val cmd_vpn = CommunityMaterialIcon("cmd_vpn", '\ue900')
+        @JvmField
+        val cmd_vuejs = CommunityMaterialIcon("cmd_vuejs", '\ue900')
+        @JvmField
+        val cmd_vuetify = CommunityMaterialIcon("cmd_vuetify", '\ue900')
+        @JvmField
+        val cmd_walk = CommunityMaterialIcon("cmd_walk", '\ue900')
+        @JvmField
+        val cmd_wall_sconce_flat = CommunityMaterialIcon("cmd_wall_sconce_flat", '\ue900')
+        @JvmField
+        val cmd_wall_sconce_variant = CommunityMaterialIcon("cmd_wall_sconce_variant", '\ue900')
+        @JvmField
+        val cmd_wall_sconce = CommunityMaterialIcon("cmd_wall_sconce", '\ue900')
+        @JvmField
+        val cmd_wall = CommunityMaterialIcon("cmd_wall", '\ue900')
+        @JvmField
+        val cmd_wallet_giftcard = CommunityMaterialIcon("cmd_wallet_giftcard", '\ue900')
+        @JvmField
+        val cmd_wallet_membership = CommunityMaterialIcon("cmd_wallet_membership", '\ue900')
+        @JvmField
+        val cmd_wallet_outline = CommunityMaterialIcon("cmd_wallet_outline", '\ue900')
+        @JvmField
+        val cmd_wallet_plus_outline = CommunityMaterialIcon("cmd_wallet_plus_outline", '\ue900')
+        @JvmField
+        val cmd_wallet_plus = CommunityMaterialIcon("cmd_wallet_plus", '\ue900')
+        @JvmField
+        val cmd_wallet_travel = CommunityMaterialIcon("cmd_wallet_travel", '\ue900')
+        @JvmField
+        val cmd_wallet = CommunityMaterialIcon("cmd_wallet", '\ue900')
+        @JvmField
+        val cmd_wallpaper = CommunityMaterialIcon("cmd_wallpaper", '\ue900')
+        @JvmField
+        val cmd_wan = CommunityMaterialIcon("cmd_wan", '\ue900')
+        @JvmField
+        val cmd_wardrobe_outline = CommunityMaterialIcon("cmd_wardrobe_outline", '\ue900')
+        @JvmField
+        val cmd_wardrobe = CommunityMaterialIcon("cmd_wardrobe", '\ue900')
+        @JvmField
+        val cmd_warehouse = CommunityMaterialIcon("cmd_warehouse", '\ue900')
+        @JvmField
+        val cmd_washing_machine_alert = CommunityMaterialIcon("cmd_washing_machine_alert", '\ue900')
+        @JvmField
+        val cmd_washing_machine_off = CommunityMaterialIcon("cmd_washing_machine_off", '\ue900')
+        @JvmField
+        val cmd_washing_machine = CommunityMaterialIcon("cmd_washing_machine", '\ue900')
+        @JvmField
+        val cmd_watch_export_variant = CommunityMaterialIcon("cmd_watch_export_variant", '\ue900')
+        @JvmField
+        val cmd_watch_export = CommunityMaterialIcon("cmd_watch_export", '\ue900')
+        @JvmField
+        val cmd_watch_import_variant = CommunityMaterialIcon("cmd_watch_import_variant", '\ue900')
+        @JvmField
+        val cmd_watch_import = CommunityMaterialIcon("cmd_watch_import", '\ue900')
+        @JvmField
+        val cmd_watch_variant = CommunityMaterialIcon("cmd_watch_variant", '\ue900')
+        @JvmField
+        val cmd_watch_vibrate_off = CommunityMaterialIcon("cmd_watch_vibrate_off", '\ue900')
+        @JvmField
+        val cmd_watch_vibrate = CommunityMaterialIcon("cmd_watch_vibrate", '\ue900')
+        @JvmField
+        val cmd_watch = CommunityMaterialIcon("cmd_watch", '\ue900')
+        @JvmField
+        val cmd_water_boiler_alert = CommunityMaterialIcon("cmd_water_boiler_alert", '\ue900')
+        @JvmField
+        val cmd_water_boiler_off = CommunityMaterialIcon("cmd_water_boiler_off", '\ue900')
+        @JvmField
+        val cmd_water_boiler = CommunityMaterialIcon("cmd_water_boiler", '\ue900')
+        @JvmField
+        val cmd_water_off = CommunityMaterialIcon("cmd_water_off", '\ue900')
+        @JvmField
+        val cmd_water_outline = CommunityMaterialIcon("cmd_water_outline", '\ue900')
+        @JvmField
+        val cmd_water_percent = CommunityMaterialIcon("cmd_water_percent", '\ue900')
+        @JvmField
+        val cmd_water_polo = CommunityMaterialIcon("cmd_water_polo", '\ue900')
+        @JvmField
+        val cmd_water_pump_off = CommunityMaterialIcon("cmd_water_pump_off", '\ue900')
+        @JvmField
+        val cmd_water_pump = CommunityMaterialIcon("cmd_water_pump", '\ue900')
+        @JvmField
+        val cmd_water_well_outline = CommunityMaterialIcon("cmd_water_well_outline", '\ue900')
+        @JvmField
+        val cmd_water_well = CommunityMaterialIcon("cmd_water_well", '\ue900')
+        @JvmField
+        val cmd_water = CommunityMaterialIcon("cmd_water", '\ue900')
+        @JvmField
+        val cmd_watermark = CommunityMaterialIcon("cmd_watermark", '\ue900')
+        @JvmField
+        val cmd_wave = CommunityMaterialIcon("cmd_wave", '\ue900')
+        @JvmField
+        val cmd_waves = CommunityMaterialIcon("cmd_waves", '\ue900')
+        @JvmField
+        val cmd_waze = CommunityMaterialIcon("cmd_waze", '\ue900')
+        @JvmField
+        val cmd_weather_cloudy_alert = CommunityMaterialIcon("cmd_weather_cloudy_alert", '\ue900')
+        @JvmField
+        val cmd_weather_cloudy_arrow_right = CommunityMaterialIcon("cmd_weather_cloudy_arrow_right", '\ue900')
+        @JvmField
+        val cmd_weather_cloudy = CommunityMaterialIcon("cmd_weather_cloudy", '\ue900')
+        @JvmField
+        val cmd_weather_fog = CommunityMaterialIcon("cmd_weather_fog", '\ue900')
+        @JvmField
+        val cmd_weather_hail = CommunityMaterialIcon("cmd_weather_hail", '\ue900')
+        @JvmField
+        val cmd_weather_hazy = CommunityMaterialIcon("cmd_weather_hazy", '\ue900')
+        @JvmField
+        val cmd_weather_hurricane = CommunityMaterialIcon("cmd_weather_hurricane", '\ue900')
+        @JvmField
+        val cmd_weather_lightning_rainy = CommunityMaterialIcon("cmd_weather_lightning_rainy", '\ue900')
+        @JvmField
+        val cmd_weather_lightning = CommunityMaterialIcon("cmd_weather_lightning", '\ue900')
+        @JvmField
+        val cmd_weather_night_partly_cloudy = CommunityMaterialIcon("cmd_weather_night_partly_cloudy", '\ue900')
+        @JvmField
+        val cmd_weather_night = CommunityMaterialIcon("cmd_weather_night", '\ue900')
+        @JvmField
+        val cmd_weather_partly_cloudy = CommunityMaterialIcon("cmd_weather_partly_cloudy", '\ue900')
+        @JvmField
+        val cmd_weather_partly_lightning = CommunityMaterialIcon("cmd_weather_partly_lightning", '\ue900')
+        @JvmField
+        val cmd_weather_partly_rainy = CommunityMaterialIcon("cmd_weather_partly_rainy", '\ue900')
+        @JvmField
+        val cmd_weather_partly_snowy_rainy = CommunityMaterialIcon("cmd_weather_partly_snowy_rainy", '\ue900')
+        @JvmField
+        val cmd_weather_partly_snowy = CommunityMaterialIcon("cmd_weather_partly_snowy", '\ue900')
+        @JvmField
+        val cmd_weather_pouring = CommunityMaterialIcon("cmd_weather_pouring", '\ue900')
+        @JvmField
+        val cmd_weather_rainy = CommunityMaterialIcon("cmd_weather_rainy", '\ue900')
+        @JvmField
+        val cmd_weather_snowy_heavy = CommunityMaterialIcon("cmd_weather_snowy_heavy", '\ue900')
+        @JvmField
+        val cmd_weather_snowy_rainy = CommunityMaterialIcon("cmd_weather_snowy_rainy", '\ue900')
+        @JvmField
+        val cmd_weather_snowy = CommunityMaterialIcon("cmd_weather_snowy", '\ue900')
+        @JvmField
+        val cmd_weather_sunny_alert = CommunityMaterialIcon("cmd_weather_sunny_alert", '\ue900')
+        @JvmField
+        val cmd_weather_sunny = CommunityMaterialIcon("cmd_weather_sunny", '\ue900')
+        @JvmField
+        val cmd_weather_sunset_down = CommunityMaterialIcon("cmd_weather_sunset_down", '\ue900')
+        @JvmField
+        val cmd_weather_sunset_up = CommunityMaterialIcon("cmd_weather_sunset_up", '\ue900')
+        @JvmField
+        val cmd_weather_sunset = CommunityMaterialIcon("cmd_weather_sunset", '\ue900')
+        @JvmField
+        val cmd_weather_tornado = CommunityMaterialIcon("cmd_weather_tornado", '\ue900')
+        @JvmField
+        val cmd_weather_windy_variant = CommunityMaterialIcon("cmd_weather_windy_variant", '\ue900')
+        @JvmField
+        val cmd_weather_windy = CommunityMaterialIcon("cmd_weather_windy", '\ue900')
+        @JvmField
+        val cmd_web_box = CommunityMaterialIcon("cmd_web_box", '\ue900')
+        @JvmField
+        val cmd_web_clock = CommunityMaterialIcon("cmd_web_clock", '\ue900')
+        @JvmField
+        val cmd_web = CommunityMaterialIcon("cmd_web", '\ue900')
+        @JvmField
+        val cmd_webcam = CommunityMaterialIcon("cmd_webcam", '\ue900')
+        @JvmField
+        val cmd_webhook = CommunityMaterialIcon("cmd_webhook", '\ue900')
+        @JvmField
+        val cmd_webpack = CommunityMaterialIcon("cmd_webpack", '\ue900')
+        @JvmField
+        val cmd_webrtc = CommunityMaterialIcon("cmd_webrtc", '\ue900')
+        @JvmField
+        val cmd_wechat = CommunityMaterialIcon("cmd_wechat", '\ue900')
+        @JvmField
+        val cmd_weight_gram = CommunityMaterialIcon("cmd_weight_gram", '\ue900')
+        @JvmField
+        val cmd_weight_kilogram = CommunityMaterialIcon("cmd_weight_kilogram", '\ue900')
+        @JvmField
+        val cmd_weight_lifter = CommunityMaterialIcon("cmd_weight_lifter", '\ue900')
+        @JvmField
+        val cmd_weight_pound = CommunityMaterialIcon("cmd_weight_pound", '\ue900')
+        @JvmField
+        val cmd_weight = CommunityMaterialIcon("cmd_weight", '\ue900')
+        @JvmField
+        val cmd_whatsapp = CommunityMaterialIcon("cmd_whatsapp", '\ue900')
+        @JvmField
+        val cmd_wheelchair_accessibility = CommunityMaterialIcon("cmd_wheelchair_accessibility", '\ue900')
+        @JvmField
+        val cmd_whistle_outline = CommunityMaterialIcon("cmd_whistle_outline", '\ue900')
+        @JvmField
+        val cmd_whistle = CommunityMaterialIcon("cmd_whistle", '\ue900')
+        @JvmField
+        val cmd_white_balance_auto = CommunityMaterialIcon("cmd_white_balance_auto", '\ue900')
+        @JvmField
+        val cmd_white_balance_incandescent = CommunityMaterialIcon("cmd_white_balance_incandescent", '\ue900')
+        @JvmField
+        val cmd_white_balance_iridescent = CommunityMaterialIcon("cmd_white_balance_iridescent", '\ue900')
+        @JvmField
+        val cmd_white_balance_sunny = CommunityMaterialIcon("cmd_white_balance_sunny", '\ue900')
+        @JvmField
+        val cmd_widgets = CommunityMaterialIcon("cmd_widgets", '\ue900')
+        @JvmField
+        val cmd_wifi_off = CommunityMaterialIcon("cmd_wifi_off", '\ue900')
+        @JvmField
+        val cmd_wifi_star = CommunityMaterialIcon("cmd_wifi_star", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_1_alert = CommunityMaterialIcon("cmd_wifi_strength_1_alert", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_1_lock = CommunityMaterialIcon("cmd_wifi_strength_1_lock", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_1 = CommunityMaterialIcon("cmd_wifi_strength_1", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_2_alert = CommunityMaterialIcon("cmd_wifi_strength_2_alert", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_2_lock = CommunityMaterialIcon("cmd_wifi_strength_2_lock", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_2 = CommunityMaterialIcon("cmd_wifi_strength_2", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_3_alert = CommunityMaterialIcon("cmd_wifi_strength_3_alert", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_3_lock = CommunityMaterialIcon("cmd_wifi_strength_3_lock", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_3 = CommunityMaterialIcon("cmd_wifi_strength_3", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_4_alert = CommunityMaterialIcon("cmd_wifi_strength_4_alert", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_4_lock = CommunityMaterialIcon("cmd_wifi_strength_4_lock", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_4 = CommunityMaterialIcon("cmd_wifi_strength_4", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_alert_outline = CommunityMaterialIcon("cmd_wifi_strength_alert_outline", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_lock_outline = CommunityMaterialIcon("cmd_wifi_strength_lock_outline", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_off_outline = CommunityMaterialIcon("cmd_wifi_strength_off_outline", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_off = CommunityMaterialIcon("cmd_wifi_strength_off", '\ue900')
+        @JvmField
+        val cmd_wifi_strength_outline = CommunityMaterialIcon("cmd_wifi_strength_outline", '\ue900')
+        @JvmField
+        val cmd_wifi = CommunityMaterialIcon("cmd_wifi", '\ue900')
+        @JvmField
+        val cmd_wii = CommunityMaterialIcon("cmd_wii", '\ue900')
+        @JvmField
+        val cmd_wiiu = CommunityMaterialIcon("cmd_wiiu", '\ue900')
+        @JvmField
+        val cmd_wikipedia = CommunityMaterialIcon("cmd_wikipedia", '\ue900')
+        @JvmField
+        val cmd_wind_turbine = CommunityMaterialIcon("cmd_wind_turbine", '\ue900')
+        @JvmField
+        val cmd_window_close = CommunityMaterialIcon("cmd_window_close", '\ue900')
+        @JvmField
+        val cmd_window_closed_variant = CommunityMaterialIcon("cmd_window_closed_variant", '\ue900')
+        @JvmField
+        val cmd_window_closed = CommunityMaterialIcon("cmd_window_closed", '\ue900')
+        @JvmField
+        val cmd_window_maximize = CommunityMaterialIcon("cmd_window_maximize", '\ue900')
+        @JvmField
+        val cmd_window_minimize = CommunityMaterialIcon("cmd_window_minimize", '\ue900')
+        @JvmField
+        val cmd_window_open_variant = CommunityMaterialIcon("cmd_window_open_variant", '\ue900')
+        @JvmField
+        val cmd_window_open = CommunityMaterialIcon("cmd_window_open", '\ue900')
+        @JvmField
+        val cmd_window_restore = CommunityMaterialIcon("cmd_window_restore", '\ue900')
+        @JvmField
+        val cmd_window_shutter_alert = CommunityMaterialIcon("cmd_window_shutter_alert", '\ue900')
+        @JvmField
+        val cmd_window_shutter_open = CommunityMaterialIcon("cmd_window_shutter_open", '\ue900')
+        @JvmField
+        val cmd_window_shutter = CommunityMaterialIcon("cmd_window_shutter", '\ue900')
+        @JvmField
+        val cmd_windows_classic = CommunityMaterialIcon("cmd_windows_classic", '\ue900')
+        @JvmField
+        val cmd_windows = CommunityMaterialIcon("cmd_windows", '\ue900')
+        @JvmField
+        val cmd_wiper_wash = CommunityMaterialIcon("cmd_wiper_wash", '\ue900')
+        @JvmField
+        val cmd_wiper = CommunityMaterialIcon("cmd_wiper", '\ue900')
+        @JvmField
+        val cmd_wordpress = CommunityMaterialIcon("cmd_wordpress", '\ue900')
+        @JvmField
+        val cmd_worker = CommunityMaterialIcon("cmd_worker", '\ue900')
+        @JvmField
+        val cmd_wrap_disabled = CommunityMaterialIcon("cmd_wrap_disabled", '\ue900')
+        @JvmField
+        val cmd_wrap = CommunityMaterialIcon("cmd_wrap", '\ue900')
+        @JvmField
+        val cmd_wrench_outline = CommunityMaterialIcon("cmd_wrench_outline", '\ue900')
+        @JvmField
+        val cmd_wrench = CommunityMaterialIcon("cmd_wrench", '\ue900')
+        @JvmField
+        val cmd_wunderlist = CommunityMaterialIcon("cmd_wunderlist", '\ue900')
+        @JvmField
+        val cmd_xamarin_outline = CommunityMaterialIcon("cmd_xamarin_outline", '\ue900')
+        @JvmField
+        val cmd_xamarin = CommunityMaterialIcon("cmd_xamarin", '\ue900')
+        @JvmField
+        val cmd_xaml = CommunityMaterialIcon("cmd_xaml", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_battery_alert = CommunityMaterialIcon("cmd_xbox_controller_battery_alert", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_battery_charging = CommunityMaterialIcon("cmd_xbox_controller_battery_charging", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_battery_empty = CommunityMaterialIcon("cmd_xbox_controller_battery_empty", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_battery_full = CommunityMaterialIcon("cmd_xbox_controller_battery_full", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_battery_low = CommunityMaterialIcon("cmd_xbox_controller_battery_low", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_battery_medium = CommunityMaterialIcon("cmd_xbox_controller_battery_medium", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_battery_unknown = CommunityMaterialIcon("cmd_xbox_controller_battery_unknown", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_menu = CommunityMaterialIcon("cmd_xbox_controller_menu", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_off = CommunityMaterialIcon("cmd_xbox_controller_off", '\ue900')
+        @JvmField
+        val cmd_xbox_controller_view = CommunityMaterialIcon("cmd_xbox_controller_view", '\ue900')
+        @JvmField
+        val cmd_xbox_controller = CommunityMaterialIcon("cmd_xbox_controller", '\ue900')
+        @JvmField
+        val cmd_xbox = CommunityMaterialIcon("cmd_xbox", '\ue900')
+        @JvmField
+        val cmd_xda = CommunityMaterialIcon("cmd_xda", '\ue900')
+        @JvmField
+        val cmd_xing_box = CommunityMaterialIcon("cmd_xing_box", '\ue900')
+        @JvmField
+        val cmd_xing_circle = CommunityMaterialIcon("cmd_xing_circle", '\ue900')
+        @JvmField
+        val cmd_xing = CommunityMaterialIcon("cmd_xing", '\ue900')
+        @JvmField
+        val cmd_xml = CommunityMaterialIcon("cmd_xml", '\ue900')
+        @JvmField
+        val cmd_xmpp = CommunityMaterialIcon("cmd_xmpp", '\ue900')
+        @JvmField
+        val cmd_yahoo = CommunityMaterialIcon("cmd_yahoo", '\ue900')
+        @JvmField
+        val cmd_yammer = CommunityMaterialIcon("cmd_yammer", '\ue900')
+        @JvmField
+        val cmd_yeast = CommunityMaterialIcon("cmd_yeast", '\ue900')
+        @JvmField
+        val cmd_yelp = CommunityMaterialIcon("cmd_yelp", '\ue900')
+        @JvmField
+        val cmd_yin_yang = CommunityMaterialIcon("cmd_yin_yang", '\ue900')
+        @JvmField
+        val cmd_yoga = CommunityMaterialIcon("cmd_yoga", '\ue900')
+        @JvmField
+        val cmd_youtube_creator_studio = CommunityMaterialIcon("cmd_youtube_creator_studio", '\ue900')
+        @JvmField
+        val cmd_youtube_gaming = CommunityMaterialIcon("cmd_youtube_gaming", '\ue900')
+        @JvmField
+        val cmd_youtube_subscription = CommunityMaterialIcon("cmd_youtube_subscription", '\ue900')
+        @JvmField
+        val cmd_youtube_tv = CommunityMaterialIcon("cmd_youtube_tv", '\ue900')
+        @JvmField
+        val cmd_youtube = CommunityMaterialIcon("cmd_youtube", '\ue900')
+        @JvmField
+        val cmd_z_wave = CommunityMaterialIcon("cmd_z_wave", '\ue900')
+        @JvmField
+        val cmd_zend = CommunityMaterialIcon("cmd_zend", '\ue900')
+        @JvmField
+        val cmd_zigbee = CommunityMaterialIcon("cmd_zigbee", '\ue900')
+        @JvmField
+        val cmd_zip_box_outline = CommunityMaterialIcon("cmd_zip_box_outline", '\ue900')
+        @JvmField
+        val cmd_zip_box = CommunityMaterialIcon("cmd_zip_box", '\ue900')
+        @JvmField
+        val cmd_zip_disk = CommunityMaterialIcon("cmd_zip_disk", '\ue900')
+        @JvmField
+        val cmd_zodiac_aquarius = CommunityMaterialIcon("cmd_zodiac_aquarius", '\ue900')
+        @JvmField
+        val cmd_zodiac_aries = CommunityMaterialIcon("cmd_zodiac_aries", '\ue900')
+        @JvmField
+        val cmd_zodiac_cancer = CommunityMaterialIcon("cmd_zodiac_cancer", '\ue900')
+        @JvmField
+        val cmd_zodiac_capricorn = CommunityMaterialIcon("cmd_zodiac_capricorn", '\ue900')
+        @JvmField
+        val cmd_zodiac_gemini = CommunityMaterialIcon("cmd_zodiac_gemini", '\ue900')
+        @JvmField
+        val cmd_zodiac_leo = CommunityMaterialIcon("cmd_zodiac_leo", '\ue900')
+        @JvmField
+        val cmd_zodiac_libra = CommunityMaterialIcon("cmd_zodiac_libra", '\ue900')
+        @JvmField
+        val cmd_zodiac_pisces = CommunityMaterialIcon("cmd_zodiac_pisces", '\ue900')
+        @JvmField
+        val cmd_zodiac_sagittarius = CommunityMaterialIcon("cmd_zodiac_sagittarius", '\ue900')
+        @JvmField
+        val cmd_zodiac_scorpio = CommunityMaterialIcon("cmd_zodiac_scorpio", '\ue900')
+        @JvmField
+        val cmd_zodiac_taurus = CommunityMaterialIcon("cmd_zodiac_taurus", '\ue900')
+        @JvmField
+        val cmd_zodiac_virgo = CommunityMaterialIcon("cmd_zodiac_virgo", '\ue900')
+        @JvmField
+        val cmd_hair_dryer_outline = CommunityMaterialIcon("cmd_hair_dryer_outline", '\ue900')
+        @JvmField
+        val cmd_hair_dryer = CommunityMaterialIcon("cmd_hair_dryer", '\ue900')
+        @JvmField
+        val cmd_halloween = CommunityMaterialIcon("cmd_halloween", '\ue900')
+        @JvmField
+        val cmd_hamburger = CommunityMaterialIcon("cmd_hamburger", '\ue900')
+        @JvmField
+        val cmd_hammer = CommunityMaterialIcon("cmd_hammer", '\ue900')
+        @JvmField
+        val cmd_hand_heart = CommunityMaterialIcon("cmd_hand_heart", '\ue900')
+        @JvmField
+        val cmd_hand_left = CommunityMaterialIcon("cmd_hand_left", '\ue900')
+        @JvmField
+        val cmd_hand_okay = CommunityMaterialIcon("cmd_hand_okay", '\ue900')
+        @JvmField
+        val cmd_hand_peace_variant = CommunityMaterialIcon("cmd_hand_peace_variant", '\ue900')
+        @JvmField
+        val cmd_hand_peace = CommunityMaterialIcon("cmd_hand_peace", '\ue900')
+        @JvmField
+        val cmd_hand_pointing_down = CommunityMaterialIcon("cmd_hand_pointing_down", '\ue900')
+        @JvmField
+        val cmd_hand_pointing_left = CommunityMaterialIcon("cmd_hand_pointing_left", '\ue900')
+        @JvmField
+        val cmd_hand_pointing_right = CommunityMaterialIcon("cmd_hand_pointing_right", '\ue900')
+        @JvmField
+        val cmd_hand_pointing_up = CommunityMaterialIcon("cmd_hand_pointing_up", '\ue900')
+        @JvmField
+        val cmd_hand_right = CommunityMaterialIcon("cmd_hand_right", '\ue900')
+        @JvmField
+        val cmd_hand_saw = CommunityMaterialIcon("cmd_hand_saw", '\ue900')
+        @JvmField
+        val cmd_hand = CommunityMaterialIcon("cmd_hand", '\ue900')
+        @JvmField
+        val cmd_handball = CommunityMaterialIcon("cmd_handball", '\ue900')
+        @JvmField
+        val cmd_handcuffs = CommunityMaterialIcon("cmd_handcuffs", '\ue900')
+        @JvmField
+        val cmd_handshake = CommunityMaterialIcon("cmd_handshake", '\ue900')
+        @JvmField
+        val cmd_hanger = CommunityMaterialIcon("cmd_hanger", '\ue900')
+        @JvmField
+        val cmd_hard_hat = CommunityMaterialIcon("cmd_hard_hat", '\ue900')
+        @JvmField
+        val cmd_harddisk_plus = CommunityMaterialIcon("cmd_harddisk_plus", '\ue900')
+        @JvmField
+        val cmd_harddisk_remove = CommunityMaterialIcon("cmd_harddisk_remove", '\ue900')
+        @JvmField
+        val cmd_harddisk = CommunityMaterialIcon("cmd_harddisk", '\ue900')
+        @JvmField
+        val cmd_hat_fedora = CommunityMaterialIcon("cmd_hat_fedora", '\ue900')
+        @JvmField
+        val cmd_hazard_lights = CommunityMaterialIcon("cmd_hazard_lights", '\ue900')
+        @JvmField
+        val cmd_hdr_off = CommunityMaterialIcon("cmd_hdr_off", '\ue900')
+        @JvmField
+        val cmd_hdr = CommunityMaterialIcon("cmd_hdr", '\ue900')
+        @JvmField
+        val cmd_headphones_bluetooth = CommunityMaterialIcon("cmd_headphones_bluetooth", '\ue900')
+        @JvmField
+        val cmd_headphones_box = CommunityMaterialIcon("cmd_headphones_box", '\ue900')
+        @JvmField
+        val cmd_headphones_off = CommunityMaterialIcon("cmd_headphones_off", '\ue900')
+        @JvmField
+        val cmd_headphones_settings = CommunityMaterialIcon("cmd_headphones_settings", '\ue900')
+        @JvmField
+        val cmd_headphones = CommunityMaterialIcon("cmd_headphones", '\ue900')
+        @JvmField
+        val cmd_headset_dock = CommunityMaterialIcon("cmd_headset_dock", '\ue900')
+        @JvmField
+        val cmd_headset_off = CommunityMaterialIcon("cmd_headset_off", '\ue900')
+        @JvmField
+        val cmd_headset = CommunityMaterialIcon("cmd_headset", '\ue900')
+        @JvmField
+        val cmd_heart_box_outline = CommunityMaterialIcon("cmd_heart_box_outline", '\ue900')
+        @JvmField
+        val cmd_heart_box = CommunityMaterialIcon("cmd_heart_box", '\ue900')
+        @JvmField
+        val cmd_heart_broken_outline = CommunityMaterialIcon("cmd_heart_broken_outline", '\ue900')
+        @JvmField
+        val cmd_heart_broken = CommunityMaterialIcon("cmd_heart_broken", '\ue900')
+        @JvmField
+        val cmd_heart_circle_outline = CommunityMaterialIcon("cmd_heart_circle_outline", '\ue900')
+        @JvmField
+        val cmd_heart_circle = CommunityMaterialIcon("cmd_heart_circle", '\ue900')
+        @JvmField
+        val cmd_heart_flash = CommunityMaterialIcon("cmd_heart_flash", '\ue900')
+        @JvmField
+        val cmd_heart_half_full = CommunityMaterialIcon("cmd_heart_half_full", '\ue900')
+        @JvmField
+        val cmd_heart_half_outline = CommunityMaterialIcon("cmd_heart_half_outline", '\ue900')
+        @JvmField
+        val cmd_heart_half = CommunityMaterialIcon("cmd_heart_half", '\ue900')
+        @JvmField
+        val cmd_heart_multiple_outline = CommunityMaterialIcon("cmd_heart_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_heart_multiple = CommunityMaterialIcon("cmd_heart_multiple", '\ue900')
+        @JvmField
+        val cmd_heart_off = CommunityMaterialIcon("cmd_heart_off", '\ue900')
+        @JvmField
+        val cmd_heart_outline = CommunityMaterialIcon("cmd_heart_outline", '\ue900')
+        @JvmField
+        val cmd_heart_pulse = CommunityMaterialIcon("cmd_heart_pulse", '\ue900')
+        @JvmField
+        val cmd_heart = CommunityMaterialIcon("cmd_heart", '\ue900')
+        @JvmField
+        val cmd_helicopter = CommunityMaterialIcon("cmd_helicopter", '\ue900')
+        @JvmField
+        val cmd_help_box = CommunityMaterialIcon("cmd_help_box", '\ue900')
+        @JvmField
+        val cmd_help_circle_outline = CommunityMaterialIcon("cmd_help_circle_outline", '\ue900')
+        @JvmField
+        val cmd_help_circle = CommunityMaterialIcon("cmd_help_circle", '\ue900')
+        @JvmField
+        val cmd_help_network_outline = CommunityMaterialIcon("cmd_help_network_outline", '\ue900')
+        @JvmField
+        val cmd_help_network = CommunityMaterialIcon("cmd_help_network", '\ue900')
+        @JvmField
+        val cmd_help_rhombus_outline = CommunityMaterialIcon("cmd_help_rhombus_outline", '\ue900')
+        @JvmField
+        val cmd_help_rhombus = CommunityMaterialIcon("cmd_help_rhombus", '\ue900')
+        @JvmField
+        val cmd_help = CommunityMaterialIcon("cmd_help", '\ue900')
+        @JvmField
+        val cmd_hexadecimal = CommunityMaterialIcon("cmd_hexadecimal", '\ue900')
+        @JvmField
+        val cmd_hexagon_multiple_outline = CommunityMaterialIcon("cmd_hexagon_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_hexagon_multiple = CommunityMaterialIcon("cmd_hexagon_multiple", '\ue900')
+        @JvmField
+        val cmd_hexagon_outline = CommunityMaterialIcon("cmd_hexagon_outline", '\ue900')
+        @JvmField
+        val cmd_hexagon_slice_1 = CommunityMaterialIcon("cmd_hexagon_slice_1", '\ue900')
+        @JvmField
+        val cmd_hexagon_slice_2 = CommunityMaterialIcon("cmd_hexagon_slice_2", '\ue900')
+        @JvmField
+        val cmd_hexagon_slice_3 = CommunityMaterialIcon("cmd_hexagon_slice_3", '\ue900')
+        @JvmField
+        val cmd_hexagon_slice_4 = CommunityMaterialIcon("cmd_hexagon_slice_4", '\ue900')
+        @JvmField
+        val cmd_hexagon_slice_5 = CommunityMaterialIcon("cmd_hexagon_slice_5", '\ue900')
+        @JvmField
+        val cmd_hexagon_slice_6 = CommunityMaterialIcon("cmd_hexagon_slice_6", '\ue900')
+        @JvmField
+        val cmd_hexagon = CommunityMaterialIcon("cmd_hexagon", '\ue900')
+        @JvmField
+        val cmd_hexagram_outline = CommunityMaterialIcon("cmd_hexagram_outline", '\ue900')
+        @JvmField
+        val cmd_hexagram = CommunityMaterialIcon("cmd_hexagram", '\ue900')
+        @JvmField
+        val cmd_high_definition_box = CommunityMaterialIcon("cmd_high_definition_box", '\ue900')
+        @JvmField
+        val cmd_high_definition = CommunityMaterialIcon("cmd_high_definition", '\ue900')
+        @JvmField
+        val cmd_highway = CommunityMaterialIcon("cmd_highway", '\ue900')
+        @JvmField
+        val cmd_hiking = CommunityMaterialIcon("cmd_hiking", '\ue900')
+        @JvmField
+        val cmd_hinduism = CommunityMaterialIcon("cmd_hinduism", '\ue900')
+        @JvmField
+        val cmd_history = CommunityMaterialIcon("cmd_history", '\ue900')
+        @JvmField
+        val cmd_hockey_puck = CommunityMaterialIcon("cmd_hockey_puck", '\ue900')
+        @JvmField
+        val cmd_hockey_sticks = CommunityMaterialIcon("cmd_hockey_sticks", '\ue900')
+        @JvmField
+        val cmd_hololens = CommunityMaterialIcon("cmd_hololens", '\ue900')
+        @JvmField
+        val cmd_home_account = CommunityMaterialIcon("cmd_home_account", '\ue900')
+        @JvmField
+        val cmd_home_alert = CommunityMaterialIcon("cmd_home_alert", '\ue900')
+        @JvmField
+        val cmd_home_analytics = CommunityMaterialIcon("cmd_home_analytics", '\ue900')
+        @JvmField
+        val cmd_home_assistant = CommunityMaterialIcon("cmd_home_assistant", '\ue900')
+        @JvmField
+        val cmd_home_automation = CommunityMaterialIcon("cmd_home_automation", '\ue900')
+        @JvmField
+        val cmd_home_circle_outline = CommunityMaterialIcon("cmd_home_circle_outline", '\ue900')
+        @JvmField
+        val cmd_home_circle = CommunityMaterialIcon("cmd_home_circle", '\ue900')
+        @JvmField
+        val cmd_home_city_outline = CommunityMaterialIcon("cmd_home_city_outline", '\ue900')
+        @JvmField
+        val cmd_home_city = CommunityMaterialIcon("cmd_home_city", '\ue900')
+        @JvmField
+        val cmd_home_currency_usd = CommunityMaterialIcon("cmd_home_currency_usd", '\ue900')
+        @JvmField
+        val cmd_home_edit_outline = CommunityMaterialIcon("cmd_home_edit_outline", '\ue900')
+        @JvmField
+        val cmd_home_edit = CommunityMaterialIcon("cmd_home_edit", '\ue900')
+        @JvmField
+        val cmd_home_export_outline = CommunityMaterialIcon("cmd_home_export_outline", '\ue900')
+        @JvmField
+        val cmd_home_flood = CommunityMaterialIcon("cmd_home_flood", '\ue900')
+        @JvmField
+        val cmd_home_floor_0 = CommunityMaterialIcon("cmd_home_floor_0", '\ue900')
+        @JvmField
+        val cmd_home_floor_1 = CommunityMaterialIcon("cmd_home_floor_1", '\ue900')
+        @JvmField
+        val cmd_home_floor_2 = CommunityMaterialIcon("cmd_home_floor_2", '\ue900')
+        @JvmField
+        val cmd_home_floor_3 = CommunityMaterialIcon("cmd_home_floor_3", '\ue900')
+        @JvmField
+        val cmd_home_floor_a = CommunityMaterialIcon("cmd_home_floor_a", '\ue900')
+        @JvmField
+        val cmd_home_floor_b = CommunityMaterialIcon("cmd_home_floor_b", '\ue900')
+        @JvmField
+        val cmd_home_floor_g = CommunityMaterialIcon("cmd_home_floor_g", '\ue900')
+        @JvmField
+        val cmd_home_floor_l = CommunityMaterialIcon("cmd_home_floor_l", '\ue900')
+        @JvmField
+        val cmd_home_floor_negative_1 = CommunityMaterialIcon("cmd_home_floor_negative_1", '\ue900')
+        @JvmField
+        val cmd_home_group = CommunityMaterialIcon("cmd_home_group", '\ue900')
+        @JvmField
+        val cmd_home_heart = CommunityMaterialIcon("cmd_home_heart", '\ue900')
+        @JvmField
+        val cmd_home_import_outline = CommunityMaterialIcon("cmd_home_import_outline", '\ue900')
+        @JvmField
+        val cmd_home_lightbulb_outline = CommunityMaterialIcon("cmd_home_lightbulb_outline", '\ue900')
+        @JvmField
+        val cmd_home_lightbulb = CommunityMaterialIcon("cmd_home_lightbulb", '\ue900')
+        @JvmField
+        val cmd_home_lock_open = CommunityMaterialIcon("cmd_home_lock_open", '\ue900')
+        @JvmField
+        val cmd_home_lock = CommunityMaterialIcon("cmd_home_lock", '\ue900')
+        @JvmField
+        val cmd_home_map_marker = CommunityMaterialIcon("cmd_home_map_marker", '\ue900')
+        @JvmField
+        val cmd_home_minus = CommunityMaterialIcon("cmd_home_minus", '\ue900')
+        @JvmField
+        val cmd_home_modern = CommunityMaterialIcon("cmd_home_modern", '\ue900')
+        @JvmField
+        val cmd_home_outline = CommunityMaterialIcon("cmd_home_outline", '\ue900')
+        @JvmField
+        val cmd_home_plus = CommunityMaterialIcon("cmd_home_plus", '\ue900')
+        @JvmField
+        val cmd_home_remove = CommunityMaterialIcon("cmd_home_remove", '\ue900')
+        @JvmField
+        val cmd_home_roof = CommunityMaterialIcon("cmd_home_roof", '\ue900')
+        @JvmField
+        val cmd_home_thermometer_outline = CommunityMaterialIcon("cmd_home_thermometer_outline", '\ue900')
+        @JvmField
+        val cmd_home_thermometer = CommunityMaterialIcon("cmd_home_thermometer", '\ue900')
+        @JvmField
+        val cmd_home_variant_outline = CommunityMaterialIcon("cmd_home_variant_outline", '\ue900')
+        @JvmField
+        val cmd_home_variant = CommunityMaterialIcon("cmd_home_variant", '\ue900')
+        @JvmField
+        val cmd_home = CommunityMaterialIcon("cmd_home", '\ue900')
+        @JvmField
+        val cmd_hook_off = CommunityMaterialIcon("cmd_hook_off", '\ue900')
+        @JvmField
+        val cmd_hook = CommunityMaterialIcon("cmd_hook", '\ue900')
+        @JvmField
+        val cmd_hops = CommunityMaterialIcon("cmd_hops", '\ue900')
+        @JvmField
+        val cmd_horizontal_rotate_clockwise = CommunityMaterialIcon("cmd_horizontal_rotate_clockwise", '\ue900')
+        @JvmField
+        val cmd_horizontal_rotate_counterclockwise = CommunityMaterialIcon("cmd_horizontal_rotate_counterclockwise", '\ue900')
+        @JvmField
+        val cmd_horseshoe = CommunityMaterialIcon("cmd_horseshoe", '\ue900')
+        @JvmField
+        val cmd_hospital_box_outline = CommunityMaterialIcon("cmd_hospital_box_outline", '\ue900')
+        @JvmField
+        val cmd_hospital_box = CommunityMaterialIcon("cmd_hospital_box", '\ue900')
+        @JvmField
+        val cmd_hospital_building = CommunityMaterialIcon("cmd_hospital_building", '\ue900')
+        @JvmField
+        val cmd_hospital_marker = CommunityMaterialIcon("cmd_hospital_marker", '\ue900')
+        @JvmField
+        val cmd_hospital = CommunityMaterialIcon("cmd_hospital", '\ue900')
+        @JvmField
+        val cmd_hot_tub = CommunityMaterialIcon("cmd_hot_tub", '\ue900')
+        @JvmField
+        val cmd_hotel = CommunityMaterialIcon("cmd_hotel", '\ue900')
+        @JvmField
+        val cmd_houzz_box = CommunityMaterialIcon("cmd_houzz_box", '\ue900')
+        @JvmField
+        val cmd_houzz = CommunityMaterialIcon("cmd_houzz", '\ue900')
+        @JvmField
+        val cmd_hubspot = CommunityMaterialIcon("cmd_hubspot", '\ue900')
+        @JvmField
+        val cmd_hulu = CommunityMaterialIcon("cmd_hulu", '\ue900')
+        @JvmField
+        val cmd_human_child = CommunityMaterialIcon("cmd_human_child", '\ue900')
+        @JvmField
+        val cmd_human_female_boy = CommunityMaterialIcon("cmd_human_female_boy", '\ue900')
+        @JvmField
+        val cmd_human_female_female = CommunityMaterialIcon("cmd_human_female_female", '\ue900')
+        @JvmField
+        val cmd_human_female_girl = CommunityMaterialIcon("cmd_human_female_girl", '\ue900')
+        @JvmField
+        val cmd_human_female = CommunityMaterialIcon("cmd_human_female", '\ue900')
+        @JvmField
+        val cmd_human_greeting = CommunityMaterialIcon("cmd_human_greeting", '\ue900')
+        @JvmField
+        val cmd_human_handsdown = CommunityMaterialIcon("cmd_human_handsdown", '\ue900')
+        @JvmField
+        val cmd_human_handsup = CommunityMaterialIcon("cmd_human_handsup", '\ue900')
+        @JvmField
+        val cmd_human_male_boy = CommunityMaterialIcon("cmd_human_male_boy", '\ue900')
+        @JvmField
+        val cmd_human_male_female = CommunityMaterialIcon("cmd_human_male_female", '\ue900')
+        @JvmField
+        val cmd_human_male_girl = CommunityMaterialIcon("cmd_human_male_girl", '\ue900')
+        @JvmField
+        val cmd_human_male_height_variant = CommunityMaterialIcon("cmd_human_male_height_variant", '\ue900')
+        @JvmField
+        val cmd_human_male_height = CommunityMaterialIcon("cmd_human_male_height", '\ue900')
+        @JvmField
+        val cmd_human_male_male = CommunityMaterialIcon("cmd_human_male_male", '\ue900')
+        @JvmField
+        val cmd_human_male = CommunityMaterialIcon("cmd_human_male", '\ue900')
+        @JvmField
+        val cmd_human_pregnant = CommunityMaterialIcon("cmd_human_pregnant", '\ue900')
+        @JvmField
+        val cmd_human = CommunityMaterialIcon("cmd_human", '\ue900')
+        @JvmField
+        val cmd_humble_bundle = CommunityMaterialIcon("cmd_humble_bundle", '\ue900')
+        @JvmField
+        val cmd_hydro_power = CommunityMaterialIcon("cmd_hydro_power", '\ue900')
+        @JvmField
+        val cmd_ice_cream = CommunityMaterialIcon("cmd_ice_cream", '\ue900')
+        @JvmField
+        val cmd_ice_pop = CommunityMaterialIcon("cmd_ice_pop", '\ue900')
+        @JvmField
+        val cmd_id_card = CommunityMaterialIcon("cmd_id_card", '\ue900')
+        @JvmField
+        val cmd_identifier = CommunityMaterialIcon("cmd_identifier", '\ue900')
+        @JvmField
+        val cmd_iframe_array_outline = CommunityMaterialIcon("cmd_iframe_array_outline", '\ue900')
+        @JvmField
+        val cmd_iframe_array = CommunityMaterialIcon("cmd_iframe_array", '\ue900')
+        @JvmField
+        val cmd_iframe_braces_outline = CommunityMaterialIcon("cmd_iframe_braces_outline", '\ue900')
+        @JvmField
+        val cmd_iframe_braces = CommunityMaterialIcon("cmd_iframe_braces", '\ue900')
+        @JvmField
+        val cmd_iframe_outline = CommunityMaterialIcon("cmd_iframe_outline", '\ue900')
+        @JvmField
+        val cmd_iframe_parentheses_outline = CommunityMaterialIcon("cmd_iframe_parentheses_outline", '\ue900')
+        @JvmField
+        val cmd_iframe_parentheses = CommunityMaterialIcon("cmd_iframe_parentheses", '\ue900')
+        @JvmField
+        val cmd_iframe_variable_outline = CommunityMaterialIcon("cmd_iframe_variable_outline", '\ue900')
+        @JvmField
+        val cmd_iframe_variable = CommunityMaterialIcon("cmd_iframe_variable", '\ue900')
+        @JvmField
+        val cmd_iframe = CommunityMaterialIcon("cmd_iframe", '\ue900')
+        @JvmField
+        val cmd_image_album = CommunityMaterialIcon("cmd_image_album", '\ue900')
+        @JvmField
+        val cmd_image_area_close = CommunityMaterialIcon("cmd_image_area_close", '\ue900')
+        @JvmField
+        val cmd_image_area = CommunityMaterialIcon("cmd_image_area", '\ue900')
+        @JvmField
+        val cmd_image_auto_adjust = CommunityMaterialIcon("cmd_image_auto_adjust", '\ue900')
+        @JvmField
+        val cmd_image_broken_variant = CommunityMaterialIcon("cmd_image_broken_variant", '\ue900')
+        @JvmField
+        val cmd_image_broken = CommunityMaterialIcon("cmd_image_broken", '\ue900')
+        @JvmField
+        val cmd_image_edit_outline = CommunityMaterialIcon("cmd_image_edit_outline", '\ue900')
+        @JvmField
+        val cmd_image_edit = CommunityMaterialIcon("cmd_image_edit", '\ue900')
+        @JvmField
+        val cmd_image_filter_black_white = CommunityMaterialIcon("cmd_image_filter_black_white", '\ue900')
+        @JvmField
+        val cmd_image_filter_center_focus_strong_outline =
+                CommunityMaterialIcon("cmd_image_filter_center_focus_strong_outline", '\ue900')
+        @JvmField
+        val cmd_image_filter_center_focus_strong = CommunityMaterialIcon("cmd_image_filter_center_focus_strong", '\ue900')
+        @JvmField
+        val cmd_image_filter_center_focus_weak = CommunityMaterialIcon("cmd_image_filter_center_focus_weak", '\ue900')
+        @JvmField
+        val cmd_image_filter_center_focus = CommunityMaterialIcon("cmd_image_filter_center_focus", '\ue900')
+        @JvmField
+        val cmd_image_filter_drama = CommunityMaterialIcon("cmd_image_filter_drama", '\ue900')
+        @JvmField
+        val cmd_image_filter_frames = CommunityMaterialIcon("cmd_image_filter_frames", '\ue900')
+        @JvmField
+        val cmd_image_filter_hdr = CommunityMaterialIcon("cmd_image_filter_hdr", '\ue900')
+        @JvmField
+        val cmd_image_filter_none = CommunityMaterialIcon("cmd_image_filter_none", '\ue900')
+        @JvmField
+        val cmd_image_filter_tilt_shift = CommunityMaterialIcon("cmd_image_filter_tilt_shift", '\ue900')
+        @JvmField
+        val cmd_image_filter_vintage = CommunityMaterialIcon("cmd_image_filter_vintage", '\ue900')
+        @JvmField
+        val cmd_image_filter = CommunityMaterialIcon("cmd_image_filter", '\ue900')
+        @JvmField
+        val cmd_image_frame = CommunityMaterialIcon("cmd_image_frame", '\ue900')
+        @JvmField
+        val cmd_image_move = CommunityMaterialIcon("cmd_image_move", '\ue900')
+        @JvmField
+        val cmd_image_multiple = CommunityMaterialIcon("cmd_image_multiple", '\ue900')
+        @JvmField
+        val cmd_image_off_outline = CommunityMaterialIcon("cmd_image_off_outline", '\ue900')
+        @JvmField
+        val cmd_image_off = CommunityMaterialIcon("cmd_image_off", '\ue900')
+        @JvmField
+        val cmd_image_outline = CommunityMaterialIcon("cmd_image_outline", '\ue900')
+        @JvmField
+        val cmd_image_plus = CommunityMaterialIcon("cmd_image_plus", '\ue900')
+        @JvmField
+        val cmd_image_search_outline = CommunityMaterialIcon("cmd_image_search_outline", '\ue900')
+        @JvmField
+        val cmd_image_search = CommunityMaterialIcon("cmd_image_search", '\ue900')
+        @JvmField
+        val cmd_image_size_select_actual = CommunityMaterialIcon("cmd_image_size_select_actual", '\ue900')
+        @JvmField
+        val cmd_image_size_select_large = CommunityMaterialIcon("cmd_image_size_select_large", '\ue900')
+        @JvmField
+        val cmd_image_size_select_small = CommunityMaterialIcon("cmd_image_size_select_small", '\ue900')
+        @JvmField
+        val cmd_image = CommunityMaterialIcon("cmd_image", '\ue900')
+        @JvmField
+        val cmd_import = CommunityMaterialIcon("cmd_import", '\ue900')
+        @JvmField
+        val cmd_inbox_arrow_down_outline = CommunityMaterialIcon("cmd_inbox_arrow_down_outline", '\ue900')
+        @JvmField
+        val cmd_inbox_arrow_down = CommunityMaterialIcon("cmd_inbox_arrow_down", '\ue900')
+        @JvmField
+        val cmd_inbox_arrow_up_outline = CommunityMaterialIcon("cmd_inbox_arrow_up_outline", '\ue900')
+        @JvmField
+        val cmd_inbox_arrow_up = CommunityMaterialIcon("cmd_inbox_arrow_up", '\ue900')
+        @JvmField
+        val cmd_inbox_full_outline = CommunityMaterialIcon("cmd_inbox_full_outline", '\ue900')
+        @JvmField
+        val cmd_inbox_full = CommunityMaterialIcon("cmd_inbox_full", '\ue900')
+        @JvmField
+        val cmd_inbox_multiple_outline = CommunityMaterialIcon("cmd_inbox_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_inbox_multiple = CommunityMaterialIcon("cmd_inbox_multiple", '\ue900')
+        @JvmField
+        val cmd_inbox_outline = CommunityMaterialIcon("cmd_inbox_outline", '\ue900')
+        @JvmField
+        val cmd_inbox = CommunityMaterialIcon("cmd_inbox", '\ue900')
+        @JvmField
+        val cmd_incognito = CommunityMaterialIcon("cmd_incognito", '\ue900')
+        @JvmField
+        val cmd_infinity = CommunityMaterialIcon("cmd_infinity", '\ue900')
+        @JvmField
+        val cmd_information_outline = CommunityMaterialIcon("cmd_information_outline", '\ue900')
+        @JvmField
+        val cmd_information_variant = CommunityMaterialIcon("cmd_information_variant", '\ue900')
+        @JvmField
+        val cmd_information = CommunityMaterialIcon("cmd_information", '\ue900')
+        @JvmField
+        val cmd_instagram = CommunityMaterialIcon("cmd_instagram", '\ue900')
+        @JvmField
+        val cmd_instapaper = CommunityMaterialIcon("cmd_instapaper", '\ue900')
+        @JvmField
+        val cmd_instrument_triangle = CommunityMaterialIcon("cmd_instrument_triangle", '\ue900')
+        @JvmField
+        val cmd_internet_explorer = CommunityMaterialIcon("cmd_internet_explorer", '\ue900')
+        @JvmField
+        val cmd_invert_colors_off = CommunityMaterialIcon("cmd_invert_colors_off", '\ue900')
+        @JvmField
+        val cmd_invert_colors = CommunityMaterialIcon("cmd_invert_colors", '\ue900')
+        @JvmField
+        val cmd_ip_network_outline = CommunityMaterialIcon("cmd_ip_network_outline", '\ue900')
+        @JvmField
+        val cmd_ip_network = CommunityMaterialIcon("cmd_ip_network", '\ue900')
+        @JvmField
+        val cmd_ip = CommunityMaterialIcon("cmd_ip", '\ue900')
+        @JvmField
+        val cmd_ipod = CommunityMaterialIcon("cmd_ipod", '\ue900')
+        @JvmField
+        val cmd_islam = CommunityMaterialIcon("cmd_islam", '\ue900')
+        @JvmField
+        val cmd_island = CommunityMaterialIcon("cmd_island", '\ue900')
+        @JvmField
+        val cmd_itunes = CommunityMaterialIcon("cmd_itunes", '\ue900')
+        @JvmField
+        val cmd_iv_bag = CommunityMaterialIcon("cmd_iv_bag", '\ue900')
+        @JvmField
+        val cmd_jabber = CommunityMaterialIcon("cmd_jabber", '\ue900')
+        @JvmField
+        val cmd_jeepney = CommunityMaterialIcon("cmd_jeepney", '\ue900')
+        @JvmField
+        val cmd_jellyfish_outline = CommunityMaterialIcon("cmd_jellyfish_outline", '\ue900')
+        @JvmField
+        val cmd_jellyfish = CommunityMaterialIcon("cmd_jellyfish", '\ue900')
+        @JvmField
+        val cmd_jira = CommunityMaterialIcon("cmd_jira", '\ue900')
+        @JvmField
+        val cmd_jquery = CommunityMaterialIcon("cmd_jquery", '\ue900')
+        @JvmField
+        val cmd_jsfiddle = CommunityMaterialIcon("cmd_jsfiddle", '\ue900')
+        @JvmField
+        val cmd_json = CommunityMaterialIcon("cmd_json", '\ue900')
+        @JvmField
+        val cmd_judaism = CommunityMaterialIcon("cmd_judaism", '\ue900')
+        @JvmField
+        val cmd_kabaddi = CommunityMaterialIcon("cmd_kabaddi", '\ue900')
+        @JvmField
+        val cmd_karate = CommunityMaterialIcon("cmd_karate", '\ue900')
+        @JvmField
+        val cmd_keg = CommunityMaterialIcon("cmd_keg", '\ue900')
+        @JvmField
+        val cmd_kettle_outline = CommunityMaterialIcon("cmd_kettle_outline", '\ue900')
+        @JvmField
+        val cmd_kettle = CommunityMaterialIcon("cmd_kettle", '\ue900')
+        @JvmField
+        val cmd_key_change = CommunityMaterialIcon("cmd_key_change", '\ue900')
+        @JvmField
+        val cmd_key_link = CommunityMaterialIcon("cmd_key_link", '\ue900')
+        @JvmField
+        val cmd_key_minus = CommunityMaterialIcon("cmd_key_minus", '\ue900')
+        @JvmField
+        val cmd_key_outline = CommunityMaterialIcon("cmd_key_outline", '\ue900')
+        @JvmField
+        val cmd_key_plus = CommunityMaterialIcon("cmd_key_plus", '\ue900')
+        @JvmField
+        val cmd_key_remove = CommunityMaterialIcon("cmd_key_remove", '\ue900')
+        @JvmField
+        val cmd_key_star = CommunityMaterialIcon("cmd_key_star", '\ue900')
+        @JvmField
+        val cmd_key_variant = CommunityMaterialIcon("cmd_key_variant", '\ue900')
+        @JvmField
+        val cmd_key_wireless = CommunityMaterialIcon("cmd_key_wireless", '\ue900')
+        @JvmField
+        val cmd_key = CommunityMaterialIcon("cmd_key", '\ue900')
+        @JvmField
+        val cmd_keyboard_backspace = CommunityMaterialIcon("cmd_keyboard_backspace", '\ue900')
+        @JvmField
+        val cmd_keyboard_caps = CommunityMaterialIcon("cmd_keyboard_caps", '\ue900')
+        @JvmField
+        val cmd_keyboard_close = CommunityMaterialIcon("cmd_keyboard_close", '\ue900')
+        @JvmField
+        val cmd_keyboard_esc = CommunityMaterialIcon("cmd_keyboard_esc", '\ue900')
+        @JvmField
+        val cmd_keyboard_f1 = CommunityMaterialIcon("cmd_keyboard_f1", '\ue900')
+        @JvmField
+        val cmd_keyboard_f2 = CommunityMaterialIcon("cmd_keyboard_f2", '\ue900')
+        @JvmField
+        val cmd_keyboard_f3 = CommunityMaterialIcon("cmd_keyboard_f3", '\ue900')
+        @JvmField
+        val cmd_keyboard_f4 = CommunityMaterialIcon("cmd_keyboard_f4", '\ue900')
+        @JvmField
+        val cmd_keyboard_f5 = CommunityMaterialIcon("cmd_keyboard_f5", '\ue900')
+        @JvmField
+        val cmd_keyboard_f6 = CommunityMaterialIcon("cmd_keyboard_f6", '\ue900')
+        @JvmField
+        val cmd_keyboard_f7 = CommunityMaterialIcon("cmd_keyboard_f7", '\ue900')
+        @JvmField
+        val cmd_keyboard_f8 = CommunityMaterialIcon("cmd_keyboard_f8", '\ue900')
+        @JvmField
+        val cmd_keyboard_f9 = CommunityMaterialIcon("cmd_keyboard_f9", '\ue900')
+        @JvmField
+        val cmd_keyboard_f10 = CommunityMaterialIcon("cmd_keyboard_f10", '\ue900')
+        @JvmField
+        val cmd_keyboard_f11 = CommunityMaterialIcon("cmd_keyboard_f11", '\ue900')
+        @JvmField
+        val cmd_keyboard_f12 = CommunityMaterialIcon("cmd_keyboard_f12", '\ue900')
+        @JvmField
+        val cmd_keyboard_off_outline = CommunityMaterialIcon("cmd_keyboard_off_outline", '\ue900')
+        @JvmField
+        val cmd_keyboard_off = CommunityMaterialIcon("cmd_keyboard_off", '\ue900')
+        @JvmField
+        val cmd_keyboard_outline = CommunityMaterialIcon("cmd_keyboard_outline", '\ue900')
+        @JvmField
+        val cmd_keyboard_return = CommunityMaterialIcon("cmd_keyboard_return", '\ue900')
+        @JvmField
+        val cmd_keyboard_settings_outline = CommunityMaterialIcon("cmd_keyboard_settings_outline", '\ue900')
+        @JvmField
+        val cmd_keyboard_settings = CommunityMaterialIcon("cmd_keyboard_settings", '\ue900')
+        @JvmField
+        val cmd_keyboard_space = CommunityMaterialIcon("cmd_keyboard_space", '\ue900')
+        @JvmField
+        val cmd_keyboard_tab = CommunityMaterialIcon("cmd_keyboard_tab", '\ue900')
+        @JvmField
+        val cmd_keyboard_variant = CommunityMaterialIcon("cmd_keyboard_variant", '\ue900')
+        @JvmField
+        val cmd_keyboard = CommunityMaterialIcon("cmd_keyboard", '\ue900')
+        @JvmField
+        val cmd_khanda = CommunityMaterialIcon("cmd_khanda", '\ue900')
+        @JvmField
+        val cmd_kickstarter = CommunityMaterialIcon("cmd_kickstarter", '\ue900')
+        @JvmField
+        val cmd_knife_military = CommunityMaterialIcon("cmd_knife_military", '\ue900')
+        @JvmField
+        val cmd_knife = CommunityMaterialIcon("cmd_knife", '\ue900')
+        @JvmField
+        val cmd_kodi = CommunityMaterialIcon("cmd_kodi", '\ue900')
+        @JvmField
+        val cmd_kotlin = CommunityMaterialIcon("cmd_kotlin", '\ue900')
+        @JvmField
+        val cmd_kubernetes = CommunityMaterialIcon("cmd_kubernetes", '\ue900')
+        @JvmField
+        val cmd_label_off_outline = CommunityMaterialIcon("cmd_label_off_outline", '\ue900')
+        @JvmField
+        val cmd_label_off = CommunityMaterialIcon("cmd_label_off", '\ue900')
+        @JvmField
+        val cmd_label_outline = CommunityMaterialIcon("cmd_label_outline", '\ue900')
+        @JvmField
+        val cmd_label_variant_outline = CommunityMaterialIcon("cmd_label_variant_outline", '\ue900')
+        @JvmField
+        val cmd_label_variant = CommunityMaterialIcon("cmd_label_variant", '\ue900')
+        @JvmField
+        val cmd_label = CommunityMaterialIcon("cmd_label", '\ue900')
+        @JvmField
+        val cmd_ladybug = CommunityMaterialIcon("cmd_ladybug", '\ue900')
+        @JvmField
+        val cmd_lambda = CommunityMaterialIcon("cmd_lambda", '\ue900')
+        @JvmField
+        val cmd_lamp = CommunityMaterialIcon("cmd_lamp", '\ue900')
+        @JvmField
+        val cmd_lan_check = CommunityMaterialIcon("cmd_lan_check", '\ue900')
+        @JvmField
+        val cmd_lan_connect = CommunityMaterialIcon("cmd_lan_connect", '\ue900')
+        @JvmField
+        val cmd_lan_disconnect = CommunityMaterialIcon("cmd_lan_disconnect", '\ue900')
+        @JvmField
+        val cmd_lan_pending = CommunityMaterialIcon("cmd_lan_pending", '\ue900')
+        @JvmField
+        val cmd_lan = CommunityMaterialIcon("cmd_lan", '\ue900')
+        @JvmField
+        val cmd_language_c = CommunityMaterialIcon("cmd_language_c", '\ue900')
+        @JvmField
+        val cmd_language_cpp = CommunityMaterialIcon("cmd_language_cpp", '\ue900')
+        @JvmField
+        val cmd_language_csharp = CommunityMaterialIcon("cmd_language_csharp", '\ue900')
+        @JvmField
+        val cmd_language_css3 = CommunityMaterialIcon("cmd_language_css3", '\ue900')
+        @JvmField
+        val cmd_language_fortran = CommunityMaterialIcon("cmd_language_fortran", '\ue900')
+        @JvmField
+        val cmd_language_go = CommunityMaterialIcon("cmd_language_go", '\ue900')
+        @JvmField
+        val cmd_language_haskell = CommunityMaterialIcon("cmd_language_haskell", '\ue900')
+        @JvmField
+        val cmd_language_html5 = CommunityMaterialIcon("cmd_language_html5", '\ue900')
+        @JvmField
+        val cmd_language_java = CommunityMaterialIcon("cmd_language_java", '\ue900')
+        @JvmField
+        val cmd_language_javascript = CommunityMaterialIcon("cmd_language_javascript", '\ue900')
+        @JvmField
+        val cmd_language_lua = CommunityMaterialIcon("cmd_language_lua", '\ue900')
+        @JvmField
+        val cmd_language_php = CommunityMaterialIcon("cmd_language_php", '\ue900')
+        @JvmField
+        val cmd_language_python_text = CommunityMaterialIcon("cmd_language_python_text", '\ue900')
+        @JvmField
+        val cmd_language_python = CommunityMaterialIcon("cmd_language_python", '\ue900')
+        @JvmField
+        val cmd_language_r = CommunityMaterialIcon("cmd_language_r", '\ue900')
+        @JvmField
+        val cmd_language_ruby_on_rails = CommunityMaterialIcon("cmd_language_ruby_on_rails", '\ue900')
+        @JvmField
+        val cmd_language_swift = CommunityMaterialIcon("cmd_language_swift", '\ue900')
+        @JvmField
+        val cmd_language_typescript = CommunityMaterialIcon("cmd_language_typescript", '\ue900')
+        @JvmField
+        val cmd_laptop_chromebook = CommunityMaterialIcon("cmd_laptop_chromebook", '\ue900')
+        @JvmField
+        val cmd_laptop_mac = CommunityMaterialIcon("cmd_laptop_mac", '\ue900')
+        @JvmField
+        val cmd_laptop_off = CommunityMaterialIcon("cmd_laptop_off", '\ue900')
+        @JvmField
+        val cmd_laptop_windows = CommunityMaterialIcon("cmd_laptop_windows", '\ue900')
+        @JvmField
+        val cmd_laptop = CommunityMaterialIcon("cmd_laptop", '\ue900')
+        @JvmField
+        val cmd_laravel = CommunityMaterialIcon("cmd_laravel", '\ue900')
+        @JvmField
+        val cmd_lasso = CommunityMaterialIcon("cmd_lasso", '\ue900')
+        @JvmField
+        val cmd_lastfm = CommunityMaterialIcon("cmd_lastfm", '\ue900')
+        @JvmField
+        val cmd_lastpass = CommunityMaterialIcon("cmd_lastpass", '\ue900')
+        @JvmField
+        val cmd_latitude = CommunityMaterialIcon("cmd_latitude", '\ue900')
+        @JvmField
+        val cmd_launch = CommunityMaterialIcon("cmd_launch", '\ue900')
+        @JvmField
+        val cmd_lava_lamp = CommunityMaterialIcon("cmd_lava_lamp", '\ue900')
+        @JvmField
+        val cmd_layers_minus = CommunityMaterialIcon("cmd_layers_minus", '\ue900')
+        @JvmField
+        val cmd_layers_off_outline = CommunityMaterialIcon("cmd_layers_off_outline", '\ue900')
+        @JvmField
+        val cmd_layers_off = CommunityMaterialIcon("cmd_layers_off", '\ue900')
+        @JvmField
+        val cmd_layers_outline = CommunityMaterialIcon("cmd_layers_outline", '\ue900')
+        @JvmField
+        val cmd_layers_plus = CommunityMaterialIcon("cmd_layers_plus", '\ue900')
+        @JvmField
+        val cmd_layers_remove = CommunityMaterialIcon("cmd_layers_remove", '\ue900')
+        @JvmField
+        val cmd_layers_search_outline = CommunityMaterialIcon("cmd_layers_search_outline", '\ue900')
+        @JvmField
+        val cmd_layers_search = CommunityMaterialIcon("cmd_layers_search", '\ue900')
+        @JvmField
+        val cmd_layers_triple_outline = CommunityMaterialIcon("cmd_layers_triple_outline", '\ue900')
+        @JvmField
+        val cmd_layers_triple = CommunityMaterialIcon("cmd_layers_triple", '\ue900')
+        @JvmField
+        val cmd_layers = CommunityMaterialIcon("cmd_layers", '\ue900')
+        @JvmField
+        val cmd_lead_pencil = CommunityMaterialIcon("cmd_lead_pencil", '\ue900')
+        @JvmField
+        val cmd_leaf_maple_off = CommunityMaterialIcon("cmd_leaf_maple_off", '\ue900')
+        @JvmField
+        val cmd_leaf_maple = CommunityMaterialIcon("cmd_leaf_maple", '\ue900')
+        @JvmField
+        val cmd_leaf_off = CommunityMaterialIcon("cmd_leaf_off", '\ue900')
+        @JvmField
+        val cmd_leaf = CommunityMaterialIcon("cmd_leaf", '\ue900')
+        @JvmField
+        val cmd_leak_off = CommunityMaterialIcon("cmd_leak_off", '\ue900')
+        @JvmField
+        val cmd_leak = CommunityMaterialIcon("cmd_leak", '\ue900')
+        @JvmField
+        val cmd_led_off = CommunityMaterialIcon("cmd_led_off", '\ue900')
+        @JvmField
+        val cmd_led_on = CommunityMaterialIcon("cmd_led_on", '\ue900')
+        @JvmField
+        val cmd_led_outline = CommunityMaterialIcon("cmd_led_outline", '\ue900')
+        @JvmField
+        val cmd_led_strip_variant = CommunityMaterialIcon("cmd_led_strip_variant", '\ue900')
+        @JvmField
+        val cmd_led_strip = CommunityMaterialIcon("cmd_led_strip", '\ue900')
+        @JvmField
+        val cmd_led_variant_off = CommunityMaterialIcon("cmd_led_variant_off", '\ue900')
+        @JvmField
+        val cmd_led_variant_on = CommunityMaterialIcon("cmd_led_variant_on", '\ue900')
+        @JvmField
+        val cmd_led_variant_outline = CommunityMaterialIcon("cmd_led_variant_outline", '\ue900')
+        @JvmField
+        val cmd_leek = CommunityMaterialIcon("cmd_leek", '\ue900')
+        @JvmField
+        val cmd_less_than_or_equal = CommunityMaterialIcon("cmd_less_than_or_equal", '\ue900')
+        @JvmField
+        val cmd_less_than = CommunityMaterialIcon("cmd_less_than", '\ue900')
+        @JvmField
+        val cmd_library_books = CommunityMaterialIcon("cmd_library_books", '\ue900')
+        @JvmField
+        val cmd_library_movie = CommunityMaterialIcon("cmd_library_movie", '\ue900')
+        @JvmField
+        val cmd_library_music_outline = CommunityMaterialIcon("cmd_library_music_outline", '\ue900')
+        @JvmField
+        val cmd_library_music = CommunityMaterialIcon("cmd_library_music", '\ue900')
+        @JvmField
+        val cmd_library_shelves = CommunityMaterialIcon("cmd_library_shelves", '\ue900')
+        @JvmField
+        val cmd_library_video = CommunityMaterialIcon("cmd_library_video", '\ue900')
+        @JvmField
+        val cmd_library = CommunityMaterialIcon("cmd_library", '\ue900')
+        @JvmField
+        val cmd_license = CommunityMaterialIcon("cmd_license", '\ue900')
+        @JvmField
+        val cmd_lifebuoy = CommunityMaterialIcon("cmd_lifebuoy", '\ue900')
+        @JvmField
+        val cmd_light_switch = CommunityMaterialIcon("cmd_light_switch", '\ue900')
+        @JvmField
+        val cmd_lightbulb_cfl_off = CommunityMaterialIcon("cmd_lightbulb_cfl_off", '\ue900')
+        @JvmField
+        val cmd_lightbulb_cfl_spiral_off = CommunityMaterialIcon("cmd_lightbulb_cfl_spiral_off", '\ue900')
+        @JvmField
+        val cmd_lightbulb_cfl_spiral = CommunityMaterialIcon("cmd_lightbulb_cfl_spiral", '\ue900')
+        @JvmField
+        val cmd_lightbulb_cfl = CommunityMaterialIcon("cmd_lightbulb_cfl", '\ue900')
+        @JvmField
+        val cmd_lightbulb_group_off_outline = CommunityMaterialIcon("cmd_lightbulb_group_off_outline", '\ue900')
+        @JvmField
+        val cmd_lightbulb_group_off = CommunityMaterialIcon("cmd_lightbulb_group_off", '\ue900')
+        @JvmField
+        val cmd_lightbulb_group_outline = CommunityMaterialIcon("cmd_lightbulb_group_outline", '\ue900')
+        @JvmField
+        val cmd_lightbulb_group = CommunityMaterialIcon("cmd_lightbulb_group", '\ue900')
+        @JvmField
+        val cmd_lightbulb_multiple_off_outline = CommunityMaterialIcon("cmd_lightbulb_multiple_off_outline", '\ue900')
+        @JvmField
+        val cmd_lightbulb_multiple_off = CommunityMaterialIcon("cmd_lightbulb_multiple_off", '\ue900')
+        @JvmField
+        val cmd_lightbulb_multiple_outline = CommunityMaterialIcon("cmd_lightbulb_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_lightbulb_multiple = CommunityMaterialIcon("cmd_lightbulb_multiple", '\ue900')
+        @JvmField
+        val cmd_lightbulb_off_outline = CommunityMaterialIcon("cmd_lightbulb_off_outline", '\ue900')
+        @JvmField
+        val cmd_lightbulb_off = CommunityMaterialIcon("cmd_lightbulb_off", '\ue900')
+        @JvmField
+        val cmd_lightbulb_on_outline = CommunityMaterialIcon("cmd_lightbulb_on_outline", '\ue900')
+        @JvmField
+        val cmd_lightbulb_on = CommunityMaterialIcon("cmd_lightbulb_on", '\ue900')
+        @JvmField
+        val cmd_lightbulb_outline = CommunityMaterialIcon("cmd_lightbulb_outline", '\ue900')
+        @JvmField
+        val cmd_lightbulb = CommunityMaterialIcon("cmd_lightbulb", '\ue900')
+        @JvmField
+        val cmd_lighthouse_on = CommunityMaterialIcon("cmd_lighthouse_on", '\ue900')
+        @JvmField
+        val cmd_lighthouse = CommunityMaterialIcon("cmd_lighthouse", '\ue900')
+        @JvmField
+        val cmd_link_box_outline = CommunityMaterialIcon("cmd_link_box_outline", '\ue900')
+        @JvmField
+        val cmd_link_box_variant_outline = CommunityMaterialIcon("cmd_link_box_variant_outline", '\ue900')
+        @JvmField
+        val cmd_link_box_variant = CommunityMaterialIcon("cmd_link_box_variant", '\ue900')
+        @JvmField
+        val cmd_link_box = CommunityMaterialIcon("cmd_link_box", '\ue900')
+        @JvmField
+        val cmd_link_lock = CommunityMaterialIcon("cmd_link_lock", '\ue900')
+        @JvmField
+        val cmd_link_off = CommunityMaterialIcon("cmd_link_off", '\ue900')
+        @JvmField
+        val cmd_link_plus = CommunityMaterialIcon("cmd_link_plus", '\ue900')
+        @JvmField
+        val cmd_link_variant_minus = CommunityMaterialIcon("cmd_link_variant_minus", '\ue900')
+        @JvmField
+        val cmd_link_variant_off = CommunityMaterialIcon("cmd_link_variant_off", '\ue900')
+        @JvmField
+        val cmd_link_variant_plus = CommunityMaterialIcon("cmd_link_variant_plus", '\ue900')
+        @JvmField
+        val cmd_link_variant_remove = CommunityMaterialIcon("cmd_link_variant_remove", '\ue900')
+        @JvmField
+        val cmd_link_variant = CommunityMaterialIcon("cmd_link_variant", '\ue900')
+        @JvmField
+        val cmd_link = CommunityMaterialIcon("cmd_link", '\ue900')
+        @JvmField
+        val cmd_linkedin_box = CommunityMaterialIcon("cmd_linkedin_box", '\ue900')
+        @JvmField
+        val cmd_linkedin = CommunityMaterialIcon("cmd_linkedin", '\ue900')
+        @JvmField
+        val cmd_linux_mint = CommunityMaterialIcon("cmd_linux_mint", '\ue900')
+        @JvmField
+        val cmd_linux = CommunityMaterialIcon("cmd_linux", '\ue900')
+        @JvmField
+        val cmd_litecoin = CommunityMaterialIcon("cmd_litecoin", '\ue900')
+        @JvmField
+        val cmd_loading = CommunityMaterialIcon("cmd_loading", '\ue900')
+        @JvmField
+        val cmd_location_enter = CommunityMaterialIcon("cmd_location_enter", '\ue900')
+        @JvmField
+        val cmd_location_exit = CommunityMaterialIcon("cmd_location_exit", '\ue900')
+        @JvmField
+        val cmd_lock_alert = CommunityMaterialIcon("cmd_lock_alert", '\ue900')
+        @JvmField
+        val cmd_lock_clock = CommunityMaterialIcon("cmd_lock_clock", '\ue900')
+        @JvmField
+        val cmd_lock_open_outline = CommunityMaterialIcon("cmd_lock_open_outline", '\ue900')
+        @JvmField
+        val cmd_lock_open_variant_outline = CommunityMaterialIcon("cmd_lock_open_variant_outline", '\ue900')
+        @JvmField
+        val cmd_lock_open_variant = CommunityMaterialIcon("cmd_lock_open_variant", '\ue900')
+        @JvmField
+        val cmd_lock_open = CommunityMaterialIcon("cmd_lock_open", '\ue900')
+        @JvmField
+        val cmd_lock_outline = CommunityMaterialIcon("cmd_lock_outline", '\ue900')
+        @JvmField
+        val cmd_lock_pattern = CommunityMaterialIcon("cmd_lock_pattern", '\ue900')
+        @JvmField
+        val cmd_lock_plus = CommunityMaterialIcon("cmd_lock_plus", '\ue900')
+        @JvmField
+        val cmd_lock_question = CommunityMaterialIcon("cmd_lock_question", '\ue900')
+        @JvmField
+        val cmd_lock_reset = CommunityMaterialIcon("cmd_lock_reset", '\ue900')
+        @JvmField
+        val cmd_lock_smart = CommunityMaterialIcon("cmd_lock_smart", '\ue900')
+        @JvmField
+        val cmd_lock = CommunityMaterialIcon("cmd_lock", '\ue900')
+        @JvmField
+        val cmd_locker_multiple = CommunityMaterialIcon("cmd_locker_multiple", '\ue900')
+        @JvmField
+        val cmd_locker = CommunityMaterialIcon("cmd_locker", '\ue900')
+        @JvmField
+        val cmd_login_variant = CommunityMaterialIcon("cmd_login_variant", '\ue900')
+        @JvmField
+        val cmd_login = CommunityMaterialIcon("cmd_login", '\ue900')
+        @JvmField
+        val cmd_logout_variant = CommunityMaterialIcon("cmd_logout_variant", '\ue900')
+        @JvmField
+        val cmd_logout = CommunityMaterialIcon("cmd_logout", '\ue900')
+        @JvmField
+        val cmd_longitude = CommunityMaterialIcon("cmd_longitude", '\ue900')
+        @JvmField
+        val cmd_looks = CommunityMaterialIcon("cmd_looks", '\ue900')
+        @JvmField
+        val cmd_loupe = CommunityMaterialIcon("cmd_loupe", '\ue900')
+        @JvmField
+        val cmd_lumx = CommunityMaterialIcon("cmd_lumx", '\ue900')
+        @JvmField
+        val cmd_lungs = CommunityMaterialIcon("cmd_lungs", '\ue900')
+        @JvmField
+        val cmd_lyft = CommunityMaterialIcon("cmd_lyft", '\ue900')
+        @JvmField
+        val cmd_magnet_on = CommunityMaterialIcon("cmd_magnet_on", '\ue900')
+        @JvmField
+        val cmd_magnet = CommunityMaterialIcon("cmd_magnet", '\ue900')
+        @JvmField
+        val cmd_magnify_close = CommunityMaterialIcon("cmd_magnify_close", '\ue900')
+        @JvmField
+        val cmd_magnify_minus_cursor = CommunityMaterialIcon("cmd_magnify_minus_cursor", '\ue900')
+        @JvmField
+        val cmd_magnify_minus_outline = CommunityMaterialIcon("cmd_magnify_minus_outline", '\ue900')
+        @JvmField
+        val cmd_magnify_minus = CommunityMaterialIcon("cmd_magnify_minus", '\ue900')
+        @JvmField
+        val cmd_magnify_plus_cursor = CommunityMaterialIcon("cmd_magnify_plus_cursor", '\ue900')
+        @JvmField
+        val cmd_magnify_plus_outline = CommunityMaterialIcon("cmd_magnify_plus_outline", '\ue900')
+        @JvmField
+        val cmd_magnify_plus = CommunityMaterialIcon("cmd_magnify_plus", '\ue900')
+        @JvmField
+        val cmd_magnify_remove_cursor = CommunityMaterialIcon("cmd_magnify_remove_cursor", '\ue900')
+        @JvmField
+        val cmd_magnify_remove_outline = CommunityMaterialIcon("cmd_magnify_remove_outline", '\ue900')
+        @JvmField
+        val cmd_magnify_scan = CommunityMaterialIcon("cmd_magnify_scan", '\ue900')
+        @JvmField
+        val cmd_magnify = CommunityMaterialIcon("cmd_magnify", '\ue900')
+        @JvmField
+        val cmd_mail_ru = CommunityMaterialIcon("cmd_mail_ru", '\ue900')
+        @JvmField
+        val cmd_mail = CommunityMaterialIcon("cmd_mail", '\ue900')
+        @JvmField
+        val cmd_mailbox_open_outline = CommunityMaterialIcon("cmd_mailbox_open_outline", '\ue900')
+        @JvmField
+        val cmd_mailbox_open_up_outline = CommunityMaterialIcon("cmd_mailbox_open_up_outline", '\ue900')
+        @JvmField
+        val cmd_mailbox_open_up = CommunityMaterialIcon("cmd_mailbox_open_up", '\ue900')
+        @JvmField
+        val cmd_mailbox_open = CommunityMaterialIcon("cmd_mailbox_open", '\ue900')
+        @JvmField
+        val cmd_mailbox_outline = CommunityMaterialIcon("cmd_mailbox_outline", '\ue900')
+        @JvmField
+        val cmd_mailbox_up_outline = CommunityMaterialIcon("cmd_mailbox_up_outline", '\ue900')
+        @JvmField
+        val cmd_mailbox_up = CommunityMaterialIcon("cmd_mailbox_up", '\ue900')
+        @JvmField
+        val cmd_mailbox = CommunityMaterialIcon("cmd_mailbox", '\ue900')
+        @JvmField
+        val cmd_map_check_outline = CommunityMaterialIcon("cmd_map_check_outline", '\ue900')
+        @JvmField
+        val cmd_map_check = CommunityMaterialIcon("cmd_map_check", '\ue900')
+        @JvmField
+        val cmd_map_clock_outline = CommunityMaterialIcon("cmd_map_clock_outline", '\ue900')
+        @JvmField
+        val cmd_map_clock = CommunityMaterialIcon("cmd_map_clock", '\ue900')
+        @JvmField
+        val cmd_map_legend = CommunityMaterialIcon("cmd_map_legend", '\ue900')
+        @JvmField
+        val cmd_map_marker_alert_outline = CommunityMaterialIcon("cmd_map_marker_alert_outline", '\ue900')
+        @JvmField
+        val cmd_map_marker_alert = CommunityMaterialIcon("cmd_map_marker_alert", '\ue900')
+        @JvmField
+        val cmd_map_marker_check = CommunityMaterialIcon("cmd_map_marker_check", '\ue900')
+        @JvmField
+        val cmd_map_marker_circle = CommunityMaterialIcon("cmd_map_marker_circle", '\ue900')
+        @JvmField
+        val cmd_map_marker_distance = CommunityMaterialIcon("cmd_map_marker_distance", '\ue900')
+        @JvmField
+        val cmd_map_marker_down = CommunityMaterialIcon("cmd_map_marker_down", '\ue900')
+        @JvmField
+        val cmd_map_marker_left_outline = CommunityMaterialIcon("cmd_map_marker_left_outline", '\ue900')
+        @JvmField
+        val cmd_map_marker_left = CommunityMaterialIcon("cmd_map_marker_left", '\ue900')
+        @JvmField
+        val cmd_map_marker_minus = CommunityMaterialIcon("cmd_map_marker_minus", '\ue900')
+        @JvmField
+        val cmd_map_marker_multiple_outline = CommunityMaterialIcon("cmd_map_marker_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_map_marker_multiple = CommunityMaterialIcon("cmd_map_marker_multiple", '\ue900')
+        @JvmField
+        val cmd_map_marker_off = CommunityMaterialIcon("cmd_map_marker_off", '\ue900')
+        @JvmField
+        val cmd_map_marker_outline = CommunityMaterialIcon("cmd_map_marker_outline", '\ue900')
+        @JvmField
+        val cmd_map_marker_path = CommunityMaterialIcon("cmd_map_marker_path", '\ue900')
+        @JvmField
+        val cmd_map_marker_plus = CommunityMaterialIcon("cmd_map_marker_plus", '\ue900')
+        @JvmField
+        val cmd_map_marker_question_outline = CommunityMaterialIcon("cmd_map_marker_question_outline", '\ue900')
+        @JvmField
+        val cmd_map_marker_question = CommunityMaterialIcon("cmd_map_marker_question", '\ue900')
+        @JvmField
+        val cmd_map_marker_radius = CommunityMaterialIcon("cmd_map_marker_radius", '\ue900')
+        @JvmField
+        val cmd_map_marker_remove_variant = CommunityMaterialIcon("cmd_map_marker_remove_variant", '\ue900')
+        @JvmField
+        val cmd_map_marker_remove = CommunityMaterialIcon("cmd_map_marker_remove", '\ue900')
+        @JvmField
+        val cmd_map_marker_right_outline = CommunityMaterialIcon("cmd_map_marker_right_outline", '\ue900')
+        @JvmField
+        val cmd_map_marker_right = CommunityMaterialIcon("cmd_map_marker_right", '\ue900')
+        @JvmField
+        val cmd_map_marker_up = CommunityMaterialIcon("cmd_map_marker_up", '\ue900')
+        @JvmField
+        val cmd_map_marker = CommunityMaterialIcon("cmd_map_marker", '\ue900')
+        @JvmField
+        val cmd_map_minus = CommunityMaterialIcon("cmd_map_minus", '\ue900')
+        @JvmField
+        val cmd_map_outline = CommunityMaterialIcon("cmd_map_outline", '\ue900')
+        @JvmField
+        val cmd_map_plus = CommunityMaterialIcon("cmd_map_plus", '\ue900')
+        @JvmField
+        val cmd_map_search_outline = CommunityMaterialIcon("cmd_map_search_outline", '\ue900')
+        @JvmField
+        val cmd_map_search = CommunityMaterialIcon("cmd_map_search", '\ue900')
+        @JvmField
+        val cmd_map = CommunityMaterialIcon("cmd_map", '\ue900')
+        @JvmField
+        val cmd_mapbox = CommunityMaterialIcon("cmd_mapbox", '\ue900')
+        @JvmField
+        val cmd_margin = CommunityMaterialIcon("cmd_margin", '\ue900')
+        @JvmField
+        val cmd_markdown_outline = CommunityMaterialIcon("cmd_markdown_outline", '\ue900')
+        @JvmField
+        val cmd_markdown = CommunityMaterialIcon("cmd_markdown", '\ue900')
+        @JvmField
+        val cmd_marker_cancel = CommunityMaterialIcon("cmd_marker_cancel", '\ue900')
+        @JvmField
+        val cmd_marker_check = CommunityMaterialIcon("cmd_marker_check", '\ue900')
+        @JvmField
+        val cmd_marker = CommunityMaterialIcon("cmd_marker", '\ue900')
+        @JvmField
+        val cmd_mastodon_variant = CommunityMaterialIcon("cmd_mastodon_variant", '\ue900')
+        @JvmField
+        val cmd_mastodon = CommunityMaterialIcon("cmd_mastodon", '\ue900')
+        @JvmField
+        val cmd_material_design = CommunityMaterialIcon("cmd_material_design", '\ue900')
+        @JvmField
+        val cmd_material_ui = CommunityMaterialIcon("cmd_material_ui", '\ue900')
+        @JvmField
+        val cmd_math_compass = CommunityMaterialIcon("cmd_math_compass", '\ue900')
+        @JvmField
+        val cmd_math_cos = CommunityMaterialIcon("cmd_math_cos", '\ue900')
+        @JvmField
+        val cmd_math_integral_box = CommunityMaterialIcon("cmd_math_integral_box", '\ue900')
+        @JvmField
+        val cmd_math_integral = CommunityMaterialIcon("cmd_math_integral", '\ue900')
+        @JvmField
+        val cmd_math_log = CommunityMaterialIcon("cmd_math_log", '\ue900')
+        @JvmField
+        val cmd_math_norm_box = CommunityMaterialIcon("cmd_math_norm_box", '\ue900')
+        @JvmField
+        val cmd_math_norm = CommunityMaterialIcon("cmd_math_norm", '\ue900')
+        @JvmField
+        val cmd_math_sin = CommunityMaterialIcon("cmd_math_sin", '\ue900')
+        @JvmField
+        val cmd_math_tan = CommunityMaterialIcon("cmd_math_tan", '\ue900')
+        @JvmField
+        val cmd_matrix = CommunityMaterialIcon("cmd_matrix", '\ue900')
+        @JvmField
+        val cmd_medal = CommunityMaterialIcon("cmd_medal", '\ue900')
+        @JvmField
+        val cmd_medical_bag = CommunityMaterialIcon("cmd_medical_bag", '\ue900')
+        @JvmField
+        val cmd_meditation = CommunityMaterialIcon("cmd_meditation", '\ue900')
+        @JvmField
+        val cmd_medium = CommunityMaterialIcon("cmd_medium", '\ue900')
+        @JvmField
+        val cmd_meetup = CommunityMaterialIcon("cmd_meetup", '\ue900')
+        @JvmField
+        val cmd_memory = CommunityMaterialIcon("cmd_memory", '\ue900')
+        @JvmField
+        val cmd_menu_down_outline = CommunityMaterialIcon("cmd_menu_down_outline", '\ue900')
+        @JvmField
+        val cmd_menu_down = CommunityMaterialIcon("cmd_menu_down", '\ue900')
+        @JvmField
+        val cmd_menu_left_outline = CommunityMaterialIcon("cmd_menu_left_outline", '\ue900')
+        @JvmField
+        val cmd_menu_left = CommunityMaterialIcon("cmd_menu_left", '\ue900')
+        @JvmField
+        val cmd_menu_open = CommunityMaterialIcon("cmd_menu_open", '\ue900')
+        @JvmField
+        val cmd_menu_right_outline = CommunityMaterialIcon("cmd_menu_right_outline", '\ue900')
+        @JvmField
+        val cmd_menu_right = CommunityMaterialIcon("cmd_menu_right", '\ue900')
+        @JvmField
+        val cmd_menu_swap_outline = CommunityMaterialIcon("cmd_menu_swap_outline", '\ue900')
+        @JvmField
+        val cmd_menu_swap = CommunityMaterialIcon("cmd_menu_swap", '\ue900')
+        @JvmField
+        val cmd_menu_up_outline = CommunityMaterialIcon("cmd_menu_up_outline", '\ue900')
+        @JvmField
+        val cmd_menu_up = CommunityMaterialIcon("cmd_menu_up", '\ue900')
+        @JvmField
+        val cmd_menu = CommunityMaterialIcon("cmd_menu", '\ue900')
+        @JvmField
+        val cmd_merge = CommunityMaterialIcon("cmd_merge", '\ue900')
+        @JvmField
+        val cmd_message_alert_outline = CommunityMaterialIcon("cmd_message_alert_outline", '\ue900')
+        @JvmField
+        val cmd_message_alert = CommunityMaterialIcon("cmd_message_alert", '\ue900')
+        @JvmField
+        val cmd_message_bulleted_off = CommunityMaterialIcon("cmd_message_bulleted_off", '\ue900')
+        @JvmField
+        val cmd_message_bulleted = CommunityMaterialIcon("cmd_message_bulleted", '\ue900')
+        @JvmField
+        val cmd_message_draw = CommunityMaterialIcon("cmd_message_draw", '\ue900')
+        @JvmField
+        val cmd_message_image_outline = CommunityMaterialIcon("cmd_message_image_outline", '\ue900')
+        @JvmField
+        val cmd_message_image = CommunityMaterialIcon("cmd_message_image", '\ue900')
+        @JvmField
+        val cmd_message_lock_outline = CommunityMaterialIcon("cmd_message_lock_outline", '\ue900')
+        @JvmField
+        val cmd_message_lock = CommunityMaterialIcon("cmd_message_lock", '\ue900')
+        @JvmField
+        val cmd_message_minus_outline = CommunityMaterialIcon("cmd_message_minus_outline", '\ue900')
+        @JvmField
+        val cmd_message_minus = CommunityMaterialIcon("cmd_message_minus", '\ue900')
+        @JvmField
+        val cmd_message_outline = CommunityMaterialIcon("cmd_message_outline", '\ue900')
+        @JvmField
+        val cmd_message_plus_outline = CommunityMaterialIcon("cmd_message_plus_outline", '\ue900')
+        @JvmField
+        val cmd_message_plus = CommunityMaterialIcon("cmd_message_plus", '\ue900')
+        @JvmField
+        val cmd_message_processing_outline = CommunityMaterialIcon("cmd_message_processing_outline", '\ue900')
+        @JvmField
+        val cmd_message_processing = CommunityMaterialIcon("cmd_message_processing", '\ue900')
+        @JvmField
+        val cmd_message_reply_text = CommunityMaterialIcon("cmd_message_reply_text", '\ue900')
+        @JvmField
+        val cmd_message_reply = CommunityMaterialIcon("cmd_message_reply", '\ue900')
+        @JvmField
+        val cmd_message_settings_outline = CommunityMaterialIcon("cmd_message_settings_outline", '\ue900')
+        @JvmField
+        val cmd_message_settings_variant_outline = CommunityMaterialIcon("cmd_message_settings_variant_outline", '\ue900')
+        @JvmField
+        val cmd_message_settings_variant = CommunityMaterialIcon("cmd_message_settings_variant", '\ue900')
+        @JvmField
+        val cmd_message_settings = CommunityMaterialIcon("cmd_message_settings", '\ue900')
+        @JvmField
+        val cmd_message_text_clock_outline = CommunityMaterialIcon("cmd_message_text_clock_outline", '\ue900')
+        @JvmField
+        val cmd_message_text_clock = CommunityMaterialIcon("cmd_message_text_clock", '\ue900')
+        @JvmField
+        val cmd_message_text_lock_outline = CommunityMaterialIcon("cmd_message_text_lock_outline", '\ue900')
+        @JvmField
+        val cmd_message_text_lock = CommunityMaterialIcon("cmd_message_text_lock", '\ue900')
+        @JvmField
+        val cmd_message_text_outline = CommunityMaterialIcon("cmd_message_text_outline", '\ue900')
+        @JvmField
+        val cmd_message_text = CommunityMaterialIcon("cmd_message_text", '\ue900')
+        @JvmField
+        val cmd_message_video = CommunityMaterialIcon("cmd_message_video", '\ue900')
+        @JvmField
+        val cmd_message = CommunityMaterialIcon("cmd_message", '\ue900')
+        @JvmField
+        val cmd_meteor = CommunityMaterialIcon("cmd_meteor", '\ue900')
+        @JvmField
+        val cmd_metronome_tick = CommunityMaterialIcon("cmd_metronome_tick", '\ue900')
+        @JvmField
+        val cmd_metronome = CommunityMaterialIcon("cmd_metronome", '\ue900')
+        @JvmField
+        val cmd_micro_sd = CommunityMaterialIcon("cmd_micro_sd", '\ue900')
+        @JvmField
+        val cmd_microphone_minus = CommunityMaterialIcon("cmd_microphone_minus", '\ue900')
+        @JvmField
+        val cmd_microphone_off = CommunityMaterialIcon("cmd_microphone_off", '\ue900')
+        @JvmField
+        val cmd_microphone_outline = CommunityMaterialIcon("cmd_microphone_outline", '\ue900')
+        @JvmField
+        val cmd_microphone_plus = CommunityMaterialIcon("cmd_microphone_plus", '\ue900')
+        @JvmField
+        val cmd_microphone_settings = CommunityMaterialIcon("cmd_microphone_settings", '\ue900')
+        @JvmField
+        val cmd_microphone_variant_off = CommunityMaterialIcon("cmd_microphone_variant_off", '\ue900')
+        @JvmField
+        val cmd_microphone_variant = CommunityMaterialIcon("cmd_microphone_variant", '\ue900')
+        @JvmField
+        val cmd_microphone = CommunityMaterialIcon("cmd_microphone", '\ue900')
+        @JvmField
+        val cmd_microscope = CommunityMaterialIcon("cmd_microscope", '\ue900')
+        @JvmField
+        val cmd_microsoft_dynamics = CommunityMaterialIcon("cmd_microsoft_dynamics", '\ue900')
+        @JvmField
+        val cmd_microsoft = CommunityMaterialIcon("cmd_microsoft", '\ue900')
+        @JvmField
+        val cmd_microwave = CommunityMaterialIcon("cmd_microwave", '\ue900')
+        @JvmField
+        val cmd_middleware_outline = CommunityMaterialIcon("cmd_middleware_outline", '\ue900')
+        @JvmField
+        val cmd_middleware = CommunityMaterialIcon("cmd_middleware", '\ue900')
+        @JvmField
+        val cmd_midi_port = CommunityMaterialIcon("cmd_midi_port", '\ue900')
+        @JvmField
+        val cmd_midi = CommunityMaterialIcon("cmd_midi", '\ue900')
+        @JvmField
+        val cmd_mine = CommunityMaterialIcon("cmd_mine", '\ue900')
+        @JvmField
+        val cmd_minecraft = CommunityMaterialIcon("cmd_minecraft", '\ue900')
+        @JvmField
+        val cmd_mini_sd = CommunityMaterialIcon("cmd_mini_sd", '\ue900')
+        @JvmField
+        val cmd_minidisc = CommunityMaterialIcon("cmd_minidisc", '\ue900')
+        @JvmField
+        val cmd_minus_box_multiple_outline = CommunityMaterialIcon("cmd_minus_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_minus_box_multiple = CommunityMaterialIcon("cmd_minus_box_multiple", '\ue900')
+        @JvmField
+        val cmd_minus_box_outline = CommunityMaterialIcon("cmd_minus_box_outline", '\ue900')
+        @JvmField
+        val cmd_minus_box = CommunityMaterialIcon("cmd_minus_box", '\ue900')
+        @JvmField
+        val cmd_minus_circle_outline = CommunityMaterialIcon("cmd_minus_circle_outline", '\ue900')
+        @JvmField
+        val cmd_minus_circle = CommunityMaterialIcon("cmd_minus_circle", '\ue900')
+        @JvmField
+        val cmd_minus_network_outline = CommunityMaterialIcon("cmd_minus_network_outline", '\ue900')
+        @JvmField
+        val cmd_minus_network = CommunityMaterialIcon("cmd_minus_network", '\ue900')
+        @JvmField
+        val cmd_minus = CommunityMaterialIcon("cmd_minus", '\ue900')
+        @JvmField
+        val cmd_mirror = CommunityMaterialIcon("cmd_mirror", '\ue900')
+        @JvmField
+        val cmd_mixcloud = CommunityMaterialIcon("cmd_mixcloud", '\ue900')
+        @JvmField
+        val cmd_mixed_martial_arts = CommunityMaterialIcon("cmd_mixed_martial_arts", '\ue900')
+        @JvmField
+        val cmd_mixed_reality = CommunityMaterialIcon("cmd_mixed_reality", '\ue900')
+        @JvmField
+        val cmd_mixer = CommunityMaterialIcon("cmd_mixer", '\ue900')
+        @JvmField
+        val cmd_molecule = CommunityMaterialIcon("cmd_molecule", '\ue900')
+        @JvmField
+        val cmd_monitor_cellphone_star = CommunityMaterialIcon("cmd_monitor_cellphone_star", '\ue900')
+        @JvmField
+        val cmd_monitor_cellphone = CommunityMaterialIcon("cmd_monitor_cellphone", '\ue900')
+        @JvmField
+        val cmd_monitor_clean = CommunityMaterialIcon("cmd_monitor_clean", '\ue900')
+        @JvmField
+        val cmd_monitor_dashboard = CommunityMaterialIcon("cmd_monitor_dashboard", '\ue900')
+        @JvmField
+        val cmd_monitor_edit = CommunityMaterialIcon("cmd_monitor_edit", '\ue900')
+        @JvmField
+        val cmd_monitor_lock = CommunityMaterialIcon("cmd_monitor_lock", '\ue900')
+        @JvmField
+        val cmd_monitor_multiple = CommunityMaterialIcon("cmd_monitor_multiple", '\ue900')
+        @JvmField
+        val cmd_monitor_off = CommunityMaterialIcon("cmd_monitor_off", '\ue900')
+        @JvmField
+        val cmd_monitor_screenshot = CommunityMaterialIcon("cmd_monitor_screenshot", '\ue900')
+        @JvmField
+        val cmd_monitor_speaker_off = CommunityMaterialIcon("cmd_monitor_speaker_off", '\ue900')
+        @JvmField
+        val cmd_monitor_speaker = CommunityMaterialIcon("cmd_monitor_speaker", '\ue900')
+        @JvmField
+        val cmd_monitor_star = CommunityMaterialIcon("cmd_monitor_star", '\ue900')
+        @JvmField
+        val cmd_monitor = CommunityMaterialIcon("cmd_monitor", '\ue900')
+        @JvmField
+        val cmd_moon_first_quarter = CommunityMaterialIcon("cmd_moon_first_quarter", '\ue900')
+        @JvmField
+        val cmd_moon_full = CommunityMaterialIcon("cmd_moon_full", '\ue900')
+        @JvmField
+        val cmd_moon_last_quarter = CommunityMaterialIcon("cmd_moon_last_quarter", '\ue900')
+        @JvmField
+        val cmd_moon_new = CommunityMaterialIcon("cmd_moon_new", '\ue900')
+        @JvmField
+        val cmd_moon_waning_crescent = CommunityMaterialIcon("cmd_moon_waning_crescent", '\ue900')
+        @JvmField
+        val cmd_moon_waning_gibbous = CommunityMaterialIcon("cmd_moon_waning_gibbous", '\ue900')
+        @JvmField
+        val cmd_moon_waxing_crescent = CommunityMaterialIcon("cmd_moon_waxing_crescent", '\ue900')
+        @JvmField
+        val cmd_moon_waxing_gibbous = CommunityMaterialIcon("cmd_moon_waxing_gibbous", '\ue900')
+        @JvmField
+        val cmd_moped = CommunityMaterialIcon("cmd_moped", '\ue900')
+        @JvmField
+        val cmd_more = CommunityMaterialIcon("cmd_more", '\ue900')
+        @JvmField
+        val cmd_mother_nurse = CommunityMaterialIcon("cmd_mother_nurse", '\ue900')
+        @JvmField
+        val cmd_motion_sensor = CommunityMaterialIcon("cmd_motion_sensor", '\ue900')
+        @JvmField
+        val cmd_motorbike = CommunityMaterialIcon("cmd_motorbike", '\ue900')
+        @JvmField
+        val cmd_mouse_bluetooth = CommunityMaterialIcon("cmd_mouse_bluetooth", '\ue900')
+        @JvmField
+        val cmd_mouse_off = CommunityMaterialIcon("cmd_mouse_off", '\ue900')
+        @JvmField
+        val cmd_mouse_variant_off = CommunityMaterialIcon("cmd_mouse_variant_off", '\ue900')
+        @JvmField
+        val cmd_mouse_variant = CommunityMaterialIcon("cmd_mouse_variant", '\ue900')
+        @JvmField
+        val cmd_mouse = CommunityMaterialIcon("cmd_mouse", '\ue900')
+        @JvmField
+        val cmd_move_resize_variant = CommunityMaterialIcon("cmd_move_resize_variant", '\ue900')
+        @JvmField
+        val cmd_move_resize = CommunityMaterialIcon("cmd_move_resize", '\ue900')
+        @JvmField
+        val cmd_movie_edit_outline = CommunityMaterialIcon("cmd_movie_edit_outline", '\ue900')
+        @JvmField
+        val cmd_movie_edit = CommunityMaterialIcon("cmd_movie_edit", '\ue900')
+        @JvmField
+        val cmd_movie_filter_outline = CommunityMaterialIcon("cmd_movie_filter_outline", '\ue900')
+        @JvmField
+        val cmd_movie_filter = CommunityMaterialIcon("cmd_movie_filter", '\ue900')
+        @JvmField
+        val cmd_movie_open_outline = CommunityMaterialIcon("cmd_movie_open_outline", '\ue900')
+        @JvmField
+        val cmd_movie_open = CommunityMaterialIcon("cmd_movie_open", '\ue900')
+        @JvmField
+        val cmd_movie_outline = CommunityMaterialIcon("cmd_movie_outline", '\ue900')
+        @JvmField
+        val cmd_movie_roll = CommunityMaterialIcon("cmd_movie_roll", '\ue900')
+        @JvmField
+        val cmd_movie_search_outline = CommunityMaterialIcon("cmd_movie_search_outline", '\ue900')
+        @JvmField
+        val cmd_movie_search = CommunityMaterialIcon("cmd_movie_search", '\ue900')
+        @JvmField
+        val cmd_movie = CommunityMaterialIcon("cmd_movie", '\ue900')
+        @JvmField
+        val cmd_muffin = CommunityMaterialIcon("cmd_muffin", '\ue900')
+        @JvmField
+        val cmd_multiplication_box = CommunityMaterialIcon("cmd_multiplication_box", '\ue900')
+        @JvmField
+        val cmd_multiplication = CommunityMaterialIcon("cmd_multiplication", '\ue900')
+        @JvmField
+        val cmd_mushroom_outline = CommunityMaterialIcon("cmd_mushroom_outline", '\ue900')
+        @JvmField
+        val cmd_mushroom = CommunityMaterialIcon("cmd_mushroom", '\ue900')
+        @JvmField
+        val cmd_music_accidental_double_flat = CommunityMaterialIcon("cmd_music_accidental_double_flat", '\ue900')
+        @JvmField
+        val cmd_music_accidental_double_sharp = CommunityMaterialIcon("cmd_music_accidental_double_sharp", '\ue900')
+        @JvmField
+        val cmd_music_accidental_flat = CommunityMaterialIcon("cmd_music_accidental_flat", '\ue900')
+        @JvmField
+        val cmd_music_accidental_natural = CommunityMaterialIcon("cmd_music_accidental_natural", '\ue900')
+        @JvmField
+        val cmd_music_accidental_sharp = CommunityMaterialIcon("cmd_music_accidental_sharp", '\ue900')
+        @JvmField
+        val cmd_music_box_outline = CommunityMaterialIcon("cmd_music_box_outline", '\ue900')
+        @JvmField
+        val cmd_music_box = CommunityMaterialIcon("cmd_music_box", '\ue900')
+        @JvmField
+        val cmd_music_circle_outline = CommunityMaterialIcon("cmd_music_circle_outline", '\ue900')
+        @JvmField
+        val cmd_music_circle = CommunityMaterialIcon("cmd_music_circle", '\ue900')
+        @JvmField
+        val cmd_music_clef_alto = CommunityMaterialIcon("cmd_music_clef_alto", '\ue900')
+        @JvmField
+        val cmd_music_clef_bass = CommunityMaterialIcon("cmd_music_clef_bass", '\ue900')
+        @JvmField
+        val cmd_music_clef_treble = CommunityMaterialIcon("cmd_music_clef_treble", '\ue900')
+        @JvmField
+        val cmd_music_note_bluetooth_off = CommunityMaterialIcon("cmd_music_note_bluetooth_off", '\ue900')
+        @JvmField
+        val cmd_music_note_bluetooth = CommunityMaterialIcon("cmd_music_note_bluetooth", '\ue900')
+        @JvmField
+        val cmd_music_note_eighth_dotted = CommunityMaterialIcon("cmd_music_note_eighth_dotted", '\ue900')
+        @JvmField
+        val cmd_music_note_eighth = CommunityMaterialIcon("cmd_music_note_eighth", '\ue900')
+        @JvmField
+        val cmd_music_note_half_dotted = CommunityMaterialIcon("cmd_music_note_half_dotted", '\ue900')
+        @JvmField
+        val cmd_music_note_half = CommunityMaterialIcon("cmd_music_note_half", '\ue900')
+        @JvmField
+        val cmd_music_note_off_outline = CommunityMaterialIcon("cmd_music_note_off_outline", '\ue900')
+        @JvmField
+        val cmd_music_note_off = CommunityMaterialIcon("cmd_music_note_off", '\ue900')
+        @JvmField
+        val cmd_music_note_outline = CommunityMaterialIcon("cmd_music_note_outline", '\ue900')
+        @JvmField
+        val cmd_music_note_plus = CommunityMaterialIcon("cmd_music_note_plus", '\ue900')
+        @JvmField
+        val cmd_music_note_quarter_dotted = CommunityMaterialIcon("cmd_music_note_quarter_dotted", '\ue900')
+        @JvmField
+        val cmd_music_note_quarter = CommunityMaterialIcon("cmd_music_note_quarter", '\ue900')
+        @JvmField
+        val cmd_music_note_sixteenth_dotted = CommunityMaterialIcon("cmd_music_note_sixteenth_dotted", '\ue900')
+        @JvmField
+        val cmd_music_note_sixteenth = CommunityMaterialIcon("cmd_music_note_sixteenth", '\ue900')
+        @JvmField
+        val cmd_music_note_whole_dotted = CommunityMaterialIcon("cmd_music_note_whole_dotted", '\ue900')
+        @JvmField
+        val cmd_music_note_whole = CommunityMaterialIcon("cmd_music_note_whole", '\ue900')
+        @JvmField
+        val cmd_music_note = CommunityMaterialIcon("cmd_music_note", '\ue900')
+        @JvmField
+        val cmd_music_off = CommunityMaterialIcon("cmd_music_off", '\ue900')
+        @JvmField
+        val cmd_music_rest_eighth = CommunityMaterialIcon("cmd_music_rest_eighth", '\ue900')
+        @JvmField
+        val cmd_music_rest_half = CommunityMaterialIcon("cmd_music_rest_half", '\ue900')
+        @JvmField
+        val cmd_music_rest_quarter = CommunityMaterialIcon("cmd_music_rest_quarter", '\ue900')
+        @JvmField
+        val cmd_music_rest_sixteenth = CommunityMaterialIcon("cmd_music_rest_sixteenth", '\ue900')
+        @JvmField
+        val cmd_music_rest_whole = CommunityMaterialIcon("cmd_music_rest_whole", '\ue900')
+        @JvmField
+        val cmd_music = CommunityMaterialIcon("cmd_music", '\ue900')
+        @JvmField
+        val cmd_nail = CommunityMaterialIcon("cmd_nail", '\ue900')
+        @JvmField
+        val cmd_nas = CommunityMaterialIcon("cmd_nas", '\ue900')
+        @JvmField
+        val cmd_nativescript = CommunityMaterialIcon("cmd_nativescript", '\ue900')
+        @JvmField
+        val cmd_nature_people = CommunityMaterialIcon("cmd_nature_people", '\ue900')
+        @JvmField
+        val cmd_nature = CommunityMaterialIcon("cmd_nature", '\ue900')
+        @JvmField
+        val cmd_navigation = CommunityMaterialIcon("cmd_navigation", '\ue900')
+        @JvmField
+        val cmd_near_me = CommunityMaterialIcon("cmd_near_me", '\ue900')
+        @JvmField
+        val cmd_necklace = CommunityMaterialIcon("cmd_necklace", '\ue900')
+        @JvmField
+        val cmd_needle = CommunityMaterialIcon("cmd_needle", '\ue900')
+        @JvmField
+        val cmd_netflix = CommunityMaterialIcon("cmd_netflix", '\ue900')
+        @JvmField
+        val cmd_network_off_outline = CommunityMaterialIcon("cmd_network_off_outline", '\ue900')
+        @JvmField
+        val cmd_network_off = CommunityMaterialIcon("cmd_network_off", '\ue900')
+        @JvmField
+        val cmd_network_outline = CommunityMaterialIcon("cmd_network_outline", '\ue900')
+        @JvmField
+        val cmd_network_router = CommunityMaterialIcon("cmd_network_router", '\ue900')
+        @JvmField
+        val cmd_network_strength_1_alert = CommunityMaterialIcon("cmd_network_strength_1_alert", '\ue900')
+        @JvmField
+        val cmd_network_strength_1 = CommunityMaterialIcon("cmd_network_strength_1", '\ue900')
+        @JvmField
+        val cmd_network_strength_2_alert = CommunityMaterialIcon("cmd_network_strength_2_alert", '\ue900')
+        @JvmField
+        val cmd_network_strength_2 = CommunityMaterialIcon("cmd_network_strength_2", '\ue900')
+        @JvmField
+        val cmd_network_strength_3_alert = CommunityMaterialIcon("cmd_network_strength_3_alert", '\ue900')
+        @JvmField
+        val cmd_network_strength_3 = CommunityMaterialIcon("cmd_network_strength_3", '\ue900')
+        @JvmField
+        val cmd_network_strength_4_alert = CommunityMaterialIcon("cmd_network_strength_4_alert", '\ue900')
+        @JvmField
+        val cmd_network_strength_4 = CommunityMaterialIcon("cmd_network_strength_4", '\ue900')
+        @JvmField
+        val cmd_network_strength_off_outline = CommunityMaterialIcon("cmd_network_strength_off_outline", '\ue900')
+        @JvmField
+        val cmd_network_strength_off = CommunityMaterialIcon("cmd_network_strength_off", '\ue900')
+        @JvmField
+        val cmd_network_strength_outline = CommunityMaterialIcon("cmd_network_strength_outline", '\ue900')
+        @JvmField
+        val cmd_network = CommunityMaterialIcon("cmd_network", '\ue900')
+        @JvmField
+        val cmd_new_box = CommunityMaterialIcon("cmd_new_box", '\ue900')
+        @JvmField
+        val cmd_newspaper_minus = CommunityMaterialIcon("cmd_newspaper_minus", '\ue900')
+        @JvmField
+        val cmd_newspaper_plus = CommunityMaterialIcon("cmd_newspaper_plus", '\ue900')
+        @JvmField
+        val cmd_newspaper_variant_multiple_outline = CommunityMaterialIcon("cmd_newspaper_variant_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_newspaper_variant_multiple = CommunityMaterialIcon("cmd_newspaper_variant_multiple", '\ue900')
+        @JvmField
+        val cmd_newspaper_variant_outline = CommunityMaterialIcon("cmd_newspaper_variant_outline", '\ue900')
+        @JvmField
+        val cmd_newspaper_variant = CommunityMaterialIcon("cmd_newspaper_variant", '\ue900')
+        @JvmField
+        val cmd_newspaper = CommunityMaterialIcon("cmd_newspaper", '\ue900')
+        @JvmField
+        val cmd_nfc_off = CommunityMaterialIcon("cmd_nfc_off", '\ue900')
+        @JvmField
+        val cmd_nfc_search_variant = CommunityMaterialIcon("cmd_nfc_search_variant", '\ue900')
+        @JvmField
+        val cmd_nfc_tap = CommunityMaterialIcon("cmd_nfc_tap", '\ue900')
+        @JvmField
+        val cmd_nfc_variant_off = CommunityMaterialIcon("cmd_nfc_variant_off", '\ue900')
+        @JvmField
+        val cmd_nfc_variant = CommunityMaterialIcon("cmd_nfc_variant", '\ue900')
+        @JvmField
+        val cmd_nfc = CommunityMaterialIcon("cmd_nfc", '\ue900')
+        @JvmField
+        val cmd_ninja = CommunityMaterialIcon("cmd_ninja", '\ue900')
+        @JvmField
+        val cmd_nintendo_switch = CommunityMaterialIcon("cmd_nintendo_switch", '\ue900')
+        @JvmField
+        val cmd_nix = CommunityMaterialIcon("cmd_nix", '\ue900')
+        @JvmField
+        val cmd_nodejs = CommunityMaterialIcon("cmd_nodejs", '\ue900')
+        @JvmField
+        val cmd_noodles = CommunityMaterialIcon("cmd_noodles", '\ue900')
+        @JvmField
+        val cmd_not_equal_variant = CommunityMaterialIcon("cmd_not_equal_variant", '\ue900')
+        @JvmField
+        val cmd_not_equal = CommunityMaterialIcon("cmd_not_equal", '\ue900')
+        @JvmField
+        val cmd_note_multiple_outline = CommunityMaterialIcon("cmd_note_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_note_multiple = CommunityMaterialIcon("cmd_note_multiple", '\ue900')
+        @JvmField
+        val cmd_note_outline = CommunityMaterialIcon("cmd_note_outline", '\ue900')
+        @JvmField
+        val cmd_note_plus_outline = CommunityMaterialIcon("cmd_note_plus_outline", '\ue900')
+        @JvmField
+        val cmd_note_plus = CommunityMaterialIcon("cmd_note_plus", '\ue900')
+        @JvmField
+        val cmd_note_text_outline = CommunityMaterialIcon("cmd_note_text_outline", '\ue900')
+        @JvmField
+        val cmd_note_text = CommunityMaterialIcon("cmd_note_text", '\ue900')
+        @JvmField
+        val cmd_note = CommunityMaterialIcon("cmd_note", '\ue900')
+        @JvmField
+        val cmd_notebook_multiple = CommunityMaterialIcon("cmd_notebook_multiple", '\ue900')
+        @JvmField
+        val cmd_notebook_outline = CommunityMaterialIcon("cmd_notebook_outline", '\ue900')
+        @JvmField
+        val cmd_notebook = CommunityMaterialIcon("cmd_notebook", '\ue900')
+        @JvmField
+        val cmd_notification_clear_all = CommunityMaterialIcon("cmd_notification_clear_all", '\ue900')
+        @JvmField
+        val cmd_npm_variant_outline = CommunityMaterialIcon("cmd_npm_variant_outline", '\ue900')
+        @JvmField
+        val cmd_npm_variant = CommunityMaterialIcon("cmd_npm_variant", '\ue900')
+        @JvmField
+        val cmd_npm = CommunityMaterialIcon("cmd_npm", '\ue900')
+        @JvmField
+        val cmd_nuke = CommunityMaterialIcon("cmd_nuke", '\ue900')
+        @JvmField
+        val cmd_null = CommunityMaterialIcon("cmd_null", '\ue900')
+        @JvmField
+        val cmd_numeric_0_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_0_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_0_box_multiple = CommunityMaterialIcon("cmd_numeric_0_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_0_box_outline = CommunityMaterialIcon("cmd_numeric_0_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_0_box = CommunityMaterialIcon("cmd_numeric_0_box", '\ue900')
+        @JvmField
+        val cmd_numeric_0_circle_outline = CommunityMaterialIcon("cmd_numeric_0_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_0_circle = CommunityMaterialIcon("cmd_numeric_0_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_0 = CommunityMaterialIcon("cmd_numeric_0", '\ue900')
+        @JvmField
+        val cmd_numeric_1_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_1_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_1_box_multiple = CommunityMaterialIcon("cmd_numeric_1_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_1_box_outline = CommunityMaterialIcon("cmd_numeric_1_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_1_box = CommunityMaterialIcon("cmd_numeric_1_box", '\ue900')
+        @JvmField
+        val cmd_numeric_1_circle_outline = CommunityMaterialIcon("cmd_numeric_1_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_1_circle = CommunityMaterialIcon("cmd_numeric_1_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_1 = CommunityMaterialIcon("cmd_numeric_1", '\ue900')
+        @JvmField
+        val cmd_numeric_2_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_2_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_2_box_multiple = CommunityMaterialIcon("cmd_numeric_2_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_2_box_outline = CommunityMaterialIcon("cmd_numeric_2_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_2_box = CommunityMaterialIcon("cmd_numeric_2_box", '\ue900')
+        @JvmField
+        val cmd_numeric_2_circle_outline = CommunityMaterialIcon("cmd_numeric_2_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_2_circle = CommunityMaterialIcon("cmd_numeric_2_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_2 = CommunityMaterialIcon("cmd_numeric_2", '\ue900')
+        @JvmField
+        val cmd_numeric_3_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_3_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_3_box_multiple = CommunityMaterialIcon("cmd_numeric_3_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_3_box_outline = CommunityMaterialIcon("cmd_numeric_3_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_3_box = CommunityMaterialIcon("cmd_numeric_3_box", '\ue900')
+        @JvmField
+        val cmd_numeric_3_circle_outline = CommunityMaterialIcon("cmd_numeric_3_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_3_circle = CommunityMaterialIcon("cmd_numeric_3_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_3 = CommunityMaterialIcon("cmd_numeric_3", '\ue900')
+        @JvmField
+        val cmd_numeric_4_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_4_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_4_box_multiple = CommunityMaterialIcon("cmd_numeric_4_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_4_box_outline = CommunityMaterialIcon("cmd_numeric_4_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_4_box = CommunityMaterialIcon("cmd_numeric_4_box", '\ue900')
+        @JvmField
+        val cmd_numeric_4_circle_outline = CommunityMaterialIcon("cmd_numeric_4_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_4_circle = CommunityMaterialIcon("cmd_numeric_4_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_4 = CommunityMaterialIcon("cmd_numeric_4", '\ue900')
+        @JvmField
+        val cmd_numeric_5_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_5_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_5_box_multiple = CommunityMaterialIcon("cmd_numeric_5_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_5_box_outline = CommunityMaterialIcon("cmd_numeric_5_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_5_box = CommunityMaterialIcon("cmd_numeric_5_box", '\ue900')
+        @JvmField
+        val cmd_numeric_5_circle_outline = CommunityMaterialIcon("cmd_numeric_5_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_5_circle = CommunityMaterialIcon("cmd_numeric_5_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_5 = CommunityMaterialIcon("cmd_numeric_5", '\ue900')
+        @JvmField
+        val cmd_numeric_6_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_6_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_6_box_multiple = CommunityMaterialIcon("cmd_numeric_6_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_6_box_outline = CommunityMaterialIcon("cmd_numeric_6_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_6_box = CommunityMaterialIcon("cmd_numeric_6_box", '\ue900')
+        @JvmField
+        val cmd_numeric_6_circle_outline = CommunityMaterialIcon("cmd_numeric_6_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_6_circle = CommunityMaterialIcon("cmd_numeric_6_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_6 = CommunityMaterialIcon("cmd_numeric_6", '\ue900')
+        @JvmField
+        val cmd_numeric_7_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_7_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_7_box_multiple = CommunityMaterialIcon("cmd_numeric_7_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_7_box_outline = CommunityMaterialIcon("cmd_numeric_7_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_7_box = CommunityMaterialIcon("cmd_numeric_7_box", '\ue900')
+        @JvmField
+        val cmd_numeric_7_circle_outline = CommunityMaterialIcon("cmd_numeric_7_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_7_circle = CommunityMaterialIcon("cmd_numeric_7_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_7 = CommunityMaterialIcon("cmd_numeric_7", '\ue900')
+        @JvmField
+        val cmd_numeric_8_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_8_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_8_box_multiple = CommunityMaterialIcon("cmd_numeric_8_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_8_box_outline = CommunityMaterialIcon("cmd_numeric_8_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_8_box = CommunityMaterialIcon("cmd_numeric_8_box", '\ue900')
+        @JvmField
+        val cmd_numeric_8_circle_outline = CommunityMaterialIcon("cmd_numeric_8_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_8_circle = CommunityMaterialIcon("cmd_numeric_8_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_8 = CommunityMaterialIcon("cmd_numeric_8", '\ue900')
+        @JvmField
+        val cmd_numeric_9_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_9_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_9_box_multiple = CommunityMaterialIcon("cmd_numeric_9_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_9_box_outline = CommunityMaterialIcon("cmd_numeric_9_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_9_box = CommunityMaterialIcon("cmd_numeric_9_box", '\ue900')
+        @JvmField
+        val cmd_numeric_9_circle_outline = CommunityMaterialIcon("cmd_numeric_9_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_9_circle = CommunityMaterialIcon("cmd_numeric_9_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_9_plus_box_multiple_outline =
+                CommunityMaterialIcon("cmd_numeric_9_plus_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_9_plus_box_multiple = CommunityMaterialIcon("cmd_numeric_9_plus_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_9_plus_box_outline = CommunityMaterialIcon("cmd_numeric_9_plus_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_9_plus_box = CommunityMaterialIcon("cmd_numeric_9_plus_box", '\ue900')
+        @JvmField
+        val cmd_numeric_9_plus_circle_outline = CommunityMaterialIcon("cmd_numeric_9_plus_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_9_plus_circle = CommunityMaterialIcon("cmd_numeric_9_plus_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_9_plus = CommunityMaterialIcon("cmd_numeric_9_plus", '\ue900')
+        @JvmField
+        val cmd_numeric_9 = CommunityMaterialIcon("cmd_numeric_9", '\ue900')
+        @JvmField
+        val cmd_numeric_10_box_multiple_outline = CommunityMaterialIcon("cmd_numeric_10_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_10_box_multiple = CommunityMaterialIcon("cmd_numeric_10_box_multiple", '\ue900')
+        @JvmField
+        val cmd_numeric_10_box_outline = CommunityMaterialIcon("cmd_numeric_10_box_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_10_box = CommunityMaterialIcon("cmd_numeric_10_box", '\ue900')
+        @JvmField
+        val cmd_numeric_10_circle_outline = CommunityMaterialIcon("cmd_numeric_10_circle_outline", '\ue900')
+        @JvmField
+        val cmd_numeric_10_circle = CommunityMaterialIcon("cmd_numeric_10_circle", '\ue900')
+        @JvmField
+        val cmd_numeric_10 = CommunityMaterialIcon("cmd_numeric_10", '\ue900')
+        @JvmField
+        val cmd_numeric_negative_1 = CommunityMaterialIcon("cmd_numeric_negative_1", '\ue900')
+        @JvmField
+        val cmd_numeric = CommunityMaterialIcon("cmd_numeric", '\ue900')
+        @JvmField
+        val cmd_nut = CommunityMaterialIcon("cmd_nut", '\ue900')
+        @JvmField
+        val cmd_nutrition = CommunityMaterialIcon("cmd_nutrition", '\ue900')
+        @JvmField
+        val cmd_nuxt = CommunityMaterialIcon("cmd_nuxt", '\ue900')
+        @JvmField
+        val cmd_oar = CommunityMaterialIcon("cmd_oar", '\ue900')
+        @JvmField
+        val cmd_ocarina = CommunityMaterialIcon("cmd_ocarina", '\ue900')
+        @JvmField
+        val cmd_ocr = CommunityMaterialIcon("cmd_ocr", '\ue900')
+        @JvmField
+        val cmd_octagon_outline = CommunityMaterialIcon("cmd_octagon_outline", '\ue900')
+        @JvmField
+        val cmd_octagon = CommunityMaterialIcon("cmd_octagon", '\ue900')
+        @JvmField
+        val cmd_octagram_outline = CommunityMaterialIcon("cmd_octagram_outline", '\ue900')
+        @JvmField
+        val cmd_octagram = CommunityMaterialIcon("cmd_octagram", '\ue900')
+        @JvmField
+        val cmd_odnoklassniki = CommunityMaterialIcon("cmd_odnoklassniki", '\ue900')
+        @JvmField
+        val cmd_offer = CommunityMaterialIcon("cmd_offer", '\ue900')
+        @JvmField
+        val cmd_office_building = CommunityMaterialIcon("cmd_office_building", '\ue900')
+        @JvmField
+        val cmd_office = CommunityMaterialIcon("cmd_office", '\ue900')
+        @JvmField
+        val cmd_oil_lamp = CommunityMaterialIcon("cmd_oil_lamp", '\ue900')
+        @JvmField
+        val cmd_oil_level = CommunityMaterialIcon("cmd_oil_level", '\ue900')
+        @JvmField
+        val cmd_oil_temperature = CommunityMaterialIcon("cmd_oil_temperature", '\ue900')
+        @JvmField
+        val cmd_oil = CommunityMaterialIcon("cmd_oil", '\ue900')
+        @JvmField
+        val cmd_omega = CommunityMaterialIcon("cmd_omega", '\ue900')
+        @JvmField
+        val cmd_one_up = CommunityMaterialIcon("cmd_one_up", '\ue900')
+        @JvmField
+        val cmd_onedrive = CommunityMaterialIcon("cmd_onedrive", '\ue900')
+        @JvmField
+        val cmd_onenote = CommunityMaterialIcon("cmd_onenote", '\ue900')
+        @JvmField
+        val cmd_onepassword = CommunityMaterialIcon("cmd_onepassword", '\ue900')
+        @JvmField
+        val cmd_opacity = CommunityMaterialIcon("cmd_opacity", '\ue900')
+        @JvmField
+        val cmd_open_in_app = CommunityMaterialIcon("cmd_open_in_app", '\ue900')
+        @JvmField
+        val cmd_open_in_new = CommunityMaterialIcon("cmd_open_in_new", '\ue900')
+        @JvmField
+        val cmd_open_source_initiative = CommunityMaterialIcon("cmd_open_source_initiative", '\ue900')
+        @JvmField
+        val cmd_openid = CommunityMaterialIcon("cmd_openid", '\ue900')
+        @JvmField
+        val cmd_opera = CommunityMaterialIcon("cmd_opera", '\ue900')
+        @JvmField
+        val cmd_orbit = CommunityMaterialIcon("cmd_orbit", '\ue900')
+        @JvmField
+        val cmd_origin = CommunityMaterialIcon("cmd_origin", '\ue900')
+        @JvmField
+        val cmd_ornament_variant = CommunityMaterialIcon("cmd_ornament_variant", '\ue900')
+        @JvmField
+        val cmd_ornament = CommunityMaterialIcon("cmd_ornament", '\ue900')
+        @JvmField
+        val cmd_outdoor_lamp = CommunityMaterialIcon("cmd_outdoor_lamp", '\ue900')
+        @JvmField
+        val cmd_outlook = CommunityMaterialIcon("cmd_outlook", '\ue900')
+        @JvmField
+        val cmd_overscan = CommunityMaterialIcon("cmd_overscan", '\ue900')
+        @JvmField
+        val cmd_owl = CommunityMaterialIcon("cmd_owl", '\ue900')
+        @JvmField
+        val cmd_pac_man = CommunityMaterialIcon("cmd_pac_man", '\ue900')
+        @JvmField
+        val cmd_package_down = CommunityMaterialIcon("cmd_package_down", '\ue900')
+        @JvmField
+        val cmd_package_up = CommunityMaterialIcon("cmd_package_up", '\ue900')
+        @JvmField
+        val cmd_package_variant_closed = CommunityMaterialIcon("cmd_package_variant_closed", '\ue900')
+        @JvmField
+        val cmd_package_variant = CommunityMaterialIcon("cmd_package_variant", '\ue900')
+        @JvmField
+        val cmd_package = CommunityMaterialIcon("cmd_package", '\ue900')
+        @JvmField
+        val cmd_page_first = CommunityMaterialIcon("cmd_page_first", '\ue900')
+        @JvmField
+        val cmd_page_last = CommunityMaterialIcon("cmd_page_last", '\ue900')
+        @JvmField
+        val cmd_page_layout_body = CommunityMaterialIcon("cmd_page_layout_body", '\ue900')
+        @JvmField
+        val cmd_page_layout_footer = CommunityMaterialIcon("cmd_page_layout_footer", '\ue900')
+        @JvmField
+        val cmd_page_layout_header_footer = CommunityMaterialIcon("cmd_page_layout_header_footer", '\ue900')
+        @JvmField
+        val cmd_page_layout_header = CommunityMaterialIcon("cmd_page_layout_header", '\ue900')
+        @JvmField
+        val cmd_page_layout_sidebar_left = CommunityMaterialIcon("cmd_page_layout_sidebar_left", '\ue900')
+        @JvmField
+        val cmd_page_layout_sidebar_right = CommunityMaterialIcon("cmd_page_layout_sidebar_right", '\ue900')
+        @JvmField
+        val cmd_page_next_outline = CommunityMaterialIcon("cmd_page_next_outline", '\ue900')
+        @JvmField
+        val cmd_page_next = CommunityMaterialIcon("cmd_page_next", '\ue900')
+        @JvmField
+        val cmd_page_previous_outline = CommunityMaterialIcon("cmd_page_previous_outline", '\ue900')
+        @JvmField
+        val cmd_page_previous = CommunityMaterialIcon("cmd_page_previous", '\ue900')
+        @JvmField
+        val cmd_palette_advanced = CommunityMaterialIcon("cmd_palette_advanced", '\ue900')
+        @JvmField
+        val cmd_palette_outline = CommunityMaterialIcon("cmd_palette_outline", '\ue900')
+        @JvmField
+        val cmd_palette_swatch = CommunityMaterialIcon("cmd_palette_swatch", '\ue900')
+        @JvmField
+        val cmd_palette = CommunityMaterialIcon("cmd_palette", '\ue900')
+        @JvmField
+        val cmd_palm_tree = CommunityMaterialIcon("cmd_palm_tree", '\ue900')
+        @JvmField
+        val cmd_pan_bottom_left = CommunityMaterialIcon("cmd_pan_bottom_left", '\ue900')
+        @JvmField
+        val cmd_pan_bottom_right = CommunityMaterialIcon("cmd_pan_bottom_right", '\ue900')
+        @JvmField
+        val cmd_pan_down = CommunityMaterialIcon("cmd_pan_down", '\ue900')
+        @JvmField
+        val cmd_pan_horizontal = CommunityMaterialIcon("cmd_pan_horizontal", '\ue900')
+        @JvmField
+        val cmd_pan_left = CommunityMaterialIcon("cmd_pan_left", '\ue900')
+        @JvmField
+        val cmd_pan_right = CommunityMaterialIcon("cmd_pan_right", '\ue900')
+        @JvmField
+        val cmd_pan_top_left = CommunityMaterialIcon("cmd_pan_top_left", '\ue900')
+        @JvmField
+        val cmd_pan_top_right = CommunityMaterialIcon("cmd_pan_top_right", '\ue900')
+        @JvmField
+        val cmd_pan_up = CommunityMaterialIcon("cmd_pan_up", '\ue900')
+        @JvmField
+        val cmd_pan_vertical = CommunityMaterialIcon("cmd_pan_vertical", '\ue900')
+        @JvmField
+        val cmd_pan = CommunityMaterialIcon("cmd_pan", '\ue900')
+        @JvmField
+        val cmd_panda = CommunityMaterialIcon("cmd_panda", '\ue900')
+        @JvmField
+        val cmd_pandora = CommunityMaterialIcon("cmd_pandora", '\ue900')
+        @JvmField
+        val cmd_panorama_fisheye = CommunityMaterialIcon("cmd_panorama_fisheye", '\ue900')
+        @JvmField
+        val cmd_panorama_horizontal = CommunityMaterialIcon("cmd_panorama_horizontal", '\ue900')
+        @JvmField
+        val cmd_panorama_vertical = CommunityMaterialIcon("cmd_panorama_vertical", '\ue900')
+        @JvmField
+        val cmd_panorama_wide_angle = CommunityMaterialIcon("cmd_panorama_wide_angle", '\ue900')
+        @JvmField
+        val cmd_panorama = CommunityMaterialIcon("cmd_panorama", '\ue900')
+        @JvmField
+        val cmd_paper_cut_vertical = CommunityMaterialIcon("cmd_paper_cut_vertical", '\ue900')
+        @JvmField
+        val cmd_paper_roll_outline = CommunityMaterialIcon("cmd_paper_roll_outline", '\ue900')
+        @JvmField
+        val cmd_paper_roll = CommunityMaterialIcon("cmd_paper_roll", '\ue900')
+        @JvmField
+        val cmd_paperclip = CommunityMaterialIcon("cmd_paperclip", '\ue900')
+        @JvmField
+        val cmd_parachute_outline = CommunityMaterialIcon("cmd_parachute_outline", '\ue900')
+        @JvmField
+        val cmd_parachute = CommunityMaterialIcon("cmd_parachute", '\ue900')
+        @JvmField
+        val cmd_parking = CommunityMaterialIcon("cmd_parking", '\ue900')
+        @JvmField
+        val cmd_party_popper = CommunityMaterialIcon("cmd_party_popper", '\ue900')
+        @JvmField
+        val cmd_passport_biometric = CommunityMaterialIcon("cmd_passport_biometric", '\ue900')
+        @JvmField
+        val cmd_passport = CommunityMaterialIcon("cmd_passport", '\ue900')
+        @JvmField
+        val cmd_pasta = CommunityMaterialIcon("cmd_pasta", '\ue900')
+        @JvmField
+        val cmd_patio_heater = CommunityMaterialIcon("cmd_patio_heater", '\ue900')
+        @JvmField
+        val cmd_patreon = CommunityMaterialIcon("cmd_patreon", '\ue900')
+        @JvmField
+        val cmd_pause_circle_outline = CommunityMaterialIcon("cmd_pause_circle_outline", '\ue900')
+        @JvmField
+        val cmd_pause_circle = CommunityMaterialIcon("cmd_pause_circle", '\ue900')
+        @JvmField
+        val cmd_pause_octagon_outline = CommunityMaterialIcon("cmd_pause_octagon_outline", '\ue900')
+        @JvmField
+        val cmd_pause_octagon = CommunityMaterialIcon("cmd_pause_octagon", '\ue900')
+        @JvmField
+        val cmd_pause = CommunityMaterialIcon("cmd_pause", '\ue900')
+        @JvmField
+        val cmd_paw_off = CommunityMaterialIcon("cmd_paw_off", '\ue900')
+        @JvmField
+        val cmd_paw = CommunityMaterialIcon("cmd_paw", '\ue900')
+        @JvmField
+        val cmd_paypal = CommunityMaterialIcon("cmd_paypal", '\ue900')
+        @JvmField
+        val cmd_pdf_box = CommunityMaterialIcon("cmd_pdf_box", '\ue900')
+        @JvmField
+        val cmd_peace = CommunityMaterialIcon("cmd_peace", '\ue900')
+        @JvmField
+        val cmd_peanut_off_outline = CommunityMaterialIcon("cmd_peanut_off_outline", '\ue900')
+        @JvmField
+        val cmd_peanut_off = CommunityMaterialIcon("cmd_peanut_off", '\ue900')
+        @JvmField
+        val cmd_peanut_outline = CommunityMaterialIcon("cmd_peanut_outline", '\ue900')
+        @JvmField
+        val cmd_peanut = CommunityMaterialIcon("cmd_peanut", '\ue900')
+        @JvmField
+        val cmd_pen_lock = CommunityMaterialIcon("cmd_pen_lock", '\ue900')
+        @JvmField
+        val cmd_pen_minus = CommunityMaterialIcon("cmd_pen_minus", '\ue900')
+        @JvmField
+        val cmd_pen_off = CommunityMaterialIcon("cmd_pen_off", '\ue900')
+        @JvmField
+        val cmd_pen_plus = CommunityMaterialIcon("cmd_pen_plus", '\ue900')
+        @JvmField
+        val cmd_pen_remove = CommunityMaterialIcon("cmd_pen_remove", '\ue900')
+        @JvmField
+        val cmd_pen = CommunityMaterialIcon("cmd_pen", '\ue900')
+        @JvmField
+        val cmd_pencil_box_multiple_outline = CommunityMaterialIcon("cmd_pencil_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_box_multiple = CommunityMaterialIcon("cmd_pencil_box_multiple", '\ue900')
+        @JvmField
+        val cmd_pencil_box_outline = CommunityMaterialIcon("cmd_pencil_box_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_box = CommunityMaterialIcon("cmd_pencil_box", '\ue900')
+        @JvmField
+        val cmd_pencil_circle_outline = CommunityMaterialIcon("cmd_pencil_circle_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_circle = CommunityMaterialIcon("cmd_pencil_circle", '\ue900')
+        @JvmField
+        val cmd_pencil_lock_outline = CommunityMaterialIcon("cmd_pencil_lock_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_lock = CommunityMaterialIcon("cmd_pencil_lock", '\ue900')
+        @JvmField
+        val cmd_pencil_minus_outline = CommunityMaterialIcon("cmd_pencil_minus_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_minus = CommunityMaterialIcon("cmd_pencil_minus", '\ue900')
+        @JvmField
+        val cmd_pencil_off_outline = CommunityMaterialIcon("cmd_pencil_off_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_off = CommunityMaterialIcon("cmd_pencil_off", '\ue900')
+        @JvmField
+        val cmd_pencil_outline = CommunityMaterialIcon("cmd_pencil_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_plus_outline = CommunityMaterialIcon("cmd_pencil_plus_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_plus = CommunityMaterialIcon("cmd_pencil_plus", '\ue900')
+        @JvmField
+        val cmd_pencil_remove_outline = CommunityMaterialIcon("cmd_pencil_remove_outline", '\ue900')
+        @JvmField
+        val cmd_pencil_remove = CommunityMaterialIcon("cmd_pencil_remove", '\ue900')
+        @JvmField
+        val cmd_pencil = CommunityMaterialIcon("cmd_pencil", '\ue900')
+        @JvmField
+        val cmd_penguin = CommunityMaterialIcon("cmd_penguin", '\ue900')
+        @JvmField
+        val cmd_pentagon_outline = CommunityMaterialIcon("cmd_pentagon_outline", '\ue900')
+        @JvmField
+        val cmd_pentagon = CommunityMaterialIcon("cmd_pentagon", '\ue900')
+        @JvmField
+        val cmd_percent_outline = CommunityMaterialIcon("cmd_percent_outline", '\ue900')
+        @JvmField
+        val cmd_percent = CommunityMaterialIcon("cmd_percent", '\ue900')
+        @JvmField
+        val cmd_periodic_table_co2 = CommunityMaterialIcon("cmd_periodic_table_co2", '\ue900')
+        @JvmField
+        val cmd_periodic_table = CommunityMaterialIcon("cmd_periodic_table", '\ue900')
+        @JvmField
+        val cmd_periscope = CommunityMaterialIcon("cmd_periscope", '\ue900')
+        @JvmField
+        val cmd_perspective_less = CommunityMaterialIcon("cmd_perspective_less", '\ue900')
+        @JvmField
+        val cmd_perspective_more = CommunityMaterialIcon("cmd_perspective_more", '\ue900')
+        @JvmField
+        val cmd_pharmacy = CommunityMaterialIcon("cmd_pharmacy", '\ue900')
+        @JvmField
+        val cmd_phone_alert_outline = CommunityMaterialIcon("cmd_phone_alert_outline", '\ue900')
+        @JvmField
+        val cmd_phone_alert = CommunityMaterialIcon("cmd_phone_alert", '\ue900')
+        @JvmField
+        val cmd_phone_bluetooth_outline = CommunityMaterialIcon("cmd_phone_bluetooth_outline", '\ue900')
+        @JvmField
+        val cmd_phone_bluetooth = CommunityMaterialIcon("cmd_phone_bluetooth", '\ue900')
+        @JvmField
+        val cmd_phone_cancel_outline = CommunityMaterialIcon("cmd_phone_cancel_outline", '\ue900')
+        @JvmField
+        val cmd_phone_cancel = CommunityMaterialIcon("cmd_phone_cancel", '\ue900')
+        @JvmField
+        val cmd_phone_check_outline = CommunityMaterialIcon("cmd_phone_check_outline", '\ue900')
+        @JvmField
+        val cmd_phone_check = CommunityMaterialIcon("cmd_phone_check", '\ue900')
+        @JvmField
+        val cmd_phone_classic_off = CommunityMaterialIcon("cmd_phone_classic_off", '\ue900')
+        @JvmField
+        val cmd_phone_classic = CommunityMaterialIcon("cmd_phone_classic", '\ue900')
+        @JvmField
+        val cmd_phone_forward_outline = CommunityMaterialIcon("cmd_phone_forward_outline", '\ue900')
+        @JvmField
+        val cmd_phone_forward = CommunityMaterialIcon("cmd_phone_forward", '\ue900')
+        @JvmField
+        val cmd_phone_hangup_outline = CommunityMaterialIcon("cmd_phone_hangup_outline", '\ue900')
+        @JvmField
+        val cmd_phone_hangup = CommunityMaterialIcon("cmd_phone_hangup", '\ue900')
+        @JvmField
+        val cmd_phone_in_talk_outline = CommunityMaterialIcon("cmd_phone_in_talk_outline", '\ue900')
+        @JvmField
+        val cmd_phone_in_talk = CommunityMaterialIcon("cmd_phone_in_talk", '\ue900')
+        @JvmField
+        val cmd_phone_incoming_outline = CommunityMaterialIcon("cmd_phone_incoming_outline", '\ue900')
+        @JvmField
+        val cmd_phone_incoming = CommunityMaterialIcon("cmd_phone_incoming", '\ue900')
+        @JvmField
+        val cmd_phone_lock_outline = CommunityMaterialIcon("cmd_phone_lock_outline", '\ue900')
+        @JvmField
+        val cmd_phone_lock = CommunityMaterialIcon("cmd_phone_lock", '\ue900')
+        @JvmField
+        val cmd_phone_log_outline = CommunityMaterialIcon("cmd_phone_log_outline", '\ue900')
+        @JvmField
+        val cmd_phone_log = CommunityMaterialIcon("cmd_phone_log", '\ue900')
+        @JvmField
+        val cmd_phone_message_outline = CommunityMaterialIcon("cmd_phone_message_outline", '\ue900')
+        @JvmField
+        val cmd_phone_message = CommunityMaterialIcon("cmd_phone_message", '\ue900')
+        @JvmField
+        val cmd_phone_minus_outline = CommunityMaterialIcon("cmd_phone_minus_outline", '\ue900')
+        @JvmField
+        val cmd_phone_minus = CommunityMaterialIcon("cmd_phone_minus", '\ue900')
+        @JvmField
+        val cmd_phone_missed_outline = CommunityMaterialIcon("cmd_phone_missed_outline", '\ue900')
+        @JvmField
+        val cmd_phone_missed = CommunityMaterialIcon("cmd_phone_missed", '\ue900')
+        @JvmField
+        val cmd_phone_off_outline = CommunityMaterialIcon("cmd_phone_off_outline", '\ue900')
+        @JvmField
+        val cmd_phone_off = CommunityMaterialIcon("cmd_phone_off", '\ue900')
+        @JvmField
+        val cmd_phone_outgoing_outline = CommunityMaterialIcon("cmd_phone_outgoing_outline", '\ue900')
+        @JvmField
+        val cmd_phone_outgoing = CommunityMaterialIcon("cmd_phone_outgoing", '\ue900')
+        @JvmField
+        val cmd_phone_outline = CommunityMaterialIcon("cmd_phone_outline", '\ue900')
+        @JvmField
+        val cmd_phone_paused_outline = CommunityMaterialIcon("cmd_phone_paused_outline", '\ue900')
+        @JvmField
+        val cmd_phone_paused = CommunityMaterialIcon("cmd_phone_paused", '\ue900')
+        @JvmField
+        val cmd_phone_plus_outline = CommunityMaterialIcon("cmd_phone_plus_outline", '\ue900')
+        @JvmField
+        val cmd_phone_plus = CommunityMaterialIcon("cmd_phone_plus", '\ue900')
+        @JvmField
+        val cmd_phone_return_outline = CommunityMaterialIcon("cmd_phone_return_outline", '\ue900')
+        @JvmField
+        val cmd_phone_return = CommunityMaterialIcon("cmd_phone_return", '\ue900')
+        @JvmField
+        val cmd_phone_ring_outline = CommunityMaterialIcon("cmd_phone_ring_outline", '\ue900')
+        @JvmField
+        val cmd_phone_ring = CommunityMaterialIcon("cmd_phone_ring", '\ue900')
+        @JvmField
+        val cmd_phone_rotate_landscape = CommunityMaterialIcon("cmd_phone_rotate_landscape", '\ue900')
+        @JvmField
+        val cmd_phone_rotate_portrait = CommunityMaterialIcon("cmd_phone_rotate_portrait", '\ue900')
+        @JvmField
+        val cmd_phone_settings_outline = CommunityMaterialIcon("cmd_phone_settings_outline", '\ue900')
+        @JvmField
+        val cmd_phone_settings = CommunityMaterialIcon("cmd_phone_settings", '\ue900')
+        @JvmField
+        val cmd_phone_voip = CommunityMaterialIcon("cmd_phone_voip", '\ue900')
+        @JvmField
+        val cmd_phone = CommunityMaterialIcon("cmd_phone", '\ue900')
+        @JvmField
+        val cmd_pi_box = CommunityMaterialIcon("cmd_pi_box", '\ue900')
+        @JvmField
+        val cmd_pi_hole = CommunityMaterialIcon("cmd_pi_hole", '\ue900')
+        @JvmField
+        val cmd_pi = CommunityMaterialIcon("cmd_pi", '\ue900')
+        @JvmField
+        val cmd_piano = CommunityMaterialIcon("cmd_piano", '\ue900')
+        @JvmField
+        val cmd_pickaxe = CommunityMaterialIcon("cmd_pickaxe", '\ue900')
+        @JvmField
+        val cmd_picture_in_picture_bottom_right_outline =
+                CommunityMaterialIcon("cmd_picture_in_picture_bottom_right_outline", '\ue900')
+        @JvmField
+        val cmd_picture_in_picture_bottom_right = CommunityMaterialIcon("cmd_picture_in_picture_bottom_right", '\ue900')
+        @JvmField
+        val cmd_picture_in_picture_top_right_outline =
+                CommunityMaterialIcon("cmd_picture_in_picture_top_right_outline", '\ue900')
+        @JvmField
+        val cmd_picture_in_picture_top_right = CommunityMaterialIcon("cmd_picture_in_picture_top_right", '\ue900')
+        @JvmField
+        val cmd_pier_crane = CommunityMaterialIcon("cmd_pier_crane", '\ue900')
+        @JvmField
+        val cmd_pier = CommunityMaterialIcon("cmd_pier", '\ue900')
+        @JvmField
+        val cmd_pig_variant = CommunityMaterialIcon("cmd_pig_variant", '\ue900')
+        @JvmField
+        val cmd_pig = CommunityMaterialIcon("cmd_pig", '\ue900')
+        @JvmField
+        val cmd_piggy_bank = CommunityMaterialIcon("cmd_piggy_bank", '\ue900')
+        @JvmField
+        val cmd_pill = CommunityMaterialIcon("cmd_pill", '\ue900')
+        @JvmField
+        val cmd_pillar = CommunityMaterialIcon("cmd_pillar", '\ue900')
+        @JvmField
+        val cmd_pin_off_outline = CommunityMaterialIcon("cmd_pin_off_outline", '\ue900')
+        @JvmField
+        val cmd_pin_off = CommunityMaterialIcon("cmd_pin_off", '\ue900')
+        @JvmField
+        val cmd_pin_outline = CommunityMaterialIcon("cmd_pin_outline", '\ue900')
+        @JvmField
+        val cmd_pin = CommunityMaterialIcon("cmd_pin", '\ue900')
+        @JvmField
+        val cmd_pine_tree_box = CommunityMaterialIcon("cmd_pine_tree_box", '\ue900')
+        @JvmField
+        val cmd_pine_tree = CommunityMaterialIcon("cmd_pine_tree", '\ue900')
+        @JvmField
+        val cmd_pinterest_box = CommunityMaterialIcon("cmd_pinterest_box", '\ue900')
+        @JvmField
+        val cmd_pinterest = CommunityMaterialIcon("cmd_pinterest", '\ue900')
+        @JvmField
+        val cmd_pinwheel_outline = CommunityMaterialIcon("cmd_pinwheel_outline", '\ue900')
+        @JvmField
+        val cmd_pinwheel = CommunityMaterialIcon("cmd_pinwheel", '\ue900')
+        @JvmField
+        val cmd_pipe_disconnected = CommunityMaterialIcon("cmd_pipe_disconnected", '\ue900')
+        @JvmField
+        val cmd_pipe_leak = CommunityMaterialIcon("cmd_pipe_leak", '\ue900')
+        @JvmField
+        val cmd_pipe = CommunityMaterialIcon("cmd_pipe", '\ue900')
+        @JvmField
+        val cmd_pirate = CommunityMaterialIcon("cmd_pirate", '\ue900')
+        @JvmField
+        val cmd_pistol = CommunityMaterialIcon("cmd_pistol", '\ue900')
+        @JvmField
+        val cmd_piston = CommunityMaterialIcon("cmd_piston", '\ue900')
+        @JvmField
+        val cmd_pizza = CommunityMaterialIcon("cmd_pizza", '\ue900')
+        @JvmField
+        val cmd_play_box_outline = CommunityMaterialIcon("cmd_play_box_outline", '\ue900')
+        @JvmField
+        val cmd_play_box = CommunityMaterialIcon("cmd_play_box", '\ue900')
+        @JvmField
+        val cmd_play_circle_outline = CommunityMaterialIcon("cmd_play_circle_outline", '\ue900')
+        @JvmField
+        val cmd_play_circle = CommunityMaterialIcon("cmd_play_circle", '\ue900')
+        @JvmField
+        val cmd_play_network_outline = CommunityMaterialIcon("cmd_play_network_outline", '\ue900')
+        @JvmField
+        val cmd_play_network = CommunityMaterialIcon("cmd_play_network", '\ue900')
+        @JvmField
+        val cmd_play_outline = CommunityMaterialIcon("cmd_play_outline", '\ue900')
+        @JvmField
+        val cmd_play_pause = CommunityMaterialIcon("cmd_play_pause", '\ue900')
+        @JvmField
+        val cmd_play_protected_content = CommunityMaterialIcon("cmd_play_protected_content", '\ue900')
+        @JvmField
+        val cmd_play_speed = CommunityMaterialIcon("cmd_play_speed", '\ue900')
+        @JvmField
+        val cmd_play = CommunityMaterialIcon("cmd_play", '\ue900')
+        @JvmField
+        val cmd_playlist_check = CommunityMaterialIcon("cmd_playlist_check", '\ue900')
+        @JvmField
+        val cmd_playlist_edit = CommunityMaterialIcon("cmd_playlist_edit", '\ue900')
+        @JvmField
+        val cmd_playlist_minus = CommunityMaterialIcon("cmd_playlist_minus", '\ue900')
+        @JvmField
+        val cmd_playlist_music_outline = CommunityMaterialIcon("cmd_playlist_music_outline", '\ue900')
+        @JvmField
+        val cmd_playlist_music = CommunityMaterialIcon("cmd_playlist_music", '\ue900')
+        @JvmField
+        val cmd_playlist_play = CommunityMaterialIcon("cmd_playlist_play", '\ue900')
+        @JvmField
+        val cmd_playlist_plus = CommunityMaterialIcon("cmd_playlist_plus", '\ue900')
+        @JvmField
+        val cmd_playlist_remove = CommunityMaterialIcon("cmd_playlist_remove", '\ue900')
+        @JvmField
+        val cmd_playlist_star = CommunityMaterialIcon("cmd_playlist_star", '\ue900')
+        @JvmField
+        val cmd_playstation = CommunityMaterialIcon("cmd_playstation", '\ue900')
+        @JvmField
+        val cmd_plex = CommunityMaterialIcon("cmd_plex", '\ue900')
+        @JvmField
+        val cmd_plus_box_multiple_outline = CommunityMaterialIcon("cmd_plus_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_plus_box_multiple = CommunityMaterialIcon("cmd_plus_box_multiple", '\ue900')
+        @JvmField
+        val cmd_plus_box_outline = CommunityMaterialIcon("cmd_plus_box_outline", '\ue900')
+        @JvmField
+        val cmd_plus_box = CommunityMaterialIcon("cmd_plus_box", '\ue900')
+        @JvmField
+        val cmd_plus_circle_multiple_outline = CommunityMaterialIcon("cmd_plus_circle_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_plus_circle_outline = CommunityMaterialIcon("cmd_plus_circle_outline", '\ue900')
+        @JvmField
+        val cmd_plus_circle = CommunityMaterialIcon("cmd_plus_circle", '\ue900')
+        @JvmField
+        val cmd_plus_minus_box = CommunityMaterialIcon("cmd_plus_minus_box", '\ue900')
+        @JvmField
+        val cmd_plus_minus = CommunityMaterialIcon("cmd_plus_minus", '\ue900')
+        @JvmField
+        val cmd_plus_network_outline = CommunityMaterialIcon("cmd_plus_network_outline", '\ue900')
+        @JvmField
+        val cmd_plus_network = CommunityMaterialIcon("cmd_plus_network", '\ue900')
+        @JvmField
+        val cmd_plus_one = CommunityMaterialIcon("cmd_plus_one", '\ue900')
+        @JvmField
+        val cmd_plus_outline = CommunityMaterialIcon("cmd_plus_outline", '\ue900')
+        @JvmField
+        val cmd_plus_thick = CommunityMaterialIcon("cmd_plus_thick", '\ue900')
+        @JvmField
+        val cmd_plus = CommunityMaterialIcon("cmd_plus", '\ue900')
+        @JvmField
+        val cmd_pocket = CommunityMaterialIcon("cmd_pocket", '\ue900')
+        @JvmField
+        val cmd_podcast = CommunityMaterialIcon("cmd_podcast", '\ue900')
+        @JvmField
+        val cmd_podium_bronze = CommunityMaterialIcon("cmd_podium_bronze", '\ue900')
+        @JvmField
+        val cmd_podium_gold = CommunityMaterialIcon("cmd_podium_gold", '\ue900')
+        @JvmField
+        val cmd_podium_silver = CommunityMaterialIcon("cmd_podium_silver", '\ue900')
+        @JvmField
+        val cmd_podium = CommunityMaterialIcon("cmd_podium", '\ue900')
+        @JvmField
+        val cmd_point_of_sale = CommunityMaterialIcon("cmd_point_of_sale", '\ue900')
+        @JvmField
+        val cmd_pokeball = CommunityMaterialIcon("cmd_pokeball", '\ue900')
+        @JvmField
+        val cmd_pokemon_go = CommunityMaterialIcon("cmd_pokemon_go", '\ue900')
+        @JvmField
+        val cmd_poker_chip = CommunityMaterialIcon("cmd_poker_chip", '\ue900')
+        @JvmField
+        val cmd_polaroid = CommunityMaterialIcon("cmd_polaroid", '\ue900')
+        @JvmField
+        val cmd_police_badge_outline = CommunityMaterialIcon("cmd_police_badge_outline", '\ue900')
+        @JvmField
+        val cmd_police_badge = CommunityMaterialIcon("cmd_police_badge", '\ue900')
+        @JvmField
+        val cmd_poll_box_outline = CommunityMaterialIcon("cmd_poll_box_outline", '\ue900')
+        @JvmField
+        val cmd_poll_box = CommunityMaterialIcon("cmd_poll_box", '\ue900')
+        @JvmField
+        val cmd_poll = CommunityMaterialIcon("cmd_poll", '\ue900')
+        @JvmField
+        val cmd_polymer = CommunityMaterialIcon("cmd_polymer", '\ue900')
+        @JvmField
+        val cmd_pool = CommunityMaterialIcon("cmd_pool", '\ue900')
+        @JvmField
+        val cmd_popcorn = CommunityMaterialIcon("cmd_popcorn", '\ue900')
+        @JvmField
+        val cmd_post_outline = CommunityMaterialIcon("cmd_post_outline", '\ue900')
+        @JvmField
+        val cmd_post = CommunityMaterialIcon("cmd_post", '\ue900')
+        @JvmField
+        val cmd_postage_stamp = CommunityMaterialIcon("cmd_postage_stamp", '\ue900')
+        @JvmField
+        val cmd_pot_mix = CommunityMaterialIcon("cmd_pot_mix", '\ue900')
+        @JvmField
+        val cmd_pot = CommunityMaterialIcon("cmd_pot", '\ue900')
+        @JvmField
+        val cmd_pound_box_outline = CommunityMaterialIcon("cmd_pound_box_outline", '\ue900')
+        @JvmField
+        val cmd_pound_box = CommunityMaterialIcon("cmd_pound_box", '\ue900')
+        @JvmField
+        val cmd_pound = CommunityMaterialIcon("cmd_pound", '\ue900')
+        @JvmField
+        val cmd_power_cycle = CommunityMaterialIcon("cmd_power_cycle", '\ue900')
+        @JvmField
+        val cmd_power_off = CommunityMaterialIcon("cmd_power_off", '\ue900')
+        @JvmField
+        val cmd_power_on = CommunityMaterialIcon("cmd_power_on", '\ue900')
+        @JvmField
+        val cmd_power_plug_off = CommunityMaterialIcon("cmd_power_plug_off", '\ue900')
+        @JvmField
+        val cmd_power_plug = CommunityMaterialIcon("cmd_power_plug", '\ue900')
+        @JvmField
+        val cmd_power_settings = CommunityMaterialIcon("cmd_power_settings", '\ue900')
+        @JvmField
+        val cmd_power_sleep = CommunityMaterialIcon("cmd_power_sleep", '\ue900')
+        @JvmField
+        val cmd_power_socket_au = CommunityMaterialIcon("cmd_power_socket_au", '\ue900')
+        @JvmField
+        val cmd_power_socket_de = CommunityMaterialIcon("cmd_power_socket_de", '\ue900')
+        @JvmField
+        val cmd_power_socket_eu = CommunityMaterialIcon("cmd_power_socket_eu", '\ue900')
+        @JvmField
+        val cmd_power_socket_fr = CommunityMaterialIcon("cmd_power_socket_fr", '\ue900')
+        @JvmField
+        val cmd_power_socket_jp = CommunityMaterialIcon("cmd_power_socket_jp", '\ue900')
+        @JvmField
+        val cmd_power_socket_uk = CommunityMaterialIcon("cmd_power_socket_uk", '\ue900')
+        @JvmField
+        val cmd_power_socket_us = CommunityMaterialIcon("cmd_power_socket_us", '\ue900')
+        @JvmField
+        val cmd_power_socket = CommunityMaterialIcon("cmd_power_socket", '\ue900')
+        @JvmField
+        val cmd_power_standby = CommunityMaterialIcon("cmd_power_standby", '\ue900')
+        @JvmField
+        val cmd_power = CommunityMaterialIcon("cmd_power", '\ue900')
+        @JvmField
+        val cmd_powershell = CommunityMaterialIcon("cmd_powershell", '\ue900')
+        @JvmField
+        val cmd_prescription = CommunityMaterialIcon("cmd_prescription", '\ue900')
+        @JvmField
+        val cmd_presentation_play = CommunityMaterialIcon("cmd_presentation_play", '\ue900')
+        @JvmField
+        val cmd_presentation = CommunityMaterialIcon("cmd_presentation", '\ue900')
+        @JvmField
+        val cmd_printer_3d_nozzle_alert_outline = CommunityMaterialIcon("cmd_printer_3d_nozzle_alert_outline", '\ue900')
+        @JvmField
+        val cmd_printer_3d_nozzle_alert = CommunityMaterialIcon("cmd_printer_3d_nozzle_alert", '\ue900')
+        @JvmField
+        val cmd_printer_3d_nozzle_outline = CommunityMaterialIcon("cmd_printer_3d_nozzle_outline", '\ue900')
+        @JvmField
+        val cmd_printer_3d_nozzle = CommunityMaterialIcon("cmd_printer_3d_nozzle", '\ue900')
+        @JvmField
+        val cmd_printer_3d = CommunityMaterialIcon("cmd_printer_3d", '\ue900')
+        @JvmField
+        val cmd_printer_alert = CommunityMaterialIcon("cmd_printer_alert", '\ue900')
+        @JvmField
+        val cmd_printer_check = CommunityMaterialIcon("cmd_printer_check", '\ue900')
+        @JvmField
+        val cmd_printer_off = CommunityMaterialIcon("cmd_printer_off", '\ue900')
+        @JvmField
+        val cmd_printer_pos = CommunityMaterialIcon("cmd_printer_pos", '\ue900')
+        @JvmField
+        val cmd_printer_settings = CommunityMaterialIcon("cmd_printer_settings", '\ue900')
+        @JvmField
+        val cmd_printer_wireless = CommunityMaterialIcon("cmd_printer_wireless", '\ue900')
+        @JvmField
+        val cmd_printer = CommunityMaterialIcon("cmd_printer", '\ue900')
+        @JvmField
+        val cmd_priority_high = CommunityMaterialIcon("cmd_priority_high", '\ue900')
+        @JvmField
+        val cmd_priority_low = CommunityMaterialIcon("cmd_priority_low", '\ue900')
+        @JvmField
+        val cmd_professional_hexagon = CommunityMaterialIcon("cmd_professional_hexagon", '\ue900')
+        @JvmField
+        val cmd_progress_alert = CommunityMaterialIcon("cmd_progress_alert", '\ue900')
+        @JvmField
+        val cmd_progress_check = CommunityMaterialIcon("cmd_progress_check", '\ue900')
+        @JvmField
+        val cmd_progress_clock = CommunityMaterialIcon("cmd_progress_clock", '\ue900')
+        @JvmField
+        val cmd_progress_close = CommunityMaterialIcon("cmd_progress_close", '\ue900')
+        @JvmField
+        val cmd_progress_download = CommunityMaterialIcon("cmd_progress_download", '\ue900')
+        @JvmField
+        val cmd_progress_upload = CommunityMaterialIcon("cmd_progress_upload", '\ue900')
+        @JvmField
+        val cmd_progress_wrench = CommunityMaterialIcon("cmd_progress_wrench", '\ue900')
+        @JvmField
+        val cmd_projector_screen = CommunityMaterialIcon("cmd_projector_screen", '\ue900')
+        @JvmField
+        val cmd_projector = CommunityMaterialIcon("cmd_projector", '\ue900')
+        @JvmField
+        val cmd_protocol = CommunityMaterialIcon("cmd_protocol", '\ue900')
+        @JvmField
+        val cmd_publish = CommunityMaterialIcon("cmd_publish", '\ue900')
+        @JvmField
+        val cmd_pulse = CommunityMaterialIcon("cmd_pulse", '\ue900')
+        @JvmField
+        val cmd_pumpkin = CommunityMaterialIcon("cmd_pumpkin", '\ue900')
+        @JvmField
+        val cmd_purse_outline = CommunityMaterialIcon("cmd_purse_outline", '\ue900')
+        @JvmField
+        val cmd_purse = CommunityMaterialIcon("cmd_purse", '\ue900')
+        @JvmField
+        val cmd_puzzle_outline = CommunityMaterialIcon("cmd_puzzle_outline", '\ue900')
+        @JvmField
+        val cmd_puzzle = CommunityMaterialIcon("cmd_puzzle", '\ue900')
+        @JvmField
+        val cmd_qi = CommunityMaterialIcon("cmd_qi", '\ue900')
+        @JvmField
+        val cmd_qqchat = CommunityMaterialIcon("cmd_qqchat", '\ue900')
+        @JvmField
+        val cmd_qrcode_edit = CommunityMaterialIcon("cmd_qrcode_edit", '\ue900')
+        @JvmField
+        val cmd_qrcode_minus = CommunityMaterialIcon("cmd_qrcode_minus", '\ue900')
+        @JvmField
+        val cmd_qrcode_plus = CommunityMaterialIcon("cmd_qrcode_plus", '\ue900')
+        @JvmField
+        val cmd_qrcode_remove = CommunityMaterialIcon("cmd_qrcode_remove", '\ue900')
+        @JvmField
+        val cmd_qrcode_scan = CommunityMaterialIcon("cmd_qrcode_scan", '\ue900')
+        @JvmField
+        val cmd_qrcode = CommunityMaterialIcon("cmd_qrcode", '\ue900')
+        @JvmField
+        val cmd_quadcopter = CommunityMaterialIcon("cmd_quadcopter", '\ue900')
+        @JvmField
+        val cmd_quality_high = CommunityMaterialIcon("cmd_quality_high", '\ue900')
+        @JvmField
+        val cmd_quality_low = CommunityMaterialIcon("cmd_quality_low", '\ue900')
+        @JvmField
+        val cmd_quality_medium = CommunityMaterialIcon("cmd_quality_medium", '\ue900')
+        @JvmField
+        val cmd_quicktime = CommunityMaterialIcon("cmd_quicktime", '\ue900')
+        @JvmField
+        val cmd_quora = CommunityMaterialIcon("cmd_quora", '\ue900')
+        @JvmField
+        val cmd_rabbit = CommunityMaterialIcon("cmd_rabbit", '\ue900')
+        @JvmField
+        val cmd_racing_helmet = CommunityMaterialIcon("cmd_racing_helmet", '\ue900')
+        @JvmField
+        val cmd_racquetball = CommunityMaterialIcon("cmd_racquetball", '\ue900')
+        @JvmField
+        val cmd_radar = CommunityMaterialIcon("cmd_radar", '\ue900')
+        @JvmField
+        val cmd_radiator_disabled = CommunityMaterialIcon("cmd_radiator_disabled", '\ue900')
+        @JvmField
+        val cmd_radiator_off = CommunityMaterialIcon("cmd_radiator_off", '\ue900')
+        @JvmField
+        val cmd_radiator = CommunityMaterialIcon("cmd_radiator", '\ue900')
+        @JvmField
+        val cmd_radio_am = CommunityMaterialIcon("cmd_radio_am", '\ue900')
+        @JvmField
+        val cmd_radio_fm = CommunityMaterialIcon("cmd_radio_fm", '\ue900')
+        @JvmField
+        val cmd_radio_handheld = CommunityMaterialIcon("cmd_radio_handheld", '\ue900')
+        @JvmField
+        val cmd_radio_off = CommunityMaterialIcon("cmd_radio_off", '\ue900')
+        @JvmField
+        val cmd_radio_tower = CommunityMaterialIcon("cmd_radio_tower", '\ue900')
+        @JvmField
+        val cmd_radio = CommunityMaterialIcon("cmd_radio", '\ue900')
+        @JvmField
+        val cmd_radioactive_off = CommunityMaterialIcon("cmd_radioactive_off", '\ue900')
+        @JvmField
+        val cmd_radioactive = CommunityMaterialIcon("cmd_radioactive", '\ue900')
+        @JvmField
+        val cmd_radiobox_blank = CommunityMaterialIcon("cmd_radiobox_blank", '\ue900')
+        @JvmField
+        val cmd_radiobox_marked = CommunityMaterialIcon("cmd_radiobox_marked", '\ue900')
+        @JvmField
+        val cmd_radius_outline = CommunityMaterialIcon("cmd_radius_outline", '\ue900')
+        @JvmField
+        val cmd_radius = CommunityMaterialIcon("cmd_radius", '\ue900')
+        @JvmField
+        val cmd_railroad_light = CommunityMaterialIcon("cmd_railroad_light", '\ue900')
+        @JvmField
+        val cmd_raspberry_pi = CommunityMaterialIcon("cmd_raspberry_pi", '\ue900')
+        @JvmField
+        val cmd_ray_end_arrow = CommunityMaterialIcon("cmd_ray_end_arrow", '\ue900')
+        @JvmField
+        val cmd_ray_end = CommunityMaterialIcon("cmd_ray_end", '\ue900')
+        @JvmField
+        val cmd_ray_start_arrow = CommunityMaterialIcon("cmd_ray_start_arrow", '\ue900')
+        @JvmField
+        val cmd_ray_start_end = CommunityMaterialIcon("cmd_ray_start_end", '\ue900')
+        @JvmField
+        val cmd_ray_start = CommunityMaterialIcon("cmd_ray_start", '\ue900')
+        @JvmField
+        val cmd_ray_vertex = CommunityMaterialIcon("cmd_ray_vertex", '\ue900')
+        @JvmField
+        val cmd_react = CommunityMaterialIcon("cmd_react", '\ue900')
+        @JvmField
+        val cmd_call_made = CommunityMaterialIcon("cmd_call_made", '\ue900')
+        @JvmField
+        val cmd_call_merge = CommunityMaterialIcon("cmd_call_merge", '\ue900')
+        @JvmField
+        val cmd_call_missed = CommunityMaterialIcon("cmd_call_missed", '\ue900')
+        @JvmField
+        val cmd_call_received = CommunityMaterialIcon("cmd_call_received", '\ue900')
+        @JvmField
+        val cmd_call_split = CommunityMaterialIcon("cmd_call_split", '\ue900')
+        @JvmField
+        val cmd_camcorder_box_off = CommunityMaterialIcon("cmd_camcorder_box_off", '\ue900')
+        @JvmField
+        val cmd_camcorder_box = CommunityMaterialIcon("cmd_camcorder_box", '\ue900')
+        @JvmField
+        val cmd_camcorder_off = CommunityMaterialIcon("cmd_camcorder_off", '\ue900')
+        @JvmField
+        val cmd_camcorder = CommunityMaterialIcon("cmd_camcorder", '\ue900')
+        @JvmField
+        val cmd_camera_account = CommunityMaterialIcon("cmd_camera_account", '\ue900')
+        @JvmField
+        val cmd_camera_burst = CommunityMaterialIcon("cmd_camera_burst", '\ue900')
+        @JvmField
+        val cmd_camera_control = CommunityMaterialIcon("cmd_camera_control", '\ue900')
+        @JvmField
+        val cmd_camera_enhance_outline = CommunityMaterialIcon("cmd_camera_enhance_outline", '\ue900')
+        @JvmField
+        val cmd_camera_enhance = CommunityMaterialIcon("cmd_camera_enhance", '\ue900')
+        @JvmField
+        val cmd_camera_front_variant = CommunityMaterialIcon("cmd_camera_front_variant", '\ue900')
+        @JvmField
+        val cmd_camera_front = CommunityMaterialIcon("cmd_camera_front", '\ue900')
+        @JvmField
+        val cmd_camera_gopro = CommunityMaterialIcon("cmd_camera_gopro", '\ue900')
+        @JvmField
+        val cmd_camera_image = CommunityMaterialIcon("cmd_camera_image", '\ue900')
+        @JvmField
+        val cmd_camera_iris = CommunityMaterialIcon("cmd_camera_iris", '\ue900')
+        @JvmField
+        val cmd_camera_metering_center = CommunityMaterialIcon("cmd_camera_metering_center", '\ue900')
+        @JvmField
+        val cmd_camera_metering_matrix = CommunityMaterialIcon("cmd_camera_metering_matrix", '\ue900')
+        @JvmField
+        val cmd_camera_metering_partial = CommunityMaterialIcon("cmd_camera_metering_partial", '\ue900')
+        @JvmField
+        val cmd_camera_metering_spot = CommunityMaterialIcon("cmd_camera_metering_spot", '\ue900')
+        @JvmField
+        val cmd_camera_off = CommunityMaterialIcon("cmd_camera_off", '\ue900')
+        @JvmField
+        val cmd_camera_outline = CommunityMaterialIcon("cmd_camera_outline", '\ue900')
+        @JvmField
+        val cmd_camera_party_mode = CommunityMaterialIcon("cmd_camera_party_mode", '\ue900')
+        @JvmField
+        val cmd_camera_plus_outline = CommunityMaterialIcon("cmd_camera_plus_outline", '\ue900')
+        @JvmField
+        val cmd_camera_plus = CommunityMaterialIcon("cmd_camera_plus", '\ue900')
+        @JvmField
+        val cmd_camera_rear_variant = CommunityMaterialIcon("cmd_camera_rear_variant", '\ue900')
+        @JvmField
+        val cmd_camera_rear = CommunityMaterialIcon("cmd_camera_rear", '\ue900')
+        @JvmField
+        val cmd_camera_retake_outline = CommunityMaterialIcon("cmd_camera_retake_outline", '\ue900')
+        @JvmField
+        val cmd_camera_retake = CommunityMaterialIcon("cmd_camera_retake", '\ue900')
+        @JvmField
+        val cmd_camera_switch = CommunityMaterialIcon("cmd_camera_switch", '\ue900')
+        @JvmField
+        val cmd_camera_timer = CommunityMaterialIcon("cmd_camera_timer", '\ue900')
+        @JvmField
+        val cmd_camera_wireless_outline = CommunityMaterialIcon("cmd_camera_wireless_outline", '\ue900')
+        @JvmField
+        val cmd_camera_wireless = CommunityMaterialIcon("cmd_camera_wireless", '\ue900')
+        @JvmField
+        val cmd_camera = CommunityMaterialIcon("cmd_camera", '\ue900')
+        @JvmField
+        val cmd_campfire = CommunityMaterialIcon("cmd_campfire", '\ue900')
+        @JvmField
+        val cmd_cancel = CommunityMaterialIcon("cmd_cancel", '\ue900')
+        @JvmField
+        val cmd_candle = CommunityMaterialIcon("cmd_candle", '\ue900')
+        @JvmField
+        val cmd_candycane = CommunityMaterialIcon("cmd_candycane", '\ue900')
+        @JvmField
+        val cmd_cannabis = CommunityMaterialIcon("cmd_cannabis", '\ue900')
+        @JvmField
+        val cmd_caps_lock = CommunityMaterialIcon("cmd_caps_lock", '\ue900')
+        @JvmField
+        val cmd_car_2_plus = CommunityMaterialIcon("cmd_car_2_plus", '\ue900')
+        @JvmField
+        val cmd_car_3_plus = CommunityMaterialIcon("cmd_car_3_plus", '\ue900')
+        @JvmField
+        val cmd_car_back = CommunityMaterialIcon("cmd_car_back", '\ue900')
+        @JvmField
+        val cmd_car_battery = CommunityMaterialIcon("cmd_car_battery", '\ue900')
+        @JvmField
+        val cmd_car_brake_abs = CommunityMaterialIcon("cmd_car_brake_abs", '\ue900')
+        @JvmField
+        val cmd_car_brake_alert = CommunityMaterialIcon("cmd_car_brake_alert", '\ue900')
+        @JvmField
+        val cmd_car_brake_hold = CommunityMaterialIcon("cmd_car_brake_hold", '\ue900')
+        @JvmField
+        val cmd_car_brake_parking = CommunityMaterialIcon("cmd_car_brake_parking", '\ue900')
+        @JvmField
+        val cmd_car_brake_retarder = CommunityMaterialIcon("cmd_car_brake_retarder", '\ue900')
+        @JvmField
+        val cmd_car_child_seat = CommunityMaterialIcon("cmd_car_child_seat", '\ue900')
+        @JvmField
+        val cmd_car_clutch = CommunityMaterialIcon("cmd_car_clutch", '\ue900')
+        @JvmField
+        val cmd_car_connected = CommunityMaterialIcon("cmd_car_connected", '\ue900')
+        @JvmField
+        val cmd_car_convertible = CommunityMaterialIcon("cmd_car_convertible", '\ue900')
+        @JvmField
+        val cmd_car_coolant_level = CommunityMaterialIcon("cmd_car_coolant_level", '\ue900')
+        @JvmField
+        val cmd_car_cruise_control = CommunityMaterialIcon("cmd_car_cruise_control", '\ue900')
+        @JvmField
+        val cmd_car_defrost_front = CommunityMaterialIcon("cmd_car_defrost_front", '\ue900')
+        @JvmField
+        val cmd_car_defrost_rear = CommunityMaterialIcon("cmd_car_defrost_rear", '\ue900')
+        @JvmField
+        val cmd_car_door_lock = CommunityMaterialIcon("cmd_car_door_lock", '\ue900')
+        @JvmField
+        val cmd_car_door = CommunityMaterialIcon("cmd_car_door", '\ue900')
+        @JvmField
+        val cmd_car_electric = CommunityMaterialIcon("cmd_car_electric", '\ue900')
+        @JvmField
+        val cmd_car_esp = CommunityMaterialIcon("cmd_car_esp", '\ue900')
+        @JvmField
+        val cmd_car_estate = CommunityMaterialIcon("cmd_car_estate", '\ue900')
+        @JvmField
+        val cmd_car_hatchback = CommunityMaterialIcon("cmd_car_hatchback", '\ue900')
+        @JvmField
+        val cmd_car_info = CommunityMaterialIcon("cmd_car_info", '\ue900')
+        @JvmField
+        val cmd_car_key = CommunityMaterialIcon("cmd_car_key", '\ue900')
+        @JvmField
+        val cmd_car_light_dimmed = CommunityMaterialIcon("cmd_car_light_dimmed", '\ue900')
+        @JvmField
+        val cmd_car_light_fog = CommunityMaterialIcon("cmd_car_light_fog", '\ue900')
+        @JvmField
+        val cmd_car_light_high = CommunityMaterialIcon("cmd_car_light_high", '\ue900')
+        @JvmField
+        val cmd_car_limousine = CommunityMaterialIcon("cmd_car_limousine", '\ue900')
+        @JvmField
+        val cmd_car_multiple = CommunityMaterialIcon("cmd_car_multiple", '\ue900')
+        @JvmField
+        val cmd_car_off = CommunityMaterialIcon("cmd_car_off", '\ue900')
+        @JvmField
+        val cmd_car_parking_lights = CommunityMaterialIcon("cmd_car_parking_lights", '\ue900')
+        @JvmField
+        val cmd_car_pickup = CommunityMaterialIcon("cmd_car_pickup", '\ue900')
+        @JvmField
+        val cmd_car_seat_cooler = CommunityMaterialIcon("cmd_car_seat_cooler", '\ue900')
+        @JvmField
+        val cmd_car_seat_heater = CommunityMaterialIcon("cmd_car_seat_heater", '\ue900')
+        @JvmField
+        val cmd_car_seat = CommunityMaterialIcon("cmd_car_seat", '\ue900')
+        @JvmField
+        val cmd_car_shift_pattern = CommunityMaterialIcon("cmd_car_shift_pattern", '\ue900')
+        @JvmField
+        val cmd_car_side = CommunityMaterialIcon("cmd_car_side", '\ue900')
+        @JvmField
+        val cmd_car_sports = CommunityMaterialIcon("cmd_car_sports", '\ue900')
+        @JvmField
+        val cmd_car_tire_alert = CommunityMaterialIcon("cmd_car_tire_alert", '\ue900')
+        @JvmField
+        val cmd_car_traction_control = CommunityMaterialIcon("cmd_car_traction_control", '\ue900')
+        @JvmField
+        val cmd_car_turbocharger = CommunityMaterialIcon("cmd_car_turbocharger", '\ue900')
+        @JvmField
+        val cmd_car_wash = CommunityMaterialIcon("cmd_car_wash", '\ue900')
+        @JvmField
+        val cmd_car_windshield_outline = CommunityMaterialIcon("cmd_car_windshield_outline", '\ue900')
+        @JvmField
+        val cmd_car_windshield = CommunityMaterialIcon("cmd_car_windshield", '\ue900')
+        @JvmField
+        val cmd_car = CommunityMaterialIcon("cmd_car", '\ue900')
+        @JvmField
+        val cmd_caravan = CommunityMaterialIcon("cmd_caravan", '\ue900')
+        @JvmField
+        val cmd_card_bulleted_off_outline = CommunityMaterialIcon("cmd_card_bulleted_off_outline", '\ue900')
+        @JvmField
+        val cmd_card_bulleted_off = CommunityMaterialIcon("cmd_card_bulleted_off", '\ue900')
+        @JvmField
+        val cmd_card_bulleted_outline = CommunityMaterialIcon("cmd_card_bulleted_outline", '\ue900')
+        @JvmField
+        val cmd_card_bulleted_settings_outline = CommunityMaterialIcon("cmd_card_bulleted_settings_outline", '\ue900')
+        @JvmField
+        val cmd_card_bulleted_settings = CommunityMaterialIcon("cmd_card_bulleted_settings", '\ue900')
+        @JvmField
+        val cmd_card_bulleted = CommunityMaterialIcon("cmd_card_bulleted", '\ue900')
+        @JvmField
+        val cmd_card_outline = CommunityMaterialIcon("cmd_card_outline", '\ue900')
+        @JvmField
+        val cmd_card_plus_outline = CommunityMaterialIcon("cmd_card_plus_outline", '\ue900')
+        @JvmField
+        val cmd_card_plus = CommunityMaterialIcon("cmd_card_plus", '\ue900')
+        @JvmField
+        val cmd_card_search_outline = CommunityMaterialIcon("cmd_card_search_outline", '\ue900')
+        @JvmField
+        val cmd_card_search = CommunityMaterialIcon("cmd_card_search", '\ue900')
+        @JvmField
+        val cmd_card_text_outline = CommunityMaterialIcon("cmd_card_text_outline", '\ue900')
+        @JvmField
+        val cmd_card_text = CommunityMaterialIcon("cmd_card_text", '\ue900')
+        @JvmField
+        val cmd_card = CommunityMaterialIcon("cmd_card", '\ue900')
+        @JvmField
+        val cmd_cards_club = CommunityMaterialIcon("cmd_cards_club", '\ue900')
+        @JvmField
+        val cmd_cards_diamond_outline = CommunityMaterialIcon("cmd_cards_diamond_outline", '\ue900')
+        @JvmField
+        val cmd_cards_diamond = CommunityMaterialIcon("cmd_cards_diamond", '\ue900')
+        @JvmField
+        val cmd_cards_heart = CommunityMaterialIcon("cmd_cards_heart", '\ue900')
+        @JvmField
+        val cmd_cards_outline = CommunityMaterialIcon("cmd_cards_outline", '\ue900')
+        @JvmField
+        val cmd_cards_playing_outline = CommunityMaterialIcon("cmd_cards_playing_outline", '\ue900')
+        @JvmField
+        val cmd_cards_spade = CommunityMaterialIcon("cmd_cards_spade", '\ue900')
+        @JvmField
+        val cmd_cards_variant = CommunityMaterialIcon("cmd_cards_variant", '\ue900')
+        @JvmField
+        val cmd_cards = CommunityMaterialIcon("cmd_cards", '\ue900')
+        @JvmField
+        val cmd_carrot = CommunityMaterialIcon("cmd_carrot", '\ue900')
+        @JvmField
+        val cmd_cart_arrow_down = CommunityMaterialIcon("cmd_cart_arrow_down", '\ue900')
+        @JvmField
+        val cmd_cart_arrow_right = CommunityMaterialIcon("cmd_cart_arrow_right", '\ue900')
+        @JvmField
+        val cmd_cart_arrow_up = CommunityMaterialIcon("cmd_cart_arrow_up", '\ue900')
+        @JvmField
+        val cmd_cart_minus = CommunityMaterialIcon("cmd_cart_minus", '\ue900')
+        @JvmField
+        val cmd_cart_off = CommunityMaterialIcon("cmd_cart_off", '\ue900')
+        @JvmField
+        val cmd_cart_outline = CommunityMaterialIcon("cmd_cart_outline", '\ue900')
+        @JvmField
+        val cmd_cart_plus = CommunityMaterialIcon("cmd_cart_plus", '\ue900')
+        @JvmField
+        val cmd_cart_remove = CommunityMaterialIcon("cmd_cart_remove", '\ue900')
+        @JvmField
+        val cmd_cart = CommunityMaterialIcon("cmd_cart", '\ue900')
+        @JvmField
+        val cmd_case_sensitive_alt = CommunityMaterialIcon("cmd_case_sensitive_alt", '\ue900')
+        @JvmField
+        val cmd_cash_100 = CommunityMaterialIcon("cmd_cash_100", '\ue900')
+        @JvmField
+        val cmd_cash_marker = CommunityMaterialIcon("cmd_cash_marker", '\ue900')
+        @JvmField
+        val cmd_cash_minus = CommunityMaterialIcon("cmd_cash_minus", '\ue900')
+        @JvmField
+        val cmd_cash_multiple = CommunityMaterialIcon("cmd_cash_multiple", '\ue900')
+        @JvmField
+        val cmd_cash_plus = CommunityMaterialIcon("cmd_cash_plus", '\ue900')
+        @JvmField
+        val cmd_cash_refund = CommunityMaterialIcon("cmd_cash_refund", '\ue900')
+        @JvmField
+        val cmd_cash_register = CommunityMaterialIcon("cmd_cash_register", '\ue900')
+        @JvmField
+        val cmd_cash_remove = CommunityMaterialIcon("cmd_cash_remove", '\ue900')
+        @JvmField
+        val cmd_cash_usd_outline = CommunityMaterialIcon("cmd_cash_usd_outline", '\ue900')
+        @JvmField
+        val cmd_cash_usd = CommunityMaterialIcon("cmd_cash_usd", '\ue900')
+        @JvmField
+        val cmd_cash = CommunityMaterialIcon("cmd_cash", '\ue900')
+        @JvmField
+        val cmd_cassette = CommunityMaterialIcon("cmd_cassette", '\ue900')
+        @JvmField
+        val cmd_cast_audio = CommunityMaterialIcon("cmd_cast_audio", '\ue900')
+        @JvmField
+        val cmd_cast_connected = CommunityMaterialIcon("cmd_cast_connected", '\ue900')
+        @JvmField
+        val cmd_cast_education = CommunityMaterialIcon("cmd_cast_education", '\ue900')
+        @JvmField
+        val cmd_cast_off = CommunityMaterialIcon("cmd_cast_off", '\ue900')
+        @JvmField
+        val cmd_cast = CommunityMaterialIcon("cmd_cast", '\ue900')
+        @JvmField
+        val cmd_castle = CommunityMaterialIcon("cmd_castle", '\ue900')
+        @JvmField
+        val cmd_cat = CommunityMaterialIcon("cmd_cat", '\ue900')
+        @JvmField
+        val cmd_cctv = CommunityMaterialIcon("cmd_cctv", '\ue900')
+        @JvmField
+        val cmd_ceiling_light = CommunityMaterialIcon("cmd_ceiling_light", '\ue900')
+        @JvmField
+        val cmd_cellphone_android = CommunityMaterialIcon("cmd_cellphone_android", '\ue900')
+        @JvmField
+        val cmd_cellphone_arrow_down = CommunityMaterialIcon("cmd_cellphone_arrow_down", '\ue900')
+        @JvmField
+        val cmd_cellphone_basic = CommunityMaterialIcon("cmd_cellphone_basic", '\ue900')
+        @JvmField
+        val cmd_cellphone_dock = CommunityMaterialIcon("cmd_cellphone_dock", '\ue900')
+        @JvmField
+        val cmd_cellphone_erase = CommunityMaterialIcon("cmd_cellphone_erase", '\ue900')
+        @JvmField
+        val cmd_cellphone_information = CommunityMaterialIcon("cmd_cellphone_information", '\ue900')
+        @JvmField
+        val cmd_cellphone_iphone = CommunityMaterialIcon("cmd_cellphone_iphone", '\ue900')
+        @JvmField
+        val cmd_cellphone_key = CommunityMaterialIcon("cmd_cellphone_key", '\ue900')
+        @JvmField
+        val cmd_cellphone_link_off = CommunityMaterialIcon("cmd_cellphone_link_off", '\ue900')
+        @JvmField
+        val cmd_cellphone_link = CommunityMaterialIcon("cmd_cellphone_link", '\ue900')
+        @JvmField
+        val cmd_cellphone_lock = CommunityMaterialIcon("cmd_cellphone_lock", '\ue900')
+        @JvmField
+        val cmd_cellphone_message_off = CommunityMaterialIcon("cmd_cellphone_message_off", '\ue900')
+        @JvmField
+        val cmd_cellphone_message = CommunityMaterialIcon("cmd_cellphone_message", '\ue900')
+        @JvmField
+        val cmd_cellphone_nfc_off = CommunityMaterialIcon("cmd_cellphone_nfc_off", '\ue900')
+        @JvmField
+        val cmd_cellphone_nfc = CommunityMaterialIcon("cmd_cellphone_nfc", '\ue900')
+        @JvmField
+        val cmd_cellphone_off = CommunityMaterialIcon("cmd_cellphone_off", '\ue900')
+        @JvmField
+        val cmd_cellphone_play = CommunityMaterialIcon("cmd_cellphone_play", '\ue900')
+        @JvmField
+        val cmd_cellphone_screenshot = CommunityMaterialIcon("cmd_cellphone_screenshot", '\ue900')
+        @JvmField
+        val cmd_cellphone_settings_variant = CommunityMaterialIcon("cmd_cellphone_settings_variant", '\ue900')
+        @JvmField
+        val cmd_cellphone_settings = CommunityMaterialIcon("cmd_cellphone_settings", '\ue900')
+        @JvmField
+        val cmd_cellphone_sound = CommunityMaterialIcon("cmd_cellphone_sound", '\ue900')
+        @JvmField
+        val cmd_cellphone_text = CommunityMaterialIcon("cmd_cellphone_text", '\ue900')
+        @JvmField
+        val cmd_cellphone_wireless = CommunityMaterialIcon("cmd_cellphone_wireless", '\ue900')
+        @JvmField
+        val cmd_cellphone = CommunityMaterialIcon("cmd_cellphone", '\ue900')
+        @JvmField
+        val cmd_celtic_cross = CommunityMaterialIcon("cmd_celtic_cross", '\ue900')
+        @JvmField
+        val cmd_centos = CommunityMaterialIcon("cmd_centos", '\ue900')
+        @JvmField
+        val cmd_certificate_outline = CommunityMaterialIcon("cmd_certificate_outline", '\ue900')
+        @JvmField
+        val cmd_certificate = CommunityMaterialIcon("cmd_certificate", '\ue900')
+        @JvmField
+        val cmd_chair_rolling = CommunityMaterialIcon("cmd_chair_rolling", '\ue900')
+        @JvmField
+        val cmd_chair_school = CommunityMaterialIcon("cmd_chair_school", '\ue900')
+        @JvmField
+        val cmd_charity = CommunityMaterialIcon("cmd_charity", '\ue900')
+        @JvmField
+        val cmd_chart_arc = CommunityMaterialIcon("cmd_chart_arc", '\ue900')
+        @JvmField
+        val cmd_chart_areaspline_variant = CommunityMaterialIcon("cmd_chart_areaspline_variant", '\ue900')
+        @JvmField
+        val cmd_chart_areaspline = CommunityMaterialIcon("cmd_chart_areaspline", '\ue900')
+        @JvmField
+        val cmd_chart_bar_stacked = CommunityMaterialIcon("cmd_chart_bar_stacked", '\ue900')
+        @JvmField
+        val cmd_chart_bar = CommunityMaterialIcon("cmd_chart_bar", '\ue900')
+        @JvmField
+        val cmd_chart_bell_curve_cumulative = CommunityMaterialIcon("cmd_chart_bell_curve_cumulative", '\ue900')
+        @JvmField
+        val cmd_chart_bell_curve = CommunityMaterialIcon("cmd_chart_bell_curve", '\ue900')
+        @JvmField
+        val cmd_chart_bubble = CommunityMaterialIcon("cmd_chart_bubble", '\ue900')
+        @JvmField
+        val cmd_chart_donut_variant = CommunityMaterialIcon("cmd_chart_donut_variant", '\ue900')
+        @JvmField
+        val cmd_chart_donut = CommunityMaterialIcon("cmd_chart_donut", '\ue900')
+        @JvmField
+        val cmd_chart_gantt = CommunityMaterialIcon("cmd_chart_gantt", '\ue900')
+        @JvmField
+        val cmd_chart_histogram = CommunityMaterialIcon("cmd_chart_histogram", '\ue900')
+        @JvmField
+        val cmd_chart_line_stacked = CommunityMaterialIcon("cmd_chart_line_stacked", '\ue900')
+        @JvmField
+        val cmd_chart_line_variant = CommunityMaterialIcon("cmd_chart_line_variant", '\ue900')
+        @JvmField
+        val cmd_chart_line = CommunityMaterialIcon("cmd_chart_line", '\ue900')
+        @JvmField
+        val cmd_chart_multiline = CommunityMaterialIcon("cmd_chart_multiline", '\ue900')
+        @JvmField
+        val cmd_chart_multiple = CommunityMaterialIcon("cmd_chart_multiple", '\ue900')
+        @JvmField
+        val cmd_chart_pie = CommunityMaterialIcon("cmd_chart_pie", '\ue900')
+        @JvmField
+        val cmd_chart_scatter_plot_hexbin = CommunityMaterialIcon("cmd_chart_scatter_plot_hexbin", '\ue900')
+        @JvmField
+        val cmd_chart_scatter_plot = CommunityMaterialIcon("cmd_chart_scatter_plot", '\ue900')
+        @JvmField
+        val cmd_chart_snakey_variant = CommunityMaterialIcon("cmd_chart_snakey_variant", '\ue900')
+        @JvmField
+        val cmd_chart_snakey = CommunityMaterialIcon("cmd_chart_snakey", '\ue900')
+        @JvmField
+        val cmd_chart_timeline_variant = CommunityMaterialIcon("cmd_chart_timeline_variant", '\ue900')
+        @JvmField
+        val cmd_chart_timeline = CommunityMaterialIcon("cmd_chart_timeline", '\ue900')
+        @JvmField
+        val cmd_chart_tree = CommunityMaterialIcon("cmd_chart_tree", '\ue900')
+        @JvmField
+        val cmd_chat_alert_outline = CommunityMaterialIcon("cmd_chat_alert_outline", '\ue900')
+        @JvmField
+        val cmd_chat_alert = CommunityMaterialIcon("cmd_chat_alert", '\ue900')
+        @JvmField
+        val cmd_chat_outline = CommunityMaterialIcon("cmd_chat_outline", '\ue900')
+        @JvmField
+        val cmd_chat_processing_outline = CommunityMaterialIcon("cmd_chat_processing_outline", '\ue900')
+        @JvmField
+        val cmd_chat_processing = CommunityMaterialIcon("cmd_chat_processing", '\ue900')
+        @JvmField
+        val cmd_chat_sleep_outline = CommunityMaterialIcon("cmd_chat_sleep_outline", '\ue900')
+        @JvmField
+        val cmd_chat_sleep = CommunityMaterialIcon("cmd_chat_sleep", '\ue900')
+        @JvmField
+        val cmd_chat = CommunityMaterialIcon("cmd_chat", '\ue900')
+        @JvmField
+        val cmd_check_all = CommunityMaterialIcon("cmd_check_all", '\ue900')
+        @JvmField
+        val cmd_check_bold = CommunityMaterialIcon("cmd_check_bold", '\ue900')
+        @JvmField
+        val cmd_check_box_multiple_outline = CommunityMaterialIcon("cmd_check_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_check_box_outline = CommunityMaterialIcon("cmd_check_box_outline", '\ue900')
+        @JvmField
+        val cmd_check_circle_outline = CommunityMaterialIcon("cmd_check_circle_outline", '\ue900')
+        @JvmField
+        val cmd_check_circle = CommunityMaterialIcon("cmd_check_circle", '\ue900')
+        @JvmField
+        val cmd_check_decagram = CommunityMaterialIcon("cmd_check_decagram", '\ue900')
+        @JvmField
+        val cmd_check_network_outline = CommunityMaterialIcon("cmd_check_network_outline", '\ue900')
+        @JvmField
+        val cmd_check_network = CommunityMaterialIcon("cmd_check_network", '\ue900')
+        @JvmField
+        val cmd_check_outline = CommunityMaterialIcon("cmd_check_outline", '\ue900')
+        @JvmField
+        val cmd_check_underline_circle_outline = CommunityMaterialIcon("cmd_check_underline_circle_outline", '\ue900')
+        @JvmField
+        val cmd_check_underline_circle = CommunityMaterialIcon("cmd_check_underline_circle", '\ue900')
+        @JvmField
+        val cmd_check_underline = CommunityMaterialIcon("cmd_check_underline", '\ue900')
+        @JvmField
+        val cmd_check = CommunityMaterialIcon("cmd_check", '\ue900')
+        @JvmField
+        val cmd_checkbook = CommunityMaterialIcon("cmd_checkbook", '\ue900')
+        @JvmField
+        val cmd_checkbox_blank_circle_outline = CommunityMaterialIcon("cmd_checkbox_blank_circle_outline", '\ue900')
+        @JvmField
+        val cmd_checkbox_blank_circle = CommunityMaterialIcon("cmd_checkbox_blank_circle", '\ue900')
+        @JvmField
+        val cmd_checkbox_blank_outline = CommunityMaterialIcon("cmd_checkbox_blank_outline", '\ue900')
+        @JvmField
+        val cmd_checkbox_blank = CommunityMaterialIcon("cmd_checkbox_blank", '\ue900')
+        @JvmField
+        val cmd_checkbox_intermediate = CommunityMaterialIcon("cmd_checkbox_intermediate", '\ue900')
+        @JvmField
+        val cmd_checkbox_marked_circle_outline = CommunityMaterialIcon("cmd_checkbox_marked_circle_outline", '\ue900')
+        @JvmField
+        val cmd_checkbox_marked_circle = CommunityMaterialIcon("cmd_checkbox_marked_circle", '\ue900')
+        @JvmField
+        val cmd_checkbox_marked_outline = CommunityMaterialIcon("cmd_checkbox_marked_outline", '\ue900')
+        @JvmField
+        val cmd_checkbox_marked = CommunityMaterialIcon("cmd_checkbox_marked", '\ue900')
+        @JvmField
+        val cmd_checkbox_multiple_blank_circle_outline =
+                CommunityMaterialIcon("cmd_checkbox_multiple_blank_circle_outline", '\ue900')
+        @JvmField
+        val cmd_checkbox_multiple_blank_circle = CommunityMaterialIcon("cmd_checkbox_multiple_blank_circle", '\ue900')
+        @JvmField
+        val cmd_checkbox_multiple_blank_outline = CommunityMaterialIcon("cmd_checkbox_multiple_blank_outline", '\ue900')
+        @JvmField
+        val cmd_checkbox_multiple_blank = CommunityMaterialIcon("cmd_checkbox_multiple_blank", '\ue900')
+        @JvmField
+        val cmd_checkbox_multiple_marked_circle_outline =
+                CommunityMaterialIcon("cmd_checkbox_multiple_marked_circle_outline", '\ue900')
+        @JvmField
+        val cmd_checkbox_multiple_marked_circle = CommunityMaterialIcon("cmd_checkbox_multiple_marked_circle", '\ue900')
+        @JvmField
+        val cmd_checkbox_multiple_marked_outline = CommunityMaterialIcon("cmd_checkbox_multiple_marked_outline", '\ue900')
+        @JvmField
+        val cmd_checkbox_multiple_marked = CommunityMaterialIcon("cmd_checkbox_multiple_marked", '\ue900')
+        @JvmField
+        val cmd_checkerboard_minus = CommunityMaterialIcon("cmd_checkerboard_minus", '\ue900')
+        @JvmField
+        val cmd_checkerboard_plus = CommunityMaterialIcon("cmd_checkerboard_plus", '\ue900')
+        @JvmField
+        val cmd_checkerboard_remove = CommunityMaterialIcon("cmd_checkerboard_remove", '\ue900')
+        @JvmField
+        val cmd_checkerboard = CommunityMaterialIcon("cmd_checkerboard", '\ue900')
+        @JvmField
+        val cmd_cheese = CommunityMaterialIcon("cmd_cheese", '\ue900')
+        @JvmField
+        val cmd_chef_hat = CommunityMaterialIcon("cmd_chef_hat", '\ue900')
+        @JvmField
+        val cmd_chemical_weapon = CommunityMaterialIcon("cmd_chemical_weapon", '\ue900')
+        @JvmField
+        val cmd_chess_bishop = CommunityMaterialIcon("cmd_chess_bishop", '\ue900')
+        @JvmField
+        val cmd_chess_king = CommunityMaterialIcon("cmd_chess_king", '\ue900')
+        @JvmField
+        val cmd_chess_knight = CommunityMaterialIcon("cmd_chess_knight", '\ue900')
+        @JvmField
+        val cmd_chess_pawn = CommunityMaterialIcon("cmd_chess_pawn", '\ue900')
+        @JvmField
+        val cmd_chess_queen = CommunityMaterialIcon("cmd_chess_queen", '\ue900')
+        @JvmField
+        val cmd_chess_rook = CommunityMaterialIcon("cmd_chess_rook", '\ue900')
+        @JvmField
+        val cmd_chevron_double_down = CommunityMaterialIcon("cmd_chevron_double_down", '\ue900')
+        @JvmField
+        val cmd_chevron_double_left = CommunityMaterialIcon("cmd_chevron_double_left", '\ue900')
+        @JvmField
+        val cmd_chevron_double_right = CommunityMaterialIcon("cmd_chevron_double_right", '\ue900')
+        @JvmField
+        val cmd_chevron_double_up = CommunityMaterialIcon("cmd_chevron_double_up", '\ue900')
+        @JvmField
+        val cmd_chevron_down_box_outline = CommunityMaterialIcon("cmd_chevron_down_box_outline", '\ue900')
+        @JvmField
+        val cmd_chevron_down_box = CommunityMaterialIcon("cmd_chevron_down_box", '\ue900')
+        @JvmField
+        val cmd_chevron_down_circle_outline = CommunityMaterialIcon("cmd_chevron_down_circle_outline", '\ue900')
+        @JvmField
+        val cmd_chevron_down_circle = CommunityMaterialIcon("cmd_chevron_down_circle", '\ue900')
+        @JvmField
+        val cmd_chevron_down = CommunityMaterialIcon("cmd_chevron_down", '\ue900')
+        @JvmField
+        val cmd_chevron_left_box_outline = CommunityMaterialIcon("cmd_chevron_left_box_outline", '\ue900')
+        @JvmField
+        val cmd_chevron_left_box = CommunityMaterialIcon("cmd_chevron_left_box", '\ue900')
+        @JvmField
+        val cmd_chevron_left_circle_outline = CommunityMaterialIcon("cmd_chevron_left_circle_outline", '\ue900')
+        @JvmField
+        val cmd_chevron_left_circle = CommunityMaterialIcon("cmd_chevron_left_circle", '\ue900')
+        @JvmField
+        val cmd_chevron_left = CommunityMaterialIcon("cmd_chevron_left", '\ue900')
+        @JvmField
+        val cmd_chevron_right_box_outline = CommunityMaterialIcon("cmd_chevron_right_box_outline", '\ue900')
+        @JvmField
+        val cmd_chevron_right_box = CommunityMaterialIcon("cmd_chevron_right_box", '\ue900')
+        @JvmField
+        val cmd_chevron_right_circle_outline = CommunityMaterialIcon("cmd_chevron_right_circle_outline", '\ue900')
+        @JvmField
+        val cmd_chevron_right_circle = CommunityMaterialIcon("cmd_chevron_right_circle", '\ue900')
+        @JvmField
+        val cmd_chevron_right = CommunityMaterialIcon("cmd_chevron_right", '\ue900')
+        @JvmField
+        val cmd_chevron_triple_down = CommunityMaterialIcon("cmd_chevron_triple_down", '\ue900')
+        @JvmField
+        val cmd_chevron_triple_left = CommunityMaterialIcon("cmd_chevron_triple_left", '\ue900')
+        @JvmField
+        val cmd_chevron_triple_right = CommunityMaterialIcon("cmd_chevron_triple_right", '\ue900')
+        @JvmField
+        val cmd_chevron_triple_up = CommunityMaterialIcon("cmd_chevron_triple_up", '\ue900')
+        @JvmField
+        val cmd_chevron_up_box_outline = CommunityMaterialIcon("cmd_chevron_up_box_outline", '\ue900')
+        @JvmField
+        val cmd_chevron_up_box = CommunityMaterialIcon("cmd_chevron_up_box", '\ue900')
+        @JvmField
+        val cmd_chevron_up_circle_outline = CommunityMaterialIcon("cmd_chevron_up_circle_outline", '\ue900')
+        @JvmField
+        val cmd_chevron_up_circle = CommunityMaterialIcon("cmd_chevron_up_circle", '\ue900')
+        @JvmField
+        val cmd_chevron_up = CommunityMaterialIcon("cmd_chevron_up", '\ue900')
+        @JvmField
+        val cmd_chili_hot = CommunityMaterialIcon("cmd_chili_hot", '\ue900')
+        @JvmField
+        val cmd_chili_medium = CommunityMaterialIcon("cmd_chili_medium", '\ue900')
+        @JvmField
+        val cmd_chili_mild = CommunityMaterialIcon("cmd_chili_mild", '\ue900')
+        @JvmField
+        val cmd_chip = CommunityMaterialIcon("cmd_chip", '\ue900')
+        @JvmField
+        val cmd_christianity_outline = CommunityMaterialIcon("cmd_christianity_outline", '\ue900')
+        @JvmField
+        val cmd_christianity = CommunityMaterialIcon("cmd_christianity", '\ue900')
+        @JvmField
+        val cmd_church = CommunityMaterialIcon("cmd_church", '\ue900')
+        @JvmField
+        val cmd_cigar = CommunityMaterialIcon("cmd_cigar", '\ue900')
+        @JvmField
+        val cmd_circle_double = CommunityMaterialIcon("cmd_circle_double", '\ue900')
+        @JvmField
+        val cmd_circle_edit_outline = CommunityMaterialIcon("cmd_circle_edit_outline", '\ue900')
+        @JvmField
+        val cmd_circle_expand = CommunityMaterialIcon("cmd_circle_expand", '\ue900')
+        @JvmField
+        val cmd_circle_medium = CommunityMaterialIcon("cmd_circle_medium", '\ue900')
+        @JvmField
+        val cmd_circle_off_outline = CommunityMaterialIcon("cmd_circle_off_outline", '\ue900')
+        @JvmField
+        val cmd_circle_outline = CommunityMaterialIcon("cmd_circle_outline", '\ue900')
+        @JvmField
+        val cmd_circle_slice_1 = CommunityMaterialIcon("cmd_circle_slice_1", '\ue900')
+        @JvmField
+        val cmd_circle_slice_2 = CommunityMaterialIcon("cmd_circle_slice_2", '\ue900')
+        @JvmField
+        val cmd_circle_slice_3 = CommunityMaterialIcon("cmd_circle_slice_3", '\ue900')
+        @JvmField
+        val cmd_circle_slice_4 = CommunityMaterialIcon("cmd_circle_slice_4", '\ue900')
+        @JvmField
+        val cmd_circle_slice_5 = CommunityMaterialIcon("cmd_circle_slice_5", '\ue900')
+        @JvmField
+        val cmd_circle_slice_6 = CommunityMaterialIcon("cmd_circle_slice_6", '\ue900')
+        @JvmField
+        val cmd_circle_slice_7 = CommunityMaterialIcon("cmd_circle_slice_7", '\ue900')
+        @JvmField
+        val cmd_circle_slice_8 = CommunityMaterialIcon("cmd_circle_slice_8", '\ue900')
+        @JvmField
+        val cmd_circle_small = CommunityMaterialIcon("cmd_circle_small", '\ue900')
+        @JvmField
+        val cmd_circle = CommunityMaterialIcon("cmd_circle", '\ue900')
+        @JvmField
+        val cmd_circular_saw = CommunityMaterialIcon("cmd_circular_saw", '\ue900')
+        @JvmField
+        val cmd_cisco_webex = CommunityMaterialIcon("cmd_cisco_webex", '\ue900')
+        @JvmField
+        val cmd_city_variant_outline = CommunityMaterialIcon("cmd_city_variant_outline", '\ue900')
+        @JvmField
+        val cmd_city_variant = CommunityMaterialIcon("cmd_city_variant", '\ue900')
+        @JvmField
+        val cmd_city = CommunityMaterialIcon("cmd_city", '\ue900')
+        @JvmField
+        val cmd_clipboard_account_outline = CommunityMaterialIcon("cmd_clipboard_account_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_account = CommunityMaterialIcon("cmd_clipboard_account", '\ue900')
+        @JvmField
+        val cmd_clipboard_alert_outline = CommunityMaterialIcon("cmd_clipboard_alert_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_alert = CommunityMaterialIcon("cmd_clipboard_alert", '\ue900')
+        @JvmField
+        val cmd_clipboard_arrow_down_outline = CommunityMaterialIcon("cmd_clipboard_arrow_down_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_arrow_down = CommunityMaterialIcon("cmd_clipboard_arrow_down", '\ue900')
+        @JvmField
+        val cmd_clipboard_arrow_left_outline = CommunityMaterialIcon("cmd_clipboard_arrow_left_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_arrow_left = CommunityMaterialIcon("cmd_clipboard_arrow_left", '\ue900')
+        @JvmField
+        val cmd_clipboard_arrow_right_outline = CommunityMaterialIcon("cmd_clipboard_arrow_right_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_arrow_right = CommunityMaterialIcon("cmd_clipboard_arrow_right", '\ue900')
+        @JvmField
+        val cmd_clipboard_arrow_up_outline = CommunityMaterialIcon("cmd_clipboard_arrow_up_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_arrow_up = CommunityMaterialIcon("cmd_clipboard_arrow_up", '\ue900')
+        @JvmField
+        val cmd_clipboard_check_multiple_outline = CommunityMaterialIcon("cmd_clipboard_check_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_check_multiple = CommunityMaterialIcon("cmd_clipboard_check_multiple", '\ue900')
+        @JvmField
+        val cmd_clipboard_check_outline = CommunityMaterialIcon("cmd_clipboard_check_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_check = CommunityMaterialIcon("cmd_clipboard_check", '\ue900')
+        @JvmField
+        val cmd_clipboard_file_outline = CommunityMaterialIcon("cmd_clipboard_file_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_file = CommunityMaterialIcon("cmd_clipboard_file", '\ue900')
+        @JvmField
+        val cmd_clipboard_flow_outline = CommunityMaterialIcon("cmd_clipboard_flow_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_flow = CommunityMaterialIcon("cmd_clipboard_flow", '\ue900')
+        @JvmField
+        val cmd_clipboard_list_outline = CommunityMaterialIcon("cmd_clipboard_list_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_list = CommunityMaterialIcon("cmd_clipboard_list", '\ue900')
+        @JvmField
+        val cmd_clipboard_multiple_outline = CommunityMaterialIcon("cmd_clipboard_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_multiple = CommunityMaterialIcon("cmd_clipboard_multiple", '\ue900')
+        @JvmField
+        val cmd_clipboard_outline = CommunityMaterialIcon("cmd_clipboard_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_play_multiple_outline = CommunityMaterialIcon("cmd_clipboard_play_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_play_multiple = CommunityMaterialIcon("cmd_clipboard_play_multiple", '\ue900')
+        @JvmField
+        val cmd_clipboard_play_outline = CommunityMaterialIcon("cmd_clipboard_play_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_play = CommunityMaterialIcon("cmd_clipboard_play", '\ue900')
+        @JvmField
+        val cmd_clipboard_plus = CommunityMaterialIcon("cmd_clipboard_plus", '\ue900')
+        @JvmField
+        val cmd_clipboard_pulse_outline = CommunityMaterialIcon("cmd_clipboard_pulse_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_pulse = CommunityMaterialIcon("cmd_clipboard_pulse", '\ue900')
+        @JvmField
+        val cmd_clipboard_text_multiple_outline = CommunityMaterialIcon("cmd_clipboard_text_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_text_multiple = CommunityMaterialIcon("cmd_clipboard_text_multiple", '\ue900')
+        @JvmField
+        val cmd_clipboard_text_outline = CommunityMaterialIcon("cmd_clipboard_text_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_text_play_outline = CommunityMaterialIcon("cmd_clipboard_text_play_outline", '\ue900')
+        @JvmField
+        val cmd_clipboard_text_play = CommunityMaterialIcon("cmd_clipboard_text_play", '\ue900')
+        @JvmField
+        val cmd_clipboard_text = CommunityMaterialIcon("cmd_clipboard_text", '\ue900')
+        @JvmField
+        val cmd_clipboard = CommunityMaterialIcon("cmd_clipboard", '\ue900')
+        @JvmField
+        val cmd_clippy = CommunityMaterialIcon("cmd_clippy", '\ue900')
+        @JvmField
+        val cmd_clock_alert_outline = CommunityMaterialIcon("cmd_clock_alert_outline", '\ue900')
+        @JvmField
+        val cmd_clock_alert = CommunityMaterialIcon("cmd_clock_alert", '\ue900')
+        @JvmField
+        val cmd_clock_check_outline = CommunityMaterialIcon("cmd_clock_check_outline", '\ue900')
+        @JvmField
+        val cmd_clock_check = CommunityMaterialIcon("cmd_clock_check", '\ue900')
+        @JvmField
+        val cmd_clock_digital = CommunityMaterialIcon("cmd_clock_digital", '\ue900')
+        @JvmField
+        val cmd_clock_end = CommunityMaterialIcon("cmd_clock_end", '\ue900')
+        @JvmField
+        val cmd_clock_fast = CommunityMaterialIcon("cmd_clock_fast", '\ue900')
+        @JvmField
+        val cmd_clock_in = CommunityMaterialIcon("cmd_clock_in", '\ue900')
+        @JvmField
+        val cmd_clock_out = CommunityMaterialIcon("cmd_clock_out", '\ue900')
+        @JvmField
+        val cmd_clock_outline = CommunityMaterialIcon("cmd_clock_outline", '\ue900')
+        @JvmField
+        val cmd_clock_start = CommunityMaterialIcon("cmd_clock_start", '\ue900')
+        @JvmField
+        val cmd_clock = CommunityMaterialIcon("cmd_clock", '\ue900')
+        @JvmField
+        val cmd_close_box_multiple_outline = CommunityMaterialIcon("cmd_close_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_close_box_multiple = CommunityMaterialIcon("cmd_close_box_multiple", '\ue900')
+        @JvmField
+        val cmd_close_box_outline = CommunityMaterialIcon("cmd_close_box_outline", '\ue900')
+        @JvmField
+        val cmd_close_box = CommunityMaterialIcon("cmd_close_box", '\ue900')
+        @JvmField
+        val cmd_close_circle_outline = CommunityMaterialIcon("cmd_close_circle_outline", '\ue900')
+        @JvmField
+        val cmd_close_circle = CommunityMaterialIcon("cmd_close_circle", '\ue900')
+        @JvmField
+        val cmd_close_network_outline = CommunityMaterialIcon("cmd_close_network_outline", '\ue900')
+        @JvmField
+        val cmd_close_network = CommunityMaterialIcon("cmd_close_network", '\ue900')
+        @JvmField
+        val cmd_close_octagon_outline = CommunityMaterialIcon("cmd_close_octagon_outline", '\ue900')
+        @JvmField
+        val cmd_close_octagon = CommunityMaterialIcon("cmd_close_octagon", '\ue900')
+        @JvmField
+        val cmd_close_outline = CommunityMaterialIcon("cmd_close_outline", '\ue900')
+        @JvmField
+        val cmd_close = CommunityMaterialIcon("cmd_close", '\ue900')
+        @JvmField
+        val cmd_closed_caption_outline = CommunityMaterialIcon("cmd_closed_caption_outline", '\ue900')
+        @JvmField
+        val cmd_closed_caption = CommunityMaterialIcon("cmd_closed_caption", '\ue900')
+        @JvmField
+        val cmd_cloud_alert = CommunityMaterialIcon("cmd_cloud_alert", '\ue900')
+        @JvmField
+        val cmd_cloud_braces = CommunityMaterialIcon("cmd_cloud_braces", '\ue900')
+        @JvmField
+        val cmd_cloud_check_outline = CommunityMaterialIcon("cmd_cloud_check_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_check = CommunityMaterialIcon("cmd_cloud_check", '\ue900')
+        @JvmField
+        val cmd_cloud_circle = CommunityMaterialIcon("cmd_cloud_circle", '\ue900')
+        @JvmField
+        val cmd_cloud_download_outline = CommunityMaterialIcon("cmd_cloud_download_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_download = CommunityMaterialIcon("cmd_cloud_download", '\ue900')
+        @JvmField
+        val cmd_cloud_lock_outline = CommunityMaterialIcon("cmd_cloud_lock_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_lock = CommunityMaterialIcon("cmd_cloud_lock", '\ue900')
+        @JvmField
+        val cmd_cloud_off_outline = CommunityMaterialIcon("cmd_cloud_off_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_outline = CommunityMaterialIcon("cmd_cloud_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_print_outline = CommunityMaterialIcon("cmd_cloud_print_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_print = CommunityMaterialIcon("cmd_cloud_print", '\ue900')
+        @JvmField
+        val cmd_cloud_question = CommunityMaterialIcon("cmd_cloud_question", '\ue900')
+        @JvmField
+        val cmd_cloud_search_outline = CommunityMaterialIcon("cmd_cloud_search_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_search = CommunityMaterialIcon("cmd_cloud_search", '\ue900')
+        @JvmField
+        val cmd_cloud_sync_outline = CommunityMaterialIcon("cmd_cloud_sync_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_sync = CommunityMaterialIcon("cmd_cloud_sync", '\ue900')
+        @JvmField
+        val cmd_cloud_tags = CommunityMaterialIcon("cmd_cloud_tags", '\ue900')
+        @JvmField
+        val cmd_cloud_upload_outline = CommunityMaterialIcon("cmd_cloud_upload_outline", '\ue900')
+        @JvmField
+        val cmd_cloud_upload = CommunityMaterialIcon("cmd_cloud_upload", '\ue900')
+        @JvmField
+        val cmd_cloud = CommunityMaterialIcon("cmd_cloud", '\ue900')
+        @JvmField
+        val cmd_clover = CommunityMaterialIcon("cmd_clover", '\ue900')
+        @JvmField
+        val cmd_coach_lamp = CommunityMaterialIcon("cmd_coach_lamp", '\ue900')
+        @JvmField
+        val cmd_coat_rack = CommunityMaterialIcon("cmd_coat_rack", '\ue900')
+        @JvmField
+        val cmd_code_array = CommunityMaterialIcon("cmd_code_array", '\ue900')
+        @JvmField
+        val cmd_code_braces_box = CommunityMaterialIcon("cmd_code_braces_box", '\ue900')
+        @JvmField
+        val cmd_code_braces = CommunityMaterialIcon("cmd_code_braces", '\ue900')
+        @JvmField
+        val cmd_code_brackets = CommunityMaterialIcon("cmd_code_brackets", '\ue900')
+        @JvmField
+        val cmd_code_equal = CommunityMaterialIcon("cmd_code_equal", '\ue900')
+        @JvmField
+        val cmd_code_greater_than_or_equal = CommunityMaterialIcon("cmd_code_greater_than_or_equal", '\ue900')
+        @JvmField
+        val cmd_code_greater_than = CommunityMaterialIcon("cmd_code_greater_than", '\ue900')
+        @JvmField
+        val cmd_code_less_than_or_equal = CommunityMaterialIcon("cmd_code_less_than_or_equal", '\ue900')
+        @JvmField
+        val cmd_code_less_than = CommunityMaterialIcon("cmd_code_less_than", '\ue900')
+        @JvmField
+        val cmd_code_not_equal_variant = CommunityMaterialIcon("cmd_code_not_equal_variant", '\ue900')
+        @JvmField
+        val cmd_code_not_equal = CommunityMaterialIcon("cmd_code_not_equal", '\ue900')
+        @JvmField
+        val cmd_code_parentheses_box = CommunityMaterialIcon("cmd_code_parentheses_box", '\ue900')
+        @JvmField
+        val cmd_code_parentheses = CommunityMaterialIcon("cmd_code_parentheses", '\ue900')
+        @JvmField
+        val cmd_code_string = CommunityMaterialIcon("cmd_code_string", '\ue900')
+        @JvmField
+        val cmd_code_tags_check = CommunityMaterialIcon("cmd_code_tags_check", '\ue900')
+        @JvmField
+        val cmd_code_tags = CommunityMaterialIcon("cmd_code_tags", '\ue900')
+        @JvmField
+        val cmd_codepen = CommunityMaterialIcon("cmd_codepen", '\ue900')
+        @JvmField
+        val cmd_coffee_maker = CommunityMaterialIcon("cmd_coffee_maker", '\ue900')
+        @JvmField
+        val cmd_coffee_off_outline = CommunityMaterialIcon("cmd_coffee_off_outline", '\ue900')
+        @JvmField
+        val cmd_coffee_off = CommunityMaterialIcon("cmd_coffee_off", '\ue900')
+        @JvmField
+        val cmd_coffee_outline = CommunityMaterialIcon("cmd_coffee_outline", '\ue900')
+        @JvmField
+        val cmd_coffee_to_go = CommunityMaterialIcon("cmd_coffee_to_go", '\ue900')
+        @JvmField
+        val cmd_coffee = CommunityMaterialIcon("cmd_coffee", '\ue900')
+        @JvmField
+        val cmd_coffin = CommunityMaterialIcon("cmd_coffin", '\ue900')
+        @JvmField
+        val cmd_cog_clockwise = CommunityMaterialIcon("cmd_cog_clockwise", '\ue900')
+        @JvmField
+        val cmd_cog_counterclockwise = CommunityMaterialIcon("cmd_cog_counterclockwise", '\ue900')
+        @JvmField
+        val cmd_cogs = CommunityMaterialIcon("cmd_cogs", '\ue900')
+        @JvmField
+        val cmd_coin_outline = CommunityMaterialIcon("cmd_coin_outline", '\ue900')
+        @JvmField
+        val cmd_coin = CommunityMaterialIcon("cmd_coin", '\ue900')
+        @JvmField
+        val cmd_coins = CommunityMaterialIcon("cmd_coins", '\ue900')
+        @JvmField
+        val cmd_collage = CommunityMaterialIcon("cmd_collage", '\ue900')
+        @JvmField
+        val cmd_collapse_all_outline = CommunityMaterialIcon("cmd_collapse_all_outline", '\ue900')
+        @JvmField
+        val cmd_collapse_all = CommunityMaterialIcon("cmd_collapse_all", '\ue900')
+        @JvmField
+        val cmd_color_helper = CommunityMaterialIcon("cmd_color_helper", '\ue900')
+        @JvmField
+        val cmd_comma_box_outline = CommunityMaterialIcon("cmd_comma_box_outline", '\ue900')
+        @JvmField
+        val cmd_comma_box = CommunityMaterialIcon("cmd_comma_box", '\ue900')
+        @JvmField
+        val cmd_comma_circle_outline = CommunityMaterialIcon("cmd_comma_circle_outline", '\ue900')
+        @JvmField
+        val cmd_comma_circle = CommunityMaterialIcon("cmd_comma_circle", '\ue900')
+        @JvmField
+        val cmd_comma = CommunityMaterialIcon("cmd_comma", '\ue900')
+        @JvmField
+        val cmd_comment_account_outline = CommunityMaterialIcon("cmd_comment_account_outline", '\ue900')
+        @JvmField
+        val cmd_comment_account = CommunityMaterialIcon("cmd_comment_account", '\ue900')
+        @JvmField
+        val cmd_comment_alert_outline = CommunityMaterialIcon("cmd_comment_alert_outline", '\ue900')
+        @JvmField
+        val cmd_comment_alert = CommunityMaterialIcon("cmd_comment_alert", '\ue900')
+        @JvmField
+        val cmd_comment_arrow_left_outline = CommunityMaterialIcon("cmd_comment_arrow_left_outline", '\ue900')
+        @JvmField
+        val cmd_comment_arrow_left = CommunityMaterialIcon("cmd_comment_arrow_left", '\ue900')
+        @JvmField
+        val cmd_comment_arrow_right_outline = CommunityMaterialIcon("cmd_comment_arrow_right_outline", '\ue900')
+        @JvmField
+        val cmd_comment_arrow_right = CommunityMaterialIcon("cmd_comment_arrow_right", '\ue900')
+        @JvmField
+        val cmd_comment_check_outline = CommunityMaterialIcon("cmd_comment_check_outline", '\ue900')
+        @JvmField
+        val cmd_comment_check = CommunityMaterialIcon("cmd_comment_check", '\ue900')
+        @JvmField
+        val cmd_comment_edit_outline = CommunityMaterialIcon("cmd_comment_edit_outline", '\ue900')
+        @JvmField
+        val cmd_comment_edit = CommunityMaterialIcon("cmd_comment_edit", '\ue900')
+        @JvmField
+        val cmd_comment_eye_outline = CommunityMaterialIcon("cmd_comment_eye_outline", '\ue900')
+        @JvmField
+        val cmd_comment_eye = CommunityMaterialIcon("cmd_comment_eye", '\ue900')
+        @JvmField
+        val cmd_comment_multiple_outline = CommunityMaterialIcon("cmd_comment_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_comment_multiple = CommunityMaterialIcon("cmd_comment_multiple", '\ue900')
+        @JvmField
+        val cmd_comment_outline = CommunityMaterialIcon("cmd_comment_outline", '\ue900')
+        @JvmField
+        val cmd_comment_plus_outline = CommunityMaterialIcon("cmd_comment_plus_outline", '\ue900')
+        @JvmField
+        val cmd_comment_plus = CommunityMaterialIcon("cmd_comment_plus", '\ue900')
+        @JvmField
+        val cmd_comment_processing_outline = CommunityMaterialIcon("cmd_comment_processing_outline", '\ue900')
+        @JvmField
+        val cmd_comment_processing = CommunityMaterialIcon("cmd_comment_processing", '\ue900')
+        @JvmField
+        val cmd_comment_question_outline = CommunityMaterialIcon("cmd_comment_question_outline", '\ue900')
+        @JvmField
+        val cmd_comment_question = CommunityMaterialIcon("cmd_comment_question", '\ue900')
+        @JvmField
+        val cmd_comment_quote_outline = CommunityMaterialIcon("cmd_comment_quote_outline", '\ue900')
+        @JvmField
+        val cmd_comment_quote = CommunityMaterialIcon("cmd_comment_quote", '\ue900')
+        @JvmField
+        val cmd_comment_remove_outline = CommunityMaterialIcon("cmd_comment_remove_outline", '\ue900')
+        @JvmField
+        val cmd_comment_remove = CommunityMaterialIcon("cmd_comment_remove", '\ue900')
+        @JvmField
+        val cmd_comment_search_outline = CommunityMaterialIcon("cmd_comment_search_outline", '\ue900')
+        @JvmField
+        val cmd_comment_search = CommunityMaterialIcon("cmd_comment_search", '\ue900')
+        @JvmField
+        val cmd_comment_text_multiple_outline = CommunityMaterialIcon("cmd_comment_text_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_comment_text_multiple = CommunityMaterialIcon("cmd_comment_text_multiple", '\ue900')
+        @JvmField
+        val cmd_comment_text_outline = CommunityMaterialIcon("cmd_comment_text_outline", '\ue900')
+        @JvmField
+        val cmd_comment_text = CommunityMaterialIcon("cmd_comment_text", '\ue900')
+        @JvmField
+        val cmd_comment = CommunityMaterialIcon("cmd_comment", '\ue900')
+        @JvmField
+        val cmd_compare = CommunityMaterialIcon("cmd_compare", '\ue900')
+        @JvmField
+        val cmd_compass_off_outline = CommunityMaterialIcon("cmd_compass_off_outline", '\ue900')
+        @JvmField
+        val cmd_compass_off = CommunityMaterialIcon("cmd_compass_off", '\ue900')
+        @JvmField
+        val cmd_compass_outline = CommunityMaterialIcon("cmd_compass_outline", '\ue900')
+        @JvmField
+        val cmd_compass = CommunityMaterialIcon("cmd_compass", '\ue900')
+        @JvmField
+        val cmd_concourse_ci = CommunityMaterialIcon("cmd_concourse_ci", '\ue900')
+        @JvmField
+        val cmd_console_line = CommunityMaterialIcon("cmd_console_line", '\ue900')
+        @JvmField
+        val cmd_console_network_outline = CommunityMaterialIcon("cmd_console_network_outline", '\ue900')
+        @JvmField
+        val cmd_console_network = CommunityMaterialIcon("cmd_console_network", '\ue900')
+        @JvmField
+        val cmd_console = CommunityMaterialIcon("cmd_console", '\ue900')
+        @JvmField
+        val cmd_consolidate = CommunityMaterialIcon("cmd_consolidate", '\ue900')
+        @JvmField
+        val cmd_contact_mail_outline = CommunityMaterialIcon("cmd_contact_mail_outline", '\ue900')
+        @JvmField
+        val cmd_contact_mail = CommunityMaterialIcon("cmd_contact_mail", '\ue900')
+        @JvmField
+        val cmd_contact_phone_outline = CommunityMaterialIcon("cmd_contact_phone_outline", '\ue900')
+        @JvmField
+        val cmd_contact_phone = CommunityMaterialIcon("cmd_contact_phone", '\ue900')
+        @JvmField
+        val cmd_contactless_payment = CommunityMaterialIcon("cmd_contactless_payment", '\ue900')
+        @JvmField
+        val cmd_contacts = CommunityMaterialIcon("cmd_contacts", '\ue900')
+        @JvmField
+        val cmd_contain_end = CommunityMaterialIcon("cmd_contain_end", '\ue900')
+        @JvmField
+        val cmd_contain_start = CommunityMaterialIcon("cmd_contain_start", '\ue900')
+        @JvmField
+        val cmd_contain = CommunityMaterialIcon("cmd_contain", '\ue900')
+        @JvmField
+        val cmd_content_copy = CommunityMaterialIcon("cmd_content_copy", '\ue900')
+        @JvmField
+        val cmd_content_cut = CommunityMaterialIcon("cmd_content_cut", '\ue900')
+        @JvmField
+        val cmd_content_duplicate = CommunityMaterialIcon("cmd_content_duplicate", '\ue900')
+        @JvmField
+        val cmd_content_paste = CommunityMaterialIcon("cmd_content_paste", '\ue900')
+        @JvmField
+        val cmd_content_save_alert_outline = CommunityMaterialIcon("cmd_content_save_alert_outline", '\ue900')
+        @JvmField
+        val cmd_content_save_alert = CommunityMaterialIcon("cmd_content_save_alert", '\ue900')
+        @JvmField
+        val cmd_content_save_all_outline = CommunityMaterialIcon("cmd_content_save_all_outline", '\ue900')
+        @JvmField
+        val cmd_content_save_all = CommunityMaterialIcon("cmd_content_save_all", '\ue900')
+        @JvmField
+        val cmd_content_save_edit_outline = CommunityMaterialIcon("cmd_content_save_edit_outline", '\ue900')
+        @JvmField
+        val cmd_content_save_edit = CommunityMaterialIcon("cmd_content_save_edit", '\ue900')
+        @JvmField
+        val cmd_content_save_move_outline = CommunityMaterialIcon("cmd_content_save_move_outline", '\ue900')
+        @JvmField
+        val cmd_content_save_move = CommunityMaterialIcon("cmd_content_save_move", '\ue900')
+        @JvmField
+        val cmd_content_save_outline = CommunityMaterialIcon("cmd_content_save_outline", '\ue900')
+        @JvmField
+        val cmd_content_save_settings_outline = CommunityMaterialIcon("cmd_content_save_settings_outline", '\ue900')
+        @JvmField
+        val cmd_content_save_settings = CommunityMaterialIcon("cmd_content_save_settings", '\ue900')
+        @JvmField
+        val cmd_content_save = CommunityMaterialIcon("cmd_content_save", '\ue900')
+        @JvmField
+        val cmd_contrast_box = CommunityMaterialIcon("cmd_contrast_box", '\ue900')
+        @JvmField
+        val cmd_contrast_circle = CommunityMaterialIcon("cmd_contrast_circle", '\ue900')
+        @JvmField
+        val cmd_contrast = CommunityMaterialIcon("cmd_contrast", '\ue900')
+        @JvmField
+        val cmd_controller_classic_outline = CommunityMaterialIcon("cmd_controller_classic_outline", '\ue900')
+        @JvmField
+        val cmd_controller_classic = CommunityMaterialIcon("cmd_controller_classic", '\ue900')
+        @JvmField
+        val cmd_cookie = CommunityMaterialIcon("cmd_cookie", '\ue900')
+        @JvmField
+        val cmd_coolant_temperature = CommunityMaterialIcon("cmd_coolant_temperature", '\ue900')
+        @JvmField
+        val cmd_copyright = CommunityMaterialIcon("cmd_copyright", '\ue900')
+        @JvmField
+        val cmd_cordova = CommunityMaterialIcon("cmd_cordova", '\ue900')
+        @JvmField
+        val cmd_corn = CommunityMaterialIcon("cmd_corn", '\ue900')
+        @JvmField
+        val cmd_counter = CommunityMaterialIcon("cmd_counter", '\ue900')
+        @JvmField
+        val cmd_cow = CommunityMaterialIcon("cmd_cow", '\ue900')
+        @JvmField
+        val cmd_cowboy = CommunityMaterialIcon("cmd_cowboy", '\ue900')
+        @JvmField
+        val cmd_cpu_32_bit = CommunityMaterialIcon("cmd_cpu_32_bit", '\ue900')
+        @JvmField
+        val cmd_cpu_64_bit = CommunityMaterialIcon("cmd_cpu_64_bit", '\ue900')
+        @JvmField
+        val cmd_crane = CommunityMaterialIcon("cmd_crane", '\ue900')
+        @JvmField
+        val cmd_creation = CommunityMaterialIcon("cmd_creation", '\ue900')
+        @JvmField
+        val cmd_creative_commons = CommunityMaterialIcon("cmd_creative_commons", '\ue900')
+        @JvmField
+        val cmd_credit_card_clock_outline = CommunityMaterialIcon("cmd_credit_card_clock_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_clock = CommunityMaterialIcon("cmd_credit_card_clock", '\ue900')
+        @JvmField
+        val cmd_credit_card_marker_outline = CommunityMaterialIcon("cmd_credit_card_marker_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_marker = CommunityMaterialIcon("cmd_credit_card_marker", '\ue900')
+        @JvmField
+        val cmd_credit_card_minus_outline = CommunityMaterialIcon("cmd_credit_card_minus_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_minus = CommunityMaterialIcon("cmd_credit_card_minus", '\ue900')
+        @JvmField
+        val cmd_credit_card_multiple_outline = CommunityMaterialIcon("cmd_credit_card_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_multiple = CommunityMaterialIcon("cmd_credit_card_multiple", '\ue900')
+        @JvmField
+        val cmd_credit_card_off_outline = CommunityMaterialIcon("cmd_credit_card_off_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_off = CommunityMaterialIcon("cmd_credit_card_off", '\ue900')
+        @JvmField
+        val cmd_credit_card_outline = CommunityMaterialIcon("cmd_credit_card_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_plus_outline = CommunityMaterialIcon("cmd_credit_card_plus_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_plus = CommunityMaterialIcon("cmd_credit_card_plus", '\ue900')
+        @JvmField
+        val cmd_credit_card_refund_outline = CommunityMaterialIcon("cmd_credit_card_refund_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_refund = CommunityMaterialIcon("cmd_credit_card_refund", '\ue900')
+        @JvmField
+        val cmd_credit_card_remove_outline = CommunityMaterialIcon("cmd_credit_card_remove_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_remove = CommunityMaterialIcon("cmd_credit_card_remove", '\ue900')
+        @JvmField
+        val cmd_credit_card_scan_outline = CommunityMaterialIcon("cmd_credit_card_scan_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_scan = CommunityMaterialIcon("cmd_credit_card_scan", '\ue900')
+        @JvmField
+        val cmd_credit_card_settings_outline = CommunityMaterialIcon("cmd_credit_card_settings_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_settings = CommunityMaterialIcon("cmd_credit_card_settings", '\ue900')
+        @JvmField
+        val cmd_credit_card_wireless_outline = CommunityMaterialIcon("cmd_credit_card_wireless_outline", '\ue900')
+        @JvmField
+        val cmd_credit_card_wireless = CommunityMaterialIcon("cmd_credit_card_wireless", '\ue900')
+        @JvmField
+        val cmd_credit_card = CommunityMaterialIcon("cmd_credit_card", '\ue900')
+        @JvmField
+        val cmd_cricket = CommunityMaterialIcon("cmd_cricket", '\ue900')
+        @JvmField
+        val cmd_crop_free = CommunityMaterialIcon("cmd_crop_free", '\ue900')
+        @JvmField
+        val cmd_crop_landscape = CommunityMaterialIcon("cmd_crop_landscape", '\ue900')
+        @JvmField
+        val cmd_crop_portrait = CommunityMaterialIcon("cmd_crop_portrait", '\ue900')
+        @JvmField
+        val cmd_crop_rotate = CommunityMaterialIcon("cmd_crop_rotate", '\ue900')
+        @JvmField
+        val cmd_crop_square = CommunityMaterialIcon("cmd_crop_square", '\ue900')
+        @JvmField
+        val cmd_crop = CommunityMaterialIcon("cmd_crop", '\ue900')
+        @JvmField
+        val cmd_crosshairs_gps = CommunityMaterialIcon("cmd_crosshairs_gps", '\ue900')
+        @JvmField
+        val cmd_crosshairs_off = CommunityMaterialIcon("cmd_crosshairs_off", '\ue900')
+        @JvmField
+        val cmd_crosshairs_question = CommunityMaterialIcon("cmd_crosshairs_question", '\ue900')
+        @JvmField
+        val cmd_crosshairs = CommunityMaterialIcon("cmd_crosshairs", '\ue900')
+        @JvmField
+        val cmd_crown_outline = CommunityMaterialIcon("cmd_crown_outline", '\ue900')
+        @JvmField
+        val cmd_crown = CommunityMaterialIcon("cmd_crown", '\ue900')
+        @JvmField
+        val cmd_cryengine = CommunityMaterialIcon("cmd_cryengine", '\ue900')
+        @JvmField
+        val cmd_crystal_ball = CommunityMaterialIcon("cmd_crystal_ball", '\ue900')
+        @JvmField
+        val cmd_cube_outline = CommunityMaterialIcon("cmd_cube_outline", '\ue900')
+        @JvmField
+        val cmd_cube_scan = CommunityMaterialIcon("cmd_cube_scan", '\ue900')
+        @JvmField
+        val cmd_cube_send = CommunityMaterialIcon("cmd_cube_send", '\ue900')
+        @JvmField
+        val cmd_cube_unfolded = CommunityMaterialIcon("cmd_cube_unfolded", '\ue900')
+        @JvmField
+        val cmd_cube = CommunityMaterialIcon("cmd_cube", '\ue900')
+        @JvmField
+        val cmd_cup_off = CommunityMaterialIcon("cmd_cup_off", '\ue900')
+        @JvmField
+        val cmd_cup_water = CommunityMaterialIcon("cmd_cup_water", '\ue900')
+        @JvmField
+        val cmd_cup = CommunityMaterialIcon("cmd_cup", '\ue900')
+        @JvmField
+        val cmd_cupboard_outline = CommunityMaterialIcon("cmd_cupboard_outline", '\ue900')
+        @JvmField
+        val cmd_cupboard = CommunityMaterialIcon("cmd_cupboard", '\ue900')
+        @JvmField
+        val cmd_cupcake = CommunityMaterialIcon("cmd_cupcake", '\ue900')
+        @JvmField
+        val cmd_curling = CommunityMaterialIcon("cmd_curling", '\ue900')
+        @JvmField
+        val cmd_currency_bdt = CommunityMaterialIcon("cmd_currency_bdt", '\ue900')
+        @JvmField
+        val cmd_currency_brl = CommunityMaterialIcon("cmd_currency_brl", '\ue900')
+        @JvmField
+        val cmd_currency_btc = CommunityMaterialIcon("cmd_currency_btc", '\ue900')
+        @JvmField
+        val cmd_currency_cny = CommunityMaterialIcon("cmd_currency_cny", '\ue900')
+        @JvmField
+        val cmd_currency_eth = CommunityMaterialIcon("cmd_currency_eth", '\ue900')
+        @JvmField
+        val cmd_currency_eur = CommunityMaterialIcon("cmd_currency_eur", '\ue900')
+        @JvmField
+        val cmd_currency_gbp = CommunityMaterialIcon("cmd_currency_gbp", '\ue900')
+        @JvmField
+        val cmd_currency_ils = CommunityMaterialIcon("cmd_currency_ils", '\ue900')
+        @JvmField
+        val cmd_currency_inr = CommunityMaterialIcon("cmd_currency_inr", '\ue900')
+        @JvmField
+        val cmd_currency_jpy = CommunityMaterialIcon("cmd_currency_jpy", '\ue900')
+        @JvmField
+        val cmd_currency_krw = CommunityMaterialIcon("cmd_currency_krw", '\ue900')
+        @JvmField
+        val cmd_currency_kzt = CommunityMaterialIcon("cmd_currency_kzt", '\ue900')
+        @JvmField
+        val cmd_currency_ngn = CommunityMaterialIcon("cmd_currency_ngn", '\ue900')
+        @JvmField
+        val cmd_currency_php = CommunityMaterialIcon("cmd_currency_php", '\ue900')
+        @JvmField
+        val cmd_currency_rial = CommunityMaterialIcon("cmd_currency_rial", '\ue900')
+        @JvmField
+        val cmd_currency_rub = CommunityMaterialIcon("cmd_currency_rub", '\ue900')
+        @JvmField
+        val cmd_currency_sign = CommunityMaterialIcon("cmd_currency_sign", '\ue900')
+        @JvmField
+        val cmd_currency_try = CommunityMaterialIcon("cmd_currency_try", '\ue900')
+        @JvmField
+        val cmd_currency_twd = CommunityMaterialIcon("cmd_currency_twd", '\ue900')
+        @JvmField
+        val cmd_currency_usd_off = CommunityMaterialIcon("cmd_currency_usd_off", '\ue900')
+        @JvmField
+        val cmd_currency_usd = CommunityMaterialIcon("cmd_currency_usd", '\ue900')
+        @JvmField
+        val cmd_current_ac = CommunityMaterialIcon("cmd_current_ac", '\ue900')
+        @JvmField
+        val cmd_current_dc = CommunityMaterialIcon("cmd_current_dc", '\ue900')
+        @JvmField
+        val cmd_cursor_default_click_outline = CommunityMaterialIcon("cmd_cursor_default_click_outline", '\ue900')
+        @JvmField
+        val cmd_cursor_default_click = CommunityMaterialIcon("cmd_cursor_default_click", '\ue900')
+        @JvmField
+        val cmd_cursor_default_gesture_outline = CommunityMaterialIcon("cmd_cursor_default_gesture_outline", '\ue900')
+        @JvmField
+        val cmd_cursor_default_gesture = CommunityMaterialIcon("cmd_cursor_default_gesture", '\ue900')
+        @JvmField
+        val cmd_cursor_default_outline = CommunityMaterialIcon("cmd_cursor_default_outline", '\ue900')
+        @JvmField
+        val cmd_cursor_default = CommunityMaterialIcon("cmd_cursor_default", '\ue900')
+        @JvmField
+        val cmd_cursor_move = CommunityMaterialIcon("cmd_cursor_move", '\ue900')
+        @JvmField
+        val cmd_cursor_pointer = CommunityMaterialIcon("cmd_cursor_pointer", '\ue900')
+        @JvmField
+        val cmd_cursor_text = CommunityMaterialIcon("cmd_cursor_text", '\ue900')
+        @JvmField
+        val cmd_database_check = CommunityMaterialIcon("cmd_database_check", '\ue900')
+        @JvmField
+        val cmd_database_edit = CommunityMaterialIcon("cmd_database_edit", '\ue900')
+        @JvmField
+        val cmd_database_export = CommunityMaterialIcon("cmd_database_export", '\ue900')
+        @JvmField
+        val cmd_database_import = CommunityMaterialIcon("cmd_database_import", '\ue900')
+        @JvmField
+        val cmd_database_lock = CommunityMaterialIcon("cmd_database_lock", '\ue900')
+        @JvmField
+        val cmd_database_minus = CommunityMaterialIcon("cmd_database_minus", '\ue900')
+        @JvmField
+        val cmd_database_plus = CommunityMaterialIcon("cmd_database_plus", '\ue900')
+        @JvmField
+        val cmd_database_refresh = CommunityMaterialIcon("cmd_database_refresh", '\ue900')
+        @JvmField
+        val cmd_database_remove = CommunityMaterialIcon("cmd_database_remove", '\ue900')
+        @JvmField
+        val cmd_database_search = CommunityMaterialIcon("cmd_database_search", '\ue900')
+        @JvmField
+        val cmd_database_settings = CommunityMaterialIcon("cmd_database_settings", '\ue900')
+        @JvmField
+        val cmd_database = CommunityMaterialIcon("cmd_database", '\ue900')
+        @JvmField
+        val cmd_death_star_variant = CommunityMaterialIcon("cmd_death_star_variant", '\ue900')
+        @JvmField
+        val cmd_death_star = CommunityMaterialIcon("cmd_death_star", '\ue900')
+        @JvmField
+        val cmd_deathly_hallows = CommunityMaterialIcon("cmd_deathly_hallows", '\ue900')
+        @JvmField
+        val cmd_debian = CommunityMaterialIcon("cmd_debian", '\ue900')
+        @JvmField
+        val cmd_debug_step_into = CommunityMaterialIcon("cmd_debug_step_into", '\ue900')
+        @JvmField
+        val cmd_debug_step_out = CommunityMaterialIcon("cmd_debug_step_out", '\ue900')
+        @JvmField
+        val cmd_debug_step_over = CommunityMaterialIcon("cmd_debug_step_over", '\ue900')
+        @JvmField
+        val cmd_decagram_outline = CommunityMaterialIcon("cmd_decagram_outline", '\ue900')
+        @JvmField
+        val cmd_decagram = CommunityMaterialIcon("cmd_decagram", '\ue900')
+        @JvmField
+        val cmd_decimal_comma_decrease = CommunityMaterialIcon("cmd_decimal_comma_decrease", '\ue900')
+        @JvmField
+        val cmd_decimal_comma_increase = CommunityMaterialIcon("cmd_decimal_comma_increase", '\ue900')
+        @JvmField
+        val cmd_decimal_comma = CommunityMaterialIcon("cmd_decimal_comma", '\ue900')
+        @JvmField
+        val cmd_decimal_decrease = CommunityMaterialIcon("cmd_decimal_decrease", '\ue900')
+        @JvmField
+        val cmd_decimal_increase = CommunityMaterialIcon("cmd_decimal_increase", '\ue900')
+        @JvmField
+        val cmd_decimal = CommunityMaterialIcon("cmd_decimal", '\ue900')
+        @JvmField
+        val cmd_delete_alert_outline = CommunityMaterialIcon("cmd_delete_alert_outline", '\ue900')
+        @JvmField
+        val cmd_delete_alert = CommunityMaterialIcon("cmd_delete_alert", '\ue900')
+        @JvmField
+        val cmd_delete_circle_outline = CommunityMaterialIcon("cmd_delete_circle_outline", '\ue900')
+        @JvmField
+        val cmd_delete_circle = CommunityMaterialIcon("cmd_delete_circle", '\ue900')
+        @JvmField
+        val cmd_delete_empty_outline = CommunityMaterialIcon("cmd_delete_empty_outline", '\ue900')
+        @JvmField
+        val cmd_delete_empty = CommunityMaterialIcon("cmd_delete_empty", '\ue900')
+        @JvmField
+        val cmd_delete_forever_outline = CommunityMaterialIcon("cmd_delete_forever_outline", '\ue900')
+        @JvmField
+        val cmd_delete_forever = CommunityMaterialIcon("cmd_delete_forever", '\ue900')
+        @JvmField
+        val cmd_delete_off_outline = CommunityMaterialIcon("cmd_delete_off_outline", '\ue900')
+        @JvmField
+        val cmd_delete_off = CommunityMaterialIcon("cmd_delete_off", '\ue900')
+        @JvmField
+        val cmd_delete_outline = CommunityMaterialIcon("cmd_delete_outline", '\ue900')
+        @JvmField
+        val cmd_delete_restore = CommunityMaterialIcon("cmd_delete_restore", '\ue900')
+        @JvmField
+        val cmd_delete_sweep_outline = CommunityMaterialIcon("cmd_delete_sweep_outline", '\ue900')
+        @JvmField
+        val cmd_delete_sweep = CommunityMaterialIcon("cmd_delete_sweep", '\ue900')
+        @JvmField
+        val cmd_delete_variant = CommunityMaterialIcon("cmd_delete_variant", '\ue900')
+        @JvmField
+        val cmd_delete = CommunityMaterialIcon("cmd_delete", '\ue900')
+        @JvmField
+        val cmd_delta = CommunityMaterialIcon("cmd_delta", '\ue900')
+        @JvmField
+        val cmd_desk_lamp = CommunityMaterialIcon("cmd_desk_lamp", '\ue900')
+        @JvmField
+        val cmd_desk = CommunityMaterialIcon("cmd_desk", '\ue900')
+        @JvmField
+        val cmd_deskphone = CommunityMaterialIcon("cmd_deskphone", '\ue900')
+        @JvmField
+        val cmd_desktop_classic = CommunityMaterialIcon("cmd_desktop_classic", '\ue900')
+        @JvmField
+        val cmd_desktop_mac_dashboard = CommunityMaterialIcon("cmd_desktop_mac_dashboard", '\ue900')
+        @JvmField
+        val cmd_desktop_mac = CommunityMaterialIcon("cmd_desktop_mac", '\ue900')
+        @JvmField
+        val cmd_desktop_tower_monitor = CommunityMaterialIcon("cmd_desktop_tower_monitor", '\ue900')
+        @JvmField
+        val cmd_desktop_tower = CommunityMaterialIcon("cmd_desktop_tower", '\ue900')
+        @JvmField
+        val cmd_details = CommunityMaterialIcon("cmd_details", '\ue900')
+        @JvmField
+        val cmd_dev_to = CommunityMaterialIcon("cmd_dev_to", '\ue900')
+        @JvmField
+        val cmd_developer_board = CommunityMaterialIcon("cmd_developer_board", '\ue900')
+        @JvmField
+        val cmd_deviantart = CommunityMaterialIcon("cmd_deviantart", '\ue900')
+        @JvmField
+        val cmd_devices = CommunityMaterialIcon("cmd_devices", '\ue900')
+        @JvmField
+        val cmd_diabetes = CommunityMaterialIcon("cmd_diabetes", '\ue900')
+        @JvmField
+        val cmd_dialpad = CommunityMaterialIcon("cmd_dialpad", '\ue900')
+        @JvmField
+        val cmd_diameter_outline = CommunityMaterialIcon("cmd_diameter_outline", '\ue900')
+        @JvmField
+        val cmd_diameter_variant = CommunityMaterialIcon("cmd_diameter_variant", '\ue900')
+        @JvmField
+        val cmd_diameter = CommunityMaterialIcon("cmd_diameter", '\ue900')
+        @JvmField
+        val cmd_diamond_outline = CommunityMaterialIcon("cmd_diamond_outline", '\ue900')
+        @JvmField
+        val cmd_diamond_stone = CommunityMaterialIcon("cmd_diamond_stone", '\ue900')
+        @JvmField
+        val cmd_diamond = CommunityMaterialIcon("cmd_diamond", '\ue900')
+        @JvmField
+        val cmd_dice_1_outline = CommunityMaterialIcon("cmd_dice_1_outline", '\ue900')
+        @JvmField
+        val cmd_dice_1 = CommunityMaterialIcon("cmd_dice_1", '\ue900')
+        @JvmField
+        val cmd_dice_2_outline = CommunityMaterialIcon("cmd_dice_2_outline", '\ue900')
+        @JvmField
+        val cmd_dice_2 = CommunityMaterialIcon("cmd_dice_2", '\ue900')
+        @JvmField
+        val cmd_dice_3_outline = CommunityMaterialIcon("cmd_dice_3_outline", '\ue900')
+        @JvmField
+        val cmd_dice_3 = CommunityMaterialIcon("cmd_dice_3", '\ue900')
+        @JvmField
+        val cmd_dice_4_outline = CommunityMaterialIcon("cmd_dice_4_outline", '\ue900')
+        @JvmField
+        val cmd_dice_4 = CommunityMaterialIcon("cmd_dice_4", '\ue900')
+        @JvmField
+        val cmd_dice_5_outline = CommunityMaterialIcon("cmd_dice_5_outline", '\ue900')
+        @JvmField
+        val cmd_dice_5 = CommunityMaterialIcon("cmd_dice_5", '\ue900')
+        @JvmField
+        val cmd_dice_6_outline = CommunityMaterialIcon("cmd_dice_6_outline", '\ue900')
+        @JvmField
+        val cmd_dice_6 = CommunityMaterialIcon("cmd_dice_6", '\ue900')
+        @JvmField
+        val cmd_dice_d4_outline = CommunityMaterialIcon("cmd_dice_d4_outline", '\ue900')
+        @JvmField
+        val cmd_dice_d4 = CommunityMaterialIcon("cmd_dice_d4", '\ue900')
+        @JvmField
+        val cmd_dice_d6_outline = CommunityMaterialIcon("cmd_dice_d6_outline", '\ue900')
+        @JvmField
+        val cmd_dice_d6 = CommunityMaterialIcon("cmd_dice_d6", '\ue900')
+        @JvmField
+        val cmd_dice_d8_outline = CommunityMaterialIcon("cmd_dice_d8_outline", '\ue900')
+        @JvmField
+        val cmd_dice_d8 = CommunityMaterialIcon("cmd_dice_d8", '\ue900')
+        @JvmField
+        val cmd_dice_d10_outline = CommunityMaterialIcon("cmd_dice_d10_outline", '\ue900')
+        @JvmField
+        val cmd_dice_d10 = CommunityMaterialIcon("cmd_dice_d10", '\ue900')
+        @JvmField
+        val cmd_dice_d12_outline = CommunityMaterialIcon("cmd_dice_d12_outline", '\ue900')
+        @JvmField
+        val cmd_dice_d12 = CommunityMaterialIcon("cmd_dice_d12", '\ue900')
+        @JvmField
+        val cmd_dice_d20_outline = CommunityMaterialIcon("cmd_dice_d20_outline", '\ue900')
+        @JvmField
+        val cmd_dice_d20 = CommunityMaterialIcon("cmd_dice_d20", '\ue900')
+        @JvmField
+        val cmd_dice_multiple_outline = CommunityMaterialIcon("cmd_dice_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_dice_multiple = CommunityMaterialIcon("cmd_dice_multiple", '\ue900')
+        @JvmField
+        val cmd_dictionary = CommunityMaterialIcon("cmd_dictionary", '\ue900')
+        @JvmField
+        val cmd_digital_ocean = CommunityMaterialIcon("cmd_digital_ocean", '\ue900')
+        @JvmField
+        val cmd_dip_switch = CommunityMaterialIcon("cmd_dip_switch", '\ue900')
+        @JvmField
+        val cmd_directions_fork = CommunityMaterialIcon("cmd_directions_fork", '\ue900')
+        @JvmField
+        val cmd_directions = CommunityMaterialIcon("cmd_directions", '\ue900')
+        @JvmField
+        val cmd_disc_alert = CommunityMaterialIcon("cmd_disc_alert", '\ue900')
+        @JvmField
+        val cmd_disc_player = CommunityMaterialIcon("cmd_disc_player", '\ue900')
+        @JvmField
+        val cmd_disc = CommunityMaterialIcon("cmd_disc", '\ue900')
+        @JvmField
+        val cmd_discord = CommunityMaterialIcon("cmd_discord", '\ue900')
+        @JvmField
+        val cmd_dishwasher_alert = CommunityMaterialIcon("cmd_dishwasher_alert", '\ue900')
+        @JvmField
+        val cmd_dishwasher_off = CommunityMaterialIcon("cmd_dishwasher_off", '\ue900')
+        @JvmField
+        val cmd_dishwasher = CommunityMaterialIcon("cmd_dishwasher", '\ue900')
+        @JvmField
+        val cmd_disqus_outline = CommunityMaterialIcon("cmd_disqus_outline", '\ue900')
+        @JvmField
+        val cmd_disqus = CommunityMaterialIcon("cmd_disqus", '\ue900')
+        @JvmField
+        val cmd_distribute_horizontal_center = CommunityMaterialIcon("cmd_distribute_horizontal_center", '\ue900')
+        @JvmField
+        val cmd_distribute_horizontal_left = CommunityMaterialIcon("cmd_distribute_horizontal_left", '\ue900')
+        @JvmField
+        val cmd_distribute_horizontal_right = CommunityMaterialIcon("cmd_distribute_horizontal_right", '\ue900')
+        @JvmField
+        val cmd_distribute_vertical_bottom = CommunityMaterialIcon("cmd_distribute_vertical_bottom", '\ue900')
+        @JvmField
+        val cmd_distribute_vertical_center = CommunityMaterialIcon("cmd_distribute_vertical_center", '\ue900')
+        @JvmField
+        val cmd_distribute_vertical_top = CommunityMaterialIcon("cmd_distribute_vertical_top", '\ue900')
+        @JvmField
+        val cmd_diving_flippers = CommunityMaterialIcon("cmd_diving_flippers", '\ue900')
+        @JvmField
+        val cmd_diving_helmet = CommunityMaterialIcon("cmd_diving_helmet", '\ue900')
+        @JvmField
+        val cmd_diving_scuba_flag = CommunityMaterialIcon("cmd_diving_scuba_flag", '\ue900')
+        @JvmField
+        val cmd_diving_scuba_tank_multiple = CommunityMaterialIcon("cmd_diving_scuba_tank_multiple", '\ue900')
+        @JvmField
+        val cmd_diving_scuba_tank = CommunityMaterialIcon("cmd_diving_scuba_tank", '\ue900')
+        @JvmField
+        val cmd_diving_scuba = CommunityMaterialIcon("cmd_diving_scuba", '\ue900')
+        @JvmField
+        val cmd_diving_snorkel = CommunityMaterialIcon("cmd_diving_snorkel", '\ue900')
+        @JvmField
+        val cmd_division_box = CommunityMaterialIcon("cmd_division_box", '\ue900')
+        @JvmField
+        val cmd_division = CommunityMaterialIcon("cmd_division", '\ue900')
+        @JvmField
+        val cmd_dlna = CommunityMaterialIcon("cmd_dlna", '\ue900')
+        @JvmField
+        val cmd_dna = CommunityMaterialIcon("cmd_dna", '\ue900')
+        @JvmField
+        val cmd_dns_outline = CommunityMaterialIcon("cmd_dns_outline", '\ue900')
+        @JvmField
+        val cmd_dns = CommunityMaterialIcon("cmd_dns", '\ue900')
+        @JvmField
+        val cmd_do_not_disturb_off = CommunityMaterialIcon("cmd_do_not_disturb_off", '\ue900')
+        @JvmField
+        val cmd_do_not_disturb = CommunityMaterialIcon("cmd_do_not_disturb", '\ue900')
+        @JvmField
+        val cmd_dock_bottom = CommunityMaterialIcon("cmd_dock_bottom", '\ue900')
+        @JvmField
+        val cmd_dock_left = CommunityMaterialIcon("cmd_dock_left", '\ue900')
+        @JvmField
+        val cmd_dock_right = CommunityMaterialIcon("cmd_dock_right", '\ue900')
+        @JvmField
+        val cmd_dock_window = CommunityMaterialIcon("cmd_dock_window", '\ue900')
+        @JvmField
+        val cmd_docker = CommunityMaterialIcon("cmd_docker", '\ue900')
+        @JvmField
+        val cmd_doctor = CommunityMaterialIcon("cmd_doctor", '\ue900')
+        @JvmField
+        val cmd_dog_service = CommunityMaterialIcon("cmd_dog_service", '\ue900')
+        @JvmField
+        val cmd_dog_side = CommunityMaterialIcon("cmd_dog_side", '\ue900')
+        @JvmField
+        val cmd_dog = CommunityMaterialIcon("cmd_dog", '\ue900')
+        @JvmField
+        val cmd_dolby = CommunityMaterialIcon("cmd_dolby", '\ue900')
+        @JvmField
+        val cmd_dolly = CommunityMaterialIcon("cmd_dolly", '\ue900')
+        @JvmField
+        val cmd_domain_off = CommunityMaterialIcon("cmd_domain_off", '\ue900')
+        @JvmField
+        val cmd_domain_plus = CommunityMaterialIcon("cmd_domain_plus", '\ue900')
+        @JvmField
+        val cmd_domain_remove = CommunityMaterialIcon("cmd_domain_remove", '\ue900')
+        @JvmField
+        val cmd_domain = CommunityMaterialIcon("cmd_domain", '\ue900')
+        @JvmField
+        val cmd_domino_mask = CommunityMaterialIcon("cmd_domino_mask", '\ue900')
+        @JvmField
+        val cmd_donkey = CommunityMaterialIcon("cmd_donkey", '\ue900')
+        @JvmField
+        val cmd_door_closed_lock = CommunityMaterialIcon("cmd_door_closed_lock", '\ue900')
+        @JvmField
+        val cmd_door_closed = CommunityMaterialIcon("cmd_door_closed", '\ue900')
+        @JvmField
+        val cmd_door_open = CommunityMaterialIcon("cmd_door_open", '\ue900')
+        @JvmField
+        val cmd_door = CommunityMaterialIcon("cmd_door", '\ue900')
+        @JvmField
+        val cmd_doorbell_video = CommunityMaterialIcon("cmd_doorbell_video", '\ue900')
+        @JvmField
+        val cmd_dot_net = CommunityMaterialIcon("cmd_dot_net", '\ue900')
+        @JvmField
+        val cmd_dots_horizontal_circle_outline = CommunityMaterialIcon("cmd_dots_horizontal_circle_outline", '\ue900')
+        @JvmField
+        val cmd_dots_horizontal_circle = CommunityMaterialIcon("cmd_dots_horizontal_circle", '\ue900')
+        @JvmField
+        val cmd_dots_horizontal = CommunityMaterialIcon("cmd_dots_horizontal", '\ue900')
+        @JvmField
+        val cmd_dots_vertical_circle_outline = CommunityMaterialIcon("cmd_dots_vertical_circle_outline", '\ue900')
+        @JvmField
+        val cmd_dots_vertical_circle = CommunityMaterialIcon("cmd_dots_vertical_circle", '\ue900')
+        @JvmField
+        val cmd_dots_vertical = CommunityMaterialIcon("cmd_dots_vertical", '\ue900')
+        @JvmField
+        val cmd_douban = CommunityMaterialIcon("cmd_douban", '\ue900')
+        @JvmField
+        val cmd_download_multiple = CommunityMaterialIcon("cmd_download_multiple", '\ue900')
+        @JvmField
+        val cmd_download_network_outline = CommunityMaterialIcon("cmd_download_network_outline", '\ue900')
+        @JvmField
+        val cmd_download_network = CommunityMaterialIcon("cmd_download_network", '\ue900')
+        @JvmField
+        val cmd_download_off_outline = CommunityMaterialIcon("cmd_download_off_outline", '\ue900')
+        @JvmField
+        val cmd_download_off = CommunityMaterialIcon("cmd_download_off", '\ue900')
+        @JvmField
+        val cmd_download_outline = CommunityMaterialIcon("cmd_download_outline", '\ue900')
+        @JvmField
+        val cmd_download = CommunityMaterialIcon("cmd_download", '\ue900')
+        @JvmField
+        val cmd_drag_horizontal = CommunityMaterialIcon("cmd_drag_horizontal", '\ue900')
+        @JvmField
+        val cmd_drag_variant = CommunityMaterialIcon("cmd_drag_variant", '\ue900')
+        @JvmField
+        val cmd_drag_vertical = CommunityMaterialIcon("cmd_drag_vertical", '\ue900')
+        @JvmField
+        val cmd_drag = CommunityMaterialIcon("cmd_drag", '\ue900')
+        @JvmField
+        val cmd_drama_masks = CommunityMaterialIcon("cmd_drama_masks", '\ue900')
+        @JvmField
+        val cmd_draw = CommunityMaterialIcon("cmd_draw", '\ue900')
+        @JvmField
+        val cmd_drawing_box = CommunityMaterialIcon("cmd_drawing_box", '\ue900')
+        @JvmField
+        val cmd_drawing = CommunityMaterialIcon("cmd_drawing", '\ue900')
+        @JvmField
+        val cmd_dresser_outline = CommunityMaterialIcon("cmd_dresser_outline", '\ue900')
+        @JvmField
+        val cmd_dresser = CommunityMaterialIcon("cmd_dresser", '\ue900')
+        @JvmField
+        val cmd_dribbble_box = CommunityMaterialIcon("cmd_dribbble_box", '\ue900')
+        @JvmField
+        val cmd_dribbble = CommunityMaterialIcon("cmd_dribbble", '\ue900')
+        @JvmField
+        val cmd_drone = CommunityMaterialIcon("cmd_drone", '\ue900')
+        @JvmField
+        val cmd_dropbox = CommunityMaterialIcon("cmd_dropbox", '\ue900')
+        @JvmField
+        val cmd_drupal = CommunityMaterialIcon("cmd_drupal", '\ue900')
+        @JvmField
+        val cmd_duck = CommunityMaterialIcon("cmd_duck", '\ue900')
+        @JvmField
+        val cmd_dumbbell = CommunityMaterialIcon("cmd_dumbbell", '\ue900')
+        @JvmField
+        val cmd_dump_truck = CommunityMaterialIcon("cmd_dump_truck", '\ue900')
+        @JvmField
+        val cmd_ear_hearing_off = CommunityMaterialIcon("cmd_ear_hearing_off", '\ue900')
+        @JvmField
+        val cmd_ear_hearing = CommunityMaterialIcon("cmd_ear_hearing", '\ue900')
+        @JvmField
+        val cmd_earth_box_off = CommunityMaterialIcon("cmd_earth_box_off", '\ue900')
+        @JvmField
+        val cmd_earth_box = CommunityMaterialIcon("cmd_earth_box", '\ue900')
+        @JvmField
+        val cmd_earth_off = CommunityMaterialIcon("cmd_earth_off", '\ue900')
+        @JvmField
+        val cmd_earth = CommunityMaterialIcon("cmd_earth", '\ue900')
+        @JvmField
+        val cmd_edge_legacy = CommunityMaterialIcon("cmd_edge_legacy", '\ue900')
+        @JvmField
+        val cmd_edge = CommunityMaterialIcon("cmd_edge", '\ue900')
+        @JvmField
+        val cmd_egg_easter = CommunityMaterialIcon("cmd_egg_easter", '\ue900')
+        @JvmField
+        val cmd_egg = CommunityMaterialIcon("cmd_egg", '\ue900')
+        @JvmField
+        val cmd_eight_track = CommunityMaterialIcon("cmd_eight_track", '\ue900')
+        @JvmField
+        val cmd_eject_outline = CommunityMaterialIcon("cmd_eject_outline", '\ue900')
+        @JvmField
+        val cmd_eject = CommunityMaterialIcon("cmd_eject", '\ue900')
+        @JvmField
+        val cmd_electric_switch_closed = CommunityMaterialIcon("cmd_electric_switch_closed", '\ue900')
+        @JvmField
+        val cmd_electric_switch = CommunityMaterialIcon("cmd_electric_switch", '\ue900')
+        @JvmField
+        val cmd_electron_framework = CommunityMaterialIcon("cmd_electron_framework", '\ue900')
+        @JvmField
+        val cmd_elephant = CommunityMaterialIcon("cmd_elephant", '\ue900')
+        @JvmField
+        val cmd_elevation_decline = CommunityMaterialIcon("cmd_elevation_decline", '\ue900')
+        @JvmField
+        val cmd_elevation_rise = CommunityMaterialIcon("cmd_elevation_rise", '\ue900')
+        @JvmField
+        val cmd_elevator_down = CommunityMaterialIcon("cmd_elevator_down", '\ue900')
+        @JvmField
+        val cmd_elevator_up = CommunityMaterialIcon("cmd_elevator_up", '\ue900')
+        @JvmField
+        val cmd_elevator = CommunityMaterialIcon("cmd_elevator", '\ue900')
+        @JvmField
+        val cmd_ellipse_outline = CommunityMaterialIcon("cmd_ellipse_outline", '\ue900')
+        @JvmField
+        val cmd_ellipse = CommunityMaterialIcon("cmd_ellipse", '\ue900')
+        @JvmField
+        val cmd_email_alert = CommunityMaterialIcon("cmd_email_alert", '\ue900')
+        @JvmField
+        val cmd_email_box = CommunityMaterialIcon("cmd_email_box", '\ue900')
+        @JvmField
+        val cmd_email_check_outline = CommunityMaterialIcon("cmd_email_check_outline", '\ue900')
+        @JvmField
+        val cmd_email_check = CommunityMaterialIcon("cmd_email_check", '\ue900')
+        @JvmField
+        val cmd_email_edit_outline = CommunityMaterialIcon("cmd_email_edit_outline", '\ue900')
+        @JvmField
+        val cmd_email_edit = CommunityMaterialIcon("cmd_email_edit", '\ue900')
+        @JvmField
+        val cmd_email_lock = CommunityMaterialIcon("cmd_email_lock", '\ue900')
+        @JvmField
+        val cmd_email_mark_as_unread = CommunityMaterialIcon("cmd_email_mark_as_unread", '\ue900')
+        @JvmField
+        val cmd_email_minus_outline = CommunityMaterialIcon("cmd_email_minus_outline", '\ue900')
+        @JvmField
+        val cmd_email_minus = CommunityMaterialIcon("cmd_email_minus", '\ue900')
+        @JvmField
+        val cmd_email_multiple_outline = CommunityMaterialIcon("cmd_email_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_email_multiple = CommunityMaterialIcon("cmd_email_multiple", '\ue900')
+        @JvmField
+        val cmd_email_newsletter = CommunityMaterialIcon("cmd_email_newsletter", '\ue900')
+        @JvmField
+        val cmd_email_open_multiple_outline = CommunityMaterialIcon("cmd_email_open_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_email_open_multiple = CommunityMaterialIcon("cmd_email_open_multiple", '\ue900')
+        @JvmField
+        val cmd_email_open_outline = CommunityMaterialIcon("cmd_email_open_outline", '\ue900')
+        @JvmField
+        val cmd_email_open = CommunityMaterialIcon("cmd_email_open", '\ue900')
+        @JvmField
+        val cmd_email_outline = CommunityMaterialIcon("cmd_email_outline", '\ue900')
+        @JvmField
+        val cmd_email_plus_outline = CommunityMaterialIcon("cmd_email_plus_outline", '\ue900')
+        @JvmField
+        val cmd_email_plus = CommunityMaterialIcon("cmd_email_plus", '\ue900')
+        @JvmField
+        val cmd_email_receive_outline = CommunityMaterialIcon("cmd_email_receive_outline", '\ue900')
+        @JvmField
+        val cmd_email_receive = CommunityMaterialIcon("cmd_email_receive", '\ue900')
+        @JvmField
+        val cmd_email_search_outline = CommunityMaterialIcon("cmd_email_search_outline", '\ue900')
+        @JvmField
+        val cmd_email_search = CommunityMaterialIcon("cmd_email_search", '\ue900')
+        @JvmField
+        val cmd_email_send_outline = CommunityMaterialIcon("cmd_email_send_outline", '\ue900')
+        @JvmField
+        val cmd_email_send = CommunityMaterialIcon("cmd_email_send", '\ue900')
+        @JvmField
+        val cmd_email_sync_outline = CommunityMaterialIcon("cmd_email_sync_outline", '\ue900')
+        @JvmField
+        val cmd_email_sync = CommunityMaterialIcon("cmd_email_sync", '\ue900')
+        @JvmField
+        val cmd_email_variant = CommunityMaterialIcon("cmd_email_variant", '\ue900')
+        @JvmField
+        val cmd_email = CommunityMaterialIcon("cmd_email", '\ue900')
+        @JvmField
+        val cmd_ember = CommunityMaterialIcon("cmd_ember", '\ue900')
+        @JvmField
+        val cmd_emby = CommunityMaterialIcon("cmd_emby", '\ue900')
+        @JvmField
+        val cmd_emoticon_angry_outline = CommunityMaterialIcon("cmd_emoticon_angry_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_angry = CommunityMaterialIcon("cmd_emoticon_angry", '\ue900')
+        @JvmField
+        val cmd_emoticon_confused_outline = CommunityMaterialIcon("cmd_emoticon_confused_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_confused = CommunityMaterialIcon("cmd_emoticon_confused", '\ue900')
+        @JvmField
+        val cmd_emoticon_cool_outline = CommunityMaterialIcon("cmd_emoticon_cool_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_cool = CommunityMaterialIcon("cmd_emoticon_cool", '\ue900')
+        @JvmField
+        val cmd_emoticon_cry_outline = CommunityMaterialIcon("cmd_emoticon_cry_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_cry = CommunityMaterialIcon("cmd_emoticon_cry", '\ue900')
+        @JvmField
+        val cmd_emoticon_dead_outline = CommunityMaterialIcon("cmd_emoticon_dead_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_dead = CommunityMaterialIcon("cmd_emoticon_dead", '\ue900')
+        @JvmField
+        val cmd_emoticon_devil_outline = CommunityMaterialIcon("cmd_emoticon_devil_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_devil = CommunityMaterialIcon("cmd_emoticon_devil", '\ue900')
+        @JvmField
+        val cmd_emoticon_excited_outline = CommunityMaterialIcon("cmd_emoticon_excited_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_excited = CommunityMaterialIcon("cmd_emoticon_excited", '\ue900')
+        @JvmField
+        val cmd_emoticon_frown_outline = CommunityMaterialIcon("cmd_emoticon_frown_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_frown = CommunityMaterialIcon("cmd_emoticon_frown", '\ue900')
+        @JvmField
+        val cmd_emoticon_happy_outline = CommunityMaterialIcon("cmd_emoticon_happy_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_happy = CommunityMaterialIcon("cmd_emoticon_happy", '\ue900')
+        @JvmField
+        val cmd_emoticon_kiss_outline = CommunityMaterialIcon("cmd_emoticon_kiss_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_kiss = CommunityMaterialIcon("cmd_emoticon_kiss", '\ue900')
+        @JvmField
+        val cmd_emoticon_lol_outline = CommunityMaterialIcon("cmd_emoticon_lol_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_lol = CommunityMaterialIcon("cmd_emoticon_lol", '\ue900')
+        @JvmField
+        val cmd_emoticon_neutral_outline = CommunityMaterialIcon("cmd_emoticon_neutral_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_neutral = CommunityMaterialIcon("cmd_emoticon_neutral", '\ue900')
+        @JvmField
+        val cmd_emoticon_outline = CommunityMaterialIcon("cmd_emoticon_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_poop_outline = CommunityMaterialIcon("cmd_emoticon_poop_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_poop = CommunityMaterialIcon("cmd_emoticon_poop", '\ue900')
+        @JvmField
+        val cmd_emoticon_sad_outline = CommunityMaterialIcon("cmd_emoticon_sad_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_sad = CommunityMaterialIcon("cmd_emoticon_sad", '\ue900')
+        @JvmField
+        val cmd_emoticon_tongue_outline = CommunityMaterialIcon("cmd_emoticon_tongue_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_tongue = CommunityMaterialIcon("cmd_emoticon_tongue", '\ue900')
+        @JvmField
+        val cmd_emoticon_wink_outline = CommunityMaterialIcon("cmd_emoticon_wink_outline", '\ue900')
+        @JvmField
+        val cmd_emoticon_wink = CommunityMaterialIcon("cmd_emoticon_wink", '\ue900')
+        @JvmField
+        val cmd_emoticon = CommunityMaterialIcon("cmd_emoticon", '\ue900')
+        @JvmField
+        val cmd_engine_off_outline = CommunityMaterialIcon("cmd_engine_off_outline", '\ue900')
+        @JvmField
+        val cmd_engine_off = CommunityMaterialIcon("cmd_engine_off", '\ue900')
+        @JvmField
+        val cmd_engine_outline = CommunityMaterialIcon("cmd_engine_outline", '\ue900')
+        @JvmField
+        val cmd_engine = CommunityMaterialIcon("cmd_engine", '\ue900')
+        @JvmField
+        val cmd_epsilon = CommunityMaterialIcon("cmd_epsilon", '\ue900')
+        @JvmField
+        val cmd_equal_box = CommunityMaterialIcon("cmd_equal_box", '\ue900')
+        @JvmField
+        val cmd_equal = CommunityMaterialIcon("cmd_equal", '\ue900')
+        @JvmField
+        val cmd_equalizer_outline = CommunityMaterialIcon("cmd_equalizer_outline", '\ue900')
+        @JvmField
+        val cmd_equalizer = CommunityMaterialIcon("cmd_equalizer", '\ue900')
+        @JvmField
+        val cmd_eraser_variant = CommunityMaterialIcon("cmd_eraser_variant", '\ue900')
+        @JvmField
+        val cmd_eraser = CommunityMaterialIcon("cmd_eraser", '\ue900')
+        @JvmField
+        val cmd_escalator_down = CommunityMaterialIcon("cmd_escalator_down", '\ue900')
+        @JvmField
+        val cmd_escalator_up = CommunityMaterialIcon("cmd_escalator_up", '\ue900')
+        @JvmField
+        val cmd_escalator = CommunityMaterialIcon("cmd_escalator", '\ue900')
+        @JvmField
+        val cmd_eslint = CommunityMaterialIcon("cmd_eslint", '\ue900')
+        @JvmField
+        val cmd_et = CommunityMaterialIcon("cmd_et", '\ue900')
+        @JvmField
+        val cmd_ethereum = CommunityMaterialIcon("cmd_ethereum", '\ue900')
+        @JvmField
+        val cmd_ethernet_cable_off = CommunityMaterialIcon("cmd_ethernet_cable_off", '\ue900')
+        @JvmField
+        val cmd_ethernet_cable = CommunityMaterialIcon("cmd_ethernet_cable", '\ue900')
+        @JvmField
+        val cmd_ethernet = CommunityMaterialIcon("cmd_ethernet", '\ue900')
+        @JvmField
+        val cmd_etsy = CommunityMaterialIcon("cmd_etsy", '\ue900')
+        @JvmField
+        val cmd_ev_station = CommunityMaterialIcon("cmd_ev_station", '\ue900')
+        @JvmField
+        val cmd_eventbrite = CommunityMaterialIcon("cmd_eventbrite", '\ue900')
+        @JvmField
+        val cmd_evernote = CommunityMaterialIcon("cmd_evernote", '\ue900')
+        @JvmField
+        val cmd_excavator = CommunityMaterialIcon("cmd_excavator", '\ue900')
+        @JvmField
+        val cmd_exclamation_thick = CommunityMaterialIcon("cmd_exclamation_thick", '\ue900')
+        @JvmField
+        val cmd_exclamation = CommunityMaterialIcon("cmd_exclamation", '\ue900')
+        @JvmField
+        val cmd_exit_run = CommunityMaterialIcon("cmd_exit_run", '\ue900')
+        @JvmField
+        val cmd_exit_to_app = CommunityMaterialIcon("cmd_exit_to_app", '\ue900')
+        @JvmField
+        val cmd_expand_all_outline = CommunityMaterialIcon("cmd_expand_all_outline", '\ue900')
+        @JvmField
+        val cmd_expand_all = CommunityMaterialIcon("cmd_expand_all", '\ue900')
+        @JvmField
+        val cmd_expansion_card_variant = CommunityMaterialIcon("cmd_expansion_card_variant", '\ue900')
+        @JvmField
+        val cmd_expansion_card = CommunityMaterialIcon("cmd_expansion_card", '\ue900')
+        @JvmField
+        val cmd_exponent_box = CommunityMaterialIcon("cmd_exponent_box", '\ue900')
+        @JvmField
+        val cmd_exponent = CommunityMaterialIcon("cmd_exponent", '\ue900')
+        @JvmField
+        val cmd_export_variant = CommunityMaterialIcon("cmd_export_variant", '\ue900')
+        @JvmField
+        val cmd_export = CommunityMaterialIcon("cmd_export", '\ue900')
+        @JvmField
+        val cmd_eye_check_outline = CommunityMaterialIcon("cmd_eye_check_outline", '\ue900')
+        @JvmField
+        val cmd_eye_check = CommunityMaterialIcon("cmd_eye_check", '\ue900')
+        @JvmField
+        val cmd_eye_circle_outline = CommunityMaterialIcon("cmd_eye_circle_outline", '\ue900')
+        @JvmField
+        val cmd_eye_circle = CommunityMaterialIcon("cmd_eye_circle", '\ue900')
+        @JvmField
+        val cmd_eye_minus_outline = CommunityMaterialIcon("cmd_eye_minus_outline", '\ue900')
+        @JvmField
+        val cmd_eye_minus = CommunityMaterialIcon("cmd_eye_minus", '\ue900')
+        @JvmField
+        val cmd_eye_off_outline = CommunityMaterialIcon("cmd_eye_off_outline", '\ue900')
+        @JvmField
+        val cmd_eye_off = CommunityMaterialIcon("cmd_eye_off", '\ue900')
+        @JvmField
+        val cmd_eye_outline = CommunityMaterialIcon("cmd_eye_outline", '\ue900')
+        @JvmField
+        val cmd_eye_plus_outline = CommunityMaterialIcon("cmd_eye_plus_outline", '\ue900')
+        @JvmField
+        val cmd_eye_plus = CommunityMaterialIcon("cmd_eye_plus", '\ue900')
+        @JvmField
+        val cmd_eye_settings_outline = CommunityMaterialIcon("cmd_eye_settings_outline", '\ue900')
+        @JvmField
+        val cmd_eye_settings = CommunityMaterialIcon("cmd_eye_settings", '\ue900')
+        @JvmField
+        val cmd_eye = CommunityMaterialIcon("cmd_eye", '\ue900')
+        @JvmField
+        val cmd_eyedropper_variant = CommunityMaterialIcon("cmd_eyedropper_variant", '\ue900')
+        @JvmField
+        val cmd_eyedropper = CommunityMaterialIcon("cmd_eyedropper", '\ue900')
+        @JvmField
+        val cmd_face_agent = CommunityMaterialIcon("cmd_face_agent", '\ue900')
+        @JvmField
+        val cmd_face_outline = CommunityMaterialIcon("cmd_face_outline", '\ue900')
+        @JvmField
+        val cmd_face_profile_woman = CommunityMaterialIcon("cmd_face_profile_woman", '\ue900')
+        @JvmField
+        val cmd_face_profile = CommunityMaterialIcon("cmd_face_profile", '\ue900')
+        @JvmField
+        val cmd_face_recognition = CommunityMaterialIcon("cmd_face_recognition", '\ue900')
+        @JvmField
+        val cmd_face_woman_outline = CommunityMaterialIcon("cmd_face_woman_outline", '\ue900')
+        @JvmField
+        val cmd_face_woman = CommunityMaterialIcon("cmd_face_woman", '\ue900')
+        @JvmField
+        val cmd_face = CommunityMaterialIcon("cmd_face", '\ue900')
+        @JvmField
+        val cmd_facebook_box = CommunityMaterialIcon("cmd_facebook_box", '\ue900')
+        @JvmField
+        val cmd_facebook_messenger = CommunityMaterialIcon("cmd_facebook_messenger", '\ue900')
+        @JvmField
+        val cmd_facebook_workplace = CommunityMaterialIcon("cmd_facebook_workplace", '\ue900')
+        @JvmField
+        val cmd_facebook = CommunityMaterialIcon("cmd_facebook", '\ue900')
+        @JvmField
+        val cmd_factory = CommunityMaterialIcon("cmd_factory", '\ue900')
+        @JvmField
+        val cmd_fan_off = CommunityMaterialIcon("cmd_fan_off", '\ue900')
+        @JvmField
+        val cmd_fan = CommunityMaterialIcon("cmd_fan", '\ue900')
+        @JvmField
+        val cmd_fast_forward_5 = CommunityMaterialIcon("cmd_fast_forward_5", '\ue900')
+        @JvmField
+        val cmd_fast_forward_10 = CommunityMaterialIcon("cmd_fast_forward_10", '\ue900')
+        @JvmField
+        val cmd_fast_forward_30 = CommunityMaterialIcon("cmd_fast_forward_30", '\ue900')
+        @JvmField
+        val cmd_fast_forward_outline = CommunityMaterialIcon("cmd_fast_forward_outline", '\ue900')
+        @JvmField
+        val cmd_fast_forward = CommunityMaterialIcon("cmd_fast_forward", '\ue900')
+        @JvmField
+        val cmd_fax = CommunityMaterialIcon("cmd_fax", '\ue900')
+        @JvmField
+        val cmd_feather = CommunityMaterialIcon("cmd_feather", '\ue900')
+        @JvmField
+        val cmd_feature_search_outline = CommunityMaterialIcon("cmd_feature_search_outline", '\ue900')
+        @JvmField
+        val cmd_feature_search = CommunityMaterialIcon("cmd_feature_search", '\ue900')
+        @JvmField
+        val cmd_fedora = CommunityMaterialIcon("cmd_fedora", '\ue900')
+        @JvmField
+        val cmd_ferris_wheel = CommunityMaterialIcon("cmd_ferris_wheel", '\ue900')
+        @JvmField
+        val cmd_ferry = CommunityMaterialIcon("cmd_ferry", '\ue900')
+        @JvmField
+        val cmd_file_account_outline = CommunityMaterialIcon("cmd_file_account_outline", '\ue900')
+        @JvmField
+        val cmd_file_account = CommunityMaterialIcon("cmd_file_account", '\ue900')
+        @JvmField
+        val cmd_file_alert_outline = CommunityMaterialIcon("cmd_file_alert_outline", '\ue900')
+        @JvmField
+        val cmd_file_alert = CommunityMaterialIcon("cmd_file_alert", '\ue900')
+        @JvmField
+        val cmd_file_cabinet = CommunityMaterialIcon("cmd_file_cabinet", '\ue900')
+        @JvmField
+        val cmd_file_cad_box = CommunityMaterialIcon("cmd_file_cad_box", '\ue900')
+        @JvmField
+        val cmd_file_cad = CommunityMaterialIcon("cmd_file_cad", '\ue900')
+        @JvmField
+        val cmd_file_cancel_outline = CommunityMaterialIcon("cmd_file_cancel_outline", '\ue900')
+        @JvmField
+        val cmd_file_cancel = CommunityMaterialIcon("cmd_file_cancel", '\ue900')
+        @JvmField
+        val cmd_file_certificate_outline = CommunityMaterialIcon("cmd_file_certificate_outline", '\ue900')
+        @JvmField
+        val cmd_file_certificate = CommunityMaterialIcon("cmd_file_certificate", '\ue900')
+        @JvmField
+        val cmd_file_chart_outline = CommunityMaterialIcon("cmd_file_chart_outline", '\ue900')
+        @JvmField
+        val cmd_file_chart = CommunityMaterialIcon("cmd_file_chart", '\ue900')
+        @JvmField
+        val cmd_file_check_outline = CommunityMaterialIcon("cmd_file_check_outline", '\ue900')
+        @JvmField
+        val cmd_file_check = CommunityMaterialIcon("cmd_file_check", '\ue900')
+        @JvmField
+        val cmd_file_clock_outline = CommunityMaterialIcon("cmd_file_clock_outline", '\ue900')
+        @JvmField
+        val cmd_file_clock = CommunityMaterialIcon("cmd_file_clock", '\ue900')
+        @JvmField
+        val cmd_file_cloud_outline = CommunityMaterialIcon("cmd_file_cloud_outline", '\ue900')
+        @JvmField
+        val cmd_file_cloud = CommunityMaterialIcon("cmd_file_cloud", '\ue900')
+        @JvmField
+        val cmd_file_code_outline = CommunityMaterialIcon("cmd_file_code_outline", '\ue900')
+        @JvmField
+        val cmd_file_code = CommunityMaterialIcon("cmd_file_code", '\ue900')
+        @JvmField
+        val cmd_file_compare = CommunityMaterialIcon("cmd_file_compare", '\ue900')
+        @JvmField
+        val cmd_file_delimited_outline = CommunityMaterialIcon("cmd_file_delimited_outline", '\ue900')
+        @JvmField
+        val cmd_file_delimited = CommunityMaterialIcon("cmd_file_delimited", '\ue900')
+        @JvmField
+        val cmd_file_document_box_check_outline = CommunityMaterialIcon("cmd_file_document_box_check_outline", '\ue900')
+        @JvmField
+        val cmd_file_document_box_check = CommunityMaterialIcon("cmd_file_document_box_check", '\ue900')
+        @JvmField
+        val cmd_file_document_box_minus_outline = CommunityMaterialIcon("cmd_file_document_box_minus_outline", '\ue900')
+        @JvmField
+        val cmd_file_document_box_minus = CommunityMaterialIcon("cmd_file_document_box_minus", '\ue900')
+        @JvmField
+        val cmd_file_document_box_multiple_outline = CommunityMaterialIcon("cmd_file_document_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_file_document_box_multiple = CommunityMaterialIcon("cmd_file_document_box_multiple", '\ue900')
+        @JvmField
+        val cmd_file_document_box_outline = CommunityMaterialIcon("cmd_file_document_box_outline", '\ue900')
+        @JvmField
+        val cmd_file_document_box_plus_outline = CommunityMaterialIcon("cmd_file_document_box_plus_outline", '\ue900')
+        @JvmField
+        val cmd_file_document_box_plus = CommunityMaterialIcon("cmd_file_document_box_plus", '\ue900')
+        @JvmField
+        val cmd_file_document_box_remove_outline = CommunityMaterialIcon("cmd_file_document_box_remove_outline", '\ue900')
+        @JvmField
+        val cmd_file_document_box_remove = CommunityMaterialIcon("cmd_file_document_box_remove", '\ue900')
+        @JvmField
+        val cmd_file_document_box_search_outline = CommunityMaterialIcon("cmd_file_document_box_search_outline", '\ue900')
+        @JvmField
+        val cmd_file_document_box_search = CommunityMaterialIcon("cmd_file_document_box_search", '\ue900')
+        @JvmField
+        val cmd_file_document_box = CommunityMaterialIcon("cmd_file_document_box", '\ue900')
+        @JvmField
+        val cmd_file_document_edit_outline = CommunityMaterialIcon("cmd_file_document_edit_outline", '\ue900')
+        @JvmField
+        val cmd_file_document_edit = CommunityMaterialIcon("cmd_file_document_edit", '\ue900')
+        @JvmField
+        val cmd_file_document_outline = CommunityMaterialIcon("cmd_file_document_outline", '\ue900')
+        @JvmField
+        val cmd_file_document = CommunityMaterialIcon("cmd_file_document", '\ue900')
+        @JvmField
+        val cmd_file_download_outline = CommunityMaterialIcon("cmd_file_download_outline", '\ue900')
+        @JvmField
+        val cmd_file_download = CommunityMaterialIcon("cmd_file_download", '\ue900')
+        @JvmField
+        val cmd_file_edit_outline = CommunityMaterialIcon("cmd_file_edit_outline", '\ue900')
+        @JvmField
+        val cmd_file_edit = CommunityMaterialIcon("cmd_file_edit", '\ue900')
+        @JvmField
+        val cmd_file_excel_box_outline = CommunityMaterialIcon("cmd_file_excel_box_outline", '\ue900')
+        @JvmField
+        val cmd_file_excel_box = CommunityMaterialIcon("cmd_file_excel_box", '\ue900')
+        @JvmField
+        val cmd_file_excel_outline = CommunityMaterialIcon("cmd_file_excel_outline", '\ue900')
+        @JvmField
+        val cmd_file_excel = CommunityMaterialIcon("cmd_file_excel", '\ue900')
+        @JvmField
+        val cmd_file_export_outline = CommunityMaterialIcon("cmd_file_export_outline", '\ue900')
+        @JvmField
+        val cmd_file_export = CommunityMaterialIcon("cmd_file_export", '\ue900')
+        @JvmField
+        val cmd_file_eye_outline = CommunityMaterialIcon("cmd_file_eye_outline", '\ue900')
+        @JvmField
+        val cmd_file_eye = CommunityMaterialIcon("cmd_file_eye", '\ue900')
+        @JvmField
+        val cmd_file_find_outline = CommunityMaterialIcon("cmd_file_find_outline", '\ue900')
+        @JvmField
+        val cmd_file_find = CommunityMaterialIcon("cmd_file_find", '\ue900')
+        @JvmField
+        val cmd_file_hidden = CommunityMaterialIcon("cmd_file_hidden", '\ue900')
+        @JvmField
+        val cmd_file_image_outline = CommunityMaterialIcon("cmd_file_image_outline", '\ue900')
+        @JvmField
+        val cmd_file_image = CommunityMaterialIcon("cmd_file_image", '\ue900')
+        @JvmField
+        val cmd_file_import_outline = CommunityMaterialIcon("cmd_file_import_outline", '\ue900')
+        @JvmField
+        val cmd_file_import = CommunityMaterialIcon("cmd_file_import", '\ue900')
+        @JvmField
+        val cmd_file_key_outline = CommunityMaterialIcon("cmd_file_key_outline", '\ue900')
+        @JvmField
+        val cmd_file_key = CommunityMaterialIcon("cmd_file_key", '\ue900')
+        @JvmField
+        val cmd_file_link_outline = CommunityMaterialIcon("cmd_file_link_outline", '\ue900')
+        @JvmField
+        val cmd_file_link = CommunityMaterialIcon("cmd_file_link", '\ue900')
+        @JvmField
+        val cmd_file_lock_outline = CommunityMaterialIcon("cmd_file_lock_outline", '\ue900')
+        @JvmField
+        val cmd_file_lock = CommunityMaterialIcon("cmd_file_lock", '\ue900')
+        @JvmField
+        val cmd_file_move_outline = CommunityMaterialIcon("cmd_file_move_outline", '\ue900')
+        @JvmField
+        val cmd_file_move = CommunityMaterialIcon("cmd_file_move", '\ue900')
+        @JvmField
+        val cmd_file_multiple_outline = CommunityMaterialIcon("cmd_file_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_file_multiple = CommunityMaterialIcon("cmd_file_multiple", '\ue900')
+        @JvmField
+        val cmd_file_music_outline = CommunityMaterialIcon("cmd_file_music_outline", '\ue900')
+        @JvmField
+        val cmd_file_music = CommunityMaterialIcon("cmd_file_music", '\ue900')
+        @JvmField
+        val cmd_file_outline = CommunityMaterialIcon("cmd_file_outline", '\ue900')
+        @JvmField
+        val cmd_file_pdf_box_outline = CommunityMaterialIcon("cmd_file_pdf_box_outline", '\ue900')
+        @JvmField
+        val cmd_file_pdf_box = CommunityMaterialIcon("cmd_file_pdf_box", '\ue900')
+        @JvmField
+        val cmd_file_pdf_outline = CommunityMaterialIcon("cmd_file_pdf_outline", '\ue900')
+        @JvmField
+        val cmd_file_pdf = CommunityMaterialIcon("cmd_file_pdf", '\ue900')
+        @JvmField
+        val cmd_file_percent_outline = CommunityMaterialIcon("cmd_file_percent_outline", '\ue900')
+        @JvmField
+        val cmd_file_percent = CommunityMaterialIcon("cmd_file_percent", '\ue900')
+        @JvmField
+        val cmd_file_phone_outline = CommunityMaterialIcon("cmd_file_phone_outline", '\ue900')
+        @JvmField
+        val cmd_file_phone = CommunityMaterialIcon("cmd_file_phone", '\ue900')
+        @JvmField
+        val cmd_file_plus_outline = CommunityMaterialIcon("cmd_file_plus_outline", '\ue900')
+        @JvmField
+        val cmd_file_plus = CommunityMaterialIcon("cmd_file_plus", '\ue900')
+        @JvmField
+        val cmd_file_powerpoint_box_outline = CommunityMaterialIcon("cmd_file_powerpoint_box_outline", '\ue900')
+        @JvmField
+        val cmd_file_powerpoint_box = CommunityMaterialIcon("cmd_file_powerpoint_box", '\ue900')
+        @JvmField
+        val cmd_file_powerpoint_outline = CommunityMaterialIcon("cmd_file_powerpoint_outline", '\ue900')
+        @JvmField
+        val cmd_file_powerpoint = CommunityMaterialIcon("cmd_file_powerpoint", '\ue900')
+        @JvmField
+        val cmd_file_presentation_box = CommunityMaterialIcon("cmd_file_presentation_box", '\ue900')
+        @JvmField
+        val cmd_file_question_outline = CommunityMaterialIcon("cmd_file_question_outline", '\ue900')
+        @JvmField
+        val cmd_file_question = CommunityMaterialIcon("cmd_file_question", '\ue900')
+        @JvmField
+        val cmd_file_remove_outline = CommunityMaterialIcon("cmd_file_remove_outline", '\ue900')
+        @JvmField
+        val cmd_file_remove = CommunityMaterialIcon("cmd_file_remove", '\ue900')
+        @JvmField
+        val cmd_file_replace_outline = CommunityMaterialIcon("cmd_file_replace_outline", '\ue900')
+        @JvmField
+        val cmd_file_replace = CommunityMaterialIcon("cmd_file_replace", '\ue900')
+        @JvmField
+        val cmd_file_restore_outline = CommunityMaterialIcon("cmd_file_restore_outline", '\ue900')
+        @JvmField
+        val cmd_file_restore = CommunityMaterialIcon("cmd_file_restore", '\ue900')
+        @JvmField
+        val cmd_file_search_outline = CommunityMaterialIcon("cmd_file_search_outline", '\ue900')
+        @JvmField
+        val cmd_file_search = CommunityMaterialIcon("cmd_file_search", '\ue900')
+        @JvmField
+        val cmd_file_send_outline = CommunityMaterialIcon("cmd_file_send_outline", '\ue900')
+        @JvmField
+        val cmd_file_send = CommunityMaterialIcon("cmd_file_send", '\ue900')
+        @JvmField
+        val cmd_file_settings_outline = CommunityMaterialIcon("cmd_file_settings_outline", '\ue900')
+        @JvmField
+        val cmd_file_settings_variant_outline = CommunityMaterialIcon("cmd_file_settings_variant_outline", '\ue900')
+        @JvmField
+        val cmd_file_settings_variant = CommunityMaterialIcon("cmd_file_settings_variant", '\ue900')
+        @JvmField
+        val cmd_file_settings = CommunityMaterialIcon("cmd_file_settings", '\ue900')
+        @JvmField
+        val cmd_file_star_outline = CommunityMaterialIcon("cmd_file_star_outline", '\ue900')
+        @JvmField
+        val cmd_file_star = CommunityMaterialIcon("cmd_file_star", '\ue900')
+        @JvmField
+        val cmd_file_swap_outline = CommunityMaterialIcon("cmd_file_swap_outline", '\ue900')
+        @JvmField
+        val cmd_file_swap = CommunityMaterialIcon("cmd_file_swap", '\ue900')
+        @JvmField
+        val cmd_file_sync_outline = CommunityMaterialIcon("cmd_file_sync_outline", '\ue900')
+        @JvmField
+        val cmd_file_sync = CommunityMaterialIcon("cmd_file_sync", '\ue900')
+        @JvmField
+        val cmd_file_table_box_multiple_outline = CommunityMaterialIcon("cmd_file_table_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_file_table_box_multiple = CommunityMaterialIcon("cmd_file_table_box_multiple", '\ue900')
+        @JvmField
+        val cmd_file_table_box_outline = CommunityMaterialIcon("cmd_file_table_box_outline", '\ue900')
+        @JvmField
+        val cmd_file_table_box = CommunityMaterialIcon("cmd_file_table_box", '\ue900')
+        @JvmField
+        val cmd_file_table_outline = CommunityMaterialIcon("cmd_file_table_outline", '\ue900')
+        @JvmField
+        val cmd_file_table = CommunityMaterialIcon("cmd_file_table", '\ue900')
+        @JvmField
+        val cmd_file_tree = CommunityMaterialIcon("cmd_file_tree", '\ue900')
+        @JvmField
+        val cmd_file_undo_outline = CommunityMaterialIcon("cmd_file_undo_outline", '\ue900')
+        @JvmField
+        val cmd_file_undo = CommunityMaterialIcon("cmd_file_undo", '\ue900')
+        @JvmField
+        val cmd_file_upload_outline = CommunityMaterialIcon("cmd_file_upload_outline", '\ue900')
+        @JvmField
+        val cmd_file_upload = CommunityMaterialIcon("cmd_file_upload", '\ue900')
+        @JvmField
+        val cmd_file_video_outline = CommunityMaterialIcon("cmd_file_video_outline", '\ue900')
+        @JvmField
+        val cmd_file_video = CommunityMaterialIcon("cmd_file_video", '\ue900')
+        @JvmField
+        val cmd_file_word_box_outline = CommunityMaterialIcon("cmd_file_word_box_outline", '\ue900')
+        @JvmField
+        val cmd_file_word_box = CommunityMaterialIcon("cmd_file_word_box", '\ue900')
+        @JvmField
+        val cmd_file_word_outline = CommunityMaterialIcon("cmd_file_word_outline", '\ue900')
+        @JvmField
+        val cmd_file_word = CommunityMaterialIcon("cmd_file_word", '\ue900')
+        @JvmField
+        val cmd_file = CommunityMaterialIcon("cmd_file", '\ue900')
+        @JvmField
+        val cmd_film = CommunityMaterialIcon("cmd_film", '\ue900')
+        @JvmField
+        val cmd_filmstrip_off = CommunityMaterialIcon("cmd_filmstrip_off", '\ue900')
+        @JvmField
+        val cmd_filmstrip = CommunityMaterialIcon("cmd_filmstrip", '\ue900')
+        @JvmField
+        val cmd_filter_menu_outline = CommunityMaterialIcon("cmd_filter_menu_outline", '\ue900')
+        @JvmField
+        val cmd_filter_menu = CommunityMaterialIcon("cmd_filter_menu", '\ue900')
+        @JvmField
+        val cmd_filter_minus_outline = CommunityMaterialIcon("cmd_filter_minus_outline", '\ue900')
+        @JvmField
+        val cmd_filter_minus = CommunityMaterialIcon("cmd_filter_minus", '\ue900')
+        @JvmField
+        val cmd_filter_outline = CommunityMaterialIcon("cmd_filter_outline", '\ue900')
+        @JvmField
+        val cmd_filter_plus_outline = CommunityMaterialIcon("cmd_filter_plus_outline", '\ue900')
+        @JvmField
+        val cmd_filter_plus = CommunityMaterialIcon("cmd_filter_plus", '\ue900')
+        @JvmField
+        val cmd_filter_remove_outline = CommunityMaterialIcon("cmd_filter_remove_outline", '\ue900')
+        @JvmField
+        val cmd_filter_remove = CommunityMaterialIcon("cmd_filter_remove", '\ue900')
+        @JvmField
+        val cmd_filter_variant_minus = CommunityMaterialIcon("cmd_filter_variant_minus", '\ue900')
+        @JvmField
+        val cmd_filter_variant_plus = CommunityMaterialIcon("cmd_filter_variant_plus", '\ue900')
+        @JvmField
+        val cmd_filter_variant_remove = CommunityMaterialIcon("cmd_filter_variant_remove", '\ue900')
+        @JvmField
+        val cmd_filter_variant = CommunityMaterialIcon("cmd_filter_variant", '\ue900')
+        @JvmField
+        val cmd_filter = CommunityMaterialIcon("cmd_filter", '\ue900')
+        @JvmField
+        val cmd_finance = CommunityMaterialIcon("cmd_finance", '\ue900')
+        @JvmField
+        val cmd_find_replace = CommunityMaterialIcon("cmd_find_replace", '\ue900')
+        @JvmField
+        val cmd_fingerprint_off = CommunityMaterialIcon("cmd_fingerprint_off", '\ue900')
+        @JvmField
+        val cmd_fingerprint = CommunityMaterialIcon("cmd_fingerprint", '\ue900')
+        @JvmField
+        val cmd_fire_extinguisher = CommunityMaterialIcon("cmd_fire_extinguisher", '\ue900')
+        @JvmField
+        val cmd_fire_hydrant_alert = CommunityMaterialIcon("cmd_fire_hydrant_alert", '\ue900')
+        @JvmField
+        val cmd_fire_hydrant_off = CommunityMaterialIcon("cmd_fire_hydrant_off", '\ue900')
+        @JvmField
+        val cmd_fire_hydrant = CommunityMaterialIcon("cmd_fire_hydrant", '\ue900')
+        @JvmField
+        val cmd_fire_truck = CommunityMaterialIcon("cmd_fire_truck", '\ue900')
+        @JvmField
+        val cmd_fire = CommunityMaterialIcon("cmd_fire", '\ue900')
+        @JvmField
+        val cmd_firebase = CommunityMaterialIcon("cmd_firebase", '\ue900')
+        @JvmField
+        val cmd_firefox = CommunityMaterialIcon("cmd_firefox", '\ue900')
+        @JvmField
+        val cmd_fireplace_off = CommunityMaterialIcon("cmd_fireplace_off", '\ue900')
+        @JvmField
+        val cmd_fireplace = CommunityMaterialIcon("cmd_fireplace", '\ue900')
+        @JvmField
+        val cmd_firework = CommunityMaterialIcon("cmd_firework", '\ue900')
+        @JvmField
+        val cmd_fish = CommunityMaterialIcon("cmd_fish", '\ue900')
+        @JvmField
+        val cmd_fishbowl_outline = CommunityMaterialIcon("cmd_fishbowl_outline", '\ue900')
+        @JvmField
+        val cmd_fishbowl = CommunityMaterialIcon("cmd_fishbowl", '\ue900')
+        @JvmField
+        val cmd_fit_to_page_outline = CommunityMaterialIcon("cmd_fit_to_page_outline", '\ue900')
+        @JvmField
+        val cmd_fit_to_page = CommunityMaterialIcon("cmd_fit_to_page", '\ue900')
+        @JvmField
+        val cmd_flag_checkered = CommunityMaterialIcon("cmd_flag_checkered", '\ue900')
+        @JvmField
+        val cmd_flag_minus_outline = CommunityMaterialIcon("cmd_flag_minus_outline", '\ue900')
+        @JvmField
+        val cmd_flag_minus = CommunityMaterialIcon("cmd_flag_minus", '\ue900')
+        @JvmField
+        val cmd_flag_outline = CommunityMaterialIcon("cmd_flag_outline", '\ue900')
+        @JvmField
+        val cmd_flag_plus_outline = CommunityMaterialIcon("cmd_flag_plus_outline", '\ue900')
+        @JvmField
+        val cmd_flag_plus = CommunityMaterialIcon("cmd_flag_plus", '\ue900')
+        @JvmField
+        val cmd_flag_remove_outline = CommunityMaterialIcon("cmd_flag_remove_outline", '\ue900')
+        @JvmField
+        val cmd_flag_remove = CommunityMaterialIcon("cmd_flag_remove", '\ue900')
+        @JvmField
+        val cmd_flag_triangle = CommunityMaterialIcon("cmd_flag_triangle", '\ue900')
+        @JvmField
+        val cmd_flag_variant_outline = CommunityMaterialIcon("cmd_flag_variant_outline", '\ue900')
+        @JvmField
+        val cmd_flag_variant = CommunityMaterialIcon("cmd_flag_variant", '\ue900')
+        @JvmField
+        val cmd_flag = CommunityMaterialIcon("cmd_flag", '\ue900')
+        @JvmField
+        val cmd_flare = CommunityMaterialIcon("cmd_flare", '\ue900')
+        @JvmField
+        val cmd_flash_alert_outline = CommunityMaterialIcon("cmd_flash_alert_outline", '\ue900')
+        @JvmField
+        val cmd_flash_alert = CommunityMaterialIcon("cmd_flash_alert", '\ue900')
+        @JvmField
+        val cmd_flash_auto = CommunityMaterialIcon("cmd_flash_auto", '\ue900')
+        @JvmField
+        val cmd_flash_circle = CommunityMaterialIcon("cmd_flash_circle", '\ue900')
+        @JvmField
+        val cmd_flash_off = CommunityMaterialIcon("cmd_flash_off", '\ue900')
+        @JvmField
+        val cmd_flash_outline = CommunityMaterialIcon("cmd_flash_outline", '\ue900')
+        @JvmField
+        val cmd_flash_red_eye = CommunityMaterialIcon("cmd_flash_red_eye", '\ue900')
+        @JvmField
+        val cmd_flash = CommunityMaterialIcon("cmd_flash", '\ue900')
+        @JvmField
+        val cmd_flashlight_off = CommunityMaterialIcon("cmd_flashlight_off", '\ue900')
+        @JvmField
+        val cmd_flashlight = CommunityMaterialIcon("cmd_flashlight", '\ue900')
+        @JvmField
+        val cmd_flask_empty_minus_outline = CommunityMaterialIcon("cmd_flask_empty_minus_outline", '\ue900')
+        @JvmField
+        val cmd_flask_empty_minus = CommunityMaterialIcon("cmd_flask_empty_minus", '\ue900')
+        @JvmField
+        val cmd_flask_empty_outline = CommunityMaterialIcon("cmd_flask_empty_outline", '\ue900')
+        @JvmField
+        val cmd_flask_empty_plus_outline = CommunityMaterialIcon("cmd_flask_empty_plus_outline", '\ue900')
+        @JvmField
+        val cmd_flask_empty_plus = CommunityMaterialIcon("cmd_flask_empty_plus", '\ue900')
+        @JvmField
+        val cmd_flask_empty_remove_outline = CommunityMaterialIcon("cmd_flask_empty_remove_outline", '\ue900')
+        @JvmField
+        val cmd_flask_empty_remove = CommunityMaterialIcon("cmd_flask_empty_remove", '\ue900')
+        @JvmField
+        val cmd_flask_empty = CommunityMaterialIcon("cmd_flask_empty", '\ue900')
+        @JvmField
+        val cmd_flask_minus_outline = CommunityMaterialIcon("cmd_flask_minus_outline", '\ue900')
+        @JvmField
+        val cmd_flask_minus = CommunityMaterialIcon("cmd_flask_minus", '\ue900')
+        @JvmField
+        val cmd_flask_outline = CommunityMaterialIcon("cmd_flask_outline", '\ue900')
+        @JvmField
+        val cmd_flask_plus_outline = CommunityMaterialIcon("cmd_flask_plus_outline", '\ue900')
+        @JvmField
+        val cmd_flask_plus = CommunityMaterialIcon("cmd_flask_plus", '\ue900')
+        @JvmField
+        val cmd_flask_remove_outline = CommunityMaterialIcon("cmd_flask_remove_outline", '\ue900')
+        @JvmField
+        val cmd_flask_remove = CommunityMaterialIcon("cmd_flask_remove", '\ue900')
+        @JvmField
+        val cmd_flask_round_bottom_empty_outline = CommunityMaterialIcon("cmd_flask_round_bottom_empty_outline", '\ue900')
+        @JvmField
+        val cmd_flask_round_bottom_empty = CommunityMaterialIcon("cmd_flask_round_bottom_empty", '\ue900')
+        @JvmField
+        val cmd_flask_round_bottom_outline = CommunityMaterialIcon("cmd_flask_round_bottom_outline", '\ue900')
+        @JvmField
+        val cmd_flask_round_bottom = CommunityMaterialIcon("cmd_flask_round_bottom", '\ue900')
+        @JvmField
+        val cmd_flask = CommunityMaterialIcon("cmd_flask", '\ue900')
+        @JvmField
+        val cmd_flattr = CommunityMaterialIcon("cmd_flattr", '\ue900')
+        @JvmField
+        val cmd_flickr = CommunityMaterialIcon("cmd_flickr", '\ue900')
+        @JvmField
+        val cmd_flip_horizontal = CommunityMaterialIcon("cmd_flip_horizontal", '\ue900')
+        @JvmField
+        val cmd_flip_to_back = CommunityMaterialIcon("cmd_flip_to_back", '\ue900')
+        @JvmField
+        val cmd_flip_to_front = CommunityMaterialIcon("cmd_flip_to_front", '\ue900')
+        @JvmField
+        val cmd_flip_vertical = CommunityMaterialIcon("cmd_flip_vertical", '\ue900')
+        @JvmField
+        val cmd_floor_lamp_dual = CommunityMaterialIcon("cmd_floor_lamp_dual", '\ue900')
+        @JvmField
+        val cmd_floor_lamp_variant = CommunityMaterialIcon("cmd_floor_lamp_variant", '\ue900')
+        @JvmField
+        val cmd_floor_lamp = CommunityMaterialIcon("cmd_floor_lamp", '\ue900')
+        @JvmField
+        val cmd_floor_plan = CommunityMaterialIcon("cmd_floor_plan", '\ue900')
+        @JvmField
+        val cmd_floppy_variant = CommunityMaterialIcon("cmd_floppy_variant", '\ue900')
+        @JvmField
+        val cmd_floppy = CommunityMaterialIcon("cmd_floppy", '\ue900')
+        @JvmField
+        val cmd_flower_outline = CommunityMaterialIcon("cmd_flower_outline", '\ue900')
+        @JvmField
+        val cmd_flower_poppy = CommunityMaterialIcon("cmd_flower_poppy", '\ue900')
+        @JvmField
+        val cmd_flower_tulip_outline = CommunityMaterialIcon("cmd_flower_tulip_outline", '\ue900')
+        @JvmField
+        val cmd_flower_tulip = CommunityMaterialIcon("cmd_flower_tulip", '\ue900')
+        @JvmField
+        val cmd_flower = CommunityMaterialIcon("cmd_flower", '\ue900')
+        @JvmField
+        val cmd_focus_auto = CommunityMaterialIcon("cmd_focus_auto", '\ue900')
+        @JvmField
+        val cmd_focus_field_horizontal = CommunityMaterialIcon("cmd_focus_field_horizontal", '\ue900')
+        @JvmField
+        val cmd_focus_field_vertical = CommunityMaterialIcon("cmd_focus_field_vertical", '\ue900')
+        @JvmField
+        val cmd_focus_field = CommunityMaterialIcon("cmd_focus_field", '\ue900')
+        @JvmField
+        val cmd_folder_account_outline = CommunityMaterialIcon("cmd_folder_account_outline", '\ue900')
+        @JvmField
+        val cmd_folder_account = CommunityMaterialIcon("cmd_folder_account", '\ue900')
+        @JvmField
+        val cmd_folder_alert_outline = CommunityMaterialIcon("cmd_folder_alert_outline", '\ue900')
+        @JvmField
+        val cmd_folder_alert = CommunityMaterialIcon("cmd_folder_alert", '\ue900')
+        @JvmField
+        val cmd_folder_clock_outline = CommunityMaterialIcon("cmd_folder_clock_outline", '\ue900')
+        @JvmField
+        val cmd_folder_clock = CommunityMaterialIcon("cmd_folder_clock", '\ue900')
+        @JvmField
+        val cmd_folder_download_outline = CommunityMaterialIcon("cmd_folder_download_outline", '\ue900')
+        @JvmField
+        val cmd_folder_download = CommunityMaterialIcon("cmd_folder_download", '\ue900')
+        @JvmField
+        val cmd_folder_edit_outline = CommunityMaterialIcon("cmd_folder_edit_outline", '\ue900')
+        @JvmField
+        val cmd_folder_edit = CommunityMaterialIcon("cmd_folder_edit", '\ue900')
+        @JvmField
+        val cmd_folder_google_drive = CommunityMaterialIcon("cmd_folder_google_drive", '\ue900')
+        @JvmField
+        val cmd_folder_heart_outline = CommunityMaterialIcon("cmd_folder_heart_outline", '\ue900')
+        @JvmField
+        val cmd_folder_heart = CommunityMaterialIcon("cmd_folder_heart", '\ue900')
+        @JvmField
+        val cmd_folder_home_outline = CommunityMaterialIcon("cmd_folder_home_outline", '\ue900')
+        @JvmField
+        val cmd_folder_home = CommunityMaterialIcon("cmd_folder_home", '\ue900')
+        @JvmField
+        val cmd_folder_image = CommunityMaterialIcon("cmd_folder_image", '\ue900')
+        @JvmField
+        val cmd_folder_information_outline = CommunityMaterialIcon("cmd_folder_information_outline", '\ue900')
+        @JvmField
+        val cmd_folder_information = CommunityMaterialIcon("cmd_folder_information", '\ue900')
+        @JvmField
+        val cmd_folder_key_network_outline = CommunityMaterialIcon("cmd_folder_key_network_outline", '\ue900')
+        @JvmField
+        val cmd_folder_key_network = CommunityMaterialIcon("cmd_folder_key_network", '\ue900')
+        @JvmField
+        val cmd_folder_key_outline = CommunityMaterialIcon("cmd_folder_key_outline", '\ue900')
+        @JvmField
+        val cmd_folder_key = CommunityMaterialIcon("cmd_folder_key", '\ue900')
+        @JvmField
+        val cmd_folder_lock_open = CommunityMaterialIcon("cmd_folder_lock_open", '\ue900')
+        @JvmField
+        val cmd_folder_lock = CommunityMaterialIcon("cmd_folder_lock", '\ue900')
+        @JvmField
+        val cmd_folder_marker_outline = CommunityMaterialIcon("cmd_folder_marker_outline", '\ue900')
+        @JvmField
+        val cmd_folder_marker = CommunityMaterialIcon("cmd_folder_marker", '\ue900')
+        @JvmField
+        val cmd_folder_move_outline = CommunityMaterialIcon("cmd_folder_move_outline", '\ue900')
+        @JvmField
+        val cmd_folder_move = CommunityMaterialIcon("cmd_folder_move", '\ue900')
+        @JvmField
+        val cmd_folder_multiple_image = CommunityMaterialIcon("cmd_folder_multiple_image", '\ue900')
+        @JvmField
+        val cmd_folder_multiple_outline = CommunityMaterialIcon("cmd_folder_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_folder_multiple = CommunityMaterialIcon("cmd_folder_multiple", '\ue900')
+        @JvmField
+        val cmd_folder_network_outline = CommunityMaterialIcon("cmd_folder_network_outline", '\ue900')
+        @JvmField
+        val cmd_folder_network = CommunityMaterialIcon("cmd_folder_network", '\ue900')
+        @JvmField
+        val cmd_folder_open_outline = CommunityMaterialIcon("cmd_folder_open_outline", '\ue900')
+        @JvmField
+        val cmd_folder_open = CommunityMaterialIcon("cmd_folder_open", '\ue900')
+        @JvmField
+        val cmd_folder_outline = CommunityMaterialIcon("cmd_folder_outline", '\ue900')
+        @JvmField
+        val cmd_folder_plus_outline = CommunityMaterialIcon("cmd_folder_plus_outline", '\ue900')
+        @JvmField
+        val cmd_folder_plus = CommunityMaterialIcon("cmd_folder_plus", '\ue900')
+        @JvmField
+        val cmd_folder_pound_outline = CommunityMaterialIcon("cmd_folder_pound_outline", '\ue900')
+        @JvmField
+        val cmd_folder_pound = CommunityMaterialIcon("cmd_folder_pound", '\ue900')
+        @JvmField
+        val cmd_folder_remove_outline = CommunityMaterialIcon("cmd_folder_remove_outline", '\ue900')
+        @JvmField
+        val cmd_folder_remove = CommunityMaterialIcon("cmd_folder_remove", '\ue900')
+        @JvmField
+        val cmd_folder_search_outline = CommunityMaterialIcon("cmd_folder_search_outline", '\ue900')
+        @JvmField
+        val cmd_folder_search = CommunityMaterialIcon("cmd_folder_search", '\ue900')
+        @JvmField
+        val cmd_folder_settings_outline = CommunityMaterialIcon("cmd_folder_settings_outline", '\ue900')
+        @JvmField
+        val cmd_folder_settings_variant_outline = CommunityMaterialIcon("cmd_folder_settings_variant_outline", '\ue900')
+        @JvmField
+        val cmd_folder_settings_variant = CommunityMaterialIcon("cmd_folder_settings_variant", '\ue900')
+        @JvmField
+        val cmd_folder_settings = CommunityMaterialIcon("cmd_folder_settings", '\ue900')
+        @JvmField
+        val cmd_folder_star_outline = CommunityMaterialIcon("cmd_folder_star_outline", '\ue900')
+        @JvmField
+        val cmd_folder_star = CommunityMaterialIcon("cmd_folder_star", '\ue900')
+        @JvmField
+        val cmd_folder_swap_outline = CommunityMaterialIcon("cmd_folder_swap_outline", '\ue900')
+        @JvmField
+        val cmd_folder_swap = CommunityMaterialIcon("cmd_folder_swap", '\ue900')
+        @JvmField
+        val cmd_folder_sync_outline = CommunityMaterialIcon("cmd_folder_sync_outline", '\ue900')
+        @JvmField
+        val cmd_folder_sync = CommunityMaterialIcon("cmd_folder_sync", '\ue900')
+        @JvmField
+        val cmd_folder_table_outline = CommunityMaterialIcon("cmd_folder_table_outline", '\ue900')
+        @JvmField
+        val cmd_folder_table = CommunityMaterialIcon("cmd_folder_table", '\ue900')
+        @JvmField
+        val cmd_folder_text_outline = CommunityMaterialIcon("cmd_folder_text_outline", '\ue900')
+        @JvmField
+        val cmd_folder_text = CommunityMaterialIcon("cmd_folder_text", '\ue900')
+        @JvmField
+        val cmd_folder_upload_outline = CommunityMaterialIcon("cmd_folder_upload_outline", '\ue900')
+        @JvmField
+        val cmd_folder_upload = CommunityMaterialIcon("cmd_folder_upload", '\ue900')
+        @JvmField
+        val cmd_folder_zip_outline = CommunityMaterialIcon("cmd_folder_zip_outline", '\ue900')
+        @JvmField
+        val cmd_folder_zip = CommunityMaterialIcon("cmd_folder_zip", '\ue900')
+        @JvmField
+        val cmd_folder = CommunityMaterialIcon("cmd_folder", '\ue900')
+        @JvmField
+        val cmd_font_awesome = CommunityMaterialIcon("cmd_font_awesome", '\ue900')
+        @JvmField
+        val cmd_food_apple_outline = CommunityMaterialIcon("cmd_food_apple_outline", '\ue900')
+        @JvmField
+        val cmd_food_apple = CommunityMaterialIcon("cmd_food_apple", '\ue900')
+        @JvmField
+        val cmd_food_croissant = CommunityMaterialIcon("cmd_food_croissant", '\ue900')
+        @JvmField
+        val cmd_food_fork_drink = CommunityMaterialIcon("cmd_food_fork_drink", '\ue900')
+        @JvmField
+        val cmd_food_off = CommunityMaterialIcon("cmd_food_off", '\ue900')
+        @JvmField
+        val cmd_food_variant = CommunityMaterialIcon("cmd_food_variant", '\ue900')
+        @JvmField
+        val cmd_food = CommunityMaterialIcon("cmd_food", '\ue900')
+        @JvmField
+        val cmd_foot_print = CommunityMaterialIcon("cmd_foot_print", '\ue900')
+        @JvmField
+        val cmd_football_australian = CommunityMaterialIcon("cmd_football_australian", '\ue900')
+        @JvmField
+        val cmd_football_helmet = CommunityMaterialIcon("cmd_football_helmet", '\ue900')
+        @JvmField
+        val cmd_football = CommunityMaterialIcon("cmd_football", '\ue900')
+        @JvmField
+        val cmd_forklift = CommunityMaterialIcon("cmd_forklift", '\ue900')
+        @JvmField
+        val cmd_format_align_bottom = CommunityMaterialIcon("cmd_format_align_bottom", '\ue900')
+        @JvmField
+        val cmd_format_align_center = CommunityMaterialIcon("cmd_format_align_center", '\ue900')
+        @JvmField
+        val cmd_format_align_justify = CommunityMaterialIcon("cmd_format_align_justify", '\ue900')
+        @JvmField
+        val cmd_format_align_left = CommunityMaterialIcon("cmd_format_align_left", '\ue900')
+        @JvmField
+        val cmd_format_align_middle = CommunityMaterialIcon("cmd_format_align_middle", '\ue900')
+        @JvmField
+        val cmd_format_align_right = CommunityMaterialIcon("cmd_format_align_right", '\ue900')
+        @JvmField
+        val cmd_format_align_top = CommunityMaterialIcon("cmd_format_align_top", '\ue900')
+        @JvmField
+        val cmd_format_annotation_minus = CommunityMaterialIcon("cmd_format_annotation_minus", '\ue900')
+        @JvmField
+        val cmd_format_annotation_plus = CommunityMaterialIcon("cmd_format_annotation_plus", '\ue900')
+        @JvmField
+        val cmd_format_bold = CommunityMaterialIcon("cmd_format_bold", '\ue900')
+        @JvmField
+        val cmd_format_clear = CommunityMaterialIcon("cmd_format_clear", '\ue900')
+        @JvmField
+        val cmd_format_color_fill = CommunityMaterialIcon("cmd_format_color_fill", '\ue900')
+        @JvmField
+        val cmd_format_color_highlight = CommunityMaterialIcon("cmd_format_color_highlight", '\ue900')
+        @JvmField
+        val cmd_format_color_text = CommunityMaterialIcon("cmd_format_color_text", '\ue900')
+        @JvmField
+        val cmd_format_columns = CommunityMaterialIcon("cmd_format_columns", '\ue900')
+        @JvmField
+        val cmd_format_float_center = CommunityMaterialIcon("cmd_format_float_center", '\ue900')
+        @JvmField
+        val cmd_format_float_left = CommunityMaterialIcon("cmd_format_float_left", '\ue900')
+        @JvmField
+        val cmd_format_float_none = CommunityMaterialIcon("cmd_format_float_none", '\ue900')
+        @JvmField
+        val cmd_format_float_right = CommunityMaterialIcon("cmd_format_float_right", '\ue900')
+        @JvmField
+        val cmd_format_font_size_decrease = CommunityMaterialIcon("cmd_format_font_size_decrease", '\ue900')
+        @JvmField
+        val cmd_format_font_size_increase = CommunityMaterialIcon("cmd_format_font_size_increase", '\ue900')
+        @JvmField
+        val cmd_format_font = CommunityMaterialIcon("cmd_format_font", '\ue900')
+        @JvmField
+        val cmd_format_header_1 = CommunityMaterialIcon("cmd_format_header_1", '\ue900')
+        @JvmField
+        val cmd_format_header_2 = CommunityMaterialIcon("cmd_format_header_2", '\ue900')
+        @JvmField
+        val cmd_format_header_3 = CommunityMaterialIcon("cmd_format_header_3", '\ue900')
+        @JvmField
+        val cmd_format_header_4 = CommunityMaterialIcon("cmd_format_header_4", '\ue900')
+        @JvmField
+        val cmd_format_header_5 = CommunityMaterialIcon("cmd_format_header_5", '\ue900')
+        @JvmField
+        val cmd_format_header_6 = CommunityMaterialIcon("cmd_format_header_6", '\ue900')
+        @JvmField
+        val cmd_format_header_decrease = CommunityMaterialIcon("cmd_format_header_decrease", '\ue900')
+        @JvmField
+        val cmd_format_header_equal = CommunityMaterialIcon("cmd_format_header_equal", '\ue900')
+        @JvmField
+        val cmd_format_header_increase = CommunityMaterialIcon("cmd_format_header_increase", '\ue900')
+        @JvmField
+        val cmd_format_header_pound = CommunityMaterialIcon("cmd_format_header_pound", '\ue900')
+        @JvmField
+        val cmd_format_horizontal_align_center = CommunityMaterialIcon("cmd_format_horizontal_align_center", '\ue900')
+        @JvmField
+        val cmd_format_horizontal_align_left = CommunityMaterialIcon("cmd_format_horizontal_align_left", '\ue900')
+        @JvmField
+        val cmd_format_horizontal_align_right = CommunityMaterialIcon("cmd_format_horizontal_align_right", '\ue900')
+        @JvmField
+        val cmd_format_indent_decrease = CommunityMaterialIcon("cmd_format_indent_decrease", '\ue900')
+        @JvmField
+        val cmd_format_indent_increase = CommunityMaterialIcon("cmd_format_indent_increase", '\ue900')
+        @JvmField
+        val cmd_format_italic = CommunityMaterialIcon("cmd_format_italic", '\ue900')
+        @JvmField
+        val cmd_format_letter_case_lower = CommunityMaterialIcon("cmd_format_letter_case_lower", '\ue900')
+        @JvmField
+        val cmd_format_letter_case_upper = CommunityMaterialIcon("cmd_format_letter_case_upper", '\ue900')
+        @JvmField
+        val cmd_format_letter_case = CommunityMaterialIcon("cmd_format_letter_case", '\ue900')
+        @JvmField
+        val cmd_format_letter_ends_with = CommunityMaterialIcon("cmd_format_letter_ends_with", '\ue900')
+        @JvmField
+        val cmd_format_letter_matches = CommunityMaterialIcon("cmd_format_letter_matches", '\ue900')
+        @JvmField
+        val cmd_format_letter_starts_with = CommunityMaterialIcon("cmd_format_letter_starts_with", '\ue900')
+        @JvmField
+        val cmd_format_line_spacing = CommunityMaterialIcon("cmd_format_line_spacing", '\ue900')
+        @JvmField
+        val cmd_format_line_style = CommunityMaterialIcon("cmd_format_line_style", '\ue900')
+        @JvmField
+        val cmd_format_line_weight = CommunityMaterialIcon("cmd_format_line_weight", '\ue900')
+        @JvmField
+        val cmd_format_list_bulleted_square = CommunityMaterialIcon("cmd_format_list_bulleted_square", '\ue900')
+        @JvmField
+        val cmd_format_list_bulleted_triangle = CommunityMaterialIcon("cmd_format_list_bulleted_triangle", '\ue900')
+        @JvmField
+        val cmd_format_list_bulleted_type = CommunityMaterialIcon("cmd_format_list_bulleted_type", '\ue900')
+        @JvmField
+        val cmd_format_list_bulleted = CommunityMaterialIcon("cmd_format_list_bulleted", '\ue900')
+        @JvmField
+        val cmd_format_list_checkbox = CommunityMaterialIcon("cmd_format_list_checkbox", '\ue900')
+        @JvmField
+        val cmd_format_list_checks = CommunityMaterialIcon("cmd_format_list_checks", '\ue900')
+        @JvmField
+        val cmd_format_list_numbered_rtl = CommunityMaterialIcon("cmd_format_list_numbered_rtl", '\ue900')
+        @JvmField
+        val cmd_format_list_numbered = CommunityMaterialIcon("cmd_format_list_numbered", '\ue900')
+        @JvmField
+        val cmd_format_list_text = CommunityMaterialIcon("cmd_format_list_text", '\ue900')
+        @JvmField
+        val cmd_format_overline = CommunityMaterialIcon("cmd_format_overline", '\ue900')
+        @JvmField
+        val cmd_format_page_break = CommunityMaterialIcon("cmd_format_page_break", '\ue900')
+        @JvmField
+        val cmd_format_paint = CommunityMaterialIcon("cmd_format_paint", '\ue900')
+        @JvmField
+        val cmd_format_paragraph = CommunityMaterialIcon("cmd_format_paragraph", '\ue900')
+        @JvmField
+        val cmd_format_pilcrow = CommunityMaterialIcon("cmd_format_pilcrow", '\ue900')
+        @JvmField
+        val cmd_format_quote_close_outline = CommunityMaterialIcon("cmd_format_quote_close_outline", '\ue900')
+        @JvmField
+        val cmd_format_quote_close = CommunityMaterialIcon("cmd_format_quote_close", '\ue900')
+        @JvmField
+        val cmd_format_quote_open_outline = CommunityMaterialIcon("cmd_format_quote_open_outline", '\ue900')
+        @JvmField
+        val cmd_format_quote_open = CommunityMaterialIcon("cmd_format_quote_open", '\ue900')
+        @JvmField
+        val cmd_format_rotate_90 = CommunityMaterialIcon("cmd_format_rotate_90", '\ue900')
+        @JvmField
+        val cmd_format_section = CommunityMaterialIcon("cmd_format_section", '\ue900')
+        @JvmField
+        val cmd_format_size = CommunityMaterialIcon("cmd_format_size", '\ue900')
+        @JvmField
+        val cmd_format_strikethrough_variant = CommunityMaterialIcon("cmd_format_strikethrough_variant", '\ue900')
+        @JvmField
+        val cmd_format_strikethrough = CommunityMaterialIcon("cmd_format_strikethrough", '\ue900')
+        @JvmField
+        val cmd_format_subscript = CommunityMaterialIcon("cmd_format_subscript", '\ue900')
+        @JvmField
+        val cmd_format_superscript = CommunityMaterialIcon("cmd_format_superscript", '\ue900')
+        @JvmField
+        val cmd_format_text_rotation_angle_down = CommunityMaterialIcon("cmd_format_text_rotation_angle_down", '\ue900')
+        @JvmField
+        val cmd_format_text_rotation_angle_up = CommunityMaterialIcon("cmd_format_text_rotation_angle_up", '\ue900')
+        @JvmField
+        val cmd_format_text_rotation_down_vertical = CommunityMaterialIcon("cmd_format_text_rotation_down_vertical", '\ue900')
+        @JvmField
+        val cmd_format_text_rotation_down = CommunityMaterialIcon("cmd_format_text_rotation_down", '\ue900')
+        @JvmField
+        val cmd_format_text_rotation_none = CommunityMaterialIcon("cmd_format_text_rotation_none", '\ue900')
+        @JvmField
+        val cmd_format_text_rotation_up = CommunityMaterialIcon("cmd_format_text_rotation_up", '\ue900')
+        @JvmField
+        val cmd_format_text_rotation_vertical = CommunityMaterialIcon("cmd_format_text_rotation_vertical", '\ue900')
+        @JvmField
+        val cmd_format_text_variant = CommunityMaterialIcon("cmd_format_text_variant", '\ue900')
+        @JvmField
+        val cmd_format_text_wrapping_clip = CommunityMaterialIcon("cmd_format_text_wrapping_clip", '\ue900')
+        @JvmField
+        val cmd_format_text_wrapping_overflow = CommunityMaterialIcon("cmd_format_text_wrapping_overflow", '\ue900')
+        @JvmField
+        val cmd_format_text_wrapping_wrap = CommunityMaterialIcon("cmd_format_text_wrapping_wrap", '\ue900')
+        @JvmField
+        val cmd_format_text = CommunityMaterialIcon("cmd_format_text", '\ue900')
+        @JvmField
+        val cmd_format_textbox = CommunityMaterialIcon("cmd_format_textbox", '\ue900')
+        @JvmField
+        val cmd_format_textdirection_l_to_r = CommunityMaterialIcon("cmd_format_textdirection_l_to_r", '\ue900')
+        @JvmField
+        val cmd_format_textdirection_r_to_l = CommunityMaterialIcon("cmd_format_textdirection_r_to_l", '\ue900')
+        @JvmField
+        val cmd_format_title = CommunityMaterialIcon("cmd_format_title", '\ue900')
+        @JvmField
+        val cmd_format_underline = CommunityMaterialIcon("cmd_format_underline", '\ue900')
+        @JvmField
+        val cmd_format_vertical_align_bottom = CommunityMaterialIcon("cmd_format_vertical_align_bottom", '\ue900')
+        @JvmField
+        val cmd_format_vertical_align_center = CommunityMaterialIcon("cmd_format_vertical_align_center", '\ue900')
+        @JvmField
+        val cmd_format_vertical_align_top = CommunityMaterialIcon("cmd_format_vertical_align_top", '\ue900')
+        @JvmField
+        val cmd_format_wrap_inline = CommunityMaterialIcon("cmd_format_wrap_inline", '\ue900')
+        @JvmField
+        val cmd_format_wrap_square = CommunityMaterialIcon("cmd_format_wrap_square", '\ue900')
+        @JvmField
+        val cmd_format_wrap_tight = CommunityMaterialIcon("cmd_format_wrap_tight", '\ue900')
+        @JvmField
+        val cmd_format_wrap_top_bottom = CommunityMaterialIcon("cmd_format_wrap_top_bottom", '\ue900')
+        @JvmField
+        val cmd_forum_outline = CommunityMaterialIcon("cmd_forum_outline", '\ue900')
+        @JvmField
+        val cmd_forum = CommunityMaterialIcon("cmd_forum", '\ue900')
+        @JvmField
+        val cmd_forward = CommunityMaterialIcon("cmd_forward", '\ue900')
+        @JvmField
+        val cmd_forwardburger = CommunityMaterialIcon("cmd_forwardburger", '\ue900')
+        @JvmField
+        val cmd_fountain_pen_tip = CommunityMaterialIcon("cmd_fountain_pen_tip", '\ue900')
+        @JvmField
+        val cmd_fountain_pen = CommunityMaterialIcon("cmd_fountain_pen", '\ue900')
+        @JvmField
+        val cmd_fountain = CommunityMaterialIcon("cmd_fountain", '\ue900')
+        @JvmField
+        val cmd_foursquare = CommunityMaterialIcon("cmd_foursquare", '\ue900')
+        @JvmField
+        val cmd_freebsd = CommunityMaterialIcon("cmd_freebsd", '\ue900')
+        @JvmField
+        val cmd_frequently_asked_questions = CommunityMaterialIcon("cmd_frequently_asked_questions", '\ue900')
+        @JvmField
+        val cmd_fridge_alert_outline = CommunityMaterialIcon("cmd_fridge_alert_outline", '\ue900')
+        @JvmField
+        val cmd_fridge_alert = CommunityMaterialIcon("cmd_fridge_alert", '\ue900')
+        @JvmField
+        val cmd_fridge_bottom = CommunityMaterialIcon("cmd_fridge_bottom", '\ue900')
+        @JvmField
+        val cmd_fridge_off_outline = CommunityMaterialIcon("cmd_fridge_off_outline", '\ue900')
+        @JvmField
+        val cmd_fridge_off = CommunityMaterialIcon("cmd_fridge_off", '\ue900')
+        @JvmField
+        val cmd_fridge_outline = CommunityMaterialIcon("cmd_fridge_outline", '\ue900')
+        @JvmField
+        val cmd_fridge_top = CommunityMaterialIcon("cmd_fridge_top", '\ue900')
+        @JvmField
+        val cmd_fridge = CommunityMaterialIcon("cmd_fridge", '\ue900')
+        @JvmField
+        val cmd_fruit_cherries = CommunityMaterialIcon("cmd_fruit_cherries", '\ue900')
+        @JvmField
+        val cmd_fruit_citrus = CommunityMaterialIcon("cmd_fruit_citrus", '\ue900')
+        @JvmField
+        val cmd_fruit_grapes_outline = CommunityMaterialIcon("cmd_fruit_grapes_outline", '\ue900')
+        @JvmField
+        val cmd_fruit_grapes = CommunityMaterialIcon("cmd_fruit_grapes", '\ue900')
+        @JvmField
+        val cmd_fruit_pineapple = CommunityMaterialIcon("cmd_fruit_pineapple", '\ue900')
+        @JvmField
+        val cmd_fruit_watermelon = CommunityMaterialIcon("cmd_fruit_watermelon", '\ue900')
+        @JvmField
+        val cmd_fuel = CommunityMaterialIcon("cmd_fuel", '\ue900')
+        @JvmField
+        val cmd_fullscreen_exit = CommunityMaterialIcon("cmd_fullscreen_exit", '\ue900')
+        @JvmField
+        val cmd_fullscreen = CommunityMaterialIcon("cmd_fullscreen", '\ue900')
+        @JvmField
+        val cmd_function_variant = CommunityMaterialIcon("cmd_function_variant", '\ue900')
+        @JvmField
+        val cmd_function = CommunityMaterialIcon("cmd_function", '\ue900')
+        @JvmField
+        val cmd_furigana_horizontal = CommunityMaterialIcon("cmd_furigana_horizontal", '\ue900')
+        @JvmField
+        val cmd_furigana_vertical = CommunityMaterialIcon("cmd_furigana_vertical", '\ue900')
+        @JvmField
+        val cmd_fuse_blade = CommunityMaterialIcon("cmd_fuse_blade", '\ue900')
+        @JvmField
+        val cmd_fuse = CommunityMaterialIcon("cmd_fuse", '\ue900')
+        @JvmField
+        val cmd_gamepad_circle_down = CommunityMaterialIcon("cmd_gamepad_circle_down", '\ue900')
+        @JvmField
+        val cmd_gamepad_circle_left = CommunityMaterialIcon("cmd_gamepad_circle_left", '\ue900')
+        @JvmField
+        val cmd_gamepad_circle_outline = CommunityMaterialIcon("cmd_gamepad_circle_outline", '\ue900')
+        @JvmField
+        val cmd_gamepad_circle_right = CommunityMaterialIcon("cmd_gamepad_circle_right", '\ue900')
+        @JvmField
+        val cmd_gamepad_circle_up = CommunityMaterialIcon("cmd_gamepad_circle_up", '\ue900')
+        @JvmField
+        val cmd_gamepad_circle = CommunityMaterialIcon("cmd_gamepad_circle", '\ue900')
+        @JvmField
+        val cmd_gamepad_down = CommunityMaterialIcon("cmd_gamepad_down", '\ue900')
+        @JvmField
+        val cmd_gamepad_left = CommunityMaterialIcon("cmd_gamepad_left", '\ue900')
+        @JvmField
+        val cmd_gamepad_right = CommunityMaterialIcon("cmd_gamepad_right", '\ue900')
+        @JvmField
+        val cmd_gamepad_round_down = CommunityMaterialIcon("cmd_gamepad_round_down", '\ue900')
+        @JvmField
+        val cmd_gamepad_round_left = CommunityMaterialIcon("cmd_gamepad_round_left", '\ue900')
+        @JvmField
+        val cmd_gamepad_round_outline = CommunityMaterialIcon("cmd_gamepad_round_outline", '\ue900')
+        @JvmField
+        val cmd_gamepad_round_right = CommunityMaterialIcon("cmd_gamepad_round_right", '\ue900')
+        @JvmField
+        val cmd_gamepad_round_up = CommunityMaterialIcon("cmd_gamepad_round_up", '\ue900')
+        @JvmField
+        val cmd_gamepad_round = CommunityMaterialIcon("cmd_gamepad_round", '\ue900')
+        @JvmField
+        val cmd_gamepad_square_outline = CommunityMaterialIcon("cmd_gamepad_square_outline", '\ue900')
+        @JvmField
+        val cmd_gamepad_square = CommunityMaterialIcon("cmd_gamepad_square", '\ue900')
+        @JvmField
+        val cmd_gamepad_up = CommunityMaterialIcon("cmd_gamepad_up", '\ue900')
+        @JvmField
+        val cmd_gamepad_variant_outline = CommunityMaterialIcon("cmd_gamepad_variant_outline", '\ue900')
+        @JvmField
+        val cmd_gamepad_variant = CommunityMaterialIcon("cmd_gamepad_variant", '\ue900')
+        @JvmField
+        val cmd_gamepad = CommunityMaterialIcon("cmd_gamepad", '\ue900')
+        @JvmField
+        val cmd_gamma = CommunityMaterialIcon("cmd_gamma", '\ue900')
+        @JvmField
+        val cmd_gantry_crane = CommunityMaterialIcon("cmd_gantry_crane", '\ue900')
+        @JvmField
+        val cmd_garage_alert_variant = CommunityMaterialIcon("cmd_garage_alert_variant", '\ue900')
+        @JvmField
+        val cmd_garage_alert = CommunityMaterialIcon("cmd_garage_alert", '\ue900')
+        @JvmField
+        val cmd_garage_open_variant = CommunityMaterialIcon("cmd_garage_open_variant", '\ue900')
+        @JvmField
+        val cmd_garage_open = CommunityMaterialIcon("cmd_garage_open", '\ue900')
+        @JvmField
+        val cmd_garage_variant = CommunityMaterialIcon("cmd_garage_variant", '\ue900')
+        @JvmField
+        val cmd_garage = CommunityMaterialIcon("cmd_garage", '\ue900')
+        @JvmField
+        val cmd_gas_cylinder = CommunityMaterialIcon("cmd_gas_cylinder", '\ue900')
+        @JvmField
+        val cmd_gas_station_outline = CommunityMaterialIcon("cmd_gas_station_outline", '\ue900')
+        @JvmField
+        val cmd_gas_station = CommunityMaterialIcon("cmd_gas_station", '\ue900')
+        @JvmField
+        val cmd_gate_and = CommunityMaterialIcon("cmd_gate_and", '\ue900')
+        @JvmField
+        val cmd_gate_arrow_right = CommunityMaterialIcon("cmd_gate_arrow_right", '\ue900')
+        @JvmField
+        val cmd_gate_nand = CommunityMaterialIcon("cmd_gate_nand", '\ue900')
+        @JvmField
+        val cmd_gate_nor = CommunityMaterialIcon("cmd_gate_nor", '\ue900')
+        @JvmField
+        val cmd_gate_not = CommunityMaterialIcon("cmd_gate_not", '\ue900')
+        @JvmField
+        val cmd_gate_open = CommunityMaterialIcon("cmd_gate_open", '\ue900')
+        @JvmField
+        val cmd_gate_or = CommunityMaterialIcon("cmd_gate_or", '\ue900')
+        @JvmField
+        val cmd_gate_xnor = CommunityMaterialIcon("cmd_gate_xnor", '\ue900')
+        @JvmField
+        val cmd_gate_xor = CommunityMaterialIcon("cmd_gate_xor", '\ue900')
+        @JvmField
+        val cmd_gate = CommunityMaterialIcon("cmd_gate", '\ue900')
+        @JvmField
+        val cmd_gatsby = CommunityMaterialIcon("cmd_gatsby", '\ue900')
+        @JvmField
+        val cmd_gauge_empty = CommunityMaterialIcon("cmd_gauge_empty", '\ue900')
+        @JvmField
+        val cmd_gauge_full = CommunityMaterialIcon("cmd_gauge_full", '\ue900')
+        @JvmField
+        val cmd_gauge_low = CommunityMaterialIcon("cmd_gauge_low", '\ue900')
+        @JvmField
+        val cmd_gauge = CommunityMaterialIcon("cmd_gauge", '\ue900')
+        @JvmField
+        val cmd_gavel = CommunityMaterialIcon("cmd_gavel", '\ue900')
+        @JvmField
+        val cmd_gender_female = CommunityMaterialIcon("cmd_gender_female", '\ue900')
+        @JvmField
+        val cmd_gender_male_female_variant = CommunityMaterialIcon("cmd_gender_male_female_variant", '\ue900')
+        @JvmField
+        val cmd_gender_male_female = CommunityMaterialIcon("cmd_gender_male_female", '\ue900')
+        @JvmField
+        val cmd_gender_male = CommunityMaterialIcon("cmd_gender_male", '\ue900')
+        @JvmField
+        val cmd_gender_non_binary = CommunityMaterialIcon("cmd_gender_non_binary", '\ue900')
+        @JvmField
+        val cmd_gender_transgender = CommunityMaterialIcon("cmd_gender_transgender", '\ue900')
+        @JvmField
+        val cmd_gentoo = CommunityMaterialIcon("cmd_gentoo", '\ue900')
+        @JvmField
+        val cmd_gesture_double_tap = CommunityMaterialIcon("cmd_gesture_double_tap", '\ue900')
+        @JvmField
+        val cmd_gesture_pinch = CommunityMaterialIcon("cmd_gesture_pinch", '\ue900')
+        @JvmField
+        val cmd_gesture_spread = CommunityMaterialIcon("cmd_gesture_spread", '\ue900')
+        @JvmField
+        val cmd_gesture_swipe_down = CommunityMaterialIcon("cmd_gesture_swipe_down", '\ue900')
+        @JvmField
+        val cmd_gesture_swipe_horizontal = CommunityMaterialIcon("cmd_gesture_swipe_horizontal", '\ue900')
+        @JvmField
+        val cmd_gesture_swipe_left = CommunityMaterialIcon("cmd_gesture_swipe_left", '\ue900')
+        @JvmField
+        val cmd_gesture_swipe_right = CommunityMaterialIcon("cmd_gesture_swipe_right", '\ue900')
+        @JvmField
+        val cmd_gesture_swipe_up = CommunityMaterialIcon("cmd_gesture_swipe_up", '\ue900')
+        @JvmField
+        val cmd_gesture_swipe_vertical = CommunityMaterialIcon("cmd_gesture_swipe_vertical", '\ue900')
+        @JvmField
+        val cmd_gesture_swipe = CommunityMaterialIcon("cmd_gesture_swipe", '\ue900')
+        @JvmField
+        val cmd_gesture_tap_box = CommunityMaterialIcon("cmd_gesture_tap_box", '\ue900')
+        @JvmField
+        val cmd_gesture_tap_button = CommunityMaterialIcon("cmd_gesture_tap_button", '\ue900')
+        @JvmField
+        val cmd_gesture_tap_hold = CommunityMaterialIcon("cmd_gesture_tap_hold", '\ue900')
+        @JvmField
+        val cmd_gesture_tap = CommunityMaterialIcon("cmd_gesture_tap", '\ue900')
+        @JvmField
+        val cmd_gesture_two_double_tap = CommunityMaterialIcon("cmd_gesture_two_double_tap", '\ue900')
+        @JvmField
+        val cmd_gesture_two_tap = CommunityMaterialIcon("cmd_gesture_two_tap", '\ue900')
+        @JvmField
+        val cmd_gesture = CommunityMaterialIcon("cmd_gesture", '\ue900')
+        @JvmField
+        val cmd_ghost_off = CommunityMaterialIcon("cmd_ghost_off", '\ue900')
+        @JvmField
+        val cmd_ghost = CommunityMaterialIcon("cmd_ghost", '\ue900')
+        @JvmField
+        val cmd_gif = CommunityMaterialIcon("cmd_gif", '\ue900')
+        @JvmField
+        val cmd_gift_outline = CommunityMaterialIcon("cmd_gift_outline", '\ue900')
+        @JvmField
+        val cmd_gift = CommunityMaterialIcon("cmd_gift", '\ue900')
+        @JvmField
+        val cmd_git = CommunityMaterialIcon("cmd_git", '\ue900')
+        @JvmField
+        val cmd_github_box = CommunityMaterialIcon("cmd_github_box", '\ue900')
+        @JvmField
+        val cmd_github_circle = CommunityMaterialIcon("cmd_github_circle", '\ue900')
+        @JvmField
+        val cmd_github_face = CommunityMaterialIcon("cmd_github_face", '\ue900')
+        @JvmField
+        val cmd_gitlab = CommunityMaterialIcon("cmd_gitlab", '\ue900')
+        @JvmField
+        val cmd_glass_cocktail = CommunityMaterialIcon("cmd_glass_cocktail", '\ue900')
+        @JvmField
+        val cmd_glass_flute = CommunityMaterialIcon("cmd_glass_flute", '\ue900')
+        @JvmField
+        val cmd_glass_mug_variant = CommunityMaterialIcon("cmd_glass_mug_variant", '\ue900')
+        @JvmField
+        val cmd_glass_mug = CommunityMaterialIcon("cmd_glass_mug", '\ue900')
+        @JvmField
+        val cmd_glass_stange = CommunityMaterialIcon("cmd_glass_stange", '\ue900')
+        @JvmField
+        val cmd_glass_tulip = CommunityMaterialIcon("cmd_glass_tulip", '\ue900')
+        @JvmField
+        val cmd_glass_wine = CommunityMaterialIcon("cmd_glass_wine", '\ue900')
+        @JvmField
+        val cmd_glassdoor = CommunityMaterialIcon("cmd_glassdoor", '\ue900')
+        @JvmField
+        val cmd_glasses = CommunityMaterialIcon("cmd_glasses", '\ue900')
+        @JvmField
+        val cmd_globe_light = CommunityMaterialIcon("cmd_globe_light", '\ue900')
+        @JvmField
+        val cmd_globe_model = CommunityMaterialIcon("cmd_globe_model", '\ue900')
+        @JvmField
+        val cmd_gmail = CommunityMaterialIcon("cmd_gmail", '\ue900')
+        @JvmField
+        val cmd_gnome = CommunityMaterialIcon("cmd_gnome", '\ue900')
+        @JvmField
+        val cmd_go_kart_track = CommunityMaterialIcon("cmd_go_kart_track", '\ue900')
+        @JvmField
+        val cmd_go_kart = CommunityMaterialIcon("cmd_go_kart", '\ue900')
+        @JvmField
+        val cmd_gog = CommunityMaterialIcon("cmd_gog", '\ue900')
+        @JvmField
+        val cmd_gold = CommunityMaterialIcon("cmd_gold", '\ue900')
+        @JvmField
+        val cmd_golf_cart = CommunityMaterialIcon("cmd_golf_cart", '\ue900')
+        @JvmField
+        val cmd_golf_tee = CommunityMaterialIcon("cmd_golf_tee", '\ue900')
+        @JvmField
+        val cmd_golf = CommunityMaterialIcon("cmd_golf", '\ue900')
+        @JvmField
+        val cmd_gondola = CommunityMaterialIcon("cmd_gondola", '\ue900')
+        @JvmField
+        val cmd_goodreads = CommunityMaterialIcon("cmd_goodreads", '\ue900')
+        @JvmField
+        val cmd_google_adwords = CommunityMaterialIcon("cmd_google_adwords", '\ue900')
+        @JvmField
+        val cmd_google_analytics = CommunityMaterialIcon("cmd_google_analytics", '\ue900')
+        @JvmField
+        val cmd_google_assistant = CommunityMaterialIcon("cmd_google_assistant", '\ue900')
+        @JvmField
+        val cmd_google_cardboard = CommunityMaterialIcon("cmd_google_cardboard", '\ue900')
+        @JvmField
+        val cmd_google_chrome = CommunityMaterialIcon("cmd_google_chrome", '\ue900')
+        @JvmField
+        val cmd_google_circles_communities = CommunityMaterialIcon("cmd_google_circles_communities", '\ue900')
+        @JvmField
+        val cmd_google_circles_extended = CommunityMaterialIcon("cmd_google_circles_extended", '\ue900')
+        @JvmField
+        val cmd_google_circles_group = CommunityMaterialIcon("cmd_google_circles_group", '\ue900')
+        @JvmField
+        val cmd_google_circles = CommunityMaterialIcon("cmd_google_circles", '\ue900')
+        @JvmField
+        val cmd_google_classroom = CommunityMaterialIcon("cmd_google_classroom", '\ue900')
+        @JvmField
+        val cmd_google_cloud = CommunityMaterialIcon("cmd_google_cloud", '\ue900')
+        @JvmField
+        val cmd_google_controller_off = CommunityMaterialIcon("cmd_google_controller_off", '\ue900')
+        @JvmField
+        val cmd_google_controller = CommunityMaterialIcon("cmd_google_controller", '\ue900')
+        @JvmField
+        val cmd_google_drive = CommunityMaterialIcon("cmd_google_drive", '\ue900')
+        @JvmField
+        val cmd_google_earth = CommunityMaterialIcon("cmd_google_earth", '\ue900')
+        @JvmField
+        val cmd_google_fit = CommunityMaterialIcon("cmd_google_fit", '\ue900')
+        @JvmField
+        val cmd_google_glass = CommunityMaterialIcon("cmd_google_glass", '\ue900')
+        @JvmField
+        val cmd_google_hangouts = CommunityMaterialIcon("cmd_google_hangouts", '\ue900')
+        @JvmField
+        val cmd_google_home = CommunityMaterialIcon("cmd_google_home", '\ue900')
+        @JvmField
+        val cmd_google_keep = CommunityMaterialIcon("cmd_google_keep", '\ue900')
+        @JvmField
+        val cmd_google_lens = CommunityMaterialIcon("cmd_google_lens", '\ue900')
+        @JvmField
+        val cmd_google_maps = CommunityMaterialIcon("cmd_google_maps", '\ue900')
+        @JvmField
+        val cmd_google_my_business = CommunityMaterialIcon("cmd_google_my_business", '\ue900')
+        @JvmField
+        val cmd_google_nearby = CommunityMaterialIcon("cmd_google_nearby", '\ue900')
+        @JvmField
+        val cmd_google_pages = CommunityMaterialIcon("cmd_google_pages", '\ue900')
+        @JvmField
+        val cmd_google_photos = CommunityMaterialIcon("cmd_google_photos", '\ue900')
+        @JvmField
+        val cmd_google_physical_web = CommunityMaterialIcon("cmd_google_physical_web", '\ue900')
+        @JvmField
+        val cmd_google_play = CommunityMaterialIcon("cmd_google_play", '\ue900')
+        @JvmField
+        val cmd_google_plus_box = CommunityMaterialIcon("cmd_google_plus_box", '\ue900')
+        @JvmField
+        val cmd_google_plus = CommunityMaterialIcon("cmd_google_plus", '\ue900')
+        @JvmField
+        val cmd_google_podcast = CommunityMaterialIcon("cmd_google_podcast", '\ue900')
+        @JvmField
+        val cmd_google_spreadsheet = CommunityMaterialIcon("cmd_google_spreadsheet", '\ue900')
+        @JvmField
+        val cmd_google_street_view = CommunityMaterialIcon("cmd_google_street_view", '\ue900')
+        @JvmField
+        val cmd_google_translate = CommunityMaterialIcon("cmd_google_translate", '\ue900')
+        @JvmField
+        val cmd_google = CommunityMaterialIcon("cmd_google", '\ue900')
+        @JvmField
+        val cmd_gradient = CommunityMaterialIcon("cmd_gradient", '\ue900')
+        @JvmField
+        val cmd_grain = CommunityMaterialIcon("cmd_grain", '\ue900')
+        @JvmField
+        val cmd_graph_outline = CommunityMaterialIcon("cmd_graph_outline", '\ue900')
+        @JvmField
+        val cmd_graph = CommunityMaterialIcon("cmd_graph", '\ue900')
+        @JvmField
+        val cmd_graphql = CommunityMaterialIcon("cmd_graphql", '\ue900')
+        @JvmField
+        val cmd_grave_stone = CommunityMaterialIcon("cmd_grave_stone", '\ue900')
+        @JvmField
+        val cmd_grease_pencil = CommunityMaterialIcon("cmd_grease_pencil", '\ue900')
+        @JvmField
+        val cmd_greater_than_or_equal = CommunityMaterialIcon("cmd_greater_than_or_equal", '\ue900')
+        @JvmField
+        val cmd_greater_than = CommunityMaterialIcon("cmd_greater_than", '\ue900')
+        @JvmField
+        val cmd_grid_large = CommunityMaterialIcon("cmd_grid_large", '\ue900')
+        @JvmField
+        val cmd_grid_off = CommunityMaterialIcon("cmd_grid_off", '\ue900')
+        @JvmField
+        val cmd_grid = CommunityMaterialIcon("cmd_grid", '\ue900')
+        @JvmField
+        val cmd_grill_outline = CommunityMaterialIcon("cmd_grill_outline", '\ue900')
+        @JvmField
+        val cmd_grill = CommunityMaterialIcon("cmd_grill", '\ue900')
+        @JvmField
+        val cmd_group = CommunityMaterialIcon("cmd_group", '\ue900')
+        @JvmField
+        val cmd_guitar_acoustic = CommunityMaterialIcon("cmd_guitar_acoustic", '\ue900')
+        @JvmField
+        val cmd_guitar_electric = CommunityMaterialIcon("cmd_guitar_electric", '\ue900')
+        @JvmField
+        val cmd_guitar_pick_outline = CommunityMaterialIcon("cmd_guitar_pick_outline", '\ue900')
+        @JvmField
+        val cmd_guitar_pick = CommunityMaterialIcon("cmd_guitar_pick", '\ue900')
+        @JvmField
+        val cmd_guy_fawkes_mask = CommunityMaterialIcon("cmd_guy_fawkes_mask", '\ue900')
+        @JvmField
+        val cmd_hackernews = CommunityMaterialIcon("cmd_hackernews", '\ue900')
+        @JvmField
+        val cmd_hail = CommunityMaterialIcon("cmd_hail", '\ue900')
+        @JvmField
+        val cmd_ab_testing = CommunityMaterialIcon("cmd_ab_testing", '\ue900')
+        @JvmField
+        val cmd_access_point_network_off = CommunityMaterialIcon("cmd_access_point_network_off", '\ue900')
+        @JvmField
+        val cmd_access_point_network = CommunityMaterialIcon("cmd_access_point_network", '\ue900')
+        @JvmField
+        val cmd_access_point = CommunityMaterialIcon("cmd_access_point", '\ue900')
+        @JvmField
+        val cmd_account_alert_outline = CommunityMaterialIcon("cmd_account_alert_outline", '\ue900')
+        @JvmField
+        val cmd_account_alert = CommunityMaterialIcon("cmd_account_alert", '\ue900')
+        @JvmField
+        val cmd_account_arrow_left_outline = CommunityMaterialIcon("cmd_account_arrow_left_outline", '\ue900')
+        @JvmField
+        val cmd_account_arrow_left = CommunityMaterialIcon("cmd_account_arrow_left", '\ue900')
+        @JvmField
+        val cmd_account_arrow_right_outline = CommunityMaterialIcon("cmd_account_arrow_right_outline", '\ue900')
+        @JvmField
+        val cmd_account_arrow_right = CommunityMaterialIcon("cmd_account_arrow_right", '\ue900')
+        @JvmField
+        val cmd_account_badge_alert_outline = CommunityMaterialIcon("cmd_account_badge_alert_outline", '\ue900')
+        @JvmField
+        val cmd_account_badge_alert = CommunityMaterialIcon("cmd_account_badge_alert", '\ue900')
+        @JvmField
+        val cmd_account_badge_horizontal_outline = CommunityMaterialIcon("cmd_account_badge_horizontal_outline", '\ue900')
+        @JvmField
+        val cmd_account_badge_horizontal = CommunityMaterialIcon("cmd_account_badge_horizontal", '\ue900')
+        @JvmField
+        val cmd_account_badge_outline = CommunityMaterialIcon("cmd_account_badge_outline", '\ue900')
+        @JvmField
+        val cmd_account_badge = CommunityMaterialIcon("cmd_account_badge", '\ue900')
+        @JvmField
+        val cmd_account_box_multiple_outline = CommunityMaterialIcon("cmd_account_box_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_account_box_multiple = CommunityMaterialIcon("cmd_account_box_multiple", '\ue900')
+        @JvmField
+        val cmd_account_box_outline = CommunityMaterialIcon("cmd_account_box_outline", '\ue900')
+        @JvmField
+        val cmd_account_box = CommunityMaterialIcon("cmd_account_box", '\ue900')
+        @JvmField
+        val cmd_account_cancel_outline = CommunityMaterialIcon("cmd_account_cancel_outline", '\ue900')
+        @JvmField
+        val cmd_account_cancel = CommunityMaterialIcon("cmd_account_cancel", '\ue900')
+        @JvmField
+        val cmd_account_card_details_outline = CommunityMaterialIcon("cmd_account_card_details_outline", '\ue900')
+        @JvmField
+        val cmd_account_card_details = CommunityMaterialIcon("cmd_account_card_details", '\ue900')
+        @JvmField
+        val cmd_account_cash_outline = CommunityMaterialIcon("cmd_account_cash_outline", '\ue900')
+        @JvmField
+        val cmd_account_cash = CommunityMaterialIcon("cmd_account_cash", '\ue900')
+        @JvmField
+        val cmd_account_check_outline = CommunityMaterialIcon("cmd_account_check_outline", '\ue900')
+        @JvmField
+        val cmd_account_check = CommunityMaterialIcon("cmd_account_check", '\ue900')
+        @JvmField
+        val cmd_account_child_circle = CommunityMaterialIcon("cmd_account_child_circle", '\ue900')
+        @JvmField
+        val cmd_account_child_outline = CommunityMaterialIcon("cmd_account_child_outline", '\ue900')
+        @JvmField
+        val cmd_account_child = CommunityMaterialIcon("cmd_account_child", '\ue900')
+        @JvmField
+        val cmd_account_circle_outline = CommunityMaterialIcon("cmd_account_circle_outline", '\ue900')
+        @JvmField
+        val cmd_account_circle = CommunityMaterialIcon("cmd_account_circle", '\ue900')
+        @JvmField
+        val cmd_account_clock_outline = CommunityMaterialIcon("cmd_account_clock_outline", '\ue900')
+        @JvmField
+        val cmd_account_clock = CommunityMaterialIcon("cmd_account_clock", '\ue900')
+        @JvmField
+        val cmd_account_convert = CommunityMaterialIcon("cmd_account_convert", '\ue900')
+        @JvmField
+        val cmd_account_details = CommunityMaterialIcon("cmd_account_details", '\ue900')
+        @JvmField
+        val cmd_account_edit_outline = CommunityMaterialIcon("cmd_account_edit_outline", '\ue900')
+        @JvmField
+        val cmd_account_edit = CommunityMaterialIcon("cmd_account_edit", '\ue900')
+        @JvmField
+        val cmd_account_group_outline = CommunityMaterialIcon("cmd_account_group_outline", '\ue900')
+        @JvmField
+        val cmd_account_group = CommunityMaterialIcon("cmd_account_group", '\ue900')
+        @JvmField
+        val cmd_account_heart_outline = CommunityMaterialIcon("cmd_account_heart_outline", '\ue900')
+        @JvmField
+        val cmd_account_heart = CommunityMaterialIcon("cmd_account_heart", '\ue900')
+        @JvmField
+        val cmd_account_key_outline = CommunityMaterialIcon("cmd_account_key_outline", '\ue900')
+        @JvmField
+        val cmd_account_key = CommunityMaterialIcon("cmd_account_key", '\ue900')
+        @JvmField
+        val cmd_account_lock_outline = CommunityMaterialIcon("cmd_account_lock_outline", '\ue900')
+        @JvmField
+        val cmd_account_lock = CommunityMaterialIcon("cmd_account_lock", '\ue900')
+        @JvmField
+        val cmd_account_minus_outline = CommunityMaterialIcon("cmd_account_minus_outline", '\ue900')
+        @JvmField
+        val cmd_account_minus = CommunityMaterialIcon("cmd_account_minus", '\ue900')
+        @JvmField
+        val cmd_account_multiple_check_outline = CommunityMaterialIcon("cmd_account_multiple_check_outline", '\ue900')
+        @JvmField
+        val cmd_account_multiple_check = CommunityMaterialIcon("cmd_account_multiple_check", '\ue900')
+        @JvmField
+        val cmd_account_multiple_minus_outline = CommunityMaterialIcon("cmd_account_multiple_minus_outline", '\ue900')
+        @JvmField
+        val cmd_account_multiple_minus = CommunityMaterialIcon("cmd_account_multiple_minus", '\ue900')
+        @JvmField
+        val cmd_account_multiple_outline = CommunityMaterialIcon("cmd_account_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_account_multiple_plus_outline = CommunityMaterialIcon("cmd_account_multiple_plus_outline", '\ue900')
+        @JvmField
+        val cmd_account_multiple_plus = CommunityMaterialIcon("cmd_account_multiple_plus", '\ue900')
+        @JvmField
+        val cmd_account_multiple_remove_outline = CommunityMaterialIcon("cmd_account_multiple_remove_outline", '\ue900')
+        @JvmField
+        val cmd_account_multiple_remove = CommunityMaterialIcon("cmd_account_multiple_remove", '\ue900')
+        @JvmField
+        val cmd_account_multiple = CommunityMaterialIcon("cmd_account_multiple", '\ue900')
+        @JvmField
+        val cmd_account_network_outline = CommunityMaterialIcon("cmd_account_network_outline", '\ue900')
+        @JvmField
+        val cmd_account_network = CommunityMaterialIcon("cmd_account_network", '\ue900')
+        @JvmField
+        val cmd_account_off_outline = CommunityMaterialIcon("cmd_account_off_outline", '\ue900')
+        @JvmField
+        val cmd_account_off = CommunityMaterialIcon("cmd_account_off", '\ue900')
+        @JvmField
+        val cmd_account_outline = CommunityMaterialIcon("cmd_account_outline", '\ue900')
+        @JvmField
+        val cmd_account_plus_outline = CommunityMaterialIcon("cmd_account_plus_outline", '\ue900')
+        @JvmField
+        val cmd_account_plus = CommunityMaterialIcon("cmd_account_plus", '\ue900')
+        @JvmField
+        val cmd_account_question_outline = CommunityMaterialIcon("cmd_account_question_outline", '\ue900')
+        @JvmField
+        val cmd_account_question = CommunityMaterialIcon("cmd_account_question", '\ue900')
+        @JvmField
+        val cmd_account_remove_outline = CommunityMaterialIcon("cmd_account_remove_outline", '\ue900')
+        @JvmField
+        val cmd_account_remove = CommunityMaterialIcon("cmd_account_remove", '\ue900')
+        @JvmField
+        val cmd_account_search_outline = CommunityMaterialIcon("cmd_account_search_outline", '\ue900')
+        @JvmField
+        val cmd_account_search = CommunityMaterialIcon("cmd_account_search", '\ue900')
+        @JvmField
+        val cmd_account_settings_outline = CommunityMaterialIcon("cmd_account_settings_outline", '\ue900')
+        @JvmField
+        val cmd_account_settings = CommunityMaterialIcon("cmd_account_settings", '\ue900')
+        @JvmField
+        val cmd_account_star_outline = CommunityMaterialIcon("cmd_account_star_outline", '\ue900')
+        @JvmField
+        val cmd_account_star = CommunityMaterialIcon("cmd_account_star", '\ue900')
+        @JvmField
+        val cmd_account_supervisor_circle = CommunityMaterialIcon("cmd_account_supervisor_circle", '\ue900')
+        @JvmField
+        val cmd_account_supervisor_outline = CommunityMaterialIcon("cmd_account_supervisor_outline", '\ue900')
+        @JvmField
+        val cmd_account_supervisor = CommunityMaterialIcon("cmd_account_supervisor", '\ue900')
+        @JvmField
+        val cmd_account_switch = CommunityMaterialIcon("cmd_account_switch", '\ue900')
+        @JvmField
+        val cmd_account_tie_outline = CommunityMaterialIcon("cmd_account_tie_outline", '\ue900')
+        @JvmField
+        val cmd_account_tie = CommunityMaterialIcon("cmd_account_tie", '\ue900')
+        @JvmField
+        val cmd_account = CommunityMaterialIcon("cmd_account", '\ue900')
+        @JvmField
+        val cmd_accusoft = CommunityMaterialIcon("cmd_accusoft", '\ue900')
+        @JvmField
+        val cmd_adchoices = CommunityMaterialIcon("cmd_adchoices", '\ue900')
+        @JvmField
+        val cmd_adjust = CommunityMaterialIcon("cmd_adjust", '\ue900')
+        @JvmField
+        val cmd_adobe_acrobat = CommunityMaterialIcon("cmd_adobe_acrobat", '\ue900')
+        @JvmField
+        val cmd_adobe = CommunityMaterialIcon("cmd_adobe", '\ue900')
+        @JvmField
+        val cmd_air_conditioner = CommunityMaterialIcon("cmd_air_conditioner", '\ue900')
+        @JvmField
+        val cmd_air_filter = CommunityMaterialIcon("cmd_air_filter", '\ue900')
+        @JvmField
+        val cmd_air_horn = CommunityMaterialIcon("cmd_air_horn", '\ue900')
+        @JvmField
+        val cmd_air_humidifier = CommunityMaterialIcon("cmd_air_humidifier", '\ue900')
+        @JvmField
+        val cmd_air_purifier = CommunityMaterialIcon("cmd_air_purifier", '\ue900')
+        @JvmField
+        val cmd_airbag = CommunityMaterialIcon("cmd_airbag", '\ue900')
+        @JvmField
+        val cmd_airballoon_outline = CommunityMaterialIcon("cmd_airballoon_outline", '\ue900')
+        @JvmField
+        val cmd_airballoon = CommunityMaterialIcon("cmd_airballoon", '\ue900')
+        @JvmField
+        val cmd_airplane_landing = CommunityMaterialIcon("cmd_airplane_landing", '\ue900')
+        @JvmField
+        val cmd_airplane_off = CommunityMaterialIcon("cmd_airplane_off", '\ue900')
+        @JvmField
+        val cmd_airplane_takeoff = CommunityMaterialIcon("cmd_airplane_takeoff", '\ue900')
+        @JvmField
+        val cmd_airplane = CommunityMaterialIcon("cmd_airplane", '\ue900')
+        @JvmField
+        val cmd_airplay = CommunityMaterialIcon("cmd_airplay", '\ue900')
+        @JvmField
+        val cmd_airport = CommunityMaterialIcon("cmd_airport", '\ue900')
+        @JvmField
+        val cmd_alarm_bell = CommunityMaterialIcon("cmd_alarm_bell", '\ue900')
+        @JvmField
+        val cmd_alarm_check = CommunityMaterialIcon("cmd_alarm_check", '\ue900')
+        @JvmField
+        val cmd_alarm_light_outline = CommunityMaterialIcon("cmd_alarm_light_outline", '\ue900')
+        @JvmField
+        val cmd_alarm_light = CommunityMaterialIcon("cmd_alarm_light", '\ue900')
+        @JvmField
+        val cmd_alarm_multiple = CommunityMaterialIcon("cmd_alarm_multiple", '\ue900')
+        @JvmField
+        val cmd_alarm_note_off = CommunityMaterialIcon("cmd_alarm_note_off", '\ue900')
+        @JvmField
+        val cmd_alarm_note = CommunityMaterialIcon("cmd_alarm_note", '\ue900')
+        @JvmField
+        val cmd_alarm_off = CommunityMaterialIcon("cmd_alarm_off", '\ue900')
+        @JvmField
+        val cmd_alarm_plus = CommunityMaterialIcon("cmd_alarm_plus", '\ue900')
+        @JvmField
+        val cmd_alarm_snooze = CommunityMaterialIcon("cmd_alarm_snooze", '\ue900')
+        @JvmField
+        val cmd_alarm = CommunityMaterialIcon("cmd_alarm", '\ue900')
+        @JvmField
+        val cmd_album = CommunityMaterialIcon("cmd_album", '\ue900')
+        @JvmField
+        val cmd_alert_box_outline = CommunityMaterialIcon("cmd_alert_box_outline", '\ue900')
+        @JvmField
+        val cmd_alert_box = CommunityMaterialIcon("cmd_alert_box", '\ue900')
+        @JvmField
+        val cmd_alert_circle_check_outline = CommunityMaterialIcon("cmd_alert_circle_check_outline", '\ue900')
+        @JvmField
+        val cmd_alert_circle_check = CommunityMaterialIcon("cmd_alert_circle_check", '\ue900')
+        @JvmField
+        val cmd_alert_circle_outline = CommunityMaterialIcon("cmd_alert_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alert_circle = CommunityMaterialIcon("cmd_alert_circle", '\ue900')
+        @JvmField
+        val cmd_alert_decagram_outline = CommunityMaterialIcon("cmd_alert_decagram_outline", '\ue900')
+        @JvmField
+        val cmd_alert_decagram = CommunityMaterialIcon("cmd_alert_decagram", '\ue900')
+        @JvmField
+        val cmd_alert_octagon_outline = CommunityMaterialIcon("cmd_alert_octagon_outline", '\ue900')
+        @JvmField
+        val cmd_alert_octagon = CommunityMaterialIcon("cmd_alert_octagon", '\ue900')
+        @JvmField
+        val cmd_alert_octagram_outline = CommunityMaterialIcon("cmd_alert_octagram_outline", '\ue900')
+        @JvmField
+        val cmd_alert_octagram = CommunityMaterialIcon("cmd_alert_octagram", '\ue900')
+        @JvmField
+        val cmd_alert_outline = CommunityMaterialIcon("cmd_alert_outline", '\ue900')
+        @JvmField
+        val cmd_alert_rhombus_outline = CommunityMaterialIcon("cmd_alert_rhombus_outline", '\ue900')
+        @JvmField
+        val cmd_alert_rhombus = CommunityMaterialIcon("cmd_alert_rhombus", '\ue900')
+        @JvmField
+        val cmd_alert = CommunityMaterialIcon("cmd_alert", '\ue900')
+        @JvmField
+        val cmd_alien_outline = CommunityMaterialIcon("cmd_alien_outline", '\ue900')
+        @JvmField
+        val cmd_alien = CommunityMaterialIcon("cmd_alien", '\ue900')
+        @JvmField
+        val cmd_align_horizontal_center = CommunityMaterialIcon("cmd_align_horizontal_center", '\ue900')
+        @JvmField
+        val cmd_align_horizontal_left = CommunityMaterialIcon("cmd_align_horizontal_left", '\ue900')
+        @JvmField
+        val cmd_align_horizontal_right = CommunityMaterialIcon("cmd_align_horizontal_right", '\ue900')
+        @JvmField
+        val cmd_align_vertical_bottom = CommunityMaterialIcon("cmd_align_vertical_bottom", '\ue900')
+        @JvmField
+        val cmd_align_vertical_center = CommunityMaterialIcon("cmd_align_vertical_center", '\ue900')
+        @JvmField
+        val cmd_align_vertical_top = CommunityMaterialIcon("cmd_align_vertical_top", '\ue900')
+        @JvmField
+        val cmd_all_inclusive = CommunityMaterialIcon("cmd_all_inclusive", '\ue900')
+        @JvmField
+        val cmd_allergy = CommunityMaterialIcon("cmd_allergy", '\ue900')
+        @JvmField
+        val cmd_alpha_a_box_outline = CommunityMaterialIcon("cmd_alpha_a_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_a_box = CommunityMaterialIcon("cmd_alpha_a_box", '\ue900')
+        @JvmField
+        val cmd_alpha_a_circle_outline = CommunityMaterialIcon("cmd_alpha_a_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_a_circle = CommunityMaterialIcon("cmd_alpha_a_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_a = CommunityMaterialIcon("cmd_alpha_a", '\ue900')
+        @JvmField
+        val cmd_alpha_b_box_outline = CommunityMaterialIcon("cmd_alpha_b_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_b_box = CommunityMaterialIcon("cmd_alpha_b_box", '\ue900')
+        @JvmField
+        val cmd_alpha_b_circle_outline = CommunityMaterialIcon("cmd_alpha_b_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_b_circle = CommunityMaterialIcon("cmd_alpha_b_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_b = CommunityMaterialIcon("cmd_alpha_b", '\ue900')
+        @JvmField
+        val cmd_alpha_c_box_outline = CommunityMaterialIcon("cmd_alpha_c_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_c_box = CommunityMaterialIcon("cmd_alpha_c_box", '\ue900')
+        @JvmField
+        val cmd_alpha_c_circle_outline = CommunityMaterialIcon("cmd_alpha_c_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_c_circle = CommunityMaterialIcon("cmd_alpha_c_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_c = CommunityMaterialIcon("cmd_alpha_c", '\ue900')
+        @JvmField
+        val cmd_alpha_d_box_outline = CommunityMaterialIcon("cmd_alpha_d_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_d_box = CommunityMaterialIcon("cmd_alpha_d_box", '\ue900')
+        @JvmField
+        val cmd_alpha_d_circle_outline = CommunityMaterialIcon("cmd_alpha_d_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_d_circle = CommunityMaterialIcon("cmd_alpha_d_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_d = CommunityMaterialIcon("cmd_alpha_d", '\ue900')
+        @JvmField
+        val cmd_alpha_e_box_outline = CommunityMaterialIcon("cmd_alpha_e_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_e_box = CommunityMaterialIcon("cmd_alpha_e_box", '\ue900')
+        @JvmField
+        val cmd_alpha_e_circle_outline = CommunityMaterialIcon("cmd_alpha_e_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_e_circle = CommunityMaterialIcon("cmd_alpha_e_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_e = CommunityMaterialIcon("cmd_alpha_e", '\ue900')
+        @JvmField
+        val cmd_alpha_f_box_outline = CommunityMaterialIcon("cmd_alpha_f_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_f_box = CommunityMaterialIcon("cmd_alpha_f_box", '\ue900')
+        @JvmField
+        val cmd_alpha_f_circle_outline = CommunityMaterialIcon("cmd_alpha_f_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_f_circle = CommunityMaterialIcon("cmd_alpha_f_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_f = CommunityMaterialIcon("cmd_alpha_f", '\ue900')
+        @JvmField
+        val cmd_alpha_g_box_outline = CommunityMaterialIcon("cmd_alpha_g_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_g_box = CommunityMaterialIcon("cmd_alpha_g_box", '\ue900')
+        @JvmField
+        val cmd_alpha_g_circle_outline = CommunityMaterialIcon("cmd_alpha_g_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_g_circle = CommunityMaterialIcon("cmd_alpha_g_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_g = CommunityMaterialIcon("cmd_alpha_g", '\ue900')
+        @JvmField
+        val cmd_alpha_h_box_outline = CommunityMaterialIcon("cmd_alpha_h_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_h_box = CommunityMaterialIcon("cmd_alpha_h_box", '\ue900')
+        @JvmField
+        val cmd_alpha_h_circle_outline = CommunityMaterialIcon("cmd_alpha_h_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_h_circle = CommunityMaterialIcon("cmd_alpha_h_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_h = CommunityMaterialIcon("cmd_alpha_h", '\ue900')
+        @JvmField
+        val cmd_alpha_i_box_outline = CommunityMaterialIcon("cmd_alpha_i_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_i_box = CommunityMaterialIcon("cmd_alpha_i_box", '\ue900')
+        @JvmField
+        val cmd_alpha_i_circle_outline = CommunityMaterialIcon("cmd_alpha_i_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_i_circle = CommunityMaterialIcon("cmd_alpha_i_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_i = CommunityMaterialIcon("cmd_alpha_i", '\ue900')
+        @JvmField
+        val cmd_alpha_j_box_outline = CommunityMaterialIcon("cmd_alpha_j_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_j_box = CommunityMaterialIcon("cmd_alpha_j_box", '\ue900')
+        @JvmField
+        val cmd_alpha_j_circle_outline = CommunityMaterialIcon("cmd_alpha_j_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_j_circle = CommunityMaterialIcon("cmd_alpha_j_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_j = CommunityMaterialIcon("cmd_alpha_j", '\ue900')
+        @JvmField
+        val cmd_alpha_k_box_outline = CommunityMaterialIcon("cmd_alpha_k_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_k_box = CommunityMaterialIcon("cmd_alpha_k_box", '\ue900')
+        @JvmField
+        val cmd_alpha_k_circle_outline = CommunityMaterialIcon("cmd_alpha_k_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_k_circle = CommunityMaterialIcon("cmd_alpha_k_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_k = CommunityMaterialIcon("cmd_alpha_k", '\ue900')
+        @JvmField
+        val cmd_alpha_l_box_outline = CommunityMaterialIcon("cmd_alpha_l_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_l_box = CommunityMaterialIcon("cmd_alpha_l_box", '\ue900')
+        @JvmField
+        val cmd_alpha_l_circle_outline = CommunityMaterialIcon("cmd_alpha_l_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_l_circle = CommunityMaterialIcon("cmd_alpha_l_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_l = CommunityMaterialIcon("cmd_alpha_l", '\ue900')
+        @JvmField
+        val cmd_alpha_m_box_outline = CommunityMaterialIcon("cmd_alpha_m_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_m_box = CommunityMaterialIcon("cmd_alpha_m_box", '\ue900')
+        @JvmField
+        val cmd_alpha_m_circle_outline = CommunityMaterialIcon("cmd_alpha_m_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_m_circle = CommunityMaterialIcon("cmd_alpha_m_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_m = CommunityMaterialIcon("cmd_alpha_m", '\ue900')
+        @JvmField
+        val cmd_alpha_n_box_outline = CommunityMaterialIcon("cmd_alpha_n_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_n_box = CommunityMaterialIcon("cmd_alpha_n_box", '\ue900')
+        @JvmField
+        val cmd_alpha_n_circle_outline = CommunityMaterialIcon("cmd_alpha_n_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_n_circle = CommunityMaterialIcon("cmd_alpha_n_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_n = CommunityMaterialIcon("cmd_alpha_n", '\ue900')
+        @JvmField
+        val cmd_alpha_o_box_outline = CommunityMaterialIcon("cmd_alpha_o_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_o_box = CommunityMaterialIcon("cmd_alpha_o_box", '\ue900')
+        @JvmField
+        val cmd_alpha_o_circle_outline = CommunityMaterialIcon("cmd_alpha_o_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_o_circle = CommunityMaterialIcon("cmd_alpha_o_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_o = CommunityMaterialIcon("cmd_alpha_o", '\ue900')
+        @JvmField
+        val cmd_alpha_p_box_outline = CommunityMaterialIcon("cmd_alpha_p_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_p_box = CommunityMaterialIcon("cmd_alpha_p_box", '\ue900')
+        @JvmField
+        val cmd_alpha_p_circle_outline = CommunityMaterialIcon("cmd_alpha_p_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_p_circle = CommunityMaterialIcon("cmd_alpha_p_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_p = CommunityMaterialIcon("cmd_alpha_p", '\ue900')
+        @JvmField
+        val cmd_alpha_q_box_outline = CommunityMaterialIcon("cmd_alpha_q_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_q_box = CommunityMaterialIcon("cmd_alpha_q_box", '\ue900')
+        @JvmField
+        val cmd_alpha_q_circle_outline = CommunityMaterialIcon("cmd_alpha_q_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_q_circle = CommunityMaterialIcon("cmd_alpha_q_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_q = CommunityMaterialIcon("cmd_alpha_q", '\ue900')
+        @JvmField
+        val cmd_alpha_r_box_outline = CommunityMaterialIcon("cmd_alpha_r_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_r_box = CommunityMaterialIcon("cmd_alpha_r_box", '\ue900')
+        @JvmField
+        val cmd_alpha_r_circle_outline = CommunityMaterialIcon("cmd_alpha_r_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_r_circle = CommunityMaterialIcon("cmd_alpha_r_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_r = CommunityMaterialIcon("cmd_alpha_r", '\ue900')
+        @JvmField
+        val cmd_alpha_s_box_outline = CommunityMaterialIcon("cmd_alpha_s_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_s_box = CommunityMaterialIcon("cmd_alpha_s_box", '\ue900')
+        @JvmField
+        val cmd_alpha_s_circle_outline = CommunityMaterialIcon("cmd_alpha_s_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_s_circle = CommunityMaterialIcon("cmd_alpha_s_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_s = CommunityMaterialIcon("cmd_alpha_s", '\ue900')
+        @JvmField
+        val cmd_alpha_t_box_outline = CommunityMaterialIcon("cmd_alpha_t_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_t_box = CommunityMaterialIcon("cmd_alpha_t_box", '\ue900')
+        @JvmField
+        val cmd_alpha_t_circle_outline = CommunityMaterialIcon("cmd_alpha_t_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_t_circle = CommunityMaterialIcon("cmd_alpha_t_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_t = CommunityMaterialIcon("cmd_alpha_t", '\ue900')
+        @JvmField
+        val cmd_alpha_u_box_outline = CommunityMaterialIcon("cmd_alpha_u_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_u_box = CommunityMaterialIcon("cmd_alpha_u_box", '\ue900')
+        @JvmField
+        val cmd_alpha_u_circle_outline = CommunityMaterialIcon("cmd_alpha_u_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_u_circle = CommunityMaterialIcon("cmd_alpha_u_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_u = CommunityMaterialIcon("cmd_alpha_u", '\ue900')
+        @JvmField
+        val cmd_alpha_v_box_outline = CommunityMaterialIcon("cmd_alpha_v_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_v_box = CommunityMaterialIcon("cmd_alpha_v_box", '\ue900')
+        @JvmField
+        val cmd_alpha_v_circle_outline = CommunityMaterialIcon("cmd_alpha_v_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_v_circle = CommunityMaterialIcon("cmd_alpha_v_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_v = CommunityMaterialIcon("cmd_alpha_v", '\ue900')
+        @JvmField
+        val cmd_alpha_w_box_outline = CommunityMaterialIcon("cmd_alpha_w_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_w_box = CommunityMaterialIcon("cmd_alpha_w_box", '\ue900')
+        @JvmField
+        val cmd_alpha_w_circle_outline = CommunityMaterialIcon("cmd_alpha_w_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_w_circle = CommunityMaterialIcon("cmd_alpha_w_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_w = CommunityMaterialIcon("cmd_alpha_w", '\ue900')
+        @JvmField
+        val cmd_alpha_x_box_outline = CommunityMaterialIcon("cmd_alpha_x_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_x_box = CommunityMaterialIcon("cmd_alpha_x_box", '\ue900')
+        @JvmField
+        val cmd_alpha_x_circle_outline = CommunityMaterialIcon("cmd_alpha_x_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_x_circle = CommunityMaterialIcon("cmd_alpha_x_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_x = CommunityMaterialIcon("cmd_alpha_x", '\ue900')
+        @JvmField
+        val cmd_alpha_y_box_outline = CommunityMaterialIcon("cmd_alpha_y_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_y_box = CommunityMaterialIcon("cmd_alpha_y_box", '\ue900')
+        @JvmField
+        val cmd_alpha_y_circle_outline = CommunityMaterialIcon("cmd_alpha_y_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_y_circle = CommunityMaterialIcon("cmd_alpha_y_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_y = CommunityMaterialIcon("cmd_alpha_y", '\ue900')
+        @JvmField
+        val cmd_alpha_z_box_outline = CommunityMaterialIcon("cmd_alpha_z_box_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_z_box = CommunityMaterialIcon("cmd_alpha_z_box", '\ue900')
+        @JvmField
+        val cmd_alpha_z_circle_outline = CommunityMaterialIcon("cmd_alpha_z_circle_outline", '\ue900')
+        @JvmField
+        val cmd_alpha_z_circle = CommunityMaterialIcon("cmd_alpha_z_circle", '\ue900')
+        @JvmField
+        val cmd_alpha_z = CommunityMaterialIcon("cmd_alpha_z", '\ue900')
+        @JvmField
+        val cmd_alpha = CommunityMaterialIcon("cmd_alpha", '\ue900')
+        @JvmField
+        val cmd_alphabetical_off = CommunityMaterialIcon("cmd_alphabetical_off", '\ue900')
+        @JvmField
+        val cmd_alphabetical_variant_off = CommunityMaterialIcon("cmd_alphabetical_variant_off", '\ue900')
+        @JvmField
+        val cmd_alphabetical_variant = CommunityMaterialIcon("cmd_alphabetical_variant", '\ue900')
+        @JvmField
+        val cmd_alphabetical = CommunityMaterialIcon("cmd_alphabetical", '\ue900')
+        @JvmField
+        val cmd_altimeter = CommunityMaterialIcon("cmd_altimeter", '\ue900')
+        @JvmField
+        val cmd_amazon_alexa = CommunityMaterialIcon("cmd_amazon_alexa", '\ue900')
+        @JvmField
+        val cmd_amazon_drive = CommunityMaterialIcon("cmd_amazon_drive", '\ue900')
+        @JvmField
+        val cmd_amazon = CommunityMaterialIcon("cmd_amazon", '\ue900')
+        @JvmField
+        val cmd_ambulance = CommunityMaterialIcon("cmd_ambulance", '\ue900')
+        @JvmField
+        val cmd_ammunition = CommunityMaterialIcon("cmd_ammunition", '\ue900')
+        @JvmField
+        val cmd_ampersand = CommunityMaterialIcon("cmd_ampersand", '\ue900')
+        @JvmField
+        val cmd_amplifier_off = CommunityMaterialIcon("cmd_amplifier_off", '\ue900')
+        @JvmField
+        val cmd_amplifier = CommunityMaterialIcon("cmd_amplifier", '\ue900')
+        @JvmField
+        val cmd_anchor = CommunityMaterialIcon("cmd_anchor", '\ue900')
+        @JvmField
+        val cmd_android_auto = CommunityMaterialIcon("cmd_android_auto", '\ue900')
+        @JvmField
+        val cmd_android_debug_bridge = CommunityMaterialIcon("cmd_android_debug_bridge", '\ue900')
+        @JvmField
+        val cmd_android_head = CommunityMaterialIcon("cmd_android_head", '\ue900')
+        @JvmField
+        val cmd_android_messages = CommunityMaterialIcon("cmd_android_messages", '\ue900')
+        @JvmField
+        val cmd_android_studio = CommunityMaterialIcon("cmd_android_studio", '\ue900')
+        @JvmField
+        val cmd_android = CommunityMaterialIcon("cmd_android", '\ue900')
+        @JvmField
+        val cmd_angle_acute = CommunityMaterialIcon("cmd_angle_acute", '\ue900')
+        @JvmField
+        val cmd_angle_obtuse = CommunityMaterialIcon("cmd_angle_obtuse", '\ue900')
+        @JvmField
+        val cmd_angle_right = CommunityMaterialIcon("cmd_angle_right", '\ue900')
+        @JvmField
+        val cmd_angular = CommunityMaterialIcon("cmd_angular", '\ue900')
+        @JvmField
+        val cmd_angularjs = CommunityMaterialIcon("cmd_angularjs", '\ue900')
+        @JvmField
+        val cmd_animation_outline = CommunityMaterialIcon("cmd_animation_outline", '\ue900')
+        @JvmField
+        val cmd_animation_play_outline = CommunityMaterialIcon("cmd_animation_play_outline", '\ue900')
+        @JvmField
+        val cmd_animation_play = CommunityMaterialIcon("cmd_animation_play", '\ue900')
+        @JvmField
+        val cmd_animation = CommunityMaterialIcon("cmd_animation", '\ue900')
+        @JvmField
+        val cmd_ansible = CommunityMaterialIcon("cmd_ansible", '\ue900')
+        @JvmField
+        val cmd_antenna = CommunityMaterialIcon("cmd_antenna", '\ue900')
+        @JvmField
+        val cmd_anvil = CommunityMaterialIcon("cmd_anvil", '\ue900')
+        @JvmField
+        val cmd_apache_kafka = CommunityMaterialIcon("cmd_apache_kafka", '\ue900')
+        @JvmField
+        val cmd_api_off = CommunityMaterialIcon("cmd_api_off", '\ue900')
+        @JvmField
+        val cmd_api = CommunityMaterialIcon("cmd_api", '\ue900')
+        @JvmField
+        val cmd_apple_finder = CommunityMaterialIcon("cmd_apple_finder", '\ue900')
+        @JvmField
+        val cmd_apple_icloud = CommunityMaterialIcon("cmd_apple_icloud", '\ue900')
+        @JvmField
+        val cmd_apple_ios = CommunityMaterialIcon("cmd_apple_ios", '\ue900')
+        @JvmField
+        val cmd_apple_keyboard_caps = CommunityMaterialIcon("cmd_apple_keyboard_caps", '\ue900')
+        @JvmField
+        val cmd_apple_keyboard_command = CommunityMaterialIcon("cmd_apple_keyboard_command", '\ue900')
+        @JvmField
+        val cmd_apple_keyboard_control = CommunityMaterialIcon("cmd_apple_keyboard_control", '\ue900')
+        @JvmField
+        val cmd_apple_keyboard_option = CommunityMaterialIcon("cmd_apple_keyboard_option", '\ue900')
+        @JvmField
+        val cmd_apple_keyboard_shift = CommunityMaterialIcon("cmd_apple_keyboard_shift", '\ue900')
+        @JvmField
+        val cmd_apple_safari = CommunityMaterialIcon("cmd_apple_safari", '\ue900')
+        @JvmField
+        val cmd_apple = CommunityMaterialIcon("cmd_apple", '\ue900')
+        @JvmField
+        val cmd_application_export = CommunityMaterialIcon("cmd_application_export", '\ue900')
+        @JvmField
+        val cmd_application_import = CommunityMaterialIcon("cmd_application_import", '\ue900')
+        @JvmField
+        val cmd_application = CommunityMaterialIcon("cmd_application", '\ue900')
+        @JvmField
+        val cmd_approximately_equal_box = CommunityMaterialIcon("cmd_approximately_equal_box", '\ue900')
+        @JvmField
+        val cmd_approximately_equal = CommunityMaterialIcon("cmd_approximately_equal", '\ue900')
+        @JvmField
+        val cmd_apps_box = CommunityMaterialIcon("cmd_apps_box", '\ue900')
+        @JvmField
+        val cmd_apps = CommunityMaterialIcon("cmd_apps", '\ue900')
+        @JvmField
+        val cmd_arch = CommunityMaterialIcon("cmd_arch", '\ue900')
+        @JvmField
+        val cmd_archive_arrow_down_outline = CommunityMaterialIcon("cmd_archive_arrow_down_outline", '\ue900')
+        @JvmField
+        val cmd_archive_arrow_down = CommunityMaterialIcon("cmd_archive_arrow_down", '\ue900')
+        @JvmField
+        val cmd_archive_arrow_up_outline = CommunityMaterialIcon("cmd_archive_arrow_up_outline", '\ue900')
+        @JvmField
+        val cmd_archive_arrow_up = CommunityMaterialIcon("cmd_archive_arrow_up", '\ue900')
+        @JvmField
+        val cmd_archive_outline = CommunityMaterialIcon("cmd_archive_outline", '\ue900')
+        @JvmField
+        val cmd_archive = CommunityMaterialIcon("cmd_archive", '\ue900')
+        @JvmField
+        val cmd_arm_flex_outline = CommunityMaterialIcon("cmd_arm_flex_outline", '\ue900')
+        @JvmField
+        val cmd_arm_flex = CommunityMaterialIcon("cmd_arm_flex", '\ue900')
+        @JvmField
+        val cmd_arrange_bring_forward = CommunityMaterialIcon("cmd_arrange_bring_forward", '\ue900')
+        @JvmField
+        val cmd_arrange_bring_to_front = CommunityMaterialIcon("cmd_arrange_bring_to_front", '\ue900')
+        @JvmField
+        val cmd_arrange_send_backward = CommunityMaterialIcon("cmd_arrange_send_backward", '\ue900')
+        @JvmField
+        val cmd_arrange_send_to_back = CommunityMaterialIcon("cmd_arrange_send_to_back", '\ue900')
+        @JvmField
+        val cmd_arrow_all = CommunityMaterialIcon("cmd_arrow_all", '\ue900')
+        @JvmField
+        val cmd_arrow_bottom_left_bold_outline = CommunityMaterialIcon("cmd_arrow_bottom_left_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_bottom_left_thick = CommunityMaterialIcon("cmd_arrow_bottom_left_thick", '\ue900')
+        @JvmField
+        val cmd_arrow_bottom_left = CommunityMaterialIcon("cmd_arrow_bottom_left", '\ue900')
+        @JvmField
+        val cmd_arrow_bottom_right_bold_outline = CommunityMaterialIcon("cmd_arrow_bottom_right_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_bottom_right_thick = CommunityMaterialIcon("cmd_arrow_bottom_right_thick", '\ue900')
+        @JvmField
+        val cmd_arrow_bottom_right = CommunityMaterialIcon("cmd_arrow_bottom_right", '\ue900')
+        @JvmField
+        val cmd_arrow_collapse_all = CommunityMaterialIcon("cmd_arrow_collapse_all", '\ue900')
+        @JvmField
+        val cmd_arrow_collapse_down = CommunityMaterialIcon("cmd_arrow_collapse_down", '\ue900')
+        @JvmField
+        val cmd_arrow_collapse_horizontal = CommunityMaterialIcon("cmd_arrow_collapse_horizontal", '\ue900')
+        @JvmField
+        val cmd_arrow_collapse_left = CommunityMaterialIcon("cmd_arrow_collapse_left", '\ue900')
+        @JvmField
+        val cmd_arrow_collapse_right = CommunityMaterialIcon("cmd_arrow_collapse_right", '\ue900')
+        @JvmField
+        val cmd_arrow_collapse_up = CommunityMaterialIcon("cmd_arrow_collapse_up", '\ue900')
+        @JvmField
+        val cmd_arrow_collapse_vertical = CommunityMaterialIcon("cmd_arrow_collapse_vertical", '\ue900')
+        @JvmField
+        val cmd_arrow_collapse = CommunityMaterialIcon("cmd_arrow_collapse", '\ue900')
+        @JvmField
+        val cmd_arrow_decision_auto_outline = CommunityMaterialIcon("cmd_arrow_decision_auto_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_decision_auto = CommunityMaterialIcon("cmd_arrow_decision_auto", '\ue900')
+        @JvmField
+        val cmd_arrow_decision_outline = CommunityMaterialIcon("cmd_arrow_decision_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_decision = CommunityMaterialIcon("cmd_arrow_decision", '\ue900')
+        @JvmField
+        val cmd_arrow_down_bold_box_outline = CommunityMaterialIcon("cmd_arrow_down_bold_box_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_down_bold_box = CommunityMaterialIcon("cmd_arrow_down_bold_box", '\ue900')
+        @JvmField
+        val cmd_arrow_down_bold_circle_outline = CommunityMaterialIcon("cmd_arrow_down_bold_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_down_bold_circle = CommunityMaterialIcon("cmd_arrow_down_bold_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_down_bold_hexagon_outline = CommunityMaterialIcon("cmd_arrow_down_bold_hexagon_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_down_bold_outline = CommunityMaterialIcon("cmd_arrow_down_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_down_bold = CommunityMaterialIcon("cmd_arrow_down_bold", '\ue900')
+        @JvmField
+        val cmd_arrow_down_box = CommunityMaterialIcon("cmd_arrow_down_box", '\ue900')
+        @JvmField
+        val cmd_arrow_down_circle_outline = CommunityMaterialIcon("cmd_arrow_down_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_down_circle = CommunityMaterialIcon("cmd_arrow_down_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_down_drop_circle_outline = CommunityMaterialIcon("cmd_arrow_down_drop_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_down_drop_circle = CommunityMaterialIcon("cmd_arrow_down_drop_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_down_thick = CommunityMaterialIcon("cmd_arrow_down_thick", '\ue900')
+        @JvmField
+        val cmd_arrow_down = CommunityMaterialIcon("cmd_arrow_down", '\ue900')
+        @JvmField
+        val cmd_arrow_expand_all = CommunityMaterialIcon("cmd_arrow_expand_all", '\ue900')
+        @JvmField
+        val cmd_arrow_expand_down = CommunityMaterialIcon("cmd_arrow_expand_down", '\ue900')
+        @JvmField
+        val cmd_arrow_expand_horizontal = CommunityMaterialIcon("cmd_arrow_expand_horizontal", '\ue900')
+        @JvmField
+        val cmd_arrow_expand_left = CommunityMaterialIcon("cmd_arrow_expand_left", '\ue900')
+        @JvmField
+        val cmd_arrow_expand_right = CommunityMaterialIcon("cmd_arrow_expand_right", '\ue900')
+        @JvmField
+        val cmd_arrow_expand_up = CommunityMaterialIcon("cmd_arrow_expand_up", '\ue900')
+        @JvmField
+        val cmd_arrow_expand_vertical = CommunityMaterialIcon("cmd_arrow_expand_vertical", '\ue900')
+        @JvmField
+        val cmd_arrow_expand = CommunityMaterialIcon("cmd_arrow_expand", '\ue900')
+        @JvmField
+        val cmd_arrow_horizontal_lock = CommunityMaterialIcon("cmd_arrow_horizontal_lock", '\ue900')
+        @JvmField
+        val cmd_arrow_left_bold_box_outline = CommunityMaterialIcon("cmd_arrow_left_bold_box_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_left_bold_box = CommunityMaterialIcon("cmd_arrow_left_bold_box", '\ue900')
+        @JvmField
+        val cmd_arrow_left_bold_circle_outline = CommunityMaterialIcon("cmd_arrow_left_bold_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_left_bold_circle = CommunityMaterialIcon("cmd_arrow_left_bold_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_left_bold_hexagon_outline = CommunityMaterialIcon("cmd_arrow_left_bold_hexagon_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_left_bold_outline = CommunityMaterialIcon("cmd_arrow_left_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_left_bold = CommunityMaterialIcon("cmd_arrow_left_bold", '\ue900')
+        @JvmField
+        val cmd_arrow_left_box = CommunityMaterialIcon("cmd_arrow_left_box", '\ue900')
+        @JvmField
+        val cmd_arrow_left_circle_outline = CommunityMaterialIcon("cmd_arrow_left_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_left_circle = CommunityMaterialIcon("cmd_arrow_left_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_left_drop_circle_outline = CommunityMaterialIcon("cmd_arrow_left_drop_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_left_drop_circle = CommunityMaterialIcon("cmd_arrow_left_drop_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_left_right_bold_outline = CommunityMaterialIcon("cmd_arrow_left_right_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_left_right_bold = CommunityMaterialIcon("cmd_arrow_left_right_bold", '\ue900')
+        @JvmField
+        val cmd_arrow_left_right = CommunityMaterialIcon("cmd_arrow_left_right", '\ue900')
+        @JvmField
+        val cmd_arrow_left_thick = CommunityMaterialIcon("cmd_arrow_left_thick", '\ue900')
+        @JvmField
+        val cmd_arrow_left = CommunityMaterialIcon("cmd_arrow_left", '\ue900')
+        @JvmField
+        val cmd_arrow_right_bold_box_outline = CommunityMaterialIcon("cmd_arrow_right_bold_box_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_right_bold_box = CommunityMaterialIcon("cmd_arrow_right_bold_box", '\ue900')
+        @JvmField
+        val cmd_arrow_right_bold_circle_outline = CommunityMaterialIcon("cmd_arrow_right_bold_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_right_bold_circle = CommunityMaterialIcon("cmd_arrow_right_bold_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_right_bold_hexagon_outline = CommunityMaterialIcon("cmd_arrow_right_bold_hexagon_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_right_bold_outline = CommunityMaterialIcon("cmd_arrow_right_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_right_bold = CommunityMaterialIcon("cmd_arrow_right_bold", '\ue900')
+        @JvmField
+        val cmd_arrow_right_box = CommunityMaterialIcon("cmd_arrow_right_box", '\ue900')
+        @JvmField
+        val cmd_arrow_right_circle_outline = CommunityMaterialIcon("cmd_arrow_right_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_right_circle = CommunityMaterialIcon("cmd_arrow_right_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_right_drop_circle_outline = CommunityMaterialIcon("cmd_arrow_right_drop_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_right_drop_circle = CommunityMaterialIcon("cmd_arrow_right_drop_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_right_thick = CommunityMaterialIcon("cmd_arrow_right_thick", '\ue900')
+        @JvmField
+        val cmd_arrow_right = CommunityMaterialIcon("cmd_arrow_right", '\ue900')
+        @JvmField
+        val cmd_arrow_split_horizontal = CommunityMaterialIcon("cmd_arrow_split_horizontal", '\ue900')
+        @JvmField
+        val cmd_arrow_split_vertical = CommunityMaterialIcon("cmd_arrow_split_vertical", '\ue900')
+        @JvmField
+        val cmd_arrow_top_left_bold_outline = CommunityMaterialIcon("cmd_arrow_top_left_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_top_left_bottom_right_bold = CommunityMaterialIcon("cmd_arrow_top_left_bottom_right_bold", '\ue900')
+        @JvmField
+        val cmd_arrow_top_left_bottom_right = CommunityMaterialIcon("cmd_arrow_top_left_bottom_right", '\ue900')
+        @JvmField
+        val cmd_arrow_top_left_thick = CommunityMaterialIcon("cmd_arrow_top_left_thick", '\ue900')
+        @JvmField
+        val cmd_arrow_top_left = CommunityMaterialIcon("cmd_arrow_top_left", '\ue900')
+        @JvmField
+        val cmd_arrow_top_right_bold_outline = CommunityMaterialIcon("cmd_arrow_top_right_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_top_right_bottom_left_bold = CommunityMaterialIcon("cmd_arrow_top_right_bottom_left_bold", '\ue900')
+        @JvmField
+        val cmd_arrow_top_right_bottom_left = CommunityMaterialIcon("cmd_arrow_top_right_bottom_left", '\ue900')
+        @JvmField
+        val cmd_arrow_top_right_thick = CommunityMaterialIcon("cmd_arrow_top_right_thick", '\ue900')
+        @JvmField
+        val cmd_arrow_top_right = CommunityMaterialIcon("cmd_arrow_top_right", '\ue900')
+        @JvmField
+        val cmd_arrow_up_bold_box_outline = CommunityMaterialIcon("cmd_arrow_up_bold_box_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_up_bold_box = CommunityMaterialIcon("cmd_arrow_up_bold_box", '\ue900')
+        @JvmField
+        val cmd_arrow_up_bold_circle_outline = CommunityMaterialIcon("cmd_arrow_up_bold_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_up_bold_circle = CommunityMaterialIcon("cmd_arrow_up_bold_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_up_bold_hexagon_outline = CommunityMaterialIcon("cmd_arrow_up_bold_hexagon_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_up_bold_outline = CommunityMaterialIcon("cmd_arrow_up_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_up_bold = CommunityMaterialIcon("cmd_arrow_up_bold", '\ue900')
+        @JvmField
+        val cmd_arrow_up_box = CommunityMaterialIcon("cmd_arrow_up_box", '\ue900')
+        @JvmField
+        val cmd_arrow_up_circle_outline = CommunityMaterialIcon("cmd_arrow_up_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_up_circle = CommunityMaterialIcon("cmd_arrow_up_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_up_down_bold_outline = CommunityMaterialIcon("cmd_arrow_up_down_bold_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_up_down_bold = CommunityMaterialIcon("cmd_arrow_up_down_bold", '\ue900')
+        @JvmField
+        val cmd_arrow_up_down = CommunityMaterialIcon("cmd_arrow_up_down", '\ue900')
+        @JvmField
+        val cmd_arrow_up_drop_circle_outline = CommunityMaterialIcon("cmd_arrow_up_drop_circle_outline", '\ue900')
+        @JvmField
+        val cmd_arrow_up_drop_circle = CommunityMaterialIcon("cmd_arrow_up_drop_circle", '\ue900')
+        @JvmField
+        val cmd_arrow_up_thick = CommunityMaterialIcon("cmd_arrow_up_thick", '\ue900')
+        @JvmField
+        val cmd_arrow_up = CommunityMaterialIcon("cmd_arrow_up", '\ue900')
+        @JvmField
+        val cmd_arrow_vertical_lock = CommunityMaterialIcon("cmd_arrow_vertical_lock", '\ue900')
+        @JvmField
+        val cmd_artist_outline = CommunityMaterialIcon("cmd_artist_outline", '\ue900')
+        @JvmField
+        val cmd_artist = CommunityMaterialIcon("cmd_artist", '\ue900')
+        @JvmField
+        val cmd_artstation = CommunityMaterialIcon("cmd_artstation", '\ue900')
+        @JvmField
+        val cmd_aspect_ratio = CommunityMaterialIcon("cmd_aspect_ratio", '\ue900')
+        @JvmField
+        val cmd_assistant = CommunityMaterialIcon("cmd_assistant", '\ue900')
+        @JvmField
+        val cmd_asterisk = CommunityMaterialIcon("cmd_asterisk", '\ue900')
+        @JvmField
+        val cmd_at = CommunityMaterialIcon("cmd_at", '\ue900')
+        @JvmField
+        val cmd_atlassian = CommunityMaterialIcon("cmd_atlassian", '\ue900')
+        @JvmField
+        val cmd_atm = CommunityMaterialIcon("cmd_atm", '\ue900')
+        @JvmField
+        val cmd_atom_variant = CommunityMaterialIcon("cmd_atom_variant", '\ue900')
+        @JvmField
+        val cmd_atom = CommunityMaterialIcon("cmd_atom", '\ue900')
+        @JvmField
+        val cmd_attachment = CommunityMaterialIcon("cmd_attachment", '\ue900')
+        @JvmField
+        val cmd_audio_video_off = CommunityMaterialIcon("cmd_audio_video_off", '\ue900')
+        @JvmField
+        val cmd_audio_video = CommunityMaterialIcon("cmd_audio_video", '\ue900')
+        @JvmField
+        val cmd_audiobook = CommunityMaterialIcon("cmd_audiobook", '\ue900')
+        @JvmField
+        val cmd_augmented_reality = CommunityMaterialIcon("cmd_augmented_reality", '\ue900')
+        @JvmField
+        val cmd_auto_fix = CommunityMaterialIcon("cmd_auto_fix", '\ue900')
+        @JvmField
+        val cmd_auto_upload = CommunityMaterialIcon("cmd_auto_upload", '\ue900')
+        @JvmField
+        val cmd_autorenew = CommunityMaterialIcon("cmd_autorenew", '\ue900')
+        @JvmField
+        val cmd_av_timer = CommunityMaterialIcon("cmd_av_timer", '\ue900')
+        @JvmField
+        val cmd_aws = CommunityMaterialIcon("cmd_aws", '\ue900')
+        @JvmField
+        val cmd_axe = CommunityMaterialIcon("cmd_axe", '\ue900')
+        @JvmField
+        val cmd_axis_arrow_lock = CommunityMaterialIcon("cmd_axis_arrow_lock", '\ue900')
+        @JvmField
+        val cmd_axis_arrow = CommunityMaterialIcon("cmd_axis_arrow", '\ue900')
+        @JvmField
+        val cmd_axis_lock = CommunityMaterialIcon("cmd_axis_lock", '\ue900')
+        @JvmField
+        val cmd_axis_x_arrow_lock = CommunityMaterialIcon("cmd_axis_x_arrow_lock", '\ue900')
+        @JvmField
+        val cmd_axis_x_arrow = CommunityMaterialIcon("cmd_axis_x_arrow", '\ue900')
+        @JvmField
+        val cmd_axis_x_rotate_clockwise = CommunityMaterialIcon("cmd_axis_x_rotate_clockwise", '\ue900')
+        @JvmField
+        val cmd_axis_x_rotate_counterclockwise = CommunityMaterialIcon("cmd_axis_x_rotate_counterclockwise", '\ue900')
+        @JvmField
+        val cmd_axis_x_y_arrow_lock = CommunityMaterialIcon("cmd_axis_x_y_arrow_lock", '\ue900')
+        @JvmField
+        val cmd_axis_y_arrow_lock = CommunityMaterialIcon("cmd_axis_y_arrow_lock", '\ue900')
+        @JvmField
+        val cmd_axis_y_arrow = CommunityMaterialIcon("cmd_axis_y_arrow", '\ue900')
+        @JvmField
+        val cmd_axis_y_rotate_clockwise = CommunityMaterialIcon("cmd_axis_y_rotate_clockwise", '\ue900')
+        @JvmField
+        val cmd_axis_y_rotate_counterclockwise = CommunityMaterialIcon("cmd_axis_y_rotate_counterclockwise", '\ue900')
+        @JvmField
+        val cmd_axis_z_arrow_lock = CommunityMaterialIcon("cmd_axis_z_arrow_lock", '\ue900')
+        @JvmField
+        val cmd_axis_z_arrow = CommunityMaterialIcon("cmd_axis_z_arrow", '\ue900')
+        @JvmField
+        val cmd_axis_z_rotate_clockwise = CommunityMaterialIcon("cmd_axis_z_rotate_clockwise", '\ue900')
+        @JvmField
+        val cmd_axis_z_rotate_counterclockwise = CommunityMaterialIcon("cmd_axis_z_rotate_counterclockwise", '\ue900')
+        @JvmField
+        val cmd_axis = CommunityMaterialIcon("cmd_axis", '\ue900')
+        @JvmField
+        val cmd_azure_devops = CommunityMaterialIcon("cmd_azure_devops", '\ue900')
+        @JvmField
+        val cmd_azure = CommunityMaterialIcon("cmd_azure", '\ue900')
+        @JvmField
+        val cmd_babel = CommunityMaterialIcon("cmd_babel", '\ue900')
+        @JvmField
+        val cmd_baby_bottle_outline = CommunityMaterialIcon("cmd_baby_bottle_outline", '\ue900')
+        @JvmField
+        val cmd_baby_bottle = CommunityMaterialIcon("cmd_baby_bottle", '\ue900')
+        @JvmField
+        val cmd_baby_carriage_off = CommunityMaterialIcon("cmd_baby_carriage_off", '\ue900')
+        @JvmField
+        val cmd_baby_carriage = CommunityMaterialIcon("cmd_baby_carriage", '\ue900')
+        @JvmField
+        val cmd_baby_face_outline = CommunityMaterialIcon("cmd_baby_face_outline", '\ue900')
+        @JvmField
+        val cmd_baby_face = CommunityMaterialIcon("cmd_baby_face", '\ue900')
+        @JvmField
+        val cmd_baby = CommunityMaterialIcon("cmd_baby", '\ue900')
+        @JvmField
+        val cmd_backburger = CommunityMaterialIcon("cmd_backburger", '\ue900')
+        @JvmField
+        val cmd_backspace_outline = CommunityMaterialIcon("cmd_backspace_outline", '\ue900')
+        @JvmField
+        val cmd_backspace_reverse_outline = CommunityMaterialIcon("cmd_backspace_reverse_outline", '\ue900')
+        @JvmField
+        val cmd_backspace_reverse = CommunityMaterialIcon("cmd_backspace_reverse", '\ue900')
+        @JvmField
+        val cmd_backspace = CommunityMaterialIcon("cmd_backspace", '\ue900')
+        @JvmField
+        val cmd_backup_restore = CommunityMaterialIcon("cmd_backup_restore", '\ue900')
+        @JvmField
+        val cmd_bacteria_outline = CommunityMaterialIcon("cmd_bacteria_outline", '\ue900')
+        @JvmField
+        val cmd_bacteria = CommunityMaterialIcon("cmd_bacteria", '\ue900')
+        @JvmField
+        val cmd_badminton = CommunityMaterialIcon("cmd_badminton", '\ue900')
+        @JvmField
+        val cmd_bag_carry_on_check = CommunityMaterialIcon("cmd_bag_carry_on_check", '\ue900')
+        @JvmField
+        val cmd_bag_carry_on_off = CommunityMaterialIcon("cmd_bag_carry_on_off", '\ue900')
+        @JvmField
+        val cmd_bag_carry_on = CommunityMaterialIcon("cmd_bag_carry_on", '\ue900')
+        @JvmField
+        val cmd_bag_checked = CommunityMaterialIcon("cmd_bag_checked", '\ue900')
+        @JvmField
+        val cmd_bag_personal_off_outline = CommunityMaterialIcon("cmd_bag_personal_off_outline", '\ue900')
+        @JvmField
+        val cmd_bag_personal_off = CommunityMaterialIcon("cmd_bag_personal_off", '\ue900')
+        @JvmField
+        val cmd_bag_personal_outline = CommunityMaterialIcon("cmd_bag_personal_outline", '\ue900')
+        @JvmField
+        val cmd_bag_personal = CommunityMaterialIcon("cmd_bag_personal", '\ue900')
+        @JvmField
+        val cmd_baguette = CommunityMaterialIcon("cmd_baguette", '\ue900')
+        @JvmField
+        val cmd_balloon = CommunityMaterialIcon("cmd_balloon", '\ue900')
+        @JvmField
+        val cmd_ballot_outline = CommunityMaterialIcon("cmd_ballot_outline", '\ue900')
+        @JvmField
+        val cmd_ballot_recount_outline = CommunityMaterialIcon("cmd_ballot_recount_outline", '\ue900')
+        @JvmField
+        val cmd_ballot_recount = CommunityMaterialIcon("cmd_ballot_recount", '\ue900')
+        @JvmField
+        val cmd_ballot = CommunityMaterialIcon("cmd_ballot", '\ue900')
+        @JvmField
+        val cmd_bandage = CommunityMaterialIcon("cmd_bandage", '\ue900')
+        @JvmField
+        val cmd_bandcamp = CommunityMaterialIcon("cmd_bandcamp", '\ue900')
+        @JvmField
+        val cmd_bank_minus = CommunityMaterialIcon("cmd_bank_minus", '\ue900')
+        @JvmField
+        val cmd_bank_outline = CommunityMaterialIcon("cmd_bank_outline", '\ue900')
+        @JvmField
+        val cmd_bank_plus = CommunityMaterialIcon("cmd_bank_plus", '\ue900')
+        @JvmField
+        val cmd_bank_remove = CommunityMaterialIcon("cmd_bank_remove", '\ue900')
+        @JvmField
+        val cmd_bank_transfer_in = CommunityMaterialIcon("cmd_bank_transfer_in", '\ue900')
+        @JvmField
+        val cmd_bank_transfer_out = CommunityMaterialIcon("cmd_bank_transfer_out", '\ue900')
+        @JvmField
+        val cmd_bank_transfer = CommunityMaterialIcon("cmd_bank_transfer", '\ue900')
+        @JvmField
+        val cmd_bank = CommunityMaterialIcon("cmd_bank", '\ue900')
+        @JvmField
+        val cmd_barcode_off = CommunityMaterialIcon("cmd_barcode_off", '\ue900')
+        @JvmField
+        val cmd_barcode_scan = CommunityMaterialIcon("cmd_barcode_scan", '\ue900')
+        @JvmField
+        val cmd_barcode = CommunityMaterialIcon("cmd_barcode", '\ue900')
+        @JvmField
+        val cmd_barley_off = CommunityMaterialIcon("cmd_barley_off", '\ue900')
+        @JvmField
+        val cmd_barley = CommunityMaterialIcon("cmd_barley", '\ue900')
+        @JvmField
+        val cmd_barn = CommunityMaterialIcon("cmd_barn", '\ue900')
+        @JvmField
+        val cmd_barrel = CommunityMaterialIcon("cmd_barrel", '\ue900')
+        @JvmField
+        val cmd_baseball_bat = CommunityMaterialIcon("cmd_baseball_bat", '\ue900')
+        @JvmField
+        val cmd_baseball = CommunityMaterialIcon("cmd_baseball", '\ue900')
+        @JvmField
+        val cmd_basecamp = CommunityMaterialIcon("cmd_basecamp", '\ue900')
+        @JvmField
+        val cmd_bash = CommunityMaterialIcon("cmd_bash", '\ue900')
+        @JvmField
+        val cmd_basket_fill = CommunityMaterialIcon("cmd_basket_fill", '\ue900')
+        @JvmField
+        val cmd_basket_outline = CommunityMaterialIcon("cmd_basket_outline", '\ue900')
+        @JvmField
+        val cmd_basket_unfill = CommunityMaterialIcon("cmd_basket_unfill", '\ue900')
+        @JvmField
+        val cmd_basket = CommunityMaterialIcon("cmd_basket", '\ue900')
+        @JvmField
+        val cmd_basketball_hoop_outline = CommunityMaterialIcon("cmd_basketball_hoop_outline", '\ue900')
+        @JvmField
+        val cmd_basketball_hoop = CommunityMaterialIcon("cmd_basketball_hoop", '\ue900')
+        @JvmField
+        val cmd_basketball = CommunityMaterialIcon("cmd_basketball", '\ue900')
+        @JvmField
+        val cmd_bat = CommunityMaterialIcon("cmd_bat", '\ue900')
+        @JvmField
+        val cmd_battery_10_bluetooth = CommunityMaterialIcon("cmd_battery_10_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_10 = CommunityMaterialIcon("cmd_battery_10", '\ue900')
+        @JvmField
+        val cmd_battery_20_bluetooth = CommunityMaterialIcon("cmd_battery_20_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_20 = CommunityMaterialIcon("cmd_battery_20", '\ue900')
+        @JvmField
+        val cmd_battery_30_bluetooth = CommunityMaterialIcon("cmd_battery_30_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_30 = CommunityMaterialIcon("cmd_battery_30", '\ue900')
+        @JvmField
+        val cmd_battery_40_bluetooth = CommunityMaterialIcon("cmd_battery_40_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_40 = CommunityMaterialIcon("cmd_battery_40", '\ue900')
+        @JvmField
+        val cmd_battery_50_bluetooth = CommunityMaterialIcon("cmd_battery_50_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_50 = CommunityMaterialIcon("cmd_battery_50", '\ue900')
+        @JvmField
+        val cmd_battery_60_bluetooth = CommunityMaterialIcon("cmd_battery_60_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_60 = CommunityMaterialIcon("cmd_battery_60", '\ue900')
+        @JvmField
+        val cmd_battery_70_bluetooth = CommunityMaterialIcon("cmd_battery_70_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_70 = CommunityMaterialIcon("cmd_battery_70", '\ue900')
+        @JvmField
+        val cmd_battery_80_bluetooth = CommunityMaterialIcon("cmd_battery_80_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_80 = CommunityMaterialIcon("cmd_battery_80", '\ue900')
+        @JvmField
+        val cmd_battery_90_bluetooth = CommunityMaterialIcon("cmd_battery_90_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_90 = CommunityMaterialIcon("cmd_battery_90", '\ue900')
+        @JvmField
+        val cmd_battery_alert_bluetooth = CommunityMaterialIcon("cmd_battery_alert_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_alert_variant_outline = CommunityMaterialIcon("cmd_battery_alert_variant_outline", '\ue900')
+        @JvmField
+        val cmd_battery_alert_variant = CommunityMaterialIcon("cmd_battery_alert_variant", '\ue900')
+        @JvmField
+        val cmd_battery_alert = CommunityMaterialIcon("cmd_battery_alert", '\ue900')
+        @JvmField
+        val cmd_battery_bluetooth_variant = CommunityMaterialIcon("cmd_battery_bluetooth_variant", '\ue900')
+        @JvmField
+        val cmd_battery_bluetooth = CommunityMaterialIcon("cmd_battery_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_charging_10 = CommunityMaterialIcon("cmd_battery_charging_10", '\ue900')
+        @JvmField
+        val cmd_battery_charging_20 = CommunityMaterialIcon("cmd_battery_charging_20", '\ue900')
+        @JvmField
+        val cmd_battery_charging_30 = CommunityMaterialIcon("cmd_battery_charging_30", '\ue900')
+        @JvmField
+        val cmd_battery_charging_40 = CommunityMaterialIcon("cmd_battery_charging_40", '\ue900')
+        @JvmField
+        val cmd_battery_charging_50 = CommunityMaterialIcon("cmd_battery_charging_50", '\ue900')
+        @JvmField
+        val cmd_battery_charging_60 = CommunityMaterialIcon("cmd_battery_charging_60", '\ue900')
+        @JvmField
+        val cmd_battery_charging_70 = CommunityMaterialIcon("cmd_battery_charging_70", '\ue900')
+        @JvmField
+        val cmd_battery_charging_80 = CommunityMaterialIcon("cmd_battery_charging_80", '\ue900')
+        @JvmField
+        val cmd_battery_charging_90 = CommunityMaterialIcon("cmd_battery_charging_90", '\ue900')
+        @JvmField
+        val cmd_battery_charging_100 = CommunityMaterialIcon("cmd_battery_charging_100", '\ue900')
+        @JvmField
+        val cmd_battery_charging_high = CommunityMaterialIcon("cmd_battery_charging_high", '\ue900')
+        @JvmField
+        val cmd_battery_charging_low = CommunityMaterialIcon("cmd_battery_charging_low", '\ue900')
+        @JvmField
+        val cmd_battery_charging_medium = CommunityMaterialIcon("cmd_battery_charging_medium", '\ue900')
+        @JvmField
+        val cmd_battery_charging_outline = CommunityMaterialIcon("cmd_battery_charging_outline", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_10 = CommunityMaterialIcon("cmd_battery_charging_wireless_10", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_20 = CommunityMaterialIcon("cmd_battery_charging_wireless_20", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_30 = CommunityMaterialIcon("cmd_battery_charging_wireless_30", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_40 = CommunityMaterialIcon("cmd_battery_charging_wireless_40", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_50 = CommunityMaterialIcon("cmd_battery_charging_wireless_50", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_60 = CommunityMaterialIcon("cmd_battery_charging_wireless_60", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_70 = CommunityMaterialIcon("cmd_battery_charging_wireless_70", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_80 = CommunityMaterialIcon("cmd_battery_charging_wireless_80", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_90 = CommunityMaterialIcon("cmd_battery_charging_wireless_90", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_alert = CommunityMaterialIcon("cmd_battery_charging_wireless_alert", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless_outline = CommunityMaterialIcon("cmd_battery_charging_wireless_outline", '\ue900')
+        @JvmField
+        val cmd_battery_charging_wireless = CommunityMaterialIcon("cmd_battery_charging_wireless", '\ue900')
+        @JvmField
+        val cmd_battery_charging = CommunityMaterialIcon("cmd_battery_charging", '\ue900')
+        @JvmField
+        val cmd_battery_heart_outline = CommunityMaterialIcon("cmd_battery_heart_outline", '\ue900')
+        @JvmField
+        val cmd_battery_heart_variant = CommunityMaterialIcon("cmd_battery_heart_variant", '\ue900')
+        @JvmField
+        val cmd_battery_heart = CommunityMaterialIcon("cmd_battery_heart", '\ue900')
+        @JvmField
+        val cmd_battery_high = CommunityMaterialIcon("cmd_battery_high", '\ue900')
+        @JvmField
+        val cmd_battery_low = CommunityMaterialIcon("cmd_battery_low", '\ue900')
+        @JvmField
+        val cmd_battery_medium = CommunityMaterialIcon("cmd_battery_medium", '\ue900')
+        @JvmField
+        val cmd_battery_minus = CommunityMaterialIcon("cmd_battery_minus", '\ue900')
+        @JvmField
+        val cmd_battery_negative = CommunityMaterialIcon("cmd_battery_negative", '\ue900')
+        @JvmField
+        val cmd_battery_off_outline = CommunityMaterialIcon("cmd_battery_off_outline", '\ue900')
+        @JvmField
+        val cmd_battery_off = CommunityMaterialIcon("cmd_battery_off", '\ue900')
+        @JvmField
+        val cmd_battery_outline = CommunityMaterialIcon("cmd_battery_outline", '\ue900')
+        @JvmField
+        val cmd_battery_plus = CommunityMaterialIcon("cmd_battery_plus", '\ue900')
+        @JvmField
+        val cmd_battery_positive = CommunityMaterialIcon("cmd_battery_positive", '\ue900')
+        @JvmField
+        val cmd_battery_unknown_bluetooth = CommunityMaterialIcon("cmd_battery_unknown_bluetooth", '\ue900')
+        @JvmField
+        val cmd_battery_unknown = CommunityMaterialIcon("cmd_battery_unknown", '\ue900')
+        @JvmField
+        val cmd_battery = CommunityMaterialIcon("cmd_battery", '\ue900')
+        @JvmField
+        val cmd_battlenet = CommunityMaterialIcon("cmd_battlenet", '\ue900')
+        @JvmField
+        val cmd_beach = CommunityMaterialIcon("cmd_beach", '\ue900')
+        @JvmField
+        val cmd_beaker_alert_outline = CommunityMaterialIcon("cmd_beaker_alert_outline", '\ue900')
+        @JvmField
+        val cmd_beaker_alert = CommunityMaterialIcon("cmd_beaker_alert", '\ue900')
+        @JvmField
+        val cmd_beaker_check_outline = CommunityMaterialIcon("cmd_beaker_check_outline", '\ue900')
+        @JvmField
+        val cmd_beaker_check = CommunityMaterialIcon("cmd_beaker_check", '\ue900')
+        @JvmField
+        val cmd_beaker_minus_outline = CommunityMaterialIcon("cmd_beaker_minus_outline", '\ue900')
+        @JvmField
+        val cmd_beaker_minus = CommunityMaterialIcon("cmd_beaker_minus", '\ue900')
+        @JvmField
+        val cmd_beaker_outline = CommunityMaterialIcon("cmd_beaker_outline", '\ue900')
+        @JvmField
+        val cmd_beaker_plus_outline = CommunityMaterialIcon("cmd_beaker_plus_outline", '\ue900')
+        @JvmField
+        val cmd_beaker_plus = CommunityMaterialIcon("cmd_beaker_plus", '\ue900')
+        @JvmField
+        val cmd_beaker_question_outline = CommunityMaterialIcon("cmd_beaker_question_outline", '\ue900')
+        @JvmField
+        val cmd_beaker_question = CommunityMaterialIcon("cmd_beaker_question", '\ue900')
+        @JvmField
+        val cmd_beaker_remove_outline = CommunityMaterialIcon("cmd_beaker_remove_outline", '\ue900')
+        @JvmField
+        val cmd_beaker_remove = CommunityMaterialIcon("cmd_beaker_remove", '\ue900')
+        @JvmField
+        val cmd_beaker = CommunityMaterialIcon("cmd_beaker", '\ue900')
+        @JvmField
+        val cmd_beats = CommunityMaterialIcon("cmd_beats", '\ue900')
+        @JvmField
+        val cmd_bed_double_outline = CommunityMaterialIcon("cmd_bed_double_outline", '\ue900')
+        @JvmField
+        val cmd_bed_double = CommunityMaterialIcon("cmd_bed_double", '\ue900')
+        @JvmField
+        val cmd_bed_empty = CommunityMaterialIcon("cmd_bed_empty", '\ue900')
+        @JvmField
+        val cmd_bed_king_outline = CommunityMaterialIcon("cmd_bed_king_outline", '\ue900')
+        @JvmField
+        val cmd_bed_king = CommunityMaterialIcon("cmd_bed_king", '\ue900')
+        @JvmField
+        val cmd_bed_queen_outline = CommunityMaterialIcon("cmd_bed_queen_outline", '\ue900')
+        @JvmField
+        val cmd_bed_queen = CommunityMaterialIcon("cmd_bed_queen", '\ue900')
+        @JvmField
+        val cmd_bed_single_outline = CommunityMaterialIcon("cmd_bed_single_outline", '\ue900')
+        @JvmField
+        val cmd_bed_single = CommunityMaterialIcon("cmd_bed_single", '\ue900')
+        @JvmField
+        val cmd_bee_flower = CommunityMaterialIcon("cmd_bee_flower", '\ue900')
+        @JvmField
+        val cmd_bee = CommunityMaterialIcon("cmd_bee", '\ue900')
+        @JvmField
+        val cmd_beehive_outline = CommunityMaterialIcon("cmd_beehive_outline", '\ue900')
+        @JvmField
+        val cmd_beer = CommunityMaterialIcon("cmd_beer", '\ue900')
+        @JvmField
+        val cmd_behance = CommunityMaterialIcon("cmd_behance", '\ue900')
+        @JvmField
+        val cmd_bell_alert_outline = CommunityMaterialIcon("cmd_bell_alert_outline", '\ue900')
+        @JvmField
+        val cmd_bell_alert = CommunityMaterialIcon("cmd_bell_alert", '\ue900')
+        @JvmField
+        val cmd_bell_check_outline = CommunityMaterialIcon("cmd_bell_check_outline", '\ue900')
+        @JvmField
+        val cmd_bell_check = CommunityMaterialIcon("cmd_bell_check", '\ue900')
+        @JvmField
+        val cmd_bell_circle_outline = CommunityMaterialIcon("cmd_bell_circle_outline", '\ue900')
+        @JvmField
+        val cmd_bell_circle = CommunityMaterialIcon("cmd_bell_circle", '\ue900')
+        @JvmField
+        val cmd_bell_off_outline = CommunityMaterialIcon("cmd_bell_off_outline", '\ue900')
+        @JvmField
+        val cmd_bell_off = CommunityMaterialIcon("cmd_bell_off", '\ue900')
+        @JvmField
+        val cmd_bell_outline = CommunityMaterialIcon("cmd_bell_outline", '\ue900')
+        @JvmField
+        val cmd_bell_plus_outline = CommunityMaterialIcon("cmd_bell_plus_outline", '\ue900')
+        @JvmField
+        val cmd_bell_plus = CommunityMaterialIcon("cmd_bell_plus", '\ue900')
+        @JvmField
+        val cmd_bell_ring_outline = CommunityMaterialIcon("cmd_bell_ring_outline", '\ue900')
+        @JvmField
+        val cmd_bell_ring = CommunityMaterialIcon("cmd_bell_ring", '\ue900')
+        @JvmField
+        val cmd_bell_sleep_outline = CommunityMaterialIcon("cmd_bell_sleep_outline", '\ue900')
+        @JvmField
+        val cmd_bell_sleep = CommunityMaterialIcon("cmd_bell_sleep", '\ue900')
+        @JvmField
+        val cmd_bell = CommunityMaterialIcon("cmd_bell", '\ue900')
+        @JvmField
+        val cmd_beta = CommunityMaterialIcon("cmd_beta", '\ue900')
+        @JvmField
+        val cmd_betamax = CommunityMaterialIcon("cmd_betamax", '\ue900')
+        @JvmField
+        val cmd_biathlon = CommunityMaterialIcon("cmd_biathlon", '\ue900')
+        @JvmField
+        val cmd_bible = CommunityMaterialIcon("cmd_bible", '\ue900')
+        @JvmField
+        val cmd_bicycle_basket = CommunityMaterialIcon("cmd_bicycle_basket", '\ue900')
+        @JvmField
+        val cmd_bicycle = CommunityMaterialIcon("cmd_bicycle", '\ue900')
+        @JvmField
+        val cmd_bike_fast = CommunityMaterialIcon("cmd_bike_fast", '\ue900')
+        @JvmField
+        val cmd_bike = CommunityMaterialIcon("cmd_bike", '\ue900')
+        @JvmField
+        val cmd_billboard = CommunityMaterialIcon("cmd_billboard", '\ue900')
+        @JvmField
+        val cmd_billiards_rack = CommunityMaterialIcon("cmd_billiards_rack", '\ue900')
+        @JvmField
+        val cmd_billiards = CommunityMaterialIcon("cmd_billiards", '\ue900')
+        @JvmField
+        val cmd_bing = CommunityMaterialIcon("cmd_bing", '\ue900')
+        @JvmField
+        val cmd_binoculars = CommunityMaterialIcon("cmd_binoculars", '\ue900')
+        @JvmField
+        val cmd_bio = CommunityMaterialIcon("cmd_bio", '\ue900')
+        @JvmField
+        val cmd_biohazard = CommunityMaterialIcon("cmd_biohazard", '\ue900')
+        @JvmField
+        val cmd_bitbucket = CommunityMaterialIcon("cmd_bitbucket", '\ue900')
+        @JvmField
+        val cmd_bitcoin = CommunityMaterialIcon("cmd_bitcoin", '\ue900')
+        @JvmField
+        val cmd_black_mesa = CommunityMaterialIcon("cmd_black_mesa", '\ue900')
+        @JvmField
+        val cmd_blackberry = CommunityMaterialIcon("cmd_blackberry", '\ue900')
+        @JvmField
+        val cmd_blender_software = CommunityMaterialIcon("cmd_blender_software", '\ue900')
+        @JvmField
+        val cmd_blender = CommunityMaterialIcon("cmd_blender", '\ue900')
+        @JvmField
+        val cmd_blinds_open = CommunityMaterialIcon("cmd_blinds_open", '\ue900')
+        @JvmField
+        val cmd_blinds = CommunityMaterialIcon("cmd_blinds", '\ue900')
+        @JvmField
+        val cmd_block_helper = CommunityMaterialIcon("cmd_block_helper", '\ue900')
+        @JvmField
+        val cmd_blogger = CommunityMaterialIcon("cmd_blogger", '\ue900')
+        @JvmField
+        val cmd_blood_bag = CommunityMaterialIcon("cmd_blood_bag", '\ue900')
+        @JvmField
+        val cmd_bluetooth_audio = CommunityMaterialIcon("cmd_bluetooth_audio", '\ue900')
+        @JvmField
+        val cmd_bluetooth_connect = CommunityMaterialIcon("cmd_bluetooth_connect", '\ue900')
+        @JvmField
+        val cmd_bluetooth_off = CommunityMaterialIcon("cmd_bluetooth_off", '\ue900')
+        @JvmField
+        val cmd_bluetooth_settings = CommunityMaterialIcon("cmd_bluetooth_settings", '\ue900')
+        @JvmField
+        val cmd_bluetooth_transfer = CommunityMaterialIcon("cmd_bluetooth_transfer", '\ue900')
+        @JvmField
+        val cmd_bluetooth = CommunityMaterialIcon("cmd_bluetooth", '\ue900')
+        @JvmField
+        val cmd_blur_linear = CommunityMaterialIcon("cmd_blur_linear", '\ue900')
+        @JvmField
+        val cmd_blur_off = CommunityMaterialIcon("cmd_blur_off", '\ue900')
+        @JvmField
+        val cmd_blur_radial = CommunityMaterialIcon("cmd_blur_radial", '\ue900')
+        @JvmField
+        val cmd_blur = CommunityMaterialIcon("cmd_blur", '\ue900')
+        @JvmField
+        val cmd_bolnisi_cross = CommunityMaterialIcon("cmd_bolnisi_cross", '\ue900')
+        @JvmField
+        val cmd_bolt = CommunityMaterialIcon("cmd_bolt", '\ue900')
+        @JvmField
+        val cmd_bomb_off = CommunityMaterialIcon("cmd_bomb_off", '\ue900')
+        @JvmField
+        val cmd_bomb = CommunityMaterialIcon("cmd_bomb", '\ue900')
+        @JvmField
+        val cmd_bone = CommunityMaterialIcon("cmd_bone", '\ue900')
+        @JvmField
+        val cmd_book_information_variant = CommunityMaterialIcon("cmd_book_information_variant", '\ue900')
+        @JvmField
+        val cmd_book_lock_open = CommunityMaterialIcon("cmd_book_lock_open", '\ue900')
+        @JvmField
+        val cmd_book_lock = CommunityMaterialIcon("cmd_book_lock", '\ue900')
+        @JvmField
+        val cmd_book_minus_multiple = CommunityMaterialIcon("cmd_book_minus_multiple", '\ue900')
+        @JvmField
+        val cmd_book_minus = CommunityMaterialIcon("cmd_book_minus", '\ue900')
+        @JvmField
+        val cmd_book_multiple = CommunityMaterialIcon("cmd_book_multiple", '\ue900')
+        @JvmField
+        val cmd_book_open_outline = CommunityMaterialIcon("cmd_book_open_outline", '\ue900')
+        @JvmField
+        val cmd_book_open_page_variant = CommunityMaterialIcon("cmd_book_open_page_variant", '\ue900')
+        @JvmField
+        val cmd_book_open_variant = CommunityMaterialIcon("cmd_book_open_variant", '\ue900')
+        @JvmField
+        val cmd_book_open = CommunityMaterialIcon("cmd_book_open", '\ue900')
+        @JvmField
+        val cmd_book_outline = CommunityMaterialIcon("cmd_book_outline", '\ue900')
+        @JvmField
+        val cmd_book_play_outline = CommunityMaterialIcon("cmd_book_play_outline", '\ue900')
+        @JvmField
+        val cmd_book_play = CommunityMaterialIcon("cmd_book_play", '\ue900')
+        @JvmField
+        val cmd_book_plus_multiple = CommunityMaterialIcon("cmd_book_plus_multiple", '\ue900')
+        @JvmField
+        val cmd_book_plus = CommunityMaterialIcon("cmd_book_plus", '\ue900')
+        @JvmField
+        val cmd_book_remove_multiple = CommunityMaterialIcon("cmd_book_remove_multiple", '\ue900')
+        @JvmField
+        val cmd_book_remove = CommunityMaterialIcon("cmd_book_remove", '\ue900')
+        @JvmField
+        val cmd_book_search_outline = CommunityMaterialIcon("cmd_book_search_outline", '\ue900')
+        @JvmField
+        val cmd_book_search = CommunityMaterialIcon("cmd_book_search", '\ue900')
+        @JvmField
+        val cmd_book_variant_multiple = CommunityMaterialIcon("cmd_book_variant_multiple", '\ue900')
+        @JvmField
+        val cmd_book_variant = CommunityMaterialIcon("cmd_book_variant", '\ue900')
+        @JvmField
+        val cmd_book = CommunityMaterialIcon("cmd_book", '\ue900')
+        @JvmField
+        val cmd_bookmark_check = CommunityMaterialIcon("cmd_bookmark_check", '\ue900')
+        @JvmField
+        val cmd_bookmark_minus_outline = CommunityMaterialIcon("cmd_bookmark_minus_outline", '\ue900')
+        @JvmField
+        val cmd_bookmark_minus = CommunityMaterialIcon("cmd_bookmark_minus", '\ue900')
+        @JvmField
+        val cmd_bookmark_multiple_outline = CommunityMaterialIcon("cmd_bookmark_multiple_outline", '\ue900')
+        @JvmField
+        val cmd_bookmark_multiple = CommunityMaterialIcon("cmd_bookmark_multiple", '\ue900')
+        @JvmField
+        val cmd_bookmark_music = CommunityMaterialIcon("cmd_bookmark_music", '\ue900')
+        @JvmField
+        val cmd_bookmark_off_outline = CommunityMaterialIcon("cmd_bookmark_off_outline", '\ue900')
+        @JvmField
+        val cmd_bookmark_off = CommunityMaterialIcon("cmd_bookmark_off", '\ue900')
+        @JvmField
+        val cmd_bookmark_outline = CommunityMaterialIcon("cmd_bookmark_outline", '\ue900')
+        @JvmField
+        val cmd_bookmark_plus_outline = CommunityMaterialIcon("cmd_bookmark_plus_outline", '\ue900')
+        @JvmField
+        val cmd_bookmark_plus = CommunityMaterialIcon("cmd_bookmark_plus", '\ue900')
+        @JvmField
+        val cmd_bookmark_remove = CommunityMaterialIcon("cmd_bookmark_remove", '\ue900')
+        @JvmField
+        val cmd_bookmark = CommunityMaterialIcon("cmd_bookmark", '\ue900')
+        @JvmField
+        val cmd_bookshelf = CommunityMaterialIcon("cmd_bookshelf", '\ue900')
+        @JvmField
+        val cmd_boom_gate_alert_outline = CommunityMaterialIcon("cmd_boom_gate_alert_outline", '\ue900')
+        @JvmField
+        val cmd_boom_gate_alert = CommunityMaterialIcon("cmd_boom_gate_alert", '\ue900')
+        @JvmField
+        val cmd_boom_gate_down_outline = CommunityMaterialIcon("cmd_boom_gate_down_outline", '\ue900')
+        @JvmField
+        val cmd_boom_gate_down = CommunityMaterialIcon("cmd_boom_gate_down", '\ue900')
+        @JvmField
+        val cmd_boom_gate_outline = CommunityMaterialIcon("cmd_boom_gate_outline", '\ue900')
+        @JvmField
+        val cmd_boom_gate_up_outline = CommunityMaterialIcon("cmd_boom_gate_up_outline", '\ue900')
+        @JvmField
+        val cmd_boom_gate_up = CommunityMaterialIcon("cmd_boom_gate_up", '\ue900')
+        @JvmField
+        val cmd_boom_gate = CommunityMaterialIcon("cmd_boom_gate", '\ue900')
+        @JvmField
+        val cmd_boombox = CommunityMaterialIcon("cmd_boombox", '\ue900')
+        @JvmField
+        val cmd_boomerang = CommunityMaterialIcon("cmd_boomerang", '\ue900')
+        @JvmField
+        val cmd_bootstrap = CommunityMaterialIcon("cmd_bootstrap", '\ue900')
+        @JvmField
+        val cmd_border_all_variant = CommunityMaterialIcon("cmd_border_all_variant", '\ue900')
+        @JvmField
+        val cmd_border_all = CommunityMaterialIcon("cmd_border_all", '\ue900')
+        @JvmField
+        val cmd_border_bottom_variant = CommunityMaterialIcon("cmd_border_bottom_variant", '\ue900')
+        @JvmField
+        val cmd_border_bottom = CommunityMaterialIcon("cmd_border_bottom", '\ue900')
+        @JvmField
+        val cmd_border_color = CommunityMaterialIcon("cmd_border_color", '\ue900')
+        @JvmField
+        val cmd_border_horizontal = CommunityMaterialIcon("cmd_border_horizontal", '\ue900')
+        @JvmField
+        val cmd_border_inside = CommunityMaterialIcon("cmd_border_inside", '\ue900')
+        @JvmField
+        val cmd_border_left_variant = CommunityMaterialIcon("cmd_border_left_variant", '\ue900')
+        @JvmField
+        val cmd_border_left = CommunityMaterialIcon("cmd_border_left", '\ue900')
+        @JvmField
+        val cmd_border_none_variant = CommunityMaterialIcon("cmd_border_none_variant", '\ue900')
+        @JvmField
+        val cmd_border_none = CommunityMaterialIcon("cmd_border_none", '\ue900')
+        @JvmField
+        val cmd_border_outside = CommunityMaterialIcon("cmd_border_outside", '\ue900')
+        @JvmField
+        val cmd_border_right_variant = CommunityMaterialIcon("cmd_border_right_variant", '\ue900')
+        @JvmField
+        val cmd_border_right = CommunityMaterialIcon("cmd_border_right", '\ue900')
+        @JvmField
+        val cmd_border_style = CommunityMaterialIcon("cmd_border_style", '\ue900')
+        @JvmField
+        val cmd_border_top_variant = CommunityMaterialIcon("cmd_border_top_variant", '\ue900')
+        @JvmField
+        val cmd_border_top = CommunityMaterialIcon("cmd_border_top", '\ue900')
+        @JvmField
+        val cmd_border_vertical = CommunityMaterialIcon("cmd_border_vertical", '\ue900')
+        @JvmField
+        val cmd_bottle_soda_classic = CommunityMaterialIcon("cmd_bottle_soda_classic", '\ue900')
+        @JvmField
+        val cmd_bottle_soda_outline = CommunityMaterialIcon("cmd_bottle_soda_outline", '\ue900')
+        @JvmField
+        val cmd_bottle_soda = CommunityMaterialIcon("cmd_bottle_soda", '\ue900')
+        @JvmField
+        val cmd_bottle_tonic_outline = CommunityMaterialIcon("cmd_bottle_tonic_outline", '\ue900')
+        @JvmField
+        val cmd_bottle_tonic_plus_outline = CommunityMaterialIcon("cmd_bottle_tonic_plus_outline", '\ue900')
+        @JvmField
+        val cmd_bottle_tonic_plus = CommunityMaterialIcon("cmd_bottle_tonic_plus", '\ue900')
+        @JvmField
+        val cmd_bottle_tonic_skull_outline = CommunityMaterialIcon("cmd_bottle_tonic_skull_outline", '\ue900')
+        @JvmField
+        val cmd_bottle_tonic_skull = CommunityMaterialIcon("cmd_bottle_tonic_skull", '\ue900')
+        @JvmField
+        val cmd_bottle_tonic = CommunityMaterialIcon("cmd_bottle_tonic", '\ue900')
+        @JvmField
+        val cmd_bottle_wine = CommunityMaterialIcon("cmd_bottle_wine", '\ue900')
+        @JvmField
+        val cmd_bow_tie = CommunityMaterialIcon("cmd_bow_tie", '\ue900')
+        @JvmField
+        val cmd_bowl = CommunityMaterialIcon("cmd_bowl", '\ue900')
+        @JvmField
+        val cmd_bowling = CommunityMaterialIcon("cmd_bowling", '\ue900')
+        @JvmField
+        val cmd_box_cutter = CommunityMaterialIcon("cmd_box_cutter", '\ue900')
+        @JvmField
+        val cmd_box_shadow = CommunityMaterialIcon("cmd_box_shadow", '\ue900')
+        @JvmField
+        val cmd_box = CommunityMaterialIcon("cmd_box", '\ue900')
+        @JvmField
+        val cmd_boxing_glove = CommunityMaterialIcon("cmd_boxing_glove", '\ue900')
+        @JvmField
+        val cmd_braille = CommunityMaterialIcon("cmd_braille", '\ue900')
+        @JvmField
+        val cmd_brain = CommunityMaterialIcon("cmd_brain", '\ue900')
+        @JvmField
+        val cmd_bread_slice_outline = CommunityMaterialIcon("cmd_bread_slice_outline", '\ue900')
+        @JvmField
+        val cmd_bread_slice = CommunityMaterialIcon("cmd_bread_slice", '\ue900')
+        @JvmField
+        val cmd_bridge = CommunityMaterialIcon("cmd_bridge", '\ue900')
+        @JvmField
+        val cmd_briefcase_account_outline = CommunityMaterialIcon("cmd_briefcase_account_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_account = CommunityMaterialIcon("cmd_briefcase_account", '\ue900')
+        @JvmField
+        val cmd_briefcase_check = CommunityMaterialIcon("cmd_briefcase_check", '\ue900')
+        @JvmField
+        val cmd_briefcase_clock_outline = CommunityMaterialIcon("cmd_briefcase_clock_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_clock = CommunityMaterialIcon("cmd_briefcase_clock", '\ue900')
+        @JvmField
+        val cmd_briefcase_download_outline = CommunityMaterialIcon("cmd_briefcase_download_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_download = CommunityMaterialIcon("cmd_briefcase_download", '\ue900')
+        @JvmField
+        val cmd_briefcase_edit_outline = CommunityMaterialIcon("cmd_briefcase_edit_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_edit = CommunityMaterialIcon("cmd_briefcase_edit", '\ue900')
+        @JvmField
+        val cmd_briefcase_minus_outline = CommunityMaterialIcon("cmd_briefcase_minus_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_minus = CommunityMaterialIcon("cmd_briefcase_minus", '\ue900')
+        @JvmField
+        val cmd_briefcase_outline = CommunityMaterialIcon("cmd_briefcase_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_plus_outline = CommunityMaterialIcon("cmd_briefcase_plus_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_plus = CommunityMaterialIcon("cmd_briefcase_plus", '\ue900')
+        @JvmField
+        val cmd_briefcase_remove_outline = CommunityMaterialIcon("cmd_briefcase_remove_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_remove = CommunityMaterialIcon("cmd_briefcase_remove", '\ue900')
+        @JvmField
+        val cmd_briefcase_search_outline = CommunityMaterialIcon("cmd_briefcase_search_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_search = CommunityMaterialIcon("cmd_briefcase_search", '\ue900')
+        @JvmField
+        val cmd_briefcase_upload_outline = CommunityMaterialIcon("cmd_briefcase_upload_outline", '\ue900')
+        @JvmField
+        val cmd_briefcase_upload = CommunityMaterialIcon("cmd_briefcase_upload", '\ue900')
+        @JvmField
+        val cmd_briefcase = CommunityMaterialIcon("cmd_briefcase", '\ue900')
+        @JvmField
+        val cmd_brightness_1 = CommunityMaterialIcon("cmd_brightness_1", '\ue900')
+        @JvmField
+        val cmd_brightness_2 = CommunityMaterialIcon("cmd_brightness_2", '\ue900')
+        @JvmField
+        val cmd_brightness_3 = CommunityMaterialIcon("cmd_brightness_3", '\ue900')
+        @JvmField
+        val cmd_brightness_4 = CommunityMaterialIcon("cmd_brightness_4", '\ue900')
+        @JvmField
+        val cmd_brightness_5 = CommunityMaterialIcon("cmd_brightness_5", '\ue900')
+        @JvmField
+        val cmd_brightness_6 = CommunityMaterialIcon("cmd_brightness_6", '\ue900')
+        @JvmField
+        val cmd_brightness_7 = CommunityMaterialIcon("cmd_brightness_7", '\ue900')
+        @JvmField
+        val cmd_brightness_auto = CommunityMaterialIcon("cmd_brightness_auto", '\ue900')
+        @JvmField
+        val cmd_brightness_percent = CommunityMaterialIcon("cmd_brightness_percent", '\ue900')
+        @JvmField
+        val cmd_broom = CommunityMaterialIcon("cmd_broom", '\ue900')
+        @JvmField
+        val cmd_brush = CommunityMaterialIcon("cmd_brush", '\ue900')
+        @JvmField
+        val cmd_buddhism = CommunityMaterialIcon("cmd_buddhism", '\ue900')
+        @JvmField
+        val cmd_buffer = CommunityMaterialIcon("cmd_buffer", '\ue900')
+        @JvmField
+        val cmd_bug_check_outline = CommunityMaterialIcon("cmd_bug_check_outline", '\ue900')
+        @JvmField
+        val cmd_bug_check = CommunityMaterialIcon("cmd_bug_check", '\ue900')
+        @JvmField
+        val cmd_bug_outline = CommunityMaterialIcon("cmd_bug_outline", '\ue900')
+        @JvmField
+        val cmd_bug = CommunityMaterialIcon("cmd_bug", '\ue900')
+        @JvmField
+        val cmd_bugle = CommunityMaterialIcon("cmd_bugle", '\ue900')
+        @JvmField
+        val cmd_bulldozer = CommunityMaterialIcon("cmd_bulldozer", '\ue900')
+        @JvmField
+        val cmd_bullet = CommunityMaterialIcon("cmd_bullet", '\ue900')
+        @JvmField
+        val cmd_bulletin_board = CommunityMaterialIcon("cmd_bulletin_board", '\ue900')
+        @JvmField
+        val cmd_bullhorn_outline = CommunityMaterialIcon("cmd_bullhorn_outline", '\ue900')
+        @JvmField
+        val cmd_bullhorn = CommunityMaterialIcon("cmd_bullhorn", '\ue900')
+        @JvmField
+        val cmd_bullseye_arrow = CommunityMaterialIcon("cmd_bullseye_arrow", '\ue900')
+        @JvmField
+        val cmd_bullseye = CommunityMaterialIcon("cmd_bullseye", '\ue900')
+        @JvmField
+        val cmd_bus_alert = CommunityMaterialIcon("cmd_bus_alert", '\ue900')
+        @JvmField
+        val cmd_bus_articulated_end = CommunityMaterialIcon("cmd_bus_articulated_end", '\ue900')
+        @JvmField
+        val cmd_bus_articulated_front = CommunityMaterialIcon("cmd_bus_articulated_front", '\ue900')
+        @JvmField
+        val cmd_bus_clock = CommunityMaterialIcon("cmd_bus_clock", '\ue900')
+        @JvmField
+        val cmd_bus_double_decker = CommunityMaterialIcon("cmd_bus_double_decker", '\ue900')
+        @JvmField
+        val cmd_bus_marker = CommunityMaterialIcon("cmd_bus_marker", '\ue900')
+        @JvmField
+        val cmd_bus_multiple = CommunityMaterialIcon("cmd_bus_multiple", '\ue900')
+        @JvmField
+        val cmd_bus_school = CommunityMaterialIcon("cmd_bus_school", '\ue900')
+        @JvmField
+        val cmd_bus_side = CommunityMaterialIcon("cmd_bus_side", '\ue900')
+        @JvmField
+        val cmd_bus_stop_covered = CommunityMaterialIcon("cmd_bus_stop_covered", '\ue900')
+        @JvmField
+        val cmd_bus_stop_uncovered = CommunityMaterialIcon("cmd_bus_stop_uncovered", '\ue900')
+        @JvmField
+        val cmd_bus_stop = CommunityMaterialIcon("cmd_bus_stop", '\ue900')
+        @JvmField
+        val cmd_bus = CommunityMaterialIcon("cmd_bus", '\ue900')
+        @JvmField
+        val cmd_cached = CommunityMaterialIcon("cmd_cached", '\ue900')
+        @JvmField
+        val cmd_cactus = CommunityMaterialIcon("cmd_cactus", '\ue900')
+        @JvmField
+        val cmd_cake_layered = CommunityMaterialIcon("cmd_cake_layered", '\ue900')
+        @JvmField
+        val cmd_cake_variant = CommunityMaterialIcon("cmd_cake_variant", '\ue900')
+        @JvmField
+        val cmd_cake = CommunityMaterialIcon("cmd_cake", '\ue900')
+        @JvmField
+        val cmd_calculator_variant = CommunityMaterialIcon("cmd_calculator_variant", '\ue900')
+        @JvmField
+        val cmd_calculator = CommunityMaterialIcon("cmd_calculator", '\ue900')
+        @JvmField
+        val cmd_calendar_account_outline = CommunityMaterialIcon("cmd_calendar_account_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_account = CommunityMaterialIcon("cmd_calendar_account", '\ue900')
+        @JvmField
+        val cmd_calendar_alert = CommunityMaterialIcon("cmd_calendar_alert", '\ue900')
+        @JvmField
+        val cmd_calendar_arrow_left = CommunityMaterialIcon("cmd_calendar_arrow_left", '\ue900')
+        @JvmField
+        val cmd_calendar_arrow_right = CommunityMaterialIcon("cmd_calendar_arrow_right", '\ue900')
+        @JvmField
+        val cmd_calendar_blank_multiple = CommunityMaterialIcon("cmd_calendar_blank_multiple", '\ue900')
+        @JvmField
+        val cmd_calendar_blank_outline = CommunityMaterialIcon("cmd_calendar_blank_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_blank = CommunityMaterialIcon("cmd_calendar_blank", '\ue900')
+        @JvmField
+        val cmd_calendar_check_outline = CommunityMaterialIcon("cmd_calendar_check_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_check = CommunityMaterialIcon("cmd_calendar_check", '\ue900')
+        @JvmField
+        val cmd_calendar_clock = CommunityMaterialIcon("cmd_calendar_clock", '\ue900')
+        @JvmField
+        val cmd_calendar_edit = CommunityMaterialIcon("cmd_calendar_edit", '\ue900')
+        @JvmField
+        val cmd_calendar_export = CommunityMaterialIcon("cmd_calendar_export", '\ue900')
+        @JvmField
+        val cmd_calendar_heart = CommunityMaterialIcon("cmd_calendar_heart", '\ue900')
+        @JvmField
+        val cmd_calendar_import = CommunityMaterialIcon("cmd_calendar_import", '\ue900')
+        @JvmField
+        val cmd_calendar_minus = CommunityMaterialIcon("cmd_calendar_minus", '\ue900')
+        @JvmField
+        val cmd_calendar_month_outline = CommunityMaterialIcon("cmd_calendar_month_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_month = CommunityMaterialIcon("cmd_calendar_month", '\ue900')
+        @JvmField
+        val cmd_calendar_multiple_check = CommunityMaterialIcon("cmd_calendar_multiple_check", '\ue900')
+        @JvmField
+        val cmd_calendar_multiple = CommunityMaterialIcon("cmd_calendar_multiple", '\ue900')
+        @JvmField
+        val cmd_calendar_multiselect = CommunityMaterialIcon("cmd_calendar_multiselect", '\ue900')
+        @JvmField
+        val cmd_calendar_outline = CommunityMaterialIcon("cmd_calendar_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_plus = CommunityMaterialIcon("cmd_calendar_plus", '\ue900')
+        @JvmField
+        val cmd_calendar_question = CommunityMaterialIcon("cmd_calendar_question", '\ue900')
+        @JvmField
+        val cmd_calendar_range_outline = CommunityMaterialIcon("cmd_calendar_range_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_range = CommunityMaterialIcon("cmd_calendar_range", '\ue900')
+        @JvmField
+        val cmd_calendar_remove_outline = CommunityMaterialIcon("cmd_calendar_remove_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_remove = CommunityMaterialIcon("cmd_calendar_remove", '\ue900')
+        @JvmField
+        val cmd_calendar_repeat_outline = CommunityMaterialIcon("cmd_calendar_repeat_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_repeat = CommunityMaterialIcon("cmd_calendar_repeat", '\ue900')
+        @JvmField
+        val cmd_calendar_search = CommunityMaterialIcon("cmd_calendar_search", '\ue900')
+        @JvmField
+        val cmd_calendar_star = CommunityMaterialIcon("cmd_calendar_star", '\ue900')
+        @JvmField
+        val cmd_calendar_text_outline = CommunityMaterialIcon("cmd_calendar_text_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_text = CommunityMaterialIcon("cmd_calendar_text", '\ue900')
+        @JvmField
+        val cmd_calendar_today = CommunityMaterialIcon("cmd_calendar_today", '\ue900')
+        @JvmField
+        val cmd_calendar_week_begin = CommunityMaterialIcon("cmd_calendar_week_begin", '\ue900')
+        @JvmField
+        val cmd_calendar_week = CommunityMaterialIcon("cmd_calendar_week", '\ue900')
+        @JvmField
+        val cmd_calendar_weekend_outline = CommunityMaterialIcon("cmd_calendar_weekend_outline", '\ue900')
+        @JvmField
+        val cmd_calendar_weekend = CommunityMaterialIcon("cmd_calendar_weekend", '\ue900')
+        @JvmField
+        val cmd_calendar = CommunityMaterialIcon("cmd_calendar", '\ue900')
     }
+}
 
-    enum class Icon constructor(override val character: Char) : IIcon {
-        cmd_read('\ue900'),
-        cmd_receipt('\ue901'),
-        cmd_record_circle_outline('\ue902'),
-        cmd_record_circle('\ue903'),
-        cmd_record_player('\ue904'),
-        cmd_record_rec('\ue905'),
-        cmd_record('\ue906'),
-        cmd_rectangle_outline('\ue907'),
-        cmd_rectangle('\ue908'),
-        cmd_recycle('\ue909'),
-        cmd_reddit('\ue90a'),
-        cmd_redhat('\ue90b'),
-        cmd_redo_variant('\ue90c'),
-        cmd_redo('\ue90d'),
-        cmd_reflect_horizontal('\ue90e'),
-        cmd_reflect_vertical('\ue90f'),
-        cmd_refresh('\ue910'),
-        cmd_regex('\ue911'),
-        cmd_registered_trademark('\ue912'),
-        cmd_relative_scale('\ue913'),
-        cmd_reload_alert('\ue914'),
-        cmd_reload('\ue915'),
-        cmd_reminder('\ue916'),
-        cmd_remote_desktop('\ue917'),
-        cmd_remote_off('\ue918'),
-        cmd_remote_tv_off('\ue919'),
-        cmd_remote_tv('\ue91a'),
-        cmd_remote('\ue91b'),
-        cmd_rename_box('\ue91c'),
-        cmd_reorder_horizontal('\ue91d'),
-        cmd_reorder_vertical('\ue91e'),
-        cmd_repeat_off('\ue91f'),
-        cmd_repeat_once('\ue920'),
-        cmd_repeat('\ue921'),
-        cmd_replay('\ue922'),
-        cmd_reply_all_outline('\ue923'),
-        cmd_reply_all('\ue924'),
-        cmd_reply_circle('\ue925'),
-        cmd_reply_outline('\ue926'),
-        cmd_reply('\ue927'),
-        cmd_reproduction('\ue928'),
-        cmd_resistor_nodes('\ue929'),
-        cmd_resistor('\ue92a'),
-        cmd_resize_bottom_right('\ue92b'),
-        cmd_resize('\ue92c'),
-        cmd_responsive('\ue92d'),
-        cmd_restart_alert('\ue92e'),
-        cmd_restart_off('\ue92f'),
-        cmd_restart('\ue930'),
-        cmd_restore_alert('\ue931'),
-        cmd_restore('\ue932'),
-        cmd_rewind_5('\ue933'),
-        cmd_rewind_10('\ue934'),
-        cmd_rewind_30('\ue935'),
-        cmd_rewind_outline('\ue936'),
-        cmd_rewind('\ue937'),
-        cmd_rhombus_medium('\ue938'),
-        cmd_rhombus_outline('\ue939'),
-        cmd_rhombus_split('\ue93a'),
-        cmd_rhombus('\ue93b'),
-        cmd_ribbon('\ue93c'),
-        cmd_rice('\ue93d'),
-        cmd_ring('\ue93e'),
-        cmd_rivet('\ue93f'),
-        cmd_road_variant('\ue940'),
-        cmd_road('\ue941'),
-        cmd_robber('\ue942'),
-        cmd_robot_industrial('\ue943'),
-        cmd_robot_mower_outline('\ue944'),
-        cmd_robot_mower('\ue945'),
-        cmd_robot_vacuum_variant('\ue946'),
-        cmd_robot_vacuum('\ue947'),
-        cmd_robot('\ue948'),
-        cmd_rocket('\ue949'),
-        cmd_roller_skate('\ue94a'),
-        cmd_rollerblade('\ue94b'),
-        cmd_rollupjs('\ue94c'),
-        cmd_roman_numeral_1('\ue94d'),
-        cmd_roman_numeral_2('\ue94e'),
-        cmd_roman_numeral_3('\ue94f'),
-        cmd_roman_numeral_4('\ue950'),
-        cmd_roman_numeral_5('\ue951'),
-        cmd_roman_numeral_6('\ue952'),
-        cmd_roman_numeral_7('\ue953'),
-        cmd_roman_numeral_8('\ue954'),
-        cmd_roman_numeral_9('\ue955'),
-        cmd_roman_numeral_10('\ue956'),
-        cmd_room_service_outline('\ue957'),
-        cmd_room_service('\ue958'),
-        cmd_rotate_3d_variant('\ue959'),
-        cmd_rotate_3d('\ue95a'),
-        cmd_rotate_left_variant('\ue95b'),
-        cmd_rotate_left('\ue95c'),
-        cmd_rotate_orbit('\ue95d'),
-        cmd_rotate_right_variant('\ue95e'),
-        cmd_rotate_right('\ue95f'),
-        cmd_rounded_corner('\ue960'),
-        cmd_router_wireless_settings('\ue961'),
-        cmd_router_wireless('\ue962'),
-        cmd_router('\ue963'),
-        cmd_routes_clock('\ue964'),
-        cmd_routes('\ue965'),
-        cmd_rowing('\ue966'),
-        cmd_rss_box('\ue967'),
-        cmd_rss_off('\ue968'),
-        cmd_rss('\ue969'),
-        cmd_ruby('\ue96a'),
-        cmd_rugby('\ue96b'),
-        cmd_ruler_square_compass('\ue96c'),
-        cmd_ruler_square('\ue96d'),
-        cmd_ruler('\ue96e'),
-        cmd_run_fast('\ue96f'),
-        cmd_run('\ue970'),
-        cmd_rv_truck('\ue971'),
-        cmd_sack_percent('\ue972'),
-        cmd_sack('\ue973'),
-        cmd_safe_square_outline('\ue974'),
-        cmd_safe_square('\ue975'),
-        cmd_safe('\ue976'),
-        cmd_safety_goggles('\ue977'),
-        cmd_sailing('\ue978'),
-        cmd_sale('\ue979'),
-        cmd_salesforce('\ue97a'),
-        cmd_sass('\ue97b'),
-        cmd_satellite_uplink('\ue97c'),
-        cmd_satellite_variant('\ue97d'),
-        cmd_satellite('\ue97e'),
-        cmd_sausage('\ue97f'),
-        cmd_saw_blade('\ue980'),
-        cmd_saxophone('\ue981'),
-        cmd_scale_balance('\ue982'),
-        cmd_scale_bathroom('\ue983'),
-        cmd_scale_off('\ue984'),
-        cmd_scale('\ue985'),
-        cmd_scanner_off('\ue986'),
-        cmd_scanner('\ue987'),
-        cmd_scatter_plot_outline('\ue988'),
-        cmd_scatter_plot('\ue989'),
-        cmd_school_outline('\ue98a'),
-        cmd_school('\ue98b'),
-        cmd_scissors_cutting('\ue98c'),
-        cmd_scooter('\ue98d'),
-        cmd_scoreboard_outline('\ue98e'),
-        cmd_scoreboard('\ue98f'),
-        cmd_screen_rotation_lock('\ue990'),
-        cmd_screen_rotation('\ue991'),
-        cmd_screw_flat_top('\ue992'),
-        cmd_screw_lag('\ue993'),
-        cmd_screw_machine_flat_top('\ue994'),
-        cmd_screw_machine_round_top('\ue995'),
-        cmd_screw_round_top('\ue996'),
-        cmd_screwdriver('\ue997'),
-        cmd_script_outline('\ue998'),
-        cmd_script_text_outline('\ue999'),
-        cmd_script_text('\ue99a'),
-        cmd_script('\ue99b'),
-        cmd_sd('\ue99c'),
-        cmd_seal_variant('\ue99d'),
-        cmd_seal('\ue99e'),
-        cmd_search_web('\ue99f'),
-        cmd_seat_flat_angled('\ue9a0'),
-        cmd_seat_flat('\ue9a1'),
-        cmd_seat_individual_suite('\ue9a2'),
-        cmd_seat_legroom_extra('\ue9a3'),
-        cmd_seat_legroom_normal('\ue9a4'),
-        cmd_seat_legroom_reduced('\ue9a5'),
-        cmd_seat_outline('\ue9a6'),
-        cmd_seat_passenger('\ue9a7'),
-        cmd_seat_recline_extra('\ue9a8'),
-        cmd_seat_recline_normal('\ue9a9'),
-        cmd_seat('\ue9aa'),
-        cmd_seatbelt('\ue9ab'),
-        cmd_security_network('\ue9ac'),
-        cmd_security('\ue9ad'),
-        cmd_seed_outline('\ue9ae'),
-        cmd_seed('\ue9af'),
-        cmd_segment('\ue9b0'),
-        cmd_select_all('\ue9b1'),
-        cmd_select_color('\ue9b2'),
-        cmd_select_compare('\ue9b3'),
-        cmd_select_drag('\ue9b4'),
-        cmd_select_group('\ue9b5'),
-        cmd_select_inverse('\ue9b6'),
-        cmd_select_marker('\ue9b7'),
-        cmd_select_multiple_marker('\ue9b8'),
-        cmd_select_multiple('\ue9b9'),
-        cmd_select_off('\ue9ba'),
-        cmd_select_place('\ue9bb'),
-        cmd_select_search('\ue9bc'),
-        cmd_select('\ue9bd'),
-        cmd_selection_drag('\ue9be'),
-        cmd_selection_ellipse_arrow_inside('\ue9bf'),
-        cmd_selection_ellipse('\ue9c0'),
-        cmd_selection_marker('\ue9c1'),
-        cmd_selection_multiple_marker('\ue9c2'),
-        cmd_selection_mutliple('\ue9c3'),
-        cmd_selection_off('\ue9c4'),
-        cmd_selection_search('\ue9c5'),
-        cmd_selection('\ue9c6'),
-        cmd_send_check_outline('\ue9c7'),
-        cmd_send_check('\ue9c8'),
-        cmd_send_circle_outline('\ue9c9'),
-        cmd_send_circle('\ue9ca'),
-        cmd_send_clock_outline('\ue9cb'),
-        cmd_send_clock('\ue9cc'),
-        cmd_send_lock_outline('\ue9cd'),
-        cmd_send_lock('\ue9ce'),
-        cmd_send_outline('\ue9cf'),
-        cmd_send('\ue9d0'),
-        cmd_serial_port('\ue9d1'),
-        cmd_server_minus('\ue9d2'),
-        cmd_server_network_off('\ue9d3'),
-        cmd_server_network('\ue9d4'),
-        cmd_server_off('\ue9d5'),
-        cmd_server_plus('\ue9d6'),
-        cmd_server_remove('\ue9d7'),
-        cmd_server_security('\ue9d8'),
-        cmd_server('\ue9d9'),
-        cmd_set_all('\ue9da'),
-        cmd_set_center_right('\ue9db'),
-        cmd_set_center('\ue9dc'),
-        cmd_set_left_center('\ue9dd'),
-        cmd_set_left_right('\ue9de'),
-        cmd_set_left('\ue9df'),
-        cmd_set_none('\ue9e0'),
-        cmd_set_right('\ue9e1'),
-        cmd_set_top_box('\ue9e2'),
-        cmd_settings_box('\ue9e3'),
-        cmd_settings_helper('\ue9e4'),
-        cmd_settings_outline('\ue9e5'),
-        cmd_settings_transfer_outline('\ue9e6'),
-        cmd_settings_transfer('\ue9e7'),
-        cmd_settings('\ue9e8'),
-        cmd_shaker_outline('\ue9e9'),
-        cmd_shaker('\ue9ea'),
-        cmd_shape_circle_plus('\ue9eb'),
-        cmd_shape_outline('\ue9ec'),
-        cmd_shape_oval_plus('\ue9ed'),
-        cmd_shape_plus('\ue9ee'),
-        cmd_shape_polygon_plus('\ue9ef'),
-        cmd_shape_rectangle_plus('\ue9f0'),
-        cmd_shape_square_plus('\ue9f1'),
-        cmd_shape('\ue9f2'),
-        cmd_share_all_outline('\ue9f3'),
-        cmd_share_all('\ue9f4'),
-        cmd_share_circle('\ue9f5'),
-        cmd_share_off_outline('\ue9f6'),
-        cmd_share_off('\ue9f7'),
-        cmd_share_outline('\ue9f8'),
-        cmd_share_variant('\ue9f9'),
-        cmd_share('\ue9fa'),
-        cmd_sheep('\ue9fb'),
-        cmd_shield_account_outline('\ue9fc'),
-        cmd_shield_account('\ue9fd'),
-        cmd_shield_airplane_outline('\ue9fe'),
-        cmd_shield_airplane('\ue9ff'),
-        cmd_shield_alert_outline('\uea00'),
-        cmd_shield_alert('\uea01'),
-        cmd_shield_car('\uea02'),
-        cmd_shield_check_outline('\uea03'),
-        cmd_shield_check('\uea04'),
-        cmd_shield_cross_outline('\uea05'),
-        cmd_shield_cross('\uea06'),
-        cmd_shield_edit_outline('\uea07'),
-        cmd_shield_edit('\uea08'),
-        cmd_shield_half_full('\uea09'),
-        cmd_shield_home_outline('\uea0a'),
-        cmd_shield_home('\uea0b'),
-        cmd_shield_key_outline('\uea0c'),
-        cmd_shield_key('\uea0d'),
-        cmd_shield_link_variant_outline('\uea0e'),
-        cmd_shield_link_variant('\uea0f'),
-        cmd_shield_lock_outline('\uea10'),
-        cmd_shield_lock('\uea11'),
-        cmd_shield_off_outline('\uea12'),
-        cmd_shield_off('\uea13'),
-        cmd_shield_outline('\uea14'),
-        cmd_shield_plus_outline('\uea15'),
-        cmd_shield_plus('\uea16'),
-        cmd_shield_refresh_outline('\uea17'),
-        cmd_shield_refresh('\uea18'),
-        cmd_shield_remove_outline('\uea19'),
-        cmd_shield_remove('\uea1a'),
-        cmd_shield_search('\uea1b'),
-        cmd_shield_star_outline('\uea1c'),
-        cmd_shield_star('\uea1d'),
-        cmd_shield_sun_outline('\uea1e'),
-        cmd_shield_sun('\uea1f'),
-        cmd_shield('\uea20'),
-        cmd_ship_wheel('\uea21'),
-        cmd_shoe_formal('\uea22'),
-        cmd_shoe_heel('\uea23'),
-        cmd_shoe_print('\uea24'),
-        cmd_shopify('\uea25'),
-        cmd_shopping_music('\uea26'),
-        cmd_shopping_outline('\uea27'),
-        cmd_shopping_search('\uea28'),
-        cmd_shopping('\uea29'),
-        cmd_shovel_off('\uea2a'),
-        cmd_shovel('\uea2b'),
-        cmd_shower_head('\uea2c'),
-        cmd_shower('\uea2d'),
-        cmd_shredder('\uea2e'),
-        cmd_shuffle_disabled('\uea2f'),
-        cmd_shuffle_variant('\uea30'),
-        cmd_shuffle('\uea31'),
-        cmd_sigma_lower('\uea32'),
-        cmd_sigma('\uea33'),
-        cmd_sign_caution('\uea34'),
-        cmd_sign_direction_minus('\uea35'),
-        cmd_sign_direction_plus('\uea36'),
-        cmd_sign_direction_remove('\uea37'),
-        cmd_sign_direction('\uea38'),
-        cmd_sign_real_estate('\uea39'),
-        cmd_sign_text('\uea3a'),
-        cmd_signal_2g('\uea3b'),
-        cmd_signal_3g('\uea3c'),
-        cmd_signal_4g('\uea3d'),
-        cmd_signal_5g('\uea3e'),
-        cmd_signal_cellular_1('\uea3f'),
-        cmd_signal_cellular_2('\uea40'),
-        cmd_signal_cellular_3('\uea41'),
-        cmd_signal_cellular_outline('\uea42'),
-        cmd_signal_distance_variant('\uea43'),
-        cmd_signal_hspa_plus('\uea44'),
-        cmd_signal_hspa('\uea45'),
-        cmd_signal_off('\uea46'),
-        cmd_signal_variant('\uea47'),
-        cmd_signal('\uea48'),
-        cmd_signature_freehand('\uea49'),
-        cmd_signature_image('\uea4a'),
-        cmd_signature_text('\uea4b'),
-        cmd_signature('\uea4c'),
-        cmd_silo('\uea4d'),
-        cmd_silverware_clean('\uea4e'),
-        cmd_silverware_fork_knife('\uea4f'),
-        cmd_silverware_fork('\uea50'),
-        cmd_silverware_spoon('\uea51'),
-        cmd_silverware_variant('\uea52'),
-        cmd_silverware('\uea53'),
-        cmd_sim_alert('\uea54'),
-        cmd_sim_off('\uea55'),
-        cmd_sim('\uea56'),
-        cmd_sina_weibo('\uea57'),
-        cmd_sitemap('\uea58'),
-        cmd_skate('\uea59'),
-        cmd_skew_less('\uea5a'),
-        cmd_skew_more('\uea5b'),
-        cmd_skip_backward_outline('\uea5c'),
-        cmd_skip_backward('\uea5d'),
-        cmd_skip_forward_outline('\uea5e'),
-        cmd_skip_forward('\uea5f'),
-        cmd_skip_next_circle_outline('\uea60'),
-        cmd_skip_next_circle('\uea61'),
-        cmd_skip_next_outline('\uea62'),
-        cmd_skip_next('\uea63'),
-        cmd_skip_previous_circle_outline('\uea64'),
-        cmd_skip_previous_circle('\uea65'),
-        cmd_skip_previous_outline('\uea66'),
-        cmd_skip_previous('\uea67'),
-        cmd_skull_crossbones_outline('\uea68'),
-        cmd_skull_crossbones('\uea69'),
-        cmd_skull_outline('\uea6a'),
-        cmd_skull('\uea6b'),
-        cmd_skype_business('\uea6c'),
-        cmd_skype('\uea6d'),
-        cmd_slack('\uea6e'),
-        cmd_slackware('\uea6f'),
-        cmd_slash_forward_box('\uea70'),
-        cmd_slash_forward('\uea71'),
-        cmd_sleep_off('\uea72'),
-        cmd_sleep('\uea73'),
-        cmd_slope_downhill('\uea74'),
-        cmd_slope_uphill('\uea75'),
-        cmd_slot_machine_outline('\uea76'),
-        cmd_slot_machine('\uea77'),
-        cmd_smart_card_outline('\uea78'),
-        cmd_smart_card_reader_outline('\uea79'),
-        cmd_smart_card_reader('\uea7a'),
-        cmd_smart_card('\uea7b'),
-        cmd_smog('\uea7c'),
-        cmd_smoke_detector('\uea7d'),
-        cmd_smoking_off('\uea7e'),
-        cmd_smoking('\uea7f'),
-        cmd_snapchat('\uea80'),
-        cmd_snowflake_alert('\uea81'),
-        cmd_snowflake_melt('\uea82'),
-        cmd_snowflake_variant('\uea83'),
-        cmd_snowflake('\uea84'),
-        cmd_snowman('\uea85'),
-        cmd_soccer_field('\uea86'),
-        cmd_soccer('\uea87'),
-        cmd_sofa('\uea88'),
-        cmd_solar_panel_large('\uea89'),
-        cmd_solar_panel('\uea8a'),
-        cmd_solar_power('\uea8b'),
-        cmd_soldering_iron('\uea8c'),
-        cmd_solid('\uea8d'),
-        cmd_sort_alphabetical_ascending('\uea8e'),
-        cmd_sort_alphabetical_descending('\uea8f'),
-        cmd_sort_alphabetical('\uea90'),
-        cmd_sort_ascending('\uea91'),
-        cmd_sort_descending('\uea92'),
-        cmd_sort_numeric('\uea93'),
-        cmd_sort_variant_lock_open('\uea94'),
-        cmd_sort_variant_lock('\uea95'),
-        cmd_sort_variant_remove('\uea96'),
-        cmd_sort_variant('\uea97'),
-        cmd_sort('\uea98'),
-        cmd_soundcloud('\uea99'),
-        cmd_source_branch('\uea9a'),
-        cmd_source_commit_end_local('\uea9b'),
-        cmd_source_commit_end('\uea9c'),
-        cmd_source_commit_local('\uea9d'),
-        cmd_source_commit_next_local('\uea9e'),
-        cmd_source_commit_start_next_local('\uea9f'),
-        cmd_source_commit_start('\ueaa0'),
-        cmd_source_commit('\ueaa1'),
-        cmd_source_fork('\ueaa2'),
-        cmd_source_merge('\ueaa3'),
-        cmd_source_pull('\ueaa4'),
-        cmd_source_repository_multiple('\ueaa5'),
-        cmd_source_repository('\ueaa6'),
-        cmd_soy_sauce('\ueaa7'),
-        cmd_spa_outline('\ueaa8'),
-        cmd_spa('\ueaa9'),
-        cmd_space_invaders('\ueaaa'),
-        cmd_spade('\ueaab'),
-        cmd_speaker_bluetooth('\ueaac'),
-        cmd_speaker_multiple('\ueaad'),
-        cmd_speaker_off('\ueaae'),
-        cmd_speaker_wireless('\ueaaf'),
-        cmd_speaker('\ueab0'),
-        cmd_speedometer_medium('\ueab1'),
-        cmd_speedometer_slow('\ueab2'),
-        cmd_speedometer('\ueab3'),
-        cmd_spellcheck('\ueab4'),
-        cmd_spider_thread('\ueab5'),
-        cmd_spider_web('\ueab6'),
-        cmd_spider('\ueab7'),
-        cmd_spotify('\ueab8'),
-        cmd_spotlight_beam('\ueab9'),
-        cmd_spotlight('\ueaba'),
-        cmd_spray_bottle('\ueabb'),
-        cmd_spray('\ueabc'),
-        cmd_sprinkler_variant('\ueabd'),
-        cmd_sprinkler('\ueabe'),
-        cmd_sprout_outline('\ueabf'),
-        cmd_sprout('\ueac0'),
-        cmd_square_edit_outline('\ueac1'),
-        cmd_square_inc_cash('\ueac2'),
-        cmd_square_inc('\ueac3'),
-        cmd_square_medium_outline('\ueac4'),
-        cmd_square_medium('\ueac5'),
-        cmd_square_outline('\ueac6'),
-        cmd_square_root_box('\ueac7'),
-        cmd_square_root('\ueac8'),
-        cmd_square_small('\ueac9'),
-        cmd_square('\ueaca'),
-        cmd_squeegee('\ueacb'),
-        cmd_ssh('\ueacc'),
-        cmd_stack_exchange('\ueacd'),
-        cmd_stack_overflow('\ueace'),
-        cmd_stackpath('\ueacf'),
-        cmd_stadium_variant('\uead0'),
-        cmd_stadium('\uead1'),
-        cmd_stairs_down('\uead2'),
-        cmd_stairs_up('\uead3'),
-        cmd_stairs('\uead4'),
-        cmd_stamper('\uead5'),
-        cmd_standard_definition('\uead6'),
-        cmd_star_box_multiple_outline('\uead7'),
-        cmd_star_box_multiple('\uead8'),
-        cmd_star_box_outline('\uead9'),
-        cmd_star_box('\ueada'),
-        cmd_star_circle_outline('\ueadb'),
-        cmd_star_circle('\ueadc'),
-        cmd_star_face('\ueadd'),
-        cmd_star_four_points_outline('\ueade'),
-        cmd_star_four_points('\ueadf'),
-        cmd_star_half('\ueae0'),
-        cmd_star_off('\ueae1'),
-        cmd_star_outline('\ueae2'),
-        cmd_star_three_points_outline('\ueae3'),
-        cmd_star_three_points('\ueae4'),
-        cmd_star('\ueae5'),
-        cmd_state_machine('\ueae6'),
-        cmd_steam_box('\ueae7'),
-        cmd_steam('\ueae8'),
-        cmd_steering_off('\ueae9'),
-        cmd_steering('\ueaea'),
-        cmd_step_backward_2('\ueaeb'),
-        cmd_step_backward('\ueaec'),
-        cmd_step_forward_2('\ueaed'),
-        cmd_step_forward('\ueaee'),
-        cmd_stethoscope('\ueaef'),
-        cmd_sticker_emoji('\ueaf0'),
-        cmd_sticker('\ueaf1'),
-        cmd_stocking('\ueaf2'),
-        cmd_stomach('\ueaf3'),
-        cmd_stop_circle_outline('\ueaf4'),
-        cmd_stop_circle('\ueaf5'),
-        cmd_stop('\ueaf6'),
-        cmd_store_24_hour('\ueaf7'),
-        cmd_store('\ueaf8'),
-        cmd_storefront('\ueaf9'),
-        cmd_stove('\ueafa'),
-        cmd_strategy('\ueafb'),
-        cmd_strava('\ueafc'),
-        cmd_stretch_to_page_outline('\ueafd'),
-        cmd_stretch_to_page('\ueafe'),
-        cmd_string_lights_off('\ueaff'),
-        cmd_string_lights('\ueb00'),
-        cmd_subdirectory_arrow_left('\ueb01'),
-        cmd_subdirectory_arrow_right('\ueb02'),
-        cmd_subtitles_outline('\ueb03'),
-        cmd_subtitles('\ueb04'),
-        cmd_subway_alert_variant('\ueb05'),
-        cmd_subway_variant('\ueb06'),
-        cmd_subway('\ueb07'),
-        cmd_summit('\ueb08'),
-        cmd_sunglasses('\ueb09'),
-        cmd_surround_sound_2_0('\ueb0a'),
-        cmd_surround_sound_3_1('\ueb0b'),
-        cmd_surround_sound_5_1('\ueb0c'),
-        cmd_surround_sound_7_1('\ueb0d'),
-        cmd_surround_sound('\ueb0e'),
-        cmd_svg('\ueb0f'),
-        cmd_swap_horizontal_bold('\ueb10'),
-        cmd_swap_horizontal_circle_outline('\ueb11'),
-        cmd_swap_horizontal_circle('\ueb12'),
-        cmd_swap_horizontal_variant('\ueb13'),
-        cmd_swap_horizontal('\ueb14'),
-        cmd_swap_vertical_bold('\ueb15'),
-        cmd_swap_vertical_circle_outline('\ueb16'),
-        cmd_swap_vertical_circle('\ueb17'),
-        cmd_swap_vertical_variant('\ueb18'),
-        cmd_swap_vertical('\ueb19'),
-        cmd_swim('\ueb1a'),
-        cmd_switch('\ueb1b'),
-        cmd_sword_cross('\ueb1c'),
-        cmd_sword('\ueb1d'),
-        cmd_symfony('\ueb1e'),
-        cmd_sync_alert('\ueb1f'),
-        cmd_sync_off('\ueb20'),
-        cmd_sync('\ueb21'),
-        cmd_tab_minus('\ueb22'),
-        cmd_tab_plus('\ueb23'),
-        cmd_tab_remove('\ueb24'),
-        cmd_tab_unselected('\ueb25'),
-        cmd_tab('\ueb26'),
-        cmd_table_border('\ueb27'),
-        cmd_table_chair('\ueb28'),
-        cmd_table_column_plus_after('\ueb29'),
-        cmd_table_column_plus_before('\ueb2a'),
-        cmd_table_column_remove('\ueb2b'),
-        cmd_table_column_width('\ueb2c'),
-        cmd_table_column('\ueb2d'),
-        cmd_table_edit('\ueb2e'),
-        cmd_table_eye('\ueb2f'),
-        cmd_table_headers_eye_off('\ueb30'),
-        cmd_table_headers_eye('\ueb31'),
-        cmd_table_large_plus('\ueb32'),
-        cmd_table_large_remove('\ueb33'),
-        cmd_table_large('\ueb34'),
-        cmd_table_merge_cells('\ueb35'),
-        cmd_table_of_contents('\ueb36'),
-        cmd_table_plus('\ueb37'),
-        cmd_table_remove('\ueb38'),
-        cmd_table_row_height('\ueb39'),
-        cmd_table_row_plus_after('\ueb3a'),
-        cmd_table_row_plus_before('\ueb3b'),
-        cmd_table_row_remove('\ueb3c'),
-        cmd_table_row('\ueb3d'),
-        cmd_table_search('\ueb3e'),
-        cmd_table_settings('\ueb3f'),
-        cmd_table_tennis('\ueb40'),
-        cmd_table('\ueb41'),
-        cmd_tablet_android('\ueb42'),
-        cmd_tablet_cellphone('\ueb43'),
-        cmd_tablet_dashboard('\ueb44'),
-        cmd_tablet_ipad('\ueb45'),
-        cmd_tablet('\ueb46'),
-        cmd_taco('\ueb47'),
-        cmd_tag_faces('\ueb48'),
-        cmd_tag_heart_outline('\ueb49'),
-        cmd_tag_heart('\ueb4a'),
-        cmd_tag_minus_outline('\ueb4b'),
-        cmd_tag_minus('\ueb4c'),
-        cmd_tag_multiple('\ueb4d'),
-        cmd_tag_off_outline('\ueb4e'),
-        cmd_tag_off('\ueb4f'),
-        cmd_tag_outline('\ueb50'),
-        cmd_tag_plus_outline('\ueb51'),
-        cmd_tag_plus('\ueb52'),
-        cmd_tag_remove_outline('\ueb53'),
-        cmd_tag_remove('\ueb54'),
-        cmd_tag_text_outline('\ueb55'),
-        cmd_tag_text('\ueb56'),
-        cmd_tag('\ueb57'),
-        cmd_tank('\ueb58'),
-        cmd_tanker_truck('\ueb59'),
-        cmd_tape_measure('\ueb5a'),
-        cmd_target_account('\ueb5b'),
-        cmd_target_variant('\ueb5c'),
-        cmd_target('\ueb5d'),
-        cmd_taxi('\ueb5e'),
-        cmd_tea_outline('\ueb5f'),
-        cmd_tea('\ueb60'),
-        cmd_teach('\ueb61'),
-        cmd_teamviewer('\ueb62'),
-        cmd_telegram('\ueb63'),
-        cmd_telescope('\ueb64'),
-        cmd_television_box('\ueb65'),
-        cmd_television_classic_off('\ueb66'),
-        cmd_television_classic('\ueb67'),
-        cmd_television_clean('\ueb68'),
-        cmd_television_guide('\ueb69'),
-        cmd_television_off('\ueb6a'),
-        cmd_television_pause('\ueb6b'),
-        cmd_television_play('\ueb6c'),
-        cmd_television_stop('\ueb6d'),
-        cmd_television('\ueb6e'),
-        cmd_temperature_celsius('\ueb6f'),
-        cmd_temperature_fahrenheit('\ueb70'),
-        cmd_temperature_kelvin('\ueb71'),
-        cmd_tennis_ball('\ueb72'),
-        cmd_tennis('\ueb73'),
-        cmd_tent('\ueb74'),
-        cmd_terraform('\ueb75'),
-        cmd_terrain('\ueb76'),
-        cmd_test_tube_empty('\ueb77'),
-        cmd_test_tube_off('\ueb78'),
-        cmd_test_tube('\ueb79'),
-        cmd_text_recognition('\ueb7a'),
-        cmd_text_shadow('\ueb7b'),
-        cmd_text_short('\ueb7c'),
-        cmd_text_subject('\ueb7d'),
-        cmd_text_to_speech_off('\ueb7e'),
-        cmd_text_to_speech('\ueb7f'),
-        cmd_text('\ueb80'),
-        cmd_textarea('\ueb81'),
-        cmd_textbox_password('\ueb82'),
-        cmd_textbox('\ueb83'),
-        cmd_texture_box('\ueb84'),
-        cmd_texture('\ueb85'),
-        cmd_theater('\ueb86'),
-        cmd_theme_light_dark('\ueb87'),
-        cmd_thermometer_alert('\ueb88'),
-        cmd_thermometer_chevron_down('\ueb89'),
-        cmd_thermometer_chevron_up('\ueb8a'),
-        cmd_thermometer_high('\ueb8b'),
-        cmd_thermometer_lines('\ueb8c'),
-        cmd_thermometer_low('\ueb8d'),
-        cmd_thermometer_minus('\ueb8e'),
-        cmd_thermometer_plus('\ueb8f'),
-        cmd_thermometer('\ueb90'),
-        cmd_thermostat_box('\ueb91'),
-        cmd_thermostat('\ueb92'),
-        cmd_thought_bubble_outline('\ueb93'),
-        cmd_thought_bubble('\ueb94'),
-        cmd_thumb_down_outline('\ueb95'),
-        cmd_thumb_down('\ueb96'),
-        cmd_thumb_up_outline('\ueb97'),
-        cmd_thumb_up('\ueb98'),
-        cmd_thumbs_up_down('\ueb99'),
-        cmd_ticket_account('\ueb9a'),
-        cmd_ticket_confirmation('\ueb9b'),
-        cmd_ticket_outline('\ueb9c'),
-        cmd_ticket_percent('\ueb9d'),
-        cmd_ticket('\ueb9e'),
-        cmd_tie('\ueb9f'),
-        cmd_tilde('\ueba0'),
-        cmd_timelapse('\ueba1'),
-        cmd_timeline_alert_outline('\ueba2'),
-        cmd_timeline_alert('\ueba3'),
-        cmd_timeline_clock_outline('\ueba4'),
-        cmd_timeline_clock('\ueba5'),
-        cmd_timeline_help_outline('\ueba6'),
-        cmd_timeline_help('\ueba7'),
-        cmd_timeline_outline('\ueba8'),
-        cmd_timeline_plus_outline('\ueba9'),
-        cmd_timeline_plus('\uebaa'),
-        cmd_timeline_text_outline('\uebab'),
-        cmd_timeline_text('\uebac'),
-        cmd_timeline('\uebad'),
-        cmd_timer_3('\uebae'),
-        cmd_timer_10('\uebaf'),
-        cmd_timer_off('\uebb0'),
-        cmd_timer_sand_empty('\uebb1'),
-        cmd_timer_sand_full('\uebb2'),
-        cmd_timer_sand('\uebb3'),
-        cmd_timer('\uebb4'),
-        cmd_timetable('\uebb5'),
-        cmd_toaster_off('\uebb6'),
-        cmd_toaster_oven('\uebb7'),
-        cmd_toaster('\uebb8'),
-        cmd_toggle_switch_off_outline('\uebb9'),
-        cmd_toggle_switch_off('\uebba'),
-        cmd_toggle_switch_outline('\uebbb'),
-        cmd_toggle_switch('\uebbc'),
-        cmd_toilet('\uebbd'),
-        cmd_toolbox_outline('\uebbe'),
-        cmd_toolbox('\uebbf'),
-        cmd_tools('\uebc0'),
-        cmd_tooltip_account('\uebc1'),
-        cmd_tooltip_edit_outline('\uebc2'),
-        cmd_tooltip_edit('\uebc3'),
-        cmd_tooltip_image_outline('\uebc4'),
-        cmd_tooltip_image('\uebc5'),
-        cmd_tooltip_outline('\uebc6'),
-        cmd_tooltip_plus_outline('\uebc7'),
-        cmd_tooltip_plus('\uebc8'),
-        cmd_tooltip_text_outline('\uebc9'),
-        cmd_tooltip_text('\uebca'),
-        cmd_tooltip('\uebcb'),
-        cmd_tooth_outline('\uebcc'),
-        cmd_tooth('\uebcd'),
-        cmd_toothbrush_electric('\uebce'),
-        cmd_toothbrush_paste('\uebcf'),
-        cmd_toothbrush('\uebd0'),
-        cmd_tor('\uebd1'),
-        cmd_tortoise('\uebd2'),
-        cmd_toslink('\uebd3'),
-        cmd_tournament('\uebd4'),
-        cmd_tower_beach('\uebd5'),
-        cmd_tower_fire('\uebd6'),
-        cmd_towing('\uebd7'),
-        cmd_toy_brick_marker_outline('\uebd8'),
-        cmd_toy_brick_marker('\uebd9'),
-        cmd_toy_brick_minus_outline('\uebda'),
-        cmd_toy_brick_minus('\uebdb'),
-        cmd_toy_brick_outline('\uebdc'),
-        cmd_toy_brick_plus_outline('\uebdd'),
-        cmd_toy_brick_plus('\uebde'),
-        cmd_toy_brick_remove_outline('\uebdf'),
-        cmd_toy_brick_remove('\uebe0'),
-        cmd_toy_brick_search_outline('\uebe1'),
-        cmd_toy_brick_search('\uebe2'),
-        cmd_toy_brick('\uebe3'),
-        cmd_track_light('\uebe4'),
-        cmd_trackpad_lock('\uebe5'),
-        cmd_trackpad('\uebe6'),
-        cmd_tractor('\uebe7'),
-        cmd_trademark('\uebe8'),
-        cmd_traffic_light('\uebe9'),
-        cmd_train_car('\uebea'),
-        cmd_train_variant('\uebeb'),
-        cmd_train('\uebec'),
-        cmd_tram_side('\uebed'),
-        cmd_tram('\uebee'),
-        cmd_transcribe_close('\uebef'),
-        cmd_transcribe('\uebf0'),
-        cmd_transfer_down('\uebf1'),
-        cmd_transfer_left('\uebf2'),
-        cmd_transfer_right('\uebf3'),
-        cmd_transfer_up('\uebf4'),
-        cmd_transfer('\uebf5'),
-        cmd_transit_connection_variant('\uebf6'),
-        cmd_transit_connection('\uebf7'),
-        cmd_transit_detour('\uebf8'),
-        cmd_transit_transfer('\uebf9'),
-        cmd_transition_masked('\uebfa'),
-        cmd_transition('\uebfb'),
-        cmd_translate_off('\uebfc'),
-        cmd_translate('\uebfd'),
-        cmd_transmission_tower('\uebfe'),
-        cmd_trash_can_outline('\uebff'),
-        cmd_trash_can('\uec00'),
-        cmd_tray_alert('\uec01'),
-        cmd_tray_full('\uec02'),
-        cmd_tray_minus('\uec03'),
-        cmd_tray_plus('\uec04'),
-        cmd_tray_remove('\uec05'),
-        cmd_tray('\uec06'),
-        cmd_treasure_chest('\uec07'),
-        cmd_tree_outline('\uec08'),
-        cmd_tree('\uec09'),
-        cmd_trello('\uec0a'),
-        cmd_trending_down('\uec0b'),
-        cmd_trending_neutral('\uec0c'),
-        cmd_trending_up('\uec0d'),
-        cmd_triangle_outline('\uec0e'),
-        cmd_triangle('\uec0f'),
-        cmd_triforce('\uec10'),
-        cmd_trophy_award('\uec11'),
-        cmd_trophy_broken('\uec12'),
-        cmd_trophy_outline('\uec13'),
-        cmd_trophy_variant_outline('\uec14'),
-        cmd_trophy_variant('\uec15'),
-        cmd_trophy('\uec16'),
-        cmd_truck_check_outline('\uec17'),
-        cmd_truck_check('\uec18'),
-        cmd_truck_delivery_outline('\uec19'),
-        cmd_truck_delivery('\uec1a'),
-        cmd_truck_fast_outline('\uec1b'),
-        cmd_truck_fast('\uec1c'),
-        cmd_truck_outline('\uec1d'),
-        cmd_truck_trailer('\uec1e'),
-        cmd_truck('\uec1f'),
-        cmd_trumpet('\uec20'),
-        cmd_tshirt_crew_outline('\uec21'),
-        cmd_tshirt_crew('\uec22'),
-        cmd_tshirt_v_outline('\uec23'),
-        cmd_tshirt_v('\uec24'),
-        cmd_tumble_dryer_alert('\uec25'),
-        cmd_tumble_dryer_off('\uec26'),
-        cmd_tumble_dryer('\uec27'),
-        cmd_tumblr_box('\uec28'),
-        cmd_tumblr_reblog('\uec29'),
-        cmd_tumblr('\uec2a'),
-        cmd_tune_vertical('\uec2b'),
-        cmd_tune('\uec2c'),
-        cmd_turnstile_outline('\uec2d'),
-        cmd_turnstile('\uec2e'),
-        cmd_turtle('\uec2f'),
-        cmd_twitch('\uec30'),
-        cmd_twitter_box('\uec31'),
-        cmd_twitter_circle('\uec32'),
-        cmd_twitter_retweet('\uec33'),
-        cmd_twitter('\uec34'),
-        cmd_two_factor_authentication('\uec35'),
-        cmd_typewriter('\uec36'),
-        cmd_uber('\uec37'),
-        cmd_ubisoft('\uec38'),
-        cmd_ubuntu('\uec39'),
-        cmd_ufo_outline('\uec3a'),
-        cmd_ufo('\uec3b'),
-        cmd_ultra_high_definition('\uec3c'),
-        cmd_umbraco('\uec3d'),
-        cmd_umbrella_closed('\uec3e'),
-        cmd_umbrella_outline('\uec3f'),
-        cmd_umbrella('\uec40'),
-        cmd_undo_variant('\uec41'),
-        cmd_undo('\uec42'),
-        cmd_unfold_less_horizontal('\uec43'),
-        cmd_unfold_less_vertical('\uec44'),
-        cmd_unfold_more_horizontal('\uec45'),
-        cmd_unfold_more_vertical('\uec46'),
-        cmd_ungroup('\uec47'),
-        cmd_unicode('\uec48'),
-        cmd_unity('\uec49'),
-        cmd_unreal('\uec4a'),
-        cmd_untappd('\uec4b'),
-        cmd_update('\uec4c'),
-        cmd_upload_multiple('\uec4d'),
-        cmd_upload_network_outline('\uec4e'),
-        cmd_upload_network('\uec4f'),
-        cmd_upload_off_outline('\uec50'),
-        cmd_upload_off('\uec51'),
-        cmd_upload_outline('\uec52'),
-        cmd_upload('\uec53'),
-        cmd_usb_flash_drive_outline('\uec54'),
-        cmd_usb_flash_drive('\uec55'),
-        cmd_usb_port('\uec56'),
-        cmd_usb('\uec57'),
-        cmd_valve_closed('\uec58'),
-        cmd_valve_open('\uec59'),
-        cmd_valve('\uec5a'),
-        cmd_van_passenger('\uec5b'),
-        cmd_van_utility('\uec5c'),
-        cmd_vanish('\uec5d'),
-        cmd_vanity_light('\uec5e'),
-        cmd_variable_box('\uec5f'),
-        cmd_variable('\uec60'),
-        cmd_vector_arrange_above('\uec61'),
-        cmd_vector_arrange_below('\uec62'),
-        cmd_vector_bezier('\uec63'),
-        cmd_vector_circle_variant('\uec64'),
-        cmd_vector_circle('\uec65'),
-        cmd_vector_combine('\uec66'),
-        cmd_vector_curve('\uec67'),
-        cmd_vector_difference_ab('\uec68'),
-        cmd_vector_difference_ba('\uec69'),
-        cmd_vector_difference('\uec6a'),
-        cmd_vector_ellipse('\uec6b'),
-        cmd_vector_intersection('\uec6c'),
-        cmd_vector_line('\uec6d'),
-        cmd_vector_link('\uec6e'),
-        cmd_vector_point('\uec6f'),
-        cmd_vector_polygon('\uec70'),
-        cmd_vector_polyline_edit('\uec71'),
-        cmd_vector_polyline_minus('\uec72'),
-        cmd_vector_polyline_plus('\uec73'),
-        cmd_vector_polyline_remove('\uec74'),
-        cmd_vector_polyline('\uec75'),
-        cmd_vector_radius('\uec76'),
-        cmd_vector_rectangle('\uec77'),
-        cmd_vector_selection('\uec78'),
-        cmd_vector_square('\uec79'),
-        cmd_vector_triangle('\uec7a'),
-        cmd_vector_union('\uec7b'),
-        cmd_venmo('\uec7c'),
-        cmd_vhs('\uec7d'),
-        cmd_vibrate_off('\uec7e'),
-        cmd_vibrate('\uec7f'),
-        cmd_video_3d_variant('\uec80'),
-        cmd_video_3d('\uec81'),
-        cmd_video_4k_box('\uec82'),
-        cmd_video_account('\uec83'),
-        cmd_video_check_outline('\uec84'),
-        cmd_video_check('\uec85'),
-        cmd_video_image('\uec86'),
-        cmd_video_input_antenna('\uec87'),
-        cmd_video_input_component('\uec88'),
-        cmd_video_input_hdmi('\uec89'),
-        cmd_video_input_scart('\uec8a'),
-        cmd_video_input_svideo('\uec8b'),
-        cmd_video_minus('\uec8c'),
-        cmd_video_off_outline('\uec8d'),
-        cmd_video_off('\uec8e'),
-        cmd_video_outline('\uec8f'),
-        cmd_video_plus('\uec90'),
-        cmd_video_stabilization('\uec91'),
-        cmd_video_switch('\uec92'),
-        cmd_video_vintage('\uec93'),
-        cmd_video_wireless_outline('\uec94'),
-        cmd_video_wireless('\uec95'),
-        cmd_video('\uec96'),
-        cmd_view_agenda_outline('\uec97'),
-        cmd_view_agenda('\uec98'),
-        cmd_view_array('\uec99'),
-        cmd_view_carousel('\uec9a'),
-        cmd_view_column('\uec9b'),
-        cmd_view_comfy('\uec9c'),
-        cmd_view_compact_outline('\uec9d'),
-        cmd_view_compact('\uec9e'),
-        cmd_view_dashboard_outline('\uec9f'),
-        cmd_view_dashboard_variant('\ueca0'),
-        cmd_view_dashboard('\ueca1'),
-        cmd_view_day('\ueca2'),
-        cmd_view_grid_outline('\ueca3'),
-        cmd_view_grid_plus_outline('\ueca4'),
-        cmd_view_grid_plus('\ueca5'),
-        cmd_view_grid('\ueca6'),
-        cmd_view_headline('\ueca7'),
-        cmd_view_list('\ueca8'),
-        cmd_view_module('\ueca9'),
-        cmd_view_parallel('\uecaa'),
-        cmd_view_quilt('\uecab'),
-        cmd_view_sequential('\uecac'),
-        cmd_view_split_horizontal('\uecad'),
-        cmd_view_split_vertical('\uecae'),
-        cmd_view_stream('\uecaf'),
-        cmd_view_week('\uecb0'),
-        cmd_vimeo('\uecb1'),
-        cmd_violin('\uecb2'),
-        cmd_virtual_reality('\uecb3'),
-        cmd_visual_studio_code('\uecb4'),
-        cmd_visual_studio('\uecb5'),
-        cmd_vk_box('\uecb6'),
-        cmd_vk_circle('\uecb7'),
-        cmd_vk('\uecb8'),
-        cmd_vlc('\uecb9'),
-        cmd_voice_off('\uecba'),
-        cmd_voice('\uecbb'),
-        cmd_voicemail('\uecbc'),
-        cmd_volleyball('\uecbd'),
-        cmd_volume_high('\uecbe'),
-        cmd_volume_low('\uecbf'),
-        cmd_volume_medium('\uecc0'),
-        cmd_volume_minus('\uecc1'),
-        cmd_volume_mute('\uecc2'),
-        cmd_volume_off('\uecc3'),
-        cmd_volume_plus('\uecc4'),
-        cmd_volume_source('\uecc5'),
-        cmd_volume_variant_off('\uecc6'),
-        cmd_volume_vibrate('\uecc7'),
-        cmd_vote_outline('\uecc8'),
-        cmd_vote('\uecc9'),
-        cmd_vpn('\uecca'),
-        cmd_vuejs('\ueccb'),
-        cmd_vuetify('\ueccc'),
-        cmd_walk('\ueccd'),
-        cmd_wall_sconce_flat('\uecce'),
-        cmd_wall_sconce_variant('\ueccf'),
-        cmd_wall_sconce('\uecd0'),
-        cmd_wall('\uecd1'),
-        cmd_wallet_giftcard('\uecd2'),
-        cmd_wallet_membership('\uecd3'),
-        cmd_wallet_outline('\uecd4'),
-        cmd_wallet_plus_outline('\uecd5'),
-        cmd_wallet_plus('\uecd6'),
-        cmd_wallet_travel('\uecd7'),
-        cmd_wallet('\uecd8'),
-        cmd_wallpaper('\uecd9'),
-        cmd_wan('\uecda'),
-        cmd_wardrobe_outline('\uecdb'),
-        cmd_wardrobe('\uecdc'),
-        cmd_warehouse('\uecdd'),
-        cmd_washing_machine_alert('\uecde'),
-        cmd_washing_machine_off('\uecdf'),
-        cmd_washing_machine('\uece0'),
-        cmd_watch_export_variant('\uece1'),
-        cmd_watch_export('\uece2'),
-        cmd_watch_import_variant('\uece3'),
-        cmd_watch_import('\uece4'),
-        cmd_watch_variant('\uece5'),
-        cmd_watch_vibrate_off('\uece6'),
-        cmd_watch_vibrate('\uece7'),
-        cmd_watch('\uece8');
+class CommunityMaterialIcon(
+    override val name: String,
+    override val character: Char
+) : IIcon {
+    override val formattedName: String = "{$name}"
 
-        override val typeface: ITypeface by lazy { CommunityMaterial }
-    }
-
-    enum class Icon2 constructor(override val character: Char) : IIcon {
-        cmd_water_boiler_alert('\uece9'),
-        cmd_water_boiler_off('\uecea'),
-        cmd_water_boiler('\ueceb'),
-        cmd_water_off('\uecec'),
-        cmd_water_outline('\ueced'),
-        cmd_water_percent('\uecee'),
-        cmd_water_polo('\uecef'),
-        cmd_water_pump_off('\uecf0'),
-        cmd_water_pump('\uecf1'),
-        cmd_water_well_outline('\uecf2'),
-        cmd_water_well('\uecf3'),
-        cmd_water('\uecf4'),
-        cmd_watermark('\uecf5'),
-        cmd_wave('\uecf6'),
-        cmd_waves('\uecf7'),
-        cmd_waze('\uecf8'),
-        cmd_weather_cloudy_alert('\uecf9'),
-        cmd_weather_cloudy_arrow_right('\uecfa'),
-        cmd_weather_cloudy('\uecfb'),
-        cmd_weather_fog('\uecfc'),
-        cmd_weather_hail('\uecfd'),
-        cmd_weather_hazy('\uecfe'),
-        cmd_weather_hurricane('\uecff'),
-        cmd_weather_lightning_rainy('\ued00'),
-        cmd_weather_lightning('\ued01'),
-        cmd_weather_night_partly_cloudy('\ued02'),
-        cmd_weather_night('\ued03'),
-        cmd_weather_partly_cloudy('\ued04'),
-        cmd_weather_partly_lightning('\ued05'),
-        cmd_weather_partly_rainy('\ued06'),
-        cmd_weather_partly_snowy_rainy('\ued07'),
-        cmd_weather_partly_snowy('\ued08'),
-        cmd_weather_pouring('\ued09'),
-        cmd_weather_rainy('\ued0a'),
-        cmd_weather_snowy_heavy('\ued0b'),
-        cmd_weather_snowy_rainy('\ued0c'),
-        cmd_weather_snowy('\ued0d'),
-        cmd_weather_sunny_alert('\ued0e'),
-        cmd_weather_sunny('\ued0f'),
-        cmd_weather_sunset_down('\ued10'),
-        cmd_weather_sunset_up('\ued11'),
-        cmd_weather_sunset('\ued12'),
-        cmd_weather_tornado('\ued13'),
-        cmd_weather_windy_variant('\ued14'),
-        cmd_weather_windy('\ued15'),
-        cmd_web_box('\ued16'),
-        cmd_web_clock('\ued17'),
-        cmd_web('\ued18'),
-        cmd_webcam('\ued19'),
-        cmd_webhook('\ued1a'),
-        cmd_webpack('\ued1b'),
-        cmd_webrtc('\ued1c'),
-        cmd_wechat('\ued1d'),
-        cmd_weight_gram('\ued1e'),
-        cmd_weight_kilogram('\ued1f'),
-        cmd_weight_lifter('\ued20'),
-        cmd_weight_pound('\ued21'),
-        cmd_weight('\ued22'),
-        cmd_whatsapp('\ued23'),
-        cmd_wheelchair_accessibility('\ued24'),
-        cmd_whistle_outline('\ued25'),
-        cmd_whistle('\ued26'),
-        cmd_white_balance_auto('\ued27'),
-        cmd_white_balance_incandescent('\ued28'),
-        cmd_white_balance_iridescent('\ued29'),
-        cmd_white_balance_sunny('\ued2a'),
-        cmd_widgets('\ued2b'),
-        cmd_wifi_off('\ued2c'),
-        cmd_wifi_star('\ued2d'),
-        cmd_wifi_strength_1_alert('\ued2e'),
-        cmd_wifi_strength_1_lock('\ued2f'),
-        cmd_wifi_strength_1('\ued30'),
-        cmd_wifi_strength_2_alert('\ued31'),
-        cmd_wifi_strength_2_lock('\ued32'),
-        cmd_wifi_strength_2('\ued33'),
-        cmd_wifi_strength_3_alert('\ued34'),
-        cmd_wifi_strength_3_lock('\ued35'),
-        cmd_wifi_strength_3('\ued36'),
-        cmd_wifi_strength_4_alert('\ued37'),
-        cmd_wifi_strength_4_lock('\ued38'),
-        cmd_wifi_strength_4('\ued39'),
-        cmd_wifi_strength_alert_outline('\ued3a'),
-        cmd_wifi_strength_lock_outline('\ued3b'),
-        cmd_wifi_strength_off_outline('\ued3c'),
-        cmd_wifi_strength_off('\ued3d'),
-        cmd_wifi_strength_outline('\ued3e'),
-        cmd_wifi('\ued3f'),
-        cmd_wii('\ued40'),
-        cmd_wiiu('\ued41'),
-        cmd_wikipedia('\ued42'),
-        cmd_wind_turbine('\ued43'),
-        cmd_window_close('\ued44'),
-        cmd_window_closed_variant('\ued45'),
-        cmd_window_closed('\ued46'),
-        cmd_window_maximize('\ued47'),
-        cmd_window_minimize('\ued48'),
-        cmd_window_open_variant('\ued49'),
-        cmd_window_open('\ued4a'),
-        cmd_window_restore('\ued4b'),
-        cmd_window_shutter_alert('\ued4c'),
-        cmd_window_shutter_open('\ued4d'),
-        cmd_window_shutter('\ued4e'),
-        cmd_windows_classic('\ued4f'),
-        cmd_windows('\ued50'),
-        cmd_wiper_wash('\ued51'),
-        cmd_wiper('\ued52'),
-        cmd_wordpress('\ued53'),
-        cmd_worker('\ued54'),
-        cmd_wrap_disabled('\ued55'),
-        cmd_wrap('\ued56'),
-        cmd_wrench_outline('\ued57'),
-        cmd_wrench('\ued58'),
-        cmd_wunderlist('\ued59'),
-        cmd_xamarin_outline('\ued5a'),
-        cmd_xamarin('\ued5b'),
-        cmd_xaml('\ued5c'),
-        cmd_xbox_controller_battery_alert('\ued5d'),
-        cmd_xbox_controller_battery_charging('\ued5e'),
-        cmd_xbox_controller_battery_empty('\ued5f'),
-        cmd_xbox_controller_battery_full('\ued60'),
-        cmd_xbox_controller_battery_low('\ued61'),
-        cmd_xbox_controller_battery_medium('\ued62'),
-        cmd_xbox_controller_battery_unknown('\ued63'),
-        cmd_xbox_controller_menu('\ued64'),
-        cmd_xbox_controller_off('\ued65'),
-        cmd_xbox_controller_view('\ued66'),
-        cmd_xbox_controller('\ued67'),
-        cmd_xbox('\ued68'),
-        cmd_xda('\ued69'),
-        cmd_xing_box('\ued6a'),
-        cmd_xing_circle('\ued6b'),
-        cmd_xing('\ued6c'),
-        cmd_xml('\ued6d'),
-        cmd_xmpp('\ued6e'),
-        cmd_yahoo('\ued6f'),
-        cmd_yammer('\ued70'),
-        cmd_yeast('\ued71'),
-        cmd_yelp('\ued72'),
-        cmd_yin_yang('\ued73'),
-        cmd_yoga('\ued74'),
-        cmd_youtube_creator_studio('\ued75'),
-        cmd_youtube_gaming('\ued76'),
-        cmd_youtube_subscription('\ued77'),
-        cmd_youtube_tv('\ued78'),
-        cmd_youtube('\ued79'),
-        cmd_z_wave('\ued7a'),
-        cmd_zend('\ued7b'),
-        cmd_zigbee('\ued7c'),
-        cmd_zip_box_outline('\ued7d'),
-        cmd_zip_box('\ued7e'),
-        cmd_zip_disk('\ued7f'),
-        cmd_zodiac_aquarius('\ued80'),
-        cmd_zodiac_aries('\ued81'),
-        cmd_zodiac_cancer('\ued82'),
-        cmd_zodiac_capricorn('\ued83'),
-        cmd_zodiac_gemini('\ued84'),
-        cmd_zodiac_leo('\ued85'),
-        cmd_zodiac_libra('\ued86'),
-        cmd_zodiac_pisces('\ued87'),
-        cmd_zodiac_sagittarius('\ued88'),
-        cmd_zodiac_scorpio('\ued89'),
-        cmd_zodiac_taurus('\ued8a'),
-        cmd_zodiac_virgo('\ued8b'),
-        cmd_hair_dryer_outline('\ued8c'),
-        cmd_hair_dryer('\ued8d'),
-        cmd_halloween('\ued8e'),
-        cmd_hamburger('\ued8f'),
-        cmd_hammer('\ued90'),
-        cmd_hand_heart('\ued91'),
-        cmd_hand_left('\ued92'),
-        cmd_hand_okay('\ued93'),
-        cmd_hand_peace_variant('\ued94'),
-        cmd_hand_peace('\ued95'),
-        cmd_hand_pointing_down('\ued96'),
-        cmd_hand_pointing_left('\ued97'),
-        cmd_hand_pointing_right('\ued98'),
-        cmd_hand_pointing_up('\ued99'),
-        cmd_hand_right('\ued9a'),
-        cmd_hand_saw('\ued9b'),
-        cmd_hand('\ued9c'),
-        cmd_handball('\ued9d'),
-        cmd_handcuffs('\ued9e'),
-        cmd_handshake('\ued9f'),
-        cmd_hanger('\ueda0'),
-        cmd_hard_hat('\ueda1'),
-        cmd_harddisk_plus('\ueda2'),
-        cmd_harddisk_remove('\ueda3'),
-        cmd_harddisk('\ueda4'),
-        cmd_hat_fedora('\ueda5'),
-        cmd_hazard_lights('\ueda6'),
-        cmd_hdr_off('\ueda7'),
-        cmd_hdr('\ueda8'),
-        cmd_headphones_bluetooth('\ueda9'),
-        cmd_headphones_box('\uedaa'),
-        cmd_headphones_off('\uedab'),
-        cmd_headphones_settings('\uedac'),
-        cmd_headphones('\uedad'),
-        cmd_headset_dock('\uedae'),
-        cmd_headset_off('\uedaf'),
-        cmd_headset('\uedb0'),
-        cmd_heart_box_outline('\uedb1'),
-        cmd_heart_box('\uedb2'),
-        cmd_heart_broken_outline('\uedb3'),
-        cmd_heart_broken('\uedb4'),
-        cmd_heart_circle_outline('\uedb5'),
-        cmd_heart_circle('\uedb6'),
-        cmd_heart_flash('\uedb7'),
-        cmd_heart_half_full('\uedb8'),
-        cmd_heart_half_outline('\uedb9'),
-        cmd_heart_half('\uedba'),
-        cmd_heart_multiple_outline('\uedbb'),
-        cmd_heart_multiple('\uedbc'),
-        cmd_heart_off('\uedbd'),
-        cmd_heart_outline('\uedbe'),
-        cmd_heart_pulse('\uedbf'),
-        cmd_heart('\uedc0'),
-        cmd_helicopter('\uedc1'),
-        cmd_help_box('\uedc2'),
-        cmd_help_circle_outline('\uedc3'),
-        cmd_help_circle('\uedc4'),
-        cmd_help_network_outline('\uedc5'),
-        cmd_help_network('\uedc6'),
-        cmd_help_rhombus_outline('\uedc7'),
-        cmd_help_rhombus('\uedc8'),
-        cmd_help('\uedc9'),
-        cmd_hexadecimal('\uedca'),
-        cmd_hexagon_multiple_outline('\uedcb'),
-        cmd_hexagon_multiple('\uedcc'),
-        cmd_hexagon_outline('\uedcd'),
-        cmd_hexagon_slice_1('\uedce'),
-        cmd_hexagon_slice_2('\uedcf'),
-        cmd_hexagon_slice_3('\uedd0'),
-        cmd_hexagon_slice_4('\uedd1'),
-        cmd_hexagon_slice_5('\uedd2'),
-        cmd_hexagon_slice_6('\uedd3'),
-        cmd_hexagon('\uedd4'),
-        cmd_hexagram_outline('\uedd5'),
-        cmd_hexagram('\uedd6'),
-        cmd_high_definition_box('\uedd7'),
-        cmd_high_definition('\uedd8'),
-        cmd_highway('\uedd9'),
-        cmd_hiking('\uedda'),
-        cmd_hinduism('\ueddb'),
-        cmd_history('\ueddc'),
-        cmd_hockey_puck('\ueddd'),
-        cmd_hockey_sticks('\uedde'),
-        cmd_hololens('\ueddf'),
-        cmd_home_account('\uede0'),
-        cmd_home_alert('\uede1'),
-        cmd_home_analytics('\uede2'),
-        cmd_home_assistant('\uede3'),
-        cmd_home_automation('\uede4'),
-        cmd_home_circle_outline('\uede5'),
-        cmd_home_circle('\uede6'),
-        cmd_home_city_outline('\uede7'),
-        cmd_home_city('\uede8'),
-        cmd_home_currency_usd('\uede9'),
-        cmd_home_edit_outline('\uedea'),
-        cmd_home_edit('\uedeb'),
-        cmd_home_export_outline('\uedec'),
-        cmd_home_flood('\ueded'),
-        cmd_home_floor_0('\uedee'),
-        cmd_home_floor_1('\uedef'),
-        cmd_home_floor_2('\uedf0'),
-        cmd_home_floor_3('\uedf1'),
-        cmd_home_floor_a('\uedf2'),
-        cmd_home_floor_b('\uedf3'),
-        cmd_home_floor_g('\uedf4'),
-        cmd_home_floor_l('\uedf5'),
-        cmd_home_floor_negative_1('\uedf6'),
-        cmd_home_group('\uedf7'),
-        cmd_home_heart('\uedf8'),
-        cmd_home_import_outline('\uedf9'),
-        cmd_home_lightbulb_outline('\uedfa'),
-        cmd_home_lightbulb('\uedfb'),
-        cmd_home_lock_open('\uedfc'),
-        cmd_home_lock('\uedfd'),
-        cmd_home_map_marker('\uedfe'),
-        cmd_home_minus('\uedff'),
-        cmd_home_modern('\uee00'),
-        cmd_home_outline('\uee01'),
-        cmd_home_plus('\uee02'),
-        cmd_home_remove('\uee03'),
-        cmd_home_roof('\uee04'),
-        cmd_home_thermometer_outline('\uee05'),
-        cmd_home_thermometer('\uee06'),
-        cmd_home_variant_outline('\uee07'),
-        cmd_home_variant('\uee08'),
-        cmd_home('\uee09'),
-        cmd_hook_off('\uee0a'),
-        cmd_hook('\uee0b'),
-        cmd_hops('\uee0c'),
-        cmd_horizontal_rotate_clockwise('\uee0d'),
-        cmd_horizontal_rotate_counterclockwise('\uee0e'),
-        cmd_horseshoe('\uee0f'),
-        cmd_hospital_box_outline('\uee10'),
-        cmd_hospital_box('\uee11'),
-        cmd_hospital_building('\uee12'),
-        cmd_hospital_marker('\uee13'),
-        cmd_hospital('\uee14'),
-        cmd_hot_tub('\uee15'),
-        cmd_hotel('\uee16'),
-        cmd_houzz_box('\uee17'),
-        cmd_houzz('\uee18'),
-        cmd_hubspot('\uee19'),
-        cmd_hulu('\uee1a'),
-        cmd_human_child('\uee1b'),
-        cmd_human_female_boy('\uee1c'),
-        cmd_human_female_female('\uee1d'),
-        cmd_human_female_girl('\uee1e'),
-        cmd_human_female('\uee1f'),
-        cmd_human_greeting('\uee20'),
-        cmd_human_handsdown('\uee21'),
-        cmd_human_handsup('\uee22'),
-        cmd_human_male_boy('\uee23'),
-        cmd_human_male_female('\uee24'),
-        cmd_human_male_girl('\uee25'),
-        cmd_human_male_height_variant('\uee26'),
-        cmd_human_male_height('\uee27'),
-        cmd_human_male_male('\uee28'),
-        cmd_human_male('\uee29'),
-        cmd_human_pregnant('\uee2a'),
-        cmd_human('\uee2b'),
-        cmd_humble_bundle('\uee2c'),
-        cmd_hydro_power('\uee2d'),
-        cmd_ice_cream('\uee2e'),
-        cmd_ice_pop('\uee2f'),
-        cmd_id_card('\uee30'),
-        cmd_identifier('\uee31'),
-        cmd_iframe_array_outline('\uee32'),
-        cmd_iframe_array('\uee33'),
-        cmd_iframe_braces_outline('\uee34'),
-        cmd_iframe_braces('\uee35'),
-        cmd_iframe_outline('\uee36'),
-        cmd_iframe_parentheses_outline('\uee37'),
-        cmd_iframe_parentheses('\uee38'),
-        cmd_iframe_variable_outline('\uee39'),
-        cmd_iframe_variable('\uee3a'),
-        cmd_iframe('\uee3b'),
-        cmd_image_album('\uee3c'),
-        cmd_image_area_close('\uee3d'),
-        cmd_image_area('\uee3e'),
-        cmd_image_auto_adjust('\uee3f'),
-        cmd_image_broken_variant('\uee40'),
-        cmd_image_broken('\uee41'),
-        cmd_image_edit_outline('\uee42'),
-        cmd_image_edit('\uee43'),
-        cmd_image_filter_black_white('\uee44'),
-        cmd_image_filter_center_focus_strong_outline('\uee45'),
-        cmd_image_filter_center_focus_strong('\uee46'),
-        cmd_image_filter_center_focus_weak('\uee47'),
-        cmd_image_filter_center_focus('\uee48'),
-        cmd_image_filter_drama('\uee49'),
-        cmd_image_filter_frames('\uee4a'),
-        cmd_image_filter_hdr('\uee4b'),
-        cmd_image_filter_none('\uee4c'),
-        cmd_image_filter_tilt_shift('\uee4d'),
-        cmd_image_filter_vintage('\uee4e'),
-        cmd_image_filter('\uee4f'),
-        cmd_image_frame('\uee50'),
-        cmd_image_move('\uee51'),
-        cmd_image_multiple('\uee52'),
-        cmd_image_off_outline('\uee53'),
-        cmd_image_off('\uee54'),
-        cmd_image_outline('\uee55'),
-        cmd_image_plus('\uee56'),
-        cmd_image_search_outline('\uee57'),
-        cmd_image_search('\uee58'),
-        cmd_image_size_select_actual('\uee59'),
-        cmd_image_size_select_large('\uee5a'),
-        cmd_image_size_select_small('\uee5b'),
-        cmd_image('\uee5c'),
-        cmd_import('\uee5d'),
-        cmd_inbox_arrow_down_outline('\uee5e'),
-        cmd_inbox_arrow_down('\uee5f'),
-        cmd_inbox_arrow_up_outline('\uee60'),
-        cmd_inbox_arrow_up('\uee61'),
-        cmd_inbox_full_outline('\uee62'),
-        cmd_inbox_full('\uee63'),
-        cmd_inbox_multiple_outline('\uee64'),
-        cmd_inbox_multiple('\uee65'),
-        cmd_inbox_outline('\uee66'),
-        cmd_inbox('\uee67'),
-        cmd_incognito('\uee68'),
-        cmd_infinity('\uee69'),
-        cmd_information_outline('\uee6a'),
-        cmd_information_variant('\uee6b'),
-        cmd_information('\uee6c'),
-        cmd_instagram('\uee6d'),
-        cmd_instapaper('\uee6e'),
-        cmd_instrument_triangle('\uee6f'),
-        cmd_internet_explorer('\uee70'),
-        cmd_invert_colors_off('\uee71'),
-        cmd_invert_colors('\uee72'),
-        cmd_ip_network_outline('\uee73'),
-        cmd_ip_network('\uee74'),
-        cmd_ip('\uee75'),
-        cmd_ipod('\uee76'),
-        cmd_islam('\uee77'),
-        cmd_island('\uee78'),
-        cmd_itunes('\uee79'),
-        cmd_iv_bag('\uee7a'),
-        cmd_jabber('\uee7b'),
-        cmd_jeepney('\uee7c'),
-        cmd_jellyfish_outline('\uee7d'),
-        cmd_jellyfish('\uee7e'),
-        cmd_jira('\uee7f'),
-        cmd_jquery('\uee80'),
-        cmd_jsfiddle('\uee81'),
-        cmd_json('\uee82'),
-        cmd_judaism('\uee83'),
-        cmd_kabaddi('\uee84'),
-        cmd_karate('\uee85'),
-        cmd_keg('\uee86'),
-        cmd_kettle_outline('\uee87'),
-        cmd_kettle('\uee88'),
-        cmd_key_change('\uee89'),
-        cmd_key_link('\uee8a'),
-        cmd_key_minus('\uee8b'),
-        cmd_key_outline('\uee8c'),
-        cmd_key_plus('\uee8d'),
-        cmd_key_remove('\uee8e'),
-        cmd_key_star('\uee8f'),
-        cmd_key_variant('\uee90'),
-        cmd_key_wireless('\uee91'),
-        cmd_key('\uee92'),
-        cmd_keyboard_backspace('\uee93'),
-        cmd_keyboard_caps('\uee94'),
-        cmd_keyboard_close('\uee95'),
-        cmd_keyboard_esc('\uee96'),
-        cmd_keyboard_f1('\uee97'),
-        cmd_keyboard_f2('\uee98'),
-        cmd_keyboard_f3('\uee99'),
-        cmd_keyboard_f4('\uee9a'),
-        cmd_keyboard_f5('\uee9b'),
-        cmd_keyboard_f6('\uee9c'),
-        cmd_keyboard_f7('\uee9d'),
-        cmd_keyboard_f8('\uee9e'),
-        cmd_keyboard_f9('\uee9f'),
-        cmd_keyboard_f10('\ueea0'),
-        cmd_keyboard_f11('\ueea1'),
-        cmd_keyboard_f12('\ueea2'),
-        cmd_keyboard_off_outline('\ueea3'),
-        cmd_keyboard_off('\ueea4'),
-        cmd_keyboard_outline('\ueea5'),
-        cmd_keyboard_return('\ueea6'),
-        cmd_keyboard_settings_outline('\ueea7'),
-        cmd_keyboard_settings('\ueea8'),
-        cmd_keyboard_space('\ueea9'),
-        cmd_keyboard_tab('\ueeaa'),
-        cmd_keyboard_variant('\ueeab'),
-        cmd_keyboard('\ueeac'),
-        cmd_khanda('\ueead'),
-        cmd_kickstarter('\ueeae'),
-        cmd_knife_military('\ueeaf'),
-        cmd_knife('\ueeb0'),
-        cmd_kodi('\ueeb1'),
-        cmd_kotlin('\ueeb2'),
-        cmd_kubernetes('\ueeb3'),
-        cmd_label_off_outline('\ueeb4'),
-        cmd_label_off('\ueeb5'),
-        cmd_label_outline('\ueeb6'),
-        cmd_label_variant_outline('\ueeb7'),
-        cmd_label_variant('\ueeb8'),
-        cmd_label('\ueeb9'),
-        cmd_ladybug('\ueeba'),
-        cmd_lambda('\ueebb'),
-        cmd_lamp('\ueebc'),
-        cmd_lan_check('\ueebd'),
-        cmd_lan_connect('\ueebe'),
-        cmd_lan_disconnect('\ueebf'),
-        cmd_lan_pending('\ueec0'),
-        cmd_lan('\ueec1'),
-        cmd_language_c('\ueec2'),
-        cmd_language_cpp('\ueec3'),
-        cmd_language_csharp('\ueec4'),
-        cmd_language_css3('\ueec5'),
-        cmd_language_fortran('\ueec6'),
-        cmd_language_go('\ueec7'),
-        cmd_language_haskell('\ueec8'),
-        cmd_language_html5('\ueec9'),
-        cmd_language_java('\ueeca'),
-        cmd_language_javascript('\ueecb'),
-        cmd_language_lua('\ueecc'),
-        cmd_language_php('\ueecd'),
-        cmd_language_python_text('\ueece'),
-        cmd_language_python('\ueecf'),
-        cmd_language_r('\ueed0'),
-        cmd_language_ruby_on_rails('\ueed1'),
-        cmd_language_swift('\ueed2'),
-        cmd_language_typescript('\ueed3'),
-        cmd_laptop_chromebook('\ueed4'),
-        cmd_laptop_mac('\ueed5'),
-        cmd_laptop_off('\ueed6'),
-        cmd_laptop_windows('\ueed7'),
-        cmd_laptop('\ueed8'),
-        cmd_laravel('\ueed9'),
-        cmd_lasso('\ueeda'),
-        cmd_lastfm('\ueedb'),
-        cmd_lastpass('\ueedc'),
-        cmd_latitude('\ueedd'),
-        cmd_launch('\ueede'),
-        cmd_lava_lamp('\ueedf'),
-        cmd_layers_minus('\ueee0'),
-        cmd_layers_off_outline('\ueee1'),
-        cmd_layers_off('\ueee2'),
-        cmd_layers_outline('\ueee3'),
-        cmd_layers_plus('\ueee4'),
-        cmd_layers_remove('\ueee5'),
-        cmd_layers_search_outline('\ueee6'),
-        cmd_layers_search('\ueee7'),
-        cmd_layers_triple_outline('\ueee8'),
-        cmd_layers_triple('\ueee9'),
-        cmd_layers('\ueeea'),
-        cmd_lead_pencil('\ueeeb'),
-        cmd_leaf_maple_off('\ueeec'),
-        cmd_leaf_maple('\ueeed'),
-        cmd_leaf_off('\ueeee'),
-        cmd_leaf('\ueeef'),
-        cmd_leak_off('\ueef0'),
-        cmd_leak('\ueef1'),
-        cmd_led_off('\ueef2'),
-        cmd_led_on('\ueef3'),
-        cmd_led_outline('\ueef4'),
-        cmd_led_strip_variant('\ueef5'),
-        cmd_led_strip('\ueef6'),
-        cmd_led_variant_off('\ueef7'),
-        cmd_led_variant_on('\ueef8'),
-        cmd_led_variant_outline('\ueef9'),
-        cmd_leek('\ueefa'),
-        cmd_less_than_or_equal('\ueefb'),
-        cmd_less_than('\ueefc'),
-        cmd_library_books('\ueefd'),
-        cmd_library_movie('\ueefe'),
-        cmd_library_music_outline('\ueeff'),
-        cmd_library_music('\uef00'),
-        cmd_library_shelves('\uef01'),
-        cmd_library_video('\uef02'),
-        cmd_library('\uef03'),
-        cmd_license('\uef04'),
-        cmd_lifebuoy('\uef05'),
-        cmd_light_switch('\uef06'),
-        cmd_lightbulb_cfl_off('\uef07'),
-        cmd_lightbulb_cfl_spiral_off('\uef08'),
-        cmd_lightbulb_cfl_spiral('\uef09'),
-        cmd_lightbulb_cfl('\uef0a'),
-        cmd_lightbulb_group_off_outline('\uef0b'),
-        cmd_lightbulb_group_off('\uef0c'),
-        cmd_lightbulb_group_outline('\uef0d'),
-        cmd_lightbulb_group('\uef0e'),
-        cmd_lightbulb_multiple_off_outline('\uef0f'),
-        cmd_lightbulb_multiple_off('\uef10'),
-        cmd_lightbulb_multiple_outline('\uef11'),
-        cmd_lightbulb_multiple('\uef12'),
-        cmd_lightbulb_off_outline('\uef13'),
-        cmd_lightbulb_off('\uef14'),
-        cmd_lightbulb_on_outline('\uef15'),
-        cmd_lightbulb_on('\uef16'),
-        cmd_lightbulb_outline('\uef17'),
-        cmd_lightbulb('\uef18'),
-        cmd_lighthouse_on('\uef19'),
-        cmd_lighthouse('\uef1a'),
-        cmd_link_box_outline('\uef1b'),
-        cmd_link_box_variant_outline('\uef1c'),
-        cmd_link_box_variant('\uef1d'),
-        cmd_link_box('\uef1e'),
-        cmd_link_lock('\uef1f'),
-        cmd_link_off('\uef20'),
-        cmd_link_plus('\uef21'),
-        cmd_link_variant_minus('\uef22'),
-        cmd_link_variant_off('\uef23'),
-        cmd_link_variant_plus('\uef24'),
-        cmd_link_variant_remove('\uef25'),
-        cmd_link_variant('\uef26'),
-        cmd_link('\uef27'),
-        cmd_linkedin_box('\uef28'),
-        cmd_linkedin('\uef29'),
-        cmd_linux_mint('\uef2a'),
-        cmd_linux('\uef2b'),
-        cmd_litecoin('\uef2c'),
-        cmd_loading('\uef2d'),
-        cmd_location_enter('\uef2e'),
-        cmd_location_exit('\uef2f'),
-        cmd_lock_alert('\uef30'),
-        cmd_lock_clock('\uef31'),
-        cmd_lock_open_outline('\uef32'),
-        cmd_lock_open_variant_outline('\uef33'),
-        cmd_lock_open_variant('\uef34'),
-        cmd_lock_open('\uef35'),
-        cmd_lock_outline('\uef36'),
-        cmd_lock_pattern('\uef37'),
-        cmd_lock_plus('\uef38'),
-        cmd_lock_question('\uef39'),
-        cmd_lock_reset('\uef3a'),
-        cmd_lock_smart('\uef3b'),
-        cmd_lock('\uef3c'),
-        cmd_locker_multiple('\uef3d'),
-        cmd_locker('\uef3e'),
-        cmd_login_variant('\uef3f'),
-        cmd_login('\uef40'),
-        cmd_logout_variant('\uef41'),
-        cmd_logout('\uef42'),
-        cmd_longitude('\uef43'),
-        cmd_looks('\uef44'),
-        cmd_loupe('\uef45'),
-        cmd_lumx('\uef46'),
-        cmd_lungs('\uef47'),
-        cmd_lyft('\uef48'),
-        cmd_magnet_on('\uef49'),
-        cmd_magnet('\uef4a'),
-        cmd_magnify_close('\uef4b'),
-        cmd_magnify_minus_cursor('\uef4c'),
-        cmd_magnify_minus_outline('\uef4d'),
-        cmd_magnify_minus('\uef4e'),
-        cmd_magnify_plus_cursor('\uef4f'),
-        cmd_magnify_plus_outline('\uef50'),
-        cmd_magnify_plus('\uef51'),
-        cmd_magnify_remove_cursor('\uef52'),
-        cmd_magnify_remove_outline('\uef53'),
-        cmd_magnify_scan('\uef54'),
-        cmd_magnify('\uef55'),
-        cmd_mail_ru('\uef56'),
-        cmd_mail('\uef57'),
-        cmd_mailbox_open_outline('\uef58'),
-        cmd_mailbox_open_up_outline('\uef59'),
-        cmd_mailbox_open_up('\uef5a'),
-        cmd_mailbox_open('\uef5b'),
-        cmd_mailbox_outline('\uef5c'),
-        cmd_mailbox_up_outline('\uef5d'),
-        cmd_mailbox_up('\uef5e'),
-        cmd_mailbox('\uef5f'),
-        cmd_map_check_outline('\uef60'),
-        cmd_map_check('\uef61'),
-        cmd_map_clock_outline('\uef62'),
-        cmd_map_clock('\uef63'),
-        cmd_map_legend('\uef64'),
-        cmd_map_marker_alert_outline('\uef65'),
-        cmd_map_marker_alert('\uef66'),
-        cmd_map_marker_check('\uef67'),
-        cmd_map_marker_circle('\uef68'),
-        cmd_map_marker_distance('\uef69'),
-        cmd_map_marker_down('\uef6a'),
-        cmd_map_marker_left_outline('\uef6b'),
-        cmd_map_marker_left('\uef6c'),
-        cmd_map_marker_minus('\uef6d'),
-        cmd_map_marker_multiple_outline('\uef6e'),
-        cmd_map_marker_multiple('\uef6f'),
-        cmd_map_marker_off('\uef70'),
-        cmd_map_marker_outline('\uef71'),
-        cmd_map_marker_path('\uef72'),
-        cmd_map_marker_plus('\uef73'),
-        cmd_map_marker_question_outline('\uef74'),
-        cmd_map_marker_question('\uef75'),
-        cmd_map_marker_radius('\uef76'),
-        cmd_map_marker_remove_variant('\uef77'),
-        cmd_map_marker_remove('\uef78'),
-        cmd_map_marker_right_outline('\uef79'),
-        cmd_map_marker_right('\uef7a'),
-        cmd_map_marker_up('\uef7b'),
-        cmd_map_marker('\uef7c'),
-        cmd_map_minus('\uef7d'),
-        cmd_map_outline('\uef7e'),
-        cmd_map_plus('\uef7f'),
-        cmd_map_search_outline('\uef80'),
-        cmd_map_search('\uef81'),
-        cmd_map('\uef82'),
-        cmd_mapbox('\uef83'),
-        cmd_margin('\uef84'),
-        cmd_markdown_outline('\uef85'),
-        cmd_markdown('\uef86'),
-        cmd_marker_cancel('\uef87'),
-        cmd_marker_check('\uef88'),
-        cmd_marker('\uef89'),
-        cmd_mastodon_variant('\uef8a'),
-        cmd_mastodon('\uef8b'),
-        cmd_material_design('\uef8c'),
-        cmd_material_ui('\uef8d'),
-        cmd_math_compass('\uef8e'),
-        cmd_math_cos('\uef8f'),
-        cmd_math_integral_box('\uef90'),
-        cmd_math_integral('\uef91'),
-        cmd_math_log('\uef92'),
-        cmd_math_norm_box('\uef93'),
-        cmd_math_norm('\uef94'),
-        cmd_math_sin('\uef95'),
-        cmd_math_tan('\uef96'),
-        cmd_matrix('\uef97'),
-        cmd_medal('\uef98'),
-        cmd_medical_bag('\uef99'),
-        cmd_meditation('\uef9a'),
-        cmd_medium('\uef9b'),
-        cmd_meetup('\uef9c'),
-        cmd_memory('\uef9d'),
-        cmd_menu_down_outline('\uef9e'),
-        cmd_menu_down('\uef9f'),
-        cmd_menu_left_outline('\uefa0'),
-        cmd_menu_left('\uefa1'),
-        cmd_menu_open('\uefa2'),
-        cmd_menu_right_outline('\uefa3'),
-        cmd_menu_right('\uefa4'),
-        cmd_menu_swap_outline('\uefa5'),
-        cmd_menu_swap('\uefa6'),
-        cmd_menu_up_outline('\uefa7'),
-        cmd_menu_up('\uefa8'),
-        cmd_menu('\uefa9'),
-        cmd_merge('\uefaa'),
-        cmd_message_alert_outline('\uefab'),
-        cmd_message_alert('\uefac'),
-        cmd_message_bulleted_off('\uefad'),
-        cmd_message_bulleted('\uefae'),
-        cmd_message_draw('\uefaf'),
-        cmd_message_image_outline('\uefb0'),
-        cmd_message_image('\uefb1'),
-        cmd_message_lock_outline('\uefb2'),
-        cmd_message_lock('\uefb3'),
-        cmd_message_minus_outline('\uefb4'),
-        cmd_message_minus('\uefb5'),
-        cmd_message_outline('\uefb6'),
-        cmd_message_plus_outline('\uefb7'),
-        cmd_message_plus('\uefb8'),
-        cmd_message_processing_outline('\uefb9'),
-        cmd_message_processing('\uefba'),
-        cmd_message_reply_text('\uefbb'),
-        cmd_message_reply('\uefbc'),
-        cmd_message_settings_outline('\uefbd'),
-        cmd_message_settings_variant_outline('\uefbe'),
-        cmd_message_settings_variant('\uefbf'),
-        cmd_message_settings('\uefc0'),
-        cmd_message_text_clock_outline('\uefc1'),
-        cmd_message_text_clock('\uefc2'),
-        cmd_message_text_lock_outline('\uefc3'),
-        cmd_message_text_lock('\uefc4'),
-        cmd_message_text_outline('\uefc5'),
-        cmd_message_text('\uefc6'),
-        cmd_message_video('\uefc7'),
-        cmd_message('\uefc8'),
-        cmd_meteor('\uefc9'),
-        cmd_metronome_tick('\uefca'),
-        cmd_metronome('\uefcb'),
-        cmd_micro_sd('\uefcc'),
-        cmd_microphone_minus('\uefcd'),
-        cmd_microphone_off('\uefce'),
-        cmd_microphone_outline('\uefcf'),
-        cmd_microphone_plus('\uefd0'),
-        cmd_microphone_settings('\uefd1'),
-        cmd_microphone_variant_off('\uefd2'),
-        cmd_microphone_variant('\uefd3'),
-        cmd_microphone('\uefd4'),
-        cmd_microscope('\uefd5'),
-        cmd_microsoft_dynamics('\uefd6'),
-        cmd_microsoft('\uefd7'),
-        cmd_microwave('\uefd8'),
-        cmd_middleware_outline('\uefd9'),
-        cmd_middleware('\uefda'),
-        cmd_midi_port('\uefdb'),
-        cmd_midi('\uefdc'),
-        cmd_mine('\uefdd'),
-        cmd_minecraft('\uefde'),
-        cmd_mini_sd('\uefdf'),
-        cmd_minidisc('\uefe0'),
-        cmd_minus_box_multiple_outline('\uefe1'),
-        cmd_minus_box_multiple('\uefe2'),
-        cmd_minus_box_outline('\uefe3'),
-        cmd_minus_box('\uefe4'),
-        cmd_minus_circle_outline('\uefe5'),
-        cmd_minus_circle('\uefe6'),
-        cmd_minus_network_outline('\uefe7'),
-        cmd_minus_network('\uefe8'),
-        cmd_minus('\uefe9'),
-        cmd_mirror('\uefea'),
-        cmd_mixcloud('\uefeb'),
-        cmd_mixed_martial_arts('\uefec'),
-        cmd_mixed_reality('\uefed'),
-        cmd_mixer('\uefee'),
-        cmd_molecule('\uefef'),
-        cmd_monitor_cellphone_star('\ueff0'),
-        cmd_monitor_cellphone('\ueff1'),
-        cmd_monitor_clean('\ueff2'),
-        cmd_monitor_dashboard('\ueff3'),
-        cmd_monitor_edit('\ueff4'),
-        cmd_monitor_lock('\ueff5'),
-        cmd_monitor_multiple('\ueff6'),
-        cmd_monitor_off('\ueff7'),
-        cmd_monitor_screenshot('\ueff8'),
-        cmd_monitor_speaker_off('\ueff9'),
-        cmd_monitor_speaker('\ueffa'),
-        cmd_monitor_star('\ueffb'),
-        cmd_monitor('\ueffc'),
-        cmd_moon_first_quarter('\ueffd'),
-        cmd_moon_full('\ueffe'),
-        cmd_moon_last_quarter('\uefff'),
-        cmd_moon_new('\uf000'),
-        cmd_moon_waning_crescent('\uf001'),
-        cmd_moon_waning_gibbous('\uf002'),
-        cmd_moon_waxing_crescent('\uf003'),
-        cmd_moon_waxing_gibbous('\uf004'),
-        cmd_moped('\uf005'),
-        cmd_more('\uf006'),
-        cmd_mother_nurse('\uf007'),
-        cmd_motion_sensor('\uf008'),
-        cmd_motorbike('\uf009'),
-        cmd_mouse_bluetooth('\uf00a'),
-        cmd_mouse_off('\uf00b'),
-        cmd_mouse_variant_off('\uf00c'),
-        cmd_mouse_variant('\uf00d'),
-        cmd_mouse('\uf00e'),
-        cmd_move_resize_variant('\uf00f'),
-        cmd_move_resize('\uf010'),
-        cmd_movie_edit_outline('\uf011'),
-        cmd_movie_edit('\uf012'),
-        cmd_movie_filter_outline('\uf013'),
-        cmd_movie_filter('\uf014'),
-        cmd_movie_open_outline('\uf015'),
-        cmd_movie_open('\uf016'),
-        cmd_movie_outline('\uf017'),
-        cmd_movie_roll('\uf018'),
-        cmd_movie_search_outline('\uf019'),
-        cmd_movie_search('\uf01a'),
-        cmd_movie('\uf01b'),
-        cmd_muffin('\uf01c'),
-        cmd_multiplication_box('\uf01d'),
-        cmd_multiplication('\uf01e'),
-        cmd_mushroom_outline('\uf01f'),
-        cmd_mushroom('\uf020'),
-        cmd_music_accidental_double_flat('\uf021'),
-        cmd_music_accidental_double_sharp('\uf022'),
-        cmd_music_accidental_flat('\uf023'),
-        cmd_music_accidental_natural('\uf024'),
-        cmd_music_accidental_sharp('\uf025'),
-        cmd_music_box_outline('\uf026'),
-        cmd_music_box('\uf027'),
-        cmd_music_circle_outline('\uf028'),
-        cmd_music_circle('\uf029'),
-        cmd_music_clef_alto('\uf02a'),
-        cmd_music_clef_bass('\uf02b'),
-        cmd_music_clef_treble('\uf02c'),
-        cmd_music_note_bluetooth_off('\uf02d'),
-        cmd_music_note_bluetooth('\uf02e'),
-        cmd_music_note_eighth_dotted('\uf02f'),
-        cmd_music_note_eighth('\uf030'),
-        cmd_music_note_half_dotted('\uf031'),
-        cmd_music_note_half('\uf032'),
-        cmd_music_note_off_outline('\uf033'),
-        cmd_music_note_off('\uf034'),
-        cmd_music_note_outline('\uf035'),
-        cmd_music_note_plus('\uf036'),
-        cmd_music_note_quarter_dotted('\uf037'),
-        cmd_music_note_quarter('\uf038'),
-        cmd_music_note_sixteenth_dotted('\uf039'),
-        cmd_music_note_sixteenth('\uf03a'),
-        cmd_music_note_whole_dotted('\uf03b'),
-        cmd_music_note_whole('\uf03c'),
-        cmd_music_note('\uf03d'),
-        cmd_music_off('\uf03e'),
-        cmd_music_rest_eighth('\uf03f'),
-        cmd_music_rest_half('\uf040'),
-        cmd_music_rest_quarter('\uf041'),
-        cmd_music_rest_sixteenth('\uf042'),
-        cmd_music_rest_whole('\uf043'),
-        cmd_music('\uf044'),
-        cmd_nail('\uf045'),
-        cmd_nas('\uf046'),
-        cmd_nativescript('\uf047'),
-        cmd_nature_people('\uf048'),
-        cmd_nature('\uf049'),
-        cmd_navigation('\uf04a'),
-        cmd_near_me('\uf04b'),
-        cmd_necklace('\uf04c'),
-        cmd_needle('\uf04d'),
-        cmd_netflix('\uf04e'),
-        cmd_network_off_outline('\uf04f'),
-        cmd_network_off('\uf050'),
-        cmd_network_outline('\uf051'),
-        cmd_network_router('\uf052'),
-        cmd_network_strength_1_alert('\uf053'),
-        cmd_network_strength_1('\uf054'),
-        cmd_network_strength_2_alert('\uf055'),
-        cmd_network_strength_2('\uf056'),
-        cmd_network_strength_3_alert('\uf057'),
-        cmd_network_strength_3('\uf058'),
-        cmd_network_strength_4_alert('\uf059'),
-        cmd_network_strength_4('\uf05a'),
-        cmd_network_strength_off_outline('\uf05b'),
-        cmd_network_strength_off('\uf05c'),
-        cmd_network_strength_outline('\uf05d'),
-        cmd_network('\uf05e'),
-        cmd_new_box('\uf05f'),
-        cmd_newspaper_minus('\uf060'),
-        cmd_newspaper_plus('\uf061'),
-        cmd_newspaper_variant_multiple_outline('\uf062'),
-        cmd_newspaper_variant_multiple('\uf063'),
-        cmd_newspaper_variant_outline('\uf064'),
-        cmd_newspaper_variant('\uf065'),
-        cmd_newspaper('\uf066'),
-        cmd_nfc_off('\uf067'),
-        cmd_nfc_search_variant('\uf068'),
-        cmd_nfc_tap('\uf069'),
-        cmd_nfc_variant_off('\uf06a'),
-        cmd_nfc_variant('\uf06b'),
-        cmd_nfc('\uf06c'),
-        cmd_ninja('\uf06d'),
-        cmd_nintendo_switch('\uf06e'),
-        cmd_nix('\uf06f'),
-        cmd_nodejs('\uf070'),
-        cmd_noodles('\uf071'),
-        cmd_not_equal_variant('\uf072'),
-        cmd_not_equal('\uf073'),
-        cmd_note_multiple_outline('\uf074'),
-        cmd_note_multiple('\uf075'),
-        cmd_note_outline('\uf076'),
-        cmd_note_plus_outline('\uf077'),
-        cmd_note_plus('\uf078'),
-        cmd_note_text_outline('\uf079'),
-        cmd_note_text('\uf07a'),
-        cmd_note('\uf07b'),
-        cmd_notebook_multiple('\uf07c'),
-        cmd_notebook_outline('\uf07d'),
-        cmd_notebook('\uf07e'),
-        cmd_notification_clear_all('\uf07f'),
-        cmd_npm_variant_outline('\uf080'),
-        cmd_npm_variant('\uf081'),
-        cmd_npm('\uf082'),
-        cmd_nuke('\uf083'),
-        cmd_null('\uf084'),
-        cmd_numeric_0_box_multiple_outline('\uf085'),
-        cmd_numeric_0_box_multiple('\uf086'),
-        cmd_numeric_0_box_outline('\uf087'),
-        cmd_numeric_0_box('\uf088'),
-        cmd_numeric_0_circle_outline('\uf089'),
-        cmd_numeric_0_circle('\uf08a'),
-        cmd_numeric_0('\uf08b'),
-        cmd_numeric_1_box_multiple_outline('\uf08c'),
-        cmd_numeric_1_box_multiple('\uf08d'),
-        cmd_numeric_1_box_outline('\uf08e'),
-        cmd_numeric_1_box('\uf08f'),
-        cmd_numeric_1_circle_outline('\uf090'),
-        cmd_numeric_1_circle('\uf091'),
-        cmd_numeric_1('\uf092'),
-        cmd_numeric_2_box_multiple_outline('\uf093'),
-        cmd_numeric_2_box_multiple('\uf094'),
-        cmd_numeric_2_box_outline('\uf095'),
-        cmd_numeric_2_box('\uf096'),
-        cmd_numeric_2_circle_outline('\uf097'),
-        cmd_numeric_2_circle('\uf098'),
-        cmd_numeric_2('\uf099'),
-        cmd_numeric_3_box_multiple_outline('\uf09a'),
-        cmd_numeric_3_box_multiple('\uf09b'),
-        cmd_numeric_3_box_outline('\uf09c'),
-        cmd_numeric_3_box('\uf09d'),
-        cmd_numeric_3_circle_outline('\uf09e'),
-        cmd_numeric_3_circle('\uf09f'),
-        cmd_numeric_3('\uf0a0'),
-        cmd_numeric_4_box_multiple_outline('\uf0a1'),
-        cmd_numeric_4_box_multiple('\uf0a2'),
-        cmd_numeric_4_box_outline('\uf0a3'),
-        cmd_numeric_4_box('\uf0a4'),
-        cmd_numeric_4_circle_outline('\uf0a5'),
-        cmd_numeric_4_circle('\uf0a6'),
-        cmd_numeric_4('\uf0a7'),
-        cmd_numeric_5_box_multiple_outline('\uf0a8'),
-        cmd_numeric_5_box_multiple('\uf0a9'),
-        cmd_numeric_5_box_outline('\uf0aa'),
-        cmd_numeric_5_box('\uf0ab'),
-        cmd_numeric_5_circle_outline('\uf0ac'),
-        cmd_numeric_5_circle('\uf0ad'),
-        cmd_numeric_5('\uf0ae'),
-        cmd_numeric_6_box_multiple_outline('\uf0af'),
-        cmd_numeric_6_box_multiple('\uf0b0'),
-        cmd_numeric_6_box_outline('\uf0b1'),
-        cmd_numeric_6_box('\uf0b2'),
-        cmd_numeric_6_circle_outline('\uf0b3'),
-        cmd_numeric_6_circle('\uf0b4'),
-        cmd_numeric_6('\uf0b5'),
-        cmd_numeric_7_box_multiple_outline('\uf0b6'),
-        cmd_numeric_7_box_multiple('\uf0b7'),
-        cmd_numeric_7_box_outline('\uf0b8'),
-        cmd_numeric_7_box('\uf0b9'),
-        cmd_numeric_7_circle_outline('\uf0ba'),
-        cmd_numeric_7_circle('\uf0bb'),
-        cmd_numeric_7('\uf0bc'),
-        cmd_numeric_8_box_multiple_outline('\uf0bd'),
-        cmd_numeric_8_box_multiple('\uf0be'),
-        cmd_numeric_8_box_outline('\uf0bf'),
-        cmd_numeric_8_box('\uf0c0'),
-        cmd_numeric_8_circle_outline('\uf0c1'),
-        cmd_numeric_8_circle('\uf0c2'),
-        cmd_numeric_8('\uf0c3'),
-        cmd_numeric_9_box_multiple_outline('\uf0c4'),
-        cmd_numeric_9_box_multiple('\uf0c5'),
-        cmd_numeric_9_box_outline('\uf0c6'),
-        cmd_numeric_9_box('\uf0c7'),
-        cmd_numeric_9_circle_outline('\uf0c8'),
-        cmd_numeric_9_circle('\uf0c9'),
-        cmd_numeric_9_plus_box_multiple_outline('\uf0ca'),
-        cmd_numeric_9_plus_box_multiple('\uf0cb'),
-        cmd_numeric_9_plus_box_outline('\uf0cc'),
-        cmd_numeric_9_plus_box('\uf0cd'),
-        cmd_numeric_9_plus_circle_outline('\uf0ce'),
-        cmd_numeric_9_plus_circle('\uf0cf'),
-        cmd_numeric_9_plus('\uf0d0');
-
-        override val typeface: ITypeface by lazy { CommunityMaterial }
-    }
-
-    enum class Icon3 constructor(override val character: Char) : IIcon {
-        cmd_numeric_9('\uf0d1'),
-        cmd_numeric_10_box_multiple_outline('\uf0d2'),
-        cmd_numeric_10_box_multiple('\uf0d3'),
-        cmd_numeric_10_box_outline('\uf0d4'),
-        cmd_numeric_10_box('\uf0d5'),
-        cmd_numeric_10_circle_outline('\uf0d6'),
-        cmd_numeric_10_circle('\uf0d7'),
-        cmd_numeric_10('\uf0d8'),
-        cmd_numeric_negative_1('\uf0d9'),
-        cmd_numeric('\uf0da'),
-        cmd_nut('\uf0db'),
-        cmd_nutrition('\uf0dc'),
-        cmd_nuxt('\uf0dd'),
-        cmd_oar('\uf0de'),
-        cmd_ocarina('\uf0df'),
-        cmd_ocr('\uf0e0'),
-        cmd_octagon_outline('\uf0e1'),
-        cmd_octagon('\uf0e2'),
-        cmd_octagram_outline('\uf0e3'),
-        cmd_octagram('\uf0e4'),
-        cmd_odnoklassniki('\uf0e5'),
-        cmd_offer('\uf0e6'),
-        cmd_office_building('\uf0e7'),
-        cmd_office('\uf0e8'),
-        cmd_oil_lamp('\uf0e9'),
-        cmd_oil_level('\uf0ea'),
-        cmd_oil_temperature('\uf0eb'),
-        cmd_oil('\uf0ec'),
-        cmd_omega('\uf0ed'),
-        cmd_one_up('\uf0ee'),
-        cmd_onedrive('\uf0ef'),
-        cmd_onenote('\uf0f0'),
-        cmd_onepassword('\uf0f1'),
-        cmd_opacity('\uf0f2'),
-        cmd_open_in_app('\uf0f3'),
-        cmd_open_in_new('\uf0f4'),
-        cmd_open_source_initiative('\uf0f5'),
-        cmd_openid('\uf0f6'),
-        cmd_opera('\uf0f7'),
-        cmd_orbit('\uf0f8'),
-        cmd_origin('\uf0f9'),
-        cmd_ornament_variant('\uf0fa'),
-        cmd_ornament('\uf0fb'),
-        cmd_outdoor_lamp('\uf0fc'),
-        cmd_outlook('\uf0fd'),
-        cmd_overscan('\uf0fe'),
-        cmd_owl('\uf0ff'),
-        cmd_pac_man('\uf100'),
-        cmd_package_down('\uf101'),
-        cmd_package_up('\uf102'),
-        cmd_package_variant_closed('\uf103'),
-        cmd_package_variant('\uf104'),
-        cmd_package('\uf105'),
-        cmd_page_first('\uf106'),
-        cmd_page_last('\uf107'),
-        cmd_page_layout_body('\uf108'),
-        cmd_page_layout_footer('\uf109'),
-        cmd_page_layout_header_footer('\uf10a'),
-        cmd_page_layout_header('\uf10b'),
-        cmd_page_layout_sidebar_left('\uf10c'),
-        cmd_page_layout_sidebar_right('\uf10d'),
-        cmd_page_next_outline('\uf10e'),
-        cmd_page_next('\uf10f'),
-        cmd_page_previous_outline('\uf110'),
-        cmd_page_previous('\uf111'),
-        cmd_palette_advanced('\uf112'),
-        cmd_palette_outline('\uf113'),
-        cmd_palette_swatch('\uf114'),
-        cmd_palette('\uf115'),
-        cmd_palm_tree('\uf116'),
-        cmd_pan_bottom_left('\uf117'),
-        cmd_pan_bottom_right('\uf118'),
-        cmd_pan_down('\uf119'),
-        cmd_pan_horizontal('\uf11a'),
-        cmd_pan_left('\uf11b'),
-        cmd_pan_right('\uf11c'),
-        cmd_pan_top_left('\uf11d'),
-        cmd_pan_top_right('\uf11e'),
-        cmd_pan_up('\uf11f'),
-        cmd_pan_vertical('\uf120'),
-        cmd_pan('\uf121'),
-        cmd_panda('\uf122'),
-        cmd_pandora('\uf123'),
-        cmd_panorama_fisheye('\uf124'),
-        cmd_panorama_horizontal('\uf125'),
-        cmd_panorama_vertical('\uf126'),
-        cmd_panorama_wide_angle('\uf127'),
-        cmd_panorama('\uf128'),
-        cmd_paper_cut_vertical('\uf129'),
-        cmd_paper_roll_outline('\uf12a'),
-        cmd_paper_roll('\uf12b'),
-        cmd_paperclip('\uf12c'),
-        cmd_parachute_outline('\uf12d'),
-        cmd_parachute('\uf12e'),
-        cmd_parking('\uf12f'),
-        cmd_party_popper('\uf130'),
-        cmd_passport_biometric('\uf131'),
-        cmd_passport('\uf132'),
-        cmd_pasta('\uf133'),
-        cmd_patio_heater('\uf134'),
-        cmd_patreon('\uf135'),
-        cmd_pause_circle_outline('\uf136'),
-        cmd_pause_circle('\uf137'),
-        cmd_pause_octagon_outline('\uf138'),
-        cmd_pause_octagon('\uf139'),
-        cmd_pause('\uf13a'),
-        cmd_paw_off('\uf13b'),
-        cmd_paw('\uf13c'),
-        cmd_paypal('\uf13d'),
-        cmd_pdf_box('\uf13e'),
-        cmd_peace('\uf13f'),
-        cmd_peanut_off_outline('\uf140'),
-        cmd_peanut_off('\uf141'),
-        cmd_peanut_outline('\uf142'),
-        cmd_peanut('\uf143'),
-        cmd_pen_lock('\uf144'),
-        cmd_pen_minus('\uf145'),
-        cmd_pen_off('\uf146'),
-        cmd_pen_plus('\uf147'),
-        cmd_pen_remove('\uf148'),
-        cmd_pen('\uf149'),
-        cmd_pencil_box_multiple_outline('\uf14a'),
-        cmd_pencil_box_multiple('\uf14b'),
-        cmd_pencil_box_outline('\uf14c'),
-        cmd_pencil_box('\uf14d'),
-        cmd_pencil_circle_outline('\uf14e'),
-        cmd_pencil_circle('\uf14f'),
-        cmd_pencil_lock_outline('\uf150'),
-        cmd_pencil_lock('\uf151'),
-        cmd_pencil_minus_outline('\uf152'),
-        cmd_pencil_minus('\uf153'),
-        cmd_pencil_off_outline('\uf154'),
-        cmd_pencil_off('\uf155'),
-        cmd_pencil_outline('\uf156'),
-        cmd_pencil_plus_outline('\uf157'),
-        cmd_pencil_plus('\uf158'),
-        cmd_pencil_remove_outline('\uf159'),
-        cmd_pencil_remove('\uf15a'),
-        cmd_pencil('\uf15b'),
-        cmd_penguin('\uf15c'),
-        cmd_pentagon_outline('\uf15d'),
-        cmd_pentagon('\uf15e'),
-        cmd_percent_outline('\uf15f'),
-        cmd_percent('\uf160'),
-        cmd_periodic_table_co2('\uf161'),
-        cmd_periodic_table('\uf162'),
-        cmd_periscope('\uf163'),
-        cmd_perspective_less('\uf164'),
-        cmd_perspective_more('\uf165'),
-        cmd_pharmacy('\uf166'),
-        cmd_phone_alert_outline('\uf167'),
-        cmd_phone_alert('\uf168'),
-        cmd_phone_bluetooth_outline('\uf169'),
-        cmd_phone_bluetooth('\uf16a'),
-        cmd_phone_cancel_outline('\uf16b'),
-        cmd_phone_cancel('\uf16c'),
-        cmd_phone_check_outline('\uf16d'),
-        cmd_phone_check('\uf16e'),
-        cmd_phone_classic_off('\uf16f'),
-        cmd_phone_classic('\uf170'),
-        cmd_phone_forward_outline('\uf171'),
-        cmd_phone_forward('\uf172'),
-        cmd_phone_hangup_outline('\uf173'),
-        cmd_phone_hangup('\uf174'),
-        cmd_phone_in_talk_outline('\uf175'),
-        cmd_phone_in_talk('\uf176'),
-        cmd_phone_incoming_outline('\uf177'),
-        cmd_phone_incoming('\uf178'),
-        cmd_phone_lock_outline('\uf179'),
-        cmd_phone_lock('\uf17a'),
-        cmd_phone_log_outline('\uf17b'),
-        cmd_phone_log('\uf17c'),
-        cmd_phone_message_outline('\uf17d'),
-        cmd_phone_message('\uf17e'),
-        cmd_phone_minus_outline('\uf17f'),
-        cmd_phone_minus('\uf180'),
-        cmd_phone_missed_outline('\uf181'),
-        cmd_phone_missed('\uf182'),
-        cmd_phone_off_outline('\uf183'),
-        cmd_phone_off('\uf184'),
-        cmd_phone_outgoing_outline('\uf185'),
-        cmd_phone_outgoing('\uf186'),
-        cmd_phone_outline('\uf187'),
-        cmd_phone_paused_outline('\uf188'),
-        cmd_phone_paused('\uf189'),
-        cmd_phone_plus_outline('\uf18a'),
-        cmd_phone_plus('\uf18b'),
-        cmd_phone_return_outline('\uf18c'),
-        cmd_phone_return('\uf18d'),
-        cmd_phone_ring_outline('\uf18e'),
-        cmd_phone_ring('\uf18f'),
-        cmd_phone_rotate_landscape('\uf190'),
-        cmd_phone_rotate_portrait('\uf191'),
-        cmd_phone_settings_outline('\uf192'),
-        cmd_phone_settings('\uf193'),
-        cmd_phone_voip('\uf194'),
-        cmd_phone('\uf195'),
-        cmd_pi_box('\uf196'),
-        cmd_pi_hole('\uf197'),
-        cmd_pi('\uf198'),
-        cmd_piano('\uf199'),
-        cmd_pickaxe('\uf19a'),
-        cmd_picture_in_picture_bottom_right_outline('\uf19b'),
-        cmd_picture_in_picture_bottom_right('\uf19c'),
-        cmd_picture_in_picture_top_right_outline('\uf19d'),
-        cmd_picture_in_picture_top_right('\uf19e'),
-        cmd_pier_crane('\uf19f'),
-        cmd_pier('\uf1a0'),
-        cmd_pig_variant('\uf1a1'),
-        cmd_pig('\uf1a2'),
-        cmd_piggy_bank('\uf1a3'),
-        cmd_pill('\uf1a4'),
-        cmd_pillar('\uf1a5'),
-        cmd_pin_off_outline('\uf1a6'),
-        cmd_pin_off('\uf1a7'),
-        cmd_pin_outline('\uf1a8'),
-        cmd_pin('\uf1a9'),
-        cmd_pine_tree_box('\uf1aa'),
-        cmd_pine_tree('\uf1ab'),
-        cmd_pinterest_box('\uf1ac'),
-        cmd_pinterest('\uf1ad'),
-        cmd_pinwheel_outline('\uf1ae'),
-        cmd_pinwheel('\uf1af'),
-        cmd_pipe_disconnected('\uf1b0'),
-        cmd_pipe_leak('\uf1b1'),
-        cmd_pipe('\uf1b2'),
-        cmd_pirate('\uf1b3'),
-        cmd_pistol('\uf1b4'),
-        cmd_piston('\uf1b5'),
-        cmd_pizza('\uf1b6'),
-        cmd_play_box_outline('\uf1b7'),
-        cmd_play_box('\uf1b8'),
-        cmd_play_circle_outline('\uf1b9'),
-        cmd_play_circle('\uf1ba'),
-        cmd_play_network_outline('\uf1bb'),
-        cmd_play_network('\uf1bc'),
-        cmd_play_outline('\uf1bd'),
-        cmd_play_pause('\uf1be'),
-        cmd_play_protected_content('\uf1bf'),
-        cmd_play_speed('\uf1c0'),
-        cmd_play('\uf1c1'),
-        cmd_playlist_check('\uf1c2'),
-        cmd_playlist_edit('\uf1c3'),
-        cmd_playlist_minus('\uf1c4'),
-        cmd_playlist_music_outline('\uf1c5'),
-        cmd_playlist_music('\uf1c6'),
-        cmd_playlist_play('\uf1c7'),
-        cmd_playlist_plus('\uf1c8'),
-        cmd_playlist_remove('\uf1c9'),
-        cmd_playlist_star('\uf1ca'),
-        cmd_playstation('\uf1cb'),
-        cmd_plex('\uf1cc'),
-        cmd_plus_box_multiple_outline('\uf1cd'),
-        cmd_plus_box_multiple('\uf1ce'),
-        cmd_plus_box_outline('\uf1cf'),
-        cmd_plus_box('\uf1d0'),
-        cmd_plus_circle_multiple_outline('\uf1d1'),
-        cmd_plus_circle_outline('\uf1d2'),
-        cmd_plus_circle('\uf1d3'),
-        cmd_plus_minus_box('\uf1d4'),
-        cmd_plus_minus('\uf1d5'),
-        cmd_plus_network_outline('\uf1d6'),
-        cmd_plus_network('\uf1d7'),
-        cmd_plus_one('\uf1d8'),
-        cmd_plus_outline('\uf1d9'),
-        cmd_plus_thick('\uf1da'),
-        cmd_plus('\uf1db'),
-        cmd_pocket('\uf1dc'),
-        cmd_podcast('\uf1dd'),
-        cmd_podium_bronze('\uf1de'),
-        cmd_podium_gold('\uf1df'),
-        cmd_podium_silver('\uf1e0'),
-        cmd_podium('\uf1e1'),
-        cmd_point_of_sale('\uf1e2'),
-        cmd_pokeball('\uf1e3'),
-        cmd_pokemon_go('\uf1e4'),
-        cmd_poker_chip('\uf1e5'),
-        cmd_polaroid('\uf1e6'),
-        cmd_police_badge_outline('\uf1e7'),
-        cmd_police_badge('\uf1e8'),
-        cmd_poll_box_outline('\uf1e9'),
-        cmd_poll_box('\uf1ea'),
-        cmd_poll('\uf1eb'),
-        cmd_polymer('\uf1ec'),
-        cmd_pool('\uf1ed'),
-        cmd_popcorn('\uf1ee'),
-        cmd_post_outline('\uf1ef'),
-        cmd_post('\uf1f0'),
-        cmd_postage_stamp('\uf1f1'),
-        cmd_pot_mix('\uf1f2'),
-        cmd_pot('\uf1f3'),
-        cmd_pound_box_outline('\uf1f4'),
-        cmd_pound_box('\uf1f5'),
-        cmd_pound('\uf1f6'),
-        cmd_power_cycle('\uf1f7'),
-        cmd_power_off('\uf1f8'),
-        cmd_power_on('\uf1f9'),
-        cmd_power_plug_off('\uf1fa'),
-        cmd_power_plug('\uf1fb'),
-        cmd_power_settings('\uf1fc'),
-        cmd_power_sleep('\uf1fd'),
-        cmd_power_socket_au('\uf1fe'),
-        cmd_power_socket_de('\uf1ff'),
-        cmd_power_socket_eu('\uf200'),
-        cmd_power_socket_fr('\uf201'),
-        cmd_power_socket_jp('\uf202'),
-        cmd_power_socket_uk('\uf203'),
-        cmd_power_socket_us('\uf204'),
-        cmd_power_socket('\uf205'),
-        cmd_power_standby('\uf206'),
-        cmd_power('\uf207'),
-        cmd_powershell('\uf208'),
-        cmd_prescription('\uf209'),
-        cmd_presentation_play('\uf20a'),
-        cmd_presentation('\uf20b'),
-        cmd_printer_3d_nozzle_alert_outline('\uf20c'),
-        cmd_printer_3d_nozzle_alert('\uf20d'),
-        cmd_printer_3d_nozzle_outline('\uf20e'),
-        cmd_printer_3d_nozzle('\uf20f'),
-        cmd_printer_3d('\uf210'),
-        cmd_printer_alert('\uf211'),
-        cmd_printer_check('\uf212'),
-        cmd_printer_off('\uf213'),
-        cmd_printer_pos('\uf214'),
-        cmd_printer_settings('\uf215'),
-        cmd_printer_wireless('\uf216'),
-        cmd_printer('\uf217'),
-        cmd_priority_high('\uf218'),
-        cmd_priority_low('\uf219'),
-        cmd_professional_hexagon('\uf21a'),
-        cmd_progress_alert('\uf21b'),
-        cmd_progress_check('\uf21c'),
-        cmd_progress_clock('\uf21d'),
-        cmd_progress_close('\uf21e'),
-        cmd_progress_download('\uf21f'),
-        cmd_progress_upload('\uf220'),
-        cmd_progress_wrench('\uf221'),
-        cmd_projector_screen('\uf222'),
-        cmd_projector('\uf223'),
-        cmd_protocol('\uf224'),
-        cmd_publish('\uf225'),
-        cmd_pulse('\uf226'),
-        cmd_pumpkin('\uf227'),
-        cmd_purse_outline('\uf228'),
-        cmd_purse('\uf229'),
-        cmd_puzzle_outline('\uf22a'),
-        cmd_puzzle('\uf22b'),
-        cmd_qi('\uf22c'),
-        cmd_qqchat('\uf22d'),
-        cmd_qrcode_edit('\uf22e'),
-        cmd_qrcode_minus('\uf22f'),
-        cmd_qrcode_plus('\uf230'),
-        cmd_qrcode_remove('\uf231'),
-        cmd_qrcode_scan('\uf232'),
-        cmd_qrcode('\uf233'),
-        cmd_quadcopter('\uf234'),
-        cmd_quality_high('\uf235'),
-        cmd_quality_low('\uf236'),
-        cmd_quality_medium('\uf237'),
-        cmd_quicktime('\uf238'),
-        cmd_quora('\uf239'),
-        cmd_rabbit('\uf23a'),
-        cmd_racing_helmet('\uf23b'),
-        cmd_racquetball('\uf23c'),
-        cmd_radar('\uf23d'),
-        cmd_radiator_disabled('\uf23e'),
-        cmd_radiator_off('\uf23f'),
-        cmd_radiator('\uf240'),
-        cmd_radio_am('\uf241'),
-        cmd_radio_fm('\uf242'),
-        cmd_radio_handheld('\uf243'),
-        cmd_radio_off('\uf244'),
-        cmd_radio_tower('\uf245'),
-        cmd_radio('\uf246'),
-        cmd_radioactive_off('\uf247'),
-        cmd_radioactive('\uf248'),
-        cmd_radiobox_blank('\uf249'),
-        cmd_radiobox_marked('\uf24a'),
-        cmd_radius_outline('\uf24b'),
-        cmd_radius('\uf24c'),
-        cmd_railroad_light('\uf24d'),
-        cmd_raspberry_pi('\uf24e'),
-        cmd_ray_end_arrow('\uf24f'),
-        cmd_ray_end('\uf250'),
-        cmd_ray_start_arrow('\uf251'),
-        cmd_ray_start_end('\uf252'),
-        cmd_ray_start('\uf253'),
-        cmd_ray_vertex('\uf254'),
-        cmd_react('\uf255'),
-        cmd_call_made('\uf256'),
-        cmd_call_merge('\uf257'),
-        cmd_call_missed('\uf258'),
-        cmd_call_received('\uf259'),
-        cmd_call_split('\uf25a'),
-        cmd_camcorder_box_off('\uf25b'),
-        cmd_camcorder_box('\uf25c'),
-        cmd_camcorder_off('\uf25d'),
-        cmd_camcorder('\uf25e'),
-        cmd_camera_account('\uf25f'),
-        cmd_camera_burst('\uf260'),
-        cmd_camera_control('\uf261'),
-        cmd_camera_enhance_outline('\uf262'),
-        cmd_camera_enhance('\uf263'),
-        cmd_camera_front_variant('\uf264'),
-        cmd_camera_front('\uf265'),
-        cmd_camera_gopro('\uf266'),
-        cmd_camera_image('\uf267'),
-        cmd_camera_iris('\uf268'),
-        cmd_camera_metering_center('\uf269'),
-        cmd_camera_metering_matrix('\uf26a'),
-        cmd_camera_metering_partial('\uf26b'),
-        cmd_camera_metering_spot('\uf26c'),
-        cmd_camera_off('\uf26d'),
-        cmd_camera_outline('\uf26e'),
-        cmd_camera_party_mode('\uf26f'),
-        cmd_camera_plus_outline('\uf270'),
-        cmd_camera_plus('\uf271'),
-        cmd_camera_rear_variant('\uf272'),
-        cmd_camera_rear('\uf273'),
-        cmd_camera_retake_outline('\uf274'),
-        cmd_camera_retake('\uf275'),
-        cmd_camera_switch('\uf276'),
-        cmd_camera_timer('\uf277'),
-        cmd_camera_wireless_outline('\uf278'),
-        cmd_camera_wireless('\uf279'),
-        cmd_camera('\uf27a'),
-        cmd_campfire('\uf27b'),
-        cmd_cancel('\uf27c'),
-        cmd_candle('\uf27d'),
-        cmd_candycane('\uf27e'),
-        cmd_cannabis('\uf27f'),
-        cmd_caps_lock('\uf280'),
-        cmd_car_2_plus('\uf281'),
-        cmd_car_3_plus('\uf282'),
-        cmd_car_back('\uf283'),
-        cmd_car_battery('\uf284'),
-        cmd_car_brake_abs('\uf285'),
-        cmd_car_brake_alert('\uf286'),
-        cmd_car_brake_hold('\uf287'),
-        cmd_car_brake_parking('\uf288'),
-        cmd_car_brake_retarder('\uf289'),
-        cmd_car_child_seat('\uf28a'),
-        cmd_car_clutch('\uf28b'),
-        cmd_car_connected('\uf28c'),
-        cmd_car_convertible('\uf28d'),
-        cmd_car_coolant_level('\uf28e'),
-        cmd_car_cruise_control('\uf28f'),
-        cmd_car_defrost_front('\uf290'),
-        cmd_car_defrost_rear('\uf291'),
-        cmd_car_door_lock('\uf292'),
-        cmd_car_door('\uf293'),
-        cmd_car_electric('\uf294'),
-        cmd_car_esp('\uf295'),
-        cmd_car_estate('\uf296'),
-        cmd_car_hatchback('\uf297'),
-        cmd_car_info('\uf298'),
-        cmd_car_key('\uf299'),
-        cmd_car_light_dimmed('\uf29a'),
-        cmd_car_light_fog('\uf29b'),
-        cmd_car_light_high('\uf29c'),
-        cmd_car_limousine('\uf29d'),
-        cmd_car_multiple('\uf29e'),
-        cmd_car_off('\uf29f'),
-        cmd_car_parking_lights('\uf2a0'),
-        cmd_car_pickup('\uf2a1'),
-        cmd_car_seat_cooler('\uf2a2'),
-        cmd_car_seat_heater('\uf2a3'),
-        cmd_car_seat('\uf2a4'),
-        cmd_car_shift_pattern('\uf2a5'),
-        cmd_car_side('\uf2a6'),
-        cmd_car_sports('\uf2a7'),
-        cmd_car_tire_alert('\uf2a8'),
-        cmd_car_traction_control('\uf2a9'),
-        cmd_car_turbocharger('\uf2aa'),
-        cmd_car_wash('\uf2ab'),
-        cmd_car_windshield_outline('\uf2ac'),
-        cmd_car_windshield('\uf2ad'),
-        cmd_car('\uf2ae'),
-        cmd_caravan('\uf2af'),
-        cmd_card_bulleted_off_outline('\uf2b0'),
-        cmd_card_bulleted_off('\uf2b1'),
-        cmd_card_bulleted_outline('\uf2b2'),
-        cmd_card_bulleted_settings_outline('\uf2b3'),
-        cmd_card_bulleted_settings('\uf2b4'),
-        cmd_card_bulleted('\uf2b5'),
-        cmd_card_outline('\uf2b6'),
-        cmd_card_plus_outline('\uf2b7'),
-        cmd_card_plus('\uf2b8'),
-        cmd_card_search_outline('\uf2b9'),
-        cmd_card_search('\uf2ba'),
-        cmd_card_text_outline('\uf2bb'),
-        cmd_card_text('\uf2bc'),
-        cmd_card('\uf2bd'),
-        cmd_cards_club('\uf2be'),
-        cmd_cards_diamond_outline('\uf2bf'),
-        cmd_cards_diamond('\uf2c0'),
-        cmd_cards_heart('\uf2c1'),
-        cmd_cards_outline('\uf2c2'),
-        cmd_cards_playing_outline('\uf2c3'),
-        cmd_cards_spade('\uf2c4'),
-        cmd_cards_variant('\uf2c5'),
-        cmd_cards('\uf2c6'),
-        cmd_carrot('\uf2c7'),
-        cmd_cart_arrow_down('\uf2c8'),
-        cmd_cart_arrow_right('\uf2c9'),
-        cmd_cart_arrow_up('\uf2ca'),
-        cmd_cart_minus('\uf2cb'),
-        cmd_cart_off('\uf2cc'),
-        cmd_cart_outline('\uf2cd'),
-        cmd_cart_plus('\uf2ce'),
-        cmd_cart_remove('\uf2cf'),
-        cmd_cart('\uf2d0'),
-        cmd_case_sensitive_alt('\uf2d1'),
-        cmd_cash_100('\uf2d2'),
-        cmd_cash_marker('\uf2d3'),
-        cmd_cash_minus('\uf2d4'),
-        cmd_cash_multiple('\uf2d5'),
-        cmd_cash_plus('\uf2d6'),
-        cmd_cash_refund('\uf2d7'),
-        cmd_cash_register('\uf2d8'),
-        cmd_cash_remove('\uf2d9'),
-        cmd_cash_usd_outline('\uf2da'),
-        cmd_cash_usd('\uf2db'),
-        cmd_cash('\uf2dc'),
-        cmd_cassette('\uf2dd'),
-        cmd_cast_audio('\uf2de'),
-        cmd_cast_connected('\uf2df'),
-        cmd_cast_education('\uf2e0'),
-        cmd_cast_off('\uf2e1'),
-        cmd_cast('\uf2e2'),
-        cmd_castle('\uf2e3'),
-        cmd_cat('\uf2e4'),
-        cmd_cctv('\uf2e5'),
-        cmd_ceiling_light('\uf2e6'),
-        cmd_cellphone_android('\uf2e7'),
-        cmd_cellphone_arrow_down('\uf2e8'),
-        cmd_cellphone_basic('\uf2e9'),
-        cmd_cellphone_dock('\uf2ea'),
-        cmd_cellphone_erase('\uf2eb'),
-        cmd_cellphone_information('\uf2ec'),
-        cmd_cellphone_iphone('\uf2ed'),
-        cmd_cellphone_key('\uf2ee'),
-        cmd_cellphone_link_off('\uf2ef'),
-        cmd_cellphone_link('\uf2f0'),
-        cmd_cellphone_lock('\uf2f1'),
-        cmd_cellphone_message_off('\uf2f2'),
-        cmd_cellphone_message('\uf2f3'),
-        cmd_cellphone_nfc_off('\uf2f4'),
-        cmd_cellphone_nfc('\uf2f5'),
-        cmd_cellphone_off('\uf2f6'),
-        cmd_cellphone_play('\uf2f7'),
-        cmd_cellphone_screenshot('\uf2f8'),
-        cmd_cellphone_settings_variant('\uf2f9'),
-        cmd_cellphone_settings('\uf2fa'),
-        cmd_cellphone_sound('\uf2fb'),
-        cmd_cellphone_text('\uf2fc'),
-        cmd_cellphone_wireless('\uf2fd'),
-        cmd_cellphone('\uf2fe'),
-        cmd_celtic_cross('\uf2ff'),
-        cmd_centos('\uf300'),
-        cmd_certificate_outline('\uf301'),
-        cmd_certificate('\uf302'),
-        cmd_chair_rolling('\uf303'),
-        cmd_chair_school('\uf304'),
-        cmd_charity('\uf305'),
-        cmd_chart_arc('\uf306'),
-        cmd_chart_areaspline_variant('\uf307'),
-        cmd_chart_areaspline('\uf308'),
-        cmd_chart_bar_stacked('\uf309'),
-        cmd_chart_bar('\uf30a'),
-        cmd_chart_bell_curve_cumulative('\uf30b'),
-        cmd_chart_bell_curve('\uf30c'),
-        cmd_chart_bubble('\uf30d'),
-        cmd_chart_donut_variant('\uf30e'),
-        cmd_chart_donut('\uf30f'),
-        cmd_chart_gantt('\uf310'),
-        cmd_chart_histogram('\uf311'),
-        cmd_chart_line_stacked('\uf312'),
-        cmd_chart_line_variant('\uf313'),
-        cmd_chart_line('\uf314'),
-        cmd_chart_multiline('\uf315'),
-        cmd_chart_multiple('\uf316'),
-        cmd_chart_pie('\uf317'),
-        cmd_chart_scatter_plot_hexbin('\uf318'),
-        cmd_chart_scatter_plot('\uf319'),
-        cmd_chart_snakey_variant('\uf31a'),
-        cmd_chart_snakey('\uf31b'),
-        cmd_chart_timeline_variant('\uf31c'),
-        cmd_chart_timeline('\uf31d'),
-        cmd_chart_tree('\uf31e'),
-        cmd_chat_alert_outline('\uf31f'),
-        cmd_chat_alert('\uf320'),
-        cmd_chat_outline('\uf321'),
-        cmd_chat_processing_outline('\uf322'),
-        cmd_chat_processing('\uf323'),
-        cmd_chat_sleep_outline('\uf324'),
-        cmd_chat_sleep('\uf325'),
-        cmd_chat('\uf326'),
-        cmd_check_all('\uf327'),
-        cmd_check_bold('\uf328'),
-        cmd_check_box_multiple_outline('\uf329'),
-        cmd_check_box_outline('\uf32a'),
-        cmd_check_circle_outline('\uf32b'),
-        cmd_check_circle('\uf32c'),
-        cmd_check_decagram('\uf32d'),
-        cmd_check_network_outline('\uf32e'),
-        cmd_check_network('\uf32f'),
-        cmd_check_outline('\uf330'),
-        cmd_check_underline_circle_outline('\uf331'),
-        cmd_check_underline_circle('\uf332'),
-        cmd_check_underline('\uf333'),
-        cmd_check('\uf334'),
-        cmd_checkbook('\uf335'),
-        cmd_checkbox_blank_circle_outline('\uf336'),
-        cmd_checkbox_blank_circle('\uf337'),
-        cmd_checkbox_blank_outline('\uf338'),
-        cmd_checkbox_blank('\uf339'),
-        cmd_checkbox_intermediate('\uf33a'),
-        cmd_checkbox_marked_circle_outline('\uf33b'),
-        cmd_checkbox_marked_circle('\uf33c'),
-        cmd_checkbox_marked_outline('\uf33d'),
-        cmd_checkbox_marked('\uf33e'),
-        cmd_checkbox_multiple_blank_circle_outline('\uf33f'),
-        cmd_checkbox_multiple_blank_circle('\uf340'),
-        cmd_checkbox_multiple_blank_outline('\uf341'),
-        cmd_checkbox_multiple_blank('\uf342'),
-        cmd_checkbox_multiple_marked_circle_outline('\uf343'),
-        cmd_checkbox_multiple_marked_circle('\uf344'),
-        cmd_checkbox_multiple_marked_outline('\uf345'),
-        cmd_checkbox_multiple_marked('\uf346'),
-        cmd_checkerboard_minus('\uf347'),
-        cmd_checkerboard_plus('\uf348'),
-        cmd_checkerboard_remove('\uf349'),
-        cmd_checkerboard('\uf34a'),
-        cmd_cheese('\uf34b'),
-        cmd_chef_hat('\uf34c'),
-        cmd_chemical_weapon('\uf34d'),
-        cmd_chess_bishop('\uf34e'),
-        cmd_chess_king('\uf34f'),
-        cmd_chess_knight('\uf350'),
-        cmd_chess_pawn('\uf351'),
-        cmd_chess_queen('\uf352'),
-        cmd_chess_rook('\uf353'),
-        cmd_chevron_double_down('\uf354'),
-        cmd_chevron_double_left('\uf355'),
-        cmd_chevron_double_right('\uf356'),
-        cmd_chevron_double_up('\uf357'),
-        cmd_chevron_down_box_outline('\uf358'),
-        cmd_chevron_down_box('\uf359'),
-        cmd_chevron_down_circle_outline('\uf35a'),
-        cmd_chevron_down_circle('\uf35b'),
-        cmd_chevron_down('\uf35c'),
-        cmd_chevron_left_box_outline('\uf35d'),
-        cmd_chevron_left_box('\uf35e'),
-        cmd_chevron_left_circle_outline('\uf35f'),
-        cmd_chevron_left_circle('\uf360'),
-        cmd_chevron_left('\uf361'),
-        cmd_chevron_right_box_outline('\uf362'),
-        cmd_chevron_right_box('\uf363'),
-        cmd_chevron_right_circle_outline('\uf364'),
-        cmd_chevron_right_circle('\uf365'),
-        cmd_chevron_right('\uf366'),
-        cmd_chevron_triple_down('\uf367'),
-        cmd_chevron_triple_left('\uf368'),
-        cmd_chevron_triple_right('\uf369'),
-        cmd_chevron_triple_up('\uf36a'),
-        cmd_chevron_up_box_outline('\uf36b'),
-        cmd_chevron_up_box('\uf36c'),
-        cmd_chevron_up_circle_outline('\uf36d'),
-        cmd_chevron_up_circle('\uf36e'),
-        cmd_chevron_up('\uf36f'),
-        cmd_chili_hot('\uf370'),
-        cmd_chili_medium('\uf371'),
-        cmd_chili_mild('\uf372'),
-        cmd_chip('\uf373'),
-        cmd_christianity_outline('\uf374'),
-        cmd_christianity('\uf375'),
-        cmd_church('\uf376'),
-        cmd_cigar('\uf377'),
-        cmd_circle_double('\uf378'),
-        cmd_circle_edit_outline('\uf379'),
-        cmd_circle_expand('\uf37a'),
-        cmd_circle_medium('\uf37b'),
-        cmd_circle_off_outline('\uf37c'),
-        cmd_circle_outline('\uf37d'),
-        cmd_circle_slice_1('\uf37e'),
-        cmd_circle_slice_2('\uf37f'),
-        cmd_circle_slice_3('\uf380'),
-        cmd_circle_slice_4('\uf381'),
-        cmd_circle_slice_5('\uf382'),
-        cmd_circle_slice_6('\uf383'),
-        cmd_circle_slice_7('\uf384'),
-        cmd_circle_slice_8('\uf385'),
-        cmd_circle_small('\uf386'),
-        cmd_circle('\uf387'),
-        cmd_circular_saw('\uf388'),
-        cmd_cisco_webex('\uf389'),
-        cmd_city_variant_outline('\uf38a'),
-        cmd_city_variant('\uf38b'),
-        cmd_city('\uf38c'),
-        cmd_clipboard_account_outline('\uf38d'),
-        cmd_clipboard_account('\uf38e'),
-        cmd_clipboard_alert_outline('\uf38f'),
-        cmd_clipboard_alert('\uf390'),
-        cmd_clipboard_arrow_down_outline('\uf391'),
-        cmd_clipboard_arrow_down('\uf392'),
-        cmd_clipboard_arrow_left_outline('\uf393'),
-        cmd_clipboard_arrow_left('\uf394'),
-        cmd_clipboard_arrow_right_outline('\uf395'),
-        cmd_clipboard_arrow_right('\uf396'),
-        cmd_clipboard_arrow_up_outline('\uf397'),
-        cmd_clipboard_arrow_up('\uf398'),
-        cmd_clipboard_check_multiple_outline('\uf399'),
-        cmd_clipboard_check_multiple('\uf39a'),
-        cmd_clipboard_check_outline('\uf39b'),
-        cmd_clipboard_check('\uf39c'),
-        cmd_clipboard_file_outline('\uf39d'),
-        cmd_clipboard_file('\uf39e'),
-        cmd_clipboard_flow_outline('\uf39f'),
-        cmd_clipboard_flow('\uf3a0'),
-        cmd_clipboard_list_outline('\uf3a1'),
-        cmd_clipboard_list('\uf3a2'),
-        cmd_clipboard_multiple_outline('\uf3a3'),
-        cmd_clipboard_multiple('\uf3a4'),
-        cmd_clipboard_outline('\uf3a5'),
-        cmd_clipboard_play_multiple_outline('\uf3a6'),
-        cmd_clipboard_play_multiple('\uf3a7'),
-        cmd_clipboard_play_outline('\uf3a8'),
-        cmd_clipboard_play('\uf3a9'),
-        cmd_clipboard_plus('\uf3aa'),
-        cmd_clipboard_pulse_outline('\uf3ab'),
-        cmd_clipboard_pulse('\uf3ac'),
-        cmd_clipboard_text_multiple_outline('\uf3ad'),
-        cmd_clipboard_text_multiple('\uf3ae'),
-        cmd_clipboard_text_outline('\uf3af'),
-        cmd_clipboard_text_play_outline('\uf3b0'),
-        cmd_clipboard_text_play('\uf3b1'),
-        cmd_clipboard_text('\uf3b2'),
-        cmd_clipboard('\uf3b3'),
-        cmd_clippy('\uf3b4'),
-        cmd_clock_alert_outline('\uf3b5'),
-        cmd_clock_alert('\uf3b6'),
-        cmd_clock_check_outline('\uf3b7'),
-        cmd_clock_check('\uf3b8'),
-        cmd_clock_digital('\uf3b9'),
-        cmd_clock_end('\uf3ba'),
-        cmd_clock_fast('\uf3bb'),
-        cmd_clock_in('\uf3bc'),
-        cmd_clock_out('\uf3bd'),
-        cmd_clock_outline('\uf3be'),
-        cmd_clock_start('\uf3bf'),
-        cmd_clock('\uf3c0'),
-        cmd_close_box_multiple_outline('\uf3c1'),
-        cmd_close_box_multiple('\uf3c2'),
-        cmd_close_box_outline('\uf3c3'),
-        cmd_close_box('\uf3c4'),
-        cmd_close_circle_outline('\uf3c5'),
-        cmd_close_circle('\uf3c6'),
-        cmd_close_network_outline('\uf3c7'),
-        cmd_close_network('\uf3c8'),
-        cmd_close_octagon_outline('\uf3c9'),
-        cmd_close_octagon('\uf3ca'),
-        cmd_close_outline('\uf3cb'),
-        cmd_close('\uf3cc'),
-        cmd_closed_caption_outline('\uf3cd'),
-        cmd_closed_caption('\uf3ce'),
-        cmd_cloud_alert('\uf3cf'),
-        cmd_cloud_braces('\uf3d0'),
-        cmd_cloud_check_outline('\uf3d1'),
-        cmd_cloud_check('\uf3d2'),
-        cmd_cloud_circle('\uf3d3'),
-        cmd_cloud_download_outline('\uf3d4'),
-        cmd_cloud_download('\uf3d5'),
-        cmd_cloud_lock_outline('\uf3d6'),
-        cmd_cloud_lock('\uf3d7'),
-        cmd_cloud_off_outline('\uf3d8'),
-        cmd_cloud_outline('\uf3d9'),
-        cmd_cloud_print_outline('\uf3da'),
-        cmd_cloud_print('\uf3db'),
-        cmd_cloud_question('\uf3dc'),
-        cmd_cloud_search_outline('\uf3dd'),
-        cmd_cloud_search('\uf3de'),
-        cmd_cloud_sync_outline('\uf3df'),
-        cmd_cloud_sync('\uf3e0'),
-        cmd_cloud_tags('\uf3e1'),
-        cmd_cloud_upload_outline('\uf3e2'),
-        cmd_cloud_upload('\uf3e3'),
-        cmd_cloud('\uf3e4'),
-        cmd_clover('\uf3e5'),
-        cmd_coach_lamp('\uf3e6'),
-        cmd_coat_rack('\uf3e7'),
-        cmd_code_array('\uf3e8'),
-        cmd_code_braces_box('\uf3e9'),
-        cmd_code_braces('\uf3ea'),
-        cmd_code_brackets('\uf3eb'),
-        cmd_code_equal('\uf3ec'),
-        cmd_code_greater_than_or_equal('\uf3ed'),
-        cmd_code_greater_than('\uf3ee'),
-        cmd_code_less_than_or_equal('\uf3ef'),
-        cmd_code_less_than('\uf3f0'),
-        cmd_code_not_equal_variant('\uf3f1'),
-        cmd_code_not_equal('\uf3f2'),
-        cmd_code_parentheses_box('\uf3f3'),
-        cmd_code_parentheses('\uf3f4'),
-        cmd_code_string('\uf3f5'),
-        cmd_code_tags_check('\uf3f6'),
-        cmd_code_tags('\uf3f7'),
-        cmd_codepen('\uf3f8'),
-        cmd_coffee_maker('\uf3f9'),
-        cmd_coffee_off_outline('\uf3fa'),
-        cmd_coffee_off('\uf3fb'),
-        cmd_coffee_outline('\uf3fc'),
-        cmd_coffee_to_go('\uf3fd'),
-        cmd_coffee('\uf3fe'),
-        cmd_coffin('\uf3ff'),
-        cmd_cog_clockwise('\uf400'),
-        cmd_cog_counterclockwise('\uf401'),
-        cmd_cogs('\uf402'),
-        cmd_coin_outline('\uf403'),
-        cmd_coin('\uf404'),
-        cmd_coins('\uf405'),
-        cmd_collage('\uf406'),
-        cmd_collapse_all_outline('\uf407'),
-        cmd_collapse_all('\uf408'),
-        cmd_color_helper('\uf409'),
-        cmd_comma_box_outline('\uf40a'),
-        cmd_comma_box('\uf40b'),
-        cmd_comma_circle_outline('\uf40c'),
-        cmd_comma_circle('\uf40d'),
-        cmd_comma('\uf40e'),
-        cmd_comment_account_outline('\uf40f'),
-        cmd_comment_account('\uf410'),
-        cmd_comment_alert_outline('\uf411'),
-        cmd_comment_alert('\uf412'),
-        cmd_comment_arrow_left_outline('\uf413'),
-        cmd_comment_arrow_left('\uf414'),
-        cmd_comment_arrow_right_outline('\uf415'),
-        cmd_comment_arrow_right('\uf416'),
-        cmd_comment_check_outline('\uf417'),
-        cmd_comment_check('\uf418'),
-        cmd_comment_edit_outline('\uf419'),
-        cmd_comment_edit('\uf41a'),
-        cmd_comment_eye_outline('\uf41b'),
-        cmd_comment_eye('\uf41c'),
-        cmd_comment_multiple_outline('\uf41d'),
-        cmd_comment_multiple('\uf41e'),
-        cmd_comment_outline('\uf41f'),
-        cmd_comment_plus_outline('\uf420'),
-        cmd_comment_plus('\uf421'),
-        cmd_comment_processing_outline('\uf422'),
-        cmd_comment_processing('\uf423'),
-        cmd_comment_question_outline('\uf424'),
-        cmd_comment_question('\uf425'),
-        cmd_comment_quote_outline('\uf426'),
-        cmd_comment_quote('\uf427'),
-        cmd_comment_remove_outline('\uf428'),
-        cmd_comment_remove('\uf429'),
-        cmd_comment_search_outline('\uf42a'),
-        cmd_comment_search('\uf42b'),
-        cmd_comment_text_multiple_outline('\uf42c'),
-        cmd_comment_text_multiple('\uf42d'),
-        cmd_comment_text_outline('\uf42e'),
-        cmd_comment_text('\uf42f'),
-        cmd_comment('\uf430'),
-        cmd_compare('\uf431'),
-        cmd_compass_off_outline('\uf432'),
-        cmd_compass_off('\uf433'),
-        cmd_compass_outline('\uf434'),
-        cmd_compass('\uf435'),
-        cmd_concourse_ci('\uf436'),
-        cmd_console_line('\uf437'),
-        cmd_console_network_outline('\uf438'),
-        cmd_console_network('\uf439'),
-        cmd_console('\uf43a');
-
-        override val typeface: ITypeface by lazy { CommunityMaterial }
-    }
-
-    enum class Icon4 constructor(override val character: Char) : IIcon {
-        cmd_consolidate('\uf43b'),
-        cmd_contact_mail_outline('\uf43c'),
-        cmd_contact_mail('\uf43d'),
-        cmd_contact_phone_outline('\uf43e'),
-        cmd_contact_phone('\uf43f'),
-        cmd_contactless_payment('\uf440'),
-        cmd_contacts('\uf441'),
-        cmd_contain_end('\uf442'),
-        cmd_contain_start('\uf443'),
-        cmd_contain('\uf444'),
-        cmd_content_copy('\uf445'),
-        cmd_content_cut('\uf446'),
-        cmd_content_duplicate('\uf447'),
-        cmd_content_paste('\uf448'),
-        cmd_content_save_alert_outline('\uf449'),
-        cmd_content_save_alert('\uf44a'),
-        cmd_content_save_all_outline('\uf44b'),
-        cmd_content_save_all('\uf44c'),
-        cmd_content_save_edit_outline('\uf44d'),
-        cmd_content_save_edit('\uf44e'),
-        cmd_content_save_move_outline('\uf44f'),
-        cmd_content_save_move('\uf450'),
-        cmd_content_save_outline('\uf451'),
-        cmd_content_save_settings_outline('\uf452'),
-        cmd_content_save_settings('\uf453'),
-        cmd_content_save('\uf454'),
-        cmd_contrast_box('\uf455'),
-        cmd_contrast_circle('\uf456'),
-        cmd_contrast('\uf457'),
-        cmd_controller_classic_outline('\uf458'),
-        cmd_controller_classic('\uf459'),
-        cmd_cookie('\uf45a'),
-        cmd_coolant_temperature('\uf45b'),
-        cmd_copyright('\uf45c'),
-        cmd_cordova('\uf45d'),
-        cmd_corn('\uf45e'),
-        cmd_counter('\uf45f'),
-        cmd_cow('\uf460'),
-        cmd_cowboy('\uf461'),
-        cmd_cpu_32_bit('\uf462'),
-        cmd_cpu_64_bit('\uf463'),
-        cmd_crane('\uf464'),
-        cmd_creation('\uf465'),
-        cmd_creative_commons('\uf466'),
-        cmd_credit_card_clock_outline('\uf467'),
-        cmd_credit_card_clock('\uf468'),
-        cmd_credit_card_marker_outline('\uf469'),
-        cmd_credit_card_marker('\uf46a'),
-        cmd_credit_card_minus_outline('\uf46b'),
-        cmd_credit_card_minus('\uf46c'),
-        cmd_credit_card_multiple_outline('\uf46d'),
-        cmd_credit_card_multiple('\uf46e'),
-        cmd_credit_card_off_outline('\uf46f'),
-        cmd_credit_card_off('\uf470'),
-        cmd_credit_card_outline('\uf471'),
-        cmd_credit_card_plus_outline('\uf472'),
-        cmd_credit_card_plus('\uf473'),
-        cmd_credit_card_refund_outline('\uf474'),
-        cmd_credit_card_refund('\uf475'),
-        cmd_credit_card_remove_outline('\uf476'),
-        cmd_credit_card_remove('\uf477'),
-        cmd_credit_card_scan_outline('\uf478'),
-        cmd_credit_card_scan('\uf479'),
-        cmd_credit_card_settings_outline('\uf47a'),
-        cmd_credit_card_settings('\uf47b'),
-        cmd_credit_card_wireless_outline('\uf47c'),
-        cmd_credit_card_wireless('\uf47d'),
-        cmd_credit_card('\uf47e'),
-        cmd_cricket('\uf47f'),
-        cmd_crop_free('\uf480'),
-        cmd_crop_landscape('\uf481'),
-        cmd_crop_portrait('\uf482'),
-        cmd_crop_rotate('\uf483'),
-        cmd_crop_square('\uf484'),
-        cmd_crop('\uf485'),
-        cmd_crosshairs_gps('\uf486'),
-        cmd_crosshairs_off('\uf487'),
-        cmd_crosshairs_question('\uf488'),
-        cmd_crosshairs('\uf489'),
-        cmd_crown_outline('\uf48a'),
-        cmd_crown('\uf48b'),
-        cmd_cryengine('\uf48c'),
-        cmd_crystal_ball('\uf48d'),
-        cmd_cube_outline('\uf48e'),
-        cmd_cube_scan('\uf48f'),
-        cmd_cube_send('\uf490'),
-        cmd_cube_unfolded('\uf491'),
-        cmd_cube('\uf492'),
-        cmd_cup_off('\uf493'),
-        cmd_cup_water('\uf494'),
-        cmd_cup('\uf495'),
-        cmd_cupboard_outline('\uf496'),
-        cmd_cupboard('\uf497'),
-        cmd_cupcake('\uf498'),
-        cmd_curling('\uf499'),
-        cmd_currency_bdt('\uf49a'),
-        cmd_currency_brl('\uf49b'),
-        cmd_currency_btc('\uf49c'),
-        cmd_currency_cny('\uf49d'),
-        cmd_currency_eth('\uf49e'),
-        cmd_currency_eur('\uf49f'),
-        cmd_currency_gbp('\uf4a0'),
-        cmd_currency_ils('\uf4a1'),
-        cmd_currency_inr('\uf4a2'),
-        cmd_currency_jpy('\uf4a3'),
-        cmd_currency_krw('\uf4a4'),
-        cmd_currency_kzt('\uf4a5'),
-        cmd_currency_ngn('\uf4a6'),
-        cmd_currency_php('\uf4a7'),
-        cmd_currency_rial('\uf4a8'),
-        cmd_currency_rub('\uf4a9'),
-        cmd_currency_sign('\uf4aa'),
-        cmd_currency_try('\uf4ab'),
-        cmd_currency_twd('\uf4ac'),
-        cmd_currency_usd_off('\uf4ad'),
-        cmd_currency_usd('\uf4ae'),
-        cmd_current_ac('\uf4af'),
-        cmd_current_dc('\uf4b0'),
-        cmd_cursor_default_click_outline('\uf4b1'),
-        cmd_cursor_default_click('\uf4b2'),
-        cmd_cursor_default_gesture_outline('\uf4b3'),
-        cmd_cursor_default_gesture('\uf4b4'),
-        cmd_cursor_default_outline('\uf4b5'),
-        cmd_cursor_default('\uf4b6'),
-        cmd_cursor_move('\uf4b7'),
-        cmd_cursor_pointer('\uf4b8'),
-        cmd_cursor_text('\uf4b9'),
-        cmd_database_check('\uf4ba'),
-        cmd_database_edit('\uf4bb'),
-        cmd_database_export('\uf4bc'),
-        cmd_database_import('\uf4bd'),
-        cmd_database_lock('\uf4be'),
-        cmd_database_minus('\uf4bf'),
-        cmd_database_plus('\uf4c0'),
-        cmd_database_refresh('\uf4c1'),
-        cmd_database_remove('\uf4c2'),
-        cmd_database_search('\uf4c3'),
-        cmd_database_settings('\uf4c4'),
-        cmd_database('\uf4c5'),
-        cmd_death_star_variant('\uf4c6'),
-        cmd_death_star('\uf4c7'),
-        cmd_deathly_hallows('\uf4c8'),
-        cmd_debian('\uf4c9'),
-        cmd_debug_step_into('\uf4ca'),
-        cmd_debug_step_out('\uf4cb'),
-        cmd_debug_step_over('\uf4cc'),
-        cmd_decagram_outline('\uf4cd'),
-        cmd_decagram('\uf4ce'),
-        cmd_decimal_comma_decrease('\uf4cf'),
-        cmd_decimal_comma_increase('\uf4d0'),
-        cmd_decimal_comma('\uf4d1'),
-        cmd_decimal_decrease('\uf4d2'),
-        cmd_decimal_increase('\uf4d3'),
-        cmd_decimal('\uf4d4'),
-        cmd_delete_alert_outline('\uf4d5'),
-        cmd_delete_alert('\uf4d6'),
-        cmd_delete_circle_outline('\uf4d7'),
-        cmd_delete_circle('\uf4d8'),
-        cmd_delete_empty_outline('\uf4d9'),
-        cmd_delete_empty('\uf4da'),
-        cmd_delete_forever_outline('\uf4db'),
-        cmd_delete_forever('\uf4dc'),
-        cmd_delete_off_outline('\uf4dd'),
-        cmd_delete_off('\uf4de'),
-        cmd_delete_outline('\uf4df'),
-        cmd_delete_restore('\uf4e0'),
-        cmd_delete_sweep_outline('\uf4e1'),
-        cmd_delete_sweep('\uf4e2'),
-        cmd_delete_variant('\uf4e3'),
-        cmd_delete('\uf4e4'),
-        cmd_delta('\uf4e5'),
-        cmd_desk_lamp('\uf4e6'),
-        cmd_desk('\uf4e7'),
-        cmd_deskphone('\uf4e8'),
-        cmd_desktop_classic('\uf4e9'),
-        cmd_desktop_mac_dashboard('\uf4ea'),
-        cmd_desktop_mac('\uf4eb'),
-        cmd_desktop_tower_monitor('\uf4ec'),
-        cmd_desktop_tower('\uf4ed'),
-        cmd_details('\uf4ee'),
-        cmd_dev_to('\uf4ef'),
-        cmd_developer_board('\uf4f0'),
-        cmd_deviantart('\uf4f1'),
-        cmd_devices('\uf4f2'),
-        cmd_diabetes('\uf4f3'),
-        cmd_dialpad('\uf4f4'),
-        cmd_diameter_outline('\uf4f5'),
-        cmd_diameter_variant('\uf4f6'),
-        cmd_diameter('\uf4f7'),
-        cmd_diamond_outline('\uf4f8'),
-        cmd_diamond_stone('\uf4f9'),
-        cmd_diamond('\uf4fa'),
-        cmd_dice_1_outline('\uf4fb'),
-        cmd_dice_1('\uf4fc'),
-        cmd_dice_2_outline('\uf4fd'),
-        cmd_dice_2('\uf4fe'),
-        cmd_dice_3_outline('\uf4ff'),
-        cmd_dice_3('\uf500'),
-        cmd_dice_4_outline('\uf501'),
-        cmd_dice_4('\uf502'),
-        cmd_dice_5_outline('\uf503'),
-        cmd_dice_5('\uf504'),
-        cmd_dice_6_outline('\uf505'),
-        cmd_dice_6('\uf506'),
-        cmd_dice_d4_outline('\uf507'),
-        cmd_dice_d4('\uf508'),
-        cmd_dice_d6_outline('\uf509'),
-        cmd_dice_d6('\uf50a'),
-        cmd_dice_d8_outline('\uf50b'),
-        cmd_dice_d8('\uf50c'),
-        cmd_dice_d10_outline('\uf50d'),
-        cmd_dice_d10('\uf50e'),
-        cmd_dice_d12_outline('\uf50f'),
-        cmd_dice_d12('\uf510'),
-        cmd_dice_d20_outline('\uf511'),
-        cmd_dice_d20('\uf512'),
-        cmd_dice_multiple_outline('\uf513'),
-        cmd_dice_multiple('\uf514'),
-        cmd_dictionary('\uf515'),
-        cmd_digital_ocean('\uf516'),
-        cmd_dip_switch('\uf517'),
-        cmd_directions_fork('\uf518'),
-        cmd_directions('\uf519'),
-        cmd_disc_alert('\uf51a'),
-        cmd_disc_player('\uf51b'),
-        cmd_disc('\uf51c'),
-        cmd_discord('\uf51d'),
-        cmd_dishwasher_alert('\uf51e'),
-        cmd_dishwasher_off('\uf51f'),
-        cmd_dishwasher('\uf520'),
-        cmd_disqus_outline('\uf521'),
-        cmd_disqus('\uf522'),
-        cmd_distribute_horizontal_center('\uf523'),
-        cmd_distribute_horizontal_left('\uf524'),
-        cmd_distribute_horizontal_right('\uf525'),
-        cmd_distribute_vertical_bottom('\uf526'),
-        cmd_distribute_vertical_center('\uf527'),
-        cmd_distribute_vertical_top('\uf528'),
-        cmd_diving_flippers('\uf529'),
-        cmd_diving_helmet('\uf52a'),
-        cmd_diving_scuba_flag('\uf52b'),
-        cmd_diving_scuba_tank_multiple('\uf52c'),
-        cmd_diving_scuba_tank('\uf52d'),
-        cmd_diving_scuba('\uf52e'),
-        cmd_diving_snorkel('\uf52f'),
-        cmd_division_box('\uf530'),
-        cmd_division('\uf531'),
-        cmd_dlna('\uf532'),
-        cmd_dna('\uf533'),
-        cmd_dns_outline('\uf534'),
-        cmd_dns('\uf535'),
-        cmd_do_not_disturb_off('\uf536'),
-        cmd_do_not_disturb('\uf537'),
-        cmd_dock_bottom('\uf538'),
-        cmd_dock_left('\uf539'),
-        cmd_dock_right('\uf53a'),
-        cmd_dock_window('\uf53b'),
-        cmd_docker('\uf53c'),
-        cmd_doctor('\uf53d'),
-        cmd_dog_service('\uf53e'),
-        cmd_dog_side('\uf53f'),
-        cmd_dog('\uf540'),
-        cmd_dolby('\uf541'),
-        cmd_dolly('\uf542'),
-        cmd_domain_off('\uf543'),
-        cmd_domain_plus('\uf544'),
-        cmd_domain_remove('\uf545'),
-        cmd_domain('\uf546'),
-        cmd_domino_mask('\uf547'),
-        cmd_donkey('\uf548'),
-        cmd_door_closed_lock('\uf549'),
-        cmd_door_closed('\uf54a'),
-        cmd_door_open('\uf54b'),
-        cmd_door('\uf54c'),
-        cmd_doorbell_video('\uf54d'),
-        cmd_dot_net('\uf54e'),
-        cmd_dots_horizontal_circle_outline('\uf54f'),
-        cmd_dots_horizontal_circle('\uf550'),
-        cmd_dots_horizontal('\uf551'),
-        cmd_dots_vertical_circle_outline('\uf552'),
-        cmd_dots_vertical_circle('\uf553'),
-        cmd_dots_vertical('\uf554'),
-        cmd_douban('\uf555'),
-        cmd_download_multiple('\uf556'),
-        cmd_download_network_outline('\uf557'),
-        cmd_download_network('\uf558'),
-        cmd_download_off_outline('\uf559'),
-        cmd_download_off('\uf55a'),
-        cmd_download_outline('\uf55b'),
-        cmd_download('\uf55c'),
-        cmd_drag_horizontal('\uf55d'),
-        cmd_drag_variant('\uf55e'),
-        cmd_drag_vertical('\uf55f'),
-        cmd_drag('\uf560'),
-        cmd_drama_masks('\uf561'),
-        cmd_draw('\uf562'),
-        cmd_drawing_box('\uf563'),
-        cmd_drawing('\uf564'),
-        cmd_dresser_outline('\uf565'),
-        cmd_dresser('\uf566'),
-        cmd_dribbble_box('\uf567'),
-        cmd_dribbble('\uf568'),
-        cmd_drone('\uf569'),
-        cmd_dropbox('\uf56a'),
-        cmd_drupal('\uf56b'),
-        cmd_duck('\uf56c'),
-        cmd_dumbbell('\uf56d'),
-        cmd_dump_truck('\uf56e'),
-        cmd_ear_hearing_off('\uf56f'),
-        cmd_ear_hearing('\uf570'),
-        cmd_earth_box_off('\uf571'),
-        cmd_earth_box('\uf572'),
-        cmd_earth_off('\uf573'),
-        cmd_earth('\uf574'),
-        cmd_edge_legacy('\uf575'),
-        cmd_edge('\uf576'),
-        cmd_egg_easter('\uf577'),
-        cmd_egg('\uf578'),
-        cmd_eight_track('\uf579'),
-        cmd_eject_outline('\uf57a'),
-        cmd_eject('\uf57b'),
-        cmd_electric_switch_closed('\uf57c'),
-        cmd_electric_switch('\uf57d'),
-        cmd_electron_framework('\uf57e'),
-        cmd_elephant('\uf57f'),
-        cmd_elevation_decline('\uf580'),
-        cmd_elevation_rise('\uf581'),
-        cmd_elevator_down('\uf582'),
-        cmd_elevator_up('\uf583'),
-        cmd_elevator('\uf584'),
-        cmd_ellipse_outline('\uf585'),
-        cmd_ellipse('\uf586'),
-        cmd_email_alert('\uf587'),
-        cmd_email_box('\uf588'),
-        cmd_email_check_outline('\uf589'),
-        cmd_email_check('\uf58a'),
-        cmd_email_edit_outline('\uf58b'),
-        cmd_email_edit('\uf58c'),
-        cmd_email_lock('\uf58d'),
-        cmd_email_mark_as_unread('\uf58e'),
-        cmd_email_minus_outline('\uf58f'),
-        cmd_email_minus('\uf590'),
-        cmd_email_multiple_outline('\uf591'),
-        cmd_email_multiple('\uf592'),
-        cmd_email_newsletter('\uf593'),
-        cmd_email_open_multiple_outline('\uf594'),
-        cmd_email_open_multiple('\uf595'),
-        cmd_email_open_outline('\uf596'),
-        cmd_email_open('\uf597'),
-        cmd_email_outline('\uf598'),
-        cmd_email_plus_outline('\uf599'),
-        cmd_email_plus('\uf59a'),
-        cmd_email_receive_outline('\uf59b'),
-        cmd_email_receive('\uf59c'),
-        cmd_email_search_outline('\uf59d'),
-        cmd_email_search('\uf59e'),
-        cmd_email_send_outline('\uf59f'),
-        cmd_email_send('\uf5a0'),
-        cmd_email_sync_outline('\uf5a1'),
-        cmd_email_sync('\uf5a2'),
-        cmd_email_variant('\uf5a3'),
-        cmd_email('\uf5a4'),
-        cmd_ember('\uf5a5'),
-        cmd_emby('\uf5a6'),
-        cmd_emoticon_angry_outline('\uf5a7'),
-        cmd_emoticon_angry('\uf5a8'),
-        cmd_emoticon_confused_outline('\uf5a9'),
-        cmd_emoticon_confused('\uf5aa'),
-        cmd_emoticon_cool_outline('\uf5ab'),
-        cmd_emoticon_cool('\uf5ac'),
-        cmd_emoticon_cry_outline('\uf5ad'),
-        cmd_emoticon_cry('\uf5ae'),
-        cmd_emoticon_dead_outline('\uf5af'),
-        cmd_emoticon_dead('\uf5b0'),
-        cmd_emoticon_devil_outline('\uf5b1'),
-        cmd_emoticon_devil('\uf5b2'),
-        cmd_emoticon_excited_outline('\uf5b3'),
-        cmd_emoticon_excited('\uf5b4'),
-        cmd_emoticon_frown_outline('\uf5b5'),
-        cmd_emoticon_frown('\uf5b6'),
-        cmd_emoticon_happy_outline('\uf5b7'),
-        cmd_emoticon_happy('\uf5b8'),
-        cmd_emoticon_kiss_outline('\uf5b9'),
-        cmd_emoticon_kiss('\uf5ba'),
-        cmd_emoticon_lol_outline('\uf5bb'),
-        cmd_emoticon_lol('\uf5bc'),
-        cmd_emoticon_neutral_outline('\uf5bd'),
-        cmd_emoticon_neutral('\uf5be'),
-        cmd_emoticon_outline('\uf5bf'),
-        cmd_emoticon_poop_outline('\uf5c0'),
-        cmd_emoticon_poop('\uf5c1'),
-        cmd_emoticon_sad_outline('\uf5c2'),
-        cmd_emoticon_sad('\uf5c3'),
-        cmd_emoticon_tongue_outline('\uf5c4'),
-        cmd_emoticon_tongue('\uf5c5'),
-        cmd_emoticon_wink_outline('\uf5c6'),
-        cmd_emoticon_wink('\uf5c7'),
-        cmd_emoticon('\uf5c8'),
-        cmd_engine_off_outline('\uf5c9'),
-        cmd_engine_off('\uf5ca'),
-        cmd_engine_outline('\uf5cb'),
-        cmd_engine('\uf5cc'),
-        cmd_epsilon('\uf5cd'),
-        cmd_equal_box('\uf5ce'),
-        cmd_equal('\uf5cf'),
-        cmd_equalizer_outline('\uf5d0'),
-        cmd_equalizer('\uf5d1'),
-        cmd_eraser_variant('\uf5d2'),
-        cmd_eraser('\uf5d3'),
-        cmd_escalator_down('\uf5d4'),
-        cmd_escalator_up('\uf5d5'),
-        cmd_escalator('\uf5d6'),
-        cmd_eslint('\uf5d7'),
-        cmd_et('\uf5d8'),
-        cmd_ethereum('\uf5d9'),
-        cmd_ethernet_cable_off('\uf5da'),
-        cmd_ethernet_cable('\uf5db'),
-        cmd_ethernet('\uf5dc'),
-        cmd_etsy('\uf5dd'),
-        cmd_ev_station('\uf5de'),
-        cmd_eventbrite('\uf5df'),
-        cmd_evernote('\uf5e0'),
-        cmd_excavator('\uf5e1'),
-        cmd_exclamation_thick('\uf5e2'),
-        cmd_exclamation('\uf5e3'),
-        cmd_exit_run('\uf5e4'),
-        cmd_exit_to_app('\uf5e5'),
-        cmd_expand_all_outline('\uf5e6'),
-        cmd_expand_all('\uf5e7'),
-        cmd_expansion_card_variant('\uf5e8'),
-        cmd_expansion_card('\uf5e9'),
-        cmd_exponent_box('\uf5ea'),
-        cmd_exponent('\uf5eb'),
-        cmd_export_variant('\uf5ec'),
-        cmd_export('\uf5ed'),
-        cmd_eye_check_outline('\uf5ee'),
-        cmd_eye_check('\uf5ef'),
-        cmd_eye_circle_outline('\uf5f0'),
-        cmd_eye_circle('\uf5f1'),
-        cmd_eye_minus_outline('\uf5f2'),
-        cmd_eye_minus('\uf5f3'),
-        cmd_eye_off_outline('\uf5f4'),
-        cmd_eye_off('\uf5f5'),
-        cmd_eye_outline('\uf5f6'),
-        cmd_eye_plus_outline('\uf5f7'),
-        cmd_eye_plus('\uf5f8'),
-        cmd_eye_settings_outline('\uf5f9'),
-        cmd_eye_settings('\uf5fa'),
-        cmd_eye('\uf5fb'),
-        cmd_eyedropper_variant('\uf5fc'),
-        cmd_eyedropper('\uf5fd'),
-        cmd_face_agent('\uf5fe'),
-        cmd_face_outline('\uf5ff'),
-        cmd_face_profile_woman('\uf600'),
-        cmd_face_profile('\uf601'),
-        cmd_face_recognition('\uf602'),
-        cmd_face_woman_outline('\uf603'),
-        cmd_face_woman('\uf604'),
-        cmd_face('\uf605'),
-        cmd_facebook_box('\uf606'),
-        cmd_facebook_messenger('\uf607'),
-        cmd_facebook_workplace('\uf608'),
-        cmd_facebook('\uf609'),
-        cmd_factory('\uf60a'),
-        cmd_fan_off('\uf60b'),
-        cmd_fan('\uf60c'),
-        cmd_fast_forward_5('\uf60d'),
-        cmd_fast_forward_10('\uf60e'),
-        cmd_fast_forward_30('\uf60f'),
-        cmd_fast_forward_outline('\uf610'),
-        cmd_fast_forward('\uf611'),
-        cmd_fax('\uf612'),
-        cmd_feather('\uf613'),
-        cmd_feature_search_outline('\uf614'),
-        cmd_feature_search('\uf615'),
-        cmd_fedora('\uf616'),
-        cmd_ferris_wheel('\uf617'),
-        cmd_ferry('\uf618'),
-        cmd_file_account_outline('\uf619'),
-        cmd_file_account('\uf61a'),
-        cmd_file_alert_outline('\uf61b'),
-        cmd_file_alert('\uf61c'),
-        cmd_file_cabinet('\uf61d'),
-        cmd_file_cad_box('\uf61e'),
-        cmd_file_cad('\uf61f'),
-        cmd_file_cancel_outline('\uf620'),
-        cmd_file_cancel('\uf621'),
-        cmd_file_certificate_outline('\uf622'),
-        cmd_file_certificate('\uf623'),
-        cmd_file_chart_outline('\uf624'),
-        cmd_file_chart('\uf625'),
-        cmd_file_check_outline('\uf626'),
-        cmd_file_check('\uf627'),
-        cmd_file_clock_outline('\uf628'),
-        cmd_file_clock('\uf629'),
-        cmd_file_cloud_outline('\uf62a'),
-        cmd_file_cloud('\uf62b'),
-        cmd_file_code_outline('\uf62c'),
-        cmd_file_code('\uf62d'),
-        cmd_file_compare('\uf62e'),
-        cmd_file_delimited_outline('\uf62f'),
-        cmd_file_delimited('\uf630'),
-        cmd_file_document_box_check_outline('\uf631'),
-        cmd_file_document_box_check('\uf632'),
-        cmd_file_document_box_minus_outline('\uf633'),
-        cmd_file_document_box_minus('\uf634'),
-        cmd_file_document_box_multiple_outline('\uf635'),
-        cmd_file_document_box_multiple('\uf636'),
-        cmd_file_document_box_outline('\uf637'),
-        cmd_file_document_box_plus_outline('\uf638'),
-        cmd_file_document_box_plus('\uf639'),
-        cmd_file_document_box_remove_outline('\uf63a'),
-        cmd_file_document_box_remove('\uf63b'),
-        cmd_file_document_box_search_outline('\uf63c'),
-        cmd_file_document_box_search('\uf63d'),
-        cmd_file_document_box('\uf63e'),
-        cmd_file_document_edit_outline('\uf63f'),
-        cmd_file_document_edit('\uf640'),
-        cmd_file_document_outline('\uf641'),
-        cmd_file_document('\uf642'),
-        cmd_file_download_outline('\uf643'),
-        cmd_file_download('\uf644'),
-        cmd_file_edit_outline('\uf645'),
-        cmd_file_edit('\uf646'),
-        cmd_file_excel_box_outline('\uf647'),
-        cmd_file_excel_box('\uf648'),
-        cmd_file_excel_outline('\uf649'),
-        cmd_file_excel('\uf64a'),
-        cmd_file_export_outline('\uf64b'),
-        cmd_file_export('\uf64c'),
-        cmd_file_eye_outline('\uf64d'),
-        cmd_file_eye('\uf64e'),
-        cmd_file_find_outline('\uf64f'),
-        cmd_file_find('\uf650'),
-        cmd_file_hidden('\uf651'),
-        cmd_file_image_outline('\uf652'),
-        cmd_file_image('\uf653'),
-        cmd_file_import_outline('\uf654'),
-        cmd_file_import('\uf655'),
-        cmd_file_key_outline('\uf656'),
-        cmd_file_key('\uf657'),
-        cmd_file_link_outline('\uf658'),
-        cmd_file_link('\uf659'),
-        cmd_file_lock_outline('\uf65a'),
-        cmd_file_lock('\uf65b'),
-        cmd_file_move_outline('\uf65c'),
-        cmd_file_move('\uf65d'),
-        cmd_file_multiple_outline('\uf65e'),
-        cmd_file_multiple('\uf65f'),
-        cmd_file_music_outline('\uf660'),
-        cmd_file_music('\uf661'),
-        cmd_file_outline('\uf662'),
-        cmd_file_pdf_box_outline('\uf663'),
-        cmd_file_pdf_box('\uf664'),
-        cmd_file_pdf_outline('\uf665'),
-        cmd_file_pdf('\uf666'),
-        cmd_file_percent_outline('\uf667'),
-        cmd_file_percent('\uf668'),
-        cmd_file_phone_outline('\uf669'),
-        cmd_file_phone('\uf66a'),
-        cmd_file_plus_outline('\uf66b'),
-        cmd_file_plus('\uf66c'),
-        cmd_file_powerpoint_box_outline('\uf66d'),
-        cmd_file_powerpoint_box('\uf66e'),
-        cmd_file_powerpoint_outline('\uf66f'),
-        cmd_file_powerpoint('\uf670'),
-        cmd_file_presentation_box('\uf671'),
-        cmd_file_question_outline('\uf672'),
-        cmd_file_question('\uf673'),
-        cmd_file_remove_outline('\uf674'),
-        cmd_file_remove('\uf675'),
-        cmd_file_replace_outline('\uf676'),
-        cmd_file_replace('\uf677'),
-        cmd_file_restore_outline('\uf678'),
-        cmd_file_restore('\uf679'),
-        cmd_file_search_outline('\uf67a'),
-        cmd_file_search('\uf67b'),
-        cmd_file_send_outline('\uf67c'),
-        cmd_file_send('\uf67d'),
-        cmd_file_settings_outline('\uf67e'),
-        cmd_file_settings_variant_outline('\uf67f'),
-        cmd_file_settings_variant('\uf680'),
-        cmd_file_settings('\uf681'),
-        cmd_file_star_outline('\uf682'),
-        cmd_file_star('\uf683'),
-        cmd_file_swap_outline('\uf684'),
-        cmd_file_swap('\uf685'),
-        cmd_file_sync_outline('\uf686'),
-        cmd_file_sync('\uf687'),
-        cmd_file_table_box_multiple_outline('\uf688'),
-        cmd_file_table_box_multiple('\uf689'),
-        cmd_file_table_box_outline('\uf68a'),
-        cmd_file_table_box('\uf68b'),
-        cmd_file_table_outline('\uf68c'),
-        cmd_file_table('\uf68d'),
-        cmd_file_tree('\uf68e'),
-        cmd_file_undo_outline('\uf68f'),
-        cmd_file_undo('\uf690'),
-        cmd_file_upload_outline('\uf691'),
-        cmd_file_upload('\uf692'),
-        cmd_file_video_outline('\uf693'),
-        cmd_file_video('\uf694'),
-        cmd_file_word_box_outline('\uf695'),
-        cmd_file_word_box('\uf696'),
-        cmd_file_word_outline('\uf697'),
-        cmd_file_word('\uf698'),
-        cmd_file('\uf699'),
-        cmd_film('\uf69a'),
-        cmd_filmstrip_off('\uf69b'),
-        cmd_filmstrip('\uf69c'),
-        cmd_filter_menu_outline('\uf69d'),
-        cmd_filter_menu('\uf69e'),
-        cmd_filter_minus_outline('\uf69f'),
-        cmd_filter_minus('\uf6a0'),
-        cmd_filter_outline('\uf6a1'),
-        cmd_filter_plus_outline('\uf6a2'),
-        cmd_filter_plus('\uf6a3'),
-        cmd_filter_remove_outline('\uf6a4'),
-        cmd_filter_remove('\uf6a5'),
-        cmd_filter_variant_minus('\uf6a6'),
-        cmd_filter_variant_plus('\uf6a7'),
-        cmd_filter_variant_remove('\uf6a8'),
-        cmd_filter_variant('\uf6a9'),
-        cmd_filter('\uf6aa'),
-        cmd_finance('\uf6ab'),
-        cmd_find_replace('\uf6ac'),
-        cmd_fingerprint_off('\uf6ad'),
-        cmd_fingerprint('\uf6ae'),
-        cmd_fire_extinguisher('\uf6af'),
-        cmd_fire_hydrant_alert('\uf6b0'),
-        cmd_fire_hydrant_off('\uf6b1'),
-        cmd_fire_hydrant('\uf6b2'),
-        cmd_fire_truck('\uf6b3'),
-        cmd_fire('\uf6b4'),
-        cmd_firebase('\uf6b5'),
-        cmd_firefox('\uf6b6'),
-        cmd_fireplace_off('\uf6b7'),
-        cmd_fireplace('\uf6b8'),
-        cmd_firework('\uf6b9'),
-        cmd_fish('\uf6ba'),
-        cmd_fishbowl_outline('\uf6bb'),
-        cmd_fishbowl('\uf6bc'),
-        cmd_fit_to_page_outline('\uf6bd'),
-        cmd_fit_to_page('\uf6be'),
-        cmd_flag_checkered('\uf6bf'),
-        cmd_flag_minus_outline('\uf6c0'),
-        cmd_flag_minus('\uf6c1'),
-        cmd_flag_outline('\uf6c2'),
-        cmd_flag_plus_outline('\uf6c3'),
-        cmd_flag_plus('\uf6c4'),
-        cmd_flag_remove_outline('\uf6c5'),
-        cmd_flag_remove('\uf6c6'),
-        cmd_flag_triangle('\uf6c7'),
-        cmd_flag_variant_outline('\uf6c8'),
-        cmd_flag_variant('\uf6c9'),
-        cmd_flag('\uf6ca'),
-        cmd_flare('\uf6cb'),
-        cmd_flash_alert_outline('\uf6cc'),
-        cmd_flash_alert('\uf6cd'),
-        cmd_flash_auto('\uf6ce'),
-        cmd_flash_circle('\uf6cf'),
-        cmd_flash_off('\uf6d0'),
-        cmd_flash_outline('\uf6d1'),
-        cmd_flash_red_eye('\uf6d2'),
-        cmd_flash('\uf6d3'),
-        cmd_flashlight_off('\uf6d4'),
-        cmd_flashlight('\uf6d5'),
-        cmd_flask_empty_minus_outline('\uf6d6'),
-        cmd_flask_empty_minus('\uf6d7'),
-        cmd_flask_empty_outline('\uf6d8'),
-        cmd_flask_empty_plus_outline('\uf6d9'),
-        cmd_flask_empty_plus('\uf6da'),
-        cmd_flask_empty_remove_outline('\uf6db'),
-        cmd_flask_empty_remove('\uf6dc'),
-        cmd_flask_empty('\uf6dd'),
-        cmd_flask_minus_outline('\uf6de'),
-        cmd_flask_minus('\uf6df'),
-        cmd_flask_outline('\uf6e0'),
-        cmd_flask_plus_outline('\uf6e1'),
-        cmd_flask_plus('\uf6e2'),
-        cmd_flask_remove_outline('\uf6e3'),
-        cmd_flask_remove('\uf6e4'),
-        cmd_flask_round_bottom_empty_outline('\uf6e5'),
-        cmd_flask_round_bottom_empty('\uf6e6'),
-        cmd_flask_round_bottom_outline('\uf6e7'),
-        cmd_flask_round_bottom('\uf6e8'),
-        cmd_flask('\uf6e9'),
-        cmd_flattr('\uf6ea'),
-        cmd_flickr('\uf6eb'),
-        cmd_flip_horizontal('\uf6ec'),
-        cmd_flip_to_back('\uf6ed'),
-        cmd_flip_to_front('\uf6ee'),
-        cmd_flip_vertical('\uf6ef'),
-        cmd_floor_lamp_dual('\uf6f0'),
-        cmd_floor_lamp_variant('\uf6f1'),
-        cmd_floor_lamp('\uf6f2'),
-        cmd_floor_plan('\uf6f3'),
-        cmd_floppy_variant('\uf6f4'),
-        cmd_floppy('\uf6f5'),
-        cmd_flower_outline('\uf6f6'),
-        cmd_flower_poppy('\uf6f7'),
-        cmd_flower_tulip_outline('\uf6f8'),
-        cmd_flower_tulip('\uf6f9'),
-        cmd_flower('\uf6fa'),
-        cmd_focus_auto('\uf6fb'),
-        cmd_focus_field_horizontal('\uf6fc'),
-        cmd_focus_field_vertical('\uf6fd'),
-        cmd_focus_field('\uf6fe'),
-        cmd_folder_account_outline('\uf6ff'),
-        cmd_folder_account('\uf700'),
-        cmd_folder_alert_outline('\uf701'),
-        cmd_folder_alert('\uf702'),
-        cmd_folder_clock_outline('\uf703'),
-        cmd_folder_clock('\uf704'),
-        cmd_folder_download_outline('\uf705'),
-        cmd_folder_download('\uf706'),
-        cmd_folder_edit_outline('\uf707'),
-        cmd_folder_edit('\uf708'),
-        cmd_folder_google_drive('\uf709'),
-        cmd_folder_heart_outline('\uf70a'),
-        cmd_folder_heart('\uf70b'),
-        cmd_folder_home_outline('\uf70c'),
-        cmd_folder_home('\uf70d'),
-        cmd_folder_image('\uf70e'),
-        cmd_folder_information_outline('\uf70f'),
-        cmd_folder_information('\uf710'),
-        cmd_folder_key_network_outline('\uf711'),
-        cmd_folder_key_network('\uf712'),
-        cmd_folder_key_outline('\uf713'),
-        cmd_folder_key('\uf714'),
-        cmd_folder_lock_open('\uf715'),
-        cmd_folder_lock('\uf716'),
-        cmd_folder_marker_outline('\uf717'),
-        cmd_folder_marker('\uf718'),
-        cmd_folder_move_outline('\uf719'),
-        cmd_folder_move('\uf71a'),
-        cmd_folder_multiple_image('\uf71b'),
-        cmd_folder_multiple_outline('\uf71c'),
-        cmd_folder_multiple('\uf71d'),
-        cmd_folder_network_outline('\uf71e'),
-        cmd_folder_network('\uf71f'),
-        cmd_folder_open_outline('\uf720'),
-        cmd_folder_open('\uf721'),
-        cmd_folder_outline('\uf722'),
-        cmd_folder_plus_outline('\uf723'),
-        cmd_folder_plus('\uf724'),
-        cmd_folder_pound_outline('\uf725'),
-        cmd_folder_pound('\uf726'),
-        cmd_folder_remove_outline('\uf727'),
-        cmd_folder_remove('\uf728'),
-        cmd_folder_search_outline('\uf729'),
-        cmd_folder_search('\uf72a'),
-        cmd_folder_settings_outline('\uf72b'),
-        cmd_folder_settings_variant_outline('\uf72c'),
-        cmd_folder_settings_variant('\uf72d'),
-        cmd_folder_settings('\uf72e'),
-        cmd_folder_star_outline('\uf72f'),
-        cmd_folder_star('\uf730'),
-        cmd_folder_swap_outline('\uf731'),
-        cmd_folder_swap('\uf732'),
-        cmd_folder_sync_outline('\uf733'),
-        cmd_folder_sync('\uf734'),
-        cmd_folder_table_outline('\uf735'),
-        cmd_folder_table('\uf736'),
-        cmd_folder_text_outline('\uf737'),
-        cmd_folder_text('\uf738'),
-        cmd_folder_upload_outline('\uf739'),
-        cmd_folder_upload('\uf73a'),
-        cmd_folder_zip_outline('\uf73b'),
-        cmd_folder_zip('\uf73c'),
-        cmd_folder('\uf73d'),
-        cmd_font_awesome('\uf73e'),
-        cmd_food_apple_outline('\uf73f'),
-        cmd_food_apple('\uf740'),
-        cmd_food_croissant('\uf741'),
-        cmd_food_fork_drink('\uf742'),
-        cmd_food_off('\uf743'),
-        cmd_food_variant('\uf744'),
-        cmd_food('\uf745'),
-        cmd_foot_print('\uf746'),
-        cmd_football_australian('\uf747'),
-        cmd_football_helmet('\uf748'),
-        cmd_football('\uf749'),
-        cmd_forklift('\uf74a'),
-        cmd_format_align_bottom('\uf74b'),
-        cmd_format_align_center('\uf74c'),
-        cmd_format_align_justify('\uf74d'),
-        cmd_format_align_left('\uf74e'),
-        cmd_format_align_middle('\uf74f'),
-        cmd_format_align_right('\uf750'),
-        cmd_format_align_top('\uf751'),
-        cmd_format_annotation_minus('\uf752'),
-        cmd_format_annotation_plus('\uf753'),
-        cmd_format_bold('\uf754'),
-        cmd_format_clear('\uf755'),
-        cmd_format_color_fill('\uf756'),
-        cmd_format_color_highlight('\uf757'),
-        cmd_format_color_text('\uf758'),
-        cmd_format_columns('\uf759'),
-        cmd_format_float_center('\uf75a'),
-        cmd_format_float_left('\uf75b'),
-        cmd_format_float_none('\uf75c'),
-        cmd_format_float_right('\uf75d'),
-        cmd_format_font_size_decrease('\uf75e'),
-        cmd_format_font_size_increase('\uf75f'),
-        cmd_format_font('\uf760'),
-        cmd_format_header_1('\uf761'),
-        cmd_format_header_2('\uf762'),
-        cmd_format_header_3('\uf763'),
-        cmd_format_header_4('\uf764'),
-        cmd_format_header_5('\uf765'),
-        cmd_format_header_6('\uf766'),
-        cmd_format_header_decrease('\uf767'),
-        cmd_format_header_equal('\uf768'),
-        cmd_format_header_increase('\uf769'),
-        cmd_format_header_pound('\uf76a'),
-        cmd_format_horizontal_align_center('\uf76b'),
-        cmd_format_horizontal_align_left('\uf76c'),
-        cmd_format_horizontal_align_right('\uf76d'),
-        cmd_format_indent_decrease('\uf76e'),
-        cmd_format_indent_increase('\uf76f'),
-        cmd_format_italic('\uf770'),
-        cmd_format_letter_case_lower('\uf771'),
-        cmd_format_letter_case_upper('\uf772'),
-        cmd_format_letter_case('\uf773'),
-        cmd_format_letter_ends_with('\uf774'),
-        cmd_format_letter_matches('\uf775'),
-        cmd_format_letter_starts_with('\uf776'),
-        cmd_format_line_spacing('\uf777'),
-        cmd_format_line_style('\uf778'),
-        cmd_format_line_weight('\uf779'),
-        cmd_format_list_bulleted_square('\uf77a'),
-        cmd_format_list_bulleted_triangle('\uf77b'),
-        cmd_format_list_bulleted_type('\uf77c'),
-        cmd_format_list_bulleted('\uf77d'),
-        cmd_format_list_checkbox('\uf77e'),
-        cmd_format_list_checks('\uf77f'),
-        cmd_format_list_numbered_rtl('\uf780'),
-        cmd_format_list_numbered('\uf781'),
-        cmd_format_list_text('\uf782'),
-        cmd_format_overline('\uf783'),
-        cmd_format_page_break('\uf784'),
-        cmd_format_paint('\uf785'),
-        cmd_format_paragraph('\uf786'),
-        cmd_format_pilcrow('\uf787'),
-        cmd_format_quote_close_outline('\uf788'),
-        cmd_format_quote_close('\uf789'),
-        cmd_format_quote_open_outline('\uf78a'),
-        cmd_format_quote_open('\uf78b'),
-        cmd_format_rotate_90('\uf78c'),
-        cmd_format_section('\uf78d'),
-        cmd_format_size('\uf78e'),
-        cmd_format_strikethrough_variant('\uf78f'),
-        cmd_format_strikethrough('\uf790'),
-        cmd_format_subscript('\uf791'),
-        cmd_format_superscript('\uf792'),
-        cmd_format_text_rotation_angle_down('\uf793'),
-        cmd_format_text_rotation_angle_up('\uf794'),
-        cmd_format_text_rotation_down_vertical('\uf795'),
-        cmd_format_text_rotation_down('\uf796'),
-        cmd_format_text_rotation_none('\uf797'),
-        cmd_format_text_rotation_up('\uf798'),
-        cmd_format_text_rotation_vertical('\uf799'),
-        cmd_format_text_variant('\uf79a'),
-        cmd_format_text_wrapping_clip('\uf79b'),
-        cmd_format_text_wrapping_overflow('\uf79c'),
-        cmd_format_text_wrapping_wrap('\uf79d'),
-        cmd_format_text('\uf79e'),
-        cmd_format_textbox('\uf79f'),
-        cmd_format_textdirection_l_to_r('\uf7a0'),
-        cmd_format_textdirection_r_to_l('\uf7a1'),
-        cmd_format_title('\uf7a2'),
-        cmd_format_underline('\uf7a3'),
-        cmd_format_vertical_align_bottom('\uf7a4'),
-        cmd_format_vertical_align_center('\uf7a5'),
-        cmd_format_vertical_align_top('\uf7a6'),
-        cmd_format_wrap_inline('\uf7a7'),
-        cmd_format_wrap_square('\uf7a8'),
-        cmd_format_wrap_tight('\uf7a9'),
-        cmd_format_wrap_top_bottom('\uf7aa'),
-        cmd_forum_outline('\uf7ab'),
-        cmd_forum('\uf7ac'),
-        cmd_forward('\uf7ad'),
-        cmd_forwardburger('\uf7ae'),
-        cmd_fountain_pen_tip('\uf7af'),
-        cmd_fountain_pen('\uf7b0'),
-        cmd_fountain('\uf7b1'),
-        cmd_foursquare('\uf7b2'),
-        cmd_freebsd('\uf7b3'),
-        cmd_frequently_asked_questions('\uf7b4'),
-        cmd_fridge_alert_outline('\uf7b5'),
-        cmd_fridge_alert('\uf7b6'),
-        cmd_fridge_bottom('\uf7b7'),
-        cmd_fridge_off_outline('\uf7b8'),
-        cmd_fridge_off('\uf7b9'),
-        cmd_fridge_outline('\uf7ba'),
-        cmd_fridge_top('\uf7bb'),
-        cmd_fridge('\uf7bc'),
-        cmd_fruit_cherries('\uf7bd'),
-        cmd_fruit_citrus('\uf7be'),
-        cmd_fruit_grapes_outline('\uf7bf'),
-        cmd_fruit_grapes('\uf7c0'),
-        cmd_fruit_pineapple('\uf7c1'),
-        cmd_fruit_watermelon('\uf7c2'),
-        cmd_fuel('\uf7c3'),
-        cmd_fullscreen_exit('\uf7c4'),
-        cmd_fullscreen('\uf7c5'),
-        cmd_function_variant('\uf7c6'),
-        cmd_function('\uf7c7'),
-        cmd_furigana_horizontal('\uf7c8'),
-        cmd_furigana_vertical('\uf7c9'),
-        cmd_fuse_blade('\uf7ca'),
-        cmd_fuse('\uf7cb'),
-        cmd_gamepad_circle_down('\uf7cc'),
-        cmd_gamepad_circle_left('\uf7cd'),
-        cmd_gamepad_circle_outline('\uf7ce'),
-        cmd_gamepad_circle_right('\uf7cf'),
-        cmd_gamepad_circle_up('\uf7d0'),
-        cmd_gamepad_circle('\uf7d1'),
-        cmd_gamepad_down('\uf7d2'),
-        cmd_gamepad_left('\uf7d3'),
-        cmd_gamepad_right('\uf7d4'),
-        cmd_gamepad_round_down('\uf7d5'),
-        cmd_gamepad_round_left('\uf7d6'),
-        cmd_gamepad_round_outline('\uf7d7'),
-        cmd_gamepad_round_right('\uf7d8'),
-        cmd_gamepad_round_up('\uf7d9'),
-        cmd_gamepad_round('\uf7da'),
-        cmd_gamepad_square_outline('\uf7db'),
-        cmd_gamepad_square('\uf7dc'),
-        cmd_gamepad_up('\uf7dd'),
-        cmd_gamepad_variant_outline('\uf7de'),
-        cmd_gamepad_variant('\uf7df'),
-        cmd_gamepad('\uf7e0'),
-        cmd_gamma('\uf7e1'),
-        cmd_gantry_crane('\uf7e2'),
-        cmd_garage_alert_variant('\uf7e3'),
-        cmd_garage_alert('\uf7e4'),
-        cmd_garage_open_variant('\uf7e5'),
-        cmd_garage_open('\uf7e6'),
-        cmd_garage_variant('\uf7e7'),
-        cmd_garage('\uf7e8'),
-        cmd_gas_cylinder('\uf7e9'),
-        cmd_gas_station_outline('\uf7ea'),
-        cmd_gas_station('\uf7eb'),
-        cmd_gate_and('\uf7ec'),
-        cmd_gate_arrow_right('\uf7ed'),
-        cmd_gate_nand('\uf7ee'),
-        cmd_gate_nor('\uf7ef'),
-        cmd_gate_not('\uf7f0'),
-        cmd_gate_open('\uf7f1'),
-        cmd_gate_or('\uf7f2'),
-        cmd_gate_xnor('\uf7f3'),
-        cmd_gate_xor('\uf7f4'),
-        cmd_gate('\uf7f5'),
-        cmd_gatsby('\uf7f6'),
-        cmd_gauge_empty('\uf7f7'),
-        cmd_gauge_full('\uf7f8'),
-        cmd_gauge_low('\uf7f9'),
-        cmd_gauge('\uf7fa'),
-        cmd_gavel('\uf7fb'),
-        cmd_gender_female('\uf7fc'),
-        cmd_gender_male_female_variant('\uf7fd'),
-        cmd_gender_male_female('\uf7fe'),
-        cmd_gender_male('\uf7ff'),
-        cmd_gender_non_binary('\uf800'),
-        cmd_gender_transgender('\uf801'),
-        cmd_gentoo('\uf802'),
-        cmd_gesture_double_tap('\uf803'),
-        cmd_gesture_pinch('\uf804'),
-        cmd_gesture_spread('\uf805'),
-        cmd_gesture_swipe_down('\uf806'),
-        cmd_gesture_swipe_horizontal('\uf807'),
-        cmd_gesture_swipe_left('\uf808'),
-        cmd_gesture_swipe_right('\uf809'),
-        cmd_gesture_swipe_up('\uf80a'),
-        cmd_gesture_swipe_vertical('\uf80b'),
-        cmd_gesture_swipe('\uf80c'),
-        cmd_gesture_tap_box('\uf80d'),
-        cmd_gesture_tap_button('\uf80e'),
-        cmd_gesture_tap_hold('\uf80f'),
-        cmd_gesture_tap('\uf810'),
-        cmd_gesture_two_double_tap('\uf811'),
-        cmd_gesture_two_tap('\uf812'),
-        cmd_gesture('\uf813'),
-        cmd_ghost_off('\uf814'),
-        cmd_ghost('\uf815'),
-        cmd_gif('\uf816'),
-        cmd_gift_outline('\uf817'),
-        cmd_gift('\uf818'),
-        cmd_git('\uf819'),
-        cmd_github_box('\uf81a'),
-        cmd_github_circle('\uf81b'),
-        cmd_github_face('\uf81c'),
-        cmd_gitlab('\uf81d'),
-        cmd_glass_cocktail('\uf81e'),
-        cmd_glass_flute('\uf81f'),
-        cmd_glass_mug_variant('\uf820'),
-        cmd_glass_mug('\uf821'),
-        cmd_glass_stange('\uf822'),
-        cmd_glass_tulip('\uf823'),
-        cmd_glass_wine('\uf824'),
-        cmd_glassdoor('\uf825'),
-        cmd_glasses('\uf826'),
-        cmd_globe_light('\uf827'),
-        cmd_globe_model('\uf828'),
-        cmd_gmail('\uf829'),
-        cmd_gnome('\uf82a'),
-        cmd_go_kart_track('\uf82b'),
-        cmd_go_kart('\uf82c'),
-        cmd_gog('\uf82d'),
-        cmd_gold('\uf82e'),
-        cmd_golf_cart('\uf82f'),
-        cmd_golf_tee('\uf830'),
-        cmd_golf('\uf831'),
-        cmd_gondola('\uf832'),
-        cmd_goodreads('\uf833'),
-        cmd_google_adwords('\uf834'),
-        cmd_google_analytics('\uf835'),
-        cmd_google_assistant('\uf836'),
-        cmd_google_cardboard('\uf837'),
-        cmd_google_chrome('\uf838'),
-        cmd_google_circles_communities('\uf839'),
-        cmd_google_circles_extended('\uf83a'),
-        cmd_google_circles_group('\uf83b'),
-        cmd_google_circles('\uf83c'),
-        cmd_google_classroom('\uf83d'),
-        cmd_google_cloud('\uf83e'),
-        cmd_google_controller_off('\uf83f'),
-        cmd_google_controller('\uf840'),
-        cmd_google_drive('\uf841'),
-        cmd_google_earth('\uf842'),
-        cmd_google_fit('\uf843'),
-        cmd_google_glass('\uf844'),
-        cmd_google_hangouts('\uf845'),
-        cmd_google_home('\uf846'),
-        cmd_google_keep('\uf847'),
-        cmd_google_lens('\uf848'),
-        cmd_google_maps('\uf849'),
-        cmd_google_my_business('\uf84a'),
-        cmd_google_nearby('\uf84b'),
-        cmd_google_pages('\uf84c'),
-        cmd_google_photos('\uf84d'),
-        cmd_google_physical_web('\uf84e'),
-        cmd_google_play('\uf84f'),
-        cmd_google_plus_box('\uf850'),
-        cmd_google_plus('\uf851'),
-        cmd_google_podcast('\uf852'),
-        cmd_google_spreadsheet('\uf853'),
-        cmd_google_street_view('\uf854'),
-        cmd_google_translate('\uf855'),
-        cmd_google('\uf856'),
-        cmd_gradient('\uf857'),
-        cmd_grain('\uf858'),
-        cmd_graph_outline('\uf859'),
-        cmd_graph('\uf85a'),
-        cmd_graphql('\uf85b'),
-        cmd_grave_stone('\uf85c'),
-        cmd_grease_pencil('\uf85d'),
-        cmd_greater_than_or_equal('\uf85e'),
-        cmd_greater_than('\uf85f'),
-        cmd_grid_large('\uf860'),
-        cmd_grid_off('\uf861'),
-        cmd_grid('\uf862'),
-        cmd_grill_outline('\uf863'),
-        cmd_grill('\uf864'),
-        cmd_group('\uf865'),
-        cmd_guitar_acoustic('\uf866'),
-        cmd_guitar_electric('\uf867'),
-        cmd_guitar_pick_outline('\uf868'),
-        cmd_guitar_pick('\uf869'),
-        cmd_guy_fawkes_mask('\uf86a'),
-        cmd_hackernews('\uf86b'),
-        cmd_hail('\uf86c'),
-        cmd_ab_testing('\uf86d'),
-        cmd_access_point_network_off('\uf86e'),
-        cmd_access_point_network('\uf86f'),
-        cmd_access_point('\uf870'),
-        cmd_account_alert_outline('\uf871'),
-        cmd_account_alert('\uf872'),
-        cmd_account_arrow_left_outline('\uf873'),
-        cmd_account_arrow_left('\uf874'),
-        cmd_account_arrow_right_outline('\uf875'),
-        cmd_account_arrow_right('\uf876'),
-        cmd_account_badge_alert_outline('\uf877'),
-        cmd_account_badge_alert('\uf878'),
-        cmd_account_badge_horizontal_outline('\uf879'),
-        cmd_account_badge_horizontal('\uf87a'),
-        cmd_account_badge_outline('\uf87b'),
-        cmd_account_badge('\uf87c'),
-        cmd_account_box_multiple_outline('\uf87d'),
-        cmd_account_box_multiple('\uf87e'),
-        cmd_account_box_outline('\uf87f'),
-        cmd_account_box('\uf880'),
-        cmd_account_cancel_outline('\uf881'),
-        cmd_account_cancel('\uf882'),
-        cmd_account_card_details_outline('\uf883'),
-        cmd_account_card_details('\uf884'),
-        cmd_account_cash_outline('\uf885'),
-        cmd_account_cash('\uf886'),
-        cmd_account_check_outline('\uf887'),
-        cmd_account_check('\uf888'),
-        cmd_account_child_circle('\uf889'),
-        cmd_account_child_outline('\uf88a'),
-        cmd_account_child('\uf88b'),
-        cmd_account_circle_outline('\uf88c'),
-        cmd_account_circle('\uf88d'),
-        cmd_account_clock_outline('\uf88e'),
-        cmd_account_clock('\uf88f'),
-        cmd_account_convert('\uf890'),
-        cmd_account_details('\uf891'),
-        cmd_account_edit_outline('\uf892'),
-        cmd_account_edit('\uf893'),
-        cmd_account_group_outline('\uf894'),
-        cmd_account_group('\uf895'),
-        cmd_account_heart_outline('\uf896'),
-        cmd_account_heart('\uf897'),
-        cmd_account_key_outline('\uf898'),
-        cmd_account_key('\uf899'),
-        cmd_account_lock_outline('\uf89a'),
-        cmd_account_lock('\uf89b'),
-        cmd_account_minus_outline('\uf89c'),
-        cmd_account_minus('\uf89d'),
-        cmd_account_multiple_check_outline('\uf89e'),
-        cmd_account_multiple_check('\uf89f'),
-        cmd_account_multiple_minus_outline('\uf8a0'),
-        cmd_account_multiple_minus('\uf8a1'),
-        cmd_account_multiple_outline('\uf8a2'),
-        cmd_account_multiple_plus_outline('\uf8a3'),
-        cmd_account_multiple_plus('\uf8a4'),
-        cmd_account_multiple_remove_outline('\uf8a5'),
-        cmd_account_multiple_remove('\uf8a6'),
-        cmd_account_multiple('\uf8a7'),
-        cmd_account_network_outline('\uf8a8'),
-        cmd_account_network('\uf8a9'),
-        cmd_account_off_outline('\uf8aa'),
-        cmd_account_off('\uf8ab'),
-        cmd_account_outline('\uf8ac'),
-        cmd_account_plus_outline('\uf8ad'),
-        cmd_account_plus('\uf8ae'),
-        cmd_account_question_outline('\uf8af'),
-        cmd_account_question('\uf8b0'),
-        cmd_account_remove_outline('\uf8b1'),
-        cmd_account_remove('\uf8b2'),
-        cmd_account_search_outline('\uf8b3'),
-        cmd_account_search('\uf8b4'),
-        cmd_account_settings_outline('\uf8b5'),
-        cmd_account_settings('\uf8b6'),
-        cmd_account_star_outline('\uf8b7'),
-        cmd_account_star('\uf8b8'),
-        cmd_account_supervisor_circle('\uf8b9'),
-        cmd_account_supervisor_outline('\uf8ba'),
-        cmd_account_supervisor('\uf8bb'),
-        cmd_account_switch('\uf8bc'),
-        cmd_account_tie_outline('\uf8bd'),
-        cmd_account_tie('\uf8be'),
-        cmd_account('\uf8bf'),
-        cmd_accusoft('\uf8c0'),
-        cmd_adchoices('\uf8c1'),
-        cmd_adjust('\uf8c2'),
-        cmd_adobe_acrobat('\uf8c3'),
-        cmd_adobe('\uf8c4'),
-        cmd_air_conditioner('\uf8c5'),
-        cmd_air_filter('\uf8c6'),
-        cmd_air_horn('\uf8c7'),
-        cmd_air_humidifier('\uf8c8'),
-        cmd_air_purifier('\uf8c9'),
-        cmd_airbag('\uf8ca'),
-        cmd_airballoon_outline('\uf8cb'),
-        cmd_airballoon('\uf8cc'),
-        cmd_airplane_landing('\uf8cd'),
-        cmd_airplane_off('\uf8ce'),
-        cmd_airplane_takeoff('\uf8cf'),
-        cmd_airplane('\uf8d0'),
-        cmd_airplay('\uf8d1'),
-        cmd_airport('\uf8d2'),
-        cmd_alarm_bell('\uf8d3'),
-        cmd_alarm_check('\uf8d4'),
-        cmd_alarm_light_outline('\uf8d5'),
-        cmd_alarm_light('\uf8d6'),
-        cmd_alarm_multiple('\uf8d7'),
-        cmd_alarm_note_off('\uf8d8'),
-        cmd_alarm_note('\uf8d9'),
-        cmd_alarm_off('\uf8da'),
-        cmd_alarm_plus('\uf8db'),
-        cmd_alarm_snooze('\uf8dc'),
-        cmd_alarm('\uf8dd'),
-        cmd_album('\uf8de'),
-        cmd_alert_box_outline('\uf8df'),
-        cmd_alert_box('\uf8e0'),
-        cmd_alert_circle_check_outline('\uf8e1'),
-        cmd_alert_circle_check('\uf8e2'),
-        cmd_alert_circle_outline('\uf8e3'),
-        cmd_alert_circle('\uf8e4'),
-        cmd_alert_decagram_outline('\uf8e5'),
-        cmd_alert_decagram('\uf8e6'),
-        cmd_alert_octagon_outline('\uf8e7'),
-        cmd_alert_octagon('\uf8e8'),
-        cmd_alert_octagram_outline('\uf8e9'),
-        cmd_alert_octagram('\uf8ea'),
-        cmd_alert_outline('\uf8eb'),
-        cmd_alert_rhombus_outline('\uf8ec'),
-        cmd_alert_rhombus('\uf8ed'),
-        cmd_alert('\uf8ee'),
-        cmd_alien_outline('\uf8ef'),
-        cmd_alien('\uf8f0'),
-        cmd_align_horizontal_center('\uf8f1'),
-        cmd_align_horizontal_left('\uf8f2'),
-        cmd_align_horizontal_right('\uf8f3'),
-        cmd_align_vertical_bottom('\uf8f4'),
-        cmd_align_vertical_center('\uf8f5'),
-        cmd_align_vertical_top('\uf8f6'),
-        cmd_all_inclusive('\uf8f7'),
-        cmd_allergy('\uf8f8'),
-        cmd_alpha_a_box_outline('\uf8f9'),
-        cmd_alpha_a_box('\uf8fa'),
-        cmd_alpha_a_circle_outline('\uf8fb'),
-        cmd_alpha_a_circle('\uf8fc'),
-        cmd_alpha_a('\uf8fd'),
-        cmd_alpha_b_box_outline('\uf8fe'),
-        cmd_alpha_b_box('\uf8ff'),
-        cmd_alpha_b_circle_outline('\uf900'),
-        cmd_alpha_b_circle('\uf901'),
-        cmd_alpha_b('\uf902'),
-        cmd_alpha_c_box_outline('\uf903'),
-        cmd_alpha_c_box('\uf904'),
-        cmd_alpha_c_circle_outline('\uf905'),
-        cmd_alpha_c_circle('\uf906'),
-        cmd_alpha_c('\uf907'),
-        cmd_alpha_d_box_outline('\uf908'),
-        cmd_alpha_d_box('\uf909'),
-        cmd_alpha_d_circle_outline('\uf90a'),
-        cmd_alpha_d_circle('\uf90b'),
-        cmd_alpha_d('\uf90c'),
-        cmd_alpha_e_box_outline('\uf90d'),
-        cmd_alpha_e_box('\uf90e'),
-        cmd_alpha_e_circle_outline('\uf90f'),
-        cmd_alpha_e_circle('\uf910'),
-        cmd_alpha_e('\uf911'),
-        cmd_alpha_f_box_outline('\uf912'),
-        cmd_alpha_f_box('\uf913'),
-        cmd_alpha_f_circle_outline('\uf914'),
-        cmd_alpha_f_circle('\uf915'),
-        cmd_alpha_f('\uf916'),
-        cmd_alpha_g_box_outline('\uf917'),
-        cmd_alpha_g_box('\uf918'),
-        cmd_alpha_g_circle_outline('\uf919'),
-        cmd_alpha_g_circle('\uf91a'),
-        cmd_alpha_g('\uf91b'),
-        cmd_alpha_h_box_outline('\uf91c'),
-        cmd_alpha_h_box('\uf91d'),
-        cmd_alpha_h_circle_outline('\uf91e'),
-        cmd_alpha_h_circle('\uf91f'),
-        cmd_alpha_h('\uf920'),
-        cmd_alpha_i_box_outline('\uf921'),
-        cmd_alpha_i_box('\uf922'),
-        cmd_alpha_i_circle_outline('\uf923'),
-        cmd_alpha_i_circle('\uf924'),
-        cmd_alpha_i('\uf925'),
-        cmd_alpha_j_box_outline('\uf926'),
-        cmd_alpha_j_box('\uf927'),
-        cmd_alpha_j_circle_outline('\uf928'),
-        cmd_alpha_j_circle('\uf929'),
-        cmd_alpha_j('\uf92a'),
-        cmd_alpha_k_box_outline('\uf92b'),
-        cmd_alpha_k_box('\uf92c'),
-        cmd_alpha_k_circle_outline('\uf92d'),
-        cmd_alpha_k_circle('\uf92e'),
-        cmd_alpha_k('\uf92f'),
-        cmd_alpha_l_box_outline('\uf930'),
-        cmd_alpha_l_box('\uf931'),
-        cmd_alpha_l_circle_outline('\uf932'),
-        cmd_alpha_l_circle('\uf933'),
-        cmd_alpha_l('\uf934'),
-        cmd_alpha_m_box_outline('\uf935'),
-        cmd_alpha_m_box('\uf936'),
-        cmd_alpha_m_circle_outline('\uf937'),
-        cmd_alpha_m_circle('\uf938'),
-        cmd_alpha_m('\uf939'),
-        cmd_alpha_n_box_outline('\uf93a'),
-        cmd_alpha_n_box('\uf93b'),
-        cmd_alpha_n_circle_outline('\uf93c'),
-        cmd_alpha_n_circle('\uf93d'),
-        cmd_alpha_n('\uf93e'),
-        cmd_alpha_o_box_outline('\uf93f'),
-        cmd_alpha_o_box('\uf940'),
-        cmd_alpha_o_circle_outline('\uf941'),
-        cmd_alpha_o_circle('\uf942'),
-        cmd_alpha_o('\uf943'),
-        cmd_alpha_p_box_outline('\uf944'),
-        cmd_alpha_p_box('\uf945'),
-        cmd_alpha_p_circle_outline('\uf946'),
-        cmd_alpha_p_circle('\uf947'),
-        cmd_alpha_p('\uf948'),
-        cmd_alpha_q_box_outline('\uf949'),
-        cmd_alpha_q_box('\uf94a'),
-        cmd_alpha_q_circle_outline('\uf94b'),
-        cmd_alpha_q_circle('\uf94c'),
-        cmd_alpha_q('\uf94d'),
-        cmd_alpha_r_box_outline('\uf94e'),
-        cmd_alpha_r_box('\uf94f'),
-        cmd_alpha_r_circle_outline('\uf950'),
-        cmd_alpha_r_circle('\uf951'),
-        cmd_alpha_r('\uf952'),
-        cmd_alpha_s_box_outline('\uf953'),
-        cmd_alpha_s_box('\uf954'),
-        cmd_alpha_s_circle_outline('\uf955'),
-        cmd_alpha_s_circle('\uf956'),
-        cmd_alpha_s('\uf957'),
-        cmd_alpha_t_box_outline('\uf958'),
-        cmd_alpha_t_box('\uf959'),
-        cmd_alpha_t_circle_outline('\uf95a'),
-        cmd_alpha_t_circle('\uf95b'),
-        cmd_alpha_t('\uf95c'),
-        cmd_alpha_u_box_outline('\uf95d'),
-        cmd_alpha_u_box('\uf95e'),
-        cmd_alpha_u_circle_outline('\uf95f'),
-        cmd_alpha_u_circle('\uf960'),
-        cmd_alpha_u('\uf961'),
-        cmd_alpha_v_box_outline('\uf962'),
-        cmd_alpha_v_box('\uf963'),
-        cmd_alpha_v_circle_outline('\uf964'),
-        cmd_alpha_v_circle('\uf965'),
-        cmd_alpha_v('\uf966'),
-        cmd_alpha_w_box_outline('\uf967'),
-        cmd_alpha_w_box('\uf968'),
-        cmd_alpha_w_circle_outline('\uf969'),
-        cmd_alpha_w_circle('\uf96a'),
-        cmd_alpha_w('\uf96b'),
-        cmd_alpha_x_box_outline('\uf96c'),
-        cmd_alpha_x_box('\uf96d'),
-        cmd_alpha_x_circle_outline('\uf96e'),
-        cmd_alpha_x_circle('\uf96f'),
-        cmd_alpha_x('\uf970'),
-        cmd_alpha_y_box_outline('\uf971'),
-        cmd_alpha_y_box('\uf972'),
-        cmd_alpha_y_circle_outline('\uf973'),
-        cmd_alpha_y_circle('\uf974'),
-        cmd_alpha_y('\uf975'),
-        cmd_alpha_z_box_outline('\uf976'),
-        cmd_alpha_z_box('\uf977'),
-        cmd_alpha_z_circle_outline('\uf978'),
-        cmd_alpha_z_circle('\uf979'),
-        cmd_alpha_z('\uf97a'),
-        cmd_alpha('\uf97b'),
-        cmd_alphabetical_off('\uf97c'),
-        cmd_alphabetical_variant_off('\uf97d'),
-        cmd_alphabetical_variant('\uf97e'),
-        cmd_alphabetical('\uf97f'),
-        cmd_altimeter('\uf980'),
-        cmd_amazon_alexa('\uf981'),
-        cmd_amazon_drive('\uf982'),
-        cmd_amazon('\uf983'),
-        cmd_ambulance('\uf984'),
-        cmd_ammunition('\uf985'),
-        cmd_ampersand('\uf986'),
-        cmd_amplifier_off('\uf987'),
-        cmd_amplifier('\uf988'),
-        cmd_anchor('\uf989'),
-        cmd_android_auto('\uf98a'),
-        cmd_android_debug_bridge('\uf98b'),
-        cmd_android_head('\uf98c'),
-        cmd_android_messages('\uf98d'),
-        cmd_android_studio('\uf98e'),
-        cmd_android('\uf98f'),
-        cmd_angle_acute('\uf990'),
-        cmd_angle_obtuse('\uf991'),
-        cmd_angle_right('\uf992'),
-        cmd_angular('\uf993'),
-        cmd_angularjs('\uf994'),
-        cmd_animation_outline('\uf995'),
-        cmd_animation_play_outline('\uf996'),
-        cmd_animation_play('\uf997'),
-        cmd_animation('\uf998'),
-        cmd_ansible('\uf999'),
-        cmd_antenna('\uf99a'),
-        cmd_anvil('\uf99b'),
-        cmd_apache_kafka('\uf99c'),
-        cmd_api_off('\uf99d'),
-        cmd_api('\uf99e'),
-        cmd_apple_finder('\uf99f'),
-        cmd_apple_icloud('\uf9a0'),
-        cmd_apple_ios('\uf9a1'),
-        cmd_apple_keyboard_caps('\uf9a2'),
-        cmd_apple_keyboard_command('\uf9a3'),
-        cmd_apple_keyboard_control('\uf9a4'),
-        cmd_apple_keyboard_option('\uf9a5'),
-        cmd_apple_keyboard_shift('\uf9a6'),
-        cmd_apple_safari('\uf9a7'),
-        cmd_apple('\uf9a8'),
-        cmd_application_export('\uf9a9'),
-        cmd_application_import('\uf9aa'),
-        cmd_application('\uf9ab'),
-        cmd_approximately_equal_box('\uf9ac'),
-        cmd_approximately_equal('\uf9ad'),
-        cmd_apps_box('\uf9ae'),
-        cmd_apps('\uf9af'),
-        cmd_arch('\uf9b0'),
-        cmd_archive_arrow_down_outline('\uf9b1'),
-        cmd_archive_arrow_down('\uf9b2'),
-        cmd_archive_arrow_up_outline('\uf9b3'),
-        cmd_archive_arrow_up('\uf9b4'),
-        cmd_archive_outline('\uf9b5'),
-        cmd_archive('\uf9b6'),
-        cmd_arm_flex_outline('\uf9b7'),
-        cmd_arm_flex('\uf9b8'),
-        cmd_arrange_bring_forward('\uf9b9'),
-        cmd_arrange_bring_to_front('\uf9ba'),
-        cmd_arrange_send_backward('\uf9bb'),
-        cmd_arrange_send_to_back('\uf9bc'),
-        cmd_arrow_all('\uf9bd'),
-        cmd_arrow_bottom_left_bold_outline('\uf9be'),
-        cmd_arrow_bottom_left_thick('\uf9bf'),
-        cmd_arrow_bottom_left('\uf9c0'),
-        cmd_arrow_bottom_right_bold_outline('\uf9c1'),
-        cmd_arrow_bottom_right_thick('\uf9c2'),
-        cmd_arrow_bottom_right('\uf9c3'),
-        cmd_arrow_collapse_all('\uf9c4'),
-        cmd_arrow_collapse_down('\uf9c5'),
-        cmd_arrow_collapse_horizontal('\uf9c6'),
-        cmd_arrow_collapse_left('\uf9c7'),
-        cmd_arrow_collapse_right('\uf9c8'),
-        cmd_arrow_collapse_up('\uf9c9'),
-        cmd_arrow_collapse_vertical('\uf9ca'),
-        cmd_arrow_collapse('\uf9cb'),
-        cmd_arrow_decision_auto_outline('\uf9cc'),
-        cmd_arrow_decision_auto('\uf9cd'),
-        cmd_arrow_decision_outline('\uf9ce'),
-        cmd_arrow_decision('\uf9cf'),
-        cmd_arrow_down_bold_box_outline('\uf9d0'),
-        cmd_arrow_down_bold_box('\uf9d1'),
-        cmd_arrow_down_bold_circle_outline('\uf9d2'),
-        cmd_arrow_down_bold_circle('\uf9d3'),
-        cmd_arrow_down_bold_hexagon_outline('\uf9d4'),
-        cmd_arrow_down_bold_outline('\uf9d5'),
-        cmd_arrow_down_bold('\uf9d6'),
-        cmd_arrow_down_box('\uf9d7'),
-        cmd_arrow_down_circle_outline('\uf9d8'),
-        cmd_arrow_down_circle('\uf9d9'),
-        cmd_arrow_down_drop_circle_outline('\uf9da'),
-        cmd_arrow_down_drop_circle('\uf9db'),
-        cmd_arrow_down_thick('\uf9dc'),
-        cmd_arrow_down('\uf9dd'),
-        cmd_arrow_expand_all('\uf9de'),
-        cmd_arrow_expand_down('\uf9df'),
-        cmd_arrow_expand_horizontal('\uf9e0'),
-        cmd_arrow_expand_left('\uf9e1'),
-        cmd_arrow_expand_right('\uf9e2'),
-        cmd_arrow_expand_up('\uf9e3'),
-        cmd_arrow_expand_vertical('\uf9e4'),
-        cmd_arrow_expand('\uf9e5'),
-        cmd_arrow_horizontal_lock('\uf9e6'),
-        cmd_arrow_left_bold_box_outline('\uf9e7'),
-        cmd_arrow_left_bold_box('\uf9e8'),
-        cmd_arrow_left_bold_circle_outline('\uf9e9'),
-        cmd_arrow_left_bold_circle('\uf9ea'),
-        cmd_arrow_left_bold_hexagon_outline('\uf9eb'),
-        cmd_arrow_left_bold_outline('\uf9ec'),
-        cmd_arrow_left_bold('\uf9ed'),
-        cmd_arrow_left_box('\uf9ee'),
-        cmd_arrow_left_circle_outline('\uf9ef'),
-        cmd_arrow_left_circle('\uf9f0'),
-        cmd_arrow_left_drop_circle_outline('\uf9f1'),
-        cmd_arrow_left_drop_circle('\uf9f2'),
-        cmd_arrow_left_right_bold_outline('\uf9f3'),
-        cmd_arrow_left_right_bold('\uf9f4'),
-        cmd_arrow_left_right('\uf9f5'),
-        cmd_arrow_left_thick('\uf9f6'),
-        cmd_arrow_left('\uf9f7'),
-        cmd_arrow_right_bold_box_outline('\uf9f8'),
-        cmd_arrow_right_bold_box('\uf9f9'),
-        cmd_arrow_right_bold_circle_outline('\uf9fa'),
-        cmd_arrow_right_bold_circle('\uf9fb'),
-        cmd_arrow_right_bold_hexagon_outline('\uf9fc'),
-        cmd_arrow_right_bold_outline('\uf9fd'),
-        cmd_arrow_right_bold('\uf9fe'),
-        cmd_arrow_right_box('\uf9ff'),
-        cmd_arrow_right_circle_outline('\ufa00'),
-        cmd_arrow_right_circle('\ufa01'),
-        cmd_arrow_right_drop_circle_outline('\ufa02'),
-        cmd_arrow_right_drop_circle('\ufa03'),
-        cmd_arrow_right_thick('\ufa04'),
-        cmd_arrow_right('\ufa05'),
-        cmd_arrow_split_horizontal('\ufa06'),
-        cmd_arrow_split_vertical('\ufa07'),
-        cmd_arrow_top_left_bold_outline('\ufa08'),
-        cmd_arrow_top_left_bottom_right_bold('\ufa09'),
-        cmd_arrow_top_left_bottom_right('\ufa0a'),
-        cmd_arrow_top_left_thick('\ufa0b'),
-        cmd_arrow_top_left('\ufa0c'),
-        cmd_arrow_top_right_bold_outline('\ufa0d'),
-        cmd_arrow_top_right_bottom_left_bold('\ufa0e'),
-        cmd_arrow_top_right_bottom_left('\ufa0f'),
-        cmd_arrow_top_right_thick('\ufa10'),
-        cmd_arrow_top_right('\ufa11'),
-        cmd_arrow_up_bold_box_outline('\ufa12'),
-        cmd_arrow_up_bold_box('\ufa13'),
-        cmd_arrow_up_bold_circle_outline('\ufa14'),
-        cmd_arrow_up_bold_circle('\ufa15'),
-        cmd_arrow_up_bold_hexagon_outline('\ufa16'),
-        cmd_arrow_up_bold_outline('\ufa17'),
-        cmd_arrow_up_bold('\ufa18'),
-        cmd_arrow_up_box('\ufa19'),
-        cmd_arrow_up_circle_outline('\ufa1a'),
-        cmd_arrow_up_circle('\ufa1b'),
-        cmd_arrow_up_down_bold_outline('\ufa1c'),
-        cmd_arrow_up_down_bold('\ufa1d'),
-        cmd_arrow_up_down('\ufa1e'),
-        cmd_arrow_up_drop_circle_outline('\ufa1f'),
-        cmd_arrow_up_drop_circle('\ufa20'),
-        cmd_arrow_up_thick('\ufa21'),
-        cmd_arrow_up('\ufa22'),
-        cmd_arrow_vertical_lock('\ufa23'),
-        cmd_artist_outline('\ufa24'),
-        cmd_artist('\ufa25'),
-        cmd_artstation('\ufa26'),
-        cmd_aspect_ratio('\ufa27'),
-        cmd_assistant('\ufa28'),
-        cmd_asterisk('\ufa29'),
-        cmd_at('\ufa2a'),
-        cmd_atlassian('\ufa2b'),
-        cmd_atm('\ufa2c'),
-        cmd_atom_variant('\ufa2d'),
-        cmd_atom('\ufa2e'),
-        cmd_attachment('\ufa2f'),
-        cmd_audio_video_off('\ufa30'),
-        cmd_audio_video('\ufa31'),
-        cmd_audiobook('\ufa32'),
-        cmd_augmented_reality('\ufa33'),
-        cmd_auto_fix('\ufa34'),
-        cmd_auto_upload('\ufa35'),
-        cmd_autorenew('\ufa36'),
-        cmd_av_timer('\ufa37'),
-        cmd_aws('\ufa38'),
-        cmd_axe('\ufa39'),
-        cmd_axis_arrow_lock('\ufa3a'),
-        cmd_axis_arrow('\ufa3b'),
-        cmd_axis_lock('\ufa3c'),
-        cmd_axis_x_arrow_lock('\ufa3d'),
-        cmd_axis_x_arrow('\ufa3e'),
-        cmd_axis_x_rotate_clockwise('\ufa3f'),
-        cmd_axis_x_rotate_counterclockwise('\ufa40'),
-        cmd_axis_x_y_arrow_lock('\ufa41'),
-        cmd_axis_y_arrow_lock('\ufa42'),
-        cmd_axis_y_arrow('\ufa43'),
-        cmd_axis_y_rotate_clockwise('\ufa44'),
-        cmd_axis_y_rotate_counterclockwise('\ufa45'),
-        cmd_axis_z_arrow_lock('\ufa46'),
-        cmd_axis_z_arrow('\ufa47'),
-        cmd_axis_z_rotate_clockwise('\ufa48'),
-        cmd_axis_z_rotate_counterclockwise('\ufa49'),
-        cmd_axis('\ufa4a'),
-        cmd_azure_devops('\ufa4b'),
-        cmd_azure('\ufa4c'),
-        cmd_babel('\ufa4d'),
-        cmd_baby_bottle_outline('\ufa4e'),
-        cmd_baby_bottle('\ufa4f'),
-        cmd_baby_carriage_off('\ufa50'),
-        cmd_baby_carriage('\ufa51'),
-        cmd_baby_face_outline('\ufa52'),
-        cmd_baby_face('\ufa53'),
-        cmd_baby('\ufa54'),
-        cmd_backburger('\ufa55'),
-        cmd_backspace_outline('\ufa56'),
-        cmd_backspace_reverse_outline('\ufa57'),
-        cmd_backspace_reverse('\ufa58'),
-        cmd_backspace('\ufa59'),
-        cmd_backup_restore('\ufa5a'),
-        cmd_bacteria_outline('\ufa5b'),
-        cmd_bacteria('\ufa5c'),
-        cmd_badminton('\ufa5d'),
-        cmd_bag_carry_on_check('\ufa5e'),
-        cmd_bag_carry_on_off('\ufa5f'),
-        cmd_bag_carry_on('\ufa60'),
-        cmd_bag_checked('\ufa61'),
-        cmd_bag_personal_off_outline('\ufa62'),
-        cmd_bag_personal_off('\ufa63'),
-        cmd_bag_personal_outline('\ufa64'),
-        cmd_bag_personal('\ufa65'),
-        cmd_baguette('\ufa66'),
-        cmd_balloon('\ufa67'),
-        cmd_ballot_outline('\ufa68'),
-        cmd_ballot_recount_outline('\ufa69'),
-        cmd_ballot_recount('\ufa6a'),
-        cmd_ballot('\ufa6b'),
-        cmd_bandage('\ufa6c'),
-        cmd_bandcamp('\ufa6d'),
-        cmd_bank_minus('\ufa6e'),
-        cmd_bank_outline('\ufa6f'),
-        cmd_bank_plus('\ufa70'),
-        cmd_bank_remove('\ufa71'),
-        cmd_bank_transfer_in('\ufa72'),
-        cmd_bank_transfer_out('\ufa73'),
-        cmd_bank_transfer('\ufa74'),
-        cmd_bank('\ufa75'),
-        cmd_barcode_off('\ufa76'),
-        cmd_barcode_scan('\ufa77'),
-        cmd_barcode('\ufa78'),
-        cmd_barley_off('\ufa79'),
-        cmd_barley('\ufa7a'),
-        cmd_barn('\ufa7b'),
-        cmd_barrel('\ufa7c'),
-        cmd_baseball_bat('\ufa7d'),
-        cmd_baseball('\ufa7e'),
-        cmd_basecamp('\ufa7f'),
-        cmd_bash('\ufa80'),
-        cmd_basket_fill('\ufa81'),
-        cmd_basket_outline('\ufa82'),
-        cmd_basket_unfill('\ufa83'),
-        cmd_basket('\ufa84'),
-        cmd_basketball_hoop_outline('\ufa85'),
-        cmd_basketball_hoop('\ufa86'),
-        cmd_basketball('\ufa87'),
-        cmd_bat('\ufa88'),
-        cmd_battery_10_bluetooth('\ufa89'),
-        cmd_battery_10('\ufa8a'),
-        cmd_battery_20_bluetooth('\ufa8b'),
-        cmd_battery_20('\ufa8c'),
-        cmd_battery_30_bluetooth('\ufa8d'),
-        cmd_battery_30('\ufa8e'),
-        cmd_battery_40_bluetooth('\ufa8f'),
-        cmd_battery_40('\ufa90'),
-        cmd_battery_50_bluetooth('\ufa91'),
-        cmd_battery_50('\ufa92'),
-        cmd_battery_60_bluetooth('\ufa93'),
-        cmd_battery_60('\ufa94'),
-        cmd_battery_70_bluetooth('\ufa95'),
-        cmd_battery_70('\ufa96'),
-        cmd_battery_80_bluetooth('\ufa97'),
-        cmd_battery_80('\ufa98'),
-        cmd_battery_90_bluetooth('\ufa99'),
-        cmd_battery_90('\ufa9a'),
-        cmd_battery_alert_bluetooth('\ufa9b'),
-        cmd_battery_alert_variant_outline('\ufa9c'),
-        cmd_battery_alert_variant('\ufa9d'),
-        cmd_battery_alert('\ufa9e'),
-        cmd_battery_bluetooth_variant('\ufa9f'),
-        cmd_battery_bluetooth('\ufaa0'),
-        cmd_battery_charging_10('\ufaa1'),
-        cmd_battery_charging_20('\ufaa2'),
-        cmd_battery_charging_30('\ufaa3'),
-        cmd_battery_charging_40('\ufaa4'),
-        cmd_battery_charging_50('\ufaa5'),
-        cmd_battery_charging_60('\ufaa6'),
-        cmd_battery_charging_70('\ufaa7'),
-        cmd_battery_charging_80('\ufaa8'),
-        cmd_battery_charging_90('\ufaa9'),
-        cmd_battery_charging_100('\ufaaa'),
-        cmd_battery_charging_high('\ufaab'),
-        cmd_battery_charging_low('\ufaac'),
-        cmd_battery_charging_medium('\ufaad'),
-        cmd_battery_charging_outline('\ufaae'),
-        cmd_battery_charging_wireless_10('\ufaaf'),
-        cmd_battery_charging_wireless_20('\ufab0'),
-        cmd_battery_charging_wireless_30('\ufab1'),
-        cmd_battery_charging_wireless_40('\ufab2'),
-        cmd_battery_charging_wireless_50('\ufab3'),
-        cmd_battery_charging_wireless_60('\ufab4'),
-        cmd_battery_charging_wireless_70('\ufab5'),
-        cmd_battery_charging_wireless_80('\ufab6'),
-        cmd_battery_charging_wireless_90('\ufab7'),
-        cmd_battery_charging_wireless_alert('\ufab8'),
-        cmd_battery_charging_wireless_outline('\ufab9'),
-        cmd_battery_charging_wireless('\ufaba'),
-        cmd_battery_charging('\ufabb'),
-        cmd_battery_heart_outline('\ufabc'),
-        cmd_battery_heart_variant('\ufabd'),
-        cmd_battery_heart('\ufabe'),
-        cmd_battery_high('\ufabf'),
-        cmd_battery_low('\ufac0'),
-        cmd_battery_medium('\ufac1'),
-        cmd_battery_minus('\ufac2'),
-        cmd_battery_negative('\ufac3'),
-        cmd_battery_off_outline('\ufac4'),
-        cmd_battery_off('\ufac5'),
-        cmd_battery_outline('\ufac6'),
-        cmd_battery_plus('\ufac7'),
-        cmd_battery_positive('\ufac8'),
-        cmd_battery_unknown_bluetooth('\ufac9'),
-        cmd_battery_unknown('\ufaca'),
-        cmd_battery('\ufacb'),
-        cmd_battlenet('\ufacc'),
-        cmd_beach('\ufacd'),
-        cmd_beaker_alert_outline('\uface'),
-        cmd_beaker_alert('\ufacf'),
-        cmd_beaker_check_outline('\ufad0'),
-        cmd_beaker_check('\ufad1'),
-        cmd_beaker_minus_outline('\ufad2'),
-        cmd_beaker_minus('\ufad3'),
-        cmd_beaker_outline('\ufad4'),
-        cmd_beaker_plus_outline('\ufad5'),
-        cmd_beaker_plus('\ufad6'),
-        cmd_beaker_question_outline('\ufad7'),
-        cmd_beaker_question('\ufad8'),
-        cmd_beaker_remove_outline('\ufad9'),
-        cmd_beaker_remove('\ufada'),
-        cmd_beaker('\ufadb'),
-        cmd_beats('\ufadc'),
-        cmd_bed_double_outline('\ufadd'),
-        cmd_bed_double('\ufade'),
-        cmd_bed_empty('\ufadf'),
-        cmd_bed_king_outline('\ufae0'),
-        cmd_bed_king('\ufae1'),
-        cmd_bed_queen_outline('\ufae2'),
-        cmd_bed_queen('\ufae3'),
-        cmd_bed_single_outline('\ufae4'),
-        cmd_bed_single('\ufae5'),
-        cmd_bee_flower('\ufae6'),
-        cmd_bee('\ufae7'),
-        cmd_beehive_outline('\ufae8'),
-        cmd_beer('\ufae9'),
-        cmd_behance('\ufaea'),
-        cmd_bell_alert_outline('\ufaeb'),
-        cmd_bell_alert('\ufaec'),
-        cmd_bell_check_outline('\ufaed'),
-        cmd_bell_check('\ufaee'),
-        cmd_bell_circle_outline('\ufaef'),
-        cmd_bell_circle('\ufaf0'),
-        cmd_bell_off_outline('\ufaf1'),
-        cmd_bell_off('\ufaf2'),
-        cmd_bell_outline('\ufaf3'),
-        cmd_bell_plus_outline('\ufaf4'),
-        cmd_bell_plus('\ufaf5'),
-        cmd_bell_ring_outline('\ufaf6'),
-        cmd_bell_ring('\ufaf7'),
-        cmd_bell_sleep_outline('\ufaf8'),
-        cmd_bell_sleep('\ufaf9'),
-        cmd_bell('\ufafa'),
-        cmd_beta('\ufafb'),
-        cmd_betamax('\ufafc'),
-        cmd_biathlon('\ufafd'),
-        cmd_bible('\ufafe'),
-        cmd_bicycle_basket('\ufaff'),
-        cmd_bicycle('\ufb00'),
-        cmd_bike_fast('\ufb01'),
-        cmd_bike('\ufb02'),
-        cmd_billboard('\ufb03'),
-        cmd_billiards_rack('\ufb04'),
-        cmd_billiards('\ufb05'),
-        cmd_bing('\ufb06'),
-        cmd_binoculars('\ufb07'),
-        cmd_bio('\ufb08'),
-        cmd_biohazard('\ufb09'),
-        cmd_bitbucket('\ufb0a'),
-        cmd_bitcoin('\ufb0b'),
-        cmd_black_mesa('\ufb0c'),
-        cmd_blackberry('\ufb0d'),
-        cmd_blender_software('\ufb0e'),
-        cmd_blender('\ufb0f'),
-        cmd_blinds_open('\ufb10'),
-        cmd_blinds('\ufb11'),
-        cmd_block_helper('\ufb12'),
-        cmd_blogger('\ufb13'),
-        cmd_blood_bag('\ufb14'),
-        cmd_bluetooth_audio('\ufb15'),
-        cmd_bluetooth_connect('\ufb16'),
-        cmd_bluetooth_off('\ufb17'),
-        cmd_bluetooth_settings('\ufb18'),
-        cmd_bluetooth_transfer('\ufb19'),
-        cmd_bluetooth('\ufb1a'),
-        cmd_blur_linear('\ufb1b'),
-        cmd_blur_off('\ufb1c'),
-        cmd_blur_radial('\ufb1d'),
-        cmd_blur('\ufb1e'),
-        cmd_bolnisi_cross('\ufb1f'),
-        cmd_bolt('\ufb20'),
-        cmd_bomb_off('\ufb21'),
-        cmd_bomb('\ufb22'),
-        cmd_bone('\ufb23'),
-        cmd_book_information_variant('\ufb24'),
-        cmd_book_lock_open('\ufb25'),
-        cmd_book_lock('\ufb26'),
-        cmd_book_minus_multiple('\ufb27'),
-        cmd_book_minus('\ufb28'),
-        cmd_book_multiple('\ufb29'),
-        cmd_book_open_outline('\ufb2a'),
-        cmd_book_open_page_variant('\ufb2b'),
-        cmd_book_open_variant('\ufb2c'),
-        cmd_book_open('\ufb2d'),
-        cmd_book_outline('\ufb2e'),
-        cmd_book_play_outline('\ufb2f'),
-        cmd_book_play('\ufb30'),
-        cmd_book_plus_multiple('\ufb31'),
-        cmd_book_plus('\ufb32'),
-        cmd_book_remove_multiple('\ufb33'),
-        cmd_book_remove('\ufb34'),
-        cmd_book_search_outline('\ufb35'),
-        cmd_book_search('\ufb36'),
-        cmd_book_variant_multiple('\ufb37'),
-        cmd_book_variant('\ufb38'),
-        cmd_book('\ufb39'),
-        cmd_bookmark_check('\ufb3a'),
-        cmd_bookmark_minus_outline('\ufb3b'),
-        cmd_bookmark_minus('\ufb3c'),
-        cmd_bookmark_multiple_outline('\ufb3d'),
-        cmd_bookmark_multiple('\ufb3e'),
-        cmd_bookmark_music('\ufb3f'),
-        cmd_bookmark_off_outline('\ufb40'),
-        cmd_bookmark_off('\ufb41'),
-        cmd_bookmark_outline('\ufb42'),
-        cmd_bookmark_plus_outline('\ufb43'),
-        cmd_bookmark_plus('\ufb44'),
-        cmd_bookmark_remove('\ufb45'),
-        cmd_bookmark('\ufb46'),
-        cmd_bookshelf('\ufb47'),
-        cmd_boom_gate_alert_outline('\ufb48'),
-        cmd_boom_gate_alert('\ufb49'),
-        cmd_boom_gate_down_outline('\ufb4a'),
-        cmd_boom_gate_down('\ufb4b'),
-        cmd_boom_gate_outline('\ufb4c'),
-        cmd_boom_gate_up_outline('\ufb4d'),
-        cmd_boom_gate_up('\ufb4e'),
-        cmd_boom_gate('\ufb4f'),
-        cmd_boombox('\ufb50'),
-        cmd_boomerang('\ufb51'),
-        cmd_bootstrap('\ufb52'),
-        cmd_border_all_variant('\ufb53'),
-        cmd_border_all('\ufb54'),
-        cmd_border_bottom_variant('\ufb55'),
-        cmd_border_bottom('\ufb56'),
-        cmd_border_color('\ufb57'),
-        cmd_border_horizontal('\ufb58'),
-        cmd_border_inside('\ufb59'),
-        cmd_border_left_variant('\ufb5a'),
-        cmd_border_left('\ufb5b'),
-        cmd_border_none_variant('\ufb5c'),
-        cmd_border_none('\ufb5d'),
-        cmd_border_outside('\ufb5e'),
-        cmd_border_right_variant('\ufb5f'),
-        cmd_border_right('\ufb60'),
-        cmd_border_style('\ufb61'),
-        cmd_border_top_variant('\ufb62'),
-        cmd_border_top('\ufb63'),
-        cmd_border_vertical('\ufb64'),
-        cmd_bottle_soda_classic('\ufb65'),
-        cmd_bottle_soda_outline('\ufb66'),
-        cmd_bottle_soda('\ufb67'),
-        cmd_bottle_tonic_outline('\ufb68'),
-        cmd_bottle_tonic_plus_outline('\ufb69'),
-        cmd_bottle_tonic_plus('\ufb6a'),
-        cmd_bottle_tonic_skull_outline('\ufb6b'),
-        cmd_bottle_tonic_skull('\ufb6c'),
-        cmd_bottle_tonic('\ufb6d'),
-        cmd_bottle_wine('\ufb6e'),
-        cmd_bow_tie('\ufb6f'),
-        cmd_bowl('\ufb70'),
-        cmd_bowling('\ufb71'),
-        cmd_box_cutter('\ufb72'),
-        cmd_box_shadow('\ufb73'),
-        cmd_box('\ufb74'),
-        cmd_boxing_glove('\ufb75'),
-        cmd_braille('\ufb76'),
-        cmd_brain('\ufb77'),
-        cmd_bread_slice_outline('\ufb78'),
-        cmd_bread_slice('\ufb79'),
-        cmd_bridge('\ufb7a'),
-        cmd_briefcase_account_outline('\ufb7b'),
-        cmd_briefcase_account('\ufb7c'),
-        cmd_briefcase_check('\ufb7d'),
-        cmd_briefcase_clock_outline('\ufb7e'),
-        cmd_briefcase_clock('\ufb7f'),
-        cmd_briefcase_download_outline('\ufb80'),
-        cmd_briefcase_download('\ufb81'),
-        cmd_briefcase_edit_outline('\ufb82'),
-        cmd_briefcase_edit('\ufb83'),
-        cmd_briefcase_minus_outline('\ufb84'),
-        cmd_briefcase_minus('\ufb85'),
-        cmd_briefcase_outline('\ufb86'),
-        cmd_briefcase_plus_outline('\ufb87'),
-        cmd_briefcase_plus('\ufb88'),
-        cmd_briefcase_remove_outline('\ufb89'),
-        cmd_briefcase_remove('\ufb8a'),
-        cmd_briefcase_search_outline('\ufb8b'),
-        cmd_briefcase_search('\ufb8c'),
-        cmd_briefcase_upload_outline('\ufb8d'),
-        cmd_briefcase_upload('\ufb8e'),
-        cmd_briefcase('\ufb8f'),
-        cmd_brightness_1('\ufb90'),
-        cmd_brightness_2('\ufb91'),
-        cmd_brightness_3('\ufb92'),
-        cmd_brightness_4('\ufb93'),
-        cmd_brightness_5('\ufb94'),
-        cmd_brightness_6('\ufb95'),
-        cmd_brightness_7('\ufb96'),
-        cmd_brightness_auto('\ufb97'),
-        cmd_brightness_percent('\ufb98'),
-        cmd_broom('\ufb99'),
-        cmd_brush('\ufb9a'),
-        cmd_buddhism('\ufb9b'),
-        cmd_buffer('\ufb9c'),
-        cmd_bug_check_outline('\ufb9d'),
-        cmd_bug_check('\ufb9e'),
-        cmd_bug_outline('\ufb9f'),
-        cmd_bug('\ufba0'),
-        cmd_bugle('\ufba1'),
-        cmd_bulldozer('\ufba2'),
-        cmd_bullet('\ufba3'),
-        cmd_bulletin_board('\ufba4'),
-        cmd_bullhorn_outline('\ufba5'),
-        cmd_bullhorn('\ufba6'),
-        cmd_bullseye_arrow('\ufba7'),
-        cmd_bullseye('\ufba8'),
-        cmd_bus_alert('\ufba9'),
-        cmd_bus_articulated_end('\ufbaa'),
-        cmd_bus_articulated_front('\ufbab'),
-        cmd_bus_clock('\ufbac'),
-        cmd_bus_double_decker('\ufbad'),
-        cmd_bus_marker('\ufbae'),
-        cmd_bus_multiple('\ufbaf'),
-        cmd_bus_school('\ufbb0'),
-        cmd_bus_side('\ufbb1'),
-        cmd_bus_stop_covered('\ufbb2'),
-        cmd_bus_stop_uncovered('\ufbb3'),
-        cmd_bus_stop('\ufbb4'),
-        cmd_bus('\ufbb5'),
-        cmd_cached('\ufbb6'),
-        cmd_cactus('\ufbb7'),
-        cmd_cake_layered('\ufbb8'),
-        cmd_cake_variant('\ufbb9'),
-        cmd_cake('\ufbba'),
-        cmd_calculator_variant('\ufbbb'),
-        cmd_calculator('\ufbbc'),
-        cmd_calendar_account_outline('\ufbbd'),
-        cmd_calendar_account('\ufbbe'),
-        cmd_calendar_alert('\ufbbf'),
-        cmd_calendar_arrow_left('\ufbc0'),
-        cmd_calendar_arrow_right('\ufbc1'),
-        cmd_calendar_blank_multiple('\ufbc2'),
-        cmd_calendar_blank_outline('\ufbc3'),
-        cmd_calendar_blank('\ufbc4'),
-        cmd_calendar_check_outline('\ufbc5'),
-        cmd_calendar_check('\ufbc6'),
-        cmd_calendar_clock('\ufbc7'),
-        cmd_calendar_edit('\ufbc8'),
-        cmd_calendar_export('\ufbc9'),
-        cmd_calendar_heart('\ufbca'),
-        cmd_calendar_import('\ufbcb'),
-        cmd_calendar_minus('\ufbcc'),
-        cmd_calendar_month_outline('\ufbcd'),
-        cmd_calendar_month('\ufbce'),
-        cmd_calendar_multiple_check('\ufbcf'),
-        cmd_calendar_multiple('\ufbd0'),
-        cmd_calendar_multiselect('\ufbd1'),
-        cmd_calendar_outline('\ufbd2'),
-        cmd_calendar_plus('\ufbd3'),
-        cmd_calendar_question('\ufbd4'),
-        cmd_calendar_range_outline('\ufbd5'),
-        cmd_calendar_range('\ufbd6'),
-        cmd_calendar_remove_outline('\ufbd7'),
-        cmd_calendar_remove('\ufbd8'),
-        cmd_calendar_repeat_outline('\ufbd9'),
-        cmd_calendar_repeat('\ufbda'),
-        cmd_calendar_search('\ufbdb'),
-        cmd_calendar_star('\ufbdc'),
-        cmd_calendar_text_outline('\ufbdd'),
-        cmd_calendar_text('\ufbde'),
-        cmd_calendar_today('\ufbdf'),
-        cmd_calendar_week_begin('\ufbe0'),
-        cmd_calendar_week('\ufbe1'),
-        cmd_calendar_weekend_outline('\ufbe2'),
-        cmd_calendar_weekend('\ufbe3'),
-        cmd_calendar('\ufbe4');
-
-        override val typeface: ITypeface by lazy { CommunityMaterial }
-    }
+    override val typeface: ITypeface by lazy { CommunityMaterial }
 }

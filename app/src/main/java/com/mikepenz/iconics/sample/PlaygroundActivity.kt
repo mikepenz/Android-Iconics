@@ -154,9 +154,9 @@ class PlaygroundActivity : AppCompatActivity() {
         binding.list.adapter = IconsAdapter(this, array)
 
         // Create icons for menu_navigation
-        val planningIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_history)
-        val homeIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_home)
-        val calendarIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon4.cmd_calendar)
+        val planningIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon.cmd_read)
+        val homeIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon.cmd_read)
+        val calendarIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon.cmd_read)
 
         // Set icons
         binding.navigation.menu.apply {
