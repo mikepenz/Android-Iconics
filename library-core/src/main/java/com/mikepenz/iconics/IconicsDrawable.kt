@@ -57,7 +57,7 @@ import com.mikepenz.iconics.utils.toIconicsSizePx
 import com.mikepenz.iconics.utils.toIconicsSizeRes
 
 /** A custom [Drawable] which can display icons from icon fonts. */
-open class IconicsDrawable(protected val context: Context) : Drawable() {
+open class IconicsDrawable(protected val context: Context? = null) : Drawable() {
     protected val iconBrush = IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundContourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
@@ -225,7 +225,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return new IconicsDrawable with the same values.
      */
     fun toAnimatedDrawable(): IconicsAnimatedDrawable {
-        return copyTo(IconicsAnimatedDrawable(context))
+        return copyTo(IconicsAnimatedDrawable(context!!))
     }
 
     private fun <T : IconicsDrawable> copyTo(other: T): T {
@@ -432,7 +432,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun color(colors: IconicsColor): IconicsDrawable {
-        iconBrush.colorsList = colors.extractList(context)
+        iconBrush.colorsList = colors.extractList(context!!)
         if (iconBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -455,7 +455,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun iconOffsetX(size: IconicsSize): IconicsDrawable {
-        iconOffsetX = size.extract(context)
+        iconOffsetX = size.extract(context!!)
 
         invalidateSelf()
         return this
@@ -477,7 +477,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun iconOffsetY(size: IconicsSize): IconicsDrawable {
-        iconOffsetY = size.extract(context)
+        iconOffsetY = size.extract(context!!)
 
         invalidateSelf()
         return this
@@ -499,7 +499,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun padding(size: IconicsSize): IconicsDrawable {
-        val sizePx = size.extract(context)
+        val sizePx = size.extract(context!!)
         if (iconPadding != sizePx) {
             iconPadding = sizePx
             if (isDrawContour) {
@@ -539,7 +539,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun size(size: IconicsSize): IconicsDrawable {
-        sizeY = size.extract(context)
+        sizeY = size.extract(context!!)
         sizeX = sizeY
         setBounds(0, 0, sizeX, sizeY)
 
@@ -563,7 +563,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun sizeX(size: IconicsSize): IconicsDrawable {
-        sizeX = size.extract(context)
+        sizeX = size.extract(context!!)
         setBounds(0, 0, sizeX, sizeY)
 
         invalidateSelf()
@@ -586,7 +586,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun sizeY(size: IconicsSize): IconicsDrawable {
-        sizeY = size.extract(context)
+        sizeY = size.extract(context!!)
         setBounds(0, 0, sizeX, sizeY)
 
         invalidateSelf()
@@ -611,7 +611,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun backgroundContourColor(colors: IconicsColor): IconicsDrawable {
-        backgroundContourBrush.colorsList = colors.extractList(context)
+        backgroundContourBrush.colorsList = colors.extractList(context!!)
         if (backgroundContourBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -634,7 +634,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun contourColor(colors: IconicsColor): IconicsDrawable {
-        contourBrush.colorsList = colors.extractList(context)
+        contourBrush.colorsList = colors.extractList(context!!)
         if (contourBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -668,7 +668,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
             isInvalidate = true
         }
 
-        backgroundBrush.colorsList = colors.extractList(context)
+        backgroundBrush.colorsList = colors.extractList(context!!)
         if (backgroundBrush.applyState(state)) {
             isInvalidate = true
         }
@@ -695,7 +695,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun roundedCornersRx(size: IconicsSize): IconicsDrawable {
-        roundedCornerRx = size.extractFloat(context)
+        roundedCornerRx = size.extractFloat(context!!)
 
         invalidateSelf()
         return this
@@ -717,7 +717,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun roundedCornersRy(size: IconicsSize): IconicsDrawable {
-        roundedCornerRy = size.extractFloat(context)
+        roundedCornerRy = size.extractFloat(context!!)
 
         invalidateSelf()
         return this
@@ -739,7 +739,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun roundedCorners(size: IconicsSize): IconicsDrawable {
-        roundedCornerRy = size.extractFloat(context)
+        roundedCornerRy = size.extractFloat(context!!)
         roundedCornerRx = roundedCornerRy
 
         invalidateSelf()
@@ -762,7 +762,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun contourWidth(size: IconicsSize): IconicsDrawable {
-        contourWidth = size.extract(context)
+        contourWidth = size.extract(context!!)
         contourBrush.paint.strokeWidth = contourWidth.toFloat()
         drawContour(true)
 
@@ -813,7 +813,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
         dy: IconicsSize = IconicsSize.px(shadowDy),
         color: IconicsColor = IconicsColor.colorInt(shadowColor)
     ): IconicsDrawable {
-        shadowRadius = radius.extractFloat(context)
+        shadowRadius = radius.extractFloat(context!!)
         shadowDx = dx.extractFloat(context)
         shadowDy = dy.extractFloat(context)
         shadowColor = color.extract(context)
@@ -856,7 +856,7 @@ open class IconicsDrawable(protected val context: Context) : Drawable() {
      * @return The current IconicsDrawable for chaining.
      */
     fun backgroundContourWidth(size: IconicsSize): IconicsDrawable {
-        backgroundContourWidth = size.extract(context)
+        backgroundContourWidth = size.extract(context!!)
         backgroundContourBrush.paint.strokeWidth = backgroundContourWidth.toFloat()
         drawBackgroundContour(true)
 
