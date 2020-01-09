@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'aboutlibraries-plugin'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
 /*
  * Copyright (c) 2019 Mike Penz
