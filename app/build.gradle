@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'aboutlibraries-plugin'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
 /*
  * Copyright (c) 2019 Mike Penz
@@ -23,7 +23,7 @@ apply plugin: 'aboutlibraries-plugin'
 //wrap with try and catch so the build is working even if the signing stuff is missing
 try {
     apply from: '../../../signing.gradle'
-} catch (ignored) {
+} catch (final ignored) {
 }
 
 android {
@@ -53,14 +53,14 @@ android {
             versionNameSuffix = "-DEBUG"
             try {
                 signingConfig signingConfigs.debug
-            } catch (ignored) {
+            } catch (final ignored) {
             }
             minifyEnabled false
         }
         release {
             try {
                 signingConfig signingConfigs.release
-            } catch (ignored) {
+            } catch (final ignored) {
             }
             zipAlignEnabled true
             minifyEnabled false

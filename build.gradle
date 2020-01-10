@@ -41,7 +41,7 @@ buildscript {
                         core: '1.1.0'
                 ],
                 detekt          : '1.0.0-RC15',
-                aboutLibraries  : '8.0.0-a02'
+                aboutLibraries  : '8.0.0-b02'
         ]
     }
 
