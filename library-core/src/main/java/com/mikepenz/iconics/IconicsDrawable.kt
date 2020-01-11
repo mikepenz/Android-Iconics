@@ -21,6 +21,8 @@ package com.mikepenz.iconics
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
+import android.content.res.Resources.Theme
+import android.content.res.TypedArray
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -45,7 +47,6 @@ import androidx.annotation.Dimension
 import androidx.annotation.Dimension.DP
 import androidx.annotation.Dimension.PX
 import androidx.annotation.IntRange
-import androidx.core.content.res.TypedArrayUtils.obtainAttributes
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
 import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
@@ -1277,19 +1278,26 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
         return isAutoMirroredCompat && DrawableCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL
     }
 
-    override fun inflate(r: Resources, parser: XmlPullParser, attrs: AttributeSet, theme: Resources.Theme?) {
+    override fun inflate(r: Resources, parser: XmlPullParser, attrs: AttributeSet, theme: Theme?) {
         super.inflate(r, parser, attrs, theme)
-        val a = obtainAttributes(r, theme, attrs, R.styleable.Iconics);
-        val ico_icon = a.getString(R.styleable.Iconics_ico_icon)
-        val ico_color = a.getColorStateList(R.styleable.Iconics_ico_color)
-        val ico_size = a.getDimensionPixelSize(R.styleable.Iconics_ico_size, Int.MIN_VALUE)
-        ico_icon?.also { icon(it) }
-        ico_color?.also { color(ico_color) }
-        if(ico_size != Int.MIN_VALUE) {
-            size(ico_size)
+        val a = obtainAttributes(r, theme, attrs, R.styleable.Iconics)
+        a.getString(R.styleable.Iconics_ico_icon)?.also {
+            icon(it)
         }
-        a.recycle();
+        a.getColorStateList(R.styleable.Iconics_ico_color)?.also {
+            color(it)
+        }
+        a.getDimensionPixelSize(R.styleable.Iconics_ico_size, Int.MIN_VALUE).takeIf { it != Int.MIN_VALUE }?.also {
+            size(it)
+        }
+        a.recycle()
 
+    }
+
+    private fun obtainAttributes(res: Resources, theme: Theme?, set: AttributeSet, attrs: IntArray): TypedArray {
+        return if (theme == null) {
+            res.obtainAttributes(set, attrs)
+        } else theme.obtainStyledAttributes(set, attrs, 0, 0)
     }
 }
 
