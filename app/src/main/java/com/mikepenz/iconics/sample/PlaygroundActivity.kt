@@ -48,7 +48,6 @@ import com.mikepenz.iconics.typeface.library.community.material.CommunityMateria
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.inflateWithIconics
 import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.parseXmlAndSetIconicsDrawables
 import com.mikepenz.iconics.utils.sizeDp
