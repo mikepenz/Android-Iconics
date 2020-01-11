@@ -178,7 +178,8 @@ class PlaygroundActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflateWithIconics(this, R.menu.menu_playground, menu)
+
+        menuInflater.inflate(R.menu.menu_playground, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
