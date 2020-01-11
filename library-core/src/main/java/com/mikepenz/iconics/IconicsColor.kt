@@ -16,12 +16,13 @@
 
 package com.mikepenz.iconics
 
-import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
+import android.content.res.Resources.Theme
 import android.graphics.Color
+import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
 
 /**
  * Describes a color. Might be a colorInt, colorRes, or colorStateList
@@ -57,27 +58,37 @@ sealed class IconicsColor {
         }
     }
 
-    internal abstract fun extractList(context: Context): ColorStateList?
+    internal abstract fun extractList(res: Resources, theme: Theme?): ColorStateList?
 
-    internal abstract fun extract(context: Context): Int
+    internal abstract fun extract(res: Resources, theme: Theme?): Int
 }
 
 class IconicsColorInt internal constructor(@ColorInt private val color: Int) : IconicsColor() {
-    override fun extractList(context: Context): ColorStateList? = ColorStateList.valueOf(color)
+    override fun extractList(res: Resources, theme: Theme?): ColorStateList? = ColorStateList.valueOf(color)
 
-    override fun extract(context: Context): Int = color
+    override fun extract(res: Resources, theme: Theme?): Int = color
 }
 
 class IconicsColorRes internal constructor(@ColorRes private val colorRes: Int) : IconicsColor() {
-    override fun extractList(context: Context): ColorStateList? =
-            ContextCompat.getColorStateList(context, colorRes)
+    override fun extractList(res: Resources, theme: Theme?): ColorStateList? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            res.getColorStateList(colorRes, theme)
+        } else {
+            res.getColorStateList(colorRes)
+        }
+    }
 
-    override fun extract(context: Context): Int = ContextCompat.getColor(context, colorRes)
+    override fun extract(res: Resources, theme: Theme?): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            res.getColor(colorRes, theme)
+        } else {
+            res.getColor(colorRes)
+        }
+    }
 }
 
 class IconicsColorList internal constructor(private val colorList: ColorStateList) : IconicsColor() {
-    override fun extractList(context: Context): ColorStateList? = colorList
+    override fun extractList(res: Resources, theme: Theme?): ColorStateList? = colorList
 
-    override fun extract(context: Context): Int =
-            colorList.defaultColor // use the default color in this case
+    override fun extract(res: Resources, theme: Theme?): Int = colorList.defaultColor // use the default color in this case
 }

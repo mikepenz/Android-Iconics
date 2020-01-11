@@ -16,7 +16,8 @@
 
 package com.mikepenz.iconics.context
 
-import android.content.Context
+import android.content.res.Resources
+import android.content.res.Resources.Theme
 import android.content.res.TypedArray
 import androidx.annotation.RestrictTo
 import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
@@ -31,7 +32,8 @@ import com.mikepenz.iconics.IconicsSize
  */
 @RestrictTo(LIBRARY_GROUP)
 class IconicsAttrsExtractor(
-    private val context: Context,
+    private val res: Resources,
+    private val theme: Theme?,
     private val typedArray: TypedArray,
 
     @StyleableRes private var iconId: Int = 0,
@@ -66,7 +68,7 @@ class IconicsAttrsExtractor(
     }
 
     fun extractNonNull(): IconicsDrawable {
-        return extract(null, false).createIfNeeds(context)
+        return extract(null, false).createIfNeeds(res, theme)
     }
 
     fun extract(icon: IconicsDrawable?): IconicsDrawable? {
@@ -82,59 +84,54 @@ class IconicsAttrsExtractor(
     }
 
     private fun extract(icon: IconicsDrawable?, extractOffsets: Boolean): IconicsDrawable? {
-        var processedIcon = icon?.clone()
+        var processedIcon = icon // icon?.clone()
 
         // region icon
         val i = typedArray.getString(iconId)
         if (!i.isNullOrEmpty()) {
-            processedIcon = processedIcon.createIfNeeds(context).icon(i)
+            processedIcon = processedIcon.createIfNeeds(res, theme).icon(i)
         }
         typedArray.getColorStateList(colorsId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).color(IconicsColor.colorList(it))
+            processedIcon = processedIcon.createIfNeeds(res, theme).color(IconicsColor.colorList(it))
         }
         typedArray.getDimensionPixelSize(sizeId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).size(IconicsSize.px(it))
+            processedIcon = processedIcon.createIfNeeds(res, theme).size(IconicsSize.px(it))
         }
         typedArray.getDimensionPixelSize(paddingId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).padding(IconicsSize.px(it))
+            processedIcon = processedIcon.createIfNeeds(res, theme).padding(IconicsSize.px(it))
         }
         if (extractOffsets) {
             typedArray.getDimensionPixelSize(offsetYId)?.let {
-                processedIcon = processedIcon.createIfNeeds(context)
-                        .iconOffsetY(IconicsSize.px(it))
+                processedIcon = processedIcon.createIfNeeds(res, theme).iconOffsetY(IconicsSize.px(it))
             }
             typedArray.getDimensionPixelSize(offsetXId)?.let {
-                processedIcon = processedIcon.createIfNeeds(context)
-                        .iconOffsetX(IconicsSize.px(it))
+                processedIcon = processedIcon.createIfNeeds(res, theme).iconOffsetX(IconicsSize.px(it))
             }
         }
         // endregion
         // region contour
         typedArray.getColorStateList(contourColorId)?.let {
-            processedIcon =
-                    processedIcon.createIfNeeds(context).contourColor(IconicsColor.colorList(it))
+            processedIcon = processedIcon.createIfNeeds(res, theme).contourColor(IconicsColor.colorList(it))
         }
         typedArray.getDimensionPixelSize(contourWidthId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).contourWidth(IconicsSize.px(it))
+            processedIcon = processedIcon.createIfNeeds(res, theme).contourWidth(IconicsSize.px(it))
         }
         // endregion
         // region background
         typedArray.getColorStateList(backgroundColorId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .backgroundColor(IconicsColor.colorList(it))
+            processedIcon = processedIcon.createIfNeeds(res, theme).backgroundColor(IconicsColor.colorList(it))
         }
         typedArray.getDimensionPixelSize(cornerRadiusId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .roundedCorners(IconicsSize.px(it))
+            processedIcon = processedIcon.createIfNeeds(res, theme).roundedCorners(IconicsSize.px(it))
         }
         // endregion
         // region background contour
         typedArray.getColorStateList(backgroundContourColorId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
+            processedIcon = processedIcon.createIfNeeds(res, theme)
                     .backgroundContourColor(IconicsColor.colorList(it))
         }
         typedArray.getDimensionPixelSize(backgroundContourWidthId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
+            processedIcon = processedIcon.createIfNeeds(res, theme)
                     .backgroundContourWidth(IconicsSize.px(it))
         }
         // endregion
@@ -149,7 +146,7 @@ class IconicsAttrsExtractor(
                 && shadowDx != null
                 && shadowDy != null
                 && shadowColor != DEF_COLOR) {
-            processedIcon = processedIcon.createIfNeeds(context).shadow(
+            processedIcon = processedIcon.createIfNeeds(res, theme).shadow(
                 IconicsSize.px(shadowRadius),
                 IconicsSize.px(shadowDx),
                 IconicsSize.px(shadowDy),
@@ -168,15 +165,13 @@ class IconicsAttrsExtractor(
                     .dropLastWhile { it.isEmpty() }
                     .mapNotNull { Iconics.findProcessor(it) }
 
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .toAnimatedDrawable()
-                    .processors(*processors.toTypedArray())
+            processedIcon = processedIcon.createIfNeeds(res, theme).toAnimatedDrawable().processors(*processors.toTypedArray())
         }
         // endregion
 
         //region autoMirror
         val autoMirror = typedArray.getBoolean(autoMirrorId, false)
-        processedIcon = processedIcon.createIfNeeds(context)
+        processedIcon = processedIcon.createIfNeeds(res, theme)
                 .autoMirror(autoMirror)
         // endregion
 
@@ -187,7 +182,7 @@ class IconicsAttrsExtractor(
         return getDimensionPixelSize(index, DEF_SIZE).takeIf { it != DEF_SIZE }
     }
 
-    private fun IconicsDrawable?.createIfNeeds(context: Context): IconicsDrawable {
-        return this ?: IconicsDrawable(context)
+    private fun IconicsDrawable?.createIfNeeds(res: Resources, theme: Theme?): IconicsDrawable {
+        return this ?: IconicsDrawable(res, theme)
     }
 }

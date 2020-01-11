@@ -41,29 +41,25 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
 import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
-import androidx.annotation.DimenRes
-import androidx.annotation.Dimension
-import androidx.annotation.Dimension.DP
-import androidx.annotation.Dimension.PX
 import androidx.annotation.IntRange
+import androidx.core.content.res.use
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
 import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
+import com.mikepenz.iconics.context.IconicsAttrsExtractor
 import com.mikepenz.iconics.core.R
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.utils.clearedIconName
 import com.mikepenz.iconics.utils.iconPrefix
-import com.mikepenz.iconics.utils.toIconicsColor
-import com.mikepenz.iconics.utils.toIconicsColorRes
-import com.mikepenz.iconics.utils.toIconicsSizeDp
-import com.mikepenz.iconics.utils.toIconicsSizePx
-import com.mikepenz.iconics.utils.toIconicsSizeRes
 import org.xmlpull.v1.XmlPullParser
 
 /** A custom [Drawable] which can display icons from icon fonts. */
-open class IconicsDrawable(protected val context: Context? = null) : Drawable() {
+open class IconicsDrawable internal constructor() : Drawable() {
+
+    protected lateinit var res: Resources
+    protected var theme: Theme? = null
+
     protected val iconBrush = IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundContourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
     protected val backgroundBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
@@ -103,8 +99,53 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
     private var tintFilter: ColorFilter? = null
     private var iconColorFilter: ColorFilter? = null
 
-    init {
+    constructor(res: Resources, theme: Theme? = null) : this() {
+        this.res = res
+        this.theme = theme
+    }
+
+    constructor(res: Resources, theme: Theme? = null, icon: Char) : this(res, theme) {
+        icon(icon)
+    }
+
+    constructor(res: Resources, theme: Theme? = null, icon: String) : this(res, theme) {
+        icon(icon)
+    }
+
+    constructor(res: Resources, theme: Theme? = null, icon: IIcon) : this(res, theme) {
+        icon(icon)
+    }
+
+    protected constructor(res: Resources, theme: Theme? = null, typeface: ITypeface, icon: IIcon) : this(res, theme) {
+        icon(typeface, icon)
+    }
+
+    @Deprecated("Provide resources instead")
+    constructor(context: Context) : this(context.resources, context.theme) {
         Iconics.init(context)
+    }
+
+    @Deprecated("Provide resources instead")
+    constructor(context: Context, icon: Char) : this(context.resources, context.theme, icon) {
+        Iconics.init(context)
+    }
+
+    @Deprecated("Provide resources instead")
+    constructor(context: Context, icon: String) : this(context.resources, context.theme, icon) {
+        Iconics.init(context)
+    }
+
+    @Deprecated("Provide resources instead")
+    constructor(context: Context, icon: IIcon) : this(context.resources, context.theme, icon) {
+        Iconics.init(context)
+    }
+
+    @Deprecated("Provide resources instead")
+    protected constructor(context: Context, typeface: ITypeface, icon: IIcon) : this(context.resources, context.theme, typeface, icon) {
+        Iconics.init(context)
+    }
+
+    init {
         iconBrush.also {
             it.colorsList = ColorStateList.valueOf(Color.BLACK)
             it.paint.apply {
@@ -115,26 +156,8 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
         }
 
         contourBrush.paint.style = Paint.Style.STROKE
-
         backgroundContourBrush.paint.style = Paint.Style.STROKE
-
         icon(' ')
-    }
-
-    constructor(context: Context, icon: Char) : this(context) {
-        icon(icon)
-    }
-
-    constructor(context: Context, icon: String) : this(context) {
-        icon(icon)
-    }
-
-    constructor(context: Context, icon: IIcon) : this(context) {
-        icon(icon)
-    }
-
-    protected constructor(context: Context, typeface: ITypeface, icon: IIcon) : this(context) {
-        icon(typeface, icon)
     }
 
     /**
@@ -222,7 +245,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return new IconicsDrawable with the same values.
      */
     fun clone(): IconicsDrawable {
-        return copyTo(IconicsDrawable(context))
+        return copyTo(IconicsDrawable(res, theme))
     }
 
     /**
@@ -231,7 +254,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return new IconicsDrawable with the same values.
      */
     fun toAnimatedDrawable(): IconicsAnimatedDrawable {
-        return copyTo(IconicsAnimatedDrawable(context!!))
+        return copyTo(IconicsAnimatedDrawable(res, theme))
     }
 
     private fun <T : IconicsDrawable> copyTo(other: T): T {
@@ -438,7 +461,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun color(colors: IconicsColor): IconicsDrawable {
-        color(colors.extractList(context!!))
+        color(colors.extractList(res, theme))
         return this
     }
 
@@ -471,7 +494,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun iconOffsetX(size: IconicsSize): IconicsDrawable {
-        iconOffsetX = size.extract(context!!)
+        iconOffsetX = size.extract(res)
 
         invalidateSelf()
         return this
@@ -493,7 +516,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun iconOffsetY(size: IconicsSize): IconicsDrawable {
-        iconOffsetY = size.extract(context!!)
+        iconOffsetY = size.extract(res)
 
         invalidateSelf()
         return this
@@ -515,7 +538,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun padding(size: IconicsSize): IconicsDrawable {
-        val sizePx = size.extract(context!!)
+        val sizePx = size.extract(res)
         if (iconPadding != sizePx) {
             iconPadding = sizePx
             if (isDrawContour) {
@@ -555,7 +578,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun size(size: IconicsSize): IconicsDrawable {
-        size(size.extract(context!!))
+        size(size.extract(res))
         return this
     }
 
@@ -589,7 +612,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun sizeX(size: IconicsSize): IconicsDrawable {
-        sizeX = size.extract(context!!)
+        sizeX = size.extract(res)
         setBounds(0, 0, sizeX, sizeY)
 
         invalidateSelf()
@@ -612,7 +635,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun sizeY(size: IconicsSize): IconicsDrawable {
-        sizeY = size.extract(context!!)
+        sizeY = size.extract(res)
         setBounds(0, 0, sizeX, sizeY)
 
         invalidateSelf()
@@ -637,7 +660,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun backgroundContourColor(colors: IconicsColor): IconicsDrawable {
-        backgroundContourBrush.colorsList = colors.extractList(context!!)
+        backgroundContourBrush.colorsList = colors.extractList(res, theme)
         if (backgroundContourBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -660,7 +683,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun contourColor(colors: IconicsColor): IconicsDrawable {
-        contourBrush.colorsList = colors.extractList(context!!)
+        contourBrush.colorsList = colors.extractList(res, theme)
         if (contourBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -694,7 +717,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
             isInvalidate = true
         }
 
-        backgroundBrush.colorsList = colors.extractList(context!!)
+        backgroundBrush.colorsList = colors.extractList(res, theme)
         if (backgroundBrush.applyState(state)) {
             isInvalidate = true
         }
@@ -721,7 +744,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun roundedCornersRx(size: IconicsSize): IconicsDrawable {
-        roundedCornerRx = size.extractFloat(context!!)
+        roundedCornerRx = size.extractFloat(res)
 
         invalidateSelf()
         return this
@@ -743,7 +766,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun roundedCornersRy(size: IconicsSize): IconicsDrawable {
-        roundedCornerRy = size.extractFloat(context!!)
+        roundedCornerRy = size.extractFloat(res)
 
         invalidateSelf()
         return this
@@ -765,7 +788,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun roundedCorners(size: IconicsSize): IconicsDrawable {
-        roundedCornerRy = size.extractFloat(context!!)
+        roundedCornerRy = size.extractFloat(res)
         roundedCornerRx = roundedCornerRy
 
         invalidateSelf()
@@ -788,7 +811,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun contourWidth(size: IconicsSize): IconicsDrawable {
-        contourWidth = size.extract(context!!)
+        contourWidth = size.extract(res)
         contourBrush.paint.strokeWidth = contourWidth.toFloat()
         drawContour(true)
 
@@ -839,10 +862,10 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
         dy: IconicsSize = IconicsSize.px(shadowDy),
         color: IconicsColor = IconicsColor.colorInt(shadowColor)
     ): IconicsDrawable {
-        shadowRadius = radius.extractFloat(context!!)
-        shadowDx = dx.extractFloat(context)
-        shadowDy = dy.extractFloat(context)
-        shadowColor = color.extract(context)
+        shadowRadius = radius.extractFloat(res)
+        shadowDx = dx.extractFloat(res)
+        shadowDy = dy.extractFloat(res)
+        shadowColor = color.extract(res, theme)
 
         iconBrush.paint.setShadowLayer(shadowRadius, shadowDx, shadowDy, shadowColor)
         invalidateSelf()
@@ -882,7 +905,7 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun backgroundContourWidth(size: IconicsSize): IconicsDrawable {
-        backgroundContourWidth = size.extract(context!!)
+        backgroundContourWidth = size.extract(res)
         backgroundContourBrush.paint.strokeWidth = backgroundContourWidth.toFloat()
         drawBackgroundContour(true)
 
@@ -1280,18 +1303,34 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
 
     override fun inflate(r: Resources, parser: XmlPullParser, attrs: AttributeSet, theme: Theme?) {
         super.inflate(r, parser, attrs, theme)
-        val a = obtainAttributes(r, theme, attrs, R.styleable.Iconics)
-        a.getString(R.styleable.Iconics_ico_icon)?.also {
-            icon(it)
+        // set resource and theme to this icon
+        this.res = r
+        this.theme = theme
+        obtainAttributes(r, theme, attrs, R.styleable.Iconics).use {
+            IconicsAttrsExtractor(
+                res = r,
+                theme = theme,
+                typedArray = it,
+                iconId = R.styleable.Iconics_ico_icon,
+                colorsId = R.styleable.Iconics_ico_color,
+                sizeId = R.styleable.Iconics_ico_size,
+                paddingId = R.styleable.Iconics_ico_padding,
+                offsetXId = R.styleable.Iconics_ico_offset_x,
+                offsetYId = R.styleable.Iconics_ico_offset_y,
+                contourColorId = R.styleable.Iconics_ico_contour_color,
+                contourWidthId = R.styleable.Iconics_ico_contour_width,
+                backgroundColorId = R.styleable.Iconics_ico_background_color,
+                cornerRadiusId = R.styleable.Iconics_ico_corner_radius,
+                backgroundContourColorId = R.styleable.Iconics_ico_background_contour_color,
+                backgroundContourWidthId = R.styleable.Iconics_ico_background_contour_width,
+                shadowRadiusId = R.styleable.Iconics_ico_shadow_radius,
+                shadowDxId = R.styleable.Iconics_ico_shadow_dx,
+                shadowDyId = R.styleable.Iconics_ico_shadow_dy,
+                shadowColorId = R.styleable.Iconics_ico_shadow_color,
+                animationsId = R.styleable.Iconics_ico_animations,
+                autoMirrorId = R.styleable.Iconics_ico_automirror
+            ).extract(this)
         }
-        a.getColorStateList(R.styleable.Iconics_ico_color)?.also {
-            color(it)
-        }
-        a.getDimensionPixelSize(R.styleable.Iconics_ico_size, Int.MIN_VALUE).takeIf { it != Int.MIN_VALUE }?.also {
-            size(it)
-        }
-        a.recycle()
-
     }
 
     private fun obtainAttributes(res: Resources, theme: Theme?, set: AttributeSet, attrs: IntArray): TypedArray {
@@ -1300,67 +1339,3 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
         } else theme.obtainStyledAttributes(set, attrs, 0, 0)
     }
 }
-
-// VARIOUS convenient extension functions for quick common setters
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("colorString", "com.mikepenz.iconics.utils.colorString")
-)
-inline fun IconicsDrawable.colorString(colorString: String) =
-        color(colorString.toIconicsColor())
-
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("colorRes", "com.mikepenz.iconics.utils.colorRes")
-)
-inline fun IconicsDrawable.colorRes(@ColorRes colorRes: Int) =
-        color(colorRes.toIconicsColorRes())
-
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("colorInt", "com.mikepenz.iconics.utils.colorInt")
-)
-inline fun IconicsDrawable.colorInt(@ColorInt colorInt: Int) =
-        color(colorInt.toIconicsColor())
-
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("sizeDp", "com.mikepenz.iconics.utils.sizeDp")
-)
-inline fun IconicsDrawable.sizeDp(@Dimension(unit = DP) sizeDp: Int) =
-        size(sizeDp.toIconicsSizeDp())
-
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("sizePx", "com.mikepenz.iconics.utils.sizePx")
-)
-inline fun IconicsDrawable.sizePx(@Dimension(unit = PX) sizePx: Int) =
-        size(sizePx.toIconicsSizePx())
-
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("sizeRes", "com.mikepenz.iconics.utils.sizeRes")
-)
-inline fun IconicsDrawable.sizeRes(@DimenRes sizeRes: Int) =
-        size(sizeRes.toIconicsSizeRes())
-
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("paddingDp", "com.mikepenz.iconics.utils.paddingDp")
-)
-inline fun IconicsDrawable.paddingDp(@Dimension(unit = DP) sizeDp: Int) =
-        padding(sizeDp.toIconicsSizeDp())
-
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("paddingPx", "com.mikepenz.iconics.utils.paddingPx")
-)
-inline fun IconicsDrawable.paddingPx(@Dimension(unit = PX) sizePx: Int) =
-        padding(sizePx.toIconicsSizePx())
-
-@Deprecated(
-    message = "Moved to new class",
-    replaceWith = ReplaceWith("paddingRes", "com.mikepenz.iconics.utils.paddingRes")
-)
-inline fun IconicsDrawable.paddingRes(@DimenRes sizeRes: Int) =
-        padding(sizeRes.toIconicsSizeRes())
