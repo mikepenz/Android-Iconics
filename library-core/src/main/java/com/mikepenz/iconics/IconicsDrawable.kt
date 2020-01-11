@@ -20,6 +20,7 @@ package com.mikepenz.iconics
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -35,6 +36,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.TextPaint
+import android.util.AttributeSet
 import android.util.Log
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -43,9 +45,11 @@ import androidx.annotation.Dimension
 import androidx.annotation.Dimension.DP
 import androidx.annotation.Dimension.PX
 import androidx.annotation.IntRange
+import androidx.core.content.res.TypedArrayUtils.obtainAttributes
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
 import com.mikepenz.iconics.animation.IconicsAnimatedDrawable
+import com.mikepenz.iconics.core.R
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.utils.clearedIconName
@@ -55,6 +59,7 @@ import com.mikepenz.iconics.utils.toIconicsColorRes
 import com.mikepenz.iconics.utils.toIconicsSizeDp
 import com.mikepenz.iconics.utils.toIconicsSizePx
 import com.mikepenz.iconics.utils.toIconicsSizeRes
+import org.xmlpull.v1.XmlPullParser
 
 /** A custom [Drawable] which can display icons from icon fonts. */
 open class IconicsDrawable(protected val context: Context? = null) : Drawable() {
@@ -432,7 +437,17 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun color(colors: IconicsColor): IconicsDrawable {
-        iconBrush.colorsList = colors.extractList(context!!)
+        color(colors.extractList(context!!))
+        return this
+    }
+
+    /**
+     * Set the color of the drawable.
+     *
+     * @return The current IconicsDrawable for chaining.
+     */
+    fun color(colors: ColorStateList?): IconicsDrawable {
+        iconBrush.colorsList = colors
         if (iconBrush.applyState(state)) {
             invalidateSelf()
         }
@@ -539,7 +554,17 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
      * @return The current IconicsDrawable for chaining.
      */
     fun size(size: IconicsSize): IconicsDrawable {
-        sizeY = size.extract(context!!)
+        size(size.extract(context!!))
+        return this
+    }
+
+    /**
+     * Set the size by X and Y axis of the drawable.
+     *
+     * @return The current IconicsDrawable for chaining.
+     */
+    fun size(size: Int): IconicsDrawable {
+        sizeY = size
         sizeX = sizeY
         setBounds(0, 0, sizeX, sizeY)
 
@@ -1250,6 +1275,21 @@ open class IconicsDrawable(protected val context: Context? = null) : Drawable() 
 
     private fun needMirroring(): Boolean {
         return isAutoMirroredCompat && DrawableCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL
+    }
+
+    override fun inflate(r: Resources, parser: XmlPullParser, attrs: AttributeSet, theme: Resources.Theme?) {
+        super.inflate(r, parser, attrs, theme)
+        val a = obtainAttributes(r, theme, attrs, R.styleable.Iconics);
+        val ico_icon = a.getString(R.styleable.Iconics_ico_icon)
+        val ico_color = a.getColorStateList(R.styleable.Iconics_ico_color)
+        val ico_size = a.getDimensionPixelSize(R.styleable.Iconics_ico_size, Int.MIN_VALUE)
+        ico_icon?.also { icon(it) }
+        ico_color?.also { color(ico_color) }
+        if(ico_size != Int.MIN_VALUE) {
+            size(ico_size)
+        }
+        a.recycle();
+
     }
 }
 
