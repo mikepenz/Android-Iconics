@@ -37,7 +37,7 @@ android {
     buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion setup.minSdk
+        minSdkVersion 24
         targetSdkVersion setup.targetSdk
         versionCode release.versionCode
         versionName release.versionName
