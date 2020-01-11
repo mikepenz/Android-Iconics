@@ -21,6 +21,7 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -52,7 +53,14 @@ internal object IconicsFactory {
         when (view) {
             is ActionMenuItemView -> {
                 IconicsAttrsApplier.getIconicsDrawable(context, attrs)?.let {
-                    view.setIcon(view.tryToEnableIconicsAnimation(it))
+                    try {
+                        view.setIcon(view.tryToEnableIconicsAnimation(it))
+                    } catch (ex: Exception) {
+                        Log.e(
+                            "IconicsFactory",
+                            "Could not apply the icon as the `ActionMenuItemView` is not ready."
+                        )
+                    }
                 }
             }
             is EditText -> {
