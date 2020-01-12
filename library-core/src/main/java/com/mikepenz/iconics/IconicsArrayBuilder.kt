@@ -45,13 +45,18 @@ class IconicsArrayBuilder(private val iconBase: IconicsDrawable) {
 
     fun build(): Array<IconicsDrawable> {
         return icons.map { (_icon, _typeface) ->
-            when (_icon) {
-                is IIcon -> iconBase.clone().apply { icon = _icon }
-                is Char -> iconBase.clone().apply { icon(_icon); typeface = _typeface }
-                is String -> iconBase.clone().apply {
-                    iconText = _icon; typeface = _typeface
+            iconBase.clone().apply {
+                when (_icon) {
+                    is IIcon -> icon = _icon
+                    is Char -> {
+                        icon(_icon)
+                        typeface = _typeface
+                    }
+                    is String -> {
+                        iconText = _icon
+                        typeface = _typeface
+                    }
                 }
-                else -> iconBase.clone()
             }
         }.toTypedArray()
     }

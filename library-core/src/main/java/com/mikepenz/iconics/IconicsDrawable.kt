@@ -109,6 +109,18 @@ open class IconicsDrawable internal constructor() : Drawable() {
         get() = backgroundBrush.colorsList
         set(value) {
             backgroundBrush.colorsList = value
+
+            // disable invalidation temporary
+            val enabled = invalidationEnabled
+            invalidationEnabled = false
+            if (roundedCornerRxPx == -1f) {
+                roundedCornerRxPx = 0f
+            }
+            if (roundedCornerRyPx == -1f) {
+                roundedCornerRyPx = 0f
+            }
+            invalidationEnabled = enabled
+
             if (backgroundBrush.applyState(state)) {
                 invalidateThis()
             }
@@ -222,13 +234,13 @@ open class IconicsDrawable internal constructor() : Drawable() {
             }
         }
 
-    var roundedCornerRxPx: Float = 0f
+    var roundedCornerRxPx: Float = -1f
         set(value) {
             field = value
             invalidateThis()
         }
 
-    var roundedCornerRyPx: Float = 0f
+    var roundedCornerRyPx: Float = -1f
         set(value) {
             field = value
             invalidateThis()
@@ -643,13 +655,13 @@ open class IconicsDrawable internal constructor() : Drawable() {
         val self = this
         other.apply {
             // icon
-            iconBrush.colorsList = self.iconBrush.colorsList
+            colorList = self.colorList
             // background
-            backgroundBrush.colorsList = self.backgroundBrush.colorsList
+            backgroundColorList = self.backgroundColorList
             // icon contour
-            backgroundContourBrush.colorsList = self.backgroundContourBrush.colorsList
+            backgroundContourColorList = self.backgroundContourColorList
             // background contour
-            contourBrush.colorsList = self.contourBrush.colorsList
+            contourColorList = self.contourColorList
             // general
             sizeXPx = self.sizeXPx
             sizeYPx = self.sizeYPx

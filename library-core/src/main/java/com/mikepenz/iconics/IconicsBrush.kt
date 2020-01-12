@@ -35,15 +35,10 @@ class IconicsBrush<T : Paint>(
 
     init {
         paint.alpha = 255
-        paint.color = Color.TRANSPARENT
     }
 
     /** Colors which applied on [paint] for drawing current state */
     var colorsList: ColorStateList? = null
-        set(value) {
-            field = value
-            paint.color = colorForCurrentState
-        }
 
     /** Alpha channel for colors */
     var alpha: Int

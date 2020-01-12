@@ -187,14 +187,14 @@ var IconicsDrawable.sizeY: IconicsSize?
 var IconicsDrawable.roundedCornersRx: IconicsSize?
     get() = IconicsSize.px(roundedCornerRxPx)
     set(value) {
-        roundedCornerRxPx = value?.extractFloat(res) ?: 0f
+        roundedCornerRxPx = value?.extractFloat(res) ?: -1f
     }
 
 /** Set rounded corner ry as IconicsSize */
 var IconicsDrawable.roundedCornersRy: IconicsSize?
     get() = IconicsSize.px(roundedCornerRyPx)
     set(value) {
-        roundedCornerRyPx = value?.extractFloat(res) ?: 0f
+        roundedCornerRyPx = value?.extractFloat(res) ?: -1f
     }
 
 /** Set rounded corner rx as IconicsSize */
