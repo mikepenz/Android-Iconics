@@ -63,23 +63,27 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 
 # Setup
 
+## Latest releases
+
+- Kotlin Next Gen | [v5.0.0-a01](https://github.com/mikepenz/MaterialDrawer/tree/v5.0.0-a01)
+- Kotlin  | [v4.0.2](https://github.com/mikepenz/MaterialDrawer/tree/v4.0.2)
+- Java AndroidX | [v3.2.5](https://github.com/mikepenz/MaterialDrawer/tree/v3.2.5)
+- Java Appcompat | [v3.0.4](https://github.com/mikepenz/MaterialDrawer/tree/v3.0.4)
+
 ## 1. Provide the gradle dependency
 ```gradle
 //the core iconics library (without any widgets)
-implementation "com.mikepenz:iconics-core:4.0.2"
+implementation "com.mikepenz:iconics-core:${latestFastAdapterRelease}"
 implementation "androidx.appcompat:appcompat:${versions.appCompat}"
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:4.0.2"
+implementation "com.mikepenz:iconics-views:${latestFastAdapterRelease}"
 ```
 
-For the non kotlin variant please use a version smaller than 4.x.y (See the releases on GitHub)
-To use appcompat please use a version smaller than 3.1.0. (See the releases on GitHub)
-
-## 2. Choose your desired fonts
+## 2. Choose your desired fonts (v4+)
 ```gradle
 implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.6-kotlin@aar'
@@ -101,10 +105,10 @@ implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.0-kotlin@aa
 ## Use as drawable
 
 ```kotlin
-IconicsDrawable(this)
-    .icon(FontAwesome.Icon.faw_android)
-    .color(Color.RED.toIconicsColor())
-    .size(24.toIconicsSizeDp())
+IconicsDrawable(this, FontAwesome.Icon.faw_android).apply {
+    colorInt = Color.RED
+    sizeDp = 24
+}
 ```
 
 ## Use via XML
@@ -118,6 +122,24 @@ Use the `{` icon-definer `}` syntax
 ```gson
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
+
+### Drawable XML (API 24+)
+
+Specify the drawable in your `drawable` folder.
+
+```xml
+<com.mikepenz.iconics.IconicsDrawable
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:ico_icon="gmd_favorite"
+    app:ico_color="#0000FF"
+    app:ico_contour_width="1dp"
+    app:ico_contour_color="#00FFFF"
+    app:ico_size="24dp" />
+    // all custom theming attributes supported
+```
+
+Use like any normal drawable in your application.
+This feature was suggested and initially provided by @dzamlo
 
 ### Custom Views
 #### As IconicsImageView
@@ -158,9 +180,6 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
         android:layout_width="120dp"
         android:layout_height="60dp"/>
 ```
-
-### Automatic XML 
-
 
 # Screenshots
 
@@ -230,7 +249,10 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 IconicsDrawable(this, "faw-adjust").actionBar()
 ```
 ```kotlin
-IconicsDrawable(this, FontAwesome.Icon.faw_adjust).size(24.toIconicsSizeDp()).padding(1.toIconicsSizeDp())
+IconicsDrawable(this, FontAwesome.Icon.faw_adjust).apply {
+    sizeDp = 24
+    paddingDp = 1
+}
 ```
 
 
