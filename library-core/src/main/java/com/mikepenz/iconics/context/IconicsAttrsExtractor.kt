@@ -139,18 +139,18 @@ class IconicsAttrsExtractor(
             }
             // endregion
             // region shadow
-            val _shadowRadius = typedArray.getDimensionPixelSize(shadowRadiusId)
-            val _shadowDx = typedArray.getDimensionPixelSize(shadowDxId)
-            val _shadowDy = typedArray.getDimensionPixelSize(shadowDyId)
-            val _shadowColor = typedArray.getColor(shadowColorId, DEF_COLOR)
+            val localShadowRadius = typedArray.getDimensionPixelSize(shadowRadiusId)
+            val localShadowDx = typedArray.getDimensionPixelSize(shadowDxId)
+            val localShadowDy = typedArray.getDimensionPixelSize(shadowDyId)
+            val localShadowColor = typedArray.getColor(shadowColorId, DEF_COLOR)
 
             @Suppress("ComplexCondition")
-            if (_shadowRadius != null && _shadowDx != null && _shadowDy != null && _shadowColor != DEF_COLOR) {
+            if (localShadowRadius != null && localShadowDx != null && localShadowDy != null && localShadowColor != DEF_COLOR) {
                 applyShadow {
-                    shadowRadiusPx = _shadowRadius.toFloat()
-                    shadowDxPx = _shadowDx.toFloat()
-                    shadowDyPx = _shadowDy.toFloat()
-                    shadowColorInt = _shadowColor
+                    shadowRadiusPx = localShadowRadius.toFloat()
+                    shadowDxPx = localShadowDx.toFloat()
+                    shadowDyPx = localShadowDy.toFloat()
+                    shadowColorInt = localShadowColor
                 }
             }
             // endregion
