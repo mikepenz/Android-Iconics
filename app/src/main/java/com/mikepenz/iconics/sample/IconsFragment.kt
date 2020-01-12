@@ -45,8 +45,14 @@ import com.mikepenz.iconics.utils.colorRes
 import com.mikepenz.iconics.utils.contourColorRes
 import com.mikepenz.iconics.utils.contourWidthDp
 import com.mikepenz.iconics.utils.enableShadowSupport
+import com.mikepenz.iconics.utils.icon
 import com.mikepenz.iconics.utils.paddingDp
+import com.mikepenz.iconics.utils.roundedCorners
 import com.mikepenz.iconics.utils.roundedCornersDp
+import com.mikepenz.iconics.utils.shadowColor
+import com.mikepenz.iconics.utils.shadowDx
+import com.mikepenz.iconics.utils.shadowDy
+import com.mikepenz.iconics.utils.shadowRadius
 import com.mikepenz.iconics.utils.sizeDp
 import kotlinx.android.synthetic.main.icons_fragment.list
 import java.util.ArrayList
@@ -129,12 +135,13 @@ class IconsFragment : Fragment() {
             if (ctx != null) {
                 val i = item.icon
                 if (i != null) {
-                    val icon = IconicsDrawable(ctx)
-                            .icon(i)
-                            .sizeDp(144)
-                            .paddingDp(8)
-                            .backgroundColorString("#DDFFFFFF")
-                            .roundedCornersDp(12)
+                    val icon = IconicsDrawable(ctx).apply {
+                        icon(i)
+                        sizeDp = 144
+                        paddingDp = 8
+                        backgroundColorString = "#DDFFFFFF"
+                        roundedCornersDp = 12
+                    }
 
                     ImageView(ctx).let { imageView ->
                         imageView.setImageDrawable(icon)
@@ -182,18 +189,19 @@ class IconsFragment : Fragment() {
                     //as we overwrite the default listener
                     item.bindView(holder, payloads)
 
-
                     holder.image.icon?.let {
                         if (randomize) {
-                            it.colorRes(getRandomColor(position))
-                                    .paddingDp(random.nextInt(12))
-                                    .contourWidthDp(random.nextInt(2))
-                                    .contourColorRes(getRandomColor(position - 2))
+                            it.apply {
+                                colorRes = getRandomColor(position)
+                                paddingDp = random.nextInt(12)
+                                contourWidthDp = random.nextInt(2)
+                                contourColorRes = getRandomColor(position - 2)
 
-                            val y = random.nextInt(10)
-                            if (y % 4 == 0) {
-                                it.backgroundColorRes(getRandomColor(position - 4))
-                                        .roundedCorners(IconicsSize.dp((2 + random.nextInt(10))))
+                                val y = random.nextInt(10)
+                                if (y % 4 == 0) {
+                                    backgroundColorRes = getRandomColor(position - 4)
+                                    roundedCorners = IconicsSize.dp((2 + random.nextInt(10)))
+                                }
                             }
                         }
                     }
@@ -201,12 +209,12 @@ class IconsFragment : Fragment() {
                     if (shadow) {
                         holder.image.enableShadowSupport()
                         //holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
-                        holder.image.icon?.shadow(
-                            radius = IconicsSize.dp(1),
-                            dx = IconicsSize.dp(1),
-                            dy = IconicsSize.dp(1),
-                            color = IconicsColor.colorInt(Color.argb(200, 0, 0, 0))
-                        )
+                        holder.image.icon?.applyShadow {
+                            shadowRadius = IconicsSize.dp(1)
+                            shadowDx = IconicsSize.dp(1)
+                            shadowDy = IconicsSize.dp(1)
+                            shadowColor = IconicsColor.colorInt(Color.argb(200, 0, 0, 0))
+                        }
                     }
                 }
             }

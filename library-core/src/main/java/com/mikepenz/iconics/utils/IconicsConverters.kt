@@ -28,80 +28,120 @@ import androidx.core.graphics.drawable.IconCompat
 import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
+import com.mikepenz.iconics.dsl.NON_READABLE
 
 // VARIOUS convenient extension functions for quick common setters
+var IconicsDrawable.colorString: String
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(value) {
+        color = IconicsColor.parse(value)
+    }
 
-inline fun IconicsDrawable.colorString(colorString: String) =
-        color(IconicsColor.parse(colorString))
+var IconicsDrawable.colorRes: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@ColorRes value) {
+        color = IconicsColor.colorRes(value)
+    }
 
-inline fun IconicsDrawable.colorRes(@ColorRes colorRes: Int) =
-        color(IconicsColor.colorRes(colorRes))
+var IconicsDrawable.contourColorString: String
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(value) {
+        contourColor = IconicsColor.parse(value)
+    }
 
-inline fun IconicsDrawable.colorInt(@ColorInt colorInt: Int) =
-        color(IconicsColor.colorInt(colorInt))
+var IconicsDrawable.contourColorRes: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@ColorRes value) {
+        contourColor = IconicsColor.colorRes(value)
+    }
 
-inline fun IconicsDrawable.contourColorString(colorString: String) =
-        contourColor(IconicsColor.parse(colorString))
+var IconicsDrawable.backgroundColorString: String
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(value) {
+        backgroundColor = IconicsColor.parse(value)
+    }
 
-inline fun IconicsDrawable.contourColorRes(@ColorRes colorRes: Int) =
-        contourColor(IconicsColor.colorRes(colorRes))
+var IconicsDrawable.backgroundColorRes: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@ColorRes value) {
+        backgroundColor = IconicsColor.colorRes(value)
+    }
 
-inline fun IconicsDrawable.contourColorInt(@ColorInt colorInt: Int) =
-        contourColor(IconicsColor.colorInt(colorInt))
+var IconicsDrawable.backgroundContourColorString: String
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(value) {
+        backgroundContourColor = IconicsColor.parse(value)
+    }
 
-inline fun IconicsDrawable.backgroundColorString(colorString: String) =
-        backgroundColor(IconicsColor.parse(colorString))
+var IconicsDrawable.backgroundContourColorRes: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@ColorRes value) {
+        backgroundContourColor = IconicsColor.colorRes(value)
+    }
 
-inline fun IconicsDrawable.backgroundColorRes(@ColorRes colorRes: Int) =
-        backgroundColor(IconicsColor.colorRes(colorRes))
+var IconicsDrawable.sizeDp: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@Dimension(unit = Dimension.DP) value) {
+        size = IconicsSize.dp(value)
+    }
 
-inline fun IconicsDrawable.backgroundColorInt(@ColorInt colorInt: Int) =
-        backgroundColor(IconicsColor.colorInt(colorInt))
+var IconicsDrawable.sizeRes: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@DimenRes value) {
+        size = IconicsSize.res(value)
+    }
 
-inline fun IconicsDrawable.backgroundContourColorString(colorString: String) =
-        backgroundContourColor(IconicsColor.parse(colorString))
+var IconicsDrawable.paddingDp: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@Dimension(unit = Dimension.DP) value) {
+        padding = IconicsSize.dp(value)
+    }
 
-inline fun IconicsDrawable.backgroundContourColorRes(@ColorRes colorRes: Int) =
-        backgroundContourColor(IconicsColor.colorRes(colorRes))
+var IconicsDrawable.paddingRes: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@DimenRes value) {
+        padding = IconicsSize.res(value)
+    }
 
-inline fun IconicsDrawable.backgroundContourColorInt(@ColorInt colorInt: Int) =
-        backgroundContourColor(IconicsColor.colorInt(colorInt))
+var IconicsDrawable.roundedCornersDp: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@Dimension(unit = Dimension.DP) value) {
+        roundedCorners = IconicsSize.dp(value)
+    }
 
-inline fun IconicsDrawable.sizeDp(@Dimension(unit = Dimension.DP) sizeDp: Int) =
-        size(IconicsSize.dp(sizeDp))
+var IconicsDrawable.roundedCornersRes: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@DimenRes value) {
+        roundedCorners = IconicsSize.res(value)
+    }
 
-inline fun IconicsDrawable.sizePx(@Dimension(unit = Dimension.PX) sizePx: Int) =
-        size(IconicsSize.px(sizePx))
+var IconicsDrawable.contourWidthDp: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@Dimension(unit = Dimension.DP) value) {
+        contourWidth = IconicsSize.dp(value)
+    }
 
-inline fun IconicsDrawable.sizeRes(@DimenRes sizeRes: Int) =
-        size(IconicsSize.res(sizeRes))
-
-inline fun IconicsDrawable.paddingDp(@Dimension(unit = Dimension.DP) sizeDp: Int) =
-        padding(IconicsSize.dp(sizeDp))
-
-inline fun IconicsDrawable.paddingPx(@Dimension(unit = Dimension.PX) sizePx: Int) =
-        padding(IconicsSize.px(sizePx))
-
-inline fun IconicsDrawable.paddingRes(@DimenRes sizeRes: Int) =
-        padding(IconicsSize.res(sizeRes))
-
-inline fun IconicsDrawable.roundedCornersDp(@Dimension(unit = Dimension.DP) sizeDp: Int) =
-        roundedCorners(IconicsSize.dp(sizeDp))
-
-inline fun IconicsDrawable.roundedCornersPx(@Dimension(unit = Dimension.PX) sizePx: Int) =
-        roundedCorners(IconicsSize.px(sizePx))
-
-inline fun IconicsDrawable.roundedCornersRes(@DimenRes sizeRes: Int) =
-        roundedCorners(IconicsSize.res(sizeRes))
-
-inline fun IconicsDrawable.contourWidthDp(@Dimension(unit = Dimension.DP) sizeDp: Int) =
-        contourWidth(IconicsSize.dp(sizeDp))
-
-inline fun IconicsDrawable.contourWidthPx(@Dimension(unit = Dimension.PX) sizePx: Int) =
-        contourWidth(IconicsSize.px(sizePx))
-
-inline fun IconicsDrawable.contourWidthRes(@DimenRes sizeRes: Int) =
-        contourWidth(IconicsSize.res(sizeRes))
+var IconicsDrawable.contourWidthRes: Int
+    @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
+    get() = throw UnsupportedOperationException()
+    set(@DimenRes value) {
+        contourWidth = IconicsSize.res(value)
+    }
 
 /**
  * Pretty converter to [androidx.core.graphics.drawable.IconCompat]

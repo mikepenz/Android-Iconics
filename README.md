@@ -17,6 +17,7 @@ Use the icons in the variation you need them.
 **What do you get**
 - No customization limitations (size, color, contour, background, padding, positioning, ...)
 - Shadow support
+- Use as XML Drawable starting API 24
 - One icon source (no more mdpi, hdpi, ...)
 - Flexibility
   - Size
@@ -282,7 +283,7 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 
 # License
 
-    Copyright 2019 Mike Penz
+    Copyright 2020 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

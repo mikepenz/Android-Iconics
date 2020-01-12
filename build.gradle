@@ -17,14 +17,14 @@
 buildscript {
     ext {
         release = [
-                versionName: "4.0.2",
-                versionCode: 40020
+                versionName: "5.0.0-a01",
+                versionCode: 50000
         ]
 
         setup = [
                 compileSdk: 29,
                 buildTools: "29.0.2",
-                minSdk    : 14,
+                minSdk    : 16,
                 targetSdk : 29
         ]
 
@@ -41,7 +41,9 @@ buildscript {
                         core: '1.1.0'
                 ],
                 detekt          : '1.0.0-RC15',
-                aboutLibraries  : '8.0.0-b02'
+                aboutLibraries  : '8.0.0-b02',
+                materialDrawer  : '8.0.0-a05',
+                fastAdapter     : '5.0.0-a01'
         ]
     }
 

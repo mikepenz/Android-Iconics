@@ -39,7 +39,6 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.TextPaint
 import android.util.AttributeSet
-import android.util.Log
 import androidx.annotation.ColorInt
 import androidx.annotation.IntRange
 import androidx.core.content.res.use
@@ -50,54 +49,283 @@ import com.mikepenz.iconics.context.IconicsAttrsExtractor
 import com.mikepenz.iconics.core.R
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.utils.clearedIconName
-import com.mikepenz.iconics.utils.iconPrefix
+import com.mikepenz.iconics.utils.actionBar
+import com.mikepenz.iconics.utils.icon
 import org.xmlpull.v1.XmlPullParser
 
 /** A custom [Drawable] which can display icons from icon fonts. */
 open class IconicsDrawable internal constructor() : Drawable() {
 
-    protected lateinit var res: Resources
-    protected var theme: Theme? = null
+    internal lateinit var res: Resources
+    internal var theme: Theme? = null
 
-    protected val iconBrush = IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG))
-    protected val backgroundContourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
-    protected val backgroundBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
-    protected val contourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
+    internal var iconBrush = IconicsBrush(TextPaint(Paint.ANTI_ALIAS_FLAG))
+        private set
+
+    /** Set the color of the drawable. */
+    var colorList: ColorStateList?
+        get() = iconBrush.colorsList
+        set(value) {
+            iconBrush.colorsList = value
+            if (iconBrush.applyState(state)) {
+                invalidateThis()
+            }
+        }
+
+    /** Set the style for the icon brush */
+    var style: Paint.Style
+        get() = iconBrush.paint.style
+        set(value) {
+            iconBrush.paint.style = value
+            invalidateThis()
+        }
+
+    /** Set the typeface of the drawable NOTE THIS WILL OVERWRITE THE ICONFONT! */
+    var typeface: Typeface?
+        get() = iconBrush.paint.typeface
+        set(value) {
+            iconBrush.paint.typeface = value
+            invalidateThis()
+        }
+
+    internal var backgroundContourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
+        private set
+
+    /** Set the color of the drawable. */
+    var backgroundContourColorList: ColorStateList?
+        get() = backgroundContourBrush.colorsList
+        set(value) {
+            backgroundContourBrush.colorsList = value
+            if (backgroundContourBrush.applyState(state)) {
+                invalidateThis()
+            }
+        }
+
+    internal var backgroundBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
+        private set
+
+    /** Set the color of the drawable. */
+    var backgroundColorList: ColorStateList?
+        get() = backgroundBrush.colorsList
+        set(value) {
+            backgroundBrush.colorsList = value
+            if (backgroundBrush.applyState(state)) {
+                invalidateThis()
+            }
+        }
+
+    internal var contourBrush = IconicsBrush(Paint(Paint.ANTI_ALIAS_FLAG))
+        private set
+
+    /** Set the color of the drawable. */
+    var contourColorList: ColorStateList?
+        get() = contourBrush.colorsList
+        set(value) {
+            contourBrush.colorsList = value
+            if (contourBrush.applyState(state)) {
+                invalidateThis()
+            }
+        }
 
     private val paddingBounds = Rect()
     private val pathBounds = RectF()
-
     private val path = Path()
 
-    private var sizeX: Int = -1
-    private var sizeY: Int = -1
+    /**
+     * Set the opacity
+     * **NOTE** if you define a color (or as part of a colorStateList) with alpha
+     * the alpha value of that color will ALWAYS WIN!
+     */
+    @IntRange(from = 0, to = 255)
+    var compatAlpha = 255
+        set(value) {
+            field = value
+            invalidateThis()
+        }
 
-    private var isRespectFontBounds: Boolean = false
+    /** @return the IIcon which is used inside this IconicsDrawable */
+    var icon: IIcon? = null
+        set(value) {
+            field = value
+            typeface = value?.typeface?.rawTypeface
+            if (field != null) {
+                iconText = null
+                invalidateThis()
+            }
+        }
 
-    private var isDrawContour: Boolean = false
+    /** @return the PlainIcon which is used inside this IconicsDrawable */
+    var iconText: String? = null
+        set(value) {
+            field = value
+            if (field != null) {
+                this.icon = null
+                invalidateThis()
+            }
+        }
 
-    private var isDrawBackgroundContour: Boolean = false
+    /** @return if auto mirroring is enabled for this drawable */
+    var autoMirroredCompat: Boolean = false
+        set(value) {
+            field = value
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                isAutoMirrored = value
+            }
+            invalidateThis()
+        }
 
-    private var roundedCornerRx: Float = -1f
-    private var roundedCornerRy: Float = -1f
+    /** defines if we want to instantly invalidate on changes */
+    var invalidationEnabled = true
+        set(value) {
+            field = value
+            invalidateSelf()
+        }
 
-    private var iconPadding: Int = 0
-    private var contourWidth: Int = 0
-    private var backgroundContourWidth: Int = 0
+    /** defines if we want to instantly invalidate changes of the shadow */
+    internal var invalidateShadowEnabled = true
 
-    private var iconOffsetX: Int = 0
-    private var iconOffsetY: Int = 0
+    /** Set the size by X axis of the drawable.*/
+    var sizeXPx: Int = -1
+        set(value) {
+            field = value
+            setBounds(0, 0, sizeXPx, sizeYPx)
+        }
 
-    private var shadowRadius: Float = 0f
-    private var shadowDx: Float = 0f
-    private var shadowDy: Float = 0f
-    private var shadowColor = Color.TRANSPARENT
+    /** Set the size by Y axis of the drawable.*/
+    var sizeYPx: Int = -1
+        set(value) {
+            field = value
+            setBounds(0, 0, sizeXPx, sizeYPx)
+        }
 
-    private var tint: ColorStateList? = null
-    private var tintMode: PorterDuff.Mode = PorterDuff.Mode.SRC_IN
+    var respectFontBounds: Boolean = false
+        set(value) {
+            field = value
+            invalidateThis()
+        }
+
+    var drawContour: Boolean = false
+        set(value) {
+            if (value != drawContour) {
+                field = value
+                paddingPx += (if (drawContour) 1 else -1) * contourWidthPx
+                invalidateThis()
+            }
+        }
+
+    var drawBackgroundContour: Boolean = false
+        set(value) {
+            if (value != drawBackgroundContour) {
+                field = value
+                paddingPx += (if (drawBackgroundContour) 1 else -1) * backgroundContourWidthPx * 2
+                invalidateThis()
+            }
+        }
+
+    var roundedCornerRxPx: Float = 0f
+        set(value) {
+            field = value
+            invalidateThis()
+        }
+
+    var roundedCornerRyPx: Float = 0f
+        set(value) {
+            field = value
+            invalidateThis()
+        }
+
+    var paddingPx: Int = 0
+        set(value) {
+            if (field != value) {
+                var adjustedPadding = value
+                if (drawContour) {
+                    adjustedPadding += contourWidthPx
+                }
+                if (drawBackgroundContour) {
+                    adjustedPadding += backgroundContourWidthPx
+                }
+                field = adjustedPadding
+                invalidateThis()
+            }
+        }
+
+    var contourWidthPx: Int = 0
+        set(value) {
+            field = value
+            contourBrush.paint.strokeWidth = contourWidthPx.toFloat()
+            drawContour = true
+            invalidateThis()
+        }
+
+    var backgroundContourWidthPx: Int = 0
+        set(value) {
+            field = value
+            backgroundContourBrush.paint.strokeWidth = backgroundContourWidthPx.toFloat()
+            drawBackgroundContour = true
+            invalidateThis()
+        }
+
+    var iconOffsetXPx: Int = 0
+        set(value) {
+            field = value
+            invalidateThis()
+        }
+
+    var iconOffsetYPx: Int = 0
+        set(value) {
+            field = value
+            invalidateThis()
+        }
+
+    var shadowRadiusPx: Float = 0f
+        set(value) {
+            field = value
+            updateShadow()
+        }
+    var shadowDxPx: Float = 0f
+        set(value) {
+            field = value
+            updateShadow()
+        }
+    var shadowDyPx: Float = 0f
+        set(value) {
+            field = value
+            updateShadow()
+        }
+    @ColorInt
+    var shadowColorInt = Color.TRANSPARENT
+        set(value) {
+            field = value
+            updateShadow()
+            invalidateThis()
+        }
+
+    private fun updateShadow() {
+        // will not update shadows if dinvalidation is disabled
+        if (invalidateShadowEnabled) {
+            iconBrush.paint.setShadowLayer(shadowRadiusPx, shadowDxPx, shadowDyPx, shadowColorInt)
+            invalidateThis()
+        }
+    }
+
+    var tint: ColorStateList? = null
+        set(value) {
+            field = value
+            updateTintFilter()
+            invalidateThis()
+        }
+    var tintPorterMode: PorterDuff.Mode = PorterDuff.Mode.SRC_IN
+        set(value) {
+            field = value
+            updateTintFilter()
+            invalidateThis()
+        }
     private var tintFilter: ColorFilter? = null
-    private var iconColorFilter: ColorFilter? = null
+    var iconColorFilter: ColorFilter? = null
+        set(value) {
+            field = value
+            invalidateThis()
+        }
 
     constructor(res: Resources, theme: Theme? = null) : this() {
         this.res = res
@@ -120,27 +348,22 @@ open class IconicsDrawable internal constructor() : Drawable() {
         icon(typeface, icon)
     }
 
-    @Deprecated("Provide resources instead")
     constructor(context: Context) : this(context.resources, context.theme) {
         Iconics.init(context)
     }
 
-    @Deprecated("Provide resources instead")
     constructor(context: Context, icon: Char) : this(context.resources, context.theme, icon) {
         Iconics.init(context)
     }
 
-    @Deprecated("Provide resources instead")
     constructor(context: Context, icon: String) : this(context.resources, context.theme, icon) {
         Iconics.init(context)
     }
 
-    @Deprecated("Provide resources instead")
     constructor(context: Context, icon: IIcon) : this(context.resources, context.theme, icon) {
         Iconics.init(context)
     }
 
-    @Deprecated("Provide resources instead")
     protected constructor(context: Context, typeface: ITypeface, icon: IIcon) : this(context.resources, context.theme, typeface, icon) {
         Iconics.init(context)
     }
@@ -154,931 +377,14 @@ open class IconicsDrawable internal constructor() : Drawable() {
                 isUnderlineText = false
             }
         }
-
         contourBrush.paint.style = Paint.Style.STROKE
         backgroundContourBrush.paint.style = Paint.Style.STROKE
-        icon(' ')
-    }
-
-    /**
-     * just a helper to get the alpha value
-     *
-     * @return current alpha
-     */
-    @IntRange(from = 0, to = 255)
-    open var compatAlpha = 255
-        protected set
-
-    /** @return the IIcon which is used inside this IconicsDrawable */
-    var icon: IIcon? = null
-        private set
-
-    /** @return the PlainIcon which is used inside this IconicsDrawable */
-    var plainIcon: String? = null
-        private set
-
-    /** @return the icon color */
-    val color: Int
-        @ColorInt get() = iconBrush.colorForCurrentState
-
-    /** @return the icon colors */
-    val colorList: ColorStateList?
-        get() = iconBrush.colorsList
-
-    /** @return the icon contour color */
-    val contourColor: Int
-        @ColorInt get() = contourBrush.colorForCurrentState
-
-    /** @return the contour colors */
-    val contourColorList: ColorStateList?
-        get() = contourBrush.colorsList
-
-    /** @return the icon background color */
-    val backgroundColor: Int
-        @ColorInt get() = backgroundBrush.colorForCurrentState
-
-    /** @return the background colors */
-    val backgroundColorList: ColorStateList?
-        get() = backgroundBrush.colorsList
-
-    /** @return the icon background contour color */
-    val backgroundContourColor: Int
-        @ColorInt get() = backgroundContourBrush.colorForCurrentState
-
-    /** @return the background contour colors */
-    val backgroundContourColorList: ColorStateList?
-        get() = backgroundContourBrush.colorsList
-
-    /** @return if auto mirroring is enabled for this drawable */
-    var isAutoMirroredCompat: Boolean = false
-        private set(value) {
-            field = value
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                isAutoMirrored = value
-            }
-        }
-
-    /**
-     * Creates a BitMap to use in Widgets or anywhere else
-     *
-     * @return bitmap to set
-     */
-    fun toBitmap(): Bitmap {
-        if (sizeX == -1 || sizeY == -1) {
-            actionBar()
-        }
-
-        val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
-
-        style(Paint.Style.FILL)
-
-        val canvas = Canvas(bitmap)
-        setBounds(0, 0, canvas.width, canvas.height)
-        draw(canvas)
-
-        return bitmap
-    }
-
-    /**
-     * clones the icon
-     *
-     * @return new IconicsDrawable with the same values.
-     */
-    fun clone(): IconicsDrawable {
-        return copyTo(IconicsDrawable(res, theme))
-    }
-
-    /**
-     * Transform the icon to an animated icon
-     *
-     * @return new IconicsDrawable with the same values.
-     */
-    fun toAnimatedDrawable(): IconicsAnimatedDrawable {
-        return copyTo(IconicsAnimatedDrawable(res, theme))
-    }
-
-    private fun <T : IconicsDrawable> copyTo(other: T): T {
-        // icon
-        colorList?.also { other.color(IconicsColor.colorList(it)) }
-        // background
-        backgroundColorList?.also { other.backgroundColor(IconicsColor.colorList(it)) }
-        // icon contour
-        contourColorList?.also { other.contourColor(IconicsColor.colorList(it)) }
-        // background contour
-        backgroundContourColorList?.also { other.backgroundContourColor(IconicsColor.colorList(it)) }
-
-        // icon
-        other.sizeX(IconicsSize.px(sizeX))
-                .sizeY(IconicsSize.px(sizeY))
-                .iconOffsetX(IconicsSize.px(iconOffsetX))
-                .iconOffsetY(IconicsSize.px(iconOffsetY))
-                .padding(IconicsSize.px(iconPadding))
-                .typeface(iconBrush.paint.typeface)
-                .respectFontBounds(isRespectFontBounds)
-                // background
-                .roundedCornersRx(IconicsSize.px(roundedCornerRx))
-                .roundedCornersRy(IconicsSize.px(roundedCornerRy))
-                // icon contour
-                .contourWidth(IconicsSize.px(contourWidth))
-                .drawContour(isDrawContour)
-                // background contour
-                .backgroundContourWidth(IconicsSize.px(backgroundContourWidth))
-                .drawBackgroundContour(isDrawBackgroundContour)
-                // shadow
-                .shadow(
-                    IconicsSize.px(shadowRadius),
-                    IconicsSize.px(shadowDx),
-                    IconicsSize.px(shadowDy),
-                    IconicsColor.colorInt(shadowColor)
-                )
-                // common
-                .alpha(compatAlpha)
-
-        icon?.let(other::icon) ?: plainIcon?.let { other.iconText(it) }
-
-        return other
-    }
-
-    /**
-     * Loads and draws given text
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    @JvmName("iconFromString")
-    fun icon(iconProducer: () -> String?): IconicsDrawable {
-        iconProducer()?.let { icon(it) }
-        return this
-    }
-
-    /**
-     * Loads and draws given text
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun icon(icon: String): IconicsDrawable {
-        try {
-            Iconics.findFont(icon.iconPrefix)?.let { icon(it.getIcon(icon.clearedIconName)) }
-        } catch (ex: Exception) {
-            Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong icon name: $icon")
-        }
-
-        return this
-    }
-
-    /**
-     * Loads and draws given char
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    @JvmName("iconFromChar")
-    fun icon(iconProducer: () -> Char?): IconicsDrawable {
-        iconProducer()?.let { icon(it) }
-        return this
-    }
-
-    /**
-     * Loads and draws given char
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun icon(icon: Char): IconicsDrawable {
-        return iconText(icon.toString(), null)
-    }
-
-    /**
-     * Loads and draws given char
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun icon(icon: Char, typeface: Typeface?): IconicsDrawable {
-        return iconText(icon.toString(), typeface)
-    }
-
-    /**
-     * Loads and draws given text
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    @JvmName("iconTextFromString")
-    fun iconText(iconTextProducer: () -> String?): IconicsDrawable {
-        iconTextProducer()?.let { iconText(it) }
-        return this
-    }
-
-    /**
-     * Loads and draws given text
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    @JvmOverloads
-    fun iconText(icon: String, typeface: Typeface? = null): IconicsDrawable {
-        plainIcon = icon
-        this.icon = null
-        iconBrush.paint.typeface = typeface ?: Typeface.DEFAULT
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Loads and draws given icon
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun icon(iconProducer: () -> IIcon?): IconicsDrawable {
-        iconProducer()?.let { icon(it) }
-        return this
-    }
-
-    /**
-     * Loads and draws given icon
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun icon(icon: IIcon): IconicsDrawable {
-        plainIcon = null
-        this.icon = icon
-        iconBrush.paint.typeface = icon.typeface.rawTypeface
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Loads and draws given icon
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    protected fun icon(typeface: ITypeface, icon: IIcon): IconicsDrawable {
-        this.icon = icon
-        iconBrush.paint.typeface = typeface.rawTypeface
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set if it should respect the original bounds of the icon. (DEFAULT is false)
-     * This will break the "padding" functionality, but keep the padding defined by the font itself
-     * Check it out with the oct_arrow_down and oct_arrow_small_down of the Octicons font
-     *
-     * @param respectFontBoundsProducer set to true if it should respect the original bounds
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun respectFontBounds(respectFontBoundsProducer: () -> Boolean?): IconicsDrawable {
-        respectFontBoundsProducer()?.let { respectFontBounds(it) }
-        return this
-    }
-
-    /**
-     * Set if it should respect the original bounds of the icon. (DEFAULT is false)
-     * This will break the "padding" functionality, but keep the padding defined by the font itself
-     * Check it out with the oct_arrow_down and oct_arrow_small_down of the Octicons font
-     *
-     * @param isRespectFontBounds set to true if it should respect the original bounds
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun respectFontBounds(isRespectFontBounds: Boolean): IconicsDrawable {
-        this.isRespectFontBounds = isRespectFontBounds
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set the color of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun color(colorProducer: () -> IconicsColor?): IconicsDrawable {
-        colorProducer()?.let { color(it) }
-        return this
-    }
-
-    /**
-     * Set the color of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun color(colors: IconicsColor): IconicsDrawable {
-        color(colors.extractList(res, theme))
-        return this
-    }
-
-    /**
-     * Set the color of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun color(colors: ColorStateList?): IconicsDrawable {
-        iconBrush.colorsList = colors
-        if (iconBrush.applyState(state)) {
-            invalidateSelf()
-        }
-        return this
-    }
-
-    /**
-     * Set the icon offset for X axis
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun iconOffsetX(iconOffsetXProducer: () -> IconicsSize?): IconicsDrawable {
-        iconOffsetXProducer()?.let { iconOffsetX(it) }
-        return this
-    }
-
-    /**
-     * Set the icon offset for X axis
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun iconOffsetX(size: IconicsSize): IconicsDrawable {
-        iconOffsetX = size.extract(res)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set the icon offset for Y axis
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun iconOffsetY(iconOffsetYProducer: () -> IconicsSize?): IconicsDrawable {
-        iconOffsetYProducer()?.let { iconOffsetY(it) }
-        return this
-    }
-
-    /**
-     * Set the icon offset for Y axis
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun iconOffsetY(size: IconicsSize): IconicsDrawable {
-        iconOffsetY = size.extract(res)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set the padding for the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun padding(paddingProducer: () -> IconicsSize?): IconicsDrawable {
-        paddingProducer()?.let { padding(it) }
-        return this
-    }
-
-    /**
-     * Set the padding for the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun padding(size: IconicsSize): IconicsDrawable {
-        val sizePx = size.extract(res)
-        if (iconPadding != sizePx) {
-            iconPadding = sizePx
-            if (isDrawContour) {
-                iconPadding += contourWidth
-            }
-            if (isDrawBackgroundContour) {
-                iconPadding += backgroundContourWidth
-            }
-
-            invalidateSelf()
-        }
-        return this
-    }
-
-    /**
-     * Set the size and the padding to the correct values to be used for the actionBar / toolBar
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun actionBar(): IconicsDrawable {
-        return size(IconicsSize.TOOLBAR_ICON_SIZE).padding(IconicsSize.TOOLBAR_ICON_PADDING)
-    }
-
-    /**
-     * Set the size by X and Y axis of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun size(sizeProducer: () -> IconicsSize?): IconicsDrawable {
-        sizeProducer()?.let { size(it) }
-        return this
-    }
-
-    /**
-     * Set the size by X and Y axis of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun size(size: IconicsSize): IconicsDrawable {
-        size(size.extract(res))
-        return this
-    }
-
-    /**
-     * Set the size by X and Y axis of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun size(size: Int): IconicsDrawable {
-        sizeY = size
-        sizeX = sizeY
-        setBounds(0, 0, sizeX, sizeY)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set the size by X axis of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun sizeX(sizeXProducer: () -> IconicsSize?): IconicsDrawable {
-        sizeXProducer()?.let { sizeX(it) }
-        return this
-    }
-
-    /**
-     * Set the size by X axis of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun sizeX(size: IconicsSize): IconicsDrawable {
-        sizeX = size.extract(res)
-        setBounds(0, 0, sizeX, sizeY)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set the size by Y axis of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun sizeY(sizeYProducer: () -> IconicsSize?): IconicsDrawable {
-        sizeYProducer()?.let { sizeY(it) }
-        return this
-    }
-
-    /**
-     * Set the size by Y axis of the drawable.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun sizeY(size: IconicsSize): IconicsDrawable {
-        sizeY = size.extract(res)
-        setBounds(0, 0, sizeX, sizeY)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set background contour colors.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun backgroundContourColor(
-        backgroundContourColorProducer: () -> IconicsColor?
-    ): IconicsDrawable {
-        backgroundContourColorProducer()?.let { backgroundContourColor(it) }
-        return this
-    }
-
-    /**
-     * Set background contour colors.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun backgroundContourColor(colors: IconicsColor): IconicsDrawable {
-        backgroundContourBrush.colorsList = colors.extractList(res, theme)
-        if (backgroundContourBrush.applyState(state)) {
-            invalidateSelf()
-        }
-        return this
-    }
-
-    /**
-     * Set contour colors.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun contourColor(contourColorProducer: () -> IconicsColor?): IconicsDrawable {
-        contourColorProducer()?.let { contourColor(it) }
-        return this
-    }
-
-    /**
-     * Set contour colors.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun contourColor(colors: IconicsColor): IconicsDrawable {
-        contourBrush.colorsList = colors.extractList(res, theme)
-        if (contourBrush.applyState(state)) {
-            invalidateSelf()
-        }
-        return this
-    }
-
-    /**
-     * Set background colors.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun backgroundColor(backgroundColorProducer: () -> IconicsColor?): IconicsDrawable {
-        backgroundColorProducer()?.let { backgroundColor(it) }
-        return this
-    }
-
-    /**
-     * Set background colors.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun backgroundColor(colors: IconicsColor): IconicsDrawable {
-        var isInvalidate = false
-
-        if (roundedCornerRx == -1f) {
-            roundedCornerRx = 0f
-            isInvalidate = true
-        }
-        if (roundedCornerRy == -1f) {
-            roundedCornerRy = 0f
-            isInvalidate = true
-        }
-
-        backgroundBrush.colorsList = colors.extractList(res, theme)
-        if (backgroundBrush.applyState(state)) {
-            isInvalidate = true
-        }
-
-        if (isInvalidate) {
-            invalidateSelf()
-        }
-        return this
-    }
-
-    /**
-     * Set rounded corners.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun roundedCornersRx(roundedCornersRxProducer: () -> IconicsSize?): IconicsDrawable {
-        roundedCornersRxProducer()?.let { roundedCornersRx(it) }
-        return this
-    }
-
-    /**
-     * Set rounded corners.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun roundedCornersRx(size: IconicsSize): IconicsDrawable {
-        roundedCornerRx = size.extractFloat(res)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set rounded corner from px
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun roundedCornersRy(roundedCornersRyProducer: () -> IconicsSize?): IconicsDrawable {
-        roundedCornersRyProducer()?.let { roundedCornersRy(it) }
-        return this
-    }
-
-    /**
-     * Set rounded corner from px
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun roundedCornersRy(size: IconicsSize): IconicsDrawable {
-        roundedCornerRy = size.extractFloat(res)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set rounded corner from px
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun roundedCorners(roundedCornersProducer: () -> IconicsSize?): IconicsDrawable {
-        roundedCornersProducer()?.let { roundedCorners(it) }
-        return this
-    }
-
-    /**
-     * Set rounded corner from px
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun roundedCorners(size: IconicsSize): IconicsDrawable {
-        roundedCornerRy = size.extractFloat(res)
-        roundedCornerRx = roundedCornerRy
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set contour width for the icon.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun contourWidth(contourWidthProducer: () -> IconicsSize?): IconicsDrawable {
-        contourWidthProducer()?.let { contourWidth(it) }
-        return this
-    }
-
-    /**
-     * Set contour width for the icon.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun contourWidth(size: IconicsSize): IconicsDrawable {
-        contourWidth = size.extract(res)
-        contourBrush.paint.strokeWidth = contourWidth.toFloat()
-        drawContour(true)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set the shadow for the icon
-     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
-     *
-     * @return The current IconicsDrawable for chaining.
-     * @see Paint.setShadowLayer
-     * @see com.mikepenz.iconics.utils.IconicsUtils.enableShadowSupport
-     * @see clearShadow
-     */
-    fun shadow(
-        radiusProducer: () -> IconicsSize? = { IconicsSize.px(shadowRadius) },
-        dxProducer: () -> IconicsSize? = { IconicsSize.px(shadowDx) },
-        dyProducer: () -> IconicsSize? = { IconicsSize.px(shadowDy) },
-        colorProducer: () -> IconicsColor? = { IconicsColor.colorInt(shadowColor) }
-    ): IconicsDrawable {
-        val radius = radiusProducer()
-        val dx = dxProducer()
-        val dy = dyProducer()
-        val color = colorProducer()
-
-        @Suppress("ComplexCondition")
-        if (radius != null && dx != null && dy != null && color != null) {
-            shadow(radius, dx, dy, color)
-        }
-
-        return this
-    }
-
-    /**
-     * Set the shadow for the icon
-     * This requires shadow support to be enabled on the view holding this `IconicsDrawable`
-     *
-     * @return The current IconicsDrawable for chaining.
-     * @see Paint.setShadowLayer
-     * @see com.mikepenz.iconics.utils.IconicsUtils.enableShadowSupport
-     * @see clearShadow
-     */
-    fun shadow(
-        radius: IconicsSize = IconicsSize.px(shadowRadius),
-        dx: IconicsSize = IconicsSize.px(shadowDx),
-        dy: IconicsSize = IconicsSize.px(shadowDy),
-        color: IconicsColor = IconicsColor.colorInt(shadowColor)
-    ): IconicsDrawable {
-        shadowRadius = radius.extractFloat(res)
-        shadowDx = dx.extractFloat(res)
-        shadowDy = dy.extractFloat(res)
-        shadowColor = color.extract(res, theme)
-
-        iconBrush.paint.setShadowLayer(shadowRadius, shadowDx, shadowDy, shadowColor)
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Clear the shadow for the icon
-     *
-     * @return The current IconicsDrawable for chaining.
-     * @see Paint.clearShadowLayer
-     * @see com.mikepenz.iconics.utils.IconicsUtils.enableShadowSupport
-     * @see shadow
-     */
-    fun clearShadow(): IconicsDrawable {
-        iconBrush.paint.clearShadowLayer()
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set background contour width for the icon.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun backgroundContourWidth(
-        backgroundContourWidthProducer: () -> IconicsSize?
-    ): IconicsDrawable {
-        backgroundContourWidthProducer()?.let { backgroundContourWidth(it) }
-        return this
-    }
-
-    /**
-     * Set background contour width for the icon.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun backgroundContourWidth(size: IconicsSize): IconicsDrawable {
-        backgroundContourWidth = size.extract(res)
-        backgroundContourBrush.paint.strokeWidth = backgroundContourWidth.toFloat()
-        drawBackgroundContour(true)
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Enable/disable contour drawing.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun drawContour(drawContourProducer: () -> Boolean?): IconicsDrawable {
-        drawContourProducer()?.let { drawContour(it) }
-        return this
-    }
-
-    /**
-     * Enable/disable contour drawing.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun drawContour(drawContour: Boolean): IconicsDrawable {
-        if (isDrawContour != drawContour) {
-            isDrawContour = drawContour
-
-            iconPadding += (if (isDrawContour) 1 else -1) * contourWidth
-
-            invalidateSelf()
-        }
-        return this
-    }
-
-    /**
-     * Enable/disable background contour drawing.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun drawBackgroundContour(
-        drawBackgroundContourProducer: () -> Boolean?
-    ): IconicsDrawable {
-        drawBackgroundContourProducer()?.let { drawBackgroundContour(it) }
-        return this
-    }
-
-    /**
-     * Enable/disable background contour drawing.
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun drawBackgroundContour(isDrawBackgroundContour: Boolean): IconicsDrawable {
-        if (this.isDrawBackgroundContour != isDrawBackgroundContour) {
-            this.isDrawBackgroundContour = isDrawBackgroundContour
-
-            iconPadding += (if (isDrawBackgroundContour) 1 else -1) * backgroundContourWidth * 2
-
-            invalidateSelf()
-        }
-        return this
-    }
-
-    /**
-     * Set the ColorFilter
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun colorFilter(colorFilterProducer: () -> ColorFilter?): IconicsDrawable {
-        colorFilterProducer()?.let { colorFilter(it) }
-        return this
-    }
-
-    /**
-     * Set the ColorFilter
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun colorFilter(cf: ColorFilter?): IconicsDrawable {
-        colorFilter = cf
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set the opacity
-     * **NOTE** if you define a color (or as part of a colorStateList) with alpha
-     * the alpha value of that color will ALWAYS WIN!
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun alpha(alphaProducer: () -> Int?): IconicsDrawable {
-        alphaProducer()?.let { alpha(it) }
-        return this
-    }
-
-    /**
-     * Set the opacity
-     * **NOTE** if you define a color (or as part of a colorStateList) with alpha
-     * the alpha value of that color will ALWAYS WIN!
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun alpha(@IntRange(from = 0, to = 255) alpha: Int): IconicsDrawable {
-        setAlpha(alpha)
-        return this
-    }
-
-    /**
-     * Set the style
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun style(styleProducer: () -> Paint.Style?): IconicsDrawable {
-        styleProducer()?.let { style(it) }
-        return this
-    }
-
-    /**
-     * Set the style
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun style(style: Paint.Style): IconicsDrawable {
-        iconBrush.paint.style = style
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Set the typeface of the drawable
-     * NOTE THIS WILL OVERWRITE THE ICONFONT!
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun typeface(typefaceProducer: () -> Typeface?): IconicsDrawable {
-        typefaceProducer()?.let { typeface(it) }
-        return this
-    }
-
-    /**
-     * Set the typeface of the drawable
-     * NOTE THIS WILL OVERWRITE THE ICONFONT!
-     *
-     * @return The current IconicsDrawable for chaining.
-     */
-    fun typeface(typeface: Typeface?): IconicsDrawable {
-        iconBrush.paint.typeface = typeface
-
-        invalidateSelf()
-        return this
-    }
-
-    /**
-     * Enable auto mirroring of this drawable when LayoutDirection is RTL
-     *
-     * Note: this is supported only on API 17 and higher
-     *
-     * @param autoMirrored enables or disables mirroring
-     */
-    fun autoMirror(autoMirrored: Boolean): IconicsDrawable {
-        isAutoMirroredCompat = autoMirrored
-
-        invalidateSelf()
-        return this
     }
 
     // magic happens here ;)
     override fun draw(canvas: Canvas) {
-        if (icon == null && plainIcon == null) return
-
+        if (icon == null && iconText == null) return
         val viewBounds = bounds
-
         updatePaddingBounds(viewBounds)
         updateTextSize(viewBounds)
         offsetIcon(viewBounds)
@@ -1089,56 +395,31 @@ open class IconicsDrawable internal constructor() : Drawable() {
             canvas.scale(-1.0f, 1.0f)
         }
 
-        if (roundedCornerRy > -1 && roundedCornerRx > -1) {
-            if (isDrawBackgroundContour) {
-                val halfContourSize = (backgroundContourWidth / 2).toFloat()
-                val rectF = RectF(
-                    halfContourSize,
-                    halfContourSize,
-                    viewBounds.width() - halfContourSize,
-                    viewBounds.height() - halfContourSize
-                )
-                canvas.drawRoundRect(rectF, roundedCornerRx, roundedCornerRy, backgroundBrush.paint)
-                canvas.drawRoundRect(
-                    rectF,
-                    roundedCornerRx,
-                    roundedCornerRy,
-                    backgroundContourBrush.paint
-                )
+        if (roundedCornerRyPx > -1 && roundedCornerRxPx > -1) {
+            if (drawBackgroundContour) {
+                val halfContourSize = (backgroundContourWidthPx / 2).toFloat()
+                val rectF = RectF(halfContourSize, halfContourSize, viewBounds.width() - halfContourSize, viewBounds.height() - halfContourSize)
+                canvas.drawRoundRect(rectF, roundedCornerRxPx, roundedCornerRyPx, backgroundBrush.paint)
+                canvas.drawRoundRect(rectF, roundedCornerRxPx, roundedCornerRyPx, backgroundContourBrush.paint)
             } else {
-                val rectF = RectF(
-                    0f,
-                    0f,
-                    viewBounds.width().toFloat(),
-                    viewBounds.height().toFloat()
-                )
-                canvas.drawRoundRect(rectF, roundedCornerRx, roundedCornerRy, backgroundBrush.paint)
+                val rectF = RectF(0f, 0f, viewBounds.width().toFloat(), viewBounds.height().toFloat())
+                canvas.drawRoundRect(rectF, roundedCornerRxPx, roundedCornerRyPx, backgroundBrush.paint)
             }
         }
-
         runCatching { path.close() }
-
-        if (isDrawContour) {
+        if (drawContour) {
             canvas.drawPath(path, contourBrush.paint)
         }
-
         iconBrush.paint.colorFilter = iconColorFilter ?: tintFilter
-
         canvas.drawPath(path, iconBrush.paint)
     }
 
     override fun setTintList(tint: ColorStateList?) {
         this.tint = tint
-        updateTintFilter()
-
-        invalidateSelf()
     }
 
     override fun setTintMode(tintMode: PorterDuff.Mode?) {
-        this.tintMode = tintMode ?: PorterDuff.Mode.SRC_IN
-        updateTintFilter()
-
-        invalidateSelf()
+        this.tintPorterMode = tintMode ?: PorterDuff.Mode.SRC_IN
     }
 
     override fun onBoundsChange(bounds: Rect) {
@@ -1190,19 +471,16 @@ open class IconicsDrawable internal constructor() : Drawable() {
         return isNeedsRedraw
     }
 
-    override fun getIntrinsicWidth(): Int = sizeX
+    override fun getIntrinsicWidth(): Int = sizeXPx
 
-    override fun getIntrinsicHeight(): Int = sizeY
+    override fun getIntrinsicHeight(): Int = sizeYPx
 
     override fun setAlpha(@IntRange(from = 0, to = 255) alpha: Int) {
         iconBrush.alpha = alpha
         contourBrush.alpha = alpha
         backgroundBrush.alpha = alpha
         backgroundContourBrush.alpha = alpha
-
         compatAlpha = alpha
-
-        invalidateSelf()
     }
 
     @IntRange(from = 0, to = 255)
@@ -1210,62 +488,35 @@ open class IconicsDrawable internal constructor() : Drawable() {
 
     override fun setColorFilter(cf: ColorFilter?) {
         iconColorFilter = cf
-
-        invalidateSelf()
     }
 
     override fun clearColorFilter() {
         iconColorFilter = null
-
-        invalidateSelf()
     }
 
     /** Update the Padding Bounds */
     private fun updatePaddingBounds(viewBounds: Rect) {
-        if (iconPadding >= 0
-                && iconPadding * 2 <= viewBounds.width()
-                && iconPadding * 2 <= viewBounds.height()) {
-            paddingBounds.set(
-                viewBounds.left + iconPadding,
-                viewBounds.top + iconPadding,
-                viewBounds.right - iconPadding,
-                viewBounds.bottom - iconPadding
-            )
+        if (paddingPx >= 0 && paddingPx * 2 <= viewBounds.width() && paddingPx * 2 <= viewBounds.height()) {
+            paddingBounds.set(viewBounds.left + paddingPx, viewBounds.top + paddingPx, viewBounds.right - paddingPx, viewBounds.bottom - paddingPx)
         }
     }
 
     /** Update the TextSize */
     private fun updateTextSize(viewBounds: Rect) {
-        var textSize = viewBounds.height().toFloat() * if (isRespectFontBounds) 1 else 2
+        var textSize = viewBounds.height().toFloat() * if (respectFontBounds) 1 else 2
         iconBrush.paint.textSize = textSize
 
-        val textValue = icon?.character?.toString() ?: plainIcon.toString()
-        iconBrush.paint.getTextPath(
-            textValue,
-            0,
-            textValue.length,
-            0f,
-            viewBounds.height().toFloat(),
-            path
-        )
+        val textValue = icon?.character?.toString() ?: iconText.toString()
+        iconBrush.paint.getTextPath(textValue, 0, textValue.length, 0f, viewBounds.height().toFloat(), path)
         path.computeBounds(pathBounds, true)
 
-        if (!isRespectFontBounds) {
+        if (!respectFontBounds) {
             val deltaWidth = paddingBounds.width().toFloat() / pathBounds.width()
             val deltaHeight = paddingBounds.height().toFloat() / pathBounds.height()
             val delta = if (deltaWidth < deltaHeight) deltaWidth else deltaHeight
             textSize *= delta
-
             iconBrush.paint.textSize = textSize
-
-            iconBrush.paint.getTextPath(
-                textValue,
-                0,
-                textValue.length,
-                0f,
-                viewBounds.height().toFloat(),
-                path
-            )
+            iconBrush.paint.getTextPath(textValue, 0, textValue.length, 0f, viewBounds.height().toFloat(), path)
             path.computeBounds(pathBounds, true)
         }
     }
@@ -1278,13 +529,13 @@ open class IconicsDrawable internal constructor() : Drawable() {
         val startY = viewBounds.centerY() - pathBounds.height() / 2
         val offsetY = startY - pathBounds.top
 
-        path.offset(offsetX + iconOffsetX, offsetY + iconOffsetY)
+        path.offset(offsetX + iconOffsetXPx, offsetY + iconOffsetYPx)
     }
 
     /** Ensures the tint filter is consistent with the current tint color and mode. */
     private fun updateTintFilter() {
         val tint = this.tint
-        val tintMode = this.tintMode
+        val tintMode = this.tintPorterMode
 
         if (tint == null) {
             tintFilter = null
@@ -1298,7 +549,7 @@ open class IconicsDrawable internal constructor() : Drawable() {
     }
 
     private fun needMirroring(): Boolean {
-        return isAutoMirroredCompat && DrawableCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL
+        return autoMirroredCompat && DrawableCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL
     }
 
     override fun inflate(r: Resources, parser: XmlPullParser, attrs: AttributeSet, theme: Theme?) {
@@ -1329,7 +580,7 @@ open class IconicsDrawable internal constructor() : Drawable() {
                 shadowColorId = R.styleable.Iconics_ico_shadow_color,
                 animationsId = R.styleable.Iconics_ico_animations,
                 autoMirrorId = R.styleable.Iconics_ico_automirror
-            ).extract(this)
+            ).extractInto(this)
         }
     }
 
@@ -1337,5 +588,114 @@ open class IconicsDrawable internal constructor() : Drawable() {
         return if (theme == null) {
             res.obtainAttributes(set, attrs)
         } else theme.obtainStyledAttributes(set, attrs, 0, 0)
+    }
+
+    /**
+     * Invalidates the `IconicsDrawable` if invalidation is currently enabled
+     */
+    fun invalidateThis() {
+        if (invalidationEnabled) {
+            invalidateSelf()
+        }
+    }
+
+    /**
+     * Creates a BitMap to use in Widgets or anywhere else
+     *
+     * @return bitmap to set
+     */
+    fun toBitmap(): Bitmap {
+        if (sizeXPx == -1 || sizeYPx == -1) {
+            actionBar()
+        }
+
+        val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
+
+        style = Paint.Style.FILL
+
+        val canvas = Canvas(bitmap)
+        setBounds(0, 0, canvas.width, canvas.height)
+        draw(canvas)
+
+        return bitmap
+    }
+
+    /**
+     * clones the icon
+     *
+     * @return new IconicsDrawable with the same values.
+     */
+    fun clone(): IconicsDrawable {
+        return copyTo(IconicsDrawable(res, theme))
+    }
+
+    /**
+     * Transform the icon to an animated icon
+     *
+     * @return new IconicsDrawable with the same values.
+     */
+    fun toAnimatedDrawable(): IconicsAnimatedDrawable {
+        return copyTo(IconicsAnimatedDrawable(res, theme))
+    }
+
+    private fun <T : IconicsDrawable> copyTo(other: T): T {
+        // icon
+        val self = this
+        other.apply {
+            // icon
+            iconBrush.colorsList = self.iconBrush.colorsList
+            // background
+            backgroundBrush.colorsList = self.backgroundBrush.colorsList
+            // icon contour
+            backgroundContourBrush.colorsList = self.backgroundContourBrush.colorsList
+            // background contour
+            contourBrush.colorsList = self.contourBrush.colorsList
+            // general
+            sizeXPx = self.sizeXPx
+            sizeYPx = self.sizeYPx
+            paddingPx = self.paddingPx
+            respectFontBounds = self.respectFontBounds
+            iconOffsetXPx = self.iconOffsetXPx
+            iconOffsetYPx = self.iconOffsetYPx
+            // background
+            roundedCornerRxPx = self.roundedCornerRxPx
+            roundedCornerRyPx = self.roundedCornerRyPx
+            // icon contour
+            contourWidthPx = self.contourWidthPx
+            drawContour = self.drawContour
+            // background contour
+            backgroundContourWidthPx = self.backgroundContourWidthPx
+            drawBackgroundContour = self.drawBackgroundContour
+            // common
+            compatAlpha = self.compatAlpha
+            // shadow
+            applyShadow {
+                shadowRadiusPx = self.shadowRadiusPx
+                shadowDxPx = self.shadowDxPx
+                shadowDyPx = self.shadowDyPx
+                shadowColorInt = self.shadowColorInt
+            }
+            self.icon?.let { it -> icon = it } ?: self.iconText?.let { iconText = it }
+        }
+
+        return other
+    }
+
+    /** Applies the shadow in an optimized form. Will disable shadow invalidation for the inner shadow set operations */
+    fun applyShadow(block: IconicsDrawable.() -> Unit): IconicsDrawable {
+        invalidateShadowEnabled = false
+        block()
+        invalidateShadowEnabled = true
+        updateShadow()
+        return this
+    }
+
+    /** Applies properties in an optimized form. Will disable invalidation of the IconicsDrawable for the inner property set operations */
+    fun apply(block: IconicsDrawable.() -> Unit): IconicsDrawable {
+        invalidationEnabled = false
+        block()
+        invalidationEnabled = true
+        invalidateSelf()
+        return this
     }
 }

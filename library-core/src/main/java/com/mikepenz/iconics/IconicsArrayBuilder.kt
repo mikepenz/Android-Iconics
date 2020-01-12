@@ -18,6 +18,7 @@ package com.mikepenz.iconics
 
 import android.graphics.Typeface
 import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.utils.icon
 
 /**
  * Created by mikepenz on 30.06.15.
@@ -43,16 +44,15 @@ class IconicsArrayBuilder(private val iconBase: IconicsDrawable) {
     }
 
     fun build(): Array<IconicsDrawable> {
-        val iconicsDrawables = ArrayList<IconicsDrawable>(icons.size)
-
-        icons.forEachIndexed { index, (icon, typeface) ->
-            when (icon) {
-                is IIcon -> iconicsDrawables.add(index, iconBase.clone().icon(icon))
-                is Char -> iconicsDrawables.add(index, iconBase.clone().icon(icon, typeface))
-                is String -> iconicsDrawables.add(index, iconBase.clone().iconText(icon, typeface))
+        return icons.map { (_icon, _typeface) ->
+            when (_icon) {
+                is IIcon -> iconBase.clone().apply { icon = _icon }
+                is Char -> iconBase.clone().apply { icon(_icon); typeface = _typeface }
+                is String -> iconBase.clone().apply {
+                    iconText = _icon; typeface = _typeface
+                }
+                else -> iconBase.clone()
             }
-        }
-
-        return iconicsDrawables.toTypedArray()
+        }.toTypedArray()
     }
 }

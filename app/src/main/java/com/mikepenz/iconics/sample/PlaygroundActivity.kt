@@ -40,17 +40,23 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsArrayBuilder
-import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.sample.databinding.ActivityPlaygroundBinding
 import com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.octicons.Octicons
+import com.mikepenz.iconics.utils.actionBar
+import com.mikepenz.iconics.utils.backgroundColorInt
 import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.colorString
+import com.mikepenz.iconics.utils.contourWidthDp
 import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.parseXmlAndSetIconicsDrawables
+import com.mikepenz.iconics.utils.roundedCornersDp
 import com.mikepenz.iconics.utils.sizeDp
+import com.mikepenz.iconics.utils.sizeX
+import com.mikepenz.iconics.utils.sizeY
 
 class PlaygroundActivity : AppCompatActivity() {
 
@@ -82,9 +88,11 @@ class PlaygroundActivity : AppCompatActivity() {
 
         //You can also do some advanced stuff like setting an image within a text
         val sb = SpannableString(binding.test5.text)
-        val d = IconicsDrawable(this, FontAwesome.Icon.faw_android)
-                .sizeDp(48)
-                .paddingDp(4)
+        val d = IconicsDrawable(this, FontAwesome.Icon.faw_android).apply {
+            sizeDp = 48
+            paddingDp = 4
+        }
+
         sb.setSpan(
             ImageSpan(d, DynamicDrawableSpan.ALIGN_BOTTOM),
             1,
@@ -95,21 +103,22 @@ class PlaygroundActivity : AppCompatActivity() {
 
         //Set the icon of an ImageView (or something else) as drawable
         binding.test2.setImageDrawable(
-            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
-                    .size(IconicsSize.dp(48))
-                    .color(IconicsColor.parse("#aaFF0000"))
-                    .contourWidth(IconicsSize.dp(1))
+            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up).apply {
+                sizeDp = 48
+                colorString = "#aaFF0000"
+                contourWidthDp = 1
+            }
         )
 
         //Set the icon of an ImageView (or something else) as bitmap
         binding.test3.setImageBitmap(
-            IconicsDrawable(this, FontAwesome.Icon.faw_android)
-                    .sizeX(IconicsSize.dp(48))
-                    .sizeY(IconicsSize.dp(32))
-                    .padding(IconicsSize.dp(4))
-                    .roundedCorners(IconicsSize.dp(8))
-                    .color(IconicsColor.parse("#deFF0000"))
-                    .toBitmap()
+            IconicsDrawable(this, FontAwesome.Icon.faw_android).apply {
+                sizeX = IconicsSize.dp(48)
+                sizeY = IconicsSize.dp(32)
+                paddingDp = 4
+                roundedCornersDp = 8
+                colorString = "#deFF0000"
+            }.toBitmap()
         )
 
         //Show how to style the text of an existing button
@@ -124,24 +133,27 @@ class PlaygroundActivity : AppCompatActivity() {
         val iconStateListDrawable = StateListDrawable()
         iconStateListDrawable.addState(
             intArrayOf(android.R.attr.state_pressed),
-            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
-                    .size(IconicsSize.dp(48))
-                    .color(IconicsColor.parse("#aaFF0000"))
-                    .contourWidth(IconicsSize.dp(1))
+            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up).apply {
+                sizeDp = 48
+                colorString = "#aaFF0000"
+                contourWidthDp = 1
+            }
         )
         iconStateListDrawable.addState(
             intArrayOf(),
-            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up)
-                    .size(IconicsSize.dp(48))
-                    .color(IconicsColor.parse("#aa00FF00"))
-                    .contourWidth(IconicsSize.dp(2))
+            IconicsDrawable(this, FontAwesome.Icon.faw_thumbs_up).apply {
+                sizeDp = 48
+                colorString = "#aa00FF00"
+                contourWidthDp = 2
+            }
         )
         binding.test6.setImageDrawable(iconStateListDrawable)
 
-        val iconicsDrawableBase = IconicsDrawable(this)
-                .actionBar()
-                .color(IconicsColor.colorInt(Color.GREEN))
-                .backgroundColor(IconicsColor.colorInt(Color.RED))
+        val iconicsDrawableBase = IconicsDrawable(this).apply {
+            actionBar()
+            colorInt = Color.GREEN
+            backgroundColorInt = Color.RED
+        }
         val array = IconicsArrayBuilder(iconicsDrawableBase)
                 .add(FontAwesome.Icon.faw_android)
                 .add(Octicons.Icon.oct_octoface)
@@ -149,13 +161,12 @@ class PlaygroundActivity : AppCompatActivity() {
                 .add('A')
                 .add(";)")
                 .build()
-
         binding.list.adapter = IconsAdapter(this, array)
 
         // Create icons for menu_navigation
-        val planningIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_history)
-        val homeIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon2.cmd_home)
-        val calendarIcon = IconicsDrawable(this).icon(CommunityMaterial.Icon4.cmd_calendar)
+        val planningIcon = IconicsDrawable(this, CommunityMaterial.Icon2.cmd_history)
+        val homeIcon = IconicsDrawable(this, CommunityMaterial.Icon2.cmd_home)
+        val calendarIcon = IconicsDrawable(this, CommunityMaterial.Icon4.cmd_calendar)
 
         // Set icons
         binding.navigation.menu.apply {
@@ -204,7 +215,7 @@ class PlaygroundActivity : AppCompatActivity() {
         fun loadIconicsImage(view: ImageView, name: String, color: Int?) {
             view.setImageDrawable(IconicsDrawable(view.context, name).apply {
                 if (color != null) {
-                    colorInt(color)
+                    colorInt = color
                 }
             })
         }
