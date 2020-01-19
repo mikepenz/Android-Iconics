@@ -210,6 +210,7 @@ class MainActivity : AppCompatActivity() {
                         .withFields(R.string::class.java.fields)
                         .withLicenseShown(true)
                         .withActivityTitle(getString(R.string.action_opensource))
+                        .withEdgeToEdge(true)
                         .start(this@MainActivity)
 
                 return true
