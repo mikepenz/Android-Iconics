@@ -18,15 +18,18 @@ package com.mikepenz.iconics.sample
 
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.aboutlibraries.LibsBuilder
+import com.mikepenz.aboutlibraries.util.getThemeColor
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
@@ -52,6 +55,8 @@ import java.util.Random
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+
     private lateinit var fonts: List<ITypeface>
     private var iconsFragment: IconsFragment? = null
     private var isRandomize: Boolean = false
@@ -65,7 +70,10 @@ class MainActivity : AppCompatActivity() {
 
         // Handle Toolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+
+        actionBarDrawerToggle = ActionBarDrawerToggle(this, root, toolbar, R.string.material_drawer_open, R.string.material_drawer_close)
 
         //order fonts by their name
         fonts = Iconics.getRegisteredFonts(this).sortedBy { it.fontName }
@@ -79,10 +87,11 @@ class MainActivity : AppCompatActivity() {
                 description = StringHolder(if (font.author.isEmpty()) font.version else font.version + " - " + font.author)
                 identifier = index.toLong()
                 badgeStyle = BadgeStyle().apply {
-                    color = ColorHolder.fromColorRes(R.color.md_grey_200)
+                    color = ColorHolder.fromColor(getThemeColor(R.attr.colorBackgroundFloating))
+                    textColor = ColorHolder.fromColor(getThemeColor(R.attr.colorOnBackground))
                 }
                 icon = ImageHolder(IconicsDrawable(this@MainActivity, getRandomIcon(font)).apply {
-                    colorList = ColorStateList.valueOf(Color.BLACK)
+                    colorList = ColorStateList.valueOf(getThemeColor(android.R.attr.textColorPrimary))
                     sizeDp = 24
                     paddingDp = 1
                 })
@@ -113,6 +122,16 @@ class MainActivity : AppCompatActivity() {
         }
         slider.itemAdapter.add(items)
         slider.setSelection(identifierGmd.toLong(), true)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        actionBarDrawerToggle.onConfigurationChanged(newConfig)
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        actionBarDrawerToggle.syncState()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -168,6 +187,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true
+        }
+
         // Handle presses on the action bar items
         when (item.itemId) {
             R.id.action_randomize -> {
