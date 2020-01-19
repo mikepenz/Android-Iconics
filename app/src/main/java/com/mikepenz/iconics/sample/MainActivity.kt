@@ -26,7 +26,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.drawerlayout.widget.DrawerLayout
-import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
@@ -188,8 +187,6 @@ class MainActivity : AppCompatActivity() {
                         .withFields(R.string::class.java.fields)
                         .withLicenseShown(true)
                         .withActivityTitle(getString(R.string.action_opensource))
-                        .withActivityTheme(R.style.AboutLibsTheme)
-                        .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
                         .start(this@MainActivity)
 
                 return true

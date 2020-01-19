@@ -20,6 +20,7 @@ import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.mikepenz.aboutlibraries.util.getThemeColor
 import com.mikepenz.fastadapter.items.AbstractItem
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.sample.R
@@ -55,12 +56,13 @@ class IconItem(icon: String) : AbstractItem<IconItem.ViewHolder>() {
     override fun bindView(holder: ViewHolder, payloads: MutableList<Any>) {
         super.bindView(holder, payloads)
 
-        val icon = IconicsDrawable(holder.image.context, this.icon ?: " ")
+        val ctx = holder.image.context
+        val icon = IconicsDrawable(ctx, this.icon ?: " ")
         holder.image.icon = icon
         holder.name.text = this.icon
 
         icon.apply {
-            colorInt = 0xFF000000.toInt()
+            colorInt = ctx.getThemeColor(android.R.attr.textColorPrimary)
             paddingDp = 0
             contourWidthDp = 0
             contourColorInt = Color.TRANSPARENT

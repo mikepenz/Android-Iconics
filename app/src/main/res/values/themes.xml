@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,19 +24,30 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
-        <item name="materialDrawerStyle">@style/Widget.MaterialDrawerStyle</item>
-        <item name="materialDrawerHeaderStyle">@style/Widget.MaterialDrawerHeaderStyle</item>
-
         <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:statusBarColor">@color/immersive_bars</item>
+        <item name="android:navigationBarColor">@color/nav_bar</item>
 
         <!-- CAB :D -->
         <item name="windowActionModeOverlay">true</item>
+
+        <item name="toolbarStyle">@style/CustomToolbarStyle</item>
+        <item name="colorControlNormal">?android:textColorPrimary</item>
     </style>
 
-    <style name="AboutLibsTheme" parent="AboutLibrariesTheme.Light">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+    <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?colorPrimary</item>
+        <item name="titleTextAppearance">@style/CustomTitleTextAppearance</item>
+        <item name="subtitleTextAppearance">@style/CustomSubTitleTextAppearance</item>
     </style>
 
+    <style name="CustomTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="CustomSubTitleTextAppearance"
+        parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
 </resources>
