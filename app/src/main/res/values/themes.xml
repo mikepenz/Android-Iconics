@@ -33,7 +33,7 @@
         <item name="windowActionModeOverlay">true</item>
 
         <item name="toolbarStyle">@style/CustomToolbarStyle</item>
-        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="colorControlNormal">@android:color/white</item>
     </style>
 
     <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">
@@ -43,11 +43,11 @@
     </style>
 
     <style name="CustomTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="CustomSubTitleTextAppearance"
         parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>
