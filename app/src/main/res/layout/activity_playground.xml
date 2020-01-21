@@ -115,6 +115,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:padding="24dp"
+                        app:iiv_color="?android:textColorPrimary"
                         app:iiv_icon="gmd_accessible"
                         app:iiv_automirror="true" />
 
@@ -122,6 +123,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:padding="24dp"
+                        app:iiv_color="?android:textColorPrimary"
                         app:iiv_icon="gmd_accessible"
                         app:iiv_automirror="false" />
 
@@ -129,7 +131,8 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         app:iiv_icon="gmd_accessible"
-                        app:iiv_background_color="@color/md_red_50"
+                        app:iiv_color="?android:textColorPrimary"
+                        app:iiv_background_color="@color/accent"
                         app:iiv_padding="24dp"
                         app:iiv_automirror="true" />
 
@@ -137,7 +140,8 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         app:iiv_icon="gmd_accessible"
-                        app:iiv_background_color="@color/md_red_50"
+                        app:iiv_color="?android:textColorPrimary"
+                        app:iiv_background_color="@color/accent"
                         app:iiv_padding="24dp"
                         app:iiv_automirror="false" />
 
@@ -220,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-bubble-chart}no{met-wind}pqrstuv{fon-test2}wxy{z"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
 
                 <TextView
@@ -228,7 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:text="somecustomtext with a custom icon :D"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
                 <!--endregion-->
 
@@ -250,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="IconicsTextView with side-drawables"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:textColorPrimary"
 
                     app:iiv_all_color="@color/md_amber_300"
                     app:iiv_all_icon="gmd_account_circle"
@@ -260,7 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:text="abcdefgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
                 <!--endregion-->
 
@@ -341,7 +345,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="IconicsButton with side-drawables"
-                    app:iiv_all_color="@color/md_red_600"
+                    app:iiv_all_color="@color/accent"
                     app:iiv_all_icon="faw_android"
                     app:iiv_all_size="24dp" />
                 <!--endregion-->
@@ -476,7 +480,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextViewStart"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_start_icon="gmd_error_outline"
@@ -491,7 +495,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextViewTop"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_top_icon="gmd_help_outline"
@@ -506,7 +510,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextViewEnd"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_end_icon="gmd_info_outline"
@@ -524,7 +528,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextViewBottom"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_bottom_icon="gmd_add_circle_outline"
@@ -539,7 +543,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextView"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_all_size="24dp"

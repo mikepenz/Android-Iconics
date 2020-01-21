@@ -38,6 +38,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import com.mikepenz.aboutlibraries.util.getThemeColor
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsArrayBuilder
 import com.mikepenz.iconics.IconicsDrawable
@@ -70,11 +71,14 @@ class PlaygroundActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val themeValue1 = getThemeColor(android.R.attr.textColorPrimary)
+        val themeValue2 = getThemeColor(android.R.attr.textColorPrimaryInverse)
+
         //Show how to style the text of an existing TextView
         Iconics.Builder()
                 .style(
-                    ForegroundColorSpan(Color.WHITE),
-                    BackgroundColorSpan(Color.BLACK),
+                    ForegroundColorSpan(themeValue2),
+                    BackgroundColorSpan(themeValue1),
                     RelativeSizeSpan(2f)
                 )
                 .styleFor(
@@ -91,6 +95,7 @@ class PlaygroundActivity : AppCompatActivity() {
         val d = IconicsDrawable(this, FontAwesome.Icon.faw_android).apply {
             sizeDp = 48
             paddingDp = 4
+            colorInt = themeValue1
         }
 
         sb.setSpan(
@@ -123,9 +128,9 @@ class PlaygroundActivity : AppCompatActivity() {
 
         //Show how to style the text of an existing button
         Iconics.Builder()
-                .style(BackgroundColorSpan(Color.BLACK))
+                .style(BackgroundColorSpan(themeValue1))
                 .style(RelativeSizeSpan(2f))
-                .style(ForegroundColorSpan(Color.WHITE))
+                .style(ForegroundColorSpan(themeValue2))
                 .on(binding.test4)
                 .build()
 
