@@ -42,8 +42,8 @@ buildscript {
                 ],
                 detekt          : '1.0.0-RC15',
                 aboutLibraries  : '8.0.0-b03',
-                materialDrawer  : '8.0.0-a05',
-                fastAdapter     : '5.0.0-a01'
+                materialDrawer  : '8.0.0-a07',
+                fastAdapter     : '5.0.0-a03'
         ]
     }
 

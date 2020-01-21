@@ -16,6 +16,7 @@
 
 package com.mikepenz.iconics.sample
 
+import android.app.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.content.res.Configuration
@@ -24,6 +25,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -47,7 +49,6 @@ import com.mikepenz.materialdrawer.holder.StringHolder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.updateBadge
-import com.mikepenz.materialize.util.KeyboardUtil
 import kotlinx.android.synthetic.main.activity_main.root
 import kotlinx.android.synthetic.main.activity_main.slider
 import kotlinx.android.synthetic.main.activity_main.toolbar
@@ -110,7 +111,8 @@ class MainActivity : AppCompatActivity() {
             override fun onDrawerClosed(drawerView: View) {}
 
             override fun onDrawerOpened(drawerView: View) {
-                KeyboardUtil.hideKeyboard(this@MainActivity)
+                val inputMethodManager: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
             }
         })
         slider.onDrawerItemClickListener = { v, item, position ->

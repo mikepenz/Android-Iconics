@@ -273,7 +273,7 @@ class IconsFragment : Fragment() {
     private fun getRandomColor(i: Int): Int {
         //get a random color
         return when (abs(i) % 10) {
-            0 -> R.color.md_black_1000
+            0 -> android.R.color.black
             1 -> R.color.md_blue_500
             2 -> R.color.md_green_500
             3 -> R.color.md_red_500

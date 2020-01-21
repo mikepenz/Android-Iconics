@@ -80,14 +80,14 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:padding="24dp"
-                        android:tint="@color/colorAccent"
+                        android:tint="@color/accent"
                         app:srcCompat="@drawable/gmd_favorite" />
 
                     <ImageView
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:padding="24dp"
-                        android:tint="@color/colorAccent"
+                        android:tint="@color/accent"
                         app:srcCompat="@drawable/gmd_favorite" />
                 </LinearLayout>
                 <!--endregion-->
@@ -484,11 +484,11 @@
                         android:padding="5dp"
 
                         app:iiv_start_icon="gmd_error_outline"
-                        app:iiv_start_color="@color/colorAccent"
+                        app:iiv_start_color="@color/accent"
                         app:iiv_start_size="24dp"
 
                         app:iiv_start_checked_icon="gmd_error"
-                        app:iiv_start_checked_color="@color/colorAccent"
+                        app:iiv_start_checked_color="@color/accent"
                         app:iiv_start_checked_size="24dp" />
 
                     <com.mikepenz.iconics.view.IconicsCheckableTextView
@@ -550,9 +550,9 @@
                         app:iiv_all_checked_size="24dp"
 
                         app:iiv_start_icon="gmd_error_outline"
-                        app:iiv_start_color="@color/colorAccent"
+                        app:iiv_start_color="@color/accent"
                         app:iiv_start_checked_icon="gmd_error"
-                        app:iiv_start_checked_color="@color/colorAccent"
+                        app:iiv_start_checked_color="@color/accent"
 
                         app:iiv_top_icon="gmd_help_outline"
                         app:iiv_top_color="@color/md_deep_orange_400"
