@@ -654,6 +654,7 @@ open class IconicsDrawable internal constructor() : Drawable() {
     /**
      * Copies this IconicsDrawable with the given modifications
      */
+    @Suppress("LongParameterList")
     fun copy(
         target: IconicsDrawable? = null,
         res: Resources = this.res,
