@@ -65,7 +65,7 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 
 ## Latest releases
 
-- Kotlin Next Gen | [v5.0.0-a01](https://github.com/mikepenz/MaterialDrawer/tree/v5.0.0-a01)
+- Kotlin Next Gen | [v5.0.0-a02](https://github.com/mikepenz/MaterialDrawer/tree/v5.0.0-a02)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/MaterialDrawer/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/MaterialDrawer/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/MaterialDrawer/tree/v3.0.4)
