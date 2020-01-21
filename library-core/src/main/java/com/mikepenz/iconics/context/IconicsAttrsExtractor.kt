@@ -89,7 +89,7 @@ class IconicsAttrsExtractor(
     }
 
     private fun extract(icon: IconicsDrawable?, extractOffsets: Boolean, viaCopy: Boolean): IconicsDrawable? {
-        val processedIcon = (if (viaCopy) icon?.clone() else icon).createIfNeeds(res, theme)
+        val processedIcon = (if (viaCopy) icon?.copy() else icon).createIfNeeds(res, theme)
         processedIcon.apply {
             // region icon
             val i = typedArray.getString(iconId)

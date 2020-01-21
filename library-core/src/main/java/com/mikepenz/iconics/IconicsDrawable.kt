@@ -637,8 +637,9 @@ open class IconicsDrawable internal constructor() : Drawable() {
      *
      * @return new IconicsDrawable with the same values.
      */
+    @Deprecated("Use copy instead", ReplaceWith("copy()"))
     fun clone(): IconicsDrawable {
-        return copyTo(IconicsDrawable(res, theme))
+        return copy()
     }
 
     /**
@@ -647,50 +648,77 @@ open class IconicsDrawable internal constructor() : Drawable() {
      * @return new IconicsDrawable with the same values.
      */
     fun toAnimatedDrawable(): IconicsAnimatedDrawable {
-        return copyTo(IconicsAnimatedDrawable(res, theme))
+        return copy(target = IconicsAnimatedDrawable(res, theme)) as IconicsAnimatedDrawable
     }
 
-    private fun <T : IconicsDrawable> copyTo(other: T): T {
-        // icon
-        val self = this
-        other.apply {
-            // icon
-            colorList = self.colorList
-            // background
-            backgroundColorList = self.backgroundColorList
-            // icon contour
-            backgroundContourColorList = self.backgroundContourColorList
-            // background contour
-            contourColorList = self.contourColorList
-            // general
-            sizeXPx = self.sizeXPx
-            sizeYPx = self.sizeYPx
-            paddingPx = self.paddingPx
-            respectFontBounds = self.respectFontBounds
-            iconOffsetXPx = self.iconOffsetXPx
-            iconOffsetYPx = self.iconOffsetYPx
-            // background
-            roundedCornerRxPx = self.roundedCornerRxPx
-            roundedCornerRyPx = self.roundedCornerRyPx
-            // icon contour
-            contourWidthPx = self.contourWidthPx
-            drawContour = self.drawContour
-            // background contour
-            backgroundContourWidthPx = self.backgroundContourWidthPx
-            drawBackgroundContour = self.drawBackgroundContour
-            // common
-            compatAlpha = self.compatAlpha
-            // shadow
-            applyShadow {
-                shadowRadiusPx = self.shadowRadiusPx
-                shadowDxPx = self.shadowDxPx
-                shadowDyPx = self.shadowDyPx
-                shadowColorInt = self.shadowColorInt
-            }
-            self.icon?.let { it -> icon = it } ?: self.iconText?.let { iconText = it }
+    /**
+     * Copies this IconicsDrawable with the given modifications
+     */
+    fun copy(
+        target: IconicsDrawable? = null,
+        res: Resources = this.res,
+        theme: Theme? = this.theme,
+        colorList: ColorStateList? = this.colorList,
+        style: Paint.Style = this.style,
+        typeface: Typeface? = this.typeface,
+        backgroundContourColorList: ColorStateList? = this.backgroundContourColorList,
+        backgroundColorList: ColorStateList? = this.backgroundColorList,
+        contourColorList: ColorStateList? = this.contourColorList,
+        compatAlpha: Int = this.compatAlpha,
+        icon: IIcon? = this.icon,
+        iconText: String? = this.iconText,
+        autoMirroredCompat: Boolean = this.autoMirroredCompat,
+        sizeXPx: Int = this.sizeXPx,
+        sizeYPx: Int = this.sizeYPx,
+        respectFontBounds: Boolean = this.respectFontBounds,
+        drawContour: Boolean = this.drawContour,
+        drawBackgroundContour: Boolean = this.drawBackgroundContour,
+        roundedCornerRxPx: Float = this.roundedCornerRxPx,
+        roundedCornerRyPx: Float = this.roundedCornerRyPx,
+        paddingPx: Int = this.paddingPx,
+        contourWidthPx: Int = this.contourWidthPx,
+        backgroundContourWidthPx: Int = this.backgroundContourWidthPx,
+        iconOffsetXPx: Int = this.iconOffsetXPx,
+        iconOffsetYPx: Int = this.iconOffsetYPx,
+        shadowRadiusPx: Float = this.shadowRadiusPx,
+        shadowDxPx: Float = this.shadowDxPx,
+        shadowDyPx: Float = this.shadowDyPx,
+        shadowColorInt: Int = this.shadowColorInt,
+        tint: ColorStateList? = this.tint,
+        tintPorterMode: PorterDuff.Mode = this.tintPorterMode,
+        iconColorFilter: ColorFilter? = this.iconColorFilter
+    ): IconicsDrawable {
+        return (target ?: IconicsDrawable(res, theme)).apply {
+            this.colorList = colorList
+            this.style = style
+            this.typeface = typeface
+            this.backgroundContourColorList = backgroundContourColorList
+            this.backgroundColorList = backgroundColorList
+            this.contourColorList = contourColorList
+            this.compatAlpha = compatAlpha
+            this.icon = icon
+            this.iconText = iconText
+            this.autoMirroredCompat = autoMirroredCompat
+            this.sizeXPx = sizeXPx
+            this.sizeYPx = sizeYPx
+            this.respectFontBounds = respectFontBounds
+            this.drawContour = drawContour
+            this.drawBackgroundContour = drawBackgroundContour
+            this.roundedCornerRxPx = roundedCornerRxPx
+            this.roundedCornerRyPx = roundedCornerRyPx
+            this.paddingPx = paddingPx
+            this.contourWidthPx = contourWidthPx
+            this.backgroundContourWidthPx = backgroundContourWidthPx
+            this.iconOffsetXPx = iconOffsetXPx
+            this.iconOffsetYPx = iconOffsetYPx
+            this.shadowRadiusPx = shadowRadiusPx
+            this.shadowDxPx = shadowDxPx
+            this.shadowDyPx = shadowDyPx
+            this.shadowColorInt = shadowColorInt
+            this.tint = tint
+            this.tintPorterMode = tintPorterMode
+            this.iconColorFilter = iconColorFilter
         }
-
-        return other
     }
 
     /** Applies the shadow in an optimized form. Will disable shadow invalidation for the inner shadow set operations */
