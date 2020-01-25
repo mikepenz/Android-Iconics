@@ -448,7 +448,11 @@ open class IconicsDrawable internal constructor() : Drawable() {
                 || tint?.isStateful == true
     }
 
-    override fun setState(stateSet: IntArray): Boolean {
+    // Note `IntArray` here can be null!!
+    // Caused by: java.lang.IllegalArgumentException: Parameter specified as non-null is null: method kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull, parameter stateSet
+    //        at com.mikepenz.iconics.IconicsDrawable.setState(IconicsDrawable.kt)
+    // Keep library at Compile 28 to allow nullable type
+    override fun setState(stateSet: IntArray?): Boolean {
         return super.setState(stateSet)
                 || iconBrush.isStateful
                 || contourBrush.isStateful
