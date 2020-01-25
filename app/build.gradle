@@ -94,19 +94,13 @@ dependencies {
 
     kapt "com.android.databinding:compiler:3.5.3"
 
-    // used to base on some backwards compatible themes
-    // contains util classes to support various android versions, and clean up code
-    // comes with the awesome "Holder"-Pattern
-    // https://github.com/mikepenz/Materialize
-    implementation 'com.mikepenz:materialize:1.2.1'
-
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    implementation 'com.mikepenz:fastadapter:4.1.2'
-    implementation 'com.mikepenz:fastadapter-extensions-utils:4.1.2'
-    implementation 'com.mikepenz:fastadapter-extensions-ui:4.1.2'
-    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.1.2'
+    implementation "com.mikepenz:fastadapter:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-utils:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-ui:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:${versions.fastAdapter}"
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
     // https://github.com/zTrap/Android-Iconics-String-Generator
@@ -114,11 +108,10 @@ dependencies {
 
     // used to generate the drawer on the left
     // https://github.com/mikepenz/MaterialDrawer
-    implementation('com.mikepenz:materialdrawer:7.0.0') {
+    implementation("com.mikepenz:materialdrawer:${versions.materialDrawer}") {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "fastadapter-extensions-expandable"
-        exclude module: "iconics-core"
     }
 
     // used to generate the Open Source section
@@ -126,7 +119,6 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries:${versions.aboutLibraries}") {
         transitive = true
         exclude module: "fastadapter"
-        exclude module: "iconics-core"
     }
 
     implementation project(':library-core')

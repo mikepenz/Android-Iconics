@@ -42,9 +42,7 @@ class IconicsBrush<T : Paint>(
 
     /** Alpha channel for colors */
     var alpha: Int
-        get() {
-            return paint.alpha
-        }
+        get() = paint.alpha
         set(@IntRange(from = 0, to = 255) alpha) {
             if (paint.alpha != alpha) {
                 paint.alpha = alpha
@@ -67,7 +65,7 @@ class IconicsBrush<T : Paint>(
         val colorForState = colorForCurrentState
         val oldColor = paint.color
         paint.color = colorForState
-        return paint.color != oldColor
+        return colorForState != oldColor
     }
 
     override fun toString(): String {

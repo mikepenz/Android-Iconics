@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mikepenz.iconics.IconicsDrawable
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:ico_icon="gmd_favorite"
+    app:ico_color="#0000FF"
+    app:ico_contour_width="1dp"
+    app:ico_contour_color="#00FFFF"
+    app:ico_size="24dp" />

@@ -19,7 +19,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion setup.compileSdk
+    compileSdkVersion setup.compileSdkCore
     buildToolsVersion setup.buildTools
 
     defaultConfig {

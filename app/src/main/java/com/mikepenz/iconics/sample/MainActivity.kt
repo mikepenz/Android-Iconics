@@ -16,38 +16,49 @@
 
 package com.mikepenz.iconics.sample
 
+import android.app.Activity
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import com.mikepenz.aboutlibraries.Libs
+import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.aboutlibraries.LibsBuilder
+import com.mikepenz.aboutlibraries.util.getThemeColor
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
+import com.mikepenz.iconics.utils.actionBar
 import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
-import com.mikepenz.materialdrawer.Drawer
-import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.holder.BadgeStyle
+import com.mikepenz.materialdrawer.holder.ColorHolder
+import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.mikepenz.materialdrawer.holder.StringHolder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
-import com.mikepenz.materialize.util.KeyboardUtil
+import com.mikepenz.materialdrawer.util.updateBadge
+import kotlinx.android.synthetic.main.activity_main.root
+import kotlinx.android.synthetic.main.activity_main.slider
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import java.util.Random
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+
     private lateinit var fonts: List<ITypeface>
-    private lateinit var drawer: Drawer
     private var iconsFragment: IconsFragment? = null
     private var isRandomize: Boolean = false
     private var isShadowEnabled: Boolean = false
@@ -60,7 +71,10 @@ class MainActivity : AppCompatActivity() {
 
         // Handle Toolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+
+        actionBarDrawerToggle = ActionBarDrawerToggle(this, root, toolbar, R.string.material_drawer_open, R.string.material_drawer_close)
 
         //order fonts by their name
         fonts = Iconics.getRegisteredFonts(this).sortedBy { it.fontName }
@@ -68,49 +82,58 @@ class MainActivity : AppCompatActivity() {
         //add all icons of all registered Fonts to the list
         val items = ArrayList<IDrawerItem<*>>(fonts.size)
         fonts.forEachIndexed { index, font ->
-            val pdi = PrimaryDrawerItem()
-                    .withName(font.fontName)
-                    .withBadge(font.icons.size.toString())
-                    .withDescription(if (font.author.isEmpty()) font.version else font.version + " - " + font.author)
-                    .withIcon(getRandomIcon(font))
-                    .withIdentifier(index.toLong())
-                    .withBadgeStyle(BadgeStyle().withColorRes(R.color.md_grey_200))
-
+            val pdi = PrimaryDrawerItem().apply {
+                name = StringHolder(font.fontName)
+                badge = StringHolder(font.icons.size.toString())
+                description = StringHolder(if (font.author.isEmpty()) font.version else font.version + " - " + font.author)
+                identifier = index.toLong()
+                badgeStyle = BadgeStyle().apply {
+                    color = ColorHolder.fromColor(getThemeColor(R.attr.colorBackgroundFloating))
+                    textColor = ColorHolder.fromColor(getThemeColor(R.attr.colorOnBackground))
+                }
+                icon = ImageHolder(IconicsDrawable(this@MainActivity, getRandomIcon(font)).apply {
+                    colorList = ColorStateList.valueOf(getThemeColor(android.R.attr.textColorPrimary))
+                    sizeDp = 24
+                    paddingDp = 1
+                })
+            }
             if (font.mappingPrefix == "gmd") {
                 identifierGmd = index
             }
             items.add(pdi)
         }
 
-        drawer = DrawerBuilder().withActivity(this)
-                .withToolbar(toolbar)
-                .withDrawerItems(items)
-                .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
-                    override fun onItemClick(
-                        view: View?,
-                        position: Int,
-                        drawerItem: IDrawerItem<*>
-                    ): Boolean {
-                        fonts[position].fontName.also {
-                            loadIcons(it)
-                            supportActionBar?.title = it
-                        }
+        root.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerStateChanged(newState: Int) {}
 
-                        return false
-                    }
-                })
-                .withOnDrawerListener(object : Drawer.OnDrawerListener {
-                    override fun onDrawerOpened(drawerView: View) {
-                        KeyboardUtil.hideKeyboard(this@MainActivity)
-                    }
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
 
-                    override fun onDrawerClosed(drawerView: View) {}
+            override fun onDrawerClosed(drawerView: View) {}
 
-                    override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
-                })
-                .withFireOnInitialOnClick(true)
-                .withSelectedItem(identifierGmd.toLong())
-                .build()
+            override fun onDrawerOpened(drawerView: View) {
+                val inputMethodManager: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+            }
+        })
+        slider.onDrawerItemClickListener = { v, item, position ->
+            fonts[position].fontName.also {
+                loadIcons(it)
+                supportActionBar?.title = it
+            }
+            false
+        }
+        slider.itemAdapter.add(items)
+        slider.setSelection(identifierGmd.toLong(), true)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        actionBarDrawerToggle.onConfigurationChanged(newConfig)
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        actionBarDrawerToggle.syncState()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -118,11 +141,11 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
 
         //
-        menu.findItem(R.id.search).icon = IconicsDrawable(this)
-                .icon(MaterialDesignIconic.Icon.gmi_search)
-                .colorInt(Color.WHITE)
-                .sizeDp(24)
-                .respectFontBounds(true)
+        menu.findItem(R.id.search).icon = IconicsDrawable(this, MaterialDesignIconic.Icon.gmi_search).apply {
+            colorInt = Color.WHITE
+            sizeDp = 24
+            respectFontBounds = true
+        }
 
         val searchView = menu.findItem(R.id.search).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -142,10 +165,7 @@ class MainActivity : AppCompatActivity() {
 
                 fonts.forEachIndexed { index, font ->
                     val foundCount = font.icons.count { it.contains(s, true) }
-                    drawer.updateBadge(
-                        index.toLong(),
-                        StringHolder(foundCount.toString())
-                    )
+                    slider.updateBadge(index.toLong(), StringHolder(foundCount.toString()))
                 }
 
                 //filter out the current fragment
@@ -154,10 +174,11 @@ class MainActivity : AppCompatActivity() {
         })
 
         val menuItem = menu.findItem(R.id.action_opensource)
-        menuItem.icon = IconicsDrawable(this)
-                .icon(FontAwesome.Icon.faw_github)
-                .actionBar()
-                .colorInt(Color.WHITE)
+        menuItem.icon = IconicsDrawable(this, FontAwesome.Icon.faw_github).apply {
+            actionBar()
+            colorInt = Color.WHITE
+        }
+
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -168,6 +189,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true
+        }
+
         // Handle presses on the action bar items
         when (item.itemId) {
             R.id.action_randomize -> {
@@ -187,8 +212,7 @@ class MainActivity : AppCompatActivity() {
                         .withFields(R.string::class.java.fields)
                         .withLicenseShown(true)
                         .withActivityTitle(getString(R.string.action_opensource))
-                        .withActivityTheme(R.style.AppTheme)
-                        .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                        .withEdgeToEdge(true)
                         .start(this@MainActivity)
 
                 return true

@@ -1,9 +1,11 @@
 #!/bin/bash
 
+./gradlew clean build
+
 if [ "$1" = "release" ];
 then
-    ./gradlew clean build bintrayUpload -Plibrarycoreonly
-    ./gradlew build bintrayUpload -x test -x lint -Plibraryviewsonly
+    ./gradlew bintrayUpload -Plibrarycoreonly
+    ./gradlew bintrayUpload -x test -x lint -Plibraryviewsonly
 
     #./gradlew build bintrayUpload -x test -x lint -Pcommunitymaterialonly
     #./gradlew build bintrayUpload -x test -x lint -PDevIcononly

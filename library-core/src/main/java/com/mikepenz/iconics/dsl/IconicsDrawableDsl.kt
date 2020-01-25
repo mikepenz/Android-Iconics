@@ -13,6 +13,21 @@ import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.typeface.IIcon
+import com.mikepenz.iconics.utils.actionBar
+import com.mikepenz.iconics.utils.backgroundColor
+import com.mikepenz.iconics.utils.backgroundContourWidth
+import com.mikepenz.iconics.utils.color
+import com.mikepenz.iconics.utils.contourWidth
+import com.mikepenz.iconics.utils.icon
+import com.mikepenz.iconics.utils.iconOffsetX
+import com.mikepenz.iconics.utils.iconOffsetY
+import com.mikepenz.iconics.utils.padding
+import com.mikepenz.iconics.utils.roundedCorners
+import com.mikepenz.iconics.utils.roundedCornersRx
+import com.mikepenz.iconics.utils.roundedCornersRy
+import com.mikepenz.iconics.utils.size
+import com.mikepenz.iconics.utils.sizeX
+import com.mikepenz.iconics.utils.sizeY
 
 // Notify user that the DSL is currently experimental
 @Experimental(level = Experimental.Level.WARNING)
@@ -21,8 +36,11 @@ annotation class ExperimentalIconicsDSL
 @ExperimentalIconicsDSL
 fun Context.iconicsDrawable(icon: IIcon, block: IconicsDrawableDsl.() -> Unit): IconicsDrawable {
     return IconicsDrawable(this).apply {
-        icon(icon)
+        this.icon = icon
+        this.invalidationEnabled = false
         IconicsDrawableDsl(this).apply(block)
+        this.invalidationEnabled = true
+        this.invalidateThis()
     }
 }
 
@@ -33,8 +51,12 @@ fun Context.iconicsDrawable(
     block: IconicsDrawableDsl.() -> Unit
 ): IconicsDrawable {
     return IconicsDrawable(this).apply {
-        iconText(icon, typeface)
+        this.icon(icon)
+        this.typeface = typeface
+        this.invalidationEnabled = false
         IconicsDrawableDsl(this).apply(block)
+        this.invalidationEnabled = true
+        this.invalidateThis()
     }
 }
 
@@ -60,112 +82,112 @@ open class IconicsDrawableDsl(internal val drawable: IconicsDrawable) {
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.sizeX(value)
+            drawable.sizeX = value
         }
 
     var sizeY: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.sizeY(value)
+            drawable.sizeY = value
         }
 
     var size: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.size(value)
+            drawable.size = value
         }
 
     var iconOffsetX: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.iconOffsetX(value)
+            drawable.iconOffsetX = value
         }
 
     var iconOffsetY: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.iconOffsetY(value)
+            drawable.iconOffsetY = value
         }
 
     var padding: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.padding(value)
+            drawable.padding = value
         }
 
     var color: IconicsColor
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.color(value)
+            drawable.color = value
         }
 
     var roundedCornersRx: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.roundedCornersRx(value)
+            drawable.roundedCornersRx = value
         }
 
     var roundedCornerRy: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.roundedCornersRy(value)
+            drawable.roundedCornersRy = value
         }
 
     var roundedCorners: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.roundedCorners(value)
+            drawable.roundedCorners = value
         }
 
     var backgroundColor: IconicsColor
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.backgroundColor(value)
+            drawable.backgroundColor = value
         }
 
     var contourWidth: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.contourWidth(value)
+            drawable.contourWidth = value
         }
 
     var backgroundContourWidth: IconicsSize
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.backgroundContourWidth(value)
+            drawable.backgroundContourWidth = value
         }
 
     var drawContour: Boolean
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.drawContour(value)
+            drawable.drawContour = value
         }
 
     var drawBackgroundContour: Boolean
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.drawBackgroundContour(value)
+            drawable.drawBackgroundContour = value
         }
 
     var colorFilter: ColorFilter?
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.colorFilter(value)
+            drawable.colorFilter = value
         }
 
     var tintList: ColorStateList?
@@ -186,7 +208,7 @@ open class IconicsDrawableDsl(internal val drawable: IconicsDrawable) {
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.style(value)
+            drawable.style = value
         }
 
     var actionBarSize: Boolean
@@ -202,6 +224,6 @@ open class IconicsDrawableDsl(internal val drawable: IconicsDrawable) {
         @Deprecated(level = DeprecationLevel.ERROR, message = NON_READABLE)
         get() = nonReadable()
         set(value) {
-            drawable.respectFontBounds(value)
+            drawable.respectFontBounds = value
         }
 }

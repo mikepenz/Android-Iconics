@@ -15,31 +15,39 @@
   -->
 
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
     </data>
 
-    <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:orientation="vertical">
+        android:gravity="center">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
             android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            android:fitsSystemWindows="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false">
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toTopOf="@id/list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,22 +76,19 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.mikepenz.iconics.view.IconicsImageView
+                    <ImageView
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:padding="24dp"
-                        app:iiv_icon="faw_android" />
+                        android:tint="@color/accent"
+                        app:srcCompat="@drawable/gmd_favorite" />
 
-                    <com.mikepenz.iconics.view.IconicsImageView
+                    <ImageView
                         android:layout_width="72dp"
                         android:layout_height="72dp"
-                        app:iiv_color="@color/md_red_200"
-                        app:iiv_icon="gmd_favorite"
-                        app:iiv_background_color="@android:color/black"
-                        app:iiv_background_contour_color="@android:color/holo_red_light"
-                        app:iiv_background_contour_width="4dp"
-                        app:iiv_corner_radius="36dp" />
-
+                        android:padding="24dp"
+                        android:tint="@color/accent"
+                        app:srcCompat="@drawable/gmd_favorite" />
                 </LinearLayout>
                 <!--endregion-->
 
@@ -110,6 +115,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:padding="24dp"
+                        app:iiv_color="?android:textColorPrimary"
                         app:iiv_icon="gmd_accessible"
                         app:iiv_automirror="true" />
 
@@ -117,6 +123,7 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:padding="24dp"
+                        app:iiv_color="?android:textColorPrimary"
                         app:iiv_icon="gmd_accessible"
                         app:iiv_automirror="false" />
 
@@ -124,7 +131,8 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         app:iiv_icon="gmd_accessible"
-                        app:iiv_background_color="@color/md_red_50"
+                        app:iiv_color="?android:textColorPrimary"
+                        app:iiv_background_color="@color/accent"
                         app:iiv_padding="24dp"
                         app:iiv_automirror="true" />
 
@@ -132,7 +140,8 @@
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         app:iiv_icon="gmd_accessible"
-                        app:iiv_background_color="@color/md_red_50"
+                        app:iiv_color="?android:textColorPrimary"
+                        app:iiv_background_color="@color/accent"
                         app:iiv_padding="24dp"
                         app:iiv_automirror="false" />
 
@@ -215,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-bubble-chart}no{met-wind}pqrstuv{fon-test2}wxy{z"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
 
                 <TextView
@@ -223,7 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:text="somecustomtext with a custom icon :D"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
                 <!--endregion-->
 
@@ -245,7 +254,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="IconicsTextView with side-drawables"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:textColorPrimary"
 
                     app:iiv_all_color="@color/md_amber_300"
                     app:iiv_all_icon="gmd_account_circle"
@@ -255,7 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:text="abcdefgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
-                    android:textColor="@android:color/black"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="16sp" />
                 <!--endregion-->
 
@@ -336,7 +345,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="IconicsButton with side-drawables"
-                    app:iiv_all_color="@color/md_red_600"
+                    app:iiv_all_color="@color/accent"
                     app:iiv_all_icon="faw_android"
                     app:iiv_all_size="24dp" />
                 <!--endregion-->
@@ -471,22 +480,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextViewStart"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_start_icon="gmd_error_outline"
-                        app:iiv_start_color="@color/colorAccent"
+                        app:iiv_start_color="@color/accent"
                         app:iiv_start_size="24dp"
 
                         app:iiv_start_checked_icon="gmd_error"
-                        app:iiv_start_checked_color="@color/colorAccent"
+                        app:iiv_start_checked_color="@color/accent"
                         app:iiv_start_checked_size="24dp" />
 
                     <com.mikepenz.iconics.view.IconicsCheckableTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextViewTop"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_top_icon="gmd_help_outline"
@@ -501,12 +510,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextViewEnd"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_end_icon="gmd_info_outline"
                         app:iiv_end_color="@color/md_cyan_800"
                         app:iiv_end_size="24dp"
+
+                        app:iiv_end_background_color="@color/accent"
+                        app:iiv_end_checked_background_color="@color/accent"
 
                         app:iiv_end_checked_icon="gmd_info"
                         app:iiv_end_checked_color="@color/md_cyan_800"
@@ -516,7 +528,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextViewBottom"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_bottom_icon="gmd_add_circle_outline"
@@ -531,16 +543,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IconicsCheckableTextView"
-                        android:textColor="@android:color/black"
+                        android:textColor="?android:textColorPrimary"
                         android:padding="5dp"
 
                         app:iiv_all_size="24dp"
                         app:iiv_all_checked_size="24dp"
 
                         app:iiv_start_icon="gmd_error_outline"
-                        app:iiv_start_color="@color/colorAccent"
+                        app:iiv_start_color="@color/accent"
                         app:iiv_start_checked_icon="gmd_error"
-                        app:iiv_start_checked_color="@color/colorAccent"
+                        app:iiv_start_checked_color="@color/accent"
 
                         app:iiv_top_icon="gmd_help_outline"
                         app:iiv_top_color="@color/md_deep_orange_400"
@@ -596,7 +608,11 @@
 
         <ListView
             android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:layout_width="0dp"
+            android:layout_height="112dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/content"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
