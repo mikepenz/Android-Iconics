@@ -364,20 +364,24 @@ open class IconicsDrawable internal constructor() : Drawable() {
         Iconics.init(context)
     }
 
-    constructor(context: Context, icon: Char) : this(context.resources, context.theme, icon) {
+    constructor(context: Context, icon: Char) : this(context.resources, context.theme) {
         Iconics.init(context)
+        icon(icon)
     }
 
-    constructor(context: Context, icon: String) : this(context.resources, context.theme, icon) {
+    constructor(context: Context, icon: String) : this(context.resources, context.theme) {
         Iconics.init(context)
+        icon(icon)
     }
 
-    constructor(context: Context, icon: IIcon) : this(context.resources, context.theme, icon) {
+    constructor(context: Context, icon: IIcon) : this(context.resources, context.theme) {
         Iconics.init(context)
+        icon(icon)
     }
 
-    protected constructor(context: Context, typeface: ITypeface, icon: IIcon) : this(context.resources, context.theme, typeface, icon) {
+    protected constructor(context: Context, typeface: ITypeface, icon: IIcon) : this(context.resources, context.theme) {
         Iconics.init(context)
+        icon(typeface, icon)
     }
 
     init {

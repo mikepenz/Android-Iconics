@@ -35,6 +35,9 @@ import com.mikepenz.iconics.typeface.ITypeface
  * @return The current IconicsDrawable for chaining.
  */
 fun IconicsDrawable.icon(icon: String): IconicsDrawable {
+    if (Iconics.isInitDone()) {
+        Log.e("IconicsDrawable", "Iconics.init() not yet executed, icon will be missing")
+    }
     try {
         Iconics.findFont(icon.iconPrefix)?.let { icon(it.getIcon(icon.clearedIconName)) }
     } catch (ex: Exception) {
@@ -50,6 +53,9 @@ fun IconicsDrawable.icon(icon: String): IconicsDrawable {
  * @return The current IconicsDrawable for chaining.
  */
 fun IconicsDrawable.icon(icon: IIcon): IconicsDrawable {
+    if (Iconics.isInitDone()) {
+        Log.e("IconicsDrawable", "Iconics.init() not yet executed, icon will be missing")
+    }
     this.icon = icon
     return this
 }
@@ -60,6 +66,9 @@ fun IconicsDrawable.icon(icon: IIcon): IconicsDrawable {
  * @return The current IconicsDrawable for chaining.
  */
 fun IconicsDrawable.icon(typeface: ITypeface, icon: IIcon): IconicsDrawable {
+    if (Iconics.isInitDone()) {
+        Log.e("IconicsDrawable", "Iconics.init() not yet executed, icon will be missing")
+    }
     iconBrush.paint.typeface = typeface.rawTypeface
     this.icon = icon
     return this

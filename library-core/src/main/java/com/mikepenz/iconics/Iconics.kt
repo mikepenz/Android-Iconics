@@ -92,6 +92,11 @@ object Iconics {
     }
 
     /**
+     * Returns if the `Iconics` instance was initialized.
+     */
+    @JvmStatic fun isInitDone(): Boolean = INIT_DONE
+
+    /**
      * This allows to mark the initialization as done, even if `init(ctx: Context)` was not called
      * prior.
      * It requires at least one font to be registered manually in the
