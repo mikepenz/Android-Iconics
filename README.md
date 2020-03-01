@@ -1,20 +1,22 @@
-# Android-Iconics  [ ![Download](https://api.bintray.com/packages/mikepenz/maven/com.mikepenz%3Aiconics-core/images/download.svg) ](https://bintray.com/mikepenz/maven/com.mikepenz%3Aiconics-core/_latestVersion)
+# Android-Iconics [![Status](https://travis-ci.org/mikepenz/Android-Iconics.svg?branch=develop)](https://travis-ci.org/mikepenz/Android-Iconics) [![Download](https://api.bintray.com/packages/mikepenz/maven/com.mikepenz%3Aiconics-core/images/download.svg) ](https://bintray.com/mikepenz/maven/com.mikepenz%3Aiconics-core/_latestVersion)
 
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/banner.png)
+... allows to include any icon font with all its vector icons in your project. No limits. **Scale with no limit**, use **any color** at any time, provide a **contour**, and many additional customizations...
 
-> If you are an app developer you will know the problem. You start an app but require many different icons, in different sizes (**ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi**), **different colors**, and **different variants**.
-If you get the icons as **vector** (.svg) or there are many changes over the time, you will always have to get the correct drawables again.
+-------
 
-> **This consumes a lot of time!**
+<p align="center">
+    <a href="#whats-included-">What's included 🚀</a> &bull;
+    <a href="#setup">Setup 🛠️</a> &bull;
+    <a href="MIGRATION.md">Migration Guide 🧬</a> &bull;
+    <a href="FAQ.md">WIKI / FAQ 📖</a> &bull;
+    <a href="#create-custom-fonts">Custom Font 🖍️</a> &bull;
+    <a href="#used-by">Used by</a> &bull;
+    <a href="https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample">Sample App</a>
+</p>
 
-Now there's an **easy, fast, and small** solution for this! The **Android-Iconics** library.
+-------
 
-This library allows you to include vector icons everywhere in your project. No limits are given.
-**Scale with no limit**, use **any color** at any time, provide a **contour**, and many additional customizations...
-
-Use the icons in the variation you need them.
-
-**What do you get**
+### What's included 🚀
 - No customization limitations (size, color, contour, background, padding, positioning, ...)
 - Shadow support
 - Use as XML Drawable starting API 24
@@ -43,27 +45,11 @@ Use the icons in the variation you need them.
 - [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
 - [Ionicons](http://ionicons.com/)
 - [Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)
-
-**Need more?**
-Provide additional fonts for you project, or even create your custom font with just the icons you need.
-
-# String fields for icons
-For generating string field for each of icons of your font, you can use this simple generator:
-
-[Android-Iconics String Generator](https://github.com/zTrap/Android-Iconics-String-Generator)
-
-# Android module generator
-
-A awesome gradle plugin which can automatically fetch a font from Fontastic, and generate the Android Module for your project.
-
-[Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
-
-# Migration
-- [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
+- Or create your own font with any icon needed.
 
 # Setup
 
-## Latest releases
+## Latest releases 🛠
 
 - Kotlin Next Gen | [v5.0.0-a04](https://github.com/mikepenz/MaterialDrawer/tree/v5.0.0-a04)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/MaterialDrawer/tree/v4.0.2)
@@ -186,7 +172,6 @@ This feature was suggested and initially provided by @dzamlo
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/develop/DEV/github/screenshots1.jpg)
 
-
 # Available fonts
 |Link|Prefix|Dependency|
 |---|---|---|
@@ -256,7 +241,6 @@ IconicsDrawable(this, FontAwesome.Icon.faw_adjust).apply {
 }
 ```
 
-
 ## Create custom fonts
 This is possible with only the *.ttf and *.css mapping file. And will take you 2 minutes.
 
@@ -271,6 +255,15 @@ After you got those two files, head over to the icon addon creation tool [androi
 Enter all the information. Add the *.ttf and *.css and click the button. It will generate and download the icon font addon as
 zip. (this tool is local only, no files are sent to a server, you can safely use it with any icons)
 
+## String fields for icons
+For generating string field for each of icons of your font, you can use this simple generator:
+[Android-Iconics String Generator](https://github.com/zTrap/Android-Iconics-String-Generator)
+
+## Android module generator
+
+A awesome gradle plugin which can automatically fetch a font from Fontastic, and generate the Android Module for your project.
+[Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
+
 # ProGuard
 Exclude `R` from ProGuard to enable the font addon auto detection
 ```proguard
@@ -279,11 +272,7 @@ Exclude `R` from ProGuard to enable the font addon auto detection
     <fields>;
 }
 ```
-All other ProGuard rules are now bundled internally with each font. 
-
-# Demo
-You can try the sample application out. It's on Google Play ;)
-https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
+All other ProGuard rules are now bundled internally with each font.
 
 # Special Contributor
 - [Baptiste Lagache](https://github.com/ligol) Thanks for the gradle font module generator
@@ -299,7 +288,6 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
 * Mike Penz 
   * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
   * [paypal.me/mikepenz](http://paypal.me/mikepenz)
-
 
 * Peter Gulko
   * [github.com/zTrap](https://github.com/zTrap)
