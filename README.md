@@ -10,7 +10,6 @@
     <a href="MIGRATION.md">Migration Guide 🧬</a> &bull;
     <a href="FAQ.md">WIKI / FAQ 📖</a> &bull;
     <a href="#create-custom-fonts">Custom Font 🖍️</a> &bull;
-    <a href="#used-by">Used by</a> &bull;
     <a href="https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample">Sample App</a>
 </p>
 
