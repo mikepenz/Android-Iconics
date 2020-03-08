@@ -53,7 +53,7 @@ class IconItem(icon: String) : AbstractItem<IconItem.ViewHolder>() {
     override val type: Int
         get() = R.id.item_row_icon
 
-    override fun bindView(holder: ViewHolder, payloads: MutableList<Any>) {
+    override fun bindView(holder: ViewHolder, payloads: List<Any>) {
         super.bindView(holder, payloads)
 
         val ctx = holder.image.context

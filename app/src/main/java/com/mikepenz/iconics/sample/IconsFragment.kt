@@ -173,11 +173,7 @@ class IconsFragment : Fragment() {
 
         adapter.onBindViewHolderListener = object : OnBindViewHolderListener {
 
-            override fun onBindViewHolder(
-                viewHolder: RecyclerView.ViewHolder,
-                position: Int,
-                payloads: MutableList<Any>
-            ) {
+            override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int, payloads: List<Any>) {
                 val holder = viewHolder as IconItem.ViewHolder
 
                 val item = adapter.getItem(position)
