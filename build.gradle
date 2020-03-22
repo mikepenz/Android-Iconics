@@ -41,7 +41,7 @@ buildscript {
                 ktx             : [
                         core: '1.1.0'
                 ],
-                detekt          : '1.0.0-RC15',
+                detekt          : '1.7.0',
                 aboutLibraries  : '8.0.0-rc02',
                 materialDrawer  : '8.0.0-rc01',
                 fastAdapter     : '5.0.0'
