@@ -76,7 +76,7 @@ implementation 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
 implementation 'com.mikepenz:octicons-typeface:3.2.0.6-kotlin@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.5-kotlin@aar'
 // note 3.7.95.4 alphabetically sorts, and merges in only 2 sections, split between G and H
-implementation 'com.mikepenz:community-material-typeface:3.7.95.4-kotlin@aar'
+implementation 'com.mikepenz:community-material-typeface:5.0.45.1-kotlin@aar'
 implementation 'com.mikepenz:weather-icons-typeface:2.0.10.5-kotlin@aar'
 implementation 'com.mikepenz:typeicons-typeface:2.0.7.5-kotlin@aar'
 implementation 'com.mikepenz:entypo-typeface:1.0.0.5-kotlin@aar'
