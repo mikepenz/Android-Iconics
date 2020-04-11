@@ -34,6 +34,7 @@ import com.mikepenz.iconics.utils.IconicsPreconditions
 import com.mikepenz.iconics.utils.InternalIconicsUtils
 import com.mikepenz.iconics.utils.clearedIconName
 import com.mikepenz.iconics.utils.iconPrefix
+import java.lang.reflect.Field
 import java.util.LinkedList
 
 @SuppressLint("StaticFieldLeak")
@@ -51,8 +52,14 @@ object Iconics {
 
     /**
      * Initializes the FONTS. This also tries to find all founds automatically via their font file
+     *
+     * If resolving the `R` field is not possible provide the `R` fields manually via
+     *
+     * ```
+     * Iconics.init(context, R.string::class.java.fields)
+     * ```
      */
-    @JvmStatic fun init(context: Context? = null) {
+    @JvmStatic fun init(context: Context? = null, fields: Array<Field>? = null) {
         if (context != null) {
             if (!::applicationContext.isInitialized) {
                 this.applicationContext = context.applicationContext
@@ -64,7 +71,7 @@ object Iconics {
                 throw RuntimeException("A 'Iconics.init(context)' has to happen first. Call from your application. Usually this happens via an 'IconicsDrawable' usage.")
             }
 
-            GenericsUtil.getDefinedFonts(applicationContext).forEach {
+            GenericsUtil.getDefinedFonts(applicationContext, fields).forEach {
                 try {
                     registerFont(ReflectionUtils.getInstanceForName(it))
                 } catch (e: Exception) {

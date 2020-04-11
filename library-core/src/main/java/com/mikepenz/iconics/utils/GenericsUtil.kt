@@ -24,9 +24,17 @@ import java.lang.reflect.Field
  */
 object GenericsUtil {
 
-    /** Helper to get the string fields with name starts "define_font_" from the R class */
-    @JvmStatic fun getDefinedFonts(ctx: Context): Array<out String> {
-        return resolveRClass(ctx.packageName)?.let { getDefinedFonts(ctx, it.fields) }.orEmpty()
+    /**
+     * Helper to get an array of strings out of a fieldArray
+     *
+     * @param fields R.strings.class.getFields()
+     * @return an array of strings with the string ids we need
+     */
+    @JvmStatic fun getDefinedFonts(ctx: Context, fields: Array<Field>? = null): Array<String> {
+        val finalFields = fields ?: resolveRClass(ctx.packageName)?.fields ?: emptyArray()
+        return finalFields.filter { it.name.contains("define_font_") }
+                .map { getStringResourceByName(ctx, it.name) }
+                .toTypedArray()
     }
 
     /** Helper to get the string fields with name starts "define_processor_" from the R class */
@@ -47,18 +55,6 @@ object GenericsUtil {
         } while (tempPackageName.isNotBlank())
 
         return null
-    }
-
-    /**
-     * Helper to get a array of strings out of a fieldArray
-     *
-     * @param fields R.strings.class.getFields()
-     * @return a array of strings with the string ids we need
-     */
-    @JvmStatic private fun getDefinedFonts(ctx: Context, fields: Array<Field>): Array<String> {
-        return fields.filter { it.name.contains("define_font_") }
-                .map { getStringResourceByName(ctx, it.name) }
-                .toTypedArray()
     }
 
     /**
