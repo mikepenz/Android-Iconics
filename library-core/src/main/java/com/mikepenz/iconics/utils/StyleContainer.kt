@@ -21,7 +21,7 @@ import android.text.Spannable
 import android.text.style.CharacterStyle
 import com.mikepenz.iconics.typeface.ITypeface
 
-internal class StyleContainer (
+internal class StyleContainer(
     var startIndex: Int = 0,
     var endIndex: Int = 0,
     var icon: String? = null,
