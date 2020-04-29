@@ -50,23 +50,23 @@ internal object InternalIconicsUtils {
         val existingSpans = LinkedList<StyleContainer>()
 
         // remember the previous style spans
-        editable.getSpans<ParcelableSpan>(0, editable.length, ParcelableSpan::class.java)
+        editable.getSpans(0, editable.length, ParcelableSpan::class.java)
                 .mapTo(existingSpans) {
                     StyleContainer(
-                        editable.getSpanStart(it),
-                        editable.getSpanEnd(it),
-                        it,
-                        editable.getSpanFlags(it)
+                        startIndex = editable.getSpanStart(it),
+                        endIndex = editable.getSpanEnd(it),
+                        span = it,
+                        flags = editable.getSpanFlags(it)
                     )
                 }
 
-        editable.getSpans<CharacterStyle>(0, editable.length, CharacterStyle::class.java)
+        editable.getSpans(0, editable.length, CharacterStyle::class.java)
                 .mapTo(existingSpans) {
                     StyleContainer(
-                        editable.getSpanStart(it),
-                        editable.getSpanEnd(it),
-                        it,
-                        editable.getSpanFlags(it)
+                        startIndex = editable.getSpanStart(it),
+                        endIndex = editable.getSpanEnd(it),
+                        style = it,
+                        flags = editable.getSpanFlags(it)
                     )
                 }
 
@@ -139,10 +139,10 @@ internal object InternalIconicsUtils {
 
                         //add the current icon to the container
                         return StyleContainer(
-                            iconStart,
-                            iconStart + 1,
-                            iconString,
-                            typeface
+                            startIndex = iconStart,
+                            endIndex = iconStart + 1,
+                            icon = iconString,
+                            font = typeface
                         )
                     }
                     Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong icon name: $iconString")
@@ -168,20 +168,20 @@ internal object InternalIconicsUtils {
         spannable.getSpans(0, spannable.length, ParcelableSpan::class.java)
                 .mapTo(existingSpans) {
                     StyleContainer(
-                        spannable.getSpanStart(it),
-                        spannable.getSpanEnd(it),
-                        it,
-                        spannable.getSpanFlags(it)
+                        startIndex = spannable.getSpanStart(it),
+                        endIndex = spannable.getSpanEnd(it),
+                        span = it,
+                        flags = spannable.getSpanFlags(it)
                     )
                 }
 
         spannable.getSpans(0, spannable.length, CharacterStyle::class.java)
                 .mapTo(existingSpans) {
                     StyleContainer(
-                        spannable.getSpanStart(it),
-                        spannable.getSpanEnd(it),
-                        it,
-                        spannable.getSpanFlags(it)
+                        startIndex = spannable.getSpanStart(it),
+                        endIndex = spannable.getSpanEnd(it),
+                        style = it,
+                        flags = spannable.getSpanFlags(it)
                     )
                 }
 
@@ -260,10 +260,10 @@ internal object InternalIconicsUtils {
 
                     //add the current icon to the container
                     return StyleContainer(
-                        spannedString.length - 1,
-                        spannedString.length,
-                        iconString,
-                        typeface
+                        startIndex = spannedString.length - 1,
+                        endIndex = spannedString.length,
+                        icon = iconString,
+                        font = typeface
                     )
                 }
                 Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong icon name: $iconString")
