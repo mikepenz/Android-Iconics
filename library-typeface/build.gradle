@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Mike Penz
+ * Copyright (c) 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,17 +19,17 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion setup.compileSdk
+    compileSdkVersion setup.compileSdkCore
     buildToolsVersion setup.buildTools
 
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 22006
-        versionName "2.2.0.6-kotlin"
+        versionCode release.versionCode
+        versionName release.versionName
 
-        resValue "string", "materialdesigniconic_version", "${versionName}"
+        resValue "string", "iconics_lib_version", "${versionName}"
     }
     buildTypes {
         release {
@@ -41,12 +41,19 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    // specify the artifactId as module-name for kotlin
+    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }
-if (project.hasProperty('pushall') || project.hasProperty('materialdesigniconiconly')) {
+if (project.hasProperty('pushall') || project.hasProperty('librarytypefaceonly')) {
     apply from: '../gradle-release.gradle'
 }
 
 dependencies {
-    implementation project(':library-typeface')
+    implementation "androidx.core:core:$versions.ktx.core"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }

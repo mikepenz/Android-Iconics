@@ -28,6 +28,7 @@ import com.mikepenz.iconics.animation.IconicsAnimationProcessor
 import com.mikepenz.iconics.context.ReflectionUtils
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IconicsContextHolder
 import com.mikepenz.iconics.utils.GenericsUtil
 import com.mikepenz.iconics.utils.IconicsLogger
 import com.mikepenz.iconics.utils.IconicsPreconditions
@@ -45,8 +46,8 @@ object Iconics {
     private val PROCESSORS = HashMap<String, Class<out IconicsAnimationProcessor>>()
 
     @JvmField internal val TAG = Iconics::class.java.simpleName
-    @JvmStatic lateinit var applicationContext: Context
-        internal set
+    @JvmStatic val applicationContext: Context
+        get() = IconicsContextHolder.applicationContext
 
     @JvmField var logger: IconicsLogger = IconicsLogger.DEFAULT
 
@@ -61,16 +62,10 @@ object Iconics {
      */
     @JvmStatic fun init(context: Context? = null, fields: Array<Field>? = null) {
         if (context != null) {
-            if (!::applicationContext.isInitialized) {
-                this.applicationContext = context.applicationContext
-            }
+            IconicsContextHolder.applicationContext = context
         }
 
         if (!INIT_DONE) {
-            if (!::applicationContext.isInitialized) {
-                throw RuntimeException("A 'Iconics.init(context)' has to happen first. Call from your application. Usually this happens via an 'IconicsDrawable' usage.")
-            }
-
             GenericsUtil.getDefinedFonts(applicationContext, fields).forEach {
                 try {
                     registerFont(ReflectionUtils.getInstanceForName(it))
