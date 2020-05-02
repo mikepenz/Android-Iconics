@@ -16,7 +16,7 @@
 
 include ':app'
 include ':library-core'
-include ':library-typeface'
+include ':library-typeface-api'
 include ':iconics-view-library'
 include ':fontawesome-typeface-library'
 include ':meteocons-typeface-library'

@@ -29,7 +29,7 @@ android {
         versionCode release.versionCode
         versionName release.versionName
 
-        resValue "string", "iconics_lib_version", "${versionName}"
+        resValue "string", "iconics_typeface_api_version", "${versionName}"
     }
     buildTypes {
         release {

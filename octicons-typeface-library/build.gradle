@@ -47,6 +47,6 @@ if (project.hasProperty('pushall') || project.hasProperty('octicons')) {
 }
 
 dependencies {
-    implementation project(':library-typeface')
+    implementation project(':library-typeface-api')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }
