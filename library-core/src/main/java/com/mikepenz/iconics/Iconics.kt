@@ -42,7 +42,6 @@ import java.util.LinkedList
 object Iconics {
 
     private var INIT_DONE = false
-    private val FONTS = HashMap<String, ITypeface>()
     private val PROCESSORS = HashMap<String, Class<out IconicsAnimationProcessor>>()
 
     @JvmField internal val TAG = Iconics::class.java.simpleName
@@ -90,7 +89,7 @@ object Iconics {
      */
     @JvmStatic private fun init(fonts: Map<String, ITypeface>?): Map<String, ITypeface> {
         init()
-        return if (fonts.isNullOrEmpty()) FONTS else fonts
+        return if (fonts.isNullOrEmpty()) IconicsContextHolder.FONTS else fonts
     }
 
     /**
@@ -105,7 +104,7 @@ object Iconics {
      * [android.app.Application.onCreate] via [registerFont].
      */
     @JvmStatic fun markInitDone() {
-        if (FONTS.isEmpty()) {
+        if (IconicsContextHolder.FONTS.isEmpty()) {
             throw IllegalArgumentException(
                 "At least one font needs to be registered first\n" +
                         "    via ${javaClass.canonicalName}.registerFont(Iconics.kt:117)"
@@ -127,7 +126,7 @@ object Iconics {
 
     /** Registers a fonts into the FONTS array for performance */
     @JvmStatic fun registerFont(font: ITypeface): Boolean {
-        FONTS[font.mappingPrefix] = font.validate()
+        IconicsContextHolder.FONTS[font.mappingPrefix] = font.validate()
         return true
     }
 
@@ -161,7 +160,7 @@ object Iconics {
     /** Return all registered FONTS */
     private val registeredFonts: List<ITypeface>
         get() {
-            return FONTS.values.toList()
+            return IconicsContextHolder.FONTS.values.toList()
         }
 
     /** Return all registered FONTS */
@@ -186,7 +185,7 @@ object Iconics {
     /** Tries to find a font by its key in all registered FONTS */
     @JvmStatic fun findFont(key: String, context: Context? = null): ITypeface? {
         init(context)
-        return FONTS[key]
+        return IconicsContextHolder.FONTS[key]
     }
 
     /** Fetches the font from the Typeface of an IIcon */
