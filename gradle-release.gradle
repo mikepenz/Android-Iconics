@@ -93,7 +93,7 @@ afterEvaluate { project ->
                 released = new Date()
 
                 mavenCentralSync {
-                    sync = false
+                    sync = true
                     user = getRepositoryUsername()
                     password = getRepositoryPassword()
                     close = '1'
