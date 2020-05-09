@@ -36,15 +36,15 @@ buildscript {
                 material        : '1.1.0',
                 appcompat       : '1.1.0',
                 drawerlayout    : '1.1.0-beta01',
-                constraintLayout: '2.0.0-beta4',
+                constraintLayout: '2.0.0-beta5',
                 cardview        : '1.0.0',
                 ktx             : [
-                        core: '1.1.0'
+                        core: '1.2.0'
                 ],
                 detekt          : '1.7.0',
-                aboutLibraries  : '8.1.1',
-                materialDrawer  : '8.0.1',
-                fastAdapter     : '5.0.0'
+                aboutLibraries  : '8.1.2',
+                materialDrawer  : '8.0.2',
+                fastAdapter     : '5.0.1'
         ]
     }
 
