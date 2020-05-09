@@ -24,6 +24,8 @@ import android.content.Context
 object IconicsContextHolder {
     private var context: Context? = null
 
+    val FONTS = HashMap<String, ITypeface>()
+
     @JvmStatic var applicationContext: Context
         get() = context ?: errorContextNotInitialized()
         set(value) {
@@ -39,5 +41,17 @@ object IconicsContextHolder {
             append("Usually this happens via an 'IconicsDrawable' usage.")
         }
         throw RuntimeException(message)
+    }
+
+    /** Registers a fonts into the FONTS array for performance */
+    @JvmStatic fun registerFont(font: ITypeface): Boolean {
+        FONTS[font.mappingPrefix] = font.validate()
+        return true
+    }
+
+    /** Perform a basic sanity check for a font. */
+    @JvmStatic private fun ITypeface.validate(): ITypeface {
+        // TODO IconicsPreconditions.checkMappingPrefix(mappingPrefix)
+        return this
     }
 }

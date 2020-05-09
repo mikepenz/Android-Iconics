@@ -14,4 +14,16 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.mikepenz.iconics.typeface.library.community" />
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mikepenz.iconics.typeface.library.community">
+
+    <application>
+        <provider
+            android:name="com.mikepenz.iconics.typeface.library.community.material.ContentProvider"
+            android:enabled="@bool/is_iconics_content_provider_enabled"
+            android:authorities="${applicationId}.iconics.community.material.provider"
+            android:exported="false"
+            android:initOrder="100" />
+    </application>
+</manifest>
