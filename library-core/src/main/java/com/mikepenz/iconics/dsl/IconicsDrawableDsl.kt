@@ -30,7 +30,7 @@ import com.mikepenz.iconics.utils.sizeX
 import com.mikepenz.iconics.utils.sizeY
 
 // Notify user that the DSL is currently experimental
-@Experimental(level = Experimental.Level.WARNING)
+@RequiresOptIn(level = RequiresOptIn.Level.WARNING)
 annotation class ExperimentalIconicsDSL
 
 @ExperimentalIconicsDSL
