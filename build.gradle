@@ -43,7 +43,7 @@ buildscript {
                 ],
                 detekt          : '1.7.0',
                 aboutLibraries  : '8.1.2',
-                materialDrawer  : '8.0.2',
+                materialDrawer  : '8.0.1',
                 fastAdapter     : '5.0.1'
         ]
     }
