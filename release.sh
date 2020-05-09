@@ -4,7 +4,8 @@
 
 if [ "$1" = "release" ];
 then
-    ./gradlew bintrayUpload -Plibrarycoreonly
+    ./gradlew bintrayUpload -Plibrarytypefaceonly
+    ./gradlew bintrayUpload -x test -x lint -Plibrarycoreonly
     ./gradlew bintrayUpload -x test -x lint -Plibraryviewsonly
 
     #./gradlew build bintrayUpload -x test -x lint -Pcommunitymaterialonly
