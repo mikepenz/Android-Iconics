@@ -57,8 +57,6 @@
 
 ## 1. Provide the gradle dependency
 ```gradle
-
-def latestAndroidIconicsRelease = "5.0.3"
 dependencies {
     //the core iconics library (without any widgets)
     implementation "com.mikepenz:iconics-core:${latestAndroidIconicsRelease}"
