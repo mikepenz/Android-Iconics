@@ -57,15 +57,19 @@
 
 ## 1. Provide the gradle dependency
 ```gradle
-//the core iconics library (without any widgets)
-implementation "com.mikepenz:iconics-core:${latestFastAdapterRelease}"
-implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+
+def latestAndroidIconicsRelease = "5.0.3"
+dependencies {
+    //the core iconics library (without any widgets)
+    implementation "com.mikepenz:iconics-core:${latestAndroidIconicsRelease}"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+}
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:${latestFastAdapterRelease}"
+implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 ```
 
 ## 2. Choose your desired fonts (v4+)
