@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.core.content.res.use
+import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.context.IconicsAttrsExtractor
 import com.mikepenz.iconics.view.R
@@ -33,6 +34,8 @@ internal object IconicsViewsAttrsApplier {
 
     //region IconicsImageView
     fun getIconicsImageViewDrawable(ctx: Context, attrs: AttributeSet?): IconicsDrawable? {
+        Iconics.init(ctx) // init iconcis with the context we got
+
         return ctx.obtainStyledAttributes(attrs, R.styleable.IconicsImageView).use {
             IconicsAttrsExtractor(
                 res = ctx.resources,
