@@ -1,0 +1,5 @@
+#http://mbauman.net/geek/2009/03/15/minor-truetype-font-editing-on-a-mac/
+#dumping
+ftxdumperfuser -t cmap -A d MaterialIcons-Regular.ttf
+#add-back
+ftxdumperfuser -t cmap -A f MaterialIcons-Regular.ttf

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019 Mike Penz
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="define_Foundation_Icon_Fonts">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Foundation_Icon_Fonts_author">ZURB Inc.</string>
+    <string name="library_Foundation_Icon_Fonts_authorWebsite">http://zurb.com/</string>
+    <string name="library_Foundation_Icon_Fonts_libraryName">Foundation_Icon_Fonts</string>
+    <string name="library_Foundation_Icon_Fonts_libraryDescription">A custom collection of 283 icons that are stored in a handy web font.</string>
+    <string name="library_Foundation_Icon_Fonts_libraryWebsite">http://zurb.com/playground/foundation-icon-fonts-3</string>
+    <string name="library_Foundation_Icon_Fonts_libraryVersion">@string/foundation_version</string>
+    <string name="library_Foundation_Icon_Fonts_licenseId">mit</string>
+    <string name="library_Foundation_Icon_Fonts_isOpenSource">false</string>
+    <string name="library_Foundation_Icon_Fonts_repositoryLink"></string>
+</resources>

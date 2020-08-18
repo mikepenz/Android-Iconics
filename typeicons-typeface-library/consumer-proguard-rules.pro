@@ -1,0 +1,1 @@
+-keep class com.mikepenz.iconics.typeface.library.typeicons.Typeicons { *; }
