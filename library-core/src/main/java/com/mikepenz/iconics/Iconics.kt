@@ -122,7 +122,7 @@ object Iconics {
      * @return true if the icon is available
      */
     @JvmStatic fun isIconExists(icon: String): Boolean {
-        return runCatching { findFont(icon.iconPrefix)?.getIcon(icon.clearedIconName) }.isSuccess
+        return findFont(icon.iconPrefix)?.getIcon(icon.clearedIconName) != null
     }
 
     /** Registers a fonts into the FONTS array for performance */
