@@ -62,7 +62,7 @@ import kotlin.math.abs
 /**
  * Created by a557114 on 16/04/2015.
  */
-class IconsFragment : Fragment() {
+class IconsFragment : Fragment(R.layout.icons_fragment) {
     private val random = Random()
     private val icons = ArrayList<IconItem>()
     private val adapter by lazy { FastItemAdapter<IconItem>() }
@@ -79,14 +79,6 @@ class IconsFragment : Fragment() {
     fun shadow(shadow: Boolean) {
         this.shadow = shadow
         adapter.notifyAdapterDataSetChanged()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.icons_fragment, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

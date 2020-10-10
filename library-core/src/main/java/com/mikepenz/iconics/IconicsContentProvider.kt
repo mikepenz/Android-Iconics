@@ -36,7 +36,7 @@ internal class IconicsContentProvider : ContentProvider() {
     ): Cursor? = null
 
     override fun onCreate(): Boolean {
-        Iconics.init(context!!.applicationContext)
+        Iconics.init(context?.applicationContext ?: error("The context is not supposed to be null"))
         return true
     }
 
