@@ -74,6 +74,15 @@ class PlaygroundActivity : AppCompatActivity() {
         val themeValue1 = getThemeColor(android.R.attr.textColorPrimary)
         val themeValue2 = getThemeColor(android.R.attr.textColorPrimaryInverse)
 
+        binding.aboutTwitterTv.setCompoundDrawables(
+            IconicsDrawable(this, CommunityMaterial.Icon3.cmd_twitter).apply {
+                sizeDp = 24
+                paddingDp = 4
+                colorInt = Color.BLUE
+            },
+            null, null, null
+        )
+
         //Show how to style the text of an existing TextView
         Iconics.Builder()
                 .style(

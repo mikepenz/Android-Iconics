@@ -58,6 +58,46 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:orientation="vertical">
 
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/about_fb_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:tag="https://www.facebook.com/"
+                    android:text="{cmd-facebook} Facebook"
+                    android:textAlignment="center"
+                    android:textColor="#FFF"
+                    android:textSize="16sp" />
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/about_twitter_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Twitter"
+                    android:textColor="#FFF"
+                    android:textSize="16sp" />
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/about_youtube_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:drawablePadding="5dp"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:tag="https://www.youtube.com/"
+                    android:text="{cmd-youtube} Youtube"
+                    android:textAlignment="center"
+                    android:textColor="#FFF"
+                    android:textSize="16sp" />
+
                 <!--region IconicsImageView Showcase-->
                 <TextView
                     android:layout_width="match_parent"
