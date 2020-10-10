@@ -134,5 +134,5 @@ dependencies {
     implementation project(':pixeden-7-stroke-typeface-library')
     implementation project(':material-design-dx-typeface-library')
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 }
