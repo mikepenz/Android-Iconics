@@ -68,7 +68,7 @@ complexity:
     threshold: 60
   LongParameterList:
     active: true
-    threshold: 10
+    threshold: 25
     ignoreDefaultParameters: false
   MethodOverloading:
     active: false
@@ -182,7 +182,7 @@ formatting:
   android: true
   autoCorrect: true
   ChainWrapping:
-    active: true
+    active: false
     autoCorrect: true
   CommentSpacing:
     active: false
