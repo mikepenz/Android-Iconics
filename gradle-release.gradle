@@ -5,29 +5,13 @@ def isReleaseBuild() {
 
 @SuppressWarnings("GroovyUnusedDeclaration")
 def getRepositoryUsername() {
-    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+    return project.hasProperty('NEXUS_USERNAME') ? project.property('NEXUS_USERNAME') : System.getenv('NEXUS_USERNAME')
 }
 
 @SuppressWarnings("GroovyUnusedDeclaration")
 def getRepositoryPassword() {
-    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+    return project.hasProperty('NEXUS_PASSWORD') ? project.property('NEXUS_PASSWORD') : System.getenv('NEXUS_PASSWORD')
 }
-
-/*
- * Copyright (c) 2019 Mike Penz
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 apply plugin: "com.jfrog.bintray"
 
@@ -67,7 +51,7 @@ afterEvaluate { project ->
         key = project.hasProperty('bintray.apikey') ? project.property('bintray.apikey') : System.getenv('BINTRAY_API_KEY')
         def gpgkey = project.hasProperty('bintray.gpg.key') ? project.property('bintray.gpg.key') : System.getenv('BINTRAY_GPG_KEY')
         def gpgpass = project.hasProperty('bintray.gpg.password') ? project.property('bintray.gpg.password') : System.getenv('BINTRAY_GPG_PASS')
-        def versionName = android.defaultConfig.versionName
+        def versionName = project.release.versionName
 
         publications('release')
 
@@ -140,7 +124,7 @@ afterEvaluate { project ->
             release(MavenPublication) {
                 groupId GROUP
                 artifactId POM_ARTIFACT_ID
-                version android.defaultConfig.versionName
+                version project.release.versionName
                 artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
                 artifact androidSourcesJar
                 artifact androidJavadocsJar

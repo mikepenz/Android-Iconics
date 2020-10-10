@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Mike Penz
+ * Copyright (c) 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 buildscript {
+    apply from: 'configurations.gradle'
+
     ext {
         release = [
                 versionName: "5.0.3",
@@ -41,7 +42,7 @@ buildscript {
                 ktx             : [
                         core: '1.2.0'
                 ],
-                detekt          : '1.7.0',
+                detekt          : '1.14.1',
                 aboutLibraries  : '8.1.2',
                 materialDrawer  : '8.0.1',
                 fastAdapter     : '5.0.1'

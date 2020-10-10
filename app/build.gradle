@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
 /*
- * Copyright (c) 2019 Mike Penz
+ * Copyright (c) 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,10 +20,8 @@ apply plugin: 'com.mikepenz.aboutlibraries.plugin'
  * limitations under the License.
  */
 
-//wrap with try and catch so the build is working even if the signing stuff is missing
-try {
-    apply from: '../../../signing.gradle'
-} catch (final ignored) {
+if (getSigningFile() != null) {
+    apply from: "${getSigningFile()}"
 }
 
 android {
@@ -51,16 +49,14 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            try {
+            if (getSigningFile() != null) {
                 signingConfig signingConfigs.debug
-            } catch (final ignored) {
             }
             minifyEnabled false
         }
         release {
-            try {
+            if (getSigningFile() != null) {
                 signingConfig signingConfigs.release
-            } catch (final ignored) {
             }
             zipAlignEnabled true
             minifyEnabled false
