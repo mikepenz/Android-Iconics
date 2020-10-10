@@ -19,6 +19,7 @@ package com.mikepenz.iconics.animation
 import android.animation.Animator
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
+import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
@@ -27,10 +28,13 @@ import android.text.TextPaint
 import android.view.animation.LinearInterpolator
 import androidx.annotation.FloatRange
 import androidx.annotation.RequiresApi
+import androidx.startup.Initializer
+import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsBrush
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor.Companion.INFINITE
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor.RepeatMode
 import com.mikepenz.iconics.animation.IconicsAnimationProcessor.RepeatMode.RESTART
+import com.mikepenz.iconics.typeface.IconicsInitializer
 
 /**
  * @author pa.gulko zTrap (28.11.2018)
@@ -72,10 +76,11 @@ abstract class IconicsAnimationProcessor(
      * with the view is attached to window. Default value is `true`.
      */
     open var isStartImmediately: Boolean = true
-) {
+) : Initializer<Unit> {
 
     companion object {
         @JvmField val DEFAULT_INTERPOLATOR = LinearInterpolator()
+
         /**
          * This value used used with the [repeatCount] property to repeat the animation
          * indefinitely.
@@ -382,12 +387,21 @@ abstract class IconicsAnimationProcessor(
         }
     }
 
+    override fun create(context: Context) {
+        Iconics.registerProcessor(this)
+    }
+
+    override fun dependencies(): List<Class<out Initializer<*>>> {
+        return listOf(IconicsInitializer::class.java)
+    }
+
     enum class RepeatMode(internal val valueAnimatorConst: Int) {
         /**
          * When the animation reaches the end and [repeatCount] is [INFINITE]
          * or a positive value, the animation restarts from the beginning.
          */
         RESTART(ValueAnimator.RESTART),
+
         /**
          * When the animation reaches the end and [repeatCount] is [INFINITE]
          * or a positive value, the animation reverses direction on every iteration.

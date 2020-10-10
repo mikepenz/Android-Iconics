@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,8 @@
  */
 package com.mikepenz.iconics.typeface.library.community.material
 
-import android.content.ContentProvider
-import android.content.ContentValues
-import android.database.Cursor
-import android.net.Uri
-import android.util.Log
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.typeface.IconicsContextHolder
 import com.mikepenz.iconics.typeface.library.community.R
 import java.util.LinkedList
 
@@ -5518,25 +5512,4 @@ object CommunityMaterial : ITypeface {
 
         override val typeface: ITypeface by lazy { CommunityMaterial }
     }
-}
-
-/**
- * Content provider to register the community material icons font
- */
-internal class ContentProvider : ContentProvider() {
-    override fun insert(uri: Uri, values: ContentValues?): Uri? = null
-
-    override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?): Cursor? = null
-
-    override fun onCreate(): Boolean {
-        Log.e("TEST", "FONT REGISTERED")
-        IconicsContextHolder.registerFont(CommunityMaterial)
-        return true
-    }
-
-    override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<String>?): Int = 0
-
-    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int = 0
-
-    override fun getType(uri: Uri): String? = null
 }

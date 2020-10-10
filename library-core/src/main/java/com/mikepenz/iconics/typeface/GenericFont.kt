@@ -19,7 +19,7 @@ package com.mikepenz.iconics.typeface
 import android.graphics.Typeface
 import androidx.annotation.FontRes
 import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.utils.IconicsPreconditions
+import com.mikepenz.iconics.typeface.utils.IconicsPreconditions
 import java.util.LinkedList
 
 /**

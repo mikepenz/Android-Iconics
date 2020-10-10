@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2019 Mike Penz
+  ~ Copyright (c) 2020 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -16,14 +16,18 @@
 
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.mikepenz.iconics.typeface.library.community">
 
     <application>
         <provider
-            android:name="com.mikepenz.iconics.typeface.library.community.material.ContentProvider"
-            android:enabled="@bool/is_iconics_content_provider_enabled"
-            android:authorities="${applicationId}.iconics.community.material.provider"
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
-            android:initOrder="100" />
+            tools:node="merge">
+            <meta-data
+                android:name="com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial"
+                android:value="androidx.startup" />
+        </provider>
     </application>
 </manifest>

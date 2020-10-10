@@ -23,11 +23,11 @@ buildscript {
         ]
 
         setup = [
-                compileSdk: 30,
+                compileSdk    : 30,
                 compileSdkCore: 28,
-                buildTools: "30.0.2",
-                minSdk    : 16,
-                targetSdk : 30
+                buildTools    : "30.0.2",
+                minSdk        : 16,
+                targetSdk     : 30
         ]
 
         versions = [
@@ -42,6 +42,7 @@ buildscript {
                 ktx             : [
                         core: '1.3.2'
                 ],
+                startup         : '1.0.0-beta01',
                 detekt          : '1.14.1',
                 aboutLibraries  : '8.4.2',
                 materialDrawer  : '8.1.6',

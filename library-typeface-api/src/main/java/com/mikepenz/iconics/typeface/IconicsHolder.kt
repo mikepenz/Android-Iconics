@@ -17,11 +17,12 @@
 package com.mikepenz.iconics.typeface
 
 import android.content.Context
+import com.mikepenz.iconics.typeface.utils.IconicsPreconditions
 
 /**
  * @author pa.gulko zTrap (02.05.2020)
  */
-object IconicsContextHolder {
+object IconicsHolder {
     private var context: Context? = null
 
     val FONTS = HashMap<String, ITypeface>()
@@ -51,7 +52,7 @@ object IconicsContextHolder {
 
     /** Perform a basic sanity check for a font. */
     @JvmStatic private fun ITypeface.validate(): ITypeface {
-        // TODO IconicsPreconditions.checkMappingPrefix(mappingPrefix)
+        IconicsPreconditions.checkMappingPrefix(mappingPrefix)
         return this
     }
 }

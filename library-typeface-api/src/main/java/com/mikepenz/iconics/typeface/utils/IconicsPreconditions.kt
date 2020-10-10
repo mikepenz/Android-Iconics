@@ -1,9 +1,12 @@
-package com.mikepenz.iconics.utils
+package com.mikepenz.iconics.typeface.utils
+
+import androidx.annotation.RestrictTo
 
 /**
  * @author pa.gulko zTrap (19.03.2019)
  */
-internal object IconicsPreconditions {
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
+object IconicsPreconditions {
 
     @JvmStatic fun checkMappingPrefix(s: String) {
         if (s.length == 3) return
