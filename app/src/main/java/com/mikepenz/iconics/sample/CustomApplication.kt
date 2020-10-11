@@ -29,16 +29,12 @@ class CustomApplication : MultiDexApplication() {
         Iconics.registerFont(CustomFont)
 
         //Generic font creation process
-        GenericFont("GenericFont", "SampleGenericFont", "gmf", "font/materialdrawerfont.ttf")
+        GenericFont("GenericFont", "SampleGenericFont", "gnf", "font/materialdrawerfont.ttf")
                 .also {
                     it.registerIcon("person", '\ue800')
                     it.registerIcon("up", '\ue801')
                     it.registerIcon("down", '\ue802')
                     Iconics.registerFont(it)
                 }
-
-        // Enable the below line to not allow the automatic font detection via the included string
-        // fields. This helps to increase performance by a tiny bit.
-        //Iconics.markInitDone()
     }
 }

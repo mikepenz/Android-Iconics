@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,16 @@
  */
 package com.mikepenz.iconics.typeface.library.entypo
 
+import android.content.Context
+import androidx.startup.Initializer
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IconicsHolder
+import com.mikepenz.iconics.typeface.IconicsInitializer
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-object Entypo : ITypeface {
+object Entypo : ITypeface, Initializer<ITypeface> {
 
     override val fontRes: Int
         get() = R.font.entypo_font_v1_0_0_1
@@ -60,6 +64,15 @@ object Entypo : ITypeface {
         get() = "https://creativecommons.org/licenses/by-sa/4.0/"
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
+
+    override fun create(context: Context): ITypeface {
+        IconicsHolder.registerFont(this)
+        return this
+    }
+
+    override fun dependencies(): List<Class<out Initializer<*>>> {
+        return listOf(IconicsInitializer::class.java)
+    }
 
     enum class Icon constructor(override val character: Char) : IIcon {
         ent_add_to_list('\ue900'),

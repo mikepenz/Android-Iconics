@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2019 Mike Penz
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -14,17 +13,26 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <manifest
-    package="com.mikepenz.iconics.core"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mikepenz.iconics.core">
 
     <application>
         <provider
-            android:enabled="@bool/is_iconics_content_provider_enabled"
-            android:authorities="${applicationId}.iconics.core.provider"
-            android:name="com.mikepenz.iconics.IconicsContentProvider"
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
-            android:initOrder="100" />
+            tools:node="merge">
+            <meta-data
+                android:name="com.mikepenz.iconics.animation.SpinProcessor"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.mikepenz.iconics.animation.BlinkAlphaProcessor"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.mikepenz.iconics.animation.BlinkScaleProcessor"
+                android:value="androidx.startup" />
+        </provider>
     </application>
 </manifest>

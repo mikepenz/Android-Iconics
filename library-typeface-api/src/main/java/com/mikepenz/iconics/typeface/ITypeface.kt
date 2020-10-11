@@ -27,7 +27,7 @@ interface ITypeface {
 
     val rawTypeface: Typeface
         get() = runCatching {
-            ResourcesCompat.getFont(IconicsContextHolder.applicationContext, fontRes)
+            ResourcesCompat.getFont(IconicsHolder.applicationContext, fontRes)
         }.getOrNull() ?: Typeface.DEFAULT
 
     @get:FontRes val fontRes: Int

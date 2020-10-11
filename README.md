@@ -197,20 +197,12 @@ Licenses for all included fonts are linked inside the class or can be found on t
 ### Register fonts
 
 If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the `Application`.
-You can manually provide `applicationContext` and trigger initialization, or you can use our `IconicsContentProvider` and do absolutely nothing.
 
-If you want to use tha manual way - place this value into your resources
-```xml
-<bool name="is_iconics_content_provider_enabled">false</bool>
-```
 And initialize Iconics as you wish
 ```kotlin
 class CustomApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        //only required if you add a custom or generic font on your own
-        Iconics.init(applicationContext)
 
         //register custom fonts like this (or also provide a font definition file)
         Iconics.registerFont(CustomFont())
@@ -265,14 +257,8 @@ A awesome gradle plugin which can automatically fetch a font from Fontastic, and
 [Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
 
 # ProGuard
-Exclude `R` from ProGuard to enable the font addon auto detection
-```proguard
--keep class .R
--keep class **.R$* {
-    <fields>;
-}
-```
-All other ProGuard rules are now bundled internally with each font.
+
+ProGuard / R8 rules are bundled internally with each font.
 
 # Special Contributor
 - [Baptiste Lagache](https://github.com/ligol) Thanks for the gradle font module generator
