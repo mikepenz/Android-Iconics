@@ -17,6 +17,7 @@
 package com.mikepenz.iconics.utils
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.StateListDrawable
 import android.util.TypedValue
@@ -36,10 +37,14 @@ object IconicsUtils {
     }
 
     @JvmStatic fun convertDpToPx(context: Context, dp: Number): Int {
+        return convertDpToPx(context.resources, dp)
+    }
+
+    @JvmStatic fun convertDpToPx(res: Resources, dp: Number): Int {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             dp.toFloat(),
-            context.resources.displayMetrics
+            res.displayMetrics
         ).toInt()
     }
 

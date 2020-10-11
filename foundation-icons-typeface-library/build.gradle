@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 30005
-        versionName "3.0.0.5-kotlin"
+        versionCode 30006
+        versionName "3.0.0.6-kotlin"
 
         resValue "string", "foundation_version", "${versionName}"
     }
@@ -47,6 +47,6 @@ if (project.hasProperty('pushall') || project.hasProperty('FoundationIconsonly')
 }
 
 dependencies {
-    implementation project(':library-core')
+    implementation project(':library-typeface-api')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }

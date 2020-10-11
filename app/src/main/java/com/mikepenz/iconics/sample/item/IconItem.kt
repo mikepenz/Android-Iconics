@@ -20,12 +20,14 @@ import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.mikepenz.aboutlibraries.util.getThemeColor
 import com.mikepenz.fastadapter.items.AbstractItem
-import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.sample.R
 import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.contourColorInt
+import com.mikepenz.iconics.utils.contourWidthDp
+import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.view.IconicsImageView
 
 /**
@@ -51,18 +53,21 @@ class IconItem(icon: String) : AbstractItem<IconItem.ViewHolder>() {
     override val type: Int
         get() = R.id.item_row_icon
 
-    override fun bindView(holder: ViewHolder, payloads: MutableList<Any>) {
+    override fun bindView(holder: ViewHolder, payloads: List<Any>) {
         super.bindView(holder, payloads)
 
-        val icon = IconicsDrawable(holder.image.context, this.icon ?: " ")
+        val ctx = holder.image.context
+        val icon = IconicsDrawable(ctx, this.icon ?: " ")
         holder.image.icon = icon
         holder.name.text = this.icon
 
-        icon.colorInt(0xFF000000.toInt())
-                .padding(IconicsSize.dp(0f))
-                .contourWidth(IconicsSize.dp(0f))
-                .contourColor(IconicsColor.colorInt(Color.TRANSPARENT))
-                .respectFontBounds(true) //as we want to respect the bounds of the original font in the icon list
+        icon.apply {
+            colorInt = ctx.getThemeColor(android.R.attr.textColorPrimary)
+            paddingDp = 0
+            contourWidthDp = 0
+            contourColorInt = Color.TRANSPARENT
+            respectFontBounds = true
+        }
 
         holder.image.setBackgroundColor(Color.TRANSPARENT)
     }

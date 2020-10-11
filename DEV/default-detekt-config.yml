@@ -1,10 +1,10 @@
 build:
   maxIssues: 0
   weights:
-    # complexity: 2
-    # LongParameterList: 1
-    # style: 1
-    # comments: 1
+  # complexity: 2
+  # LongParameterList: 1
+  # style: 1
+  # comments: 1
 
 processors:
   active: true
@@ -68,7 +68,7 @@ complexity:
     threshold: 60
   LongParameterList:
     active: true
-    threshold: 10
+    threshold: 25
     ignoreDefaultParameters: false
   MethodOverloading:
     active: false
@@ -160,22 +160,22 @@ exceptions:
     active: false
     excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"
     exceptionNames:
-     - ArrayIndexOutOfBoundsException
-     - Error
-     - Exception
-     - IllegalMonitorStateException
-     - NullPointerException
-     - IndexOutOfBoundsException
-     - RuntimeException
-     - Throwable
+      - ArrayIndexOutOfBoundsException
+      - Error
+      - Exception
+      - IllegalMonitorStateException
+      - NullPointerException
+      - IndexOutOfBoundsException
+      - RuntimeException
+      - Throwable
     allowedExceptionNameRegex: "^(_|(ignore|expected).*)"
   TooGenericExceptionThrown:
     active: false
     exceptionNames:
-     - Error
-     - Exception
-     - Throwable
-     - RuntimeException
+      - Error
+      - Exception
+      - Throwable
+      - RuntimeException
 
 formatting:
   active: true
@@ -190,12 +190,12 @@ formatting:
   Filename:
     active: true
   FinalNewline:
-    active: true
+    active: false
     autoCorrect: true
   ImportOrdering:
     active: false
   Indentation:
-    active: true
+    active: false
     autoCorrect: true
     indentSize: 4
     continuationIndentSize: 8

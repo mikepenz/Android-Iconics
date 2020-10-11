@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package com.mikepenz.iconics
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.content.res.Resources
 import androidx.annotation.DimenRes
 import androidx.annotation.Dimension
 import com.mikepenz.iconics.utils.IconicsUtils
@@ -55,9 +55,9 @@ sealed class IconicsSize : IconicsExtractor {
         }
     }
 
-    internal abstract fun extractFloat(context: Context): Float
+    internal abstract fun extractFloat(res: Resources): Float
 
-    internal abstract fun extract(context: Context): Int
+    internal abstract fun extract(res: Resources): Int
 }
 
 class IconicsSizeDp internal constructor(
@@ -67,10 +67,10 @@ class IconicsSizeDp internal constructor(
 ) : IconicsSize() {
     var pxCache: Int? = null
 
-    override fun extractFloat(context: Context): Float = extract(context).toFloat()
+    override fun extractFloat(res: Resources): Float = extract(res).toFloat()
 
-    override fun extract(context: Context): Int {
-        val pxCache = pxCache ?: IconicsUtils.convertDpToPx(context, dp)
+    override fun extract(res: Resources): Int {
+        val pxCache = pxCache ?: IconicsUtils.convertDpToPx(res, dp)
         this.pxCache = pxCache
         return pxCache
     }
@@ -81,19 +81,19 @@ class IconicsSizePx internal constructor(
     @Dimension(unit = Dimension.PX)
     private val px: Number
 ) : IconicsSize() {
-    override fun extractFloat(context: Context): Float = px.toFloat()
+    override fun extractFloat(res: Resources): Float = px.toFloat()
 
-    override fun extract(context: Context): Int = px.toInt()
+    override fun extract(res: Resources): Int = px.toInt()
 }
 
 class IconicsSizeRes internal constructor(
-    @DimenRes private val res: Int
+    @DimenRes private val resId: Int
 ) : IconicsSize() {
     // note we should not cache the value, as a configurationchange could mean different values
 
-    override fun extractFloat(context: Context): Float {
-        return extract(context).toFloat()
+    override fun extractFloat(res: Resources): Float {
+        return extract(res).toFloat()
     }
 
-    override fun extract(context: Context): Int = context.resources.getDimensionPixelSize(res)
+    override fun extract(res: Resources): Int = res.getDimensionPixelSize(resId)
 }

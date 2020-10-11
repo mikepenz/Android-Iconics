@@ -23,5 +23,10 @@
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:statusBarColor">@color/immersive_bars</item>
+        <item name="android:navigationBarColor">@color/nav_bar</item>
     </style>
 </resources>

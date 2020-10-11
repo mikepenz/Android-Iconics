@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,25 @@
 
 package com.mikepenz.iconics.context
 
-import android.content.Context
+import android.content.res.Resources
+import android.content.res.Resources.Theme
 import android.content.res.TypedArray
 import androidx.annotation.RestrictTo
 import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
 import androidx.annotation.StyleableRes
 import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.IconicsSize
+import com.mikepenz.iconics.utils.icon
+import com.mikepenz.iconics.utils.roundedCornersPx
+import com.mikepenz.iconics.utils.sizePx
 
 /**
  * @author pa.gulko zTrap (30.10.2017)
  */
 @RestrictTo(LIBRARY_GROUP)
 class IconicsAttrsExtractor(
-    private val context: Context,
+    private val res: Resources,
+    private val theme: Theme?,
     private val typedArray: TypedArray,
 
     @StyleableRes private var iconId: Int = 0,
@@ -66,97 +69,96 @@ class IconicsAttrsExtractor(
     }
 
     fun extractNonNull(): IconicsDrawable {
-        return extract(null, false).createIfNeeds(context)
+        return extract(null, false, true).createIfNeeds(res, theme)
     }
 
     fun extract(icon: IconicsDrawable?): IconicsDrawable? {
-        return extract(icon, false)
+        return extract(icon, false, true)
+    }
+
+    fun extractInto(icon: IconicsDrawable): IconicsDrawable? {
+        return extract(icon, false, false)
     }
 
     fun extract(): IconicsDrawable? {
-        return extract(null, false)
+        return extract(null, false, true)
     }
 
     fun extractWithOffsets(): IconicsDrawable? {
-        return extract(null, true)
+        return extract(null, true, true)
     }
 
-    private fun extract(icon: IconicsDrawable?, extractOffsets: Boolean): IconicsDrawable? {
-        var processedIcon = icon?.clone()
-
-        // region icon
-        val i = typedArray.getString(iconId)
-        if (!i.isNullOrEmpty()) {
-            processedIcon = processedIcon.createIfNeeds(context).icon(i)
-        }
-        typedArray.getColorStateList(colorsId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).color(IconicsColor.colorList(it))
-        }
-        typedArray.getDimensionPixelSize(sizeId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).size(IconicsSize.px(it))
-        }
-        typedArray.getDimensionPixelSize(paddingId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).padding(IconicsSize.px(it))
-        }
-        if (extractOffsets) {
-            typedArray.getDimensionPixelSize(offsetYId)?.let {
-                processedIcon = processedIcon.createIfNeeds(context)
-                        .iconOffsetY(IconicsSize.px(it))
+    private fun extract(icon: IconicsDrawable?, extractOffsets: Boolean, viaCopy: Boolean): IconicsDrawable? {
+        val processedIcon = (if (viaCopy) icon?.copy() else icon).createIfNeeds(res, theme)
+        processedIcon.apply {
+            // region icon
+            val i = typedArray.getString(iconId)
+            if (!i.isNullOrEmpty()) {
+                this.icon(i)
             }
-            typedArray.getDimensionPixelSize(offsetXId)?.let {
-                processedIcon = processedIcon.createIfNeeds(context)
-                        .iconOffsetX(IconicsSize.px(it))
+            typedArray.getColorStateList(colorsId)?.let {
+                this.colorList = it
             }
-        }
-        // endregion
-        // region contour
-        typedArray.getColorStateList(contourColorId)?.let {
-            processedIcon =
-                    processedIcon.createIfNeeds(context).contourColor(IconicsColor.colorList(it))
-        }
-        typedArray.getDimensionPixelSize(contourWidthId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context).contourWidth(IconicsSize.px(it))
-        }
-        // endregion
-        // region background
-        typedArray.getColorStateList(backgroundColorId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .backgroundColor(IconicsColor.colorList(it))
-        }
-        typedArray.getDimensionPixelSize(cornerRadiusId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .roundedCorners(IconicsSize.px(it))
-        }
-        // endregion
-        // region background contour
-        typedArray.getColorStateList(backgroundContourColorId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .backgroundContourColor(IconicsColor.colorList(it))
-        }
-        typedArray.getDimensionPixelSize(backgroundContourWidthId)?.let {
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .backgroundContourWidth(IconicsSize.px(it))
-        }
-        // endregion
-        // region shadow
-        val shadowRadius = typedArray.getDimensionPixelSize(shadowRadiusId)
-        val shadowDx = typedArray.getDimensionPixelSize(shadowDxId)
-        val shadowDy = typedArray.getDimensionPixelSize(shadowDyId)
-        val shadowColor = typedArray.getColor(shadowColorId, DEF_COLOR)
+            typedArray.getDimensionPixelSize(sizeId)?.let {
+                this.sizePx = it
+            }
+            typedArray.getDimensionPixelSize(paddingId)?.let {
+                this.paddingPx = it
+            }
+            if (extractOffsets) {
+                typedArray.getDimensionPixelSize(offsetXId)?.let {
+                    this.iconOffsetXPx = it
+                }
+                typedArray.getDimensionPixelSize(offsetYId)?.let {
+                    this.iconOffsetYPx = it
+                }
+            }
+            // endregion
+            // region contour
+            typedArray.getColorStateList(contourColorId)?.let {
+                contourColorList = it
+            }
+            typedArray.getDimensionPixelSize(contourWidthId)?.let {
+                contourWidthPx = it
+            }
+            // endregion
+            // region background
+            typedArray.getColorStateList(backgroundColorId)?.let {
+                backgroundColorList = it
+            }
+            typedArray.getDimensionPixelSize(cornerRadiusId)?.let {
+                roundedCornersPx = it.toFloat()
+            }
+            // endregion
+            // region background contour
+            typedArray.getColorStateList(backgroundContourColorId)?.let {
+                backgroundContourColorList = it
+            }
+            typedArray.getDimensionPixelSize(backgroundContourWidthId)?.let {
+                backgroundContourWidthPx = it
+            }
+            // endregion
+            // region shadow
+            val localShadowRadius = typedArray.getDimensionPixelSize(shadowRadiusId)
+            val localShadowDx = typedArray.getDimensionPixelSize(shadowDxId)
+            val localShadowDy = typedArray.getDimensionPixelSize(shadowDyId)
+            val localShadowColor = typedArray.getColor(shadowColorId, DEF_COLOR)
 
-        @Suppress("ComplexCondition")
-        if (shadowRadius != null
-                && shadowDx != null
-                && shadowDy != null
-                && shadowColor != DEF_COLOR) {
-            processedIcon = processedIcon.createIfNeeds(context).shadow(
-                IconicsSize.px(shadowRadius),
-                IconicsSize.px(shadowDx),
-                IconicsSize.px(shadowDy),
-                IconicsColor.colorInt(shadowColor)
-            )
+            @Suppress("ComplexCondition")
+            if (localShadowRadius != null && localShadowDx != null && localShadowDy != null && localShadowColor != DEF_COLOR) {
+                applyShadow {
+                    shadowRadiusPx = localShadowRadius.toFloat()
+                    shadowDxPx = localShadowDx.toFloat()
+                    shadowDyPx = localShadowDy.toFloat()
+                    shadowColorInt = localShadowColor
+                }
+            }
+            // endregion
+
+            //region autoMirror
+            autoMirroredCompat = typedArray.getBoolean(autoMirrorId, false)
+            // endregion
         }
-        // endregion
 
         // animations should be applied at the end because here we transform the drawable,
         // therefore all properties must be processed before
@@ -164,20 +166,12 @@ class IconicsAttrsExtractor(
         // region animations
         val animations = typedArray.getString(animationsId)
         if (!animations.isNullOrBlank()) {
-            val processors = animations.split("\\|".toRegex())
+            val processors = animations
+                    .split("\\|".toRegex())
                     .dropLastWhile { it.isEmpty() }
                     .mapNotNull { Iconics.findProcessor(it) }
-
-            processedIcon = processedIcon.createIfNeeds(context)
-                    .toAnimatedDrawable()
-                    .processors(*processors.toTypedArray())
+            return processedIcon.toAnimatedDrawable().processors(*processors.toTypedArray())
         }
-        // endregion
-
-        //region autoMirror
-        val autoMirror = typedArray.getBoolean(autoMirrorId, false)
-        processedIcon = processedIcon.createIfNeeds(context)
-                .autoMirror(autoMirror)
         // endregion
 
         return processedIcon
@@ -187,7 +181,7 @@ class IconicsAttrsExtractor(
         return getDimensionPixelSize(index, DEF_SIZE).takeIf { it != DEF_SIZE }
     }
 
-    private fun IconicsDrawable?.createIfNeeds(context: Context): IconicsDrawable {
-        return this ?: IconicsDrawable(context)
+    private fun IconicsDrawable?.createIfNeeds(res: Resources, theme: Theme?): IconicsDrawable {
+        return this ?: IconicsDrawable(res, theme)
     }
 }

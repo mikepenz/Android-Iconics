@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 12003
-        versionName "1.2.0.3-kotlin"
+        versionCode 12004
+        versionName "1.2.0.4-kotlin"
 
         resValue "string", "pixeden7_version", "${versionName}"
     }
@@ -47,6 +47,6 @@ if (project.hasProperty('pushall') || project.hasProperty('Pixeden7Strokeonly'))
 }
 
 dependencies {
-    implementation project(':library-core')
+    implementation project(':library-typeface-api')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }

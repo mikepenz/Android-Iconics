@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 32006
-        versionName "3.2.0.6-kotlin"
+        versionCode 32007
+        versionName "3.2.0.7-kotlin"
 
         resValue "string", "octicons_version", "${versionName}"
     }
@@ -47,6 +47,6 @@ if (project.hasProperty('pushall') || project.hasProperty('octicons')) {
 }
 
 dependencies {
-    implementation project(':library-core')
+    implementation project(':library-typeface-api')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }

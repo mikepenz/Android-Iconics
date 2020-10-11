@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 2019 Mike Penz
+  ~ Copyright (c) 2020 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,11 +15,4 @@
   ~ limitations under the License.
   -->
 
-<resources>
-
-    <style name="AppTheme" parent="BaseTheme"></style>
-
-    <style name="BaseTheme" parent="MaterialDrawerTheme.Light.DarkToolbar">
-        <item name="colorControlNormal">@android:color/white</item>
-    </style>
-</resources>
+<manifest package="com.mikepenz.iconics.typeface"/>

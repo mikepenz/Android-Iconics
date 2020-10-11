@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package com.mikepenz.iconics.context
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
+import android.content.res.Resources.Theme
 import android.util.AttributeSet
 import androidx.annotation.RestrictTo
 import androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP
@@ -32,10 +34,20 @@ import com.mikepenz.iconics.core.R
 @SuppressLint("Recycle")
 object IconicsAttrsApplier {
 
-    @JvmStatic fun getIconicsDrawable(ctx: Context, attrs: AttributeSet?): IconicsDrawable? {
-        return ctx.obtainStyledAttributes(attrs, R.styleable.Iconics).use {
+    @Deprecated("Favor the variant by providing resources and theme", ReplaceWith(
+        "getIconicsDrawable(context.resources, context.theme, attrs)",
+        "com.mikepenz.iconics.context.IconicsAttrsApplier.getIconicsDrawable"
+    )
+    )
+    @JvmStatic fun getIconicsDrawable(context: Context, attrs: AttributeSet?): IconicsDrawable? {
+        return getIconicsDrawable(context.resources, context.theme, attrs)
+    }
+
+    @JvmStatic fun getIconicsDrawable(res: Resources, theme: Theme?, attrs: AttributeSet?): IconicsDrawable? {
+        return theme?.obtainStyledAttributes(attrs, R.styleable.Iconics, 0, 0)?.use {
             IconicsAttrsExtractor(
-                context = ctx,
+                res = res,
+                theme = theme,
                 typedArray = it,
                 iconId = R.styleable.Iconics_ico_icon,
                 colorsId = R.styleable.Iconics_ico_color,
@@ -53,7 +65,8 @@ object IconicsAttrsApplier {
                 shadowDxId = R.styleable.Iconics_ico_shadow_dx,
                 shadowDyId = R.styleable.Iconics_ico_shadow_dy,
                 shadowColorId = R.styleable.Iconics_ico_shadow_color,
-                animationsId = R.styleable.Iconics_ico_animations
+                animationsId = R.styleable.Iconics_ico_animations,
+                autoMirrorId = R.styleable.Iconics_ico_automirror
             ).extractWithOffsets()
         }
     }

@@ -21,9 +21,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
 import androidx.core.os.bundleOf
@@ -45,8 +43,14 @@ import com.mikepenz.iconics.utils.colorRes
 import com.mikepenz.iconics.utils.contourColorRes
 import com.mikepenz.iconics.utils.contourWidthDp
 import com.mikepenz.iconics.utils.enableShadowSupport
+import com.mikepenz.iconics.utils.icon
 import com.mikepenz.iconics.utils.paddingDp
+import com.mikepenz.iconics.utils.roundedCorners
 import com.mikepenz.iconics.utils.roundedCornersDp
+import com.mikepenz.iconics.utils.shadowColor
+import com.mikepenz.iconics.utils.shadowDx
+import com.mikepenz.iconics.utils.shadowDy
+import com.mikepenz.iconics.utils.shadowRadius
 import com.mikepenz.iconics.utils.sizeDp
 import kotlinx.android.synthetic.main.icons_fragment.list
 import java.util.ArrayList
@@ -56,7 +60,7 @@ import kotlin.math.abs
 /**
  * Created by a557114 on 16/04/2015.
  */
-class IconsFragment : Fragment() {
+class IconsFragment : Fragment(R.layout.icons_fragment) {
     private val random = Random()
     private val icons = ArrayList<IconItem>()
     private val adapter by lazy { FastItemAdapter<IconItem>() }
@@ -73,14 +77,6 @@ class IconsFragment : Fragment() {
     fun shadow(shadow: Boolean) {
         this.shadow = shadow
         adapter.notifyAdapterDataSetChanged()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.icons_fragment, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -129,12 +125,13 @@ class IconsFragment : Fragment() {
             if (ctx != null) {
                 val i = item.icon
                 if (i != null) {
-                    val icon = IconicsDrawable(ctx)
-                            .icon(i)
-                            .sizeDp(144)
-                            .paddingDp(8)
-                            .backgroundColorString("#DDFFFFFF")
-                            .roundedCornersDp(12)
+                    val icon = IconicsDrawable(ctx).apply {
+                        icon(i)
+                        sizeDp = 144
+                        paddingDp = 8
+                        backgroundColorString = "#DDFFFFFF"
+                        roundedCornersDp = 12
+                    }
 
                     ImageView(ctx).let { imageView ->
                         imageView.setImageDrawable(icon)
@@ -166,11 +163,7 @@ class IconsFragment : Fragment() {
 
         adapter.onBindViewHolderListener = object : OnBindViewHolderListener {
 
-            override fun onBindViewHolder(
-                viewHolder: RecyclerView.ViewHolder,
-                position: Int,
-                payloads: MutableList<Any>
-            ) {
+            override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int, payloads: List<Any>) {
                 val holder = viewHolder as IconItem.ViewHolder
 
                 val item = adapter.getItem(position)
@@ -182,18 +175,19 @@ class IconsFragment : Fragment() {
                     //as we overwrite the default listener
                     item.bindView(holder, payloads)
 
-
                     holder.image.icon?.let {
                         if (randomize) {
-                            it.colorRes(getRandomColor(position))
-                                    .paddingDp(random.nextInt(12))
-                                    .contourWidthDp(random.nextInt(2))
-                                    .contourColorRes(getRandomColor(position - 2))
+                            it.apply {
+                                colorRes = getRandomColor(position)
+                                paddingDp = random.nextInt(12)
+                                contourWidthDp = random.nextInt(2)
+                                contourColorRes = getRandomColor(position - 2)
 
-                            val y = random.nextInt(10)
-                            if (y % 4 == 0) {
-                                it.backgroundColorRes(getRandomColor(position - 4))
-                                        .roundedCorners(IconicsSize.dp((2 + random.nextInt(10))))
+                                val y = random.nextInt(10)
+                                if (y % 4 == 0) {
+                                    backgroundColorRes = getRandomColor(position - 4)
+                                    roundedCorners = IconicsSize.dp((2 + random.nextInt(10)))
+                                }
                             }
                         }
                     }
@@ -201,12 +195,12 @@ class IconsFragment : Fragment() {
                     if (shadow) {
                         holder.image.enableShadowSupport()
                         //holder.image.getIcon().shadowDp(1, 1, 1, Color.argb(200, 0, 0, 0));
-                        holder.image.icon?.shadow(
-                            radius = IconicsSize.dp(1),
-                            dx = IconicsSize.dp(1),
-                            dy = IconicsSize.dp(1),
-                            color = IconicsColor.colorInt(Color.argb(200, 0, 0, 0))
-                        )
+                        holder.image.icon?.applyShadow {
+                            shadowRadius = IconicsSize.dp(1)
+                            shadowDx = IconicsSize.dp(1)
+                            shadowDy = IconicsSize.dp(1)
+                            shadowColor = IconicsColor.colorInt(Color.argb(200, 0, 0, 0))
+                        }
                     }
                 }
             }
@@ -265,7 +259,7 @@ class IconsFragment : Fragment() {
     private fun getRandomColor(i: Int): Int {
         //get a random color
         return when (abs(i) % 10) {
-            0 -> R.color.md_black_1000
+            0 -> android.R.color.black
             1 -> R.color.md_blue_500
             2 -> R.color.md_green_500
             3 -> R.color.md_red_500

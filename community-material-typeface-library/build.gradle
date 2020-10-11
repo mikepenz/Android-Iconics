@@ -1,6 +1,5 @@
 /*
  * Copyright 2014 Mike Penz
- * Copyright 2015 Haruki Hasegawa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 35951
-        versionName "3.5.95.1-kotlin"
+        versionCode 53452
+        versionName "5.3.45.2-kotlin"
 
         resValue "string", "community_material_version", "${versionName}"
     }
@@ -48,6 +47,6 @@ if (project.hasProperty('pushall') || project.hasProperty('communitymaterialonly
 }
 
 dependencies {
-    implementation project(':library-core')
+    implementation project(':library-typeface-api')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }

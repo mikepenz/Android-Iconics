@@ -2,6 +2,15 @@
 
 ### Library
 
+### core v4.x.x -> 5.x.x
+
+- All `with*` methods of the `IconicsDrawable` were replaced with properties
+- Raw setters are now direct (int color, string, pixel values), all other properties were moved into extension functions to clean up the `IconicsDrawable`
+- The `IconcisDrawable` now depends on the ressources and theme, and tries to eliminate dependency on the `Context`
+  - All according methods were refactored to take Resources and Theme
+- Use `IconcisDrawable` via XML for API 24+
+- `.apply` is specialized and will not invalidate the drawable until all changes were made
+
 ### core v3.x.x -> 4.x.x
 Now libray is kotlin-first
 

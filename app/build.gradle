@@ -1,8 +1,11 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin'
+
 /*
- * Copyright (c) 2019 Mike Penz
+ * Copyright (c) 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +20,8 @@ apply plugin: 'kotlin-android'
  * limitations under the License.
  */
 
-//wrap with try and catch so the build is working even if the signing stuff is missing
-try {
-    apply from: '../../../signing.gradle'
-} catch (ignored) {
+if (getSigningFile() != null) {
+    apply from: "${getSigningFile()}"
 }
 
 android {
@@ -48,16 +49,14 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            try {
+            if (getSigningFile() != null) {
                 signingConfig signingConfigs.debug
-            } catch (ignored) {
             }
             minifyEnabled false
         }
         release {
-            try {
+            if (getSigningFile() != null) {
                 signingConfig signingConfigs.release
-            } catch (ignored) {
             }
             zipAlignEnabled true
             minifyEnabled false
@@ -72,6 +71,10 @@ android {
         exclude 'META-INF/library-core_release.kotlin_module'
         exclude 'META-INF/library_release.kotlin_module'
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -82,19 +85,18 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
     implementation "androidx.cardview:cardview:${versions.cardview}"
 
-    // used to base on some backwards compatible themes
-    // contains util classes to support various android versions, and clean up code
-    // comes with the awesome "Holder"-Pattern
-    // https://github.com/mikepenz/Materialize
-    implementation 'com.mikepenz:materialize:1.2.1'
+    implementation "androidx.core:core-ktx:${versions.ktx.core}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    kapt "com.android.databinding:compiler:3.5.3"
 
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
-    implementation 'com.mikepenz:fastadapter:4.1.0'
-    implementation 'com.mikepenz:fastadapter-extensions-utils:4.1.0'
-    implementation 'com.mikepenz:fastadapter-extensions-ui:4.1.0'
-    implementation 'com.mikepenz:fastadapter-extensions-expandable:4.1.0'
+    implementation "com.mikepenz:fastadapter:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-utils:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-ui:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:${versions.fastAdapter}"
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
     // https://github.com/zTrap/Android-Iconics-String-Generator
@@ -102,19 +104,17 @@ dependencies {
 
     // used to generate the drawer on the left
     // https://github.com/mikepenz/MaterialDrawer
-    implementation('com.mikepenz:materialdrawer:7.0.0-rc08') {
+    implementation("com.mikepenz:materialdrawer:${versions.materialDrawer}") {
         transitive = true
         exclude module: "fastadapter"
         exclude module: "fastadapter-extensions-expandable"
-        exclude module: "iconics-core"
     }
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    implementation('com.mikepenz:aboutlibraries:7.0.3') {
+    implementation("com.mikepenz:aboutlibraries:${versions.aboutLibraries}") {
         transitive = true
         exclude module: "fastadapter"
-        exclude module: "iconics-core"
     }
 
     implementation project(':library-core')
@@ -134,7 +134,5 @@ dependencies {
     implementation project(':pixeden-7-stroke-typeface-library')
     implementation project(':material-design-dx-typeface-library')
 
-    testImplementation 'junit:junit:4.12'
-    implementation "androidx.core:core-ktx:$versions.ktx.core"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+    testImplementation 'junit:junit:4.13'
 }

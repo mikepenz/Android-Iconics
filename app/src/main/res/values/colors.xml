@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,21 +15,31 @@
   -->
 
 <resources>
-
     <!-- Theme colors -->
     <color name="primary">#F44336</color>
     <color name="primary_dark">#D32F2F</color>
     <color name="accent">#F44336</color>
-    <color name="theme_window_background">#ECECEC</color>
 
-    <!-- general colors for drawer -->
-    <color name="list_background">#F2F2F2</color>
-    <!-- primary colors for drawer -->
-    <color name="list_background_normal">#FCFCFC</color>
-    <!-- secondary colors for drawer -->
-    <color name="list_background_secondary_normal">#F2F2F2</color>
-
-    <color name="material_drawer_primary_text">@color/primary</color>
-    <color name="material_drawer_selected_text">@color/primary_dark</color>
-    <color name="material_drawer_selected">#1FF44336</color>
+    <color name="md_cyan_200">#80deea</color>
+    <color name="md_amber_600">#ffb300</color>
+    <color name="md_deep_purple_A100">#b388ff</color>
+    <color name="md_green_800">#2e7d32</color>
+    <color name="md_grey_500">#9e9e9e</color>
+    <color name="md_red_200">#ef9a9a</color>
+    <color name="md_red_500">#f44336</color>
+    <color name="md_blue_grey_800">#37474f</color>
+    <color name="md_cyan_800">#00838f</color>
+    <color name="md_blue_grey_300">#90a4ae</color>
+    <color name="md_red_600">#e53935</color>
+    <color name="md_yellow_200">#fff59d</color>
+    <color name="md_green_200">#a5d6a7</color>
+    <color name="md_amber_300">#ffd54f</color>
+    <color name="md_deep_orange_400">#ff7043</color>
+    <color name="md_blue_500">#2196f3</color>
+    <color name="md_green_500">#4caf50</color>
+    <color name="md_orange_500">#ff9800</color>
+    <color name="md_amber_500">#ffc107</color>
+    <color name="md_pink_500">#e91e63</color>
+    <color name="md_blue_grey_500">#607d8b</color>
+    <color name="md_yellow_500">#ffeb3b</color>
 </resources>

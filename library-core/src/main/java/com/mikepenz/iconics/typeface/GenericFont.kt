@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ package com.mikepenz.iconics.typeface
 import android.graphics.Typeface
 import androidx.annotation.FontRes
 import com.mikepenz.iconics.Iconics
-import com.mikepenz.iconics.utils.IconicsPreconditions
+import com.mikepenz.iconics.typeface.utils.IconicsPreconditions
 import java.util.LinkedList
 
 /**

@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.core.content.res.use
+import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.context.IconicsAttrsExtractor
 import com.mikepenz.iconics.view.R
@@ -33,9 +34,12 @@ internal object IconicsViewsAttrsApplier {
 
     //region IconicsImageView
     fun getIconicsImageViewDrawable(ctx: Context, attrs: AttributeSet?): IconicsDrawable? {
+        Iconics.init(ctx) // init iconcis with the context we got
+
         return ctx.obtainStyledAttributes(attrs, R.styleable.IconicsImageView).use {
             IconicsAttrsExtractor(
-                context = ctx,
+                res = ctx.resources,
+                theme = ctx.theme,
                 typedArray = it,
                 iconId = R.styleable.IconicsImageView_iiv_icon,
                 colorsId = R.styleable.IconicsImageView_iiv_color,
@@ -92,7 +96,8 @@ internal object IconicsViewsAttrsApplier {
 
     private fun getIconicsTextViewAllDrawable(ctx: Context, a: TypedArray): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_all_icon,
             colorsId = R.styleable.IconicsTextView_iiv_all_color,
@@ -119,7 +124,8 @@ internal object IconicsViewsAttrsApplier {
         icon: IconicsDrawable?
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_start_icon,
             colorsId = R.styleable.IconicsTextView_iiv_start_color,
@@ -146,7 +152,8 @@ internal object IconicsViewsAttrsApplier {
         icon: IconicsDrawable?
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_top_icon,
             colorsId = R.styleable.IconicsTextView_iiv_top_color,
@@ -173,7 +180,8 @@ internal object IconicsViewsAttrsApplier {
         icon: IconicsDrawable?
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_end_icon,
             colorsId = R.styleable.IconicsTextView_iiv_end_color,
@@ -200,7 +208,8 @@ internal object IconicsViewsAttrsApplier {
         icon: IconicsDrawable?
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsTextView_iiv_bottom_icon,
             colorsId = R.styleable.IconicsTextView_iiv_bottom_color,
@@ -239,7 +248,8 @@ internal object IconicsViewsAttrsApplier {
         a: TypedArray
     ): IconicsDrawable {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsCompoundButton_iiv_unchecked_icon,
             colorsId = R.styleable.IconicsCompoundButton_iiv_unchecked_color,
@@ -265,7 +275,8 @@ internal object IconicsViewsAttrsApplier {
         a: TypedArray
     ): IconicsDrawable {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsCompoundButton_iiv_checked_icon,
             colorsId = R.styleable.IconicsCompoundButton_iiv_checked_color,
@@ -328,7 +339,8 @@ internal object IconicsViewsAttrsApplier {
         a: TypedArray
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_all_checked_icon,
             colorsId = R.styleable.IconicsCheckableTextView_iiv_all_checked_color,
@@ -355,7 +367,8 @@ internal object IconicsViewsAttrsApplier {
         icon: IconicsDrawable?
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_start_checked_icon,
             colorsId = R.styleable.IconicsCheckableTextView_iiv_start_checked_color,
@@ -382,7 +395,8 @@ internal object IconicsViewsAttrsApplier {
         icon: IconicsDrawable?
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_top_checked_icon,
             colorsId = R.styleable.IconicsCheckableTextView_iiv_top_checked_color,
@@ -409,7 +423,8 @@ internal object IconicsViewsAttrsApplier {
         icon: IconicsDrawable?
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_end_checked_icon,
             colorsId = R.styleable.IconicsCheckableTextView_iiv_end_checked_color,
@@ -436,7 +451,8 @@ internal object IconicsViewsAttrsApplier {
         icon: IconicsDrawable?
     ): IconicsDrawable? {
         return IconicsAttrsExtractor(
-            context = ctx,
+            res = ctx.resources,
+            theme = ctx.theme,
             typedArray = a,
             iconId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_icon,
             colorsId = R.styleable.IconicsCheckableTextView_iiv_bottom_checked_color,

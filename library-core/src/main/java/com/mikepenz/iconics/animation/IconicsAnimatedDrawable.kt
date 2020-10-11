@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package com.mikepenz.iconics.animation
 
-import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.view.View
 import androidx.core.view.ViewCompat
@@ -32,19 +32,15 @@ import java.util.ArrayList
 open class IconicsAnimatedDrawable : IconicsDrawable {
     private val processors = ArrayList<IconicsAnimationProcessor>()
 
-    constructor(context: Context) : super(context)
+    constructor(res: Resources, theme: Resources.Theme? = null) : super(res, theme)
 
-    constructor(context: Context, icon: Char) : super(context, icon)
+    constructor(res: Resources, theme: Resources.Theme? = null, icon: Char) : super(res, theme, icon)
 
-    constructor(context: Context, icon: String) : super(context, icon)
+    constructor(res: Resources, theme: Resources.Theme? = null, icon: String) : super(res, theme, icon)
 
-    constructor(context: Context, icon: IIcon) : super(context, icon)
+    constructor(res: Resources, theme: Resources.Theme? = null, icon: IIcon) : super(res, theme, icon)
 
-    protected constructor(
-        context: Context,
-        typeface: ITypeface,
-        icon: IIcon
-    ) : super(context, typeface, icon)
+    protected constructor(res: Resources, theme: Resources.Theme? = null, typeface: ITypeface, icon: IIcon) : super(res, theme, typeface, icon)
 
     // FI-LO
     override fun draw(canvas: Canvas) {

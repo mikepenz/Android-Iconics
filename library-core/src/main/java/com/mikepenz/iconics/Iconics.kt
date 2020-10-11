@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,57 +28,51 @@ import com.mikepenz.iconics.animation.IconicsAnimationProcessor
 import com.mikepenz.iconics.context.ReflectionUtils
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.utils.GenericsUtil
+import com.mikepenz.iconics.typeface.IconicsHolder
 import com.mikepenz.iconics.utils.IconicsLogger
-import com.mikepenz.iconics.utils.IconicsPreconditions
 import com.mikepenz.iconics.utils.InternalIconicsUtils
 import com.mikepenz.iconics.utils.clearedIconName
 import com.mikepenz.iconics.utils.iconPrefix
+import java.lang.reflect.Field
 import java.util.LinkedList
 
 @SuppressLint("StaticFieldLeak")
 object Iconics {
 
-    private var INIT_DONE = false
-    private val FONTS = HashMap<String, ITypeface>()
+    private val INIT_DONE: Boolean
+        get() = runCatching { IconicsHolder.applicationContext }.isSuccess
+
     private val PROCESSORS = HashMap<String, Class<out IconicsAnimationProcessor>>()
 
     @JvmField internal val TAG = Iconics::class.java.simpleName
-    @JvmStatic lateinit var applicationContext: Context
-        internal set
+    @JvmStatic val applicationContext: Context
+        get() = IconicsHolder.applicationContext
 
     @JvmField var logger: IconicsLogger = IconicsLogger.DEFAULT
 
     /**
-     * Initializes the FONTS. This also tries to find all founds automatically via their font file
+     * Initializes the `Context` required for different operations inside Iconics.
      */
-    @JvmStatic fun init(context: Context? = null) {
+    @JvmStatic fun init(context: Context) {
+        IconicsHolder.applicationContext = context
+    }
+
+    /**
+     * Initializes the FONTS. This also tries to find all founds automatically via their font file
+     *
+     * If resolving the `R` field is not possible provide the `R` fields manually via
+     *
+     * ```
+     * Iconics.init(context, R.string::class.java.fields)
+     * ```
+     */
+    @Deprecated(
+        "The library is now automatically initialized using the `Jetpack appstartup` library. No init required.",
+        replaceWith = ReplaceWith("init(context)")
+    )
+    @JvmStatic fun init(context: Context? = null, fields: Array<Field>? = null) {
         if (context != null) {
-            if (!::applicationContext.isInitialized) {
-                this.applicationContext = context.applicationContext
-            }
-        }
-
-        if (!INIT_DONE) {
-            if (!::applicationContext.isInitialized) {
-                throw RuntimeException("A 'Iconics.init(context)' has to happen first. Call from your application. Usually this happens via an 'IconicsDrawable' usage.")
-            }
-
-            GenericsUtil.getDefinedFonts(applicationContext).forEach {
-                try {
-                    registerFont(ReflectionUtils.getInstanceForName(it))
-                } catch (e: Exception) {
-                    logger.log(ERROR, TAG, "Can't init font: $it", e)
-                }
-            }
-            GenericsUtil.getDefinedProcessors(applicationContext).forEach {
-                try {
-                    registerProcessor(ReflectionUtils.getInstanceForName(it))
-                } catch (e: Exception) {
-                    logger.log(ERROR, TAG, "Can't init processor: $it", e)
-                }
-            }
-            INIT_DONE = true
+            init(context)
         }
     }
 
@@ -86,10 +80,14 @@ object Iconics {
      * This makes sure the FONTS are initialized. If the given fonts Map is empty we set the
      * initialized FONTS on it
      */
-    @JvmStatic private fun init(fonts: Map<String, ITypeface>?): Map<String, ITypeface> {
-        init()
-        return if (fonts.isNullOrEmpty()) FONTS else fonts
+    @JvmStatic private fun initRequiredFonts(fonts: Map<String, ITypeface>?): Map<String, ITypeface> {
+        return if (fonts.isNullOrEmpty()) IconicsHolder.FONTS else fonts
     }
+
+    /**
+     * Returns if the `Iconics` instance was initialized.
+     */
+    @JvmStatic fun isInitDone(): Boolean = INIT_DONE
 
     /**
      * This allows to mark the initialization as done, even if `init(ctx: Context)` was not called
@@ -97,14 +95,16 @@ object Iconics {
      * It requires at least one font to be registered manually in the
      * [android.app.Application.onCreate] via [registerFont].
      */
+    @Deprecated(
+        "No longer required. The library gets initialized using `jetpack startup` library. Alternatively register manually via `init(Context)`",
+        ReplaceWith("")
+    )
     @JvmStatic fun markInitDone() {
-        if (FONTS.isEmpty()) {
+        if (IconicsHolder.FONTS.isEmpty()) {
             throw IllegalArgumentException(
                 "At least one font needs to be registered first\n" +
                         "    via ${javaClass.canonicalName}.registerFont(Iconics.kt:117)"
             )
-        } else {
-            INIT_DONE = true
         }
     }
 
@@ -115,12 +115,12 @@ object Iconics {
      * @return true if the icon is available
      */
     @JvmStatic fun isIconExists(icon: String): Boolean {
-        return runCatching { findFont(icon.iconPrefix)!!.getIcon(icon.clearedIconName) }.isSuccess
+        return findFont(icon.iconPrefix)?.getIcon(icon.clearedIconName) != null
     }
 
     /** Registers a fonts into the FONTS array for performance */
     @JvmStatic fun registerFont(font: ITypeface): Boolean {
-        FONTS[font.mappingPrefix] = font.validate()
+        IconicsHolder.registerFont(font)
         return true
     }
 
@@ -145,16 +145,10 @@ object Iconics {
         return null
     }
 
-    /** Perform a basic sanity check for a font. */
-    @JvmStatic private fun ITypeface.validate(): ITypeface {
-        IconicsPreconditions.checkMappingPrefix(mappingPrefix)
-        return this
-    }
-
     /** Return all registered FONTS */
     private val registeredFonts: List<ITypeface>
         get() {
-            return FONTS.values.toList()
+            return IconicsHolder.FONTS.values.toList()
         }
 
     /** Return all registered FONTS */
@@ -179,7 +173,7 @@ object Iconics {
     /** Tries to find a font by its key in all registered FONTS */
     @JvmStatic fun findFont(key: String, context: Context? = null): ITypeface? {
         init(context)
-        return FONTS[key]
+        return IconicsHolder.FONTS[key]
     }
 
     /** Fetches the font from the Typeface of an IIcon */
@@ -209,7 +203,7 @@ object Iconics {
     ): Spanned {
 
         //find all icons which should be replaced with the iconFont
-        val textStyleContainer = init(fonts).let {
+        val textStyleContainer = initRequiredFonts(fonts).let {
             InternalIconicsUtils.findIcons(textSpanned, it)
         }
 
@@ -242,7 +236,7 @@ object Iconics {
     ) {
 
         //find all icons which should be replaced with the iconFont
-        val styleContainers = init(fonts).let {
+        val styleContainers = initRequiredFonts(fonts).let {
             InternalIconicsUtils.findIconsFromEditable(textSpanned, it)
         }
 

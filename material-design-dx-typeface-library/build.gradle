@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 50010
-        versionName "5.0.1.0-kotlin"
+        versionCode 50011
+        versionName "5.0.1.1-kotlin"
 
         resValue "string", "materialdesigndx_version", "${versionName}"
     }
@@ -47,6 +47,6 @@ if (project.hasProperty('pushall') || project.hasProperty('materialdesigndxonly'
 }
 
 dependencies {
-    implementation project(':library-core')
+    implementation project(':library-typeface-api')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }

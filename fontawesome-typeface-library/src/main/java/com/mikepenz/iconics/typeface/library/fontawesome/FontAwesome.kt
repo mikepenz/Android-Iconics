@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,16 @@
  */
 package com.mikepenz.iconics.typeface.library.fontawesome
 
+import android.content.Context
+import androidx.startup.Initializer
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IconicsHolder
+import com.mikepenz.iconics.typeface.IconicsInitializer
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-object FontAwesome : ITypeface {
+object FontAwesome : ITypeface, Initializer<ITypeface> {
 
     override val fontRes: Int
         get() = R.font.fontawesome_font_v5_9_0
@@ -61,6 +65,15 @@ object FontAwesome : ITypeface {
         get() = "http://scripts.sil.org/OFL"
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
+
+    override fun create(context: Context): ITypeface {
+        IconicsHolder.registerFont(this)
+        return this
+    }
+
+    override fun dependencies(): List<Class<out Initializer<*>>> {
+        return listOf(IconicsInitializer::class.java)
+    }
 
     enum class Icon constructor(override val character: Char) : IIcon {
         faw_twitter_square('\uf081'),

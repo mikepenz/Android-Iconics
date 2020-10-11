@@ -1,22 +1,24 @@
-# Android-Iconics  [ ![Download](https://api.bintray.com/packages/mikepenz/maven/com.mikepenz%3Aiconics-core/images/download.svg) ](https://bintray.com/mikepenz/maven/com.mikepenz%3Aiconics-core/_latestVersion)
+# Android-Iconics [![Status](https://travis-ci.org/mikepenz/Android-Iconics.svg?branch=develop)](https://travis-ci.org/mikepenz/Android-Iconics) [![Download](https://api.bintray.com/packages/mikepenz/maven/com.mikepenz%3Aiconics-core/images/download.svg) ](https://bintray.com/mikepenz/maven/com.mikepenz%3Aiconics-core/_latestVersion)
 
-![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/feature/next-generation/DEV/github/banner.png)
+... allows to include any icon font with all its vector icons in your project. No limits. **Scale with no limit**, use **any color** at any time, provide a **contour**, and many additional customizations...
 
-> If you are an app developer you will know the problem. You start an app but require many different icons, in different sizes (**ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi**), **different colors**, and **different variants**.
-If you get the icons as **vector** (.svg) or there are many changes over the time, you will always have to get the correct drawables again.
+-------
 
-> **This consumes a lot of time!**
+<p align="center">
+    <a href="#whats-included-">What's included 🚀</a> &bull;
+    <a href="#setup">Setup 🛠️</a> &bull;
+    <a href="MIGRATION.md">Migration Guide 🧬</a> &bull;
+    <a href="FAQ.md">WIKI / FAQ 📖</a> &bull;
+    <a href="#create-custom-fonts">Custom Font 🖍️</a> &bull;
+    <a href="https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample">Sample App</a>
+</p>
 
-Now there's an **easy, fast, and small** solution for this! The **Android-Iconics** library.
+-------
 
-This library allows you to include vector icons everywhere in your project. No limits are given.
-**Scale with no limit**, use **any color** at any time, provide a **contour**, and many additional customizations...
-
-Use the icons in the variation you need them.
-
-**What do you get**
+### What's included 🚀
 - No customization limitations (size, color, contour, background, padding, positioning, ...)
 - Shadow support
+- Use as XML Drawable starting API 24
 - One icon source (no more mdpi, hdpi, ...)
 - Flexibility
   - Size
@@ -42,68 +44,62 @@ Use the icons in the variation you need them.
 - [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
 - [Ionicons](http://ionicons.com/)
 - [Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)
-
-**Need more?**
-Provide additional fonts for you project, or even create your custom font with just the icons you need.
-
-# String fields for icons
-For generating string field for each of icons of your font, you can use this simple generator:
-
-[Android-Iconics String Generator](https://github.com/zTrap/Android-Iconics-String-Generator)
-
-# Android module generator
-
-A awesome gradle plugin which can automatically fetch a font from Fontastic, and generate the Android Module for your project.
-
-[Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
-
-# Migration
-- [MIGRATION GUIDE](https://github.com/mikepenz/Android-Iconics/blob/develop/MIGRATION.md)
+- Or create your own font with any icon needed.
 
 # Setup
 
+## Latest releases 🛠
+
+- Kotlin Next Gen | [v5.1.0](https://github.com/mikepenz/Android-Iconics/tree/v5.1.0)
+- Kotlin  | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
+- Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
+- Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)
+
 ## 1. Provide the gradle dependency
 ```gradle
-//the core iconics library (without any widgets)
-implementation "com.mikepenz:iconics-core:4.0.2"
-implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+dependencies {
+    //the core iconics library (without any widgets)
+    implementation "com.mikepenz:iconics-core:${latestAndroidIconicsRelease}"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+}
 ```
 
 ## 1b. (optional) Add the view's dependency
 ```gradle
 //this adds all ui view widgets (IconicsButton, IconicsImageView, ...)
-implementation "com.mikepenz:iconics-views:4.0.2"
+implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 ```
 
-For the non kotlin variant please use a version smaller than 4.x.y (See the releases on GitHub)
-To use appcompat please use a version smaller than 3.1.0. (See the releases on GitHub)
-
 ## 2. Choose your desired fonts
+
+> Note: Fonts ending with `-kotlin` require at least v4.x of Android-Iconics
+> Note: v5.1.x or newer requires the latest font versions
+
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
-implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.6-kotlin@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.6-kotlin@aar'
-implementation 'com.mikepenz:meteocons-typeface:1.1.0.5-kotlin@aar'
-implementation 'com.mikepenz:community-material-typeface:3.5.95.1-kotlin@aar'
-implementation 'com.mikepenz:weather-icons-typeface:2.0.10.5-kotlin@aar'
-implementation 'com.mikepenz:typeicons-typeface:2.0.7.5-kotlin@aar'
-implementation 'com.mikepenz:entypo-typeface:1.0.0.5-kotlin@aar'
-implementation 'com.mikepenz:devicon-typeface:2.0.0.5-kotlin@aar'
-implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.5-kotlin@aar'
-implementation 'com.mikepenz:ionicons-typeface:2.0.1.5-kotlin@aar'
-implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3-kotlin@aar'
-implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.0-kotlin@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.5.original-kotlin@aar'
+implementation 'com.mikepenz:community-material-typeface:5.3.45.2-kotlin@aar' // note 5.3.45.1 alphabetically sorts, and merges in 3 sections
+implementation 'com.mikepenz:devicon-typeface:2.0.0.6-kotlin@aar'
+implementation 'com.mikepenz:entypo-typeface:1.0.0.6-kotlin@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.9.0.1-kotlin@aar'
+implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.6-kotlin@aar'
+implementation 'com.mikepenz:ionicons-typeface:2.0.1.6-kotlin@aar'
+implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.1-kotlin@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.7-kotlin@aar'
+implementation 'com.mikepenz:meteocons-typeface:1.1.0.6-kotlin@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.7-kotlin@aar'
+implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.4-kotlin@aar'
+implementation 'com.mikepenz:typeicons-typeface:2.0.7.6-kotlin@aar'
+implementation 'com.mikepenz:weather-icons-typeface:2.0.10.6-kotlin@aar'
 ```
 
 # Usage
 ## Use as drawable
 
 ```kotlin
-IconicsDrawable(this)
-    .icon(FontAwesome.Icon.faw_android)
-    .color(Color.RED.toIconicsColor())
-    .size(24.toIconicsSizeDp())
+IconicsDrawable(this, FontAwesome.Icon.faw_android).apply {
+    colorInt = Color.RED
+    sizeDp = 24
+}
 ```
 
 ## Use via XML
@@ -117,6 +113,24 @@ Use the `{` icon-definer `}` syntax
 ```gson
 Some great text with a {faw-android} font awesome icon and {met-wind} meteocons icons.
 ```
+
+### Drawable XML (API 24+)
+
+Specify the drawable in your `drawable` folder.
+
+```xml
+<com.mikepenz.iconics.IconicsDrawable
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:ico_icon="gmd_favorite"
+    app:ico_color="#0000FF"
+    app:ico_contour_width="1dp"
+    app:ico_contour_color="#00FFFF"
+    app:ico_size="24dp" />
+    // all custom theming attributes supported
+```
+
+Use like any normal drawable in your application.
+This feature was suggested and initially provided by @dzamlo
 
 ### Custom Views
 #### As IconicsImageView
@@ -158,13 +172,9 @@ Some great text with a {faw-android} font awesome icon and {met-wind} meteocons 
         android:layout_height="60dp"/>
 ```
 
-### Automatic XML 
-
-
 # Screenshots
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/develop/DEV/github/screenshots1.jpg)
-
 
 # Available fonts
 |Link|Prefix|Dependency|
@@ -191,20 +201,12 @@ Licenses for all included fonts are linked inside the class or can be found on t
 ### Register fonts
 
 If you want to add your own custom font, or a GenericFont you have to register this font (before using it). The best place to do this is the `Application`.
-You can manually provide `applicationContext` and trigger initialization, or you can use our `IconicsContentProvider` and do absolutely nothing.
 
-If you want to use tha manual way - place this value into your resources
-```xml
-<bool name="is_iconics_content_provider_enabled">false</bool>
-```
 And initialize Iconics as you wish
 ```kotlin
 class CustomApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        //only required if you add a custom or generic font on your own
-        Iconics.init(applicationContext)
 
         //register custom fonts like this (or also provide a font definition file)
         Iconics.registerFont(CustomFont())
@@ -229,9 +231,11 @@ Sometimes you won't like to use the icon-key ("faw-adjust") like this, but use t
 IconicsDrawable(this, "faw-adjust").actionBar()
 ```
 ```kotlin
-IconicsDrawable(this, FontAwesome.Icon.faw_adjust).size(24.toIconicsSizeDp()).padding(1.toIconicsSizeDp())
+IconicsDrawable(this, FontAwesome.Icon.faw_adjust).apply {
+    sizeDp = 24
+    paddingDp = 1
+}
 ```
-
 
 ## Create custom fonts
 This is possible with only the *.ttf and *.css mapping file. And will take you 2 minutes.
@@ -247,19 +251,18 @@ After you got those two files, head over to the icon addon creation tool [androi
 Enter all the information. Add the *.ttf and *.css and click the button. It will generate and download the icon font addon as
 zip. (this tool is local only, no files are sent to a server, you can safely use it with any icons)
 
-# ProGuard
-Exclude `R` from ProGuard to enable the font addon auto detection
-```proguard
--keep class .R
--keep class **.R$* {
-    <fields>;
-}
-```
-All other ProGuard rules are now bundled internally with each font. 
+## String fields for icons
+For generating string field for each of icons of your font, you can use this simple generator:
+[Android-Iconics String Generator](https://github.com/zTrap/Android-Iconics-String-Generator)
 
-# Demo
-You can try the sample application out. It's on Google Play ;)
-https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
+## Android module generator
+
+A awesome gradle plugin which can automatically fetch a font from Fontastic, and generate the Android Module for your project.
+[Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
+
+# ProGuard
+
+ProGuard / R8 rules are bundled internally with each font.
 
 # Special Contributor
 - [Baptiste Lagache](https://github.com/ligol) Thanks for the gradle font module generator
@@ -276,13 +279,12 @@ https://play.google.com/store/apps/details?id=com.mikepenz.iconics.sample
   * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
   * [paypal.me/mikepenz](http://paypal.me/mikepenz)
 
-
 * Peter Gulko
   * [github.com/zTrap](https://github.com/zTrap)
 
 # License
 
-    Copyright 2019 Mike Penz
+    Copyright 2020 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
