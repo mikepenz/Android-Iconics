@@ -16,16 +16,14 @@
 
 package com.mikepenz.iconics.typeface
 
-import android.content.Context
 import android.graphics.Typeface
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
-import androidx.startup.Initializer
 
 /**
  * Created by mikepenz on 01.11.14.
  */
-interface ITypeface : Initializer<ITypeface> {
+interface ITypeface {
 
     val rawTypeface: Typeface
         get() = runCatching {
@@ -58,13 +56,4 @@ interface ITypeface : Initializer<ITypeface> {
     val licenseUrl: String
 
     fun getIcon(key: String): IIcon
-
-    override fun create(context: Context): ITypeface {
-        IconicsHolder.registerFont(this)
-        return this
-    }
-
-    override fun dependencies(): List<Class<out Initializer<*>>> {
-        return listOf(IconicsInitializer::class.java)
-    }
 }

@@ -15,13 +15,17 @@
  */
 package com.mikepenz.iconics.typeface.library.community.material
 
+import android.content.Context
+import androidx.startup.Initializer
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.typeface.IconicsHolder
+import com.mikepenz.iconics.typeface.IconicsInitializer
 import com.mikepenz.iconics.typeface.library.community.R
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-object CommunityMaterial : ITypeface {
+object CommunityMaterial : ITypeface, Initializer<ITypeface> {
 
     override val fontRes: Int
         get() = R.font.community_material_font_v5_3_45_1
@@ -78,6 +82,15 @@ object CommunityMaterial : ITypeface {
             // ignore error, if not in 1st set, it has to be in the second
         }
         return Icon3.valueOf(key)
+    }
+
+    override fun create(context: Context): ITypeface {
+        IconicsHolder.registerFont(this)
+        return this
+    }
+
+    override fun dependencies(): List<Class<out Initializer<*>>> {
+        return listOf(IconicsInitializer::class.java)
     }
 
     enum class Icon constructor(override val character: Char) : IIcon {
