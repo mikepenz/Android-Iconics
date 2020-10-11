@@ -40,7 +40,6 @@ android {
 
     lintOptions {
         abortOnError false
-        disable "EnsureInitializerMetadata"
     }
 }
 if (project.hasProperty('pushall') || project.hasProperty('communitymaterialonly')) {
