@@ -50,7 +50,7 @@
 
 ## Latest releases 🛠
 
-- Kotlin Next Gen | [v5.1.0](https://github.com/mikepenz/Android-Iconics/tree/v5.1.0)
+- Kotlin Next Gen | [v5.0.3](https://github.com/mikepenz/Android-Iconics/tree/v5.0.3)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)
@@ -76,20 +76,20 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 > Note: v5.1.x or newer requires the latest font versions
 
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:3.0.1.5.original-kotlin@aar'
-implementation 'com.mikepenz:community-material-typeface:5.3.45.2-kotlin@aar' // note 5.3.45.1 alphabetically sorts, and merges in 3 sections
-implementation 'com.mikepenz:devicon-typeface:2.0.0.6-kotlin@aar'
-implementation 'com.mikepenz:entypo-typeface:1.0.0.6-kotlin@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.9.0.1-kotlin@aar'
-implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.6-kotlin@aar'
-implementation 'com.mikepenz:ionicons-typeface:2.0.1.6-kotlin@aar'
-implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.1-kotlin@aar'
-implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.7-kotlin@aar'
-implementation 'com.mikepenz:meteocons-typeface:1.1.0.6-kotlin@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.7-kotlin@aar'
-implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.4-kotlin@aar'
-implementation 'com.mikepenz:typeicons-typeface:2.0.7.6-kotlin@aar'
-implementation 'com.mikepenz:weather-icons-typeface:2.0.10.6-kotlin@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.4.original-kotlin@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.6-kotlin@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.9.0.0-kotlin@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.6-kotlin@aar'
+implementation 'com.mikepenz:meteocons-typeface:1.1.0.5-kotlin@aar'
+implementation 'com.mikepenz:community-material-typeface:5.3.45.1-kotlin@aar' // note 5.3.45.1 alphabetically sorts, and merges in 3 sections
+implementation 'com.mikepenz:weather-icons-typeface:2.0.10.5-kotlin@aar'
+implementation 'com.mikepenz:typeicons-typeface:2.0.7.5-kotlin@aar'
+implementation 'com.mikepenz:entypo-typeface:1.0.0.5-kotlin@aar'
+implementation 'com.mikepenz:devicon-typeface:2.0.0.5-kotlin@aar'
+implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.5-kotlin@aar'
+implementation 'com.mikepenz:ionicons-typeface:2.0.1.5-kotlin@aar'
+implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.3-kotlin@aar'
+implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.0-kotlin@aar'
 ```
 
 # Usage
