@@ -76,20 +76,20 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 > Note: v5.1.x or newer requires the latest font versions
 
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:3.0.1.5.original-kotlin@aar'
-implementation 'com.mikepenz:community-material-typeface:5.3.45.2-kotlin@aar' // note 5.3.45.1 alphabetically sorts, and merges in 3 sections
-implementation 'com.mikepenz:devicon-typeface:2.0.0.6-kotlin@aar'
-implementation 'com.mikepenz:entypo-typeface:1.0.0.6-kotlin@aar'
-implementation 'com.mikepenz:fontawesome-typeface:5.9.0.1-kotlin@aar'
-implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.6-kotlin@aar'
-implementation 'com.mikepenz:ionicons-typeface:2.0.1.6-kotlin@aar'
-implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.1-kotlin@aar'
-implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.7-kotlin@aar'
-implementation 'com.mikepenz:meteocons-typeface:1.1.0.6-kotlin@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.7-kotlin@aar'
-implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.4-kotlin@aar'
-implementation 'com.mikepenz:typeicons-typeface:2.0.7.6-kotlin@aar'
-implementation 'com.mikepenz:weather-icons-typeface:2.0.10.6-kotlin@aar'
+implementation 'com.mikepenz:google-material-typeface:3.0.1.6.original-kotlin@aar'
+implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
+implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
+implementation 'com.mikepenz:octicons-typeface:3.2.0.8-kotlin@aar'
+implementation 'com.mikepenz:meteocons-typeface:1.1.0.7-kotlin@aar'
+implementation 'com.mikepenz:community-material-typeface:5.3.45.3-kotlin@aar' // note 5.3.45.1 alphabetically sorts, and merges in 3 sections
+implementation 'com.mikepenz:weather-icons-typeface:2.0.10.7-kotlin@aar'
+implementation 'com.mikepenz:typeicons-typeface:2.0.7.7-kotlin@aar'
+implementation 'com.mikepenz:entypo-typeface:1.0.0.7-kotlin@aar'
+implementation 'com.mikepenz:devicon-typeface:2.0.0.7-kotlin@aar'
+implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.7-kotlin@aar'
+implementation 'com.mikepenz:ionicons-typeface:2.0.1.7-kotlin@aar'
+implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.5-kotlin@aar'
+implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
 ```
 
 # Usage
@@ -275,12 +275,13 @@ ProGuard / R8 rules are bundled internally with each font.
 
 # Developed By
 
-* Mike Penz 
-  * [mikepenz.com](http://mikepenz.com) - <mikepenz@gmail.com>
-  * [paypal.me/mikepenz](http://paypal.me/mikepenz)
+- Mike Penz
+  - [mikepenz.dev](https://mikepenz.dev) - [blog.mikepenz.dev](https://blog.mikepenz.dev) - <mikepenz@gmail.com>
+  - [paypal.me/mikepenz](http://paypal.me/mikepenz)
+  - [Automatic changelog generation action](https://github.com/marketplace/actions/release-changelog-builder)
 
-* Peter Gulko
-  * [github.com/zTrap](https://github.com/zTrap)
+- Peter Gulko
+  - [github.com/zTrap](https://github.com/zTrap)
 
 # License
 

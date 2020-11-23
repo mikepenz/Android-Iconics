@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 20106
-        versionName "2.0.10.6-kotlin"
+        versionCode 20107
+        versionName "2.0.10.7-kotlin"
 
         resValue "string", "weathericons_version", "${versionName}"
     }

@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
@@ -63,6 +62,11 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
     lintOptions {
         abortOnError false
     }
@@ -70,10 +74,6 @@ android {
     packagingOptions {
         exclude 'META-INF/library-core_release.kotlin_module'
         exclude 'META-INF/library_release.kotlin_module'
-    }
-
-    dataBinding {
-        enabled = true
     }
 }
 

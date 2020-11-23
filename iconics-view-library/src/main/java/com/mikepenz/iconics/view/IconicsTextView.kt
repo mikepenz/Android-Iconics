@@ -18,7 +18,6 @@ package com.mikepenz.iconics.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.animation.tryToEnableIconicsAnimation
@@ -88,9 +87,9 @@ open class IconicsTextView @JvmOverloads constructor(
     }
     //endregion
 
-    override fun setText(text: CharSequence, type: TextView.BufferType) {
+    override fun setText(text: CharSequence?, type: BufferType) {
         if (!isInEditMode) {
-            super.setText(text.buildIconics(), type)
+            super.setText(text?.buildIconics(), type)
         } else {
             super.setText(text, type)
         }

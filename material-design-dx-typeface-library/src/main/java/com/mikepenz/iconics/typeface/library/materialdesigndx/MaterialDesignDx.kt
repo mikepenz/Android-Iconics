@@ -15,16 +15,12 @@
  */
 package com.mikepenz.iconics.typeface.library.materialdesigndx
 
-import android.content.Context
-import androidx.startup.Initializer
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.typeface.IconicsHolder
-import com.mikepenz.iconics.typeface.IconicsInitializer
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-object MaterialDesignDx : ITypeface, Initializer<ITypeface> {
+object MaterialDesignDx : ITypeface {
 
     override val fontRes: Int
         get() = R.font.material_design_dx_font_v5_0_1
@@ -64,15 +60,6 @@ object MaterialDesignDx : ITypeface, Initializer<ITypeface> {
         get() = "https://www.apache.org/licenses/LICENSE-2.0"
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
-
-    override fun create(context: Context): ITypeface {
-        IconicsHolder.registerFont(this)
-        return this
-    }
-
-    override fun dependencies(): List<Class<out Initializer<*>>> {
-        return listOf(IconicsInitializer::class.java)
-    }
 
     enum class Icon constructor(override val character: Char) : IIcon {
         gmf_10k('\ue951'),

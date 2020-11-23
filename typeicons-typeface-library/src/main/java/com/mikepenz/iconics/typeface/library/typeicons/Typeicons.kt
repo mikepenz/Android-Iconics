@@ -15,16 +15,12 @@
  */
 package com.mikepenz.iconics.typeface.library.typeicons
 
-import android.content.Context
-import androidx.startup.Initializer
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.typeface.IconicsHolder
-import com.mikepenz.iconics.typeface.IconicsInitializer
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-object Typeicons : ITypeface, Initializer<ITypeface> {
+object Typeicons : ITypeface {
 
     override val fontRes: Int
         get() = R.font.typeicons_font_v2_0_7_1
@@ -64,15 +60,6 @@ object Typeicons : ITypeface, Initializer<ITypeface> {
         get() = "http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web"
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
-
-    override fun create(context: Context): ITypeface {
-        IconicsHolder.registerFont(this)
-        return this
-    }
-
-    override fun dependencies(): List<Class<out Initializer<*>>> {
-        return listOf(IconicsInitializer::class.java)
-    }
 
     enum class Icon constructor(override val character: Char) : IIcon {
         typ_adjust_brightness('\ue000'),
