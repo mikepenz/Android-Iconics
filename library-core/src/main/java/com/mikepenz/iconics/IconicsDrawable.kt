@@ -54,7 +54,7 @@ import com.mikepenz.iconics.utils.icon
 import org.xmlpull.v1.XmlPullParser
 
 /** A custom [Drawable] which can display icons from icon fonts. */
-open class IconicsDrawable internal constructor() : Drawable() {
+open class IconicsDrawable internal constructor() : WrappedDrawable() {
 
     internal lateinit var res: Resources
     internal var theme: Theme? = null
@@ -304,6 +304,7 @@ open class IconicsDrawable internal constructor() : Drawable() {
             field = value
             updateShadow()
         }
+
     @ColorInt
     var shadowColorInt = Color.TRANSPARENT
         set(value) {
@@ -452,10 +453,6 @@ open class IconicsDrawable internal constructor() : Drawable() {
                 || tint?.isStateful == true
     }
 
-    // Note `IntArray` here can be null!!
-    // Caused by: java.lang.IllegalArgumentException: Parameter specified as non-null is null: method kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull, parameter stateSet
-    //        at com.mikepenz.iconics.IconicsDrawable.setState(IconicsDrawable.kt)
-    // Keep library at Compile 28 to allow nullable type
     override fun setState(stateSet: IntArray?): Boolean {
         return super.setState(stateSet)
                 || iconBrush.isStateful

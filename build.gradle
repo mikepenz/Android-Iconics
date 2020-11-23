@@ -23,11 +23,10 @@ buildscript {
         ]
 
         setup = [
-                compileSdk    : 30,
-                compileSdkCore: 28,
-                buildTools    : "30.0.2",
-                minSdk        : 16,
-                targetSdk     : 30
+                compileSdk: 30,
+                buildTools: "30.0.2",
+                minSdk    : 16,
+                targetSdk : 30
         ]
 
         versions = [
