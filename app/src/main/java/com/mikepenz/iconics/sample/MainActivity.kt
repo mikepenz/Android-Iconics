@@ -34,6 +34,7 @@ import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.aboutlibraries.util.getThemeColor
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.sample.databinding.ActivityMainBinding
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
@@ -49,13 +50,10 @@ import com.mikepenz.materialdrawer.holder.StringHolder
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 import com.mikepenz.materialdrawer.util.updateBadge
-import kotlinx.android.synthetic.main.activity_main.root
-import kotlinx.android.synthetic.main.activity_main.slider
-import kotlinx.android.synthetic.main.activity_main.toolbar
 import java.util.Random
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityMainBinding
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
     private lateinit var fonts: List<ITypeface>
@@ -67,14 +65,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater).also {
+            setContentView(it.root)
+        }
 
         // Handle Toolbar
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, root, toolbar, R.string.material_drawer_open, R.string.material_drawer_close)
+        actionBarDrawerToggle = ActionBarDrawerToggle(this, binding.root, binding.toolbar, R.string.material_drawer_open, R.string.material_drawer_close)
 
         //order fonts by their name
         fonts = Iconics.getRegisteredFonts(this).sortedBy { it.fontName }
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             items.add(pdi)
         }
 
-        root.addDrawerListener(object : DrawerLayout.DrawerListener {
+        binding.root.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerStateChanged(newState: Int) {}
 
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
@@ -115,15 +115,15 @@ class MainActivity : AppCompatActivity() {
                 inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
             }
         })
-        slider.onDrawerItemClickListener = { v, item, position ->
+        binding.slider.onDrawerItemClickListener = { _, _, position ->
             fonts[position].fontName.also {
                 loadIcons(it)
                 supportActionBar?.title = it
             }
             false
         }
-        slider.itemAdapter.add(items)
-        slider.setSelection(identifierGmd.toLong(), true)
+        binding.slider.itemAdapter.add(items)
+        binding.slider.setSelection(identifierGmd.toLong(), true)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -165,7 +165,7 @@ class MainActivity : AppCompatActivity() {
 
                 fonts.forEachIndexed { index, font ->
                     val foundCount = font.icons.count { it.contains(s, true) }
-                    slider.updateBadge(index.toLong(), StringHolder(foundCount.toString()))
+                    binding.slider.updateBadge(index.toLong(), StringHolder(foundCount.toString()))
                 }
 
                 //filter out the current fragment

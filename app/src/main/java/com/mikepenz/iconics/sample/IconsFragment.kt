@@ -35,6 +35,7 @@ import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsColor
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
+import com.mikepenz.iconics.sample.databinding.IconsFragmentBinding
 import com.mikepenz.iconics.sample.item.IconItem
 import com.mikepenz.iconics.utils.IconicsUtils
 import com.mikepenz.iconics.utils.backgroundColorRes
@@ -52,7 +53,6 @@ import com.mikepenz.iconics.utils.shadowDx
 import com.mikepenz.iconics.utils.shadowDy
 import com.mikepenz.iconics.utils.shadowRadius
 import com.mikepenz.iconics.utils.sizeDp
-import kotlinx.android.synthetic.main.icons_fragment.list
 import java.util.ArrayList
 import java.util.Random
 import kotlin.math.abs
@@ -61,6 +61,8 @@ import kotlin.math.abs
  * Created by a557114 on 16/04/2015.
  */
 class IconsFragment : Fragment(R.layout.icons_fragment) {
+    private lateinit var binding: IconsFragmentBinding
+
     private val random = Random()
     private val icons = ArrayList<IconItem>()
     private val adapter by lazy { FastItemAdapter<IconItem>() }
@@ -81,9 +83,9 @@ class IconsFragment : Fragment(R.layout.icons_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding = IconsFragmentBinding.bind(view)
         // Init and Setup RecyclerView
-        list.apply {
+        binding.list.apply {
             layoutManager = GridLayoutManager(activity, 2)
             addItemDecoration(SpaceItemDecoration())
             //animator not yet working
