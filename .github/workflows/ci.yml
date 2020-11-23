@@ -97,11 +97,11 @@ jobs:
           echo "openSource.signing.file=signing.gradle" >> local.properties
 
       - name: Build Release App
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') && false
         run: ./gradlew app:assembleStaging app:assembleRelease app:bundleRelease
 
       - name: Relase bintray
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') && false
         run: |
           ./gradlew build -x test -x lint
           ./gradlew library-typeface-api:bintrayUpload -x test -x lint -Plibrarytypefaceonly --no-configure-on-demand --no-parallel
