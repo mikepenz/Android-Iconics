@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 50011
-        versionName "5.0.1.1-kotlin"
+        versionCode 50012
+        versionName "5.0.1.2-kotlin"
 
         resValue "string", "materialdesigndx_version", "${versionName}"
     }

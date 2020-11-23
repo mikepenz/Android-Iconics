@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 12004
-        versionName "1.2.0.4-kotlin"
+        versionCode 12005
+        versionName "1.2.0.5-kotlin"
 
         resValue "string", "pixeden7_version", "${versionName}"
     }
