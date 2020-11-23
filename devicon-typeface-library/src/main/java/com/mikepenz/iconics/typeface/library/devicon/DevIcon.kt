@@ -16,11 +16,8 @@
 
 package com.mikepenz.iconics.typeface.library.devicon
 
-import android.content.Context
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.typeface.IconicsHolder
-import com.mikepenz.iconics.typeface.IconicsInitializer
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
@@ -66,17 +63,6 @@ object DevIcon : ITypeface {
         get() = "https://github.com/konpa/devicon/blob/master/LICENSE"
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
-
-    class Initializer : androidx.startup.Initializer<ITypeface> {
-        override fun create(context: Context): ITypeface {
-            IconicsHolder.registerFont(DevIcon)
-            return DevIcon
-        }
-
-        override fun dependencies(): List<Class<out androidx.startup.Initializer<*>>> {
-            return listOf(IconicsInitializer::class.java)
-        }
-    }
 
     enum class Icon constructor(override val character: Char) : IIcon {
         dev_ssh_plain_wordmark('\ue900'),

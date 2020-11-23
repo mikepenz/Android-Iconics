@@ -26,7 +26,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.mikepenz.iconics.typeface.library.ionicons.Ionicons$Initializer"
+                android:name="com.mikepenz.iconics.typeface.library.ionicons.Initializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

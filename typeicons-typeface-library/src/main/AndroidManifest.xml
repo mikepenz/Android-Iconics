@@ -26,7 +26,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.mikepenz.iconics.typeface.library.typeicons.Typeicons$Initializer"
+                android:name="com.mikepenz.iconics.typeface.library.typeicons.Initializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

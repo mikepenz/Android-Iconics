@@ -15,11 +15,8 @@
  */
 package com.mikepenz.iconics.typeface.library.meteoconcs
 
-import android.content.Context
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.typeface.IconicsHolder
-import com.mikepenz.iconics.typeface.IconicsInitializer
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
@@ -65,17 +62,6 @@ object Meteoconcs : ITypeface {
         get() = ""
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
-
-    class Initializer : androidx.startup.Initializer<ITypeface> {
-        override fun create(context: Context): ITypeface {
-            IconicsHolder.registerFont(Meteoconcs)
-            return Meteoconcs
-        }
-
-        override fun dependencies(): List<Class<out androidx.startup.Initializer<*>>> {
-            return listOf(IconicsInitializer::class.java)
-        }
-    }
 
     enum class Icon constructor(override val character: Char) : IIcon {
         met_windy_rain_inv('\ue800'),
