@@ -26,7 +26,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.mikepenz.iconics.typeface.library.weathericons.WeatherIcons"
+                android:name="com.mikepenz.iconics.typeface.library.weathericons.WeatherIcons$Initializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

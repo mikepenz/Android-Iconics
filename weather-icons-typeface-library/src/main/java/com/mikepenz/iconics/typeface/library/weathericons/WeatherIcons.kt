@@ -16,7 +16,6 @@
 package com.mikepenz.iconics.typeface.library.weathericons
 
 import android.content.Context
-import androidx.startup.Initializer
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.typeface.IconicsHolder
@@ -24,7 +23,7 @@ import com.mikepenz.iconics.typeface.IconicsInitializer
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
-object WeatherIcons : ITypeface, Initializer<ITypeface> {
+object WeatherIcons : ITypeface {
 
     override val fontRes: Int
         get() = R.font.weather_icons_v2_0_10
@@ -67,13 +66,15 @@ object WeatherIcons : ITypeface, Initializer<ITypeface> {
 
     override fun getIcon(key: String): IIcon = Icon.valueOf(key)
 
-    override fun create(context: Context): ITypeface {
-        IconicsHolder.registerFont(this)
-        return this
-    }
+    class Initializer : androidx.startup.Initializer<ITypeface> {
+        override fun create(context: Context): ITypeface {
+            IconicsHolder.registerFont(WeatherIcons)
+            return WeatherIcons
+        }
 
-    override fun dependencies(): List<Class<out Initializer<*>>> {
-        return listOf(IconicsInitializer::class.java)
+        override fun dependencies(): List<Class<out androidx.startup.Initializer<*>>> {
+            return listOf(IconicsInitializer::class.java)
+        }
     }
 
     enum class Icon constructor(override val character: Char) : IIcon {

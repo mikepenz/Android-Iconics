@@ -26,7 +26,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome"
+                android:name="com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome$Initializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

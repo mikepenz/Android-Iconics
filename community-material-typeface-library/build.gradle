@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 53452
-        versionName "5.3.45.2-kotlin"
+        versionCode 53453
+        versionName "5.3.45.3-kotlin"
 
         resValue "string", "community_material_version", "${versionName}"
     }
@@ -37,7 +37,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     lintOptions {
         abortOnError false
     }
