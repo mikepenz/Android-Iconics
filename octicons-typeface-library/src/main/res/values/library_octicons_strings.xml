@@ -21,11 +21,11 @@
     <string name="library_Octicons_authorWebsite">https://github.com/</string>
     <string name="library_Octicons_libraryName">Octicons</string>
     <string name="library_Octicons_libraryDescription">Octicons are a scalable set of icons handcrafted with love by GitHub.</string>
-    <string name="library_Octicons_libraryWebsite">https://octicons.github.com/</string>
+    <string name="library_Octicons_libraryWebsite">https://github.com/primer/octicons</string>
     <string name="library_Octicons_libraryVersion">@string/octicons_version</string>
-    <string name="library_Octicons_licenseId">sil_ofl_1_1</string>
+    <string name="library_Octicons_licenseId">mit</string>
     <string name="library_Octicons_isOpenSource">true</string>
     <string name="library_Octicons_repositoryLink">https://github.com/primer/octicons</string>
     <!-- Custom variables section -->
-    <string name="library_Octicons_year">2012</string>
+    <string name="library_Octicons_year">2020</string>
 </resources> 

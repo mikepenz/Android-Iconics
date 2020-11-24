@@ -79,7 +79,7 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 implementation 'com.mikepenz:google-material-typeface:3.0.1.6.original-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.8-kotlin@aar'
+implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.7-kotlin@aar'
 implementation 'com.mikepenz:community-material-typeface:5.3.45.3-kotlin@aar' // note 5.3.45.1 alphabetically sorts, and merges in 3 sections
 implementation 'com.mikepenz:weather-icons-typeface:2.0.10.7-kotlin@aar'
