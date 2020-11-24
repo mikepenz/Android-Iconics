@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019 Mike Penz
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="define_Octicons">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Octicons_author">Helena Zhang, Toby Fried</string>
+    <string name="library_Octicons_authorWebsite">https://phosphoricons.com/</string>
+    <string name="library_Octicons_libraryName">Phosphor Icons</string>
+    <string name="library_Octicons_libraryDescription">Phosphor is a flexible icon family for interfaces, diagrams, presentations — whatever, really.</string>
+    <string name="library_Octicons_libraryWebsite">https://phosphoricons.com/</string>
+    <string name="library_Octicons_libraryVersion">@string/phosphor_version</string>
+    <string name="library_Octicons_licenseId">mit</string>
+    <string name="library_Octicons_isOpenSource">true</string>
+    <string name="library_Octicons_repositoryLink">https://github.com/phosphor-icons/phosphor-home</string>
+    <!-- Custom variables section -->
+    <string name="library_Octicons_year">2020</string>
+</resources> 

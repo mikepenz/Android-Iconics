@@ -90,6 +90,7 @@ implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.7-kotlin@aar'
 implementation 'com.mikepenz:ionicons-typeface:2.0.1.7-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.5-kotlin@aar'
 implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
+implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlinn@aar'
 ```
 
 # Usage
@@ -193,6 +194,7 @@ This feature was suggested and initially provided by @dzamlo
 |[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
 |[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
 |[Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)|cmf|implementation 'com.mikepenz:material-design-icons-dx-typeface:+@aar'|
+|[Phosphor Icons](https://phosphoricons.com/)|pho|implementation 'com.mikepenz:phosphor-typeface:+@aar'|
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repositories.
 
