@@ -28,7 +28,7 @@
   - Auto mirroring for RTL (opt-in)
 - If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
-- All licenses included, best used with [AboutLibraries](https://github.com/mikepenz/AboutLibraries)
+- [EXPERIMENTAL] Compose support
 
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
@@ -50,7 +50,7 @@
 
 ## Latest releases 🛠
 
-- Kotlin Next Gen | [v5.1.1](https://github.com/mikepenz/Android-Iconics/tree/v5.1.1)
+- Kotlin Next Gen | [v5.2.0](https://github.com/mikepenz/Android-Iconics/tree/v5.2.0)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)
@@ -171,6 +171,23 @@ This feature was suggested and initially provided by @dzamlo
         android:text="{faw-adjust} Button"
         android:layout_width="120dp"
         android:layout_height="60dp"/>
+```
+
+### Compose
+
+To include the experimental compose support in your project add the following dependency to your project (since v5.2.0)
+
+```gradle
+implementation "com.mikepenz:iconics-compose:${latestAndroidIconicsRelease}"
+```
+
+Use the provided `Image` wrapper and set the icon.
+
+```kotlin
+Image(
+    GoogleMaterial.Icon.gmd_access_alarm,
+    colorFilter = ColorFilter.tint(MaterialTheme.colors.primary),
+)
 ```
 
 # Screenshots

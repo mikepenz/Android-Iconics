@@ -24,6 +24,7 @@ data class IconicsConfig(
     val iconOffsetYPx: Int = 0
 )
 
+@ExperimentalIconics
 data class IconicsPainter(
     private val image: IIcon,
     private val config: IconicsConfig = IconicsConfig()
