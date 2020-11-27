@@ -12,10 +12,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.mikepenz.iconics.typeface.IIcon
 
-// Notify user that the compose API is currently experimental
-@RequiresOptIn(level = RequiresOptIn.Level.WARNING)
-annotation class ExperimentalIconics
-
 /**
  * A composable that lays out and draws a given [IIcon]. This will attempt to
  * size the composable according to the [IIcon]'s given width and height. However, an
