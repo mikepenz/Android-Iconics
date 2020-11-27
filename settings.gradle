@@ -18,7 +18,7 @@ include ':app'
 
 include ':library-core'
 include ':library-typeface-api'
-include ':iconics-view-library'
+include ':library-view-library'
 
 include ':community-material-typeface-library'
 include ':devicon-typeface-library'
