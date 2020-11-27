@@ -7,6 +7,7 @@ then
     ./gradlew bintrayUpload -x test -x lint -Plibrarytypefaceonly
     ./gradlew bintrayUpload -x test -x lint -Plibrarycoreonly
     ./gradlew bintrayUpload -x test -x lint -Plibraryviewsonly
+    ./gradlew bintrayUpload -x test -x lint -Plibrarycomposeonly
 
     # ./gradlew bintrayUpload -x test -x lint -Pcommunitymaterialonly
     # ./gradlew bintrayUpload -x test -x lint -PDevIcononly

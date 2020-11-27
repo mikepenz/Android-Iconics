@@ -118,7 +118,7 @@ dependencies {
     }
 
     implementation project(':library-core')
-    implementation project(':iconics-view-library')
+    implementation project(':library-view-library')
 
     implementation project(':community-material-typeface-library')
     implementation project(':devicon-typeface-library')
