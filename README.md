@@ -28,7 +28,7 @@
   - Auto mirroring for RTL (opt-in)
 - If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
-- All licenses included, best used with [AboutLibraries](https://github.com/mikepenz/AboutLibraries)
+- [EXPERIMENTAL] Compose support
 
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
@@ -50,7 +50,7 @@
 
 ## Latest releases 🛠
 
-- Kotlin Next Gen | [v5.1.0](https://github.com/mikepenz/Android-Iconics/tree/v5.1.0)
+- Kotlin Next Gen | [v5.2.0](https://github.com/mikepenz/Android-Iconics/tree/v5.2.0)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)
@@ -79,9 +79,9 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 implementation 'com.mikepenz:google-material-typeface:3.0.1.6.original-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
-implementation 'com.mikepenz:octicons-typeface:3.2.0.8-kotlin@aar'
+implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.7-kotlin@aar'
-implementation 'com.mikepenz:community-material-typeface:5.3.45.3-kotlin@aar' // note 5.3.45.1 alphabetically sorts, and merges in 3 sections
+implementation 'com.mikepenz:community-material-typeface:5.8.55.0-kotlin@aar' // note 5.3.45.1 alphabetically sorts, and merges in 3 sections
 implementation 'com.mikepenz:weather-icons-typeface:2.0.10.7-kotlin@aar'
 implementation 'com.mikepenz:typeicons-typeface:2.0.7.7-kotlin@aar'
 implementation 'com.mikepenz:entypo-typeface:1.0.0.7-kotlin@aar'
@@ -90,6 +90,7 @@ implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.7-kotlin@aar'
 implementation 'com.mikepenz:ionicons-typeface:2.0.1.7-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.5-kotlin@aar'
 implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
+implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlinn@aar'
 ```
 
 # Usage
@@ -172,6 +173,23 @@ This feature was suggested and initially provided by @dzamlo
         android:layout_height="60dp"/>
 ```
 
+### Compose
+
+To include the experimental compose support in your project add the following dependency to your project (since v5.2.0)
+
+```gradle
+implementation "com.mikepenz:iconics-compose:${latestAndroidIconicsRelease}"
+```
+
+Use the provided `Image` wrapper and set the icon.
+
+```kotlin
+Image(
+    GoogleMaterial.Icon.gmd_access_alarm,
+    colorFilter = ColorFilter.tint(MaterialTheme.colors.primary),
+)
+```
+
 # Screenshots
 
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/develop/DEV/github/screenshots1.jpg)
@@ -193,6 +211,7 @@ This feature was suggested and initially provided by @dzamlo
 |[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
 |[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
 |[Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)|cmf|implementation 'com.mikepenz:material-design-icons-dx-typeface:+@aar'|
+|[Phosphor Icons](https://phosphoricons.com/)|pho|implementation 'com.mikepenz:phosphor-typeface:+@aar'|
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repositories.
 

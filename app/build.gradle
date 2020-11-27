@@ -118,21 +118,23 @@ dependencies {
     }
 
     implementation project(':library-core')
-    implementation project(':iconics-view-library')
-    implementation project(':fontawesome-typeface-library')
-    implementation project(':material-design-iconic-typeface-library')
-    implementation project(':google-material-typeface-library')
-    implementation project(':meteocons-typeface-library')
-    implementation project(':weather-icons-typeface-library')
-    implementation project(':octicons-typeface-library')
+    implementation project(':library-view-library')
+
     implementation project(':community-material-typeface-library')
-    implementation project(':entypo-typeface-library')
-    implementation project(':typeicons-typeface-library')
     implementation project(':devicon-typeface-library')
+    implementation project(':entypo-typeface-library')
+    implementation project(':fontawesome-typeface-library')
     implementation project(':foundation-icons-typeface-library')
+    implementation project(':google-material-typeface-library')
     implementation project(':ionicons-typeface-library')
-    implementation project(':pixeden-7-stroke-typeface-library')
     implementation project(':material-design-dx-typeface-library')
+    implementation project(':material-design-iconic-typeface-library')
+    implementation project(':meteocons-typeface-library')
+    implementation project(':octicons-typeface-library')
+    implementation project(':phosphor-typeface-library')
+    implementation project(':pixeden-7-stroke-typeface-library')
+    implementation project(':typeicons-typeface-library')
+    implementation project(':weather-icons-typeface-library')
 
     testImplementation 'junit:junit:4.13'
 }

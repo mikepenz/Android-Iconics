@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Mike Penz
+ * Copyright (c) 2020 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 111008
-        versionName "11.1.0.0-kotlin"
-
-        resValue "string", "octicons_version", "${versionName}"
+        versionCode release.versionCode
+        versionName release.versionName
     }
     buildTypes {
         release {
@@ -38,15 +36,35 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
+    buildFeatures {
+        compose true
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    composeOptions {
+        kotlinCompilerVersion versions.kotlin
+        kotlinCompilerExtensionVersion versions.compose
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        useIR = true
+    }
+
+    // specify the artifactId as module-name for kotlin
+    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }
-if (project.hasProperty('pushall') || project.hasProperty('octicons')) {
+if (project.hasProperty('pushall') || project.hasProperty('librarycomposeonly')) {
     apply from: '../gradle-release.gradle'
 }
 
 dependencies {
-    implementation project(':library-typeface-api')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+    api project(':library-typeface-api')
+
+    implementation "androidx.compose.ui:ui:${versions.compose}"
+    implementation "androidx.compose.foundation:foundation:${versions.compose}"
 }
