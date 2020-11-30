@@ -173,7 +173,7 @@ This feature was suggested and initially provided by @dzamlo
         android:layout_height="60dp"/>
 ```
 
-### Compose
+## Compose
 
 To include the experimental compose support in your project add the following dependency to your project (since v5.2.0)
 
