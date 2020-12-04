@@ -1,5 +1,6 @@
 package com.mikepenz.iconics.compose
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -33,10 +34,11 @@ import com.mikepenz.iconics.typeface.IIcon
 @ExperimentalIconics
 @Suppress("NOTHING_TO_INLINE")
 @Composable
+@SuppressLint("ModifierParameter")
 inline fun Image(
     asset: IIcon,
-    iconicsConfig: IconicsConfig = IconicsConfig(),
     modifier: Modifier = Modifier.size(24.dp),
+    iconicsConfig: IconicsConfig = IconicsConfig(),
     alignment: Alignment = Alignment.Center,
     contentScale: ContentScale = ContentScale.Fit,
     alpha: Float = DefaultAlpha,
