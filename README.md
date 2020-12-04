@@ -50,7 +50,7 @@
 
 ## Latest releases 🛠
 
-- Kotlin Next Gen | [v5.2.0](https://github.com/mikepenz/Android-Iconics/tree/v5.2.0)
+- Kotlin Next Gen | [v5.2.1](https://github.com/mikepenz/Android-Iconics/tree/v5.2.1)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)

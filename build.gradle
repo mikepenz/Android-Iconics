@@ -18,19 +18,20 @@ buildscript {
 
     ext {
         release = [
-                versionName: "5.2.0",
-                versionCode: 50200
+                versionName: "5.2.1",
+                versionCode: 50201
         ]
 
         setup = [
-                compileSdk: 30,
-                buildTools: "30.0.2",
-                minSdk    : 16,
-                targetSdk : 30
+                compileSdk   : 30,
+                buildTools   : "30.0.2",
+                minSdk       : 16,
+                composeMinSdk: 21,
+                targetSdk    : 30
         ]
 
         versions = [
-                kotlin          : '1.4.10',
+                kotlin          : '1.4.20',
                 androidX        : '1.0.0',
                 recyclerView    : '1.1.0',
                 material        : '1.2.1',
@@ -45,9 +46,9 @@ buildscript {
                 detekt          : '1.14.2',
                 aboutLibraries  : '8.6.2',
                 materialDrawer  : '8.2.0',
-                fastAdapter     : '5.3.1',
+                fastAdapter     : '5.3.2',
                 // compose
-                compose         : '1.0.0-alpha07'
+                compose         : '1.0.0-alpha08'
         ]
     }
 
@@ -60,7 +61,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0-alpha16'
+        classpath 'com.android.tools.build:gradle:7.0.0-alpha02'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
