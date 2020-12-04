@@ -88,8 +88,6 @@ dependencies {
     implementation "androidx.core:core-ktx:${versions.ktx.core}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
 
-    kapt "com.android.databinding:compiler:3.5.3"
-
     // used to fill the RecyclerView with the DrawerItems
     // and provides single and multi selection, expandable items
     // https://github.com/mikepenz/FastAdapter
