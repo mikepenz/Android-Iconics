@@ -23,7 +23,7 @@ android {
     buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion setup.minSdk
+        minSdkVersion setup.composeMinSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode release.versionCode
