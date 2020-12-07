@@ -207,7 +207,7 @@ Image(
 |[Typeicons](http://typicons.com/)|typ|implementation 'com.mikepenz:typeicons-typeface:+@aar'|
 |[Entypo](http://www.entypo.com/)|ent|implementation 'com.mikepenz:entypo-typeface:+@aar'|
 |[Devicon](http://devicon.fr/)|dev|implementation 'com.mikepenz:devicon-typeface:+@aar'|
-|[Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)|fou|implementation 'com.mikepenz:foundation-icons-typeface:+@aar'|
+|[Foundation Icons](https://github.com/zurb/foundation-icon-fonts)|fou|implementation 'com.mikepenz:foundation-icons-typeface:+@aar'|
 |[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
 |[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
 |[Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)|cmf|implementation 'com.mikepenz:material-design-icons-dx-typeface:+@aar'|
