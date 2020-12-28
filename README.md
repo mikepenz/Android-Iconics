@@ -50,7 +50,7 @@
 
 ## Latest releases 🛠
 
-- Kotlin Next Gen | [v5.2.1](https://github.com/mikepenz/Android-Iconics/tree/v5.2.1)
+- Kotlin Next Gen | [v5.2.2](https://github.com/mikepenz/Android-Iconics/tree/v5.2.2)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)
@@ -76,7 +76,8 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 > Note: v5.1.x or newer requires the latest font versions
 
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:3.0.1.6.original-kotlin@aar'
+implementation 'com.mikepenz:google-material-typeface:4.0.0.1-kotlin@aar'
+implementation 'com.mikepenz:google-material-typeface-{outlined|rounded|sharp}:4.0.0.1-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
 implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
@@ -197,7 +198,7 @@ Image(
 # Available fonts
 |Link|Prefix|Dependency|
 |---|---|---|
-|[Google Material Design Icons](https://github.com/google/material-design-icons) **ORIGINAL by Google**|gmd|implementation 'com.mikepenz:google-material-typeface:+.original@aar'|
+|[Google Material Design Icons](https://github.com/google/material-design-icons) **ORIGINAL by Google**|gmd,gmo,gmr,gms|implementation 'com.mikepenz:google-material-typeface{-outlined,rounded,sharp}:+@aar'|
 |[Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) **Google Material Iconic**|gmi|implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'|
 |[Fontawesome](https://fontawesome.com/)|faw|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
 |[Meteocons](http://www.alessioatzeni.com/meteocons/)|met|implementation 'com.mikepenz:meteocons-typeface:+@aar'|
@@ -207,7 +208,7 @@ Image(
 |[Typeicons](http://typicons.com/)|typ|implementation 'com.mikepenz:typeicons-typeface:+@aar'|
 |[Entypo](http://www.entypo.com/)|ent|implementation 'com.mikepenz:entypo-typeface:+@aar'|
 |[Devicon](http://devicon.fr/)|dev|implementation 'com.mikepenz:devicon-typeface:+@aar'|
-|[Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)|fou|implementation 'com.mikepenz:foundation-icons-typeface:+@aar'|
+|[Foundation Icons](https://github.com/zurb/foundation-icon-fonts)|fou|implementation 'com.mikepenz:foundation-icons-typeface:+@aar'|
 |[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
 |[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
 |[Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)|cmf|implementation 'com.mikepenz:material-design-icons-dx-typeface:+@aar'|
