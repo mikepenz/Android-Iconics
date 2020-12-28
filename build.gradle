@@ -48,7 +48,7 @@ buildscript {
                 materialDrawer  : '8.2.0',
                 fastAdapter     : '5.3.2',
                 // compose
-                compose         : '1.0.0-alpha08'
+                compose         : '1.0.0-alpha09'
         ]
     }
 
