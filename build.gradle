@@ -81,7 +81,7 @@ allprojects {
 }
 
 subprojects {
-    apply from: '../detekt.gradle'
+    apply from: "$rootDir/detekt.gradle"
 
     dependencies {
         detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${versions.detekt}"

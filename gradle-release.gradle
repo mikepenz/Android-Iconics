@@ -119,6 +119,27 @@ afterEvaluate { project ->
         }
     }
 
+    ext.updatePom = { pom ->
+        pom.withXml {
+            asNode().appendNode('name', POM_NAME)
+            asNode().appendNode('description', POM_DESCRIPTION)
+            asNode().appendNode('url', POM_SCM_URL)
+            def dependenciesNode = asNode().appendNode('dependencies')
+            configurations.implementation.allDependencies.each {
+                // Ensure dependencies such as fileTree are not included.
+                if (it.name != 'unspecified') {
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    if (it.version != "unspecified") {
+                        addDependency(dependencyNode, it.group, it.name, it.version)
+                    } else {
+                        addDependency(dependencyNode, it.getDependencyProject().findProperty("GROUP"), it.getDependencyProject().findProperty("POM_ARTIFACT_ID"), project.release.versionName)
+                    }
+                }
+            }
+            asNode().children().last() + pomConfig
+        }
+    }
+
     publishing {
         publications {
             release(MavenPublication) {
@@ -128,25 +149,7 @@ afterEvaluate { project ->
                 artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
                 artifact androidSourcesJar
                 artifact androidJavadocsJar
-
-                pom.withXml {
-                    asNode().appendNode('name', POM_NAME)
-                    asNode().appendNode('description', POM_DESCRIPTION)
-                    asNode().appendNode('url', POM_SCM_URL)
-                    def dependenciesNode = asNode().appendNode('dependencies')
-                    configurations.implementation.allDependencies.each {
-                        // Ensure dependencies such as fileTree are not included.
-                        if (it.name != 'unspecified') {
-                            def dependencyNode = dependenciesNode.appendNode('dependency')
-                            if (it.version != "unspecified") {
-                                addDependency(dependencyNode, it.group, it.name, it.version)
-                            } else {
-                                addDependency(dependencyNode, it.getDependencyProject().findProperty("GROUP"), it.getDependencyProject().findProperty("POM_ARTIFACT_ID"), project.release.versionName)
-                            }
-                        }
-                    }
-                    asNode().children().last() + pomConfig
-                }
+                updatePom(pom)
             }
         }
     }

@@ -26,7 +26,16 @@ include ':devicon-typeface-library'
 include ':entypo-typeface-library'
 include ':fontawesome-typeface-library'
 include ':foundation-icons-typeface-library'
+
 include ':google-material-typeface-library'
+project(':google-material-typeface-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-library')
+include ':google-material-typeface-outlined-library'
+project(':google-material-typeface-outlined-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-outlined-library')
+include ':google-material-typeface-rounded-library'
+project(':google-material-typeface-rounded-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-rounded-library')
+include ':google-material-typeface-sharp-library'
+project(':google-material-typeface-sharp-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-sharp-library')
+
 include ':ionicons-typeface-library'
 include ':material-design-dx-typeface-library'
 include ':material-design-iconic-typeface-library'
