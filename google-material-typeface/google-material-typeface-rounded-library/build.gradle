@@ -27,7 +27,7 @@ android {
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode 40001
-        versionName "4.0.0.1.original-kotlin"
+        versionName "4.0.0.1-kotlin"
 
         resValue "string", "googlematerial_version", "${versionName}"
     }
