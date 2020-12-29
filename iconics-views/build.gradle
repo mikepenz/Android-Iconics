@@ -27,11 +27,8 @@ android {
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
-        consumerProguardFiles 'consumer-proguard-rules.pro'
         versionCode release.versionCode
         versionName release.versionName
-
-        resValue "string", "iconics_lib_version", "${versionName}"
     }
     buildTypes {
         release {
@@ -42,7 +39,6 @@ android {
 
     lintOptions {
         abortOnError false
-        disable "EnsureInitializerMetadata"
     }
 
     kotlinOptions {
@@ -56,12 +52,13 @@ android {
     // specify the artifactId as module-name for kotlin
     kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }
-if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
+
+if (project.hasProperty('pushall') || project.hasProperty('libraryviewsonly')) {
     apply from: '../gradle-release.gradle'
 }
 
 dependencies {
-    api project(':library-typeface-api')
+    implementation project(':iconics-core')
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation "androidx.core:core-ktx:$versions.ktx.core"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"

@@ -115,8 +115,8 @@ dependencies {
         exclude module: "fastadapter"
     }
 
-    implementation project(':library-core')
-    implementation project(':library-view-library')
+    implementation project(':iconics-core')
+    implementation project(':iconics-views')
 
     implementation project(':community-material-typeface-library')
     implementation project(':devicon-typeface-library')
