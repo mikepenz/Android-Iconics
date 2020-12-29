@@ -17,9 +17,13 @@
 include ':app'
 
 include ':library-core'
+project(':library-core').name = "iconics-core"
 include ':library-typeface-api'
+project(':library-typeface-api').name = "iconics-typeface-api"
 include ':library-view-library'
+project(':library-view-library').name = "iconics-views"
 include ':library-compose'
+project(':library-compose').name = "iconics-compose"
 
 include ':community-material-typeface-library'
 include ':devicon-typeface-library'

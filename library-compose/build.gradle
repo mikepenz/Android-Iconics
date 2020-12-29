@@ -65,7 +65,7 @@ if (project.hasProperty('pushall') || project.hasProperty('librarycomposeonly'))
 }
 
 dependencies {
-    api project(':library-typeface-api')
+    api project(':iconics-typeface-api')
 
     implementation "androidx.compose.ui:ui:${versions.compose}"
     implementation "androidx.compose.foundation:foundation:${versions.compose}"
