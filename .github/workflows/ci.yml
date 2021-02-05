@@ -77,7 +77,7 @@ jobs:
 
       - name: Build Release App
         if: startsWith(github.ref, 'refs/tags/')
-        run: ./gradlew app:assembleStaging app:assembleRelease app:bundleRelease
+        run: ./gradlew app:assembleRelease app:bundleRelease
 
       - name: Prepare Gradle Publish properties
         if: startsWith(github.ref, 'refs/tags/')
