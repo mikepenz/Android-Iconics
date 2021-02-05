@@ -4,26 +4,26 @@
 
 if [ "$1" = "release" ];
 then
-    ./gradlew bintrayUpload -x test -x lint -Plibrarytypefaceonly
-    ./gradlew bintrayUpload -x test -x lint -Plibrarycoreonly
-    ./gradlew bintrayUpload -x test -x lint -Plibraryviewsonly
-    ./gradlew bintrayUpload -x test -x lint -Plibrarycomposeonly
+    ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarytypefaceonly
+    ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarycoreonly
+    ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibraryviewsonly
+    ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarycomposeonly
 
-    # ./gradlew bintrayUpload -x test -x lint -Pcommunitymaterialonly
-    # ./gradlew bintrayUpload -x test -x lint -PDevIcononly
-    # ./gradlew bintrayUpload -x test -x lint -PEntypoonly
-    # ./gradlew bintrayUpload -x test -x lint -Pfontawesomeonly
-    # ./gradlew bintrayUpload -x test -x lint -PFoundationIconsonly
-    # ./gradlew bintrayUpload -x test -x lint -Pgooglematerialonly
-    # ./gradlew bintrayUpload -x test -x lint -PIoniconsonly
-    # ./gradlew bintrayUpload -x test -x lint -Pmaterialdesigndxonly
-    # ./gradlew bintrayUpload -x test -x lint -Pmaterialdesigniconiconly
-    # ./gradlew bintrayUpload -x test -x lint -Pmeteoconsonly
-    # ./gradlew bintrayUpload -x test -x lint -Pocticons
-    # ./gradlew bintrayUpload -x test -x lint -Pphosphor
-    # ./gradlew bintrayUpload -x test -x lint -PPixeden7Strokeonly
-    # ./gradlew bintrayUpload -x test -x lint -PTypeiconsonly
-    # ./gradlew bintrayUpload -x test -x lint -Pweathericonsonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pcommunitymaterialonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PDevIcononly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PEntypoonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pfontawesomeonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PFoundationIconsonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pgooglematerialonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PIoniconsonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmaterialdesigndxonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmaterialdesigniconiconly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmeteoconsonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pocticons
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pphosphor
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PPixeden7Strokeonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PTypeiconsonly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pweathericonsonly
 else
     echo todo
 fi
