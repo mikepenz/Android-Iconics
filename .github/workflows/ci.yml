@@ -2,14 +2,6 @@
 name: CI
 
 on:
-  workflow_dispatch:
-    inputs:
-      passphrase:
-        description: 'Passphrase required for secrets'
-        required: true
-      version:
-        description: 'Version to build'
-        required: true
   push:
     tags:
       - '*'
@@ -74,50 +66,39 @@ jobs:
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Prepare Secrets
-        if: github.event_name  == 'workflow_dispatch'
-        run: |
-          echo "::add-mask::$INPUT_PASSPHRASE"
-
-          BINTRAY_API_KEY=$(echo "${{ secrets.BINTRAY_API_KEY }}" | gpg -d --passphrase "$INPUT_PASSPHRASE" --batch)
-          echo "::add-mask::$BINTRAY_API_KEY"
-          echo "BINTRAY_API_KEY=$BINTRAY_API_KEY" >> $GITHUB_ENV
-
-          BINTRAY_GPG_PASS=$(echo "${{ secrets.BINTRAY_GPG_PASS }}" | gpg -d --passphrase "$INPUT_PASSPHRASE" --batch)
-          echo "::add-mask::$BINTRAY_GPG_PASS"
-          echo "BINTRAY_GPG_PASS=$BINTRAY_GPG_PASS" >> $GITHUB_ENV
-
-          NEXUS_PASSWORD=$(echo "${{ secrets.NEXUS_PASSWORD }}" | gpg -d --passphrase "$INPUT_PASSPHRASE" --batch)
-          echo "::add-mask::$NEXUS_PASSWORD"
-          echo "NEXUS_PASSWORD=$NEXUS_PASSWORD" >> $GITHUB_ENV
-        env:
-          INPUT_VERSION: ${{ github.event.inputs.version }}
-
       - name: Prepare Keystore and Local.
-        if: github.event_name  == 'workflow_dispatch'
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
-          echo "::add-mask::$INPUT_PASSPHRASE"
-
           echo "${{ secrets.KEYSTORE }}" > opensource.jks.asc
-          gpg -d --passphrase "$INPUT_PASSPHRASE" --batch "opensource.jks.asc" > "app/opensource.jks"
+          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch "opensource.jks.asc" > "app/opensource.jks"
           echo "${{ secrets.SIGNING_GRADLE }}" > signing.gradle.asc
-          gpg -d --passphrase "$INPUT_PASSPHRASE" --batch "signing.gradle.asc" > "app/signing.gradle"
+          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch "signing.gradle.asc" > "app/signing.gradle"
           echo "openSource.signing.file=signing.gradle" >> local.properties
 
       - name: Build Release App
-        if: startsWith(github.ref, 'refs/tags/') && false
+        if: startsWith(github.ref, 'refs/tags/')
         run: ./gradlew app:assembleStaging app:assembleRelease app:bundleRelease
 
-      - name: Relase bintray
-        if: startsWith(github.ref, 'refs/tags/') && false
+      - name: Prepare Gradle Publish properties
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          echo "${{ secrets.SONATYPE_GPG_FILE }}" > opensource.gpg.asc
+          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch "opensource.gpg.asc" > "$HOME/.gradle/opensource.gpg"
+          echo "sonatype.gpg.key=${{ secrets.SONATYPE_GPG_KEY }}" >> ~/.gradle/gradle.properties
+          echo "sonatype.gpg.password=${{ secrets.SONATYPE_GPG_PASS }}" >> ~/.gradle/gradle.properties
+          echo "sonatype.gpg.secretKeyRingFile=$HOME/.gradle/opensource.gpg" >> ~/.gradle/gradle.properties
+
+      - name: Relase Sonatype
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
           ./gradlew build -x test -x lint
-          ./gradlew library-typeface-api:bintrayUpload -x test -x lint -Plibrarytypefaceonly --no-configure-on-demand --no-parallel
-          ./gradlew library-core:bintrayUpload -x test -x lint -Plibrarycoreonly --no-configure-on-demand --no-parallel
-          ./gradlew iconics-view-library:bintrayUpload -x test -x lint -Plibraryviewsonly --no-configure-on-demand --no-parallel
+          ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarytypefaceonly --no-configure-on-demand --no-parallel
+          ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarycoreonly --no-configure-on-demand --no-parallel
+          ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibraryviewsonly --no-configure-on-demand --no-parallel
+          ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarycomposeonly --no-configure-on-demand --no-parallel
         env:
-          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
       - name: Collect artifacts
         run: |
