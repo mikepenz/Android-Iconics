@@ -37,6 +37,7 @@ import com.mikepenz.iconics.typeface.IIcon
 @SuppressLint("ModifierParameter")
 inline fun Image(
     asset: IIcon,
+    contentDescription: String? = asset.name,
     modifier: Modifier = Modifier.size(24.dp),
     iconicsConfig: IconicsConfig = IconicsConfig(),
     alignment: Alignment = Alignment.Center,
@@ -47,6 +48,7 @@ inline fun Image(
     val imagePainter = remember(asset, iconicsConfig) { IconicsPainter(asset, iconicsConfig) }
     Image(
         painter = imagePainter,
+        contentDescription = contentDescription,
         modifier = modifier,
         alignment = alignment,
         contentScale = contentScale,
