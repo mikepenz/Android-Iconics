@@ -1,4 +1,4 @@
-# Android-Iconics [![Status](https://travis-ci.org/mikepenz/Android-Iconics.svg?branch=develop)](https://travis-ci.org/mikepenz/Android-Iconics) [![Download](https://api.bintray.com/packages/mikepenz/maven/com.mikepenz%3Aiconics-core/images/download.svg) ](https://bintray.com/mikepenz/maven/com.mikepenz%3Aiconics-core/_latestVersion)
+# Android-Iconics
 
 ... allows to include any icon font with all its vector icons in your project. No limits. **Scale with no limit**, use **any color** at any time, provide a **contour**, and many additional customizations...
 
