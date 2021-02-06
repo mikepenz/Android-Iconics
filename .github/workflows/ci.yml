@@ -79,7 +79,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: ./gradlew app:assembleRelease app:bundleRelease
 
-      - name: Prepare Gradle Publish properties
+      - name: Prepare Sonatype Gradle properties
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           echo "${{ secrets.SONATYPE_GPG_FILE }}" > opensource.gpg.asc
