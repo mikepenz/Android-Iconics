@@ -61,7 +61,8 @@ if (project.hasProperty('pushall') || project.hasProperty('librarytypefaceonly')
 }
 
 dependencies {
-    implementation "androidx.core:core-ktx:$versions.ktx.core"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+    api "androidx.core:core-ktx:$versions.ktx.core"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+
     api "androidx.startup:startup-runtime:$versions.startup"
 }

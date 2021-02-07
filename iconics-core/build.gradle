@@ -56,13 +56,12 @@ android {
     // specify the artifactId as module-name for kotlin
     kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }
-if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
-    apply from: '../gradle-release.gradle'
-}
 
 dependencies {
     api project(':iconics-typeface-api')
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
-    implementation "androidx.core:core-ktx:$versions.ktx.core"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+}
+
+if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
+    apply from: '../gradle-release.gradle'
 }

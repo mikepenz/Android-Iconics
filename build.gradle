@@ -18,8 +18,8 @@ buildscript {
 
     ext {
         release = [
-                versionName: "5.2.5",
-                versionCode: 50205
+                versionName: "5.2.6",
+                versionCode: 50206
         ]
 
         setup = [
@@ -46,7 +46,7 @@ buildscript {
                 detekt          : '1.15.0',
                 aboutLibraries  : '8.8.0',
                 materialDrawer  : '8.3.1',
-                fastAdapter     : '5.3.2',
+                fastAdapter     : '5.3.4',
                 // compose
                 compose         : '1.0.0-alpha11'
         ]
