@@ -48,5 +48,4 @@ if (project.hasProperty('pushall') || project.hasProperty('Pixeden7Strokeonly'))
 
 dependencies {
     implementation project(':iconics-typeface-api')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 }
