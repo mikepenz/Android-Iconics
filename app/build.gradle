@@ -137,5 +137,5 @@ dependencies {
     implementation project(':typeicons-typeface-library')
     implementation project(':weather-icons-typeface-library')
 
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.2'
 }
