@@ -48,7 +48,7 @@ buildscript {
                 materialDrawer  : '8.3.3',
                 fastAdapter     : '5.3.4',
                 // compose
-                compose         : '1.0.0-alpha12'
+                compose         : '1.0.0-beta01'
         ]
     }
 
@@ -61,7 +61,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha07'
+        classpath 'com.android.tools.build:gradle:7.0.0-alpha08'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${versions.aboutLibraries}"
