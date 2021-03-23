@@ -35,6 +35,10 @@
         android:checkable="true"
         android:title="@string/action_shadow" />
     <item
+        android:id="@+id/action_respect_bounds"
+        android:checkable="true"
+        android:title="@string/action_respect_bounds" />
+    <item
         android:id="@+id/action_opensource"
         android:title="@string/action_opensource"
         app:showAsAction="never" />

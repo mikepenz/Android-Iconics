@@ -25,6 +25,7 @@
 
     <string name="action_randomize">Randomize</string>
     <string name="action_shadow">Shadow</string>
+    <string name="action_respect_bounds">Respect font bounds</string>
     <string name="action_opensource">Open Source</string>
     <string name="action_playground">Playground</string>
     <string name="action_automatic">Automatic Mapping</string>

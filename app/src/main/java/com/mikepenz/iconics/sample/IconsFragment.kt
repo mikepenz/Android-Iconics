@@ -66,6 +66,10 @@ class IconsFragment : Fragment(R.layout.icons_fragment) {
         adapter.notifyAdapterDataSetChanged()
     }
 
+    fun respectFontBounds() {
+        adapter.notifyAdapterDataSetChanged()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = IconsFragmentBinding.bind(view)

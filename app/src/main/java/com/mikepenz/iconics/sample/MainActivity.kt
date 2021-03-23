@@ -179,6 +179,8 @@ class MainActivity : AppCompatActivity() {
             colorInt = Color.WHITE
         }
 
+        menu.findItem(R.id.action_respect_bounds).isChecked = Iconics.respectFontBoundsDefault
+
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -205,6 +207,12 @@ class MainActivity : AppCompatActivity() {
                 item.isChecked = !item.isChecked
                 iconsFragment?.shadow(item.isChecked)
                 isShadowEnabled = item.isChecked
+                return true
+            }
+            R.id.action_respect_bounds -> {
+                item.isChecked = !item.isChecked
+                iconsFragment?.respectFontBounds()
+                Iconics.respectFontBoundsDefault = item.isChecked
                 return true
             }
             R.id.action_opensource -> {
