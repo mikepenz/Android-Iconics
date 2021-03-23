@@ -531,8 +531,7 @@ open class IconicsDrawable internal constructor() : WrappedDrawable() {
 
         if (respectFontBounds) {
             path.offset(viewBounds.exactCenterX(), paddingBounds.top + textSize - iconBrush.paint.fontMetrics.descent)
-        }
-        else {
+        } else {
             val deltaWidth = paddingBounds.width().toFloat() / pathBounds.width()
             val deltaHeight = paddingBounds.height().toFloat() / pathBounds.height()
             val delta = if (deltaWidth < deltaHeight) deltaWidth else deltaHeight
@@ -548,8 +547,7 @@ open class IconicsDrawable internal constructor() : WrappedDrawable() {
     private fun offsetIcon() {
         if (respectFontBounds) {
             path.offset(iconOffsetXPx.toFloat(), iconOffsetYPx.toFloat())
-        }
-        else {
+        } else {
             val offsetX = (paddingBounds.width() - pathBounds.width()) / 2
             val offsetY = (paddingBounds.height() - pathBounds.height()) / 2
             path.offset(offsetX + iconOffsetXPx, offsetY + iconOffsetYPx)
