@@ -210,7 +210,7 @@ open class IconicsDrawable internal constructor() : WrappedDrawable() {
             setBounds(0, 0, sizeXPx, sizeYPx)
         }
 
-    var respectFontBounds: Boolean = false
+    var respectFontBounds: Boolean = Iconics.respectFontBoundsDefault
         set(value) {
             field = value
             invalidateThis()
@@ -403,8 +403,8 @@ open class IconicsDrawable internal constructor() : WrappedDrawable() {
         if (icon == null && iconText == null) return
         val viewBounds = bounds
         updatePaddingBounds(viewBounds)
-        updateTextSize(viewBounds)
-        offsetIcon(viewBounds)
+        updatePathBounds(viewBounds)
+        offsetIcon()
 
         if (needMirroring()) {
             // Mirror the drawable
@@ -440,7 +440,9 @@ open class IconicsDrawable internal constructor() : WrappedDrawable() {
     }
 
     override fun onBoundsChange(bounds: Rect) {
-        offsetIcon(bounds)
+        updatePaddingBounds(bounds)
+        updatePathBounds(bounds)
+        offsetIcon()
         runCatching { path.close() }
         super.onBoundsChange(bounds)
     }
@@ -519,34 +521,39 @@ open class IconicsDrawable internal constructor() : WrappedDrawable() {
     }
 
     /** Update the TextSize */
-    private fun updateTextSize(viewBounds: Rect) {
-        var textSize = viewBounds.height().toFloat() * if (respectFontBounds) 1 else 2
-        iconBrush.paint.textSize = textSize
-
+    private fun updatePathBounds(viewBounds: Rect) {
         val textValue = icon?.character?.toString() ?: iconText.toString()
-        iconBrush.paint.getTextPath(textValue, 0, textValue.length, 0f, viewBounds.height().toFloat(), path)
+
+        var textSize = paddingBounds.height().toFloat()
+        iconBrush.paint.textSize = textSize
+        iconBrush.paint.getTextPath(textValue, 0, textValue.length, 0f, 0f, path)
         path.computeBounds(pathBounds, true)
 
-        if (!respectFontBounds) {
+        if (respectFontBounds) {
+            path.offset(viewBounds.exactCenterX(), paddingBounds.top + textSize - iconBrush.paint.fontMetrics.descent)
+        }
+        else {
             val deltaWidth = paddingBounds.width().toFloat() / pathBounds.width()
             val deltaHeight = paddingBounds.height().toFloat() / pathBounds.height()
             val delta = if (deltaWidth < deltaHeight) deltaWidth else deltaHeight
             textSize *= delta
             iconBrush.paint.textSize = textSize
-            iconBrush.paint.getTextPath(textValue, 0, textValue.length, 0f, viewBounds.height().toFloat(), path)
+            iconBrush.paint.getTextPath(textValue, 0, textValue.length, 0f, 0f, path)
             path.computeBounds(pathBounds, true)
+            path.offset(paddingBounds.left - pathBounds.left, paddingBounds.top - pathBounds.top)
         }
     }
 
     /** Set the icon offset */
-    private fun offsetIcon(viewBounds: Rect) {
-        val startX = viewBounds.centerX() - pathBounds.width() / 2
-        val offsetX = startX - pathBounds.left
-
-        val startY = viewBounds.centerY() - pathBounds.height() / 2
-        val offsetY = startY - pathBounds.top
-
-        path.offset(offsetX + iconOffsetXPx, offsetY + iconOffsetYPx)
+    private fun offsetIcon() {
+        if (respectFontBounds) {
+            path.offset(iconOffsetXPx.toFloat(), iconOffsetYPx.toFloat())
+        }
+        else {
+            val offsetX = (paddingBounds.width() - pathBounds.width()) / 2
+            val offsetY = (paddingBounds.height() - pathBounds.height()) / 2
+            path.offset(offsetX + iconOffsetXPx, offsetY + iconOffsetYPx)
+        }
     }
 
     /** Ensures the tint filter is consistent with the current tint color and mode. */
