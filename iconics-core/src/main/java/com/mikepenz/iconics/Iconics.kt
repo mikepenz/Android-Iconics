@@ -51,6 +51,12 @@ object Iconics {
     @JvmField var logger: IconicsLogger = IconicsLogger.DEFAULT
 
     /**
+     * Set if Iconics should respect the original bounds of the icon.
+     * This applies to all Drawables (including views) as a default value.
+     */
+    @JvmField var respectFontBoundsDefault = false
+
+    /**
      * Initializes the `Context` required for different operations inside Iconics.
      */
     @JvmStatic fun init(context: Context) {
