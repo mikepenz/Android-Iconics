@@ -38,9 +38,9 @@ import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.sample.databinding.IconsFragmentBinding
 import com.mikepenz.iconics.sample.item.IconItem
 import com.mikepenz.iconics.utils.IconicsUtils
-import com.mikepenz.iconics.utils.backgroundContourColorString
 import com.mikepenz.iconics.utils.backgroundColorRes
 import com.mikepenz.iconics.utils.backgroundColorString
+import com.mikepenz.iconics.utils.backgroundContourColorString
 import com.mikepenz.iconics.utils.colorRes
 import com.mikepenz.iconics.utils.contourColorRes
 import com.mikepenz.iconics.utils.contourWidthDp
@@ -138,7 +138,7 @@ class IconsFragment : Fragment(R.layout.icons_fragment) {
                         paddingDp = 8
                         backgroundColorString = "#DDFFFFFF"
                         backgroundContourColorString = "#DD000000"
-                        backgroundContourWidthPx = 5
+                        backgroundContourWidthPx = 4
                         roundedCornersDp = 12
                     }
 
