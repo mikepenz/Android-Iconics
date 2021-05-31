@@ -98,7 +98,7 @@ dependencies {
 
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
     // https://github.com/zTrap/Android-Iconics-String-Generator
-    testImplementation 'ru.ztrap.iconics:string-generator:1.0.8'
+    testImplementation 'ru.ztrap.iconics:string-generator:1.0.4'
 
     // used to generate the drawer on the left
     // https://github.com/mikepenz/MaterialDrawer
