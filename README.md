@@ -159,19 +159,19 @@ This feature was suggested and initially provided by @dzamlo
 #### As IconicsTextView
 ```xml
 <com.mikepenz.iconics.view.IconicsTextView
-        android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
-        android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:textSize="16sp"/>
+    android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
+    android:textColor="@android:color/black"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    android:textSize="16sp"/>
 ```
 
 #### As IconicsButton
 ```xml
 <com.mikepenz.iconics.view.IconicsButton
-        android:text="{faw-adjust} Button"
-        android:layout_width="120dp"
-        android:layout_height="60dp"/>
+    android:text="{faw-adjust} Button"
+    android:layout_width="120dp"
+    android:layout_height="60dp"/>
 ```
 
 ## Compose
@@ -241,7 +241,7 @@ Just define the style for all icons or only a specific one. You can find this in
 Iconics.Builder()
     .style(ForegroundColorSpan(Color.WHITE), BackgroundColorSpan(Color.BLACK), RelativeSizeSpan(2f))
     .styleFor(FontAwesome.Icon.faw_adjust, BackgroundColorSpan(Color.RED))
-                .on(tv1)
+    .on(tv1)
     .build()
 ```
 
