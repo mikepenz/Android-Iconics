@@ -43,7 +43,7 @@ buildscript {
                         core: '1.6.0'
                 ],
                 startup         : '1.0.0',
-                detekt          : '1.17.1',
+                detekt          : '1.16.0',
                 aboutLibraries  : '8.9.0',
                 materialDrawer  : '8.4.1',
                 fastAdapter     : '5.4.1',
