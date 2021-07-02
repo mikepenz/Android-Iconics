@@ -201,6 +201,8 @@ Image(
 |[Google Material Design Icons](https://github.com/google/material-design-icons) **ORIGINAL by Google**|gmd,gmo,gmr,gms|implementation 'com.mikepenz:google-material-typeface{-outlined,rounded,sharp}:+@aar'|
 |[Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) **Google Material Iconic**|gmi|implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'|
 |[Fontawesome](https://fontawesome.com/)|faw|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
+|[FontawesomeBrand](https://fontawesome.com/)|fab|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
+|[FontawesomeRegular](https://fontawesome.com/)|far|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
 |[Meteocons](http://www.alessioatzeni.com/meteocons/)|met|implementation 'com.mikepenz:meteocons-typeface:+@aar'|
 |[Octicons](https://github.com/github/octicons)|oct|implementation 'com.mikepenz:octicons-typeface:+@aar'|
 |[Community Material](http://materialdesignicons.com/)|cmd|implementation 'com.mikepenz:community-material-typeface:+@aar'|
