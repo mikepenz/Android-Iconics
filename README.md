@@ -44,6 +44,8 @@
 - [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
 - [Ionicons](http://ionicons.com/)
 - [Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)
+- [Pixeden 7 Stroke](https://themes-pixeden.com/font-demos/7-stroke/)
+- [Phosphor](https://phosphoricons.com/)
 - Or create your own font with any icon needed.
 
 # Setup
