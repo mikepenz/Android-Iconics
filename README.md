@@ -28,7 +28,7 @@
   - Auto mirroring for RTL (opt-in)
 - If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
-- [EXPERIMENTAL] Compose support
+- Compose support
 
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
