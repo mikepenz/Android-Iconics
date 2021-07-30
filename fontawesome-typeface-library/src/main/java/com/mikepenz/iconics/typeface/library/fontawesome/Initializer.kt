@@ -8,6 +8,8 @@ import com.mikepenz.iconics.typeface.IconicsInitializer
 class Initializer : androidx.startup.Initializer<ITypeface> {
     override fun create(context: Context): ITypeface {
         IconicsHolder.registerFont(FontAwesome)
+        IconicsHolder.registerFont(FontAwesomeBrand)
+        IconicsHolder.registerFont(FontAwesomeRegular)
         return FontAwesome
     }
 

@@ -17,15 +17,15 @@
 
 <resources>
     <string name="define_FontAwesome">year;author;libraryName;libraryWebsite</string>
-    <string name="library_FontAwesome_author">Dave Gandy</string>
-    <string name="library_FontAwesome_authorWebsite">https://materialdesignicons.com/</string>
-    <string name="library_FontAwesome_libraryName">Font Awesome</string>
-    <string name="library_FontAwesome_libraryDescription">Font Awesome gives you scalable vector icons that can instantly be customized - size, color, drop shadow, and anything that can be done with the power of CSS.</string>
-    <string name="library_FontAwesome_libraryWebsite">http://fontawesome.io/icons/</string>
+    <string name="library_FontAwesome_author">FontAwesome</string>
+    <string name="library_FontAwesome_authorWebsite">https://fontawesome.com/</string>
+    <string name="library_FontAwesome_libraryName">FontAwesome</string>
+    <string name="library_FontAwesome_libraryDescription">The internet\'s most popular icon toolkit has been redesigned and built from scratch. On top of this, features like icon font ligatures, an SVG framework, official NPM packages for popular frontend libraries like React, and access to a new CDN.</string>
+    <string name="library_FontAwesome_libraryWebsite">https://fontawesome.com/</string>
     <string name="library_FontAwesome_libraryVersion">@string/fontawesome_version</string>
     <string name="library_FontAwesome_licenseId">sil_ofl_1_1</string>
     <string name="library_FontAwesome_isOpenSource">true</string>
     <string name="library_FontAwesome_repositoryLink">https://github.com/FortAwesome/Font-Awesome</string>
     <!-- Custom variables section -->
-    <string name="library_FontAwesome_year">2019</string>
+    <string name="library_FontAwesome_year">2021</string>
 </resources> 
