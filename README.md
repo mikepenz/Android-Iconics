@@ -231,6 +231,8 @@ To fix this problem, emoji support has to be disabled by doing:
 app:emojiCompatEnabled="false"
 ```
 
+More information on the appcompat emoji support: https://developer.android.com/jetpack/androidx/releases/appcompat#1.4.0-alpha01
+
 # Advanced Usage
 
 ### Register fonts
