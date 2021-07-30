@@ -220,6 +220,19 @@ Image(
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repositories.
 
+# Compatibility Note
+
+### appcompat:1.4.x
+
+Appcompat v1.4.x introduces default enabled emoji support into all `AppCompat*` views, which prevents the `IconicsView*` views (iconics-views module) from properly applying the spannable style.
+To fix this problem, emoji support has to be disabled by doing:
+
+```xml
+app:emojiCompatEnabled="false"
+```
+
+More information on the appcompat emoji support: https://developer.android.com/jetpack/androidx/releases/appcompat#1.4.0-alpha01
+
 # Advanced Usage
 
 ### Register fonts
@@ -284,7 +297,7 @@ For generating string field for each of icons of your font, you can use this sim
 A awesome gradle plugin which can automatically fetch a font from Fontastic, and generate the Android Module for your project.
 [Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
 
-# ProGuard
+# ProGuard / R8
 
 ProGuard / R8 rules are bundled internally with each font.
 
