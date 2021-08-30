@@ -78,7 +78,7 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 > Note: v5.1.x or newer requires the latest font versions
 
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:4.0.0.1-kotlin@aar'
+implementation 'com.mikepenz:google-material-typeface:4.0.0.2-kotlin@aar'
 implementation 'com.mikepenz:google-material-typeface-{outlined|rounded|sharp}:4.0.0.1-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
