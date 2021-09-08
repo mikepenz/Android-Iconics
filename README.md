@@ -93,7 +93,7 @@ implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.7-kotlin@aar'
 implementation 'com.mikepenz:ionicons-typeface:2.0.1.7-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.5-kotlin@aar'
 implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
-implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlinn@aar'
+implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlin@aar'
 ```
 
 # Usage
