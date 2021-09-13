@@ -37,7 +37,7 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.sample.databinding.ActivityMainBinding
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
-import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
+import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesomeBrand
 import com.mikepenz.iconics.typeface.library.materialdesigniconic.MaterialDesignIconic
 import com.mikepenz.iconics.utils.actionBar
 import com.mikepenz.iconics.utils.colorInt
@@ -174,10 +174,12 @@ class MainActivity : AppCompatActivity() {
         })
 
         val menuItem = menu.findItem(R.id.action_opensource)
-        menuItem.icon = IconicsDrawable(this, FontAwesome.Icon.faw_github).apply {
+        menuItem.icon = IconicsDrawable(this, FontAwesomeBrand.Icon.fab_github).apply {
             actionBar()
             colorInt = Color.WHITE
         }
+
+        menu.findItem(R.id.action_respect_bounds).isChecked = Iconics.respectFontBoundsDefault
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -205,6 +207,12 @@ class MainActivity : AppCompatActivity() {
                 item.isChecked = !item.isChecked
                 iconsFragment?.shadow(item.isChecked)
                 isShadowEnabled = item.isChecked
+                return true
+            }
+            R.id.action_respect_bounds -> {
+                item.isChecked = !item.isChecked
+                iconsFragment?.respectFontBounds()
+                Iconics.respectFontBoundsDefault = item.isChecked
                 return true
             }
             R.id.action_opensource -> {

@@ -28,7 +28,7 @@
   - Auto mirroring for RTL (opt-in)
 - If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
-- [EXPERIMENTAL] Compose support
+- Compose support
 
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
@@ -44,13 +44,15 @@
 - [Foundation Icons](http://zurb.com/playground/foundation-icon-fonts-3)
 - [Ionicons](http://ionicons.com/)
 - [Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)
+- [Pixeden 7 Stroke](https://themes-pixeden.com/font-demos/7-stroke/)
+- [Phosphor](https://phosphoricons.com/)
 - Or create your own font with any icon needed.
 
 # Setup
 
 ## Latest releases 🛠
 
-- Kotlin Next Gen | [v5.2.6](https://github.com/mikepenz/Android-Iconics/tree/v5.2.6)
+- Kotlin Next Gen | [v5.3.0](https://github.com/mikepenz/Android-Iconics/tree/v5.3.0)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)
@@ -76,7 +78,7 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 > Note: v5.1.x or newer requires the latest font versions
 
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:4.0.0.1-kotlin@aar'
+implementation 'com.mikepenz:google-material-typeface:4.0.0.2-kotlin@aar'
 implementation 'com.mikepenz:google-material-typeface-{outlined|rounded|sharp}:4.0.0.1-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
@@ -91,7 +93,7 @@ implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.7-kotlin@aar'
 implementation 'com.mikepenz:ionicons-typeface:2.0.1.7-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.5-kotlin@aar'
 implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
-implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlinn@aar'
+implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlin@aar'
 ```
 
 # Usage
@@ -159,19 +161,19 @@ This feature was suggested and initially provided by @dzamlo
 #### As IconicsTextView
 ```xml
 <com.mikepenz.iconics.view.IconicsTextView
-        android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
-        android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:textSize="16sp"/>
+    android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
+    android:textColor="@android:color/black"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    android:textSize="16sp"/>
 ```
 
 #### As IconicsButton
 ```xml
 <com.mikepenz.iconics.view.IconicsButton
-        android:text="{faw-adjust} Button"
-        android:layout_width="120dp"
-        android:layout_height="60dp"/>
+    android:text="{faw-adjust} Button"
+    android:layout_width="120dp"
+    android:layout_height="60dp"/>
 ```
 
 ## Compose
@@ -201,6 +203,8 @@ Image(
 |[Google Material Design Icons](https://github.com/google/material-design-icons) **ORIGINAL by Google**|gmd,gmo,gmr,gms|implementation 'com.mikepenz:google-material-typeface{-outlined,rounded,sharp}:+@aar'|
 |[Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) **Google Material Iconic**|gmi|implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'|
 |[Fontawesome](https://fontawesome.com/)|faw|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
+|[FontawesomeBrand](https://fontawesome.com/)|fab|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
+|[FontawesomeRegular](https://fontawesome.com/)|far|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
 |[Meteocons](http://www.alessioatzeni.com/meteocons/)|met|implementation 'com.mikepenz:meteocons-typeface:+@aar'|
 |[Octicons](https://github.com/github/octicons)|oct|implementation 'com.mikepenz:octicons-typeface:+@aar'|
 |[Community Material](http://materialdesignicons.com/)|cmd|implementation 'com.mikepenz:community-material-typeface:+@aar'|
@@ -215,6 +219,19 @@ Image(
 |[Phosphor Icons](https://phosphoricons.com/)|pho|implementation 'com.mikepenz:phosphor-typeface:+@aar'|
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repositories.
+
+# Compatibility Note
+
+### appcompat:1.4.x
+
+Appcompat v1.4.x introduces default enabled emoji support into all `AppCompat*` views, which prevents the `IconicsView*` views (iconics-views module) from properly applying the spannable style.
+To fix this problem, emoji support has to be disabled by doing:
+
+```xml
+app:emojiCompatEnabled="false"
+```
+
+More information on the appcompat emoji support: https://developer.android.com/jetpack/androidx/releases/appcompat#1.4.0-alpha01
 
 # Advanced Usage
 
@@ -241,7 +258,7 @@ Just define the style for all icons or only a specific one. You can find this in
 Iconics.Builder()
     .style(ForegroundColorSpan(Color.WHITE), BackgroundColorSpan(Color.BLACK), RelativeSizeSpan(2f))
     .styleFor(FontAwesome.Icon.faw_adjust, BackgroundColorSpan(Color.RED))
-                .on(tv1)
+    .on(tv1)
     .build()
 ```
 
@@ -280,7 +297,7 @@ For generating string field for each of icons of your font, you can use this sim
 A awesome gradle plugin which can automatically fetch a font from Fontastic, and generate the Android Module for your project.
 [Iconics-Font-Generator](https://github.com/ligol/IconicsFontGenerator)
 
-# ProGuard
+# ProGuard / R8
 
 ProGuard / R8 rules are bundled internally with each font.
 

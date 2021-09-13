@@ -46,6 +46,7 @@ import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.sample.databinding.ActivityPlaygroundBinding
 import com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
+import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesomeBrand
 import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.utils.actionBar
 import com.mikepenz.iconics.utils.backgroundColorInt
@@ -92,7 +93,7 @@ class PlaygroundActivity : AppCompatActivity() {
 
         //You can also do some advanced stuff like setting an image within a text
         val sb = SpannableString(binding.test5.text)
-        val d = IconicsDrawable(this, FontAwesome.Icon.faw_android).apply {
+        val d = IconicsDrawable(this, FontAwesomeBrand.Icon.fab_android).apply {
             sizeDp = 48
             paddingDp = 4
             colorInt = themeValue1
@@ -117,7 +118,7 @@ class PlaygroundActivity : AppCompatActivity() {
 
         //Set the icon of an ImageView (or something else) as bitmap
         binding.test3.setImageBitmap(
-            IconicsDrawable(this, FontAwesome.Icon.faw_android).apply {
+            IconicsDrawable(this, FontAwesomeBrand.Icon.fab_android).apply {
                 sizeX = IconicsSize.dp(48)
                 sizeY = IconicsSize.dp(32)
                 paddingDp = 4
@@ -160,7 +161,7 @@ class PlaygroundActivity : AppCompatActivity() {
             backgroundColorInt = Color.RED
         }
         val array = IconicsArrayBuilder(iconicsDrawableBase)
-                .add(FontAwesome.Icon.faw_android)
+                .add(FontAwesomeBrand.Icon.fab_android)
                 .add(Octicons.Icon.oct_octoface)
                 .add("Hallo")
                 .add('A')
