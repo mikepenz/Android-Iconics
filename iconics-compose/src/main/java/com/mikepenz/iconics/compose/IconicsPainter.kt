@@ -8,7 +8,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.asComposePath
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
 import com.mikepenz.iconics.typeface.IIcon
@@ -24,7 +28,6 @@ data class IconicsConfig(
     val iconOffsetYPx: Int = 0
 )
 
-@ExperimentalIconics
 data class IconicsPainter(
     private val image: IIcon,
     private val config: IconicsConfig = IconicsConfig()

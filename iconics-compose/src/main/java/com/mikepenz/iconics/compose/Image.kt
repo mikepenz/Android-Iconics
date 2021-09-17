@@ -31,7 +31,6 @@ import com.mikepenz.iconics.typeface.IIcon
  * @param colorFilter Optional ColorFilter to apply for the [ImageAsset] when it is rendered
  * onscreen
  */
-@ExperimentalIconics
 @Suppress("NOTHING_TO_INLINE")
 @Composable
 @SuppressLint("ModifierParameter")
