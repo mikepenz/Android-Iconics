@@ -18,20 +18,20 @@ buildscript {
 
     ext {
         release = [
-                versionName: "5.3.0",
-                versionCode: 50300
+                versionName: "5.3.1",
+                versionCode: 50301
         ]
 
         setup = [
-                compileSdk   : 30,
-                buildTools   : "30.0.3",
+                compileSdk   : 31,
+                buildTools   : "31.0.0",
                 minSdk       : 16,
                 composeMinSdk: 21,
                 targetSdk    : 30
         ]
 
         versions = [
-                kotlin          : '1.5.10',
+                kotlin          : '1.5.21',
                 androidX        : '1.0.0',
                 recyclerView    : '1.2.1',
                 material        : '1.4.0',
@@ -42,27 +42,26 @@ buildscript {
                 ktx             : [
                         core: '1.6.0'
                 ],
-                startup         : '1.0.0',
-                detekt          : '1.16.0',
+                startup         : '1.1.0',
+                detekt          : '1.18.1',
                 aboutLibraries  : '8.9.1',
-                materialDrawer  : '8.4.2',
-                fastAdapter     : '5.4.1',
+                materialDrawer  : '8.4.3',
+                fastAdapter     : '5.5.1',
                 // compose
-                compose         : '1.0.0'
+                compose         : '1.0.2'
         ]
     }
 
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven {
             url "https://plugins.gradle.org/m2/"
         }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.0-alpha05'
+        classpath 'com.android.tools.build:gradle:7.1.0-alpha12'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${versions.aboutLibraries}"
@@ -75,7 +74,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 }

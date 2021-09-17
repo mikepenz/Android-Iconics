@@ -28,7 +28,7 @@
   - Auto mirroring for RTL (opt-in)
 - If it takes a Drawable, it will also work with the IconicsDrawable!
 - Save in APK size
-- [EXPERIMENTAL] Compose support
+- Compose support
 
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
@@ -52,7 +52,7 @@
 
 ## Latest releases 🛠
 
-- Kotlin Next Gen | [v5.3.0](https://github.com/mikepenz/Android-Iconics/tree/v5.3.0)
+- Kotlin Next Gen | [v5.3.1](https://github.com/mikepenz/Android-Iconics/tree/v5.3.1)
 - Kotlin  | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)
@@ -78,7 +78,7 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 > Note: v5.1.x or newer requires the latest font versions
 
 ```gradle
-implementation 'com.mikepenz:google-material-typeface:4.0.0.1-kotlin@aar'
+implementation 'com.mikepenz:google-material-typeface:4.0.0.2-kotlin@aar'
 implementation 'com.mikepenz:google-material-typeface-{outlined|rounded|sharp}:4.0.0.1-kotlin@aar'
 implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
@@ -93,7 +93,7 @@ implementation 'com.mikepenz:foundation-icons-typeface:3.0.0.7-kotlin@aar'
 implementation 'com.mikepenz:ionicons-typeface:2.0.1.7-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.5-kotlin@aar'
 implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
-implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlinn@aar'
+implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlin@aar'
 ```
 
 # Usage
