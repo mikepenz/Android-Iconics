@@ -334,7 +334,7 @@ object Iconics {
         fun on(on: String): BuilderString = on(SpannableString(on))
 
         /** Defines where the icons should be applied to */
-        fun on(on: CharSequence): BuilderString = on(on.toString())
+        fun on(on: CharSequence): BuilderString = on(SpannableString(on))
 
         /** Defines where the icons should be applied to */
         fun on(on: StringBuilder): BuilderString = on(on.toString())
