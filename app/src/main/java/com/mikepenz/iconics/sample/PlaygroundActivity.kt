@@ -19,15 +19,13 @@ package com.mikepenz.iconics.sample
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.style.BackgroundColorSpan
-import android.text.style.DynamicDrawableSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.ImageSpan
-import android.text.style.RelativeSizeSpan
+import android.text.SpannableStringBuilder
+import android.text.style.*
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -154,6 +152,17 @@ class PlaygroundActivity : AppCompatActivity() {
             }
         )
         binding.test6.setImageDrawable(iconStateListDrawable)
+
+        val span = SpannableStringBuilder(binding.test10.text)
+        span.setSpan(
+            StyleSpan(Typeface.BOLD),
+            3,
+            6,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        span.insert(20, "{fab-android}")
+        binding.test10.text = span
+        binding.test10.text = binding.test10.text
 
         val iconicsDrawableBase = IconicsDrawable(this).apply {
             actionBar()
