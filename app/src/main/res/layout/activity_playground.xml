@@ -261,6 +261,7 @@
                     app:iiv_all_size="24dp" />
 
                 <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/test10"
                     android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:text="abcdefgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
