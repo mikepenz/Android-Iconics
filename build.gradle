@@ -31,7 +31,7 @@ buildscript {
         ]
 
         versions = [
-                kotlin          : '1.5.21',
+                kotlin          : '1.5.31',
                 androidX        : '1.0.0',
                 recyclerView    : '1.2.1',
                 material        : '1.4.0',
@@ -44,11 +44,11 @@ buildscript {
                 ],
                 startup         : '1.1.0',
                 detekt          : '1.18.1',
-                aboutLibraries  : '8.9.1',
-                materialDrawer  : '8.4.3',
+                aboutLibraries  : '8.9.3',
+                materialDrawer  : '8.4.4',
                 fastAdapter     : '5.5.1',
                 // compose
-                compose         : '1.0.2'
+                compose         : '1.0.3'
         ]
     }
 
@@ -61,7 +61,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.0-alpha12'
+        classpath 'com.android.tools.build:gradle:7.1.0-alpha13'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${versions.aboutLibraries}"
