@@ -17,6 +17,7 @@
 package com.mikepenz.iconics.sample
 
 import androidx.multidex.MultiDexApplication
+import com.google.android.material.color.DynamicColors
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.sample.typeface.CustomFont
 import com.mikepenz.iconics.typeface.GenericFont
@@ -24,6 +25,8 @@ import com.mikepenz.iconics.typeface.GenericFont
 class CustomApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
+
+        DynamicColors.applyToActivitiesIfAvailable(this)
 
         //register custom fonts like this (or also provide a font definition file)
         Iconics.registerFont(CustomFont)
