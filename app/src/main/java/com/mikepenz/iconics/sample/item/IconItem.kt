@@ -20,10 +20,10 @@ import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.mikepenz.aboutlibraries.util.getThemeColor
 import com.mikepenz.fastadapter.items.AbstractItem
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.sample.R
+import com.mikepenz.iconics.sample.utils.getThemeColor
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.contourColorInt
 import com.mikepenz.iconics.utils.contourWidthDp
