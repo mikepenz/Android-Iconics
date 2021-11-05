@@ -96,6 +96,10 @@ implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aa
 implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlin@aar'
 ```
 
+## Note
+
+⚠️ The fonts use the `jetpack startup` library to automatically register themself. If `jetpack startup` is disabled, it is required to manually register the fonts. Please find additional details in the [Register fonts](#register-fonts).
+
 # Usage
 ## Use as drawable
 
