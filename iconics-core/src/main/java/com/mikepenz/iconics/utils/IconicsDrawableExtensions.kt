@@ -39,7 +39,12 @@ fun IconicsDrawable.icon(icon: String): IconicsDrawable {
         Log.e("IconicsDrawable", "Iconics.init() not yet executed, icon will be missing")
     }
     try {
-        Iconics.findFont(icon.iconPrefix)?.let { icon(it.getIcon(icon.clearedIconName)) }
+        val foundFont = Iconics.findFont(icon.iconPrefix)
+        if (foundFont == null) {
+            Log.w("IconicsDrawable", "No font identified matching the given `${icon.iconPrefix}` prefix")
+        } else {
+            icon(foundFont.getIcon(icon.clearedIconName))
+        }
     } catch (ex: Exception) {
         Iconics.logger.log(Log.ERROR, Iconics.TAG, "Wrong icon name: $icon")
     }
