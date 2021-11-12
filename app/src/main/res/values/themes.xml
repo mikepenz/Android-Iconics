@@ -18,12 +18,7 @@
 
     <style name="AppTheme" parent="BaseTheme"></style>
 
-    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- ...and here we setting appcompat’s color theming attrs -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-
+    <style name="BaseTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- CAB :D -->
         <item name="windowActionModeOverlay">true</item>
 

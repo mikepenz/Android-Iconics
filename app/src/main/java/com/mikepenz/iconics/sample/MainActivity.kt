@@ -31,10 +31,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.mikepenz.aboutlibraries.LibsBuilder
-import com.mikepenz.aboutlibraries.util.getThemeColor
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.sample.databinding.ActivityMainBinding
+import com.mikepenz.iconics.sample.utils.getThemeColor
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesomeBrand
@@ -217,7 +217,6 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_opensource -> {
                 LibsBuilder()
-                        .withFields(R.string::class.java.fields)
                         .withLicenseShown(true)
                         .withActivityTitle(getString(R.string.action_opensource))
                         .withEdgeToEdge(true)

@@ -21,6 +21,7 @@ import android.text.Editable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.CharacterStyle
+import android.util.Log
 import android.util.Log.ERROR
 import android.widget.Button
 import android.widget.TextView
@@ -33,7 +34,6 @@ import com.mikepenz.iconics.utils.IconicsLogger
 import com.mikepenz.iconics.utils.InternalIconicsUtils
 import com.mikepenz.iconics.utils.clearedIconName
 import com.mikepenz.iconics.utils.iconPrefix
-import java.lang.reflect.Field
 import java.util.LinkedList
 
 @SuppressLint("StaticFieldLeak")
@@ -61,24 +61,12 @@ object Iconics {
      */
     @JvmStatic fun init(context: Context) {
         IconicsHolder.applicationContext = context
-    }
 
-    /**
-     * Initializes the FONTS. This also tries to find all founds automatically via their font file
-     *
-     * If resolving the `R` field is not possible provide the `R` fields manually via
-     *
-     * ```
-     * Iconics.init(context, R.string::class.java.fields)
-     * ```
-     */
-    @Deprecated(
-        "The library is now automatically initialized using the `Jetpack appstartup` library. No init required.",
-        replaceWith = ReplaceWith("init(context)")
-    )
-    @JvmStatic fun init(context: Context? = null, fields: Array<Field>? = null) {
-        if (context != null) {
-            init(context)
+        if (IconicsHolder.FONTS.isEmpty()) {
+            Log.w(
+                TAG, "At least one font needs to be registered first\n" +
+                        "    via ${javaClass.canonicalName}.registerFont(Iconics.kt:117)"
+            )
         }
     }
 
@@ -94,25 +82,6 @@ object Iconics {
      * Returns if the `Iconics` instance was initialized.
      */
     @JvmStatic fun isInitDone(): Boolean = INIT_DONE
-
-    /**
-     * This allows to mark the initialization as done, even if `init(ctx: Context)` was not called
-     * prior.
-     * It requires at least one font to be registered manually in the
-     * [android.app.Application.onCreate] via [registerFont].
-     */
-    @Deprecated(
-        "No longer required. The library gets initialized using `jetpack startup` library. Alternatively register manually via `init(Context)`",
-        ReplaceWith("")
-    )
-    @JvmStatic fun markInitDone() {
-        if (IconicsHolder.FONTS.isEmpty()) {
-            throw IllegalArgumentException(
-                "At least one font needs to be registered first\n" +
-                        "    via ${javaClass.canonicalName}.registerFont(Iconics.kt:117)"
-            )
-        }
-    }
 
     /**
      * Test if the icon exists in the currently loaded fonts
@@ -137,8 +106,6 @@ object Iconics {
 
     /** Tries to find a processor by its key in all registered PROCESSORS */
     @JvmStatic fun findProcessor(animationTag: String): IconicsAnimationProcessor? {
-        init()
-
         PROCESSORS[animationTag]?.also {
             try {
                 return ReflectionUtils.getInstanceOf(it)
@@ -159,26 +126,23 @@ object Iconics {
 
     /** Return all registered FONTS */
     @JvmStatic fun getRegisteredFonts(context: Context? = null): List<ITypeface> {
-        init(context)
+        context?.let { init(it) }
         return registeredFonts
     }
 
     /** Return all registered PROCESSORS */
     @JvmStatic val registeredProcessors: List<Class<out IconicsAnimationProcessor>>
-        get() {
-            init()
-            return PROCESSORS.values.toList()
-        }
+        get() = PROCESSORS.values.toList()
 
     /** Return all registered PROCESSORS */
     @JvmStatic fun getRegisteredProcessors(context: Context? = null): List<Class<out IconicsAnimationProcessor>> {
-        init(context)
+        context?.let { init(it) }
         return registeredProcessors
     }
 
     /** Tries to find a font by its key in all registered FONTS */
     @JvmStatic fun findFont(key: String, context: Context? = null): ITypeface? {
-        init(context)
+        context?.let { init(it) }
         return IconicsHolder.FONTS[key]
     }
 
