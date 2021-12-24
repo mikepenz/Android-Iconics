@@ -1,11 +1,11 @@
 <!--
-  ~ Copyright 2014 Mike Penz
+  ~ Copyright (c) 2019 Mike Penz
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
   ~
-  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~        http://www.apache.org/licenses/LICENSE-2.0
   ~
   ~ Unless required by applicable law or agreed to in writing, software
   ~ distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,123 +13,608 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mikepenz.iconics.sample.PlaygroundActivity"
-    tools:ignore="MissingPrefix">
 
-    <ScrollView
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false">
+        android:layout_height="match_parent"
+        android:id="@+id/root"
+        android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
+            android:elevation="4dp"
+            android:fitsSystemWindows="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toTopOf="@id/list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
-                <com.mikepenz.iconics.view.IconicsImageView
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:padding="24dp"
-                    app:iiv_icon="faw-android" />
+                <!--region IconicsImageView Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IconicsImageView Showcase" />
 
-                <com.mikepenz.iconics.view.IconicsImageView
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    app:iiv_color="@android:color/holo_red_dark"
-                    app:iiv_icon="gmd-favorite" />
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
 
-            <TextView
-                android:id="@+id/test1"
-                android:layout_width="wrap_content"
-                android:layout_height="56dp"
-                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-poll}no{met-wind}pqrstuv{fon-test2}wxy{z"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="#000" />
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:padding="24dp"
+                        app:tint="@color/accent"
+                        app:srcCompat="@drawable/gmd_favorite" />
 
-            <TextView
-                android:id="@+id/test5"
-                android:layout_width="wrap_content"
-                android:layout_height="56dp"
-                android:text="somecustomtext with a custom icon :D"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:padding="24dp"
+                        app:tint="@color/accent"
+                        app:srcCompat="@drawable/gmd_favorite" />
+                </LinearLayout>
+                <!--endregion-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="#000" />
+                <!--region IconicsImageView Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IconicsImageView AutoMirror on RTL" />
 
-            <com.mikepenz.iconics.view.IconicsTextView
-                android:layout_width="wrap_content"
-                android:layout_height="56dp"
-                android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:padding="24dp"
+                        app:iiv_color="?android:textColorPrimary"
+                        app:iiv_icon="gmd_accessible"
+                        app:iiv_automirror="true" />
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:padding="24dp"
+                        app:iiv_color="?android:textColorPrimary"
+                        app:iiv_icon="gmd_accessible"
+                        app:iiv_automirror="false" />
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        app:iiv_icon="gmd_accessible"
+                        app:iiv_color="?android:textColorPrimary"
+                        app:iiv_background_color="@color/accent"
+                        app:iiv_padding="24dp"
+                        app:iiv_automirror="true" />
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        app:iiv_icon="gmd_accessible"
+                        app:iiv_color="?android:textColorPrimary"
+                        app:iiv_background_color="@color/accent"
+                        app:iiv_padding="24dp"
+                        app:iiv_automirror="false" />
+
+                </LinearLayout>
+                <!--endregion-->
+
+                <!--region IconicsImageView Padding Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="IconicsImageView Padding Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- no padding and size -->
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="#ffcccc"
+                        app:iiv_color="#666666"
+                        app:iiv_icon="faw_android" />
+
+                    <!-- android:iiv_size -->
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="#ccffcc"
+                        app:iiv_color="#666666"
+                        app:iiv_icon="faw_android"
+                        app:iiv_size="16dp" />
+
+                    <!-- android:iiv_padding -->
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="#ccccff"
+                        app:iiv_color="#666666"
+                        app:iiv_icon="faw_android"
+                        app:iiv_padding="16dp" />
+
+                    <!-- android:padding -->
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="#ffffcc"
+                        android:padding="16dp"
+                        app:iiv_color="#666666"
+                        app:iiv_icon="faw_android" />
+
+                </LinearLayout>
+                <!--endregion-->
+
+                <!--region TextView Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="TextView Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+                <TextView
+                    android:id="@+id/test1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:text="abc{hif-test}defgh{faw-adjust}ijk{fon-test1}lm{gmd-bubble-chart}no{met-wind}pqrstuv{fon-test2}wxy{z"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/test5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:text="somecustomtext with a custom icon :D"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="16sp" />
+                <!--endregion-->
+
+                <!--region IconicsTextView Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="IconicsTextView Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IconicsTextView with side-drawables"
+                    android:textColor="?android:textColorPrimary"
+
+                    app:iiv_all_color="@color/md_amber_300"
+                    app:iiv_all_icon="gmd_account_circle"
+                    app:iiv_all_size="24dp" />
+
+                <com.mikepenz.iconics.view.IconicsTextView
+                    android:id="@+id/test10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:text="abcdefgh{faw-adjust}ijk{fon-test1}lmnopqrstuv{fon-test2}wxyz"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="16sp" />
+                <!--endregion-->
+
+                <!--region Button/IconicsButton Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Button/IconicsButton Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.mikepenz.iconics.view.IconicsButton
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="{faw-adjust} Button" />
+
+                    <Button
+                        android:id="@+id/test4"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="{fon-test2} Button" />
+
+                    <ImageButton
+                        android:id="@+id/test6"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1" />
+
+                    <com.mikepenz.iconics.view.IconicsImageButton
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:focusable="true"
+                        android:clickable="true"
+
+                        app:iiv_icon="gmd_replay_10"
+                        app:iiv_color="@color/color_states_icon"
+                        app:iiv_background_color="@color/color_states_bg"
+                        app:iiv_background_contour_color="@color/color_states_bg_contour"
+                        app:iiv_contour_color="@color/color_states_contour"
+                        app:iiv_background_contour_width="2dp"
+                        app:iiv_contour_width="2dp" />
+
+                    <com.mikepenz.iconics.view.IconicsImageButton
+                        android:id="@+id/test7"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:focusable="true"
+                        android:clickable="true"
+
+                        app:iiv_size="60dp"
+                        app:iiv_corner_radius="60dp"
+                        app:iiv_icon="gmd_autorenew"
+                        app:iiv_color="@color/color_states_icon"
+                        app:iiv_background_color="@color/color_states_bg"
+                        app:iiv_background_contour_color="@color/color_states_bg_contour"
+                        app:iiv_contour_color="@color/color_states_contour"
+                        app:iiv_background_contour_width="2dp"
+                        app:iiv_contour_width="2dp"
+                        app:iiv_animations="spin|blink_alpha|blink_scale" />
+                </LinearLayout>
 
                 <com.mikepenz.iconics.view.IconicsButton
-                    android:layout_width="120dp"
-                    android:layout_height="60dp"
-                    android:text="{faw-adjust} Button" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IconicsButton with side-drawables"
+                    app:iiv_all_color="@color/accent"
+                    app:iiv_all_icon="faw_android"
+                    app:iiv_all_size="24dp" />
+                <!--endregion-->
 
-                <Button
-                    android:id="@+id/test4"
-                    android:layout_width="120dp"
-                    android:layout_height="60dp"
-                    android:text="{gmd-poll} Button" />
+                <!--region ImageView Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="ImageView Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/test3"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp" />
+
+                    <ImageView
+                        android:id="@+id/test2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp" />
+
+                    <ImageView
+                        android:id="@+id/test9"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:iconicsSrc="@{&quot;gmd_favorite&quot;}"
+                        app:iconicsColor="@{@color/md_red_600}" />
+
+                    <com.mikepenz.iconics.view.IconicsImageButton
+                        android:id="@+id/test8"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:iiv_color="@color/md_red_200"
+                        app:iiv_icon="gmd_favorite" />
+                </LinearLayout>
+                <!--endregion-->
+
+                <!--region IconicCheckBox Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="IconicsCheckBox Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.mikepenz.iconics.view.IconicsCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IconicsCheckBox"
+                        android:padding="5dp"
+
+                        app:iiv_checked_color="@color/primary"
+                        app:iiv_checked_icon="gmd_star"
+                        app:iiv_checked_size="24dp"
+
+                        app:iiv_unchecked_color="@color/primary"
+                        app:iiv_unchecked_icon="gmd_star_border"
+                        app:iiv_unchecked_size="24dp" />
+
+                    <com.mikepenz.iconics.view.IconicsCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Iconics{fon-test1}CheckBox{faw-adjust}"
+                        android:padding="5dp"
+
+                        app:iiv_checked_color="@color/primary"
+                        app:iiv_checked_icon="gmd_check_box"
+                        app:iiv_checked_size="24dp"
+
+                        app:iiv_unchecked_color="@color/primary"
+                        app:iiv_unchecked_icon="gmd_check_box_outline_blank"
+                        app:iiv_unchecked_size="24dp" />
+
+                    <com.mikepenz.iconics.view.IconicsCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+
+                        app:iiv_checked_color="@color/primary"
+                        app:iiv_checked_icon="gmd_play_circle_filled"
+                        app:iiv_checked_size="24dp"
+
+                        app:iiv_unchecked_color="@color/primary"
+                        app:iiv_unchecked_icon="gmd_play_circle_outline"
+                        app:iiv_unchecked_size="24dp" />
+                </LinearLayout>
+                <!--endregion-->
+
+                <!--region IconicsCheckableTextView Showcase-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="IconicsCheckableTextView Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.mikepenz.iconics.view.IconicsCheckableTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IconicsCheckableTextViewStart"
+                        android:textColor="?android:textColorPrimary"
+                        android:padding="5dp"
+
+                        app:iiv_start_icon="gmd_error_outline"
+                        app:iiv_start_color="@color/accent"
+                        app:iiv_start_size="24dp"
+
+                        app:iiv_start_checked_icon="gmd_error"
+                        app:iiv_start_checked_color="@color/accent"
+                        app:iiv_start_checked_size="24dp" />
+
+                    <com.mikepenz.iconics.view.IconicsCheckableTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IconicsCheckableTextViewTop"
+                        android:textColor="?android:textColorPrimary"
+                        android:padding="5dp"
+
+                        app:iiv_top_icon="gmd_help_outline"
+                        app:iiv_top_color="@color/md_deep_orange_400"
+                        app:iiv_top_size="24dp"
+
+                        app:iiv_top_checked_icon="gmd_help"
+                        app:iiv_top_checked_color="@color/md_deep_orange_400"
+                        app:iiv_top_checked_size="24dp" />
+
+                    <com.mikepenz.iconics.view.IconicsCheckableTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IconicsCheckableTextViewEnd"
+                        android:textColor="?android:textColorPrimary"
+                        android:padding="5dp"
+
+                        app:iiv_end_icon="gmd_info_outline"
+                        app:iiv_end_color="@color/md_cyan_800"
+                        app:iiv_end_size="24dp"
+
+                        app:iiv_end_background_color="@color/accent"
+                        app:iiv_end_checked_background_color="@color/accent"
+
+                        app:iiv_end_checked_icon="gmd_info"
+                        app:iiv_end_checked_color="@color/md_cyan_800"
+                        app:iiv_end_checked_size="24dp" />
+
+                    <com.mikepenz.iconics.view.IconicsCheckableTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IconicsCheckableTextViewBottom"
+                        android:textColor="?android:textColorPrimary"
+                        android:padding="5dp"
+
+                        app:iiv_bottom_icon="gmd_add_circle_outline"
+                        app:iiv_bottom_color="@color/md_blue_grey_300"
+                        app:iiv_bottom_size="24dp"
+
+                        app:iiv_bottom_checked_icon="gmd_add_circle"
+                        app:iiv_bottom_checked_color="@color/md_blue_grey_300"
+                        app:iiv_bottom_checked_size="24dp" />
+
+                    <com.mikepenz.iconics.view.IconicsCheckableTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IconicsCheckableTextView"
+                        android:textColor="?android:textColorPrimary"
+                        android:padding="5dp"
+
+                        app:iiv_all_size="24dp"
+                        app:iiv_all_checked_size="24dp"
+
+                        app:iiv_start_icon="gmd_error_outline"
+                        app:iiv_start_color="@color/accent"
+                        app:iiv_start_checked_icon="gmd_error"
+                        app:iiv_start_checked_color="@color/accent"
+
+                        app:iiv_top_icon="gmd_help_outline"
+                        app:iiv_top_color="@color/md_deep_orange_400"
+                        app:iiv_top_checked_icon="gmd_help"
+                        app:iiv_top_checked_color="@color/md_deep_orange_400"
+
+                        app:iiv_end_icon="gmd_info_outline"
+                        app:iiv_end_color="@color/md_cyan_800"
+                        app:iiv_end_checked_icon="gmd_info"
+                        app:iiv_end_checked_color="@color/md_cyan_800"
+
+                        app:iiv_bottom_icon="gmd_add_circle_outline"
+                        app:iiv_bottom_color="@color/md_blue_grey_300"
+                        app:iiv_bottom_checked_icon="gmd_add_circle"
+                        app:iiv_bottom_checked_color="@color/md_blue_grey_300" />
+                </LinearLayout>
+                <!--endregion-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="BottomNavigationView Showcase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.bottomnavigation.BottomNavigationView
+                        android:id="@+id/navigation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/md_yellow_200"
+                        app:itemIconTint="@color/color_states_bottom_navigation_icons"
+                        app:menu="@menu/menu_navigation" />
+
+                    <com.google.android.material.bottomnavigation.BottomNavigationView
+                        android:id="@+id/navigation_auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/md_green_200"
+                        app:menu="@menu/menu_playground" />
+                </LinearLayout>
             </LinearLayout>
+        </ScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/test3"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp" />
-
-                <ImageView
-                    android:id="@+id/test2"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="0dp"
+            android:layout_height="112dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/content"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

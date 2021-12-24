@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019 Mike Penz
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <declare-styleable name="Iconics">
+        <attr name="ico_icon" format="string" />
+        <attr name="ico_color" format="color|reference" />
+        <attr name="ico_size" format="dimension|reference" />
+        <attr name="ico_offset_x" format="dimension|reference" />
+        <attr name="ico_offset_y" format="dimension|reference" />
+        <attr name="ico_padding" format="dimension|reference" />
+        <attr name="ico_contour_color" format="color|reference" />
+        <attr name="ico_contour_width" format="dimension|reference" />
+        <attr name="ico_background_color" format="color|reference" />
+        <attr name="ico_corner_radius" format="dimension|reference" />
+        <attr name="ico_background_contour_color" format="color|reference" />
+        <attr name="ico_background_contour_width" format="dimension|reference" />
+        <attr name="ico_shadow_radius" format="dimension|reference" />
+        <attr name="ico_shadow_dx" format="dimension|reference" />
+        <attr name="ico_shadow_dy" format="dimension|reference" />
+        <attr name="ico_shadow_color" format="color|reference" />
+        <attr name="ico_animations" format="string" />
+        <attr name="ico_automirror" format="boolean" />
+    </declare-styleable>
+</resources>

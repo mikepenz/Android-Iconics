@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019 Mike Penz
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="define_MaterialDesignIcons">year;author;libraryName;libraryWebsite</string>
+    <string name="library_MaterialDesignIcons_author">Austin Andrews</string>
+    <string name="library_MaterialDesignIcons_authorWebsite">https://materialdesignicons.com/</string>
+    <string name="library_MaterialDesignIcons_libraryName">Material Design Icons</string>
+    <string name="library_MaterialDesignIcons_libraryDescription">Material Design Icons\' growing icon collection allows designers and developers targeting various platforms to download icons in the format, color and size they need for any project.</string>
+    <string name="library_MaterialDesignIcons_libraryWebsite">https://materialdesignicons.com/</string>
+    <string name="library_MaterialDesignIcons_libraryVersion">@string/community_material_version</string>
+    <string name="library_MaterialDesignIcons_licenseId">sil_ofl_1_1</string>
+    <string name="library_MaterialDesignIcons_isOpenSource">true</string>
+    <string name="library_MaterialDesignIcons_repositoryLink">https://github.com/templarian/MaterialDesign/</string>
+    <!-- Custom variables section -->
+    <string name="library_MaterialDesignIcons_year">2021</string>
+</resources> 

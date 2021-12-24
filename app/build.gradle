@@ -1,69 +1,141 @@
 apply plugin: 'com.android.application'
-//wrap with try and catch so the build is working even if the signing stuff is missing
-try {
-    apply from: '../../../signing.gradle'
-} catch (ex) {
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin'
+
+/*
+ * Copyright (c) 2020 Mike Penz
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+if (getSigningFile() != null) {
+    apply from: "${getSigningFile()}"
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 162
-        versionName "1.6.2"
-        enforceUniquePackageName false
+        minSdkVersion setup.composeMinSdk
+        targetSdkVersion setup.targetSdk
+        versionCode release.versionCode
+        versionName release.versionName
+
+        multiDexEnabled true
+
+        setProperty("archivesBaseName", "Android Iconics-v$versionName-c$versionCode")
     }
 
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-DEBUG"
-            try {
+            if (getSigningFile() != null) {
                 signingConfig signingConfigs.debug
-            } catch (ex) {
             }
             minifyEnabled false
         }
         release {
-            try {
+            if (getSigningFile() != null) {
                 signingConfig signingConfigs.release
-            } catch (ex) {
             }
             zipAlignEnabled true
             minifyEnabled false
         }
+    }
 
-        applicationVariants.all { variant ->
-            variant.outputs.each { output ->
-                def outputFile = output.outputFile
-                if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                    def fileName = outputFile.name.replace(".apk", "-v" + defaultConfig.versionName + "-c" + defaultConfig.versionCode + ".apk")
-                    output.outputFile = new File(outputFile.parent, fileName)
-                }
-            }
-        }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
     }
-    productFlavors {
-    }
+
     lintOptions {
         abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/library-core_release.kotlin_module'
+        exclude 'META-INF/library_release.kotlin_module'
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:recyclerview-v7:22.2.1'
-    compile 'com.android.support:cardview-v7:22.2.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
-    compile('com.mikepenz:aboutlibraries:5.0.9@aar')
-    compile('com.mikepenz:materialdrawer:3.1.2@aar')
+    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
+    implementation "androidx.cardview:cardview:${versions.cardview}"
 
-    compile project(':fontawesome-typeface-library')
-    compile project(':google-material-typeface-library')
-    compile project(':meteocons-typeface-library')
-    compile project(':octicons-typeface-library')
-    compile project(':community-material-typeface-library')
+    implementation "androidx.core:core-ktx:${versions.ktx.core}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // used to fill the RecyclerView with the DrawerItems
+    // and provides single and multi selection, expandable items
+    // https://github.com/mikepenz/FastAdapter
+    implementation "com.mikepenz:fastadapter:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-utils:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-ui:${versions.fastAdapter}"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:${versions.fastAdapter}"
+
+    // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
+    // https://github.com/zTrap/Android-Iconics-String-Generator
+    testImplementation 'ru.ztrap.iconics:string-generator:1.0.4'
+
+    // used to generate the drawer on the left
+    // https://github.com/mikepenz/MaterialDrawer
+    implementation("com.mikepenz:materialdrawer:${versions.materialDrawer}") {
+        transitive = true
+        exclude module: "fastadapter"
+        exclude module: "fastadapter-extensions-expandable"
+    }
+
+    // used to generate the Open Source section
+    // https://github.com/mikepenz/AboutLibraries
+    implementation("com.mikepenz:aboutlibraries:${versions.aboutLibraries}") {
+        transitive = true
+        exclude module: "fastadapter"
+    }
+
+    implementation project(':iconics-core')
+    implementation project(':iconics-views')
+
+    implementation project(':community-material-typeface-library')
+    implementation project(':devicon-typeface-library')
+    implementation project(':entypo-typeface-library')
+    implementation project(':fontawesome-typeface-library')
+    implementation project(':foundation-icons-typeface-library')
+    implementation project(':google-material-typeface-library')
+    implementation project(':google-material-typeface-outlined-library')
+    implementation project(':google-material-typeface-rounded-library')
+    implementation project(':google-material-typeface-sharp-library')
+    implementation project(':ionicons-typeface-library')
+    implementation project(':material-design-dx-typeface-library')
+    implementation project(':material-design-iconic-typeface-library')
+    implementation project(':meteocons-typeface-library')
+    implementation project(':octicons-typeface-library')
+    implementation project(':phosphor-typeface-library')
+    implementation project(':pixeden-7-stroke-typeface-library')
+    implementation project(':typeicons-typeface-library')
+    implementation project(':weather-icons-typeface-library')
+
+    testImplementation 'junit:junit:4.13.2'
 }

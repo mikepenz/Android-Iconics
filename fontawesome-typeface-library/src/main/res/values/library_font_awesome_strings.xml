@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019 Mike Penz
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="define_FontAwesome">year;author;libraryName;libraryWebsite</string>
+    <string name="library_FontAwesome_author">FontAwesome</string>
+    <string name="library_FontAwesome_authorWebsite">https://fontawesome.com/</string>
+    <string name="library_FontAwesome_libraryName">FontAwesome</string>
+    <string name="library_FontAwesome_libraryDescription">The internet\'s most popular icon toolkit has been redesigned and built from scratch. On top of this, features like icon font ligatures, an SVG framework, official NPM packages for popular frontend libraries like React, and access to a new CDN.</string>
+    <string name="library_FontAwesome_libraryWebsite">https://fontawesome.com/</string>
+    <string name="library_FontAwesome_libraryVersion">@string/fontawesome_version</string>
+    <string name="library_FontAwesome_licenseId">sil_ofl_1_1</string>
+    <string name="library_FontAwesome_isOpenSource">true</string>
+    <string name="library_FontAwesome_repositoryLink">https://github.com/FortAwesome/Font-Awesome</string>
+    <!-- Custom variables section -->
+    <string name="library_FontAwesome_year">2021</string>
+</resources> 

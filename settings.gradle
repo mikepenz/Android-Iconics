@@ -1,1 +1,47 @@
-include ':app', ':fontawesome-typeface-library', ':meteocons-typeface-library', ':octicons-typeface-library', ':library-core', 'community-material-typeface-library', 'google-material-typeface-library'
+/*
+ * Copyright (c) 2019 Mike Penz
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+include ':app'
+
+include ':iconics-core'
+include ':iconics-typeface-api'
+include ':iconics-views'
+include ':iconics-compose'
+
+include ':community-material-typeface-library'
+include ':devicon-typeface-library'
+include ':entypo-typeface-library'
+include ':fontawesome-typeface-library'
+include ':foundation-icons-typeface-library'
+
+include ':google-material-typeface-library'
+project(':google-material-typeface-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-library')
+include ':google-material-typeface-outlined-library'
+project(':google-material-typeface-outlined-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-outlined-library')
+include ':google-material-typeface-rounded-library'
+project(':google-material-typeface-rounded-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-rounded-library')
+include ':google-material-typeface-sharp-library'
+project(':google-material-typeface-sharp-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-sharp-library')
+
+include ':ionicons-typeface-library'
+include ':material-design-dx-typeface-library'
+include ':material-design-iconic-typeface-library'
+include ':meteocons-typeface-library'
+include ':octicons-typeface-library'
+include ':phosphor-typeface-library'
+include ':pixeden-7-stroke-typeface-library'
+include ':typeicons-typeface-library'
+include ':weather-icons-typeface-library'
