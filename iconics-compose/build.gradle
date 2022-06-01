@@ -28,6 +28,8 @@ android {
         minSdkVersion setup.composeMinSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
+        versionCode release.versionCode
+        versionName release.versionName
     }
     buildTypes {
         release {
