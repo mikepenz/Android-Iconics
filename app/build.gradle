@@ -134,6 +134,7 @@ dependencies {
     implementation project(':octicons-typeface-library')
     implementation project(':phosphor-typeface-library')
     implementation project(':pixeden-7-stroke-typeface-library')
+    implementation project(':simple-icons-typeface-library')
     implementation project(':typeicons-typeface-library')
     implementation project(':weather-icons-typeface-library')
 
