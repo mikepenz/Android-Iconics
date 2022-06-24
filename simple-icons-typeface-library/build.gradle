@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2020 Mike Penz
+ * Copyright 2019 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *        http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,18 +18,16 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
-version release.versionName
-
 android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion setup.composeMinSdk
+        minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode release.versionCode
-        versionName release.versionName
+
+        resValue "string", "Simple_Icons_version", "${versionName}"
     }
     buildTypes {
         release {
@@ -37,36 +35,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    buildFeatures {
-        compose true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    composeOptions {
-        kotlinCompilerVersion versions.kotlin
-        kotlinCompilerExtensionVersion versions.compose
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-        useIR = true
-    }
-
-    // specify the artifactId as module-name for kotlin
-    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }
-if (project.hasProperty('pushall') || project.hasProperty('librarycomposeonly')) {
+if (project.hasProperty('pushall') || project.hasProperty('simpleicons')) {
     apply from: '../gradle-release.gradle'
 }
 
 dependencies {
-    api project(':iconics-typeface-api')
-
-    implementation "androidx.compose.ui:ui:${versions.compose}"
-    implementation "androidx.compose.foundation:foundation:${versions.compose}"
+    implementation project(':iconics-typeface-api')
 }
+
