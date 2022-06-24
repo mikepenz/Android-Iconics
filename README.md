@@ -46,6 +46,7 @@
 - [Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)
 - [Pixeden 7 Stroke](https://themes-pixeden.com/font-demos/7-stroke/)
 - [Phosphor](https://phosphoricons.com/)
+- [Simple Icons](https://simpleicons.org/)
 - Or create your own font with any icon needed.
 
 # Setup
@@ -94,6 +95,7 @@ implementation 'com.mikepenz:ionicons-typeface:2.0.1.7-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.5-kotlin@aar'
 implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
 implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlin@aar'
+implementation 'com.mikepenz:simple-icons-typeface:17.0.0.1@aar'
 ```
 
 ## Note
@@ -202,25 +204,29 @@ Image(
 ![Image](https://raw.githubusercontent.com/mikepenz/Android-Iconics/develop/DEV/github/screenshots1.jpg)
 
 # Available fonts
-|Link|Prefix|Dependency|
-|---|---|---|
-|[Google Material Design Icons](https://github.com/google/material-design-icons) **ORIGINAL by Google**|gmd,gmo,gmr,gms|implementation 'com.mikepenz:google-material-typeface{-outlined,rounded,sharp}:+@aar'|
-|[Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) **Google Material Iconic**|gmi|implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'|
-|[Fontawesome](https://fontawesome.com/)|faw|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
-|[FontawesomeBrand](https://fontawesome.com/)|fab|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
-|[FontawesomeRegular](https://fontawesome.com/)|far|implementation 'com.mikepenz:fontawesome-typeface:+@aar'|
-|[Meteocons](http://www.alessioatzeni.com/meteocons/)|met|implementation 'com.mikepenz:meteocons-typeface:+@aar'|
-|[Octicons](https://github.com/github/octicons)|oct|implementation 'com.mikepenz:octicons-typeface:+@aar'|
-|[Community Material](http://materialdesignicons.com/)|cmd|implementation 'com.mikepenz:community-material-typeface:+@aar'|
-|[Weather Icons](https://erikflowers.github.io/weather-icons/)|wic|implementation 'com.mikepenz:weather-icons-typeface:+@aar'|
-|[Typeicons](http://typicons.com/)|typ|implementation 'com.mikepenz:typeicons-typeface:+@aar'|
-|[Entypo](http://www.entypo.com/)|ent|implementation 'com.mikepenz:entypo-typeface:+@aar'|
-|[Devicon](http://devicon.fr/)|dev|implementation 'com.mikepenz:devicon-typeface:+@aar'|
-|[Foundation Icons](https://github.com/zurb/foundation-icon-fonts)|fou|implementation 'com.mikepenz:foundation-icons-typeface:+@aar'|
-|[Ionicons](http://ionicons.com/)|ion|implementation 'com.mikepenz:ionicons-typeface:+@aar'|
-|[Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)|pe7|implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'|
-|[Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)|cmf|implementation 'com.mikepenz:material-design-icons-dx-typeface:+@aar'|
-|[Phosphor Icons](https://phosphoricons.com/)|pho|implementation 'com.mikepenz:phosphor-typeface:+@aar'|
+
+| Link                                                                                                              | Prefix          | Dependency                                                                            |
+|-------------------------------------------------------------------------------------------------------------------|-----------------|---------------------------------------------------------------------------------------|
+| [Google Material Design Icons](https://github.com/google/material-design-icons) **ORIGINAL by
+Google**            | gmd,gmo,gmr,gms | implementation 'com.mikepenz:google-material-typeface{-outlined,rounded,sharp}:+@aar' |
+| [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font) **Google Material
+Iconic** | gmi             | implementation 'com.mikepenz:material-design-iconic-typeface:+@aar'                   |
+| [Fontawesome](https://fontawesome.com/)                                                                           | faw             | implementation 'com.mikepenz:fontawesome-typeface:+@aar'                              |
+| [FontawesomeBrand](https://fontawesome.com/)                                                                      | fab             | implementation 'com.mikepenz:fontawesome-typeface:+@aar'                              |
+| [FontawesomeRegular](https://fontawesome.com/)                                                                    | far             | implementation 'com.mikepenz:fontawesome-typeface:+@aar'                              |
+| [Meteocons](http://www.alessioatzeni.com/meteocons/)                                                              | met             | implementation 'com.mikepenz:meteocons-typeface:+@aar'                                |
+| [Octicons](https://github.com/github/octicons)                                                                    | oct             | implementation 'com.mikepenz:octicons-typeface:+@aar'                                 |
+| [Community Material](http://materialdesignicons.com/)                                                             | cmd             | implementation 'com.mikepenz:community-material-typeface:+@aar'                       |
+| [Weather Icons](https://erikflowers.github.io/weather-icons/)                                                     | wic             | implementation 'com.mikepenz:weather-icons-typeface:+@aar'                            |
+| [Typeicons](http://typicons.com/)                                                                                 | typ             | implementation 'com.mikepenz:typeicons-typeface:+@aar'                                |
+| [Entypo](http://www.entypo.com/)                                                                                  | ent             | implementation 'com.mikepenz:entypo-typeface:+@aar'                                   |
+| [Devicon](http://devicon.fr/)                                                                                     | dev             | implementation 'com.mikepenz:devicon-typeface:+@aar'                                  |
+| [Foundation Icons](https://github.com/zurb/foundation-icon-fonts)                                                 | fou             | implementation 'com.mikepenz:foundation-icons-typeface:+@aar'                         |
+| [Ionicons](http://ionicons.com/)                                                                                  | ion             | implementation 'com.mikepenz:ionicons-typeface:+@aar'                                 |
+| [Pixden7Stroke](http://themes-pixeden.com/font-demos/7-stroke/)                                                   | pe7             | implementation 'com.mikepenz:pixeden-7-stroke-typeface:+@aar'                         |
+| [Material Design DX](https://jossef.github.io/material-design-icons-iconfont/)                                    | cmf             | implementation 'com.mikepenz:material-design-icons-dx-typeface:+@aar'                 |
+| [Phosphor Icons](https://phosphoricons.com/)                                                                      | pho             | implementation 'com.mikepenz:phosphor-typeface:+@aar'                                 |
+| [Simple Icons](https://simpleicons.org/)                                                                          | sim             | implementation 'com.mikepenz:simple-icons-typeface:+@aar'                             |
 
 Licenses for all included fonts are linked inside the class or can be found on the coresponding repositories.
 
