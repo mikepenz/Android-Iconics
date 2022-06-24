@@ -17,7 +17,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.mikepenz.iconics.typeface.library.simple_icons">
+    package="com.mikepenz.iconics.typeface.library.simpleicons">
 
     <application>
         <provider
@@ -26,8 +26,8 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.mikepenz.iconics.typeface.library.simple_icons.Initializer"
-                android:value="androidx.startup" />
+                android:name="com.mikepenz.iconics.typeface.library.simpleicons.Initializer"
+                android:value="androidx.startup"/>
         </provider>
     </application>
 </manifest>

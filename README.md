@@ -95,12 +95,13 @@ implementation 'com.mikepenz:ionicons-typeface:2.0.1.7-kotlin@aar'
 implementation 'com.mikepenz:pixeden-7-stroke-typeface:1.2.0.5-kotlin@aar'
 implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
 implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlin@aar'
-implementation 'com.mikepenz:simple-icons-typeface:17.0.0.1@aar'
+implementation 'com.mikepenz:simple-icons-typeface:17.0.0.2@aar'
 ```
 
 ## Note
 
-⚠️ The fonts use the `jetpack startup` library to automatically register themself. If `jetpack startup` is disabled, it is required to manually register the fonts. Please find additional details in the [Register fonts](#register-fonts).
+⚠️ The fonts use the `jetpack startup` library to automatically register themselves. If `jetpack startup` is disabled,
+it is required to manually register the fonts. Please find additional details in the [Register fonts](#register-fonts).
 
 # Usage
 ## Use as drawable

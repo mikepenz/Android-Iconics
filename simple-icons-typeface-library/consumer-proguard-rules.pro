@@ -1,1 +1,1 @@
--keep class com.mikepenz.iconics.typeface.library.simple_icons.SimpleIcons { *; }
+-keep class com.mikepenz.iconics.typeface.library.simpleicons.SimpleIcons { *; }

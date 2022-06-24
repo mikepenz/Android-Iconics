@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 170001
-        versionName "17.0.0.1"
+        versionCode 170002
+        versionName "17.0.0.2"
 
         resValue "string", "Simple_Icons_version", "${versionName}"
     }
