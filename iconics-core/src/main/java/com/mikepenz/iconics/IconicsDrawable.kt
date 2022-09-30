@@ -475,8 +475,7 @@ open class IconicsDrawable internal constructor() : WrappedDrawable() {
         return PixelFormat.TRANSLUCENT
     }
 
-    // in some cases (e.g. on API 16) stateSet might be null
-    override fun onStateChange(stateSet: IntArray?): Boolean {
+    override fun onStateChange(stateSet: IntArray): Boolean {
         var isNeedsRedraw = iconBrush.applyState(stateSet)
         isNeedsRedraw = contourBrush.applyState(stateSet) || isNeedsRedraw
         isNeedsRedraw = backgroundBrush.applyState(stateSet) || isNeedsRedraw
