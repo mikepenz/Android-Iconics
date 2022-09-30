@@ -53,7 +53,7 @@
 
 ## Latest releases 🛠
 
-- Kotlin Next Gen | [v5.3.4](https://github.com/mikepenz/Android-Iconics/tree/v5.3.4)
+- Kotlin Next Gen | [v5.4.0](https://github.com/mikepenz/Android-Iconics/tree/v5.4.0)
 - Kotlin | [v4.0.2](https://github.com/mikepenz/Android-Iconics/tree/v4.0.2)
 - Java AndroidX | [v3.2.5](https://github.com/mikepenz/Android-Iconics/tree/v3.2.5)
 - Java Appcompat | [v3.0.4](https://github.com/mikepenz/Android-Iconics/tree/v3.0.4)
@@ -85,7 +85,7 @@ implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
 implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
 implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
 implementation 'com.mikepenz:meteocons-typeface:1.1.0.7-kotlin@aar'
-implementation 'com.mikepenz:community-material-typeface:6.4.95.0-kotlin@aar' // note 5.3.45.1 and newer alphabetically sorts, and merges in 3 sections
+implementation 'com.mikepenz:community-material-typeface:7.0.96.0-kotlin@aar' // note 5.3.45.1 and newer alphabetically sorts, and merges in 3 sections
 implementation 'com.mikepenz:weather-icons-typeface:2.0.10.7-kotlin@aar'
 implementation 'com.mikepenz:typeicons-typeface:2.0.7.7-kotlin@aar'
 implementation 'com.mikepenz:entypo-typeface:1.0.0.7-kotlin@aar'
