@@ -25,7 +25,7 @@ buildscript {
         setup = [
                 compileSdk   : 33,
                 buildTools: "34.0.0",
-                minSdk       : 16,
+                minSdk: 21,
                 composeMinSdk: 21,
                 targetSdk    : 33
         ]
