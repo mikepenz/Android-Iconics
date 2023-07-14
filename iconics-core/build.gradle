@@ -47,19 +47,30 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+
+        // specify the artifactId as module-name for kotlin
+        freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
+    }
+
+    buildFeatures {
+        compose true
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    // specify the artifactId as module-name for kotlin
-    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
+
+    composeOptions {
+        kotlinCompilerExtensionVersion versions.composeCompiler
+    }
 }
 
 dependencies {
     api project(':iconics-typeface-api')
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
+
+    compileOnly "androidx.compose.runtime:runtime:${versions.compose}"
 }
 
 if (project.hasProperty('pushall') || project.hasProperty('librarycoreonly')) {
