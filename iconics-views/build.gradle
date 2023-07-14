@@ -15,8 +15,8 @@
  */
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
+apply from: "../gradle/compile.groovy"
 
 version release.versionName
 
@@ -30,6 +30,7 @@ android {
         versionCode release.versionCode
         versionName release.versionName
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -41,14 +42,6 @@ android {
         abortOnError false
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     // specify the artifactId as module-name for kotlin
     kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }

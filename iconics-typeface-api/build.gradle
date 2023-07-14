@@ -15,8 +15,8 @@
  */
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
+apply from: "../gradle/compile.groovy"
 
 version release.versionName
 
@@ -46,19 +46,12 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
-
         // specify the artifactId as module-name for kotlin
         freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
     }
 
     buildFeatures {
         compose true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     composeOptions {
@@ -74,6 +67,5 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 
     api "androidx.startup:startup-runtime:$versions.startup"
-
-    compileOnly "androidx.compose.runtime:runtime:${versions.compose}"
+    implementation "androidx.compose.runtime:runtime:${versions.compose}"
 }
