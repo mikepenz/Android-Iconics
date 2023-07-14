@@ -15,8 +15,8 @@
  */
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
+apply from: "../gradle/compile.groovy"
 
 android {
     compileSdkVersion setup.compileSdk

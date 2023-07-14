@@ -15,8 +15,8 @@
  */
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
+apply from: "../gradle/compile.groovy"
 
 version release.versionName
 
@@ -42,21 +42,30 @@ android {
         compose true
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-
     composeOptions {
         kotlinCompilerExtensionVersion versions.composeCompiler
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        // specify the artifactId as module-name for kotlin
+        freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
+
+        if (project.findProperty("composeCompilerReports") == "true") {
+            freeCompilerArgs += [
+                    "-P",
+                    "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
+                            project.buildDir.absolutePath + "/compose_compiler"
+            ]
+        }
+        if (project.findProperty("composeCompilerMetrics") == "true") {
+            freeCompilerArgs += [
+                    "-P",
+                    "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
+                            project.buildDir.absolutePath + "/compose_compiler"
+            ]
+        }
     }
 
-    // specify the artifactId as module-name for kotlin
-    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 }
 if (project.hasProperty('pushall') || project.hasProperty('librarycomposeonly')) {
     apply from: '../gradle-release.gradle'

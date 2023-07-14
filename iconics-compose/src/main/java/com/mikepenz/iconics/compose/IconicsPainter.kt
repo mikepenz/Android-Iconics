@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
 import android.text.TextPaint
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -17,6 +18,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.painter.Painter
 import com.mikepenz.iconics.typeface.IIcon
 
+@Immutable
 data class IconicsConfig(
     val respectFontBounds: Boolean = true,
     val iconPaint: Paint = TextPaint(Paint.ANTI_ALIAS_FLAG),

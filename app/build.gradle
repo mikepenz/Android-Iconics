@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
+apply from: "../gradle/compile.groovy"
 
 /*
  * Copyright (c) 2020 Mike Penz
@@ -24,12 +25,6 @@ if (getSigningFile() != null) {
 }
 
 android {
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
 
@@ -99,6 +94,7 @@ dependencies {
     // used to generating string fields for icons (sample - test/java/StringFieldGenerator.java)
     // https://github.com/zTrap/Android-Iconics-String-Generator
     testImplementation 'ru.ztrap.iconics:string-generator:1.0.4'
+
 
     // used to generate the drawer on the left
     // https://github.com/mikepenz/MaterialDrawer

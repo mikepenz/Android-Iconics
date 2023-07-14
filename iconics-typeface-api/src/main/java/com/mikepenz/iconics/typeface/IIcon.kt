@@ -16,9 +16,12 @@
 
 package com.mikepenz.iconics.typeface
 
+import androidx.compose.runtime.Immutable
+
 /**
  * Created by mikepenz on 06.11.14.
  */
+@Immutable
 interface IIcon {
     val formattedName: String
         get() = "{$name}"
