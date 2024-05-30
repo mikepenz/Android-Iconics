@@ -62,6 +62,10 @@ afterEvaluate { project ->
         }
     }
 
+    afterEvaluate {
+        generateMetadataFileForReleasePublication.dependsOn androidSourcesJar
+    }
+
     publishing {
         publications {
             release(MavenPublication) {
@@ -71,7 +75,6 @@ afterEvaluate { project ->
                 artifactId POM_ARTIFACT_ID
                 version android.defaultConfig.versionName
 
-                artifact androidSourcesJar
                 artifact androidJavadocsJar
 
                 pom.withXml {
@@ -81,7 +84,9 @@ afterEvaluate { project ->
                     asNode().children().last() + pomConfig
 
                     // we want dependencies as compile, to ensure they are transitively resolved
-                    asNode().dependencies.'*'.findAll() { it.scope.text() == 'runtime' }.each { it.scope*.value = 'compile' }
+                    if (!POM_ARTIFACT_ID.endsWith("-typeface")) {
+                        asNode().dependencies.'*'.findAll() { it.scope.text() == 'runtime' }.each { it.scope*.value = 'compile' }
+                    }
                 }
             }
         }
