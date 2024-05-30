@@ -21,7 +21,7 @@ apply from: "../../gradle/compile.groovy"
 android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
-    namespace = "com.mikepenz.iconics.typeface.library.googlematerial"
+    namespace = "com.mikepenz.iconics.typeface.library.googlematerial.rounded"
 
     defaultConfig {
         minSdkVersion setup.minSdk

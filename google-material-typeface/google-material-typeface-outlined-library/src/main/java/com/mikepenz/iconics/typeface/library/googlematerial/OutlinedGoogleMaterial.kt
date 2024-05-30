@@ -17,6 +17,7 @@ package com.mikepenz.iconics.typeface.library.googlematerial
 
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
+import com.mikepenz.iconics.typeface.library.googlematerial.outlined.R
 import java.util.LinkedList
 
 @Suppress("EnumEntryName")
