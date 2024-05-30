@@ -41,6 +41,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.typeface.library.phosphor'
 }
 if (project.hasProperty('pushall') || project.hasProperty('phosphor')) {
     apply from: '../gradle-release.gradle'

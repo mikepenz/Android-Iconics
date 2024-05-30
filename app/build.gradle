@@ -28,6 +28,8 @@ android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
 
+    namespace = "com.mikepenz.iconics.sample"
+
     defaultConfig {
         minSdkVersion setup.composeMinSdk
         targetSdkVersion setup.targetSdk

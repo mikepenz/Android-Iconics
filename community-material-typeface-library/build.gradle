@@ -40,6 +40,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.typeface.library.community'
 }
 if (project.hasProperty('pushall') || project.hasProperty('communitymaterialonly')) {
     apply from: '../gradle-release.gradle'

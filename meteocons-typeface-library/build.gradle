@@ -41,6 +41,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.typeface.library.meteoconcs'
 }
 if (project.hasProperty('pushall') || project.hasProperty('meteoconsonly')) {
     apply from: '../gradle-release.gradle'

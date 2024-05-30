@@ -16,6 +16,8 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: "org.jetbrains.compose"
+apply plugin: "org.jetbrains.kotlin.plugin.compose"
 apply from: "../gradle/compile.groovy"
 
 version release.versionName
@@ -23,6 +25,7 @@ version release.versionName
 android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
+    namespace 'com.mikepenz.iconics.typeface'
 
     defaultConfig {
         minSdkVersion setup.minSdk
@@ -49,14 +52,6 @@ android {
         // specify the artifactId as module-name for kotlin
         freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
     }
-
-    buildFeatures {
-        compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion versions.composeCompiler
-    }
 }
 if (project.hasProperty('pushall') || project.hasProperty('librarytypefaceonly')) {
     apply from: '../gradle-release.gradle'
@@ -67,5 +62,5 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 
     api "androidx.startup:startup-runtime:$versions.startup"
-    implementation "androidx.compose.runtime:runtime:${versions.compose}"
+    implementation(compose.runtime)
 }

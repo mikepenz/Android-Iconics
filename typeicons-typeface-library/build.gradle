@@ -41,6 +41,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.typeface.library.typeicons'
 }
 if (project.hasProperty('pushall') || project.hasProperty('Typeiconsonly')) {
     apply from: '../gradle-release.gradle'

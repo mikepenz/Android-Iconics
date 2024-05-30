@@ -41,6 +41,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.typeface.library.ionicons'
 }
 if (project.hasProperty('pushall') || project.hasProperty('Ioniconsonly')) {
     apply from: '../gradle-release.gradle'

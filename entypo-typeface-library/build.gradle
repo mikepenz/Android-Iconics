@@ -41,6 +41,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.typeface.library.entypo'
 }
 if (project.hasProperty('pushall') || project.hasProperty('Entypoonly')) {
     apply from: '../gradle-release.gradle'
