@@ -73,8 +73,9 @@ implementation "com.mikepenz:iconics-views:${latestAndroidIconicsRelease}"
 
 ## 2. Choose your desired fonts
 
-> Note: Fonts ending with `-kotlin` require at least v4.x of Android-Iconics
-> Note: v5.1.x or newer requires the latest font versions
+> [!NOTE]
+> Fonts ending with `-kotlin` require at least v4.x of Android-Iconics
+> v5.1.x or newer requires the latest font versions
 
 ```gradle
 implementation 'com.mikepenz:google-material-typeface:4.0.0.3-kotlin@aar'
@@ -95,6 +96,11 @@ implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.3-kotlin@aa
 implementation 'com.mikepenz:phosphor-typeface:1.0.0.1-kotlin@aar'
 implementation 'com.mikepenz:simple-icons-typeface:17.0.0.3@aar'
 ```
+
+> [!NOTE]
+> For users of the version catalog, it is not possible to add the type, however you can do so via
+> the implementation definition.
+> `implementation(libs.material.typeface) { artifact { type = "aar" } }`
 
 > [!WARNING]  
 > The fonts use the `jetpack startup` library to automatically register themselves.
