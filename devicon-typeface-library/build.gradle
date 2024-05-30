@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 20007
-        versionName "2.0.0.7-kotlin"
+        versionCode 20008
+        versionName "2.0.0.8-kotlin"
 
         resValue "string", "devicon_version", "${versionName}"
     }

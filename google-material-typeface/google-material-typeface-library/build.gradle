@@ -27,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 40002
-        versionName "4.0.0.2-kotlin"
+        versionCode 40003
+        versionName "4.0.0.3-kotlin"
 
         resValue "string", "googlematerial_version", "${versionName}"
     }

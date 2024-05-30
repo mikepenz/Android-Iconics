@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 30007
-        versionName "3.0.0.7-kotlin"
+        versionCode 30008
+        versionName "3.0.0.8-kotlin"
 
         resValue "string", "foundation_version", "${versionName}"
     }

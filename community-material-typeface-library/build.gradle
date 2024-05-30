@@ -26,8 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 70960
-        versionName "7.0.96.0-kotlin"
+        versionCode 70961
+        versionName "7.0.96.1-kotlin"
 
         resValue "string", "community_material_version", "${versionName}"
     }
