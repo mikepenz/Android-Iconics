@@ -98,12 +98,19 @@ implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlin@aar'
 implementation 'com.mikepenz:simple-icons-typeface:17.0.0.2@aar'
 ```
 
-## Note
+> [!WARNING]  
+> The fonts use the `jetpack startup` library to automatically register themselves.
+> If `jetpack startup` is disabled,
+> it is required to manually register the fonts. Please find additional details in
+> the [Register fonts](#register-fonts).
 
-⚠️ The fonts use the `jetpack startup` library to automatically register themselves. If `jetpack startup` is disabled,
-it is required to manually register the fonts. Please find additional details in the [Register fonts](#register-fonts).
 
 # Usage
+
+> [!NOTE]  
+> It might be required to call `Iconics.init(applicationContext)` if no context based APIs are used
+> from the library otherwise.
+
 ## Use as drawable
 
 ```kotlin
