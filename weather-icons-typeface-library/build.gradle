@@ -41,6 +41,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.typeface.library.weathericons'
 }
 if (project.hasProperty('pushall') || project.hasProperty('weathericonsonly')) {
     apply from: '../gradle-release.gradle'

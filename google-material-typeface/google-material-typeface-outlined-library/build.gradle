@@ -22,6 +22,7 @@ android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
 
+    namespace = "com.mikepenz.iconics.typeface.library.googlematerial.outlined"
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk

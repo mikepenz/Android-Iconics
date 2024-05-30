@@ -16,6 +16,8 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: "org.jetbrains.compose"
+apply plugin: "org.jetbrains.kotlin.plugin.compose"
 apply from: "../gradle/compile.groovy"
 
 version release.versionName
@@ -23,6 +25,7 @@ version release.versionName
 android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
+    namespace 'com.mikepenz.iconics.compose'
 
     defaultConfig {
         minSdkVersion setup.composeMinSdk
@@ -36,14 +39,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    buildFeatures {
-        compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion versions.composeCompiler
     }
 
     kotlinOptions {
@@ -74,6 +69,6 @@ if (project.hasProperty('pushall') || project.hasProperty('librarycomposeonly'))
 dependencies {
     api project(':iconics-typeface-api')
 
-    implementation "androidx.compose.ui:ui:${versions.compose}"
-    implementation "androidx.compose.foundation:foundation:${versions.compose}"
+    implementation(compose.ui)
+    implementation(compose.foundation)
 }

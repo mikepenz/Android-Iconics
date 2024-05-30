@@ -37,6 +37,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'com.mikepenz.iconics.typeface.library.simpleicons'
 }
 if (project.hasProperty('pushall') || project.hasProperty('simpleicons')) {
     apply from: '../gradle-release.gradle'

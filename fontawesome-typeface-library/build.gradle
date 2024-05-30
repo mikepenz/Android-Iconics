@@ -41,6 +41,7 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.typeface.library.fontawesome'
 }
 if (project.hasProperty('pushall') || project.hasProperty('fontawesomeonly')) {
     apply from: '../gradle-release.gradle'
