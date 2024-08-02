@@ -77,8 +77,8 @@ GEM
     open4 (1.3.4)
     public_suffix (5.0.1)
     rchardet (1.8.0)
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.3.3)
+      strscan
     ruby-ll (2.1.2)
       ansi
       ast
