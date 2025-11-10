@@ -18,6 +18,7 @@ then
     # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PIoniconsonly
     # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmaterialdesigndxonly
     # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmaterialdesigniconiconly
+    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmaterialsymbolsonly
     # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmeteoconsonly
     # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pocticons
     # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pphosphor
