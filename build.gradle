@@ -23,15 +23,15 @@ buildscript {
         ]
 
         setup = [
-                compileSdk: 34,
-                buildTools: "34.0.0",
-                minSdk: 21,
+                compileSdk: 36,
+                buildTools: "36.1.0",
+                minSdk    : 21,
                 composeMinSdk: 21,
                 targetSdk : 34
         ]
 
         versions = [
-                kotlin        : '2.0.0',
+                kotlin        : '2.2.21',
                 androidX        : '1.0.0',
                 recyclerView    : '1.3.0',
                 material        : '1.9.0',
@@ -44,11 +44,11 @@ buildscript {
                 ],
                 startup         : '1.1.1',
                 detekt          : '1.18.1',
-                aboutLibraries: '11.2.1',
+                aboutLibraries: '13.1.0',
                 materialDrawer: '9.0.2',
                 fastAdapter     : '5.7.0',
                 // compose
-                compose       : '1.6.10',
+                compose       : '1.9.3',
         ]
     }
 
@@ -61,12 +61,13 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.4.1'
+        classpath 'com.android.tools.build:gradle:8.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "org.jetbrains.kotlin:compose-compiler-gradle-plugin:${versions.kotlin}"
         classpath "org.jetbrains.compose:compose-gradle-plugin:${versions.compose}"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${versions.aboutLibraries}"
+        classpath "com.mikepenz.aboutlibraries.plugin.android:com.mikepenz.aboutlibraries.plugin.android.gradle.plugin:${versions.aboutLibraries}"
     }
 }
 
