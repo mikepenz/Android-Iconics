@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Mike Penz
+ * Copyright 2025 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ object OutlinedMaterialSymbols : ITypeface {
         get() = "Material Symbols Outlined"
 
     override val version: String
-        get() = "1.0.0"
+        get() = "0.39.3"
 
     override val iconCount: Int
         get() = characters.size
