@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Mike Penz
+ * Copyright 2025 Mike Penz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 10000
-        versionName "1.0.0.0"
-
+        versionCode 3930
+        versionName "0.39.3.0"
         resValue "string", "materialsymbols_version", "${versionName}"
     }
     buildTypes {
