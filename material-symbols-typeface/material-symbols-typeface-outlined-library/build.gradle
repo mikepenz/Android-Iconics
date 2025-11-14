@@ -1,0 +1,48 @@
+/*
+ * Copyright 2025 Mike Penz
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: "../../gradle/compile.groovy"
+
+android {
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
+
+    defaultConfig {
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
+        consumerProguardFiles 'consumer-proguard-rules.pro'
+        versionCode 3930
+        versionName "0.39.3.0"
+        resValue "string", "materialsymbols_version", "${versionName}"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    namespace 'com.mikepenz.iconics.typeface.library.materialsymbols'
+}
+if (project.hasProperty('pushall') || project.hasProperty('materialsymbolsonly')) {
+    apply from: "$rootDir/gradle-release.gradle"
+}
+
+dependencies {
+    implementation project(':iconics-typeface-api')
+}
+

@@ -125,6 +125,7 @@ dependencies {
     implementation project(':google-material-typeface-outlined-library')
     implementation project(':google-material-typeface-rounded-library')
     implementation project(':google-material-typeface-sharp-library')
+    implementation project(':material-symbols-typeface-outlined-library')
     implementation project(':ionicons-typeface-library')
     implementation project(':material-design-dx-typeface-library')
     implementation project(':material-design-iconic-typeface-library')

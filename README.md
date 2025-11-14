@@ -32,6 +32,7 @@
 
 **Already available fonts**
 - [Google Material Design Icons](https://github.com/google/material-design-icons)
+- [Google Material Symbols](https://github.com/google/material-design-icons)
 - [Material Design Iconic Font](http://zavoloklom.github.io/material-design-iconic-font)
 - [Fontawesome](https://fontawesome.com/)
 - [Meteocons](http://www.alessioatzeni.com/meteocons/)
