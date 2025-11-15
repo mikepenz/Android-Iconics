@@ -30,7 +30,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Validate gradle wrapper
-        uses: gradle/actions/wrapper-validation@v3
+        uses: gradle/actions/wrapper-validation@v5
 
       - name: Build Debug
         run: ./gradlew clean app:assembleDebug
@@ -71,26 +71,20 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: ./gradlew app:assembleRelease app:bundleRelease
 
-      - name: Prepare Sonatype Gradle properties
-        if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          echo "${{ secrets.SONATYPE_GPG_FILE }}" > opensource.gpg.asc
-          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch "opensource.gpg.asc" > "$HOME/.gradle/opensource.gpg"
-          echo "sonatype.gpg.key=${{ secrets.SONATYPE_GPG_KEY }}" >> ~/.gradle/gradle.properties
-          echo "sonatype.gpg.password=${{ secrets.SONATYPE_GPG_PASS }}" >> ~/.gradle/gradle.properties
-          echo "sonatype.gpg.secretKeyRingFile=$HOME/.gradle/opensource.gpg" >> ~/.gradle/gradle.properties
-
       - name: Relase Sonatype
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           ./gradlew build -x test -x lint
-          ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarytypefaceonly --no-configure-on-demand --no-parallel
-          ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarycoreonly --no-configure-on-demand --no-parallel
-          ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibraryviewsonly --no-configure-on-demand --no-parallel
-          ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarycomposeonly --no-configure-on-demand --no-parallel
+          ./gradlew :iconics-core:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
+          ./gradlew :iconics-typeface-api:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
+          ./gradlew :iconics-views:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
+          ./gradlew :iconics-compose:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
         env:
-          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.NEXUS_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.NEXUS_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
 
       - name: Collect artifacts
         run: |

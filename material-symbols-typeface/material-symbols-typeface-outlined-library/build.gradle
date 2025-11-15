@@ -16,7 +16,8 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: "../../gradle/compile.groovy"
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 android {
     compileSdkVersion setup.compileSdk
@@ -26,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 3930
-        versionName "0.39.3.0"
+        versionCode Integer.parseInt(project.property("VERSION_CODE"))
+        versionName project.property("VERSION_NAME")
         resValue "string", "materialsymbols_version", "${versionName}"
     }
     buildTypes {
@@ -38,11 +39,8 @@ android {
     }
     namespace 'com.mikepenz.iconics.typeface.library.materialsymbols'
 }
-if (project.hasProperty('pushall') || project.hasProperty('materialsymbolsonly')) {
-    apply from: "$rootDir/gradle-release.gradle"
-}
 
 dependencies {
-    implementation project(':iconics-typeface-api')
+    api project(':iconics-typeface-api')
 }
 
