@@ -27,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 51332
-        versionName "5.13.3.2-kotlin"
+        versionCode Integer.parseInt(project.property("VERSION_CODE"))
+        versionName project.property("VERSION_NAME")
 
         resValue "string", "fontawesome_version", "${versionName}"
     }

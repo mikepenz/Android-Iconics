@@ -27,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 20109
-        versionName "2.0.1.9-kotlin"
+        versionCode Integer.parseInt(project.property("VERSION_CODE"))
+        versionName project.property("VERSION_NAME")
 
         resValue "string", "iconics_version", "${versionName}"
     }

@@ -27,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 10002
-        versionName "1.0.0.2-kotlin"
+        versionCode Integer.parseInt(project.property("VERSION_CODE"))
+        versionName project.property("VERSION_NAME")
 
         resValue "string", "phosphor_version", "${versionName}"
     }

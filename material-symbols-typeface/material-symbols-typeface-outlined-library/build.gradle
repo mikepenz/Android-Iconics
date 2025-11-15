@@ -27,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 3931
-        versionName "0.39.3.1"
+        versionCode Integer.parseInt(project.property("VERSION_CODE"))
+        versionName project.property("VERSION_NAME")
         resValue "string", "materialsymbols_version", "${versionName}"
     }
     buildTypes {
