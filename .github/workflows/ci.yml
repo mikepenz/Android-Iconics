@@ -75,7 +75,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           ./gradlew build -x test -x lint
-          ./gradlew :iconics-core:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
+          # ./gradlew :iconics-core:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
           ./gradlew :iconics-typeface-api:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
           ./gradlew :iconics-views:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
           ./gradlew :iconics-compose:publishToMavenCentral -x test -x lint --no-configure-on-demand --no-parallel
