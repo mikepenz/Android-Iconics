@@ -30,7 +30,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Validate gradle wrapper
-        uses: gradle/actions/wrapper-validation@v3
+        uses: gradle/actions/wrapper-validation@v5
 
       - name: Build Debug
         run: ./gradlew clean app:assembleDebug
