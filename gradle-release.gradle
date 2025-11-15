@@ -3,7 +3,7 @@ apply plugin: 'com.vanniktech.maven.publish'
 // Configure the maven publish plugin
 mavenPublishing {
     // Use the new Maven Central Portal (https://central.sonatype.com/)
-    publishToMavenCentral(true)
+    publishToMavenCentral(true, false)
 
     // Enable GPG signing for all publications
     signAllPublications()
