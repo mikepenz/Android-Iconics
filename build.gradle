@@ -18,38 +18,37 @@ buildscript {
 
     ext {
         release = [
-                versionName: "5.4.0",
-                versionCode: 50400
+                versionName: "5.5.0",
+                versionCode: 50500
         ]
 
         setup = [
-                compileSdk   : 33,
-                buildTools   : "33.0.0",
-                minSdk       : 16,
+                compileSdk: 36,
+                buildTools: "36.1.0",
+                minSdk    : 21,
                 composeMinSdk: 21,
-                targetSdk    : 33
+                targetSdk : 34
         ]
 
         versions = [
-                kotlin          : '1.7.10',
+                kotlin          : '2.2.21',
                 androidX        : '1.0.0',
-                recyclerView    : '1.2.1',
-                material        : '1.6.1',
-                appcompat       : '1.5.1',
+                recyclerView    : '1.3.0',
+                material        : '1.9.0',
+                appcompat       : '1.7.1',
                 drawerlayout    : '1.1.0',
                 constraintLayout: '2.0.4',
                 cardview        : '1.0.0',
                 ktx             : [
-                        core: '1.9.0'
+                        core: '1.17.0'
                 ],
-                startup         : '1.1.1',
+                startup         : '1.2.0',
                 detekt          : '1.18.1',
-                aboutLibraries  : '10.5.0',
-                materialDrawer  : '9.0.1',
+                aboutLibraries  : '13.1.0',
+                materialDrawer  : '9.0.2',
                 fastAdapter     : '5.7.0',
                 // compose
-                compose         : '1.2.1',
-                composeCompiler : '1.3.1'
+                compose         : '1.9.3',
         ]
     }
 
@@ -62,11 +61,18 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:8.13.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "org.jetbrains.kotlin:compose-compiler-gradle-plugin:${versions.kotlin}"
+        classpath "org.jetbrains.compose:compose-gradle-plugin:${versions.compose}"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
         classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${versions.aboutLibraries}"
+        classpath "com.mikepenz.aboutlibraries.plugin.android:com.mikepenz.aboutlibraries.plugin.android.gradle.plugin:${versions.aboutLibraries}"
     }
+}
+
+plugins {
+    id "com.vanniktech.maven.publish" version "0.35.0"
 }
 
 allprojects {
@@ -76,6 +82,15 @@ allprojects {
         google()
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+    // Disable Javadoc linting for Java 8+
+    if (JavaVersion.current().isJava8Compatible()) {
+        allprojects {
+            tasks.withType(Javadoc) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+        }
     }
 }
 

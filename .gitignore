@@ -30,3 +30,4 @@ proguard/
 functiongraphic.psd
 
 vendor/*
+.kotlin

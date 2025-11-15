@@ -36,6 +36,9 @@ project(':google-material-typeface-rounded-library').projectDir = new File(setti
 include ':google-material-typeface-sharp-library'
 project(':google-material-typeface-sharp-library').projectDir = new File(settingsDir, 'google-material-typeface/google-material-typeface-sharp-library')
 
+include ':material-symbols-typeface-outlined-library'
+project(':material-symbols-typeface-outlined-library').projectDir = new File(settingsDir, 'material-symbols-typeface/material-symbols-typeface-outlined-library')
+
 include ':ionicons-typeface-library'
 include ':material-design-dx-typeface-library'
 include ':material-design-iconic-typeface-library'

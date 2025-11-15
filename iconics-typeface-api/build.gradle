@@ -15,14 +15,18 @@
  */
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
+apply plugin: "org.jetbrains.compose"
+apply plugin: "org.jetbrains.kotlin.plugin.compose"
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 version release.versionName
 
 android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
+    namespace 'com.mikepenz.iconics.typeface'
 
     defaultConfig {
         minSdkVersion setup.minSdk
@@ -46,18 +50,9 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        // specify the artifactId as module-name for kotlin
+        freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    // specify the artifactId as module-name for kotlin
-    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
-}
-if (project.hasProperty('pushall') || project.hasProperty('librarytypefaceonly')) {
-    apply from: '../gradle-release.gradle'
 }
 
 dependencies {
@@ -65,4 +60,5 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 
     api "androidx.startup:startup-runtime:$versions.startup"
+    implementation(compose.runtime)
 }

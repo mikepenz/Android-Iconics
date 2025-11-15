@@ -15,8 +15,9 @@
  */
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 version release.versionName
 
@@ -30,6 +31,7 @@ android {
         versionCode release.versionCode
         versionName release.versionName
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -40,21 +42,10 @@ android {
     lintOptions {
         abortOnError false
     }
+    namespace 'com.mikepenz.iconics.view'
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     // specify the artifactId as module-name for kotlin
     kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
-}
-
-if (project.hasProperty('pushall') || project.hasProperty('libraryviewsonly')) {
-    apply from: '../gradle-release.gradle'
 }
 
 dependencies {

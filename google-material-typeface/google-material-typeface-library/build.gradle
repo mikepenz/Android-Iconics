@@ -15,19 +15,21 @@
  */
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
+    namespace = "com.mikepenz.iconics.typeface.library.googlematerial"
 
     defaultConfig {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 40002
-        versionName "4.0.0.2-kotlin"
+        versionCode Integer.parseInt(project.property("VERSION_CODE"))
+        versionName project.property("VERSION_NAME")
 
         resValue "string", "googlematerial_version", "${versionName}"
     }
@@ -44,10 +46,7 @@ android {
         abortOnError false
     }
 }
-if (project.hasProperty('pushall') || project.hasProperty('googlematerialonly')) {
-    apply from: "$rootDir/gradle-release.gradle"
-}
 
 dependencies {
-    implementation project(':iconics-typeface-api')
+    api project(':iconics-typeface-api')
 }

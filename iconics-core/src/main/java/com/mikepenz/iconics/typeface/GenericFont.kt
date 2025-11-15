@@ -26,13 +26,13 @@ import java.util.LinkedList
  * Created by mikepenz on 01.11.14.
  */
 open class GenericFont : ITypeface {
-    override val fontName: String
+    override var fontName: String = ""
 
-    override val author: String
+    override var author: String = ""
 
-    override val mappingPrefix: String
+    override var mappingPrefix: String = ""
 
-    override val fontRes: Int
+    override var fontRes: Int = 0
 
     private val fontFile: String
 

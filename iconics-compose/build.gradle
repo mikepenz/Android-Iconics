@@ -15,14 +15,18 @@
  */
 
 apply plugin: 'com.android.library'
-
 apply plugin: 'kotlin-android'
+apply plugin: "org.jetbrains.compose"
+apply plugin: "org.jetbrains.kotlin.plugin.compose"
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 version release.versionName
 
 android {
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
+    namespace 'com.mikepenz.iconics.compose'
 
     defaultConfig {
         minSdkVersion setup.composeMinSdk
@@ -38,33 +42,30 @@ android {
         }
     }
 
-    buildFeatures {
-        compose true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion versions.composeCompiler
-    }
-
     kotlinOptions {
-        jvmTarget = "1.8"
-    }
+        // specify the artifactId as module-name for kotlin
+        freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
 
-    // specify the artifactId as module-name for kotlin
-    kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
-}
-if (project.hasProperty('pushall') || project.hasProperty('librarycomposeonly')) {
-    apply from: '../gradle-release.gradle'
+        if (project.findProperty("composeCompilerReports") == "true") {
+            freeCompilerArgs += [
+                    "-P",
+                    "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
+                            project.buildDir.absolutePath + "/compose_compiler"
+            ]
+        }
+        if (project.findProperty("composeCompilerMetrics") == "true") {
+            freeCompilerArgs += [
+                    "-P",
+                    "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
+                            project.buildDir.absolutePath + "/compose_compiler"
+            ]
+        }
+    }
 }
 
 dependencies {
     api project(':iconics-typeface-api')
 
-    implementation "androidx.compose.ui:ui:${versions.compose}"
-    implementation "androidx.compose.foundation:foundation:${versions.compose}"
+    implementation(compose.ui)
+    implementation(compose.foundation)
 }

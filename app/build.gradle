@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin.android'
+apply from: "$rootDir/gradle/compile.groovy"
 
 /*
  * Copyright (c) 2020 Mike Penz
@@ -24,14 +26,10 @@ if (getSigningFile() != null) {
 }
 
 android {
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
+
+    namespace = "com.mikepenz.iconics.sample"
 
     defaultConfig {
         minSdkVersion setup.composeMinSdk
@@ -100,6 +98,7 @@ dependencies {
     // https://github.com/zTrap/Android-Iconics-String-Generator
     testImplementation 'ru.ztrap.iconics:string-generator:1.0.4'
 
+
     // used to generate the drawer on the left
     // https://github.com/mikepenz/MaterialDrawer
     implementation("com.mikepenz:materialdrawer:${versions.materialDrawer}") {
@@ -127,6 +126,7 @@ dependencies {
     implementation project(':google-material-typeface-outlined-library')
     implementation project(':google-material-typeface-rounded-library')
     implementation project(':google-material-typeface-sharp-library')
+    implementation project(':material-symbols-typeface-outlined-library')
     implementation project(':ionicons-typeface-library')
     implementation project(':material-design-dx-typeface-library')
     implementation project(':material-design-iconic-typeface-library')
