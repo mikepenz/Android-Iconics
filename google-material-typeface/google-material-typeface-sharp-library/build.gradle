@@ -16,7 +16,8 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: "../../gradle/compile.groovy"
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 android {
     compileSdkVersion setup.compileSdk
@@ -27,8 +28,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 40002
-        versionName "4.0.0.2-kotlin"
+        versionCode 40003
+        versionName "4.0.0.3-kotlin"
 
         resValue "string", "googlematerial_version", "${versionName}"
     }
@@ -45,10 +46,7 @@ android {
         abortOnError false
     }
 }
-if (project.hasProperty('pushall') || project.hasProperty('googlematerialonly')) {
-    apply from: "$rootDir/gradle-release.gradle"
-}
 
 dependencies {
-    implementation project(':iconics-typeface-api')
+    api project(':iconics-typeface-api')
 }

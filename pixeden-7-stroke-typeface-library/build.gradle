@@ -16,7 +16,8 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: "../gradle/compile.groovy"
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 android {
     compileSdkVersion setup.compileSdk
@@ -26,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 12006
-        versionName "1.2.0.6-kotlin"
+        versionCode 12007
+        versionName "1.2.0.7-kotlin"
 
         resValue "string", "pixeden7_version", "${versionName}"
     }
@@ -43,10 +44,7 @@ android {
     }
     namespace 'com.mikepenz.iconics.typeface.library.pixeden7stroke'
 }
-if (project.hasProperty('pushall') || project.hasProperty('Pixeden7Strokeonly')) {
-    apply from: '../gradle-release.gradle'
-}
 
 dependencies {
-    implementation project(':iconics-typeface-api')
+    api project(':iconics-typeface-api')
 }

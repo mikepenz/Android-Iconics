@@ -16,7 +16,8 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: "../gradle/compile.groovy"
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 android {
     compileSdkVersion setup.compileSdk
@@ -26,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 70961
-        versionName "7.0.96.1-kotlin"
+        versionCode 70962
+        versionName "7.0.96.2-kotlin"
 
         resValue "string", "community_material_version", "${versionName}"
     }
@@ -42,10 +43,7 @@ android {
     }
     namespace 'com.mikepenz.iconics.typeface.library.community'
 }
-if (project.hasProperty('pushall') || project.hasProperty('communitymaterialonly')) {
-    apply from: '../gradle-release.gradle'
-}
 
 dependencies {
-    implementation project(':iconics-typeface-api')
+    api project(':iconics-typeface-api')
 }

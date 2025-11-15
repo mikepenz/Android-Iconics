@@ -16,7 +16,8 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: "../gradle/compile.groovy"
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 version release.versionName
 
@@ -45,10 +46,6 @@ android {
 
     // specify the artifactId as module-name for kotlin
     kotlinOptions.freeCompilerArgs += ["-module-name", POM_ARTIFACT_ID]
-}
-
-if (project.hasProperty('pushall') || project.hasProperty('libraryviewsonly')) {
-    apply from: '../gradle-release.gradle'
 }
 
 dependencies {

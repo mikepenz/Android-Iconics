@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin.android'
-apply from: "../gradle/compile.groovy"
+apply from: "$rootDir/gradle/compile.groovy"
 
 /*
  * Copyright (c) 2020 Mike Penz

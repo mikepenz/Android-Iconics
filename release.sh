@@ -4,27 +4,31 @@
 
 if [ "$1" = "release" ];
 then
-    ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarytypefaceonly
-    ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarycoreonly
-    ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibraryviewsonly
-    ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Plibrarycomposeonly
+  ./gradlew :iconics-core:publishToMavenCentral -x test -x lint
+  ./gradlew :iconics-typeface-api:publishToMavenCentral -x test -x lint
+  ./gradlew :iconics-views:publishToMavenCentral -x test -x lint
+  ./gradlew :iconics-compose:publishToMavenCentral -x test -x lint
 
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pcommunitymaterialonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PDevIcononly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PEntypoonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pfontawesomeonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PFoundationIconsonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pgooglematerialonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PIoniconsonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmaterialdesigndxonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmaterialdesigniconiconly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmaterialsymbolsonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pmeteoconsonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pocticons
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pphosphor
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PPixeden7Strokeonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -PTypeiconsonly
-    # ./gradlew publishReleasePublicationToSonatypeRepository -x test -x lint -Pweathericonsonly
+  ./gradlew :community-material-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :devicon-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :entypo-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :fontawesome-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :foundation-icons-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :google-material-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :google-material-typeface-outlined-library:publishToMavenCentral -x test -x lint
+  ./gradlew :google-material-typeface-rounded-library:publishToMavenCentral -x test -x lint
+  ./gradlew :google-material-typeface-sharp-library:publishToMavenCentral -x test -x lint
+  ./gradlew :material-symbols-typeface-outlined-library:publishToMavenCentral -x test -x lint
+  ./gradlew :ionicons-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :material-design-dx-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :material-design-iconic-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :meteocons-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :octicons-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :phosphor-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :pixeden-7-stroke-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :typeicons-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :weather-icons-typeface-library:publishToMavenCentral -x test -x lint
+  ./gradlew :simple-icons-typeface-library:publishToMavenCentral -x test -x lint
 else
     echo todo
 fi

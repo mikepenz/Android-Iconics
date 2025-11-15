@@ -16,7 +16,8 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: "../gradle/compile.groovy"
+apply from: "$rootDir/gradle/compile.groovy"
+apply from: "$rootDir/gradle-release.gradle"
 
 android {
     compileSdkVersion setup.compileSdk
@@ -26,8 +27,8 @@ android {
         minSdkVersion setup.minSdk
         targetSdkVersion setup.targetSdk
         consumerProguardFiles 'consumer-proguard-rules.pro'
-        versionCode 11008
-        versionName "1.1.0.8-kotlin"
+        versionCode 11009
+        versionName "1.1.0.9-kotlin"
 
         resValue "string", "meteocons_version", "${versionName}"
     }
@@ -43,10 +44,7 @@ android {
     }
     namespace 'com.mikepenz.iconics.typeface.library.meteoconcs'
 }
-if (project.hasProperty('pushall') || project.hasProperty('meteoconsonly')) {
-    apply from: '../gradle-release.gradle'
-}
 
 dependencies {
-    implementation project(':iconics-typeface-api')
+    api project(':iconics-typeface-api')
 }
