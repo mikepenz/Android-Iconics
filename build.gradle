@@ -1,33 +1,103 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
+/*
+ * Copyright (c) 2020 Mike Penz
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
+    apply from: 'configurations.gradle'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    ext {
+        release = [
+                versionName: "5.5.0",
+                versionCode: 50500
+        ]
+
+        setup = [
+                compileSdk: 36,
+                buildTools: "36.1.0",
+                minSdk    : 21,
+                composeMinSdk: 21,
+                targetSdk : 34
+        ]
+
+        versions = [
+                kotlin          : '2.2.21',
+                androidX        : '1.0.0',
+                recyclerView    : '1.3.0',
+                material        : '1.9.0',
+                appcompat       : '1.7.1',
+                drawerlayout    : '1.1.0',
+                constraintLayout: '2.0.4',
+                cardview        : '1.0.0',
+                ktx             : [
+                        core: '1.17.0'
+                ],
+                startup         : '1.2.0',
+                detekt          : '1.18.1',
+                aboutLibraries  : '13.1.0',
+                materialDrawer  : '9.0.2',
+                fastAdapter     : '5.7.0',
+                // compose
+                compose         : '1.9.3',
+        ]
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "org.jetbrains.kotlin:compose-compiler-gradle-plugin:${versions.kotlin}"
+        classpath "org.jetbrains.compose:compose-gradle-plugin:${versions.compose}"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${versions.detekt}"
+        classpath "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${versions.aboutLibraries}"
+        classpath "com.mikepenz.aboutlibraries.plugin.android:com.mikepenz.aboutlibraries.plugin.android.gradle.plugin:${versions.aboutLibraries}"
     }
 }
-// To avoid manually setting the same values in all Android modules, set the value on the root
-// project and then reference this from the modules
-ext {
-    compileSdkVersion = 22
-    buildToolsVersion = "22.0.1"
 
-    minSdkVersion = 10
-    targetSdkVersion = 22
+plugins {
+    id "com.vanniktech.maven.publish" version "0.35.0"
 }
 
 allprojects {
+    group "com.mikepenz"
+
     repositories {
-        jcenter()
+        google()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+    // Disable Javadoc linting for Java 8+
+    if (JavaVersion.current().isJava8Compatible()) {
+        allprojects {
+            tasks.withType(Javadoc) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+        }
     }
 }
 
+subprojects {
+    apply from: "$rootDir/detekt.gradle"
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.4'
+    dependencies {
+        detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${versions.detekt}"
+    }
 }

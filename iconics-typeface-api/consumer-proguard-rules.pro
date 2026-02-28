@@ -1,0 +1,1 @@
+-keep public class * extends com.mikepenz.iconics.animation.IconicsAnimationProcessor { *; }

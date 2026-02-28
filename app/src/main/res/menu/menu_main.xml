@@ -1,19 +1,43 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+  ~ Copyright (c) 2019 Mike Penz
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mikepenz.iconics.sample.MainActivity">
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
         android:title="@string/search_title"
-        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|ifRoom" />
 
     <item
         android:id="@+id/action_randomize"
         android:checkable="true"
         android:title="@string/action_randomize" />
+    <item
+        android:id="@+id/action_shadow"
+        android:checkable="true"
+        android:title="@string/action_shadow" />
+    <item
+        android:id="@+id/action_respect_bounds"
+        android:checkable="true"
+        android:title="@string/action_respect_bounds" />
     <item
         android:id="@+id/action_opensource"
         android:title="@string/action_opensource"

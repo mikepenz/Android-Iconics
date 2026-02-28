@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019 Mike Penz
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="define_Entypo">year;author;libraryName;libraryWebsite</string>
+    <string name="library_Entypo_author">Daniel Bruce</string>
+    <string name="library_Entypo_authorWebsite">http://www.danielbruce.se/</string>
+    <string name="library_Entypo_libraryName">Entypo+</string>
+    <string name="library_Entypo_libraryDescription">Entypo+ is the third version of a free suite of premium quality pictograms.</string>
+    <string name="library_Entypo_libraryWebsite">http://www.entypo.com/</string>
+    <string name="library_Entypo_libraryVersion">@string/entypo_version</string>
+    <string name="library_Entypo_licenseId">cc40</string>
+    <string name="library_Entypo_isOpenSource">false</string>
+    <string name="library_Entypo_repositoryLink"></string>
+</resources> 

@@ -1,0 +1,21 @@
+apply plugin: 'com.vanniktech.maven.publish'
+
+// Configure the maven publish plugin
+mavenPublishing {
+    // Use the new Maven Central Portal (https://central.sonatype.com/)
+    publishToMavenCentral(true, false)
+
+    // Enable GPG signing for all publications
+    signAllPublications()
+
+    version = android.defaultConfig.versionName
+}
+
+// Disable Javadoc linting for Java 8+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
