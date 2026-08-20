@@ -46,6 +46,8 @@ import com.mikepenz.iconics.IconicsArrayBuilder
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.sample.databinding.ActivityPlaygroundBinding
+import androidx.activity.enableEdgeToEdge
+import com.mikepenz.iconics.sample.utils.applyEdgeToEdgeInsets
 import com.mikepenz.iconics.sample.utils.getThemeColor
 import com.mikepenz.iconics.typeface.library.community.material.CommunityMaterial
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
@@ -66,10 +68,12 @@ import com.mikepenz.iconics.utils.sizeY
 class PlaygroundActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         val binding: ActivityPlaygroundBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_playground)
+        applyEdgeToEdgeInsets(binding.root, binding.toolbar, binding.list)
 
         // Handle Toolbar
         setSupportActionBar(binding.toolbar)
