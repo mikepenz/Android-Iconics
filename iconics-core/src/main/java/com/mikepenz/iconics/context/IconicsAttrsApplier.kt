@@ -45,6 +45,11 @@ object IconicsAttrsApplier {
 
     @JvmStatic fun getIconicsDrawable(res: Resources, theme: Theme?, attrs: AttributeSet?): IconicsDrawable? {
         return theme?.obtainStyledAttributes(attrs, R.styleable.Iconics, 0, 0)?.use {
+            // no `ico_*` attribute at all -> there is nothing to build an icon from. Returning an
+            // empty drawable here would overwrite whatever icon the target already has, e.g. the
+            // `android:icon` of a menu item or the `android:src` of an `ImageView`.
+            if (it.indexCount == 0) return@use null
+
             IconicsAttrsExtractor(
                 res = res,
                 theme = theme,

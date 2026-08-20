@@ -22,22 +22,6 @@
         <!-- CAB :D -->
         <item name="windowActionModeOverlay">true</item>
 
-        <item name="toolbarStyle">@style/CustomToolbarStyle</item>
-        <item name="colorControlNormal">@android:color/white</item>
-    </style>
-
-    <style name="CustomToolbarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">?colorPrimary</item>
-        <item name="titleTextAppearance">@style/CustomTitleTextAppearance</item>
-        <item name="subtitleTextAppearance">@style/CustomSubTitleTextAppearance</item>
-    </style>
-
-    <style name="CustomTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-
-    <style name="CustomSubTitleTextAppearance"
-        parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
-        <item name="android:textColor">@android:color/white</item>
+        <item name="toolbarStyle">@style/Widget.Material3.Toolbar.Surface</item>
     </style>
 </resources>
