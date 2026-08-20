@@ -1,10 +1,22 @@
 # Android-Iconics
 
+> [!IMPORTANT]
+> ## 🪦 Android-Iconics is in maintenance mode
+>
+> This library is **deprecated**. It still works and will receive critical and security fixes, but **no new features and no new icon fonts** will be added.
+>
+> Android-Iconics solved a problem the platform has since solved better: it loads an entire icon font into memory and renders glyphs through a `Drawable`. In modern Compose projects, vector icons are cheaper, tree-shakeable, previewable, and typed at compile time.
+>
+> **Use instead:** [`ImageVector`](https://developer.android.com/reference/kotlin/androidx/compose/ui/graphics/vector/ImageVector) with [Material Symbols / `androidx.compose.material.icons`](https://developer.android.com/reference/kotlin/androidx/compose/material/icons/package-summary) — see [Migrating away from Android-Iconics](#migrating-away-from-android-iconics).
+>
+> Existing integrations do not need to move urgently — nothing is being shut off.
+
 ... allows to include any icon font with all its vector icons in your project. No limits. **Scale with no limit**, use **any color** at any time, provide a **contour**, and many additional customizations...
 
 -------
 
 <p align="center">
+    <a href="#migrating-away-from-android-iconics">Migrating away 🪦</a> &bull;
     <a href="#whats-included-">What's included 🚀</a> &bull;
     <a href="#setup">Setup 🛠️</a> &bull;
     <a href="MIGRATION.md">Migration Guide 🧬</a> &bull;
@@ -49,6 +61,34 @@
 - [Phosphor](https://phosphoricons.com/)
 - [Simple Icons](https://simpleicons.org/)
 - Or create your own font with any icon needed.
+
+# Migrating away from Android-Iconics
+
+Compose renders icons as vectors. That removes the font file, the runtime glyph lookup, and the
+string-key indirection Android-Iconics needed.
+
+| Android-Iconics | Compose replacement |
+| --- | --- |
+| `IconicsDrawable(ctx, GoogleMaterial.Icon.gmd_favorite)` | `Icon(Icons.Filled.Favorite, contentDescription = null)` |
+| `.size(IconicsSize.dp(24))` | `Modifier.size(24.dp)` |
+| `.color(IconicsColor.colorInt(c))` | `tint = color` on `Icon` |
+| `"gmd-favorite"` string keys | typed `ImageVector` properties, checked at compile time |
+| `*-typeface-library` artifacts | `androidx.compose.material:material-icons-extended`, or an `ImageVector` port of the same icon set |
+
+```kotlin
+// before
+Image(GoogleMaterial.Icon.gmd_favorite, colorFilter = ColorFilter.tint(MaterialTheme.colors.primary))
+
+// after
+Icon(Icons.Filled.Favorite, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+```
+
+Icon sets without a first-party Compose equivalent (FontAwesome, Simple Icons, Phosphor, ...) have
+community `ImageVector` ports. For a fully custom set, convert the SVG sources with Android Studio's
+*Vector Asset* import instead of shipping a font.
+
+Still on Views? [`VectorDrawable`](https://developer.android.com/develop/ui/views/graphics/vector-drawable-resources)
+plus `app:tint` covers most of what `IconicsImageView` and friends provided.
 
 # Setup
 
@@ -342,7 +382,7 @@ ProGuard / R8 rules are bundled internally with each font.
 
 # License
 
-    Copyright 2021 Mike Penz
+    Copyright 2026 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
