@@ -168,9 +168,17 @@ object IconicsMenuInflaterUtil {
         menu: Menu
     ) {
         val attrsMap = mutableMapOf<String, String>()
+        var hasIconicsAttrs = false
         repeat(attrs.attributeCount) {
-            attrsMap[attrs.getAttributeName(it)] = attrs.getAttributeValue(it)
+            val name = attrs.getAttributeName(it)
+            attrsMap[name] = attrs.getAttributeValue(it)
+            if (name.startsWith("ico_")) {
+                hasIconicsAttrs = true
+            }
         }
+
+        // Don't unset non-iconics menu item icon
+        if (!hasIconicsAttrs) return
 
         attrsMap["id"]
                 ?.replace("@", "")
