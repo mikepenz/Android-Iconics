@@ -54,7 +54,7 @@
 
 ## Latest releases 🛠
 
-- Kotlin | [v5.5.0](https://github.com/mikepenz/Android-Iconics/tree/v5.5.0)
+- Kotlin | [v5.6.0](https://github.com/mikepenz/Android-Iconics/tree/v5.6.0)
 
 ## 1. Provide the gradle dependency
 ```gradle
