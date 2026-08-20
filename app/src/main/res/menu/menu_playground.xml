@@ -31,4 +31,10 @@
         app:ico_color="@android:color/holo_blue_bright"
         app:ico_icon="gmd_star"
         app:ico_size="24dp" />
+
+    <!-- neither an `android:icon` nor any `ico_*` attribute: must stay without an icon -->
+    <item
+        android:id="@+id/menu_item_3"
+        android:title="Item 3"
+        app:showAsAction="always" />
 </menu>
