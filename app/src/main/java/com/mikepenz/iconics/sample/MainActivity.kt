@@ -20,7 +20,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -34,6 +33,8 @@ import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.sample.databinding.ActivityMainBinding
+import androidx.activity.enableEdgeToEdge
+import com.mikepenz.iconics.sample.utils.applyEdgeToEdgeInsets
 import com.mikepenz.iconics.sample.utils.getThemeColor
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.ITypeface
@@ -64,10 +65,12 @@ class MainActivity : AppCompatActivity() {
     private var currentSearch: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
         }
+        applyEdgeToEdgeInsets(binding.insetsRoot, binding.toolbar, binding.content)
 
         // Handle Toolbar
         setSupportActionBar(binding.toolbar)
@@ -142,7 +145,7 @@ class MainActivity : AppCompatActivity() {
 
         //
         menu.findItem(R.id.search).icon = IconicsDrawable(this, MaterialDesignIconic.Icon.gmi_search).apply {
-            colorInt = Color.WHITE
+            colorInt = getThemeColor(android.R.attr.textColorPrimary)
             sizeDp = 24
             respectFontBounds = true
         }
@@ -176,7 +179,7 @@ class MainActivity : AppCompatActivity() {
         val menuItem = menu.findItem(R.id.action_opensource)
         menuItem.icon = IconicsDrawable(this, FontAwesomeBrand.Icon.fab_github).apply {
             actionBar()
-            colorInt = Color.WHITE
+            colorInt = getThemeColor(android.R.attr.textColorPrimary)
         }
 
         menu.findItem(R.id.action_respect_bounds).isChecked = Iconics.respectFontBoundsDefault
